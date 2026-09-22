@@ -1,0 +1,83 @@
+$brand-color: #0b5cab;
+$brand-color-strong: #0a477f;
+$brand-color-soft: #e1efff;
+$brand-color-tint: #f2f7fd;
+$accent-blue: #54708d;
+$accent-blue-soft: #eef3f8;
+$accent-orange: #b97845;
+$accent-orange-soft: #fff3e8;
+$accent-yellow: #a98a35;
+$accent-yellow-soft: #fff6d8;
+$danger-color: #c24157;
+$danger-soft: #fff1f2;
+$surface-color: #f2f7fd;
+$surface-color-soft: #f7faff;
+$surface-card: #ffffff;
+$surface-card-cool: #f8fafc;
+$surface-row: #f1f5f9;
+$surface-row-strong: #e2e8f0;
+$card-surface: rgba(255, 255, 255, 0.96);
+$card-border: rgba(148, 163, 184, 0.28);
+$card-shadow: 0 12rpx 30rpx rgba(15, 23, 42, 0.055);
+$card-shadow-soft: 0 8rpx 22rpx rgba(15, 23, 42, 0.045);
+$card-radius: 28rpx;
+$card-radius-lg: 34rpx;
+$card-radius-sm: 20rpx;
+$card-padding: 28rpx;
+$page-padding: 24rpx;
+$section-gap: 30rpx;
+$item-gap: 18rpx;
+$text-color: #0f172a;
+$text-soft: #425466;
+$text-muted: #64748b;
+$text-subtle: #94a3b8;
+$font-title: 36rpx;
+$font-section: 31rpx;
+$font-body: 27rpx;
+$font-caption: 23rpx;
+
+@mixin glass-panel {
+  background: $card-surface;
+  border: 1px solid $card-border;
+  border-radius: $card-radius;
+  box-shadow: $card-shadow;
+}
+
+@mixin primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  border: none;
+  border-radius: 999rpx;
+  padding: 16rpx 34rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #fff;
+  background: $brand-color;
+  box-shadow: 0 10rpx 24rpx rgba(11, 92, 171, 0.18);
+}
+
+@mixin subtle-text {
+  color: $text-muted;
+  font-size: $font-body;
+}
+
+@mixin soft-card {
+  box-sizing: border-box;
+  padding: $card-padding;
+  border: 2rpx solid $card-border;
+  border-radius: $card-radius;
+  background: $surface-card;
+  box-shadow: $card-shadow;
+}
+
+@mixin note-paper {
+  box-sizing: border-box;
+  border: 2rpx solid $card-border;
+  border-radius: $card-radius-lg;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.96)),
+    $surface-card;
+  box-shadow: $card-shadow-soft;
+}

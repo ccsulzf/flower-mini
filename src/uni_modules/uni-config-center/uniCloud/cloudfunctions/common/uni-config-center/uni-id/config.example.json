@@ -1,0 +1,16 @@
+{
+  "passwordSecret": "REPLACE_WITH_RANDOM_PASSWORD_SECRET",
+  "tokenSecret": "REPLACE_WITH_RANDOM_TOKEN_SECRET",
+  "tokenExpiresIn": 7200,
+  "tokenExpiresThreshold": 1200,
+  "passwordErrorLimit": 6,
+  "passwordErrorRetryTime": 3600,
+  "mp-weixin": {
+    "oauth": {
+      "weixin": {
+        "appid": "YOUR_WEIXIN_APPID",
+        "appsecret": "YOUR_WEIXIN_APPSECRET"
+      }
+    }
+  }
+}
