@@ -1,0 +1,29 @@
+{
+  "id": "herbaceous-peony",
+  "category": "flower",
+  "name": "芍药",
+  "group": "main",
+  "introduction": "柔软的层叠花瓣与露出的花蕊，适合自然舒展的作品。",
+  "flowerMeaning": "真挚与惜别（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "浅粉",
+      "value": "#e2a2ac"
+    },
+    {
+      "name": "珊瑚",
+      "value": "#dc8a7c"
+    },
+    {
+      "name": "奶白",
+      "value": "#f3e9de"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

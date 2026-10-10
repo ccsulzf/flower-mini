@@ -1,0 +1,25 @@
+{
+  "id": "dusty-miller",
+  "category": "flower",
+  "name": "银叶菊",
+  "group": "foliage",
+  "introduction": "银灰色绒感裂叶，适合柔和地衬托浅色花朵。",
+  "flowerMeaning": "温柔与陪伴（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "银灰绿",
+      "value": "#b4c0b1"
+    },
+    {
+      "name": "灰绿",
+      "value": "#9ead9b"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 94
+  }
+}

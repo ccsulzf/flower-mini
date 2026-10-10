@@ -1,0 +1,25 @@
+{
+  "id": "eucalyptus",
+  "category": "flower",
+  "name": "尤加利",
+  "group": "foliage",
+  "introduction": "灰绿圆叶沿枝条交错排列，适合柔和的背景层次。",
+  "flowerMeaning": "清新与守护（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "灰绿",
+      "value": "#91a795"
+    },
+    {
+      "name": "鼠尾草",
+      "value": "#a7b49c"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 94
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "snapdragon",
+  "category": "flower",
+  "name": "金鱼草",
+  "group": "filler",
+  "introduction": "上下排列的花朵组成竖向花序，适合延伸作品高度。",
+  "flowerMeaning": "活力与好运（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "浅粉",
+      "value": "#dfa8b1"
+    },
+    {
+      "name": "杏色",
+      "value": "#dfb690"
+    },
+    {
+      "name": "奶白",
+      "value": "#eee5d7"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="170" viewBox="0 0 140 170">
+<defs><linearGradient id="ceramic" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0"><stop offset="0" stop-color="#e6e2d7"/><stop offset=".58" stop-color="#dedacf"/><stop offset="1" stop-color="#cdc9bd"/></linearGradient></defs>
+<path d="M0 8L140 8L140 135Q140 170 105 170L35 170Q0 170 0 135Z" fill="url(#ceramic)"/>
+<ellipse cx="70" cy="8" rx="67" ry="7" fill="#84917b" stroke="#ece8dc" stroke-width="3"/>
+<path d="M20 35L20 125" stroke="#fff" opacity=".12" stroke-width="5"/>
+</svg>

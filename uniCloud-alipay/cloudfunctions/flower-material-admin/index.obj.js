@@ -1,0 +1,65 @@
+const uniID = require('uni-id-common')
+module.exports = {
+  async _before() {
+    const result = await uniID.createInstance({ context: this }).checkToken(this.getUniIdToken())
+    if (result.errCode !== 0 || typeof result.uid !== 'string' || !result.uid) {
+      throw { errCode: 'AUTH_REQUIRED', errMsg: '登录已失效，请重新登录' }
+    }
+    // Token 确认身份，当前用户记录确认权限，避免旧 Token 角色滞后。
+    const user = await uniCloud.database().collection('uni-id-users').doc(result.uid).field({ role: true }).get()
+    const roles = user.data[0]?.role
+    if (!Array.isArray(roles) || !roles.includes('admin')) {
+      throw { errCode: 'ADMIN_REQUIRED', errMsg: '此账号没有素材管理权限' }
+    }
+    this.auth = { uid: result.uid }
+  },
+  async list() {
+    const collection = uniCloud.database().collection('flower-material-assets')
+    const items = []
+    for (let skip = 0; ; skip += 100) {
+      const result = await collection.orderBy('id', 'asc').skip(skip).limit(100).get()
+      items.push(...result.data)
+      if (result.data.length < 100) break
+    }
+    return { items }
+  },
+  async save(data) {
+    const invalid = () => { throw { errCode: 'INVALID_MATERIAL', errMsg: '花材档案无效' } }
+    if (!data || typeof data.id !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(data.id || '') || typeof data.name !== 'string' || !data.name.trim() || data.name.length > 40
+      || typeof data.introduction !== 'string' || data.introduction.length > 2000 || !Number.isInteger(data.version) || data.version < 1
+      || typeof data.revision !== 'string' || !/^[a-f0-9]{16}$/.test(data.revision)) invalid()
+    const category = data.category || 'flower'
+    if (!['flower', 'vase', 'bouquet'].includes(category)) invalid()
+    if (category === 'flower' && (!['main', 'filler', 'foliage'].includes(data.group) || typeof data.flowerMeaning !== 'string' || data.flowerMeaning.length > 500
+      || !Array.isArray(data.colors) || !data.colors.length || data.colors.length > 20
+      || data.colors.some(color => !color || typeof color.name !== 'string' || !color.name.trim() || color.name.length > 20 || typeof color.value !== 'string' || !/^#[\da-f]{6}$/i.test(color.value)))) invalid()
+    const defaultConnection = { rose: 101, tulip: 93, daisy: 102 }[data.id]
+    const geometry = data.geometry || (category === 'flower' && defaultConnection ? { width: 110, flowerHeight: 110, stemHeight: 260, connectionY: defaultConnection } : null)
+    const positive = value => typeof value === 'number' && Number.isFinite(value) && value > 0 && value <= 2000
+    if (!geometry || !positive(geometry.width)) invalid()
+    let cleanGeometry
+    if (category !== 'flower') {
+      if (!positive(geometry.height) || !positive(geometry.mouthWidth) || geometry.mouthWidth > geometry.width
+        || !Number.isFinite(geometry.mouthX) || !Number.isFinite(geometry.mouthY) || geometry.mouthX < geometry.mouthWidth / 2 || geometry.mouthX > geometry.width - geometry.mouthWidth / 2 || geometry.mouthY < 0 || geometry.mouthY >= geometry.height) invalid()
+      cleanGeometry = { width: geometry.width, height: geometry.height, mouthX: geometry.mouthX, mouthY: geometry.mouthY, mouthWidth: geometry.mouthWidth }
+    } else {
+      if (!positive(geometry.flowerHeight) || !positive(geometry.stemHeight) || !positive(geometry.connectionY) || geometry.connectionY > geometry.flowerHeight) invalid()
+      cleanGeometry = { width: geometry.width, flowerHeight: geometry.flowerHeight, stemHeight: geometry.stemHeight, connectionY: geometry.connectionY }
+    }
+    const keys = category === 'vase' ? ['vase'] : category === 'bouquet' ? ['bouquet'] : data.group === 'foliage' ? ['foliage'] : ['flower', 'stemWithLeaves', 'stemWithoutLeaves']
+    const assets = {}
+    for (const key of keys) {
+      const file = data.assets?.[key]
+      if (!file || typeof file.fileId !== 'string' || !file.fileId || file.fileId.length > 1024 || typeof file.hash !== 'string' || !/^[a-f0-9]{40}$/.test(file.hash || '')) invalid()
+      assets[key] = { fileId: file.fileId, hash: file.hash }
+    }
+    const record = { id: data.id, name: data.name.trim(), category, geometry: cleanGeometry, group: category === 'flower' ? data.group : 'main', introduction: data.introduction, flowerMeaning: category === 'flower' ? data.flowerMeaning : '',
+      version: data.version, revision: data.revision, colors: (category === 'flower' ? data.colors : []).map(color => ({ name: color.name, value: color.value })), assets,
+      updatedBy: this.auth.uid, updatedAt: Date.now() }
+    const collection = uniCloud.database().collection('flower-material-assets')
+    const previous = await collection.doc(data.id).get()
+    if (previous.data.length) await collection.doc(data.id).update(record)
+    else await collection.add({ _id: data.id, ...record })
+    return { ok: true }
+  }
+}

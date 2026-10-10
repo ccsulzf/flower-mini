@@ -1,0 +1,25 @@
+{
+  "id": "asparagus-fern",
+  "category": "flower",
+  "name": "文竹",
+  "group": "foliage",
+  "introduction": "纤细枝条和羽状细叶，适合通透轻巧的作品。",
+  "flowerMeaning": "雅致与长久（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "浅绿",
+      "value": "#9daa7c"
+    },
+    {
+      "name": "草绿",
+      "value": "#80956c"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 94
+  }
+}

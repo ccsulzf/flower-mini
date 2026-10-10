@@ -1,19 +1,24 @@
 <script setup lang="ts">
 import { onShow } from '@dcloudio/uni-app'
 import { ref } from 'vue'
-import { useFeedback } from '@/hooks/useFeedback'
 import { initializeAppAuth, waitForAppAuthReady } from '@/utils/appAuth'
-import { cloudEnabled } from '@/utils/cloudMode'
 
-definePage({ type: 'home', layout: 'default', style: { navigationBarTitleText: '云开发模板' } })
+definePage({ type: 'home', layout: 'default', style: { navigationBarTitleText: '花草工作室' } })
 
-const { triggerSuccess, triggerWarning, triggerError } = useFeedback()
 const busy = ref(false)
 const ready = ref(false)
 const error = ref('')
+const materialAdminEnabled = __MATERIAL_ADMIN__
+function openMaterialAdmin() {
+  if (__MATERIAL_ADMIN__) uni.navigateTo({ url: '/subpackages/material-admin/material-admin-page' })
+}
 
-function openWishPuzzle() {
-  uni.navigateTo({ url: '/pages/wish-puzzle/wish-puzzle-page' })
+function openFlowerStudio() {
+  uni.navigateTo({ url: '/pages/flower-studio/flower-studio-page' })
+}
+
+function openFlowerJson() {
+  uni.navigateTo({ url: '/pages/flower-json/flower-json-page' })
 }
 
 async function checkAuth(retry = false) {
@@ -22,11 +27,6 @@ async function checkAuth(retry = false) {
   busy.value = true
   ready.value = false
   error.value = ''
-  if (!cloudEnabled) {
-    ready.value = true
-    busy.value = false
-    return
-  }
   try {
     if (retry)
       await initializeAppAuth(true)
@@ -48,7 +48,7 @@ onShow(() => checkAuth())
   <view class="home-page app-gradient-page">
     <view class="app-card section">
       <view class="app-section-title">
-        云开发模板
+        花草工作室
       </view>
       <view class="app-section-desc">
         {{ busy ? '正在连接你的账号…' : ready ? '已登录' : '尚未登录' }}
@@ -62,33 +62,30 @@ onShow(() => checkAuth())
     </view>
     <view class="app-card section">
       <view class="app-section-title">
-        心愿拼图
+        一枝花 · 插花创作
       </view>
       <view class="app-section-desc">
-        看看正在完成中的旅行拼图。
+        选几枝花，试试拖动、旋转和搭配花器。
       </view>
-      <button class="app-secondary-btn" @click="openWishPuzzle">
-        打开心愿拼图
+      <button class="app-secondary-btn" @click="openFlowerStudio">
+        开始插花
       </button>
     </view>
     <view class="app-card section">
       <view class="app-section-title">
-        反馈演示
+        JSON 生成花束
       </view>
       <view class="app-section-desc">
-        成功、警告和错误提示。
+        粘贴花束 JSON，一键查看完整花束效果。
       </view>
-      <view class="actions">
-        <button size="mini" @click="triggerSuccess()">
-          成功
-        </button>
-        <button size="mini" @click="triggerWarning()">
-          警告
-        </button>
-        <button size="mini" @click="triggerError()">
-          错误
-        </button>
-      </view>
+      <button class="app-secondary-btn" @click="openFlowerJson">
+        导入花束
+      </button>
+    </view>
+    <view v-if="materialAdminEnabled" class="app-card section">
+      <view class="app-section-title">素材管理</view>
+      <view class="app-section-desc">上传 SVG、管理目录与验证缓存</view>
+      <button class="app-secondary-btn" @click="openMaterialAdmin">管理素材</button>
     </view>
   </view>
 </template>
@@ -97,6 +94,4 @@ onShow(() => checkAuth())
 .home-page { padding: 24rpx; box-sizing: border-box; }
 .section { margin-bottom: 24rpx; }
 .error-message { color: $danger-color; margin: 20rpx 0; }
-.actions { display: flex; align-items: center; gap: 16rpx; margin-top: 20rpx; }
-.actions button { flex: 1; }
 </style>

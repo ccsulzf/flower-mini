@@ -13,7 +13,8 @@ function createAuthReadyPromise() {
 createAuthReadyPromise()
 
 export function resetAppAuthReady() {
-  createAuthReadyPromise()
+  // 首次启动已有等待者；只在上一轮完成后创建下一轮登录屏障。
+  if (!resolveAuthReady) createAuthReadyPromise()
 }
 
 export function markAppAuthReady() {
@@ -22,7 +23,7 @@ export function markAppAuthReady() {
 }
 
 export function markAppAuthFailed(error: unknown) {
-  const authError = error instanceof Error ? error : new Error('登录失败，请稍后重试')
+  const authError = authFailure(error)
   resolveAuthReady?.({ ok: false, error: authError })
   resolveAuthReady = null
 }
@@ -42,17 +43,34 @@ export async function waitForAppAuthReady() {
 }
 
 async function weixinLogin() {
-  const { code } = await uni.login()
+  const { code } = await uni.login({ provider: 'weixin' })
+  if (!code) throw new Error('未获取到微信登录凭证，请重试')
   const uniIdCo = uniCloud.importObject('uni-id-co', { customUI: true })
-  await uniIdCo.loginByWeixin({ code })
+  const result = await uniIdCo.loginByWeixin({ code })
+  if (result?.errCode) throw authFailure(result)
+  const token = result?.newToken
+  if (!token || typeof token.token !== 'string' || !token.token
+    || typeof token.tokenExpired !== 'number' || !Number.isFinite(token.tokenExpired) || token.tokenExpired <= Date.now()) {
+    throw new Error('登录服务未返回有效 Token，请检查云端配置')
+  }
+  uni.setStorageSync('uni_id_token', token.token)
+  uni.setStorageSync('uni_id_token_expired', token.tokenExpired)
+}
+
+function authFailure(error: unknown): Error {
+  if (error instanceof Error) return error
+  if (typeof error === 'object' && error !== null && 'errMsg' in error && typeof error.errMsg === 'string' && error.errMsg) {
+    return new Error(error.errMsg)
+  }
+  return new Error('登录失败，请稍后重试')
 }
 
 export function initializeAppAuth(force = false) {
   if (authInitializingPromise)
     return authInitializingPromise
 
-  authInitializingPromise = (async () => {
-    resetAppAuthReady()
+  resetAppAuthReady()
+  authInitializingPromise = Promise.resolve().then(async () => {
 
     try {
       const localToken = uni.getStorageSync('uni_id_token')
@@ -75,13 +93,11 @@ export function initializeAppAuth(force = false) {
       return { hasNewLogin }
     }
     catch (error) {
-      markAppAuthFailed(error)
-      throw error
+      const failure = authFailure(error)
+      markAppAuthFailed(failure)
+      throw failure
     }
-    finally {
-      authInitializingPromise = null
-    }
-  })()
+  }).finally(() => { authInitializingPromise = null })
 
   return authInitializingPromise
 }

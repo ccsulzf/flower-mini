@@ -1,0 +1,14 @@
+{
+  "id": "ribbed-ceramic-vase",
+  "category": "vase",
+  "name": "条纹陶瓶",
+  "introduction": "带纵向凹纹的暖白陶瓶，适合增加细腻质感。",
+  "version": 1,
+  "geometry": {
+    "width": 160,
+    "height": 180,
+    "mouthX": 80,
+    "mouthY": 9,
+    "mouthWidth": 100
+  }
+}

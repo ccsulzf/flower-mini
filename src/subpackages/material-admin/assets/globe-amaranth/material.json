@@ -1,0 +1,29 @@
+{
+  "id": "globe-amaranth",
+  "category": "flower",
+  "name": "千日红",
+  "group": "filler",
+  "introduction": "紧凑的球形小花头，适合点缀小而明确的色块。",
+  "flowerMeaning": "不变的心意（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "玫紫",
+      "value": "#b16b97"
+    },
+    {
+      "name": "粉色",
+      "value": "#d59aaf"
+    },
+    {
+      "name": "奶白",
+      "value": "#ece2d8"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

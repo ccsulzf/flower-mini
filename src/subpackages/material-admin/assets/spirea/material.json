@@ -1,0 +1,25 @@
+{
+  "id": "spirea",
+  "category": "flower",
+  "name": "雪柳",
+  "group": "foliage",
+  "introduction": "轻细木质枝条上点缀嫩叶与白色小花，适合自然线条。",
+  "flowerMeaning": "新生与希望（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "嫩绿",
+      "value": "#a4b48c"
+    },
+    {
+      "name": "灰绿",
+      "value": "#8b9e7d"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 94
+  }
+}

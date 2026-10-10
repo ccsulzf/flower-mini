@@ -1,0 +1,49 @@
+{
+  "bsonType": "object",
+  "required": [
+    "kind",
+    "name",
+    "enabled"
+  ],
+  "permission": {
+    "read": false,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "kind": {
+      "bsonType": "string"
+    },
+    "name": {
+      "bsonType": "string"
+    },
+    "group": {
+      "bsonType": "string"
+    },
+    "color": {
+      "bsonType": "string"
+    },
+    "height": {
+      "bsonType": "int"
+    },
+    "size": {
+      "bsonType": "double"
+    },
+    "enabled": {
+      "bsonType": "bool"
+    },
+    "order": {
+      "bsonType": "int"
+    },
+    "svg": {
+      "bsonType": "object"
+    },
+    "updatedBy": {
+      "bsonType": "string"
+    },
+    "updatedAt": {
+      "bsonType": "long"
+    }
+  }
+}

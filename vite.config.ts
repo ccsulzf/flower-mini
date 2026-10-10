@@ -9,6 +9,7 @@ import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig } from 'vite'
 import UniPolyfill from 'vite-plugin-uni-polyfill'
+import { excludeMaterialAdmin, materialAdminEnabled } from './scripts/material-admin-config.cjs'
 
 const basePageExclude = [
   '**/components/**',
@@ -18,17 +19,18 @@ const basePageExclude = [
 
 const productionPageExclude = [
   '**/debug*.vue',
-  '**/demo*.vue',
   '**/test*.vue',
 ]
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ command, mode }) => {
+  const includeMaterialAdmin = materialAdminEnabled(command, mode, process.env.UNI_NODE_ENV || process.env.NODE_ENV)
   const pageExclude = mode === 'production'
     ? [...basePageExclude, ...productionPageExclude]
     : basePageExclude
 
   return {
+    define: { __MATERIAL_ADMIN__: JSON.stringify(includeMaterialAdmin) },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
@@ -53,6 +55,9 @@ export default defineConfig(({ mode }) => {
       // https://uni-helper.js.org/vite-plugin-uni-pages
       UniHelperPages({
         dir: 'src/pages', // 👈 明确主包
+        subPackages: includeMaterialAdmin ? ['src/subpackages/material-admin'] : [],
+        mergePages: true,
+        onBeforeWriteFile: includeMaterialAdmin ? undefined : excludeMaterialAdmin,
         dts: 'src/uni-pages.d.ts',
         // 避免把页面内的子组件当成页面打包
         exclude: pageExclude,

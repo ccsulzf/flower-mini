@@ -1,0 +1,29 @@
+{
+  "id": "carnation",
+  "category": "flower",
+  "name": "康乃馨",
+  "group": "main",
+  "introduction": "花瓣边缘细碎起伏，花头紧凑，适合温柔的日常花礼。",
+  "flowerMeaning": "爱与感谢（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "粉色",
+      "value": "#d898a4"
+    },
+    {
+      "name": "红色",
+      "value": "#b94b55"
+    },
+    {
+      "name": "奶白",
+      "value": "#eee5d7"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

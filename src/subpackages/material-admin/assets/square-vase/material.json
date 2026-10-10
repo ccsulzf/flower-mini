@@ -1,0 +1,14 @@
+{
+  "id": "square-vase",
+  "category": "vase",
+  "name": "方形花瓶",
+  "introduction": "线条简洁的方形花瓶，适合利落的结构搭配。",
+  "version": 1,
+  "geometry": {
+    "width": 160,
+    "height": 180,
+    "mouthX": 80,
+    "mouthY": 9,
+    "mouthWidth": 116
+  }
+}

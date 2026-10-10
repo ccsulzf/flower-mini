@@ -1,0 +1,29 @@
+{
+  "id": "gerbera",
+  "category": "flower",
+  "name": "非洲菊",
+  "group": "main",
+  "introduction": "细长花瓣围绕圆形花心，轮廓明快，适合轻松的搭配。",
+  "flowerMeaning": "快乐与活力（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "橘色",
+      "value": "#dc9360"
+    },
+    {
+      "name": "粉色",
+      "value": "#d7889b"
+    },
+    {
+      "name": "黄色",
+      "value": "#e1bf62"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

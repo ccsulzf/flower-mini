@@ -1,0 +1,29 @@
+{
+  "id": "lily",
+  "category": "flower",
+  "name": "百合",
+  "group": "main",
+  "introduction": "六瓣星形花朵与清晰花蕊，适合作为舒展的主花。",
+  "flowerMeaning": "祝福与纯洁（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "奶白",
+      "value": "#f2eddf"
+    },
+    {
+      "name": "浅粉",
+      "value": "#dfb0b8"
+    },
+    {
+      "name": "杏色",
+      "value": "#e4b38f"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 86
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "bsonType": "object",
+  "required": [
+    "id",
+    "name",
+    "group",
+    "version",
+    "revision",
+    "colors",
+    "assets"
+  ],
+  "permission": {
+    "read": false,
+    "create": false,
+    "update": false,
+    "delete": false
+  },
+  "properties": {
+    "id": {
+      "bsonType": "string"
+    },
+    "name": {
+      "bsonType": "string"
+    },
+    "group": {
+      "bsonType": "string"
+    },
+    "introduction": {
+      "bsonType": "string"
+    },
+    "flowerMeaning": {
+      "bsonType": "string"
+    },
+    "revision": {
+      "bsonType": "string"
+    },
+    "updatedBy": {
+      "bsonType": "string"
+    },
+    "version": {
+      "bsonType": "int"
+    },
+    "updatedAt": {
+      "bsonType": "long"
+    },
+    "colors": {
+      "bsonType": "array",
+      "items": {
+        "bsonType": "object",
+        "properties": {
+          "name": {
+            "bsonType": "string"
+          },
+          "value": {
+            "bsonType": "string"
+          }
+        }
+      }
+    },
+    "assets": {
+      "bsonType": "object",
+      "properties": {
+        "flower": {
+          "bsonType": "object",
+          "properties": {
+            "fileId": {
+              "bsonType": "string"
+            },
+            "hash": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "stemWithLeaves": {
+          "bsonType": "object",
+          "properties": {
+            "fileId": {
+              "bsonType": "string"
+            },
+            "hash": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "stemWithoutLeaves": {
+          "bsonType": "object",
+          "properties": {
+            "fileId": {
+              "bsonType": "string"
+            },
+            "hash": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "foliage": {
+          "bsonType": "object",
+          "properties": {
+            "fileId": {
+              "bsonType": "string"
+            },
+            "hash": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "vase": {
+          "bsonType": "object",
+          "properties": {
+            "fileId": {
+              "bsonType": "string"
+            },
+            "hash": {
+              "bsonType": "string"
+            }
+          }
+        },
+        "bouquet": {
+          "bsonType": "object",
+          "properties": {
+            "fileId": {
+              "bsonType": "string"
+            },
+            "hash": {
+              "bsonType": "string"
+            }
+          }
+        }
+      }
+    },
+    "category": {
+      "bsonType": "string",
+      "enum": [
+        "flower",
+        "vase",
+        "bouquet"
+      ]
+    },
+    "geometry": {
+      "bsonType": "object",
+      "properties": {
+        "width": {
+          "bsonType": "double"
+        },
+        "height": {
+          "bsonType": "double"
+        },
+        "mouthX": {
+          "bsonType": "double"
+        },
+        "mouthY": {
+          "bsonType": "double"
+        },
+        "mouthWidth": {
+          "bsonType": "double"
+        },
+        "flowerHeight": {
+          "bsonType": "double"
+        },
+        "stemHeight": {
+          "bsonType": "double"
+        },
+        "connectionY": {
+          "bsonType": "double"
+        }
+      }
+    }
+  }
+}

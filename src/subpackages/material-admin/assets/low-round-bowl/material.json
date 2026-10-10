@@ -1,0 +1,14 @@
+{
+  "id": "low-round-bowl",
+  "category": "vase",
+  "name": "矮圆花器",
+  "introduction": "宽口低矮的圆花器，适合横向铺展的桌面作品。",
+  "version": 1,
+  "geometry": {
+    "width": 210,
+    "height": 115,
+    "mouthX": 105,
+    "mouthY": 12,
+    "mouthWidth": 164
+  }
+}

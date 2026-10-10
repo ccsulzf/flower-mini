@@ -1,0 +1,14 @@
+{
+  "id": "frosted-wrap",
+  "category": "bouquet",
+  "name": "雾面半透明包装",
+  "introduction": "低透明度的雾面包装纸，适合轻盈通透的搭配。",
+  "version": 1,
+  "geometry": {
+    "width": 350,
+    "height": 290,
+    "mouthX": 175,
+    "mouthY": 132,
+    "mouthWidth": 108
+  }
+}

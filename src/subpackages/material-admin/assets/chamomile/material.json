@@ -1,0 +1,25 @@
+{
+  "id": "chamomile",
+  "category": "flower",
+  "name": "洋甘菊",
+  "group": "filler",
+  "introduction": "小型白色花瓣与黄花心，适合清新自然的花束。",
+  "flowerMeaning": "平静与治愈（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "奶白",
+      "value": "#f0e9da"
+    },
+    {
+      "name": "浅黄",
+      "value": "#e8dbac"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

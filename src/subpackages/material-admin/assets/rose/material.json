@@ -1,0 +1,22 @@
+{
+  "id": "rose",
+  "name": "玫瑰",
+  "group": "main",
+  "introduction": "花瓣层层包裹，花形饱满，适合作为作品中的主花。",
+  "flowerMeaning": "爱与美好",
+  "version": 1,
+  "colors": [
+    {
+      "name": "深红",
+      "value": "#b82b36"
+    },
+    {
+      "name": "粉色",
+      "value": "#ce7e8b"
+    },
+    {
+      "name": "奶白",
+      "value": "#f4f0e6"
+    }
+  ]
+}

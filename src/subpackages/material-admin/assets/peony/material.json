@@ -1,0 +1,29 @@
+{
+  "id": "peony",
+  "category": "flower",
+  "name": "牡丹",
+  "group": "main",
+  "introduction": "重瓣圆润，适合形成饱满的视觉中心。",
+  "flowerMeaning": "富贵与美好（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "豆沙粉",
+      "value": "#d38c9a"
+    },
+    {
+      "name": "奶白",
+      "value": "#f2e8db"
+    },
+    {
+      "name": "深红",
+      "value": "#b83b50"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

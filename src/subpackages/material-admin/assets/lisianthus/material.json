@@ -1,0 +1,29 @@
+{
+  "id": "lisianthus",
+  "category": "flower",
+  "name": "洋桔梗",
+  "group": "main",
+  "introduction": "轻盈卷曲的花瓣形成杯状花头，适合柔和的层次。",
+  "flowerMeaning": "真诚与感恩（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "奶白",
+      "value": "#efe8da"
+    },
+    {
+      "name": "淡紫",
+      "value": "#b5a2cb"
+    },
+    {
+      "name": "浅粉",
+      "value": "#ddb0b8"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 88
+  }
+}

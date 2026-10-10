@@ -1,10 +1,14 @@
 import { presetUni } from '@uni-helper/unocss-preset-uni'
+import { createRequire } from 'node:module'
 import {
   defineConfig,
   presetIcons,
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
+
+// 配置在 Node 中执行，用 CommonJS 读取 JSON，避免 ESM 导入缺少 type: json。
+const carbonIcons = createRequire(import.meta.url)('@iconify-json/carbon/icons.json')
 
 export default defineConfig({
   presets: [
@@ -18,10 +22,8 @@ export default defineConfig({
         'display': 'inline-block',
         'vertical-align': 'middle',
       },
-      // HBuilderX 必须针对要使用的 Collections 做异步导入
-      // collections: {
-      //   carbon: () => import('@iconify-json/carbon/icons.json').then(i => i.default),
-      // },
+      // 显式注册已安装的图标集，避免小程序工具栏依赖运行时自动查找。
+      collections: { carbon: () => carbonIcons },
     }),
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],

@@ -1,0 +1,5 @@
+{
+  "name": "flower-catalog",
+  "version": "2.0.0",
+  "dependencies": { "uni-id-common": "file:../../../src/uni_modules/uni-id-common/uniCloud/cloudfunctions/common/uni-id-common" }
+}

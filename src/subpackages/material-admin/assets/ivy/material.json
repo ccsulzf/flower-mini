@@ -1,0 +1,25 @@
+{
+  "id": "ivy",
+  "category": "flower",
+  "name": "常春藤",
+  "group": "foliage",
+  "introduction": "掌状叶沿曲线枝条生长，适合柔软下垂的线条。",
+  "flowerMeaning": "陪伴与长青（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "草绿",
+      "value": "#8b9e75"
+    },
+    {
+      "name": "深绿",
+      "value": "#728d69"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 94
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "sunflower",
+  "category": "flower",
+  "name": "向日葵",
+  "group": "main",
+  "introduction": "金色放射花瓣与宽大的深色花盘，适合作为醒目焦点。",
+  "flowerMeaning": "阳光与坚定（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "金黄",
+      "value": "#dfb64c"
+    },
+    {
+      "name": "浅黄",
+      "value": "#e8d082"
+    },
+    {
+      "name": "暖橘",
+      "value": "#d79a53"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 96
+  }
+}

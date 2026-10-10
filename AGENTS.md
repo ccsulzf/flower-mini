@@ -3,7 +3,7 @@
 ## Project
 
 uni-app / Vue 3 / TypeScript 开发模板，默认微信小程序客户端，后端为支付宝 uniCloud。
-使用 Vite、Pinia、UnoCSS、uni-helper、uni-id。首页保留登录状态和反馈演示；独立备忘录页面提供按用户隔离的 CRUD，暂不在首页提供入口。
+使用 Vite、Pinia、UnoCSS、uni-helper、uni-id。项目业务聚焦鲜花创作；首页提供插花入口、登录状态和反馈演示。
 
 ## Dependencies And Verification
 

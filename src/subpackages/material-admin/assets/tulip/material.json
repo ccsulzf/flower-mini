@@ -1,0 +1,22 @@
+{
+  "id": "tulip",
+  "name": "郁金香",
+  "group": "main",
+  "introduction": "杯状花朵与修长花茎，适合表现简洁舒展的线条。",
+  "flowerMeaning": "真挚的爱与祝福",
+  "version": 1,
+  "colors": [
+    {
+      "name": "奶白",
+      "value": "#f4f0e6"
+    },
+    {
+      "name": "粉色",
+      "value": "#d78979"
+    },
+    {
+      "name": "紫色",
+      "value": "#b394db"
+    }
+  ]
+}

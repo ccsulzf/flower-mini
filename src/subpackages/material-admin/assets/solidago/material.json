@@ -1,0 +1,25 @@
+{
+  "id": "solidago",
+  "category": "flower",
+  "name": "黄莺",
+  "group": "filler",
+  "introduction": "细碎小花聚成疏松花序，适合增加温暖的点状细节。",
+  "flowerMeaning": "明亮与祝愿（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "金黄",
+      "value": "#d8b653"
+    },
+    {
+      "name": "浅黄",
+      "value": "#e5cd7a"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

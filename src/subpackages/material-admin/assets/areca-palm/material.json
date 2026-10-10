@@ -1,0 +1,25 @@
+{
+  "id": "areca-palm",
+  "category": "flower",
+  "name": "散尾葵",
+  "group": "foliage",
+  "introduction": "修长叶片沿叶轴展开，适合扇形与向外延伸的构图。",
+  "flowerMeaning": "舒展与生机（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "草绿",
+      "value": "#839c70"
+    },
+    {
+      "name": "深绿",
+      "value": "#6e8864"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 94
+  }
+}

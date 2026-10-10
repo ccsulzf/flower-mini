@@ -1,0 +1,14 @@
+{
+  "id": "glass-bud-vase",
+  "category": "vase",
+  "name": "细口玻璃瓶",
+  "introduction": "细窄瓶口与圆润瓶腹，适合单枝或少量花材。",
+  "version": 1,
+  "geometry": {
+    "width": 115,
+    "height": 195,
+    "mouthX": 57.5,
+    "mouthY": 8,
+    "mouthWidth": 42
+  }
+}

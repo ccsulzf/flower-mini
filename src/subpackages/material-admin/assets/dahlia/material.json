@@ -1,0 +1,29 @@
+{
+  "id": "dahlia",
+  "category": "flower",
+  "name": "大丽花",
+  "group": "main",
+  "introduction": "规律排列的多层花瓣形成几何感花头，适合丰富花束。",
+  "flowerMeaning": "优雅与丰盛（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "酒红",
+      "value": "#a95868"
+    },
+    {
+      "name": "豆沙",
+      "value": "#c98c9a"
+    },
+    {
+      "name": "杏色",
+      "value": "#ddb38e"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

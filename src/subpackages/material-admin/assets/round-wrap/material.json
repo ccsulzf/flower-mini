@@ -1,0 +1,14 @@
+{
+  "id": "round-wrap",
+  "category": "bouquet",
+  "name": "圆形包裹",
+  "introduction": "圆润展开的纸张轮廓，适合饱满的小圆花束。",
+  "version": 1,
+  "geometry": {
+    "width": 350,
+    "height": 290,
+    "mouthX": 175,
+    "mouthY": 132,
+    "mouthWidth": 108
+  }
+}

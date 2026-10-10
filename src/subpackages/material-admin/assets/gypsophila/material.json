@@ -1,0 +1,25 @@
+{
+  "id": "gypsophila",
+  "category": "flower",
+  "name": "满天星",
+  "group": "filler",
+  "introduction": "细分枝上散布小花，适合补充空隙和轻盈感。",
+  "flowerMeaning": "陪伴与纯真（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "奶白",
+      "value": "#f1eade"
+    },
+    {
+      "name": "浅粉",
+      "value": "#e2b6bf"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

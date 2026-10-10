@@ -1,0 +1,29 @@
+{
+  "id": "freesia",
+  "category": "flower",
+  "name": "小苍兰",
+  "group": "filler",
+  "introduction": "花朵沿弯曲花序依次开放，适合增加轻巧的线条。",
+  "flowerMeaning": "清新与信任（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "浅黄",
+      "value": "#e4ca83"
+    },
+    {
+      "name": "奶白",
+      "value": "#f1e8d8"
+    },
+    {
+      "name": "淡紫",
+      "value": "#b5a0c8"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

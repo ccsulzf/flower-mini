@@ -1,5 +1,5 @@
 {
-  "name": "uni-cloud-demo",
+  "name": "flower-mini",
   "type": "module",
   "version": "0.0.0",
   "private": true,
@@ -10,11 +10,7 @@
     "prebuild:mp-weixin": "node scripts/ensure-pages-json.mjs",
     "dev": "uni -p mp-weixin",
     "dev:mp-weixin": "uni -p mp-weixin",
-    "dev:demo": "uni -p mp-weixin --mode demo",
-    "dev:cloud": "uni -p mp-weixin --mode cloud",
     "build:mp-weixin": "uni build -p mp-weixin",
-    "build:demo": "uni build -p mp-weixin --mode demo",
-    "build:cloud": "uni build -p mp-weixin --mode cloud",
     "build": "uni build -p mp-weixin",
     "about": "unh info",
     "type-check": "vue-tsc --noEmit",

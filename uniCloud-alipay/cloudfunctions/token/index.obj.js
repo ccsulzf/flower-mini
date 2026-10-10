@@ -33,9 +33,12 @@ module.exports = {
     const res = await uniId.checkToken(token)
 
     // 3. 判断校验结果
-    if (res.code === 0) {
+    if (res.errCode === 0 || (res.errCode === undefined && res.code === 0)) {
       return {
         valid: true,
+        ...(res.token && res.tokenExpired ? {
+          newToken: { token: res.token, tokenExpired: res.tokenExpired }
+        } : {}),
       }
     }
 

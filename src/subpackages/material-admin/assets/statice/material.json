@@ -1,0 +1,29 @@
+{
+  "id": "statice",
+  "category": "flower",
+  "name": "补血草",
+  "group": "filler",
+  "introduction": "分枝顶端聚集细小花簇，适合点缀色彩与层次。",
+  "flowerMeaning": "长久的思念（常见象征表达，仅供创作参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "淡紫",
+      "value": "#af91c2"
+    },
+    {
+      "name": "浅粉",
+      "value": "#d29bad"
+    },
+    {
+      "name": "奶白",
+      "value": "#eee5d9"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

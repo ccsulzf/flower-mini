@@ -1,0 +1,14 @@
+{
+  "id": "glass-cylinder",
+  "category": "vase",
+  "name": "透明直筒瓶",
+  "introduction": "简洁直筒玻璃花瓶，适合轻盈自然的日常插花。",
+  "version": 1,
+  "geometry": {
+    "width": 140,
+    "height": 185,
+    "mouthX": 70,
+    "mouthY": 9,
+    "mouthWidth": 110
+  }
+}
