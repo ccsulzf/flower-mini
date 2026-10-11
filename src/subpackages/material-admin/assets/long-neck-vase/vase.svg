@@ -1,1 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 215" width="140" height="215"><path d="M49 8L49 111C10 126 8 167 24 194Q70 222 116 194C132 167 130 126 91 111L91 8Z" fill="#d0c4b7" stroke="#babdae" stroke-width="1"/><ellipse cx="70" cy="8" rx="21.0" ry="6" fill="#e8e4d9" stroke="#bebfb0" opacity="1"/><ellipse cx="70" cy="8" rx="18.0" ry="3" fill="#91a085" stroke="#91a085" opacity="1"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="215" viewBox="0 0 140 215">
+  <defs>
+  <linearGradient id="long-neck-vase-body" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0">
+  <stop offset="0" stop-color="#e9e4d6"/>
+  <stop offset="1" stop-color="#b1aa98"/>
+  </linearGradient>
+  <linearGradient id="long-neck-vase-rim" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0">
+  <stop offset="0" stop-color="#b1aa98"/>
+  <stop offset="1" stop-color="#e9e4d6"/>
+  </linearGradient>
+  </defs>
+  <path d="M49.0 8L49.0 92.5C7.0 122.5 9.8 184.9 23.8 206Q70 218 116.2 206C131.6 178.4 133.0 122.5 91.0 92.5L91.0 8Z" fill="url(#long-neck-vase-body)" stroke="#b1aa98" stroke-width=".8" />
+  <path d="M55.0 23L55.0 92.5Q25 135.4 31 190" fill="none" stroke="#e9e4d6" stroke-width="4" stroke-opacity=".6"/>
+  <circle cx="39.20" cy="107.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="52.20" cy="124.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="65.20" cy="141.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="78.20" cy="158.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="91.20" cy="107.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="43.20" cy="124.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="56.20" cy="141.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="69.20" cy="158.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="82.20" cy="107.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="95.20" cy="124.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="47.20" cy="141.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="60.20" cy="158.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="73.20" cy="107.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="86.20" cy="124.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="99.20" cy="141.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="51.20" cy="158.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="64.20" cy="107.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="77.20" cy="124.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="90.20" cy="141.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="42.20" cy="158.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="55.20" cy="107.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="68.20" cy="124.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="81.20" cy="141.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="94.20" cy="158.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="46.20" cy="107.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="59.20" cy="124.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="72.20" cy="141.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="85.20" cy="158.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="98.20" cy="107.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="50.20" cy="124.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="63.20" cy="141.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="76.20" cy="158.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="89.20" cy="107.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="41.20" cy="124.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="54.20" cy="141.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <circle cx="67.20" cy="158.50" r="0.35" fill="#b1aa98" opacity=".14"/>
+  <ellipse cx="70.00" cy="8.00" rx="21.00" ry="5.00" fill="url(#long-neck-vase-rim)" stroke="#b1aa98" stroke-width=".6"/>
+  <ellipse cx="70.00" cy="8.00" rx="18.00" ry="3.00" fill="#72806a" opacity=".8"/>
+  <path d="M53.0 9Q70 15 87.0 9" fill="none" stroke="#e9e4d6" stroke-width="1.1" stroke-opacity=".9"/>
+</svg>

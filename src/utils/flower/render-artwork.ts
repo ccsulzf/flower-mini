@@ -1,5 +1,6 @@
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
-import { cloudPlantSvg, vasePlacement } from './material-render'
+import { bouquetLayers, cloudPlantSvg, vasePlacement } from './material-render'
+import { backgroundOffset } from './background-render'
 import { drawSvg } from './svg-canvas'
 import { studioMetrics } from './arrangement.cjs'
 import { anchorY, artworkBackground, chrysanthemumRay, curveFor, type Artwork, type Stem } from './artwork'
@@ -176,6 +177,8 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
     if (!cloudAssets.has(key)) cloudAssets.set(key, await catalog.ensure(stem.materialId, stem.materialRevision))
   }
   const cloudVase = artwork.vaseMaterialId ? await catalog.ensure(artwork.vaseMaterialId, artwork.vaseMaterialRevision || '') : undefined
+  const cloudBackground = artwork.backgroundMaterialId ? await catalog.ensure(artwork.backgroundMaterialId, artwork.backgroundMaterialRevision || '') : undefined
+  if (cloudBackground && (cloudBackground.category !== 'background' || !cloudBackground.sources.background)) throw new Error('背景素材不可用')
   const paths = [...new Set(artwork.stems.filter(stem => !stem.materialId).map(stem => curveFor(stem).image))]
   const loaded = await Promise.all(paths.map(src => new Promise<[string, string]>((resolve, reject) => {
     // getImageInfo 返回的包内路径可能丢失开头的 /，这里继续使用原始根路径。
@@ -186,16 +189,23 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
   // 绘制顺序：背景 → 桌面/阴影 → 花材 → 花器 → 落款，后绘制内容遮住前层。
   ctx.setFillStyle(artworkBackground(artwork.background))
   ctx.fillRect(0, 0, studioMetrics.width, studioMetrics.height)
-  if (artwork.vase !== '花束') {
+  if (cloudBackground) drawSvg(ctx, cloudBackground.sources.background!, studioMetrics.width, studioMetrics.height)
+  ctx.save(); ctx.translate(0, backgroundOffset(cloudBackground, cloudVase, artwork.vase))
+  if (artwork.vase !== '花束' && cloudVase?.category !== 'bouquet') {
     ctx.setFillStyle('rgba(0,0,0,.12)')
     oval(ctx, 350, 910, 109, 15)
+  }
+  if (cloudVase?.category === 'bouquet') {
+    const placement = vasePlacement(cloudVase)
+    ctx.save(); ctx.translate(placement.x, placement.y)
+    drawSvg(ctx, bouquetLayers(cloudVase).back, placement.width, placement.height); ctx.restore()
   }
   for (const stem of artwork.stems) {
     if (stem.materialId) {
       const asset = cloudAssets.get(`${stem.materialId}:${stem.materialRevision}`)!
       ctx.save(); ctx.translate(stem.x, anchorY(artwork.vase)); ctx.rotate(stem.angle * Math.PI / 180)
-      ctx.scale(stem.flowerScale, stem.flowerScale); ctx.translate(-55, -stem.stemHeight - 55)
-      drawSvg(ctx, cloudPlantSvg(asset, stem), 110, stem.stemHeight + 55)
+      ctx.scale(stem.mirrored ? -stem.flowerScale : stem.flowerScale, stem.flowerScale); ctx.translate(-55, -stem.stemHeight - 55)
+      drawSvg(ctx, cloudPlantSvg(asset, { ...stem, leafMode: 'without' }), 110, stem.stemHeight + 55)
       ctx.restore(); continue
     }
     const curve = curveFor(stem)
@@ -203,10 +213,11 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
     // 先移动到瓶口固定点并旋转，再回到动态高度的花材左上角；不做整枝缩放。
     ctx.translate(stem.x, anchorY(artwork.vase))
     ctx.rotate(stem.angle * Math.PI / 180)
+    if (stem.mirrored) ctx.scale(-1, 1)
     ctx.translate(-55, -stem.stemHeight - 55)
     // 素材为 4 倍分辨率，裁掉上方 55rpx 留白，只拉伸花茎到目标长度。
     ctx.drawImage(images.get(curve.image)!, 0, 220, 440, 820, 0, 55, 110, stem.stemHeight)
-    leaf(ctx, curve.leafLeft + 20, 64 + 85 * stem.stemHeight / 205, -30, '#879b71')
+
     // 花头绕自己的花心单独缩放，改变大小不会移动花心或瓶口固定点。
     ctx.save()
     ctx.translate(55, 55)
@@ -220,12 +231,14 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
   if (cloudVase) {
     const placement = vasePlacement(cloudVase)
     ctx.save(); ctx.translate(placement.x, placement.y)
-    drawSvg(ctx, (cloudVase.sources.vase || cloudVase.sources.bouquet)!, placement.width, placement.height); ctx.restore()
+    const source = cloudVase.category === 'bouquet' ? bouquetLayers(cloudVase).front : cloudVase.sources.vase!
+    drawSvg(ctx, source, placement.width, placement.height); ctx.restore()
   } else drawVase(ctx, artwork)
+  ctx.restore()
   ctx.setFillStyle(artwork.background === 'cocoa' ? '#a9ad98' : '#898e79')
   ctx.setFontSize(18)
   ctx.setTextAlign('center')
-  ctx.fillText('a little flower. / 一枝花，一点日常', 349, 960)
+  ctx.fillText('一枝花，一点日常', 349, 960)
   // draw 是异步提交；必须等回调后再 canvasToTempFilePath，避免导出空白。
   await new Promise<void>(resolve => ctx.draw(false, () => resolve()))
 }

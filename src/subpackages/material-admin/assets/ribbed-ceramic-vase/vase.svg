@@ -1,1 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 180" width="160" height="180"><path d="M30 9Q10 85 22 147Q25 174 53 175L107 175Q135 174 138 147Q150 85 130 9Z" fill="#e3dfd3" stroke="#babdae" stroke-width="1"/><ellipse cx="80" cy="9" rx="50.0" ry="6" fill="#e8e4d9" stroke="#bebfb0" opacity="1"/><ellipse cx="80" cy="9" rx="47.0" ry="3" fill="#91a085" stroke="#91a085" opacity="1"/><path d="M37 25Q28 100 37 160" fill="none" stroke="#c6c8ba" stroke-width="1.3"/><path d="M49 25Q40 100 49 160" fill="none" stroke="#c6c8ba" stroke-width="1.3"/><path d="M61 25Q52 100 61 160" fill="none" stroke="#c6c8ba" stroke-width="1.3"/><path d="M73 25Q64 100 73 160" fill="none" stroke="#c6c8ba" stroke-width="1.3"/><path d="M87 25Q96 100 87 160" fill="none" stroke="#c6c8ba" stroke-width="1.3"/><path d="M99 25Q108 100 99 160" fill="none" stroke="#c6c8ba" stroke-width="1.3"/><path d="M111 25Q120 100 111 160" fill="none" stroke="#c6c8ba" stroke-width="1.3"/><path d="M123 25Q132 100 123 160" fill="none" stroke="#c6c8ba" stroke-width="1.3"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="180" viewBox="0 0 160 180">
+  <defs>
+  <linearGradient id="ribbed-ceramic-vase-body" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="160" y2="0">
+  <stop offset="0" stop-color="#e7e1d3"/>
+  <stop offset="1" stop-color="#b8b19e"/>
+  </linearGradient>
+  <linearGradient id="ribbed-ceramic-vase-rim" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="160" y2="0">
+  <stop offset="0" stop-color="#b8b19e"/>
+  <stop offset="1" stop-color="#e7e1d3"/>
+  </linearGradient>
+  </defs>
+  <path d="M30.0 9C25.0 52 9 135 20 165Q27 181 80 178Q133 181 140 165C151 135 135.0 52 130.0 9Z" fill="url(#ribbed-ceramic-vase-body)" stroke="#b8b19e" stroke-width=".8" />
+  <path d="M39.0 27Q22.4 117.0 36.8 156L49.6 163Q35.2 93.6 49.0 27Z" fill="#e7e1d3" opacity=".45"/>
+  <path d="M24 24Q19 95 24 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M25.5 25Q20.5 95 25.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M31 24Q26 95 31 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M32.5 25Q27.5 95 32.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M38 24Q33 95 38 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M39.5 25Q34.5 95 39.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M45 24Q40 95 45 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M46.5 25Q41.5 95 46.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M52 24Q47 95 52 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M53.5 25Q48.5 95 53.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M59 24Q54 95 59 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M60.5 25Q55.5 95 60.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M66 24Q61 95 66 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M67.5 25Q62.5 95 67.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M73 24Q68 95 73 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M74.5 25Q69.5 95 74.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M80 24Q75 95 80 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M81.5 25Q76.5 95 81.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M87 24Q82 95 87 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M88.5 25Q83.5 95 88.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M94 24Q89 95 94 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M95.5 25Q90.5 95 95.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M101 24Q96 95 101 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M102.5 25Q97.5 95 102.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M108 24Q103 95 108 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M109.5 25Q104.5 95 109.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M115 24Q110 95 115 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M116.5 25Q111.5 95 116.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M122 24Q117 95 122 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M123.5 25Q118.5 95 123.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M129 24Q124 95 129 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M130.5 25Q125.5 95 130.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <path d="M136 24Q131 95 136 165" fill="none" stroke="#b8b19e" stroke-width="0.8" stroke-opacity=".5"/>
+  <path d="M137.5 25Q132.5 95 137.5 164" fill="none" stroke="#e7e1d3" stroke-width="1.2" stroke-opacity=".6"/>
+  <ellipse cx="80.00" cy="9.00" rx="50.00" ry="5.00" fill="url(#ribbed-ceramic-vase-rim)" stroke="#b8b19e" stroke-width=".6"/>
+  <ellipse cx="80.00" cy="9.00" rx="47.00" ry="3.00" fill="#72806a" opacity=".8"/>
+  <path d="M34.0 10Q80 16 126.0 10" fill="none" stroke="#e7e1d3" stroke-width="1.1" stroke-opacity=".9"/>
+</svg>

@@ -1,0 +1,29 @@
+{
+  "id": "lotus",
+  "category": "flower",
+  "name": "荷花",
+  "group": "main",
+  "introduction": "尖长花瓣层层向上合拢，中央有莲蓬形花心，是夏季瓶插常见的季节花材。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "浅粉",
+      "value": "#d8a2ae"
+    },
+    {
+      "name": "奶白",
+      "value": "#ece3d8"
+    },
+    {
+      "name": "玫粉",
+      "value": "#c982a0"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

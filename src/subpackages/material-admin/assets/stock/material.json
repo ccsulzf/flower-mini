@@ -1,0 +1,29 @@
+{
+  "id": "stock",
+  "category": "flower",
+  "name": "紫罗兰",
+  "group": "filler",
+  "introduction": "这里指花店常用的切花紫罗兰，四瓣小花沿直立花枝密集开放，可增加花束高度。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "淡紫",
+      "value": "#b3a1c3"
+    },
+    {
+      "name": "粉色",
+      "value": "#daa9bd"
+    },
+    {
+      "name": "奶白",
+      "value": "#ece6dd"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

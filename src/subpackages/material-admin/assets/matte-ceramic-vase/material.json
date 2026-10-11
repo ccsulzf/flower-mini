@@ -1,9 +1,9 @@
 {
   "id": "matte-ceramic-vase",
   "category": "vase",
-  "name": "磨砂陶瓶",
-  "introduction": "鼠尾草色磨砂陶瓶，适合柔和绿色和浅色花材。",
-  "version": 1,
+  "name": "磨砂陶瓷花瓶",
+  "introduction": "浅灰绿色磨砂陶瓷花瓶，表面质感柔和，适合搭配绿叶和浅色花材。",
+  "version": 3,
   "geometry": {
     "width": 155,
     "height": 180,

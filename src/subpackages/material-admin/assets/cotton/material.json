@@ -1,0 +1,29 @@
+{
+  "id": "cotton",
+  "category": "flower",
+  "name": "棉花",
+  "group": "main",
+  "introduction": "柔软的棉絮从褐色果壳中展开，适合搭配干花或营造温暖、朴素的花束。",
+  "flowerMeaning": "温暖与珍惜（常见象征表达，仅供创作参考）",
+  "version": 3,
+  "colors": [
+    {
+      "name": "奶白",
+      "value": "#f0e9da"
+    },
+    {
+      "name": "浅米",
+      "value": "#e4d9c3"
+    },
+    {
+      "name": "灰白",
+      "value": "#deded3"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

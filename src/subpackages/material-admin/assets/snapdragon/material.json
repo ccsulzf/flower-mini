@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "金鱼草",
   "group": "filler",
-  "introduction": "上下排列的花朵组成竖向花序，适合延伸作品高度。",
+  "introduction": "花朵沿花枝上下排列，形成修长的花序，适合增加花束高度。",
   "flowerMeaning": "活力与好运（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "浅粉",

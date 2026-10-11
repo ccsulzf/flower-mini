@@ -2,9 +2,9 @@
   "id": "daisy",
   "name": "小雏菊",
   "group": "filler",
-  "introduction": "轻盈的小花适合填充花束，增添自然活泼的感觉。",
+  "introduction": "花朵小巧，浅色花瓣围绕黄色花心，适合点缀花束和填补空隙。",
   "flowerMeaning": "纯真、希望与快乐",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "奶黄",
@@ -18,5 +18,11 @@
       "name": "金黄",
       "value": "#e1b94f"
     }
-  ]
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
 }

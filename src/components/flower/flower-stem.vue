@@ -9,25 +9,27 @@ const props = defineProps<{ stem: Stem, anchor: number, selected: boolean }>()
 const emit = defineEmits<{ start: [event: { touches: { clientX: number, clientY: number }[] }], move: [event: { touches: { clientX: number, clientY: number }[] }], end: [cancelled: boolean] }>()
 const catalog = useFlowerCatalogStore()
 const cloudMaterial = computed(() => props.stem.materialId && props.stem.materialRevision ? catalog.get(props.stem.materialId, props.stem.materialRevision) : undefined)
+const isFoliage = computed(() => cloudMaterial.value ? cloudMaterial.value.group === 'foliage' : props.stem.kind === 'leaf')
+// 叶片分布在整枝，点击区跟随高度及实例的旋转、镜像与缩放。
+const touchAreaStyle = computed(() => isFoliage.value ? `height:${props.stem.stemHeight + 55 + 24}rpx;` : '')
 const cloudSource = computed(() => {
   if (!cloudMaterial.value) return ''
-  try { return svgImageSource(cloudPlantSvg(cloudMaterial.value, props.stem)) } catch { return '' }
+  try { return svgImageSource(cloudPlantSvg(cloudMaterial.value, { ...props.stem, leafMode: 'without' })) } catch { return '' }
 })
 const curve = computed(() => curveFor(props.stem))
 const svgSource = computed(() => stemSvgSource(props.stem.kind))
-const plantSource = computed(() => props.stem.materialId ? cloudSource.value : plantSvgSource(props.stem.kind, props.stem.color, props.stem.stemHeight))
+const plantSource = computed(() => props.stem.materialId ? cloudSource.value : plantSvgSource(props.stem.kind, props.stem.color, props.stem.stemHeight, true))
 const svgFailed = ref(false)
 const usesSvgPlant = computed(() => Boolean((props.stem.materialId ? cloudSource.value : svgSource.value) && !svgFailed.value))
 watch(plantSource, () => { svgFailed.value = false })
 // 小程序 WXML 对对象形式的 :style 表达式解析不稳定，统一输出 CSS 字符串。
 const studioStemStyle = computed(() => `left:${props.stem.x}rpx;top:${props.anchor}rpx;height:${props.stem.stemHeight + 55}rpx;transform:translate(-50%, -100%) rotate(${props.stem.angle}deg);`)
-const flowerInstanceStyle = computed(() => `transform:scale(${props.stem.flowerScale});transform-origin:55rpx ${props.stem.stemHeight + 55}rpx;`)
+const flowerInstanceStyle = computed(() => `transform:scale(${props.stem.mirrored ? -props.stem.flowerScale : props.stem.flowerScale}, ${props.stem.flowerScale});transform-origin:55rpx ${props.stem.stemHeight + 55}rpx;`)
 // PNG 上方 55/260 是透明留白；裁剪后从花心 y=55 延伸到瓶口，不能沿用 SVG 的偏移。
 const stemClipStyle = computed(() => `top:55rpx;height:${props.stem.stemHeight}rpx;`)
 const stemImageStyle = computed(() => usesSvgPlant.value
   ? `top:${flowerConnectionY(props.stem.kind) + 50}rpx;height:${props.stem.stemHeight + 55 - flowerConnectionY(props.stem.kind)}rpx;`
   : `top:${-55 * props.stem.stemHeight / 205}rpx;height:${260 * props.stem.stemHeight / 205}rpx;`)
-const sideLeafStyle = computed(() => `left:${curve.value.leafLeft}rpx;top:${55 + 85 * props.stem.stemHeight / 205}rpx;`)
 const plantImageStyle = computed(() => `width:110rpx;height:${props.stem.stemHeight + 55}rpx;`)
 </script>
 <template>
@@ -40,9 +42,8 @@ const plantImageStyle = computed(() => `width:110rpx;height:${props.stem.stemHei
       <view v-else-if="!stem.materialId" class="stem-image-clip" :style="stemClipStyle">
         <image class="stem-image" :src="curve.image" @error="svgFailed = true" mode="scaleToFill" :style="stemImageStyle" />
       </view>
-      <view v-if="!usesSvgPlant && !stem.materialId" class="side-leaf" :style="sideLeafStyle" />
       <view v-if="stem.materialId && (!cloudSource || svgFailed)" class="cloud-error">素材加载失败</view>
-      <view class="flower-touch" :class="{ 'mum-touch': stem.kind === 'chrysanthemum', 'foliage-touch': stem.kind === 'leaf' }" @tap.stop @touchstart.stop="emit('start', $event)" @touchmove.stop.prevent="emit('move', $event)" @touchend.stop="emit('end', false)" @touchcancel.stop="emit('end', true)">
+      <view class="flower-touch" :style="touchAreaStyle" :class="{ 'mum-touch': stem.kind === 'chrysanthemum', 'foliage-touch': isFoliage }" @tap.stop @touchstart.stop="emit('start', $event)" @touchmove.stop.prevent="emit('move', $event)" @touchend.stop="emit('end', false)" @touchcancel.stop="emit('end', true)">
         <view v-if="!usesSvgPlant && !stem.materialId" class="flower-art-position"><FlowerBloom :kind="stem.kind" :color="stem.color" /></view>
         <view v-if="selected" class="flower-outline" />
       </view>
@@ -60,6 +61,6 @@ const plantImageStyle = computed(() => `width:110rpx;height:${props.stem.stemHei
 .flower-touch { position: absolute; left: -12rpx; top: -12rpx; width: 134rpx; height: 134rpx; border-radius: 50%; pointer-events: auto; }
 .flower-art-position { position: absolute; left: 12rpx; top: 12rpx; pointer-events: none; }
 .mum-touch { width: 190rpx; height: 190rpx; left: -40rpx; top: -40rpx; }.mum-touch .flower-art-position { left: 40rpx; top: 40rpx; }
-.foliage-touch { height: 190rpx; border-radius: 35%; }
+.foliage-touch { border-radius: 12rpx; }.foliage-touch .flower-outline { border-radius: 12rpx; }
 .flower-outline { position: absolute; inset: 8rpx; border: 2rpx dashed rgba(101, 119, 90, .72); border-radius: 50%; pointer-events: none; }
 </style>

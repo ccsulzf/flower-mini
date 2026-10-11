@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "康乃馨",
   "group": "main",
-  "introduction": "花瓣边缘细碎起伏，花头紧凑，适合温柔的日常花礼。",
+  "introduction": "花瓣边缘细碎，花头饱满，常用于日常花束和节日花礼。",
   "flowerMeaning": "爱与感谢（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "粉色",

@@ -1,1 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 185" width="140" height="185"><g fill-opacity=".28"><path d="M15 9L15 156Q15 179 35 180L105 180Q125 179 125 156L125 9Z" fill="#b8cfc6" stroke="#8ca99d" stroke-width="1.4"/></g><path d="M42.5 27L42.5 158" fill="none" stroke="#e9f0e8" stroke-width="3"/><ellipse cx="70" cy="9" rx="55.0" ry="5" fill="#d8e4dc" stroke="#92aa9d" opacity="0.8"/><ellipse cx="70" cy="9" rx="52.0" ry="3" fill="#adc1b0" stroke="#adc1b0" opacity="0.55"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="185" viewBox="0 0 140 185">
+  <defs>
+  <linearGradient id="glass-cylinder-body" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0">
+  <stop offset="0" stop-color="#dce9e0"/>
+  <stop offset="1" stop-color="#96afa5"/>
+  </linearGradient>
+  <linearGradient id="glass-cylinder-rim" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0">
+  <stop offset="0" stop-color="#96afa5"/>
+  <stop offset="1" stop-color="#dce9e0"/>
+  </linearGradient>
+  </defs>
+  <path d="M15.0 9C10.0 52 9 140 20 170Q27 186 70 183Q113 186 120 170C131 140 130.0 52 125.0 9Z" fill="url(#glass-cylinder-body)" stroke="#96afa5" stroke-width=".8" fill-opacity=".32"/>
+  <path d="M23.0 25L20.0 157" fill="none" stroke="#fffef4" stroke-width="3.3" stroke-opacity=".78"/>
+  <path d="M119.0 24L121.0 158" fill="none" stroke="#90afa1" stroke-width="0.8" stroke-opacity=".55"/>
+  <ellipse cx="70.00" cy="172.00" rx="43.40" ry="4.50" fill="#b0c6bb" opacity=".24"/>
+  <path d="M30.8 172Q70 180 109.2 172" fill="none" stroke="#829e91" stroke-width="0.7" stroke-opacity=".5"/>
+  <ellipse cx="70.00" cy="9.00" rx="55.00" ry="5.00" fill="url(#glass-cylinder-rim)" stroke="#96afa5" stroke-width=".6"/>
+  <ellipse cx="70.00" cy="9.00" rx="52.00" ry="3.00" fill="#9bb4a7" opacity=".4"/>
+  <path d="M19.0 10Q70 16 121.0 10" fill="none" stroke="#dce9e0" stroke-width="1.1" stroke-opacity=".9"/>
+</svg>

@@ -1,0 +1,33 @@
+{
+  "id": "anthurium",
+  "category": "flower",
+  "name": "红掌",
+  "group": "main",
+  "introduction": "也叫花烛。心形花苞包围细长花穗，表面光滑，适合作为花束中的醒目主花。",
+  "flowerMeaning": "热情与祝福（常见象征表达，仅供创作参考）",
+  "version": 3,
+  "colors": [
+    {
+      "name": "朱红",
+      "value": "#c96d63"
+    },
+    {
+      "name": "柔粉",
+      "value": "#ce9ca7"
+    },
+    {
+      "name": "奶白",
+      "value": "#e5e2d1"
+    },
+    {
+      "name": "青绿",
+      "value": "#a4b792"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 98
+  }
+}

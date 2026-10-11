@@ -1,0 +1,29 @@
+{
+  "id": "ping-pong-chrysanthemum",
+  "category": "flower",
+  "name": "乒乓菊",
+  "group": "main",
+  "introduction": "细密短花瓣聚成球形花头，外形像乒乓球，适合圆润、活泼的花束。",
+  "flowerMeaning": "圆满与喜悦（常见象征表达，仅供创作参考）",
+  "version": 3,
+  "colors": [
+    {
+      "name": "浅绿",
+      "value": "#b4c091"
+    },
+    {
+      "name": "金黄",
+      "value": "#d9bd6f"
+    },
+    {
+      "name": "奶白",
+      "value": "#eae4d5"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

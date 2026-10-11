@@ -1,0 +1,509 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <defs>
+  <linearGradient id="ping-pong-chrysanthemum-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
+  <stop offset="0" stop-color="__COLOR__"/>
+  <stop offset="1" stop-color="#9c7e82"/>
+  </linearGradient>
+  </defs>
+  <g transform="rotate(0.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 16.0 55 13.0C59.0 14.0 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 16.0 55 13.0C59.0 14.0 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 19.0Q55 14.0 57.0 19.0" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(12.41 55 55)">
+  <path d="M52 60C51.0 44 51.0 17.8 55 14.8C59.0 15.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 17.8 55 14.8C59.0 15.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 20.8Q55 15.8 57.0 20.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(24.83 55 55)">
+  <path d="M52 60C51.0 44 51.0 15.5 55 12.5C59.0 13.5 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 15.5 55 12.5C59.0 13.5 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 18.5Q55 13.5 57.0 18.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(37.24 55 55)">
+  <path d="M52 60C51.0 44 51.0 14.3 55 11.3C59.0 12.3 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 14.3 55 11.3C59.0 12.3 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 17.3Q55 12.3 57.0 17.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(49.66 55 55)">
+  <path d="M52 60C51.0 44 51.0 16.9 55 13.9C59.0 14.9 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 16.9 55 13.9C59.0 14.9 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 19.9Q55 14.9 57.0 19.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(62.07 55 55)">
+  <path d="M52 60C51.0 44 51.0 17.4 55 14.4C59.0 15.4 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 17.4 55 14.4C59.0 15.4 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 20.4Q55 15.4 57.0 20.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(74.48 55 55)">
+  <path d="M52 60C51.0 44 51.0 14.7 55 11.7C59.0 12.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 14.7 55 11.7C59.0 12.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 17.7Q55 12.7 57.0 17.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(86.90 55 55)">
+  <path d="M52 60C51.0 44 51.0 14.9 55 11.9C59.0 12.9 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 14.9 55 11.9C59.0 12.9 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 17.9Q55 12.9 57.0 17.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(99.31 55 55)">
+  <path d="M52 60C51.0 44 51.0 17.5 55 14.5C59.0 15.5 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 17.5 55 14.5C59.0 15.5 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 20.5Q55 15.5 57.0 20.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(111.72 55 55)">
+  <path d="M52 60C51.0 44 51.0 16.7 55 13.7C59.0 14.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 16.7 55 13.7C59.0 14.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 19.7Q55 14.7 57.0 19.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(124.14 55 55)">
+  <path d="M52 60C51.0 44 51.0 14.3 55 11.3C59.0 12.3 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 14.3 55 11.3C59.0 12.3 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 17.3Q55 12.3 57.0 17.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(136.55 55 55)">
+  <path d="M52 60C51.0 44 51.0 15.7 55 12.7C59.0 13.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 15.7 55 12.7C59.0 13.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 18.7Q55 13.7 57.0 18.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(148.97 55 55)">
+  <path d="M52 60C51.0 44 51.0 17.8 55 14.8C59.0 15.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 17.8 55 14.8C59.0 15.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 20.8Q55 15.8 57.0 20.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(161.38 55 55)">
+  <path d="M52 60C51.0 44 51.0 15.8 55 12.8C59.0 13.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 15.8 55 12.8C59.0 13.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 18.8Q55 13.8 57.0 18.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(173.79 55 55)">
+  <path d="M52 60C51.0 44 51.0 14.3 55 11.3C59.0 12.3 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 14.3 55 11.3C59.0 12.3 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 17.3Q55 12.3 57.0 17.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(186.21 55 55)">
+  <path d="M52 60C51.0 44 51.0 16.6 55 13.6C59.0 14.6 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 16.6 55 13.6C59.0 14.6 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 19.6Q55 14.6 57.0 19.6" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(198.62 55 55)">
+  <path d="M52 60C51.0 44 51.0 17.6 55 14.6C59.0 15.6 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 17.6 55 14.6C59.0 15.6 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 20.6Q55 15.6 57.0 20.6" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(211.03 55 55)">
+  <path d="M52 60C51.0 44 51.0 14.9 55 11.9C59.0 12.9 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 14.9 55 11.9C59.0 12.9 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 17.9Q55 12.9 57.0 17.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(223.45 55 55)">
+  <path d="M52 60C51.0 44 51.0 14.7 55 11.7C59.0 12.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 14.7 55 11.7C59.0 12.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 17.7Q55 12.7 57.0 17.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(235.86 55 55)">
+  <path d="M52 60C51.0 44 51.0 17.4 55 14.4C59.0 15.4 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 17.4 55 14.4C59.0 15.4 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 20.4Q55 15.4 57.0 20.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(248.28 55 55)">
+  <path d="M52 60C51.0 44 51.0 17.0 55 14.0C59.0 15.0 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 17.0 55 14.0C59.0 15.0 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 20.0Q55 15.0 57.0 20.0" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(260.69 55 55)">
+  <path d="M52 60C51.0 44 51.0 14.4 55 11.4C59.0 12.4 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 14.4 55 11.4C59.0 12.4 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 17.4Q55 12.4 57.0 17.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(273.10 55 55)">
+  <path d="M52 60C51.0 44 51.0 15.5 55 12.5C59.0 13.5 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 15.5 55 12.5C59.0 13.5 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 18.5Q55 13.5 57.0 18.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(285.52 55 55)">
+  <path d="M52 60C51.0 44 51.0 17.8 55 14.8C59.0 15.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 17.8 55 14.8C59.0 15.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 20.8Q55 15.8 57.0 20.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(297.93 55 55)">
+  <path d="M52 60C51.0 44 51.0 16.1 55 13.1C59.0 14.1 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 16.1 55 13.1C59.0 14.1 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 19.1Q55 14.1 57.0 19.1" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(310.34 55 55)">
+  <path d="M52 60C51.0 44 51.0 14.2 55 11.2C59.0 12.2 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 14.2 55 11.2C59.0 12.2 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 17.2Q55 12.2 57.0 17.2" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(322.76 55 55)">
+  <path d="M52 60C51.0 44 51.0 16.4 55 13.4C59.0 14.4 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 16.4 55 13.4C59.0 14.4 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 19.4Q55 14.4 57.0 19.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(335.17 55 55)">
+  <path d="M52 60C51.0 44 51.0 17.7 55 14.7C59.0 15.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 17.7 55 14.7C59.0 15.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 20.7Q55 15.7 57.0 20.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(347.59 55 55)">
+  <path d="M52 60C51.0 44 51.0 15.2 55 12.2C59.0 13.2 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 15.2 55 12.2C59.0 13.2 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
+  <path d="M53.0 18.2Q55 13.2 57.0 18.2" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(14.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 24.0 55 21.0C59.0 22.0 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 24.0 55 21.0C59.0 22.0 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 27.0Q55 22.0 57.0 27.0" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(28.40 55 55)">
+  <path d="M52 60C51.0 44 51.0 25.8 55 22.8C59.0 23.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 25.8 55 22.8C59.0 23.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 28.8Q55 23.8 57.0 28.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(42.80 55 55)">
+  <path d="M52 60C51.0 44 51.0 23.5 55 20.5C59.0 21.5 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 23.5 55 20.5C59.0 21.5 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 26.5Q55 21.5 57.0 26.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(57.20 55 55)">
+  <path d="M52 60C51.0 44 51.0 22.3 55 19.3C59.0 20.3 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 22.3 55 19.3C59.0 20.3 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 25.3Q55 20.3 57.0 25.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(71.60 55 55)">
+  <path d="M52 60C51.0 44 51.0 24.9 55 21.9C59.0 22.9 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 24.9 55 21.9C59.0 22.9 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 27.9Q55 22.9 57.0 27.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(86.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 25.4 55 22.4C59.0 23.4 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 25.4 55 22.4C59.0 23.4 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 28.4Q55 23.4 57.0 28.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(100.40 55 55)">
+  <path d="M52 60C51.0 44 51.0 22.7 55 19.7C59.0 20.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 22.7 55 19.7C59.0 20.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 25.7Q55 20.7 57.0 25.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(114.80 55 55)">
+  <path d="M52 60C51.0 44 51.0 22.9 55 19.9C59.0 20.9 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 22.9 55 19.9C59.0 20.9 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 25.9Q55 20.9 57.0 25.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(129.20 55 55)">
+  <path d="M52 60C51.0 44 51.0 25.5 55 22.5C59.0 23.5 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 25.5 55 22.5C59.0 23.5 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 28.5Q55 23.5 57.0 28.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(143.60 55 55)">
+  <path d="M52 60C51.0 44 51.0 24.7 55 21.7C59.0 22.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 24.7 55 21.7C59.0 22.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 27.7Q55 22.7 57.0 27.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(158.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 22.3 55 19.3C59.0 20.3 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 22.3 55 19.3C59.0 20.3 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 25.3Q55 20.3 57.0 25.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(172.40 55 55)">
+  <path d="M52 60C51.0 44 51.0 23.7 55 20.7C59.0 21.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 23.7 55 20.7C59.0 21.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 26.7Q55 21.7 57.0 26.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(186.80 55 55)">
+  <path d="M52 60C51.0 44 51.0 25.8 55 22.8C59.0 23.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 25.8 55 22.8C59.0 23.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 28.8Q55 23.8 57.0 28.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(201.20 55 55)">
+  <path d="M52 60C51.0 44 51.0 23.8 55 20.8C59.0 21.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 23.8 55 20.8C59.0 21.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 26.8Q55 21.8 57.0 26.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(215.60 55 55)">
+  <path d="M52 60C51.0 44 51.0 22.3 55 19.3C59.0 20.3 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 22.3 55 19.3C59.0 20.3 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 25.3Q55 20.3 57.0 25.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(230.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 24.6 55 21.6C59.0 22.6 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 24.6 55 21.6C59.0 22.6 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 27.6Q55 22.6 57.0 27.6" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(244.40 55 55)">
+  <path d="M52 60C51.0 44 51.0 25.6 55 22.6C59.0 23.6 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 25.6 55 22.6C59.0 23.6 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 28.6Q55 23.6 57.0 28.6" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(258.80 55 55)">
+  <path d="M52 60C51.0 44 51.0 22.9 55 19.9C59.0 20.9 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 22.9 55 19.9C59.0 20.9 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 25.9Q55 20.9 57.0 25.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(273.20 55 55)">
+  <path d="M52 60C51.0 44 51.0 22.7 55 19.7C59.0 20.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 22.7 55 19.7C59.0 20.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 25.7Q55 20.7 57.0 25.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(287.60 55 55)">
+  <path d="M52 60C51.0 44 51.0 25.4 55 22.4C59.0 23.4 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 25.4 55 22.4C59.0 23.4 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 28.4Q55 23.4 57.0 28.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(302.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 25.0 55 22.0C59.0 23.0 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 25.0 55 22.0C59.0 23.0 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 28.0Q55 23.0 57.0 28.0" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(316.40 55 55)">
+  <path d="M52 60C51.0 44 51.0 22.4 55 19.4C59.0 20.4 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 22.4 55 19.4C59.0 20.4 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 25.4Q55 20.4 57.0 25.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(330.80 55 55)">
+  <path d="M52 60C51.0 44 51.0 23.5 55 20.5C59.0 21.5 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 23.5 55 20.5C59.0 21.5 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 26.5Q55 21.5 57.0 26.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(345.20 55 55)">
+  <path d="M52 60C51.0 44 51.0 25.8 55 22.8C59.0 23.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 25.8 55 22.8C59.0 23.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 28.8Q55 23.8 57.0 28.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(359.60 55 55)">
+  <path d="M52 60C51.0 44 51.0 24.1 55 21.1C59.0 22.1 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 24.1 55 21.1C59.0 22.1 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.155"/>
+  <path d="M53.0 27.1Q55 22.1 57.0 27.1" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(28.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 32.0 55 29.0C59.0 30.0 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 32.0 55 29.0C59.0 30.0 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 35.0Q55 30.0 57.0 35.0" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(46.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 33.8 55 30.8C59.0 31.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 33.8 55 30.8C59.0 31.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 36.8Q55 31.8 57.0 36.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(64.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 31.5 55 28.5C59.0 29.5 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 31.5 55 28.5C59.0 29.5 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 34.5Q55 29.5 57.0 34.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(82.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 30.3 55 27.3C59.0 28.3 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 30.3 55 27.3C59.0 28.3 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 33.3Q55 28.3 57.0 33.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(100.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 32.9 55 29.9C59.0 30.9 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 32.9 55 29.9C59.0 30.9 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 35.9Q55 30.9 57.0 35.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(118.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 33.4 55 30.4C59.0 31.4 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 33.4 55 30.4C59.0 31.4 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 36.4Q55 31.4 57.0 36.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(136.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 30.7 55 27.7C59.0 28.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 30.7 55 27.7C59.0 28.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 33.7Q55 28.7 57.0 33.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(154.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 30.9 55 27.9C59.0 28.9 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 30.9 55 27.9C59.0 28.9 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 33.9Q55 28.9 57.0 33.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(172.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 33.5 55 30.5C59.0 31.5 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 33.5 55 30.5C59.0 31.5 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 36.5Q55 31.5 57.0 36.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(190.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 32.7 55 29.7C59.0 30.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 32.7 55 29.7C59.0 30.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 35.7Q55 30.7 57.0 35.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(208.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 30.3 55 27.3C59.0 28.3 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 30.3 55 27.3C59.0 28.3 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 33.3Q55 28.3 57.0 33.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(226.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 31.7 55 28.7C59.0 29.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 31.7 55 28.7C59.0 29.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 34.7Q55 29.7 57.0 34.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(244.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 33.8 55 30.8C59.0 31.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 33.8 55 30.8C59.0 31.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 36.8Q55 31.8 57.0 36.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(262.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 31.8 55 28.8C59.0 29.8 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 31.8 55 28.8C59.0 29.8 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 34.8Q55 29.8 57.0 34.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(280.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 30.3 55 27.3C59.0 28.3 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 30.3 55 27.3C59.0 28.3 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 33.3Q55 28.3 57.0 33.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(298.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 32.6 55 29.6C59.0 30.6 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 32.6 55 29.6C59.0 30.6 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 35.6Q55 30.6 57.0 35.6" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(316.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 33.6 55 30.6C59.0 31.6 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 33.6 55 30.6C59.0 31.6 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 36.6Q55 31.6 57.0 36.6" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(334.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 30.9 55 27.9C59.0 28.9 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 30.9 55 27.9C59.0 28.9 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 33.9Q55 28.9 57.0 33.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(352.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 30.7 55 27.7C59.0 28.7 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 30.7 55 27.7C59.0 28.7 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 33.7Q55 28.7 57.0 33.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(370.00 55 55)">
+  <path d="M52 60C51.0 44 51.0 33.4 55 30.4C59.0 31.4 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C51.0 44 51.0 33.4 55 30.4C59.0 31.4 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.18"/>
+  <path d="M53.0 36.4Q55 31.4 57.0 36.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(42.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 40.0 55 37.0C58.0 38.0 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 40.0 55 37.0C58.0 38.0 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 43.0Q55 38.0 56.5 43.0" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(64.50 55 55)">
+  <path d="M52 60C52.0 44 52.0 41.8 55 38.8C58.0 39.8 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 41.8 55 38.8C58.0 39.8 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 44.8Q55 39.8 56.5 44.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(87.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 39.5 55 36.5C58.0 37.5 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 39.5 55 36.5C58.0 37.5 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 42.5Q55 37.5 56.5 42.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(109.50 55 55)">
+  <path d="M52 60C52.0 44 52.0 38.3 55 35.3C58.0 36.3 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 38.3 55 35.3C58.0 36.3 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 41.3Q55 36.3 56.5 41.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(132.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 40.9 55 37.9C58.0 38.9 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 40.9 55 37.9C58.0 38.9 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 43.9Q55 38.9 56.5 43.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(154.50 55 55)">
+  <path d="M52 60C52.0 44 52.0 41.4 55 38.4C58.0 39.4 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 41.4 55 38.4C58.0 39.4 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 44.4Q55 39.4 56.5 44.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(177.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 38.7 55 35.7C58.0 36.7 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 38.7 55 35.7C58.0 36.7 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 41.7Q55 36.7 56.5 41.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(199.50 55 55)">
+  <path d="M52 60C52.0 44 52.0 38.9 55 35.9C58.0 36.9 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 38.9 55 35.9C58.0 36.9 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 41.9Q55 36.9 56.5 41.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(222.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 41.5 55 38.5C58.0 39.5 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 41.5 55 38.5C58.0 39.5 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 44.5Q55 39.5 56.5 44.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(244.50 55 55)">
+  <path d="M52 60C52.0 44 52.0 40.7 55 37.7C58.0 38.7 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 40.7 55 37.7C58.0 38.7 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 43.7Q55 38.7 56.5 43.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(267.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 38.3 55 35.3C58.0 36.3 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 38.3 55 35.3C58.0 36.3 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 41.3Q55 36.3 56.5 41.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(289.50 55 55)">
+  <path d="M52 60C52.0 44 52.0 39.7 55 36.7C58.0 37.7 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 39.7 55 36.7C58.0 37.7 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 42.7Q55 37.7 56.5 42.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(312.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 41.8 55 38.8C58.0 39.8 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 41.8 55 38.8C58.0 39.8 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 44.8Q55 39.8 56.5 44.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(334.50 55 55)">
+  <path d="M52 60C52.0 44 52.0 39.8 55 36.8C58.0 37.8 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 39.8 55 36.8C58.0 37.8 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 42.8Q55 37.8 56.5 42.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(357.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 38.3 55 35.3C58.0 36.3 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 38.3 55 35.3C58.0 36.3 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 41.3Q55 36.3 56.5 41.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(379.50 55 55)">
+  <path d="M52 60C52.0 44 52.0 40.6 55 37.6C58.0 38.6 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 40.6 55 37.6C58.0 38.6 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.20500000000000002"/>
+  <path d="M53.5 43.6Q55 38.6 56.5 43.6" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(56.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 48.0 55 45.0C58.0 46.0 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 48.0 55 45.0C58.0 46.0 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 51.0Q55 46.0 56.5 51.0" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(92.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 49.8 55 46.8C58.0 47.8 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 49.8 55 46.8C58.0 47.8 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 52.8Q55 47.8 56.5 52.8" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(128.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 47.5 55 44.5C58.0 45.5 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 47.5 55 44.5C58.0 45.5 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 50.5Q55 45.5 56.5 50.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(164.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 46.3 55 43.3C58.0 44.3 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 46.3 55 43.3C58.0 44.3 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 49.3Q55 44.3 56.5 49.3" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(200.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 48.9 55 45.9C58.0 46.9 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 48.9 55 45.9C58.0 46.9 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 51.9Q55 46.9 56.5 51.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(236.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 49.4 55 46.4C58.0 47.4 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 49.4 55 46.4C58.0 47.4 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 52.4Q55 47.4 56.5 52.4" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(272.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 46.7 55 43.7C58.0 44.7 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 46.7 55 43.7C58.0 44.7 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 49.7Q55 44.7 56.5 49.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(308.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 46.9 55 43.9C58.0 44.9 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 46.9 55 43.9C58.0 44.9 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 49.9Q55 44.9 56.5 49.9" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(344.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 49.5 55 46.5C58.0 47.5 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 49.5 55 46.5C58.0 47.5 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 52.5Q55 47.5 56.5 52.5" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <g transform="rotate(380.00 55 55)">
+  <path d="M52 60C52.0 44 52.0 48.7 55 45.7C58.0 46.7 58.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C52.0 44 52.0 48.7 55 45.7C58.0 46.7 58.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.23"/>
+  <path d="M53.5 51.7Q55 46.7 56.5 51.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
+  </g>
+  <circle cx="55.00" cy="55.00" r="2.60" fill="__COLOR__" />
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <defs>
+  <linearGradient id="single-lisianthus-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
+  <stop offset="0" stop-color="__COLOR__"/>
+  <stop offset="1" stop-color="#9c7e82"/>
+  </linearGradient>
+  </defs>
+  <g transform="rotate(0.00 55 55)">
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="url(#single-lisianthus-fold)" opacity="0.12"/>
+  <path d="M55 54Q50 41 49 29M58 53Q62 41 64 29" fill="none" stroke="#f8f0e2" stroke-width="0.7" stroke-opacity=".5"/>
+  </g>
+  <g transform="rotate(74.52 55 55)">
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="url(#single-lisianthus-fold)" opacity="0.12"/>
+  <path d="M55 54Q50 41 49 29M58 53Q62 41 64 29" fill="none" stroke="#f8f0e2" stroke-width="0.7" stroke-opacity=".5"/>
+  </g>
+  <g transform="rotate(146.73 55 55)">
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="url(#single-lisianthus-fold)" opacity="0.12"/>
+  <path d="M55 54Q50 41 49 29M58 53Q62 41 64 29" fill="none" stroke="#f8f0e2" stroke-width="0.7" stroke-opacity=".5"/>
+  </g>
+  <g transform="rotate(216.42 55 55)">
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="url(#single-lisianthus-fold)" opacity="0.12"/>
+  <path d="M55 54Q50 41 49 29M58 53Q62 41 64 29" fill="none" stroke="#f8f0e2" stroke-width="0.7" stroke-opacity=".5"/>
+  </g>
+  <g transform="rotate(285.73 55 55)">
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="url(#single-lisianthus-fold)" opacity="0.12"/>
+  <path d="M55 54Q50 41 49 29M58 53Q62 41 64 29" fill="none" stroke="#f8f0e2" stroke-width="0.7" stroke-opacity=".5"/>
+  </g>
+  <circle cx="55.00" cy="55.00" r="4.00" fill="#afaa6b" />
+  <path d="M55 56L62.00 55.00" fill="none" stroke="#afa16b" stroke-width="0.5" />
+  <circle cx="62.00" cy="55.00" r="0.70" fill="#d2ba6e" />
+  <path d="M55 56L59.95 59.95" fill="none" stroke="#afa16b" stroke-width="0.5" />
+  <circle cx="59.95" cy="59.95" r="0.70" fill="#d2ba6e" />
+  <path d="M55 56L55.00 62.00" fill="none" stroke="#afa16b" stroke-width="0.5" />
+  <circle cx="55.00" cy="62.00" r="0.70" fill="#d2ba6e" />
+  <path d="M55 56L50.05 59.95" fill="none" stroke="#afa16b" stroke-width="0.5" />
+  <circle cx="50.05" cy="59.95" r="0.70" fill="#d2ba6e" />
+  <path d="M55 56L48.00 55.00" fill="none" stroke="#afa16b" stroke-width="0.5" />
+  <circle cx="48.00" cy="55.00" r="0.70" fill="#d2ba6e" />
+  <path d="M55 56L50.05 50.05" fill="none" stroke="#afa16b" stroke-width="0.5" />
+  <circle cx="50.05" cy="50.05" r="0.70" fill="#d2ba6e" />
+  <path d="M55 56L55.00 48.00" fill="none" stroke="#afa16b" stroke-width="0.5" />
+  <circle cx="55.00" cy="48.00" r="0.70" fill="#d2ba6e" />
+  <path d="M55 56L59.95 50.05" fill="none" stroke="#afa16b" stroke-width="0.5" />
+  <circle cx="59.95" cy="50.05" r="0.70" fill="#d2ba6e" />
+</svg>

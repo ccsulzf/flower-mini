@@ -1,1 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 180" width="160" height="180"><path d="M22 9L18 163Q18 176 31 176L129 176Q142 176 142 163L138 9Z" fill="#d6d9d0" stroke="#babdae" stroke-width="1"/><ellipse cx="80" cy="9" rx="58.0" ry="6" fill="#e8e4d9" stroke="#bebfb0" opacity="1"/><ellipse cx="80" cy="9" rx="55.0" ry="3" fill="#91a085" stroke="#91a085" opacity="1"/><path d="M46 27L44 156" fill="none" stroke="#e7e8df" stroke-width="3"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="180" viewBox="0 0 160 180">
+  <defs>
+    <linearGradient id="square-front" gradientUnits="userSpaceOnUse" x1="40" y1="20" x2="138" y2="170">
+      <stop offset="0" stop-color="#d9dece"/>
+      <stop offset="1" stop-color="#aebaa2"/>
+    </linearGradient>
+    <linearGradient id="square-side" gradientUnits="userSpaceOnUse" x1="22" y1="0" x2="40" y2="0">
+      <stop offset="0" stop-color="#9eac95"/>
+      <stop offset="1" stop-color="#b8c2ab"/>
+    </linearGradient>
+  </defs>
+  <path d="M22 5L40 13L40 174L22 166Z" fill="url(#square-side)" stroke="#99a68e" stroke-width=".7"/>
+  <path d="M40 13L138 13L138 174L40 174Z" fill="url(#square-front)" stroke="#99a68e" stroke-width=".7"/>
+  <path d="M22 5L120 5L138 13L40 13Z" fill="#dfe4d4" stroke="#99a68e" stroke-width=".7"/>
+  <path d="M28 6.8L119 6.8L131 11.4L41 11.4Z" fill="#78866d"/>
+  <path d="M28 6.8L41 11.4L131 11.4" fill="none" stroke="#a5b195" stroke-width=".6"/>
+  <path d="M40 14L137 14M41 15L41 173" fill="none" stroke="#eef0e3" stroke-width=".9" stroke-opacity=".65"/>
+  <path d="M49 23L49 163" fill="none" stroke="#f2f3e7" stroke-width="2.5" stroke-opacity=".2"/>
+  <path d="M42 172L136 172" fill="none" stroke="#94a387" stroke-width=".6" stroke-opacity=".3"/>
+</svg>

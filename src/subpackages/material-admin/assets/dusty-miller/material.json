@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "银叶菊",
   "group": "foliage",
-  "introduction": "银灰色绒感裂叶，适合柔和地衬托浅色花朵。",
+  "introduction": "叶片呈银灰色，带有细绒毛和分裂叶缘，适合搭配白色、粉色等浅色花材。",
   "flowerMeaning": "温柔与陪伴（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 3,
   "colors": [
     {
       "name": "银灰绿",

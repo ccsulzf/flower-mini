@@ -35,7 +35,7 @@ test('云素材及花瓶引用在复制、切换、撤销和重做中保留，�
   const normalize = loader.load('src/utils/flower/material-catalog.ts').normalizeMaterial
   const material = { ...normalize(legacy()), sources: createLoader().load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(row => row.id === 'rose').sources, paths: {} }
   const id = store.addMaterial(material); store.select(id); store.toggleLeaves()
-  assert.equal(store.selected.leafMode, 'without')
+  assert.equal(store.selected.leafMode, 'with')
   const cloned = store.duplicateSelected(); assert.ok(cloned); assert.equal(store.stems.at(-1).materialRevision, material.revision)
   const vase = { category: 'vase', id: 'vase', revision: 'b'.repeat(16), sources: { vase: '<svg />' }, geometry: { width: 140, height: 170, mouthX: 70, mouthY: 8, mouthWidth: 110 } }
   store.setVaseMaterial(vase); assert.equal(store.snapshot().vaseMaterialId, 'vase')
@@ -49,7 +49,7 @@ test('下载的 SVG 按几何拼装；Canvas 直接绘制同一来源，未知�
   const { drawSvg } = loader.load('src/utils/flower/svg-canvas.ts')
   const methods = [], ctx = new Proxy({}, { get: (_, method) => (...args) => { methods.push([method, args]); if (method === 'createLinearGradient') return { addColorStop() {} } } })
   for (const draft of files) {
-    const source = draft.category !== 'flower' ? (draft.sources.vase || draft.sources.bouquet) : cloudPlantSvg({ ...draft, category: 'flower' }, { color: '#abcdef', stemHeight: 410, leafMode: 'without' })
+    const source = draft.category !== 'flower' ? (draft.sources.vase || draft.sources.bouquet || draft.sources.background) : cloudPlantSvg({ ...draft, category: 'flower' }, { color: '#abcdef', stemHeight: 410, leafMode: 'without' })
     drawSvg(ctx, source, 110, 465)
   }
   assert.ok(methods.some(([method]) => method === 'bezierCurveTo'))
@@ -71,12 +71,14 @@ test('切换窄瓶口只移动花枝底端，保留高度和角度；不支持�
   assert.throws(() => drawSvg(ctx, '<svg viewBox="0 0 110 110"><defs><linearGradient id="g"><stop offset="0" stop-color="#000" /></linearGradient></defs><rect x="40" y="30" width="20" height="10" fill="url(#g)" /></svg>', 110, 110), /userSpaceOnUse/)
 })
 
-test('新增常见花材档案包含各 8 种主花配花叶材，叶材颜色可用于工作台', () => {
+test('扩充后的花材档案完整，主花 28 种，叶材颜色可用于工作台', () => {
   const loader = createLoader()
   const catalog = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog
   assert.equal(catalog.errors.length, 0)
   const additions = catalog.items.filter(item => item.category === 'flower' && !['rose', 'tulip', 'daisy'].includes(item.id))
-  for (const group of ['main', 'filler', 'foliage']) assert.equal(additions.filter(item => item.group === group).length, 8)
+  assert.equal(catalog.items.filter(item => item.category === 'flower' && item.group === 'main').length, 28)
+  assert.equal(additions.filter(item => item.group === 'filler').length, 18)
+  assert.equal(additions.filter(item => item.group === 'foliage').length, 10)
   const { cloudPlantSvg } = loader.load('src/utils/flower/material-render.ts')
   for (const item of additions) {
     assert.ok(item.introduction && item.flowerMeaning && item.geometry && item.colors.length > 1)
@@ -99,6 +101,9 @@ test('花束包装独立分类、上传文件和束口几何可被解析及工�
   assert.equal(wrappers.length, 6)
   const normalize = loader.load('src/utils/flower/material-catalog.ts').normalizeMaterial
   const { vasePlacement } = loader.load('src/utils/flower/material-render.ts')
+  const { bouquetLayers } = loader.load('src/utils/flower/material-render.ts')
+  const { drawSvg } = loader.load('src/utils/flower/svg-canvas.ts')
+  const ctx = new Proxy({}, { get: (_, method) => method === 'createLinearGradient' ? () => ({ addColorStop() {} }) : () => {} })
   const store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
   const page = loader.setup('src/subpackages/material-admin/material-admin-page.vue')
   page.group.value = 'bouquet'
@@ -108,7 +113,15 @@ test('花束包装独立分类、上传文件和束口几何可被解析及工�
     const position = vasePlacement(material)
     assert.equal(position.x + item.geometry.mouthX, 350)
     assert.equal(position.y + item.geometry.mouthY, 747)
+    assert.equal(position.mouthRight - position.mouthLeft, 24)
+    const layers = bouquetLayers(material)
+    assert.ok(!layers.back.includes('bouquet-front:start'))
+    assert.ok(!layers.front.includes('bouquet-back:start'))
+    assert.notEqual(layers.front, layers.back)
+    drawSvg(ctx, layers.back, position.width, position.height)
+    drawSvg(ctx, layers.front, position.width, position.height)
     store.setVaseMaterial(material)
+    assert.equal(store.vase, '花束')
     assert.equal(store.snapshot().vaseMaterialId, item.id)
     page.open(item)
     assert.equal(page.wholePreview.value, null)

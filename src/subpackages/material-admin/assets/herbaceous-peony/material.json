@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "芍药",
   "group": "main",
-  "introduction": "柔软的层叠花瓣与露出的花蕊，适合自然舒展的作品。",
+  "introduction": "花瓣柔软，层层展开，花形饱满，适合自然、浪漫的花束。",
   "flowerMeaning": "真挚与惜别（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "浅粉",

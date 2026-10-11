@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "文竹",
   "group": "foliage",
-  "introduction": "纤细枝条和羽状细叶，适合通透轻巧的作品。",
+  "introduction": "枝叶细密轻柔，像一层薄薄的绿纱，适合填补空隙，让花束更轻盈。",
   "flowerMeaning": "雅致与长久（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 3,
   "colors": [
     {
       "name": "浅绿",

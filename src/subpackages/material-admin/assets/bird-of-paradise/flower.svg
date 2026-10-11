@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <defs>
+  <linearGradient id="bird-of-paradise-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
+  <stop offset="0" stop-color="__COLOR__"/>
+  <stop offset="1" stop-color="#ad7644"/>
+  </linearGradient>
+  </defs>
+  <path d="M19 91L27 85L34 65L83 68L105 61Q84 82 45 88L30 97Z" fill="#6f8b69" stroke="#637756" stroke-width=".6"/>
+  <path d="M41 71Q28 36 29 11Q45 35 47 69Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M41 71Q28 36 29 11Q45 35 47 69Z" fill="url(#bird-of-paradise-fold)" opacity="0.13"/>
+  <path d="M49 70Q49 25 58 5Q62 35 56 72Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M49 70Q49 25 58 5Q62 35 56 72Z" fill="url(#bird-of-paradise-fold)" opacity="0.13"/>
+  <path d="M55 71Q70 27 83 15Q78 47 63 76Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M55 71Q70 27 83 15Q78 47 63 76Z" fill="url(#bird-of-paradise-fold)" opacity="0.13"/>
+  <path d="M46 76Q64 37 80 35L66 76Z" fill="#747ba0" stroke="#656887" stroke-width=".5"/>
+  <path d="M50 77Q60 48 64 39L58 80Z" fill="#9498b3" />
+  <path d="M37 75Q60 74 92 66" fill="none" stroke="#b7c8a1" stroke-width="0.8" />
+  <path d="M26 86L29 81L43 77L39 85Z" fill="#b27868" />
+</svg>

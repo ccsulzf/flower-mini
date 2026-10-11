@@ -125,6 +125,17 @@
               "bsonType": "string"
             }
           }
+        },
+        "background": {
+          "bsonType": "object",
+          "properties": {
+            "fileId": {
+              "bsonType": "string"
+            },
+            "hash": {
+              "bsonType": "string"
+            }
+          }
         }
       }
     },
@@ -133,7 +144,8 @@
       "enum": [
         "flower",
         "vase",
-        "bouquet"
+        "bouquet",
+        "background"
       ]
     },
     "geometry": {
@@ -161,6 +173,9 @@
           "bsonType": "double"
         },
         "connectionY": {
+          "bsonType": "double"
+        },
+        "surfaceY": {
           "bsonType": "double"
         }
       }

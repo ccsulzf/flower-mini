@@ -31,7 +31,7 @@ function createLoader(options = {}) {
         return Object.fromEntries(walk(base).filter(([name]) => pattern.endsWith('material.json') ? name.endsWith('/material.json') : name.endsWith('.svg')).map(([name, value]) => [name, pattern.endsWith('material.json') ? JSON.parse(value) : value]))
       }, uniCloud: options.uniCloud, wx: options.wx, definePage() {}, setTimeout, clearTimeout,
       require(name) {
-        if (name === '@dcloudio/uni-app') return { onUnload() {}, onLoad() {}, onShow() {} }
+        if (name === '@dcloudio/uni-app') return Object.fromEntries(['onUnload', 'onLoad', 'onShow', 'onHide', 'onReachBottom'].map(event => [event, callback => { options.lifecycle?.[event]?.push(callback) }]))
         if (!name.startsWith('.') && !name.startsWith('@/')) return require(name)
         const target = name.startsWith('@/') ? path.resolve(root, 'src', name.slice(2)) : path.resolve(path.dirname(filename), name)
         if (name.endsWith('?raw')) return { __esModule: true, default: fs.readFileSync(target.slice(0, -4), 'utf8') }

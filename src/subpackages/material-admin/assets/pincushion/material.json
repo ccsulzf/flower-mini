@@ -1,0 +1,29 @@
+{
+  "id": "pincushion",
+  "category": "flower",
+  "name": "针垫花",
+  "group": "main",
+  "introduction": "圆形花头上伸出许多细长花蕊，蕊端带有小圆点，适合增加花束的特别轮廓。",
+  "flowerMeaning": "勇气与活力（常见象征表达，仅供创作参考）",
+  "version": 3,
+  "colors": [
+    {
+      "name": "暖橘",
+      "value": "#d39555"
+    },
+    {
+      "name": "金黄",
+      "value": "#d9b561"
+    },
+    {
+      "name": "珊瑚",
+      "value": "#c87e67"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

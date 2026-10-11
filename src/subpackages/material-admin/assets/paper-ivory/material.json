@@ -1,0 +1,14 @@
+{
+  "id": "paper-ivory",
+  "category": "background",
+  "name": "米白纸纹",
+  "introduction": "柔和低对比背景，为中间的花材搭配留出空间。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": {
+    "width": 698,
+    "height": 1000
+  }
+}

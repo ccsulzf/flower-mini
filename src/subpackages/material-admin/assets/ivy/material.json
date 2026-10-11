@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "常春藤",
   "group": "foliage",
-  "introduction": "掌状叶沿曲线枝条生长，适合柔软下垂的线条。",
+  "introduction": "叶片带有明显裂片，沿弯曲枝条生长，适合增加花束的下垂线条。",
   "flowerMeaning": "陪伴与长青（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 3,
   "colors": [
     {
       "name": "草绿",

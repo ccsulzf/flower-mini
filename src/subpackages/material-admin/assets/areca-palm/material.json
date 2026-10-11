@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "散尾葵",
   "group": "foliage",
-  "introduction": "修长叶片沿叶轴展开，适合扇形与向外延伸的构图。",
+  "introduction": "细长叶片沿枝条两侧展开，适合衬托花朵，增加插花的宽度和舒展感。",
   "flowerMeaning": "舒展与生机（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 3,
   "colors": [
     {
       "name": "草绿",

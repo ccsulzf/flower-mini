@@ -1,0 +1,29 @@
+{
+  "id": "anemone",
+  "category": "flower",
+  "name": "银莲花",
+  "group": "main",
+  "introduction": "舒展的薄花瓣围着深色花心，轮廓简洁，适合自然风和对比鲜明的插花。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 3,
+  "colors": [
+    {
+      "name": "奶白",
+      "value": "#e9e3d8"
+    },
+    {
+      "name": "淡紫",
+      "value": "#b8a4c9"
+    },
+    {
+      "name": "玫红",
+      "value": "#c87592"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 84
+  }
+}

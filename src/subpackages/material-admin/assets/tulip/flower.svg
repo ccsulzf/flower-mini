@@ -1,8 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
-  <g fill="__COLOR__" stroke="#89739e" stroke-opacity=".45" stroke-width="1.5" stroke-linejoin="round">
-    <path d="M26 35Q31 14 55 5Q77 19 85 37L80 68Q70 92 55 93Q34 88 29 67Z"/>
-    <path d="M55 93C25 88 15 57 20 20C36 24 48 43 55 57C65 40 76 26 93 23C95 60 83 89 55 93Z"/>
-    <path d="M55 93Q68 68 55 57Q43 44 35 39" fill="none"/>
-  </g>
-  <path d="M46 91Q55 100 64 91" fill="#718859"/>
+  <defs>
+  <linearGradient id="tulip-fold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="110">
+  <stop offset="0" stop-color="__COLOR__"/>
+  <stop offset="1" stop-color="#8d6d75"/>
+  </linearGradient>
+  </defs>
+  <path d="M31 47Q31 22 53 13Q75 22 81 46L74 72Q65 91 55 93Q35 86 31 47Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M31 47Q31 22 53 13Q75 22 81 46L74 72Q65 91 55 93Q35 86 31 47Z" fill="url(#tulip-fold)" opacity="0.16"/>
+  <path d="M55 94C33 91 21 61 23 25C42 31 56 47 61 66Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M55 94C33 91 21 61 23 25C42 31 56 47 61 66Z" fill="url(#tulip-fold)" opacity="0.16"/>
+  <path d="M55 94C67 75 61 62 60 51C69 35 78 29 89 27C92 62 76 91 55 94Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M55 94C67 75 61 62 60 51C69 35 78 29 89 27C92 62 76 91 55 94Z" fill="url(#tulip-fold)" opacity="0.16"/>
+  <path d="M54 94C42 83 40 60 47 44Q54 32 61 26C67 39 69 67 54 94Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
+  <path d="M54 94C42 83 40 60 47 44Q54 32 61 26C67 39 69 67 54 94Z" fill="url(#tulip-fold)" opacity="0.16"/>
+  <path d="M31 36Q32 67 49 86M80 38Q82 62 68 79M57 40Q51 64 54 83" fill="none" stroke="#fff9e8" stroke-width="1" stroke-opacity=".45"/>
+  <path d="M46 92Q55 98 63 91Q57 98 55 99Q49 97 46 92Z" fill="#8b9d73" />
 </svg>

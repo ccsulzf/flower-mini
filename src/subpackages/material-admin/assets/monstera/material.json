@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "龟背竹",
   "group": "foliage",
-  "introduction": "宽大的分裂叶轮廓，适合突出热带感和大块结构。",
+  "introduction": "叶片宽大，带有明显裂口，适合做花束背景，也能增加热带风格。",
   "flowerMeaning": "生机与成长（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 3,
   "colors": [
     {
       "name": "墨绿",

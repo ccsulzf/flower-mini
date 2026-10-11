@@ -1,11 +1,11 @@
 {
   "id": "solidago",
   "category": "flower",
-  "name": "黄莺",
+  "name": "黄莺草",
   "group": "filler",
-  "introduction": "细碎小花聚成疏松花序，适合增加温暖的点状细节。",
+  "introduction": "细枝上聚集着许多黄色小花，是常见配花，适合填补空隙和点缀暖色。",
   "flowerMeaning": "明亮与祝愿（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "金黄",

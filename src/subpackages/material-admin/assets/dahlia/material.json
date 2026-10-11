@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "大丽花",
   "group": "main",
-  "introduction": "规律排列的多层花瓣形成几何感花头，适合丰富花束。",
+  "introduction": "多层花瓣排列整齐，花形饱满，适合作为花束中的主花。",
   "flowerMeaning": "优雅与丰盛（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "酒红",

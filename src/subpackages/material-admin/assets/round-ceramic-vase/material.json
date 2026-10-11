@@ -1,9 +1,9 @@
 {
   "id": "round-ceramic-vase",
   "category": "vase",
-  "name": "圆肚陶瓶",
-  "introduction": "温暖米杏色的圆肚陶瓶，适合饱满而低重心的作品。",
-  "version": 1,
+  "name": "圆肚陶瓷花瓶",
+  "introduction": "米杏色圆肚陶瓷花瓶，瓶身稳重，适合低矮、饱满的插花。",
+  "version": 3,
   "geometry": {
     "width": 190,
     "height": 170,

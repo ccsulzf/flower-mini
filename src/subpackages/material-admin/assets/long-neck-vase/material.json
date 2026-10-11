@@ -1,9 +1,9 @@
 {
   "id": "long-neck-vase",
   "category": "vase",
-  "name": "长颈瓶",
-  "introduction": "细长瓶颈和椭圆瓶腹，适合突出线条的插花。",
-  "version": 1,
+  "name": "长颈陶瓷花瓶",
+  "introduction": "细长瓶颈搭配圆润瓶身，适合少量花材或突出枝条线条的插花。",
+  "version": 3,
   "geometry": {
     "width": 140,
     "height": 215,

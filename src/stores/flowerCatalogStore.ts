@@ -29,6 +29,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
         if (result.version === 1) { items.value = parseFlowerCatalog(result); materials.value = [] }
         else { materials.value = parseMaterialCatalog(result); items.value = [] }
         loaded.value = true
+        if (materials.value.some(item => !get(item.id, item.revision))) ready.value = false
       } catch (value) { error.value = failure(value) }
       finally { loading.value = false; loadTask = null }
     })()
@@ -66,7 +67,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
       for (let attempt = 0; attempt < 3; attempt++) {
         if (!loaded.value || error.value) await load()
         if (error.value) continue
-        const queue = [...materials.value]
+        const queue = materials.value.filter(row => !get(row.id, row.revision))
         const failures: string[] = []
         // Limit parallel downloads when the material library grows.
         await Promise.all(Array.from({ length: Math.min(3, queue.length) }, async () => {

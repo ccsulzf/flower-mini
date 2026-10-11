@@ -1,3 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 260">
-  <path d="M55 0C63 78 45 199 55 260" fill="none" stroke="#7e9665" stroke-width="5"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="260" viewBox="0 0 110 260">
+  <path d="M55 0C18 76 12 180 55 260" fill="none" stroke="#7e906d" stroke-width="1.7" />
+  <path d="M54.6 1C17.6 76 11.6 180 54.6 260" fill="none" stroke="#c2caa5" stroke-width="0.4" />
 </svg>

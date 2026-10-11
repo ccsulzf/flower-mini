@@ -1,0 +1,29 @@
+{
+  "id": "iris",
+  "category": "flower",
+  "name": "鸢尾",
+  "group": "main",
+  "introduction": "三枚旗瓣向上展开，三枚垂瓣向外下垂，带明亮的瓣脉，适合线条感插花。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "蓝紫",
+      "value": "#9a9bc9"
+    },
+    {
+      "name": "浅紫",
+      "value": "#b6a9cc"
+    },
+    {
+      "name": "奶白",
+      "value": "#e6e1d7"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

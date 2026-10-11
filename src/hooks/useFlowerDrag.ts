@@ -8,18 +8,19 @@ export function useFlowerDrag(store: ReturnType<typeof useArtworkStore>, boardSc
   function startDrag(event: StudioTouchEvent, stem: Stem) {
     const touch = event.touches[0]
     if (!touch) return
-    const origin = store.beginStemEdit(stem.id)
-    if (!origin) return
-    onDragStart()
-    drag = { ...origin, clientX: touch.clientX, clientY: touch.clientY, changed: false }
+    drag = { ...stem, clientX: touch.clientX, clientY: touch.clientY, changed: false }
   }
   function moveDrag(event: StudioTouchEvent) {
     const touch = event.touches[0]
     if (!drag || !touch) return
     const delta = { x: touch.clientX - drag.clientX, y: touch.clientY - drag.clientY }
     if (!drag.changed && Math.hypot(delta.x, delta.y) < 2) return
+    if (!drag.changed) {
+      if (!store.beginStemEdit(drag.id)) { drag = null; return }
+      onDragStart()
+    }
     drag.changed = true
-    store.updateStem(drag.id, moveStem(drag, delta, unit * boardScale.value))
+    store.updateStem(drag.id, moveStem(drag, delta, unit * boardScale.value, store.stemLandingBounds()))
   }
   function endDrag(cancelled: boolean) {
     const ended = drag

@@ -1,1 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370"><path d="M55 365C24 309 86 272 52 211C24 161 79 116 53 15" fill="none" stroke="__COLOR__" stroke-width="2"/><g transform="translate(53 55) rotate(65)"><path d="M0 0L-20 -11L-13 -20L-24 -35L-7 -29L0 -48L8 -29L24 -35L14 -20L21 -11Z" fill="__COLOR__" stroke="#718665" stroke-width="0.8"/><path d="M0 -2L0 -39M0 -13L-15 -28M0 -13L15 -28" fill="none" stroke="#b1bc95" stroke-width="0.7"/></g><g transform="translate(53 95) rotate(-65)"><path d="M0 0L-20 -11L-13 -20L-24 -35L-7 -29L0 -48L8 -29L24 -35L14 -20L21 -11Z" fill="__COLOR__" stroke="#718665" stroke-width="0.8"/><path d="M0 -2L0 -39M0 -13L-15 -28M0 -13L15 -28" fill="none" stroke="#b1bc95" stroke-width="0.7"/></g><g transform="translate(53 135) rotate(65)"><path d="M0 0L-20 -11L-13 -20L-24 -35L-7 -29L0 -48L8 -29L24 -35L14 -20L21 -11Z" fill="__COLOR__" stroke="#718665" stroke-width="0.8"/><path d="M0 -2L0 -39M0 -13L-15 -28M0 -13L15 -28" fill="none" stroke="#b1bc95" stroke-width="0.7"/></g><g transform="translate(53 175) rotate(-65)"><path d="M0 0L-20 -11L-13 -20L-24 -35L-7 -29L0 -48L8 -29L24 -35L14 -20L21 -11Z" fill="__COLOR__" stroke="#718665" stroke-width="0.8"/><path d="M0 -2L0 -39M0 -13L-15 -28M0 -13L15 -28" fill="none" stroke="#b1bc95" stroke-width="0.7"/></g><g transform="translate(53 215) rotate(65)"><path d="M0 0L-20 -11L-13 -20L-24 -35L-7 -29L0 -48L8 -29L24 -35L14 -20L21 -11Z" fill="__COLOR__" stroke="#718665" stroke-width="0.8"/><path d="M0 -2L0 -39M0 -13L-15 -28M0 -13L15 -28" fill="none" stroke="#b1bc95" stroke-width="0.7"/></g><g transform="translate(53 255) rotate(-65)"><path d="M0 0L-20 -11L-13 -20L-24 -35L-7 -29L0 -48L8 -29L24 -35L14 -20L21 -11Z" fill="__COLOR__" stroke="#718665" stroke-width="0.8"/><path d="M0 -2L0 -39M0 -13L-15 -28M0 -13L15 -28" fill="none" stroke="#b1bc95" stroke-width="0.7"/></g><g transform="translate(53 295) rotate(65)"><path d="M0 0L-20 -11L-13 -20L-24 -35L-7 -29L0 -48L8 -29L24 -35L14 -20L21 -11Z" fill="__COLOR__" stroke="#718665" stroke-width="0.8"/><path d="M0 -2L0 -39M0 -13L-15 -28M0 -13L15 -28" fill="none" stroke="#b1bc95" stroke-width="0.7"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370">
+  <defs>
+  <linearGradient id="ivy-shade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="40" y2="0">
+  <stop offset="0" stop-color="__COLOR__"/>
+  <stop offset="1" stop-color="#50694c"/>
+  </linearGradient>
+  </defs>
+  <path d="M55 370C24 310 83 267 52 209C26 158 79 113 53 17" fill="none" stroke="__COLOR__" stroke-width="1.5" />
+  <g transform="translate(53.0 50) rotate(59.0) scale(0.68)">
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
+  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+  </g>
+  <g transform="translate(57.7 88) rotate(-57.0) scale(0.78)">
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
+  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+  </g>
+  <g transform="translate(58.8 126) rotate(64.5) scale(0.85)">
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
+  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+  </g>
+  <g transform="translate(55.6 164) rotate(-61.2) scale(0.90)">
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
+  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+  </g>
+  <g transform="translate(50.3 202) rotate(54.5) scale(0.92)">
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
+  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+  </g>
+  <g transform="translate(47.1 240) rotate(-67.8) scale(0.90)">
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
+  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+  </g>
+  <g transform="translate(48.4 278) rotate(57.3) scale(0.85)">
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
+  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+  </g>
+  <g transform="translate(53.1 316) rotate(-58.1) scale(0.78)">
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
+  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
+  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+  </g>
+</svg>

@@ -20,13 +20,17 @@ function constrainStem(position) {
   }
 }
 // origin 是触摸开始时的姿态，delta 是累计触摸位移（px），unit 是屏幕每 rpx 对应的 px。
-function moveStem(origin, delta, unit) {
+function moveStem(origin, delta, unit, mouth) {
   const radians = origin.angle * Math.PI / 180
-  const headX = Math.sin(radians) * origin.stemHeight + delta.x / unit
+  const absoluteHeadX = origin.x + Math.sin(radians) * origin.stemHeight + delta.x / unit
+  const center = mouth ? (mouth.left + mouth.right) / 2 : origin.x
+  // 花头左右移动时落点在瓶口内缓慢跟随；花束束口窄，跟随幅度也更小。
+  const x = mouth ? center + Math.max(-1, Math.min(1, (absoluteHeadX - center) / 240)) * (mouth.right - mouth.left) / 2 : origin.x
+  const headX = absoluteHeadX - x
   const headY = Math.cos(radians) * origin.stemHeight - delta.y / unit
-  // 固定瓶口，只更新花枝长度与角度；大幅倾斜时同时保证花头不拖出画板。
+  // 改变落点后重新计算花枝姿态，花头仍跟随手指，不因落点移动而跳动。
   return constrainStem({
-    x: origin.x, y: origin.y,
+    x, y: origin.y,
     angle: Math.atan2(headX, headY) * 180 / Math.PI,
     stemHeight: Math.hypot(headX, headY),
   })

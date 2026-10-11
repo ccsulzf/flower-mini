@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "牡丹",
   "group": "main",
-  "introduction": "重瓣圆润，适合形成饱满的视觉中心。",
+  "introduction": "花瓣层次丰富，花形圆润饱满，适合作为花束中的视觉中心。",
   "flowerMeaning": "富贵与美好（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "豆沙粉",

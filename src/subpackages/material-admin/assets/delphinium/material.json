@@ -1,0 +1,29 @@
+{
+  "id": "delphinium",
+  "category": "flower",
+  "name": "飞燕草",
+  "group": "filler",
+  "introduction": "蓝紫色小花沿花枝错落开放，花后有距，适合营造轻盈的纵向线条。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "蓝色",
+      "value": "#88a8cc"
+    },
+    {
+      "name": "淡紫",
+      "value": "#b5a7ca"
+    },
+    {
+      "name": "奶白",
+      "value": "#e8e4dc"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

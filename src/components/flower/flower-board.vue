@@ -1,21 +1,34 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
+import { svgImageSource } from '@/utils/flower/material-render'
+import { backgroundOffset } from '@/utils/flower/background-render'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 import { anchorY, type Stem, type VaseName } from '@/utils/flower/artwork'
 import FlowerInstance from './flower-stem.vue'
 import FlowerVase from './flower-vase.vue'
 import type { StudioTouchEvent } from '@/models/artwork'
-defineProps<{ stems: Stem[], vase: VaseName, selectedId: number | null, hideVase?: boolean, vaseMaterialId?: string, vaseMaterialRevision?: string }>()
+const props = defineProps<{ backgroundMaterialId?: string, backgroundMaterialRevision?: string, stems: Stem[], vase: VaseName, selectedId: number | null, hideVase?: boolean, vaseMaterialId?: string, vaseMaterialRevision?: string }>()
+const catalog = useFlowerCatalogStore()
+const scene = computed(() => props.backgroundMaterialId && props.backgroundMaterialRevision ? catalog.get(props.backgroundMaterialId, props.backgroundMaterialRevision) : undefined)
+const backgroundSource = computed(() => scene.value?.sources.background ? svgImageSource(scene.value.sources.background) : '')
+const arrangementOffset = computed(() => backgroundOffset(scene.value, props.vaseMaterialId && props.vaseMaterialRevision ? catalog.get(props.vaseMaterialId, props.vaseMaterialRevision) : undefined, props.vase))
 const emit = defineEmits<{ start: [event: StudioTouchEvent, stem: Stem], move: [event: StudioTouchEvent], end: [cancelled: boolean], clear: [] }>()
 </script>
 <template>
   <view @tap="emit('clear')" class="studio-board" :style="{ width: `${studioMetrics.width}rpx`, height: `${studioMetrics.height}rpx` }">
-    <FlowerInstance v-for="stem in stems" :key="stem.id" :stem="stem" :anchor="anchorY(vase)" :selected="selectedId === stem.id" @start="emit('start', $event, stem)" @move="emit('move', $event)" @end="emit('end', $event)" />
-    <FlowerVase v-if="!hideVase" :vase="vase" :material-id="vaseMaterialId" :revision="vaseMaterialRevision" />
+    <image v-if="backgroundSource" class="board-background" :src="backgroundSource" mode="scaleToFill" />
+    <view class="board-arrangement" :style="{ transform: `translateY(${arrangementOffset}rpx)` }">
+      <FlowerVase v-if="!hideVase" layer="back" :vase="vase" :material-id="vaseMaterialId" :revision="vaseMaterialRevision" />
+      <FlowerInstance v-for="stem in stems" :key="stem.id" :stem="stem" :anchor="anchorY(vase)" :selected="selectedId === stem.id" @start="emit('start', $event, stem)" @move="emit('move', $event)" @end="emit('end', $event)" />
+      <FlowerVase v-if="!hideVase" :vase="vase" :material-id="vaseMaterialId" :revision="vaseMaterialRevision" />
+    </view>
     <view v-if="!stems.length" class="studio-empty"><text>从一枝花开始</text><text class="empty-hint">在下方选择喜欢的花材</text></view>
   </view>
 </template>
 <style scoped lang="scss">
 @use '@/styles/flower-studio.scss' as *;
 .studio-board { position: relative; width: 698rpx; height: 1000rpx; }
+.board-background { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }.board-arrangement { position: absolute; inset: 0; }
 .studio-empty { position: absolute; top: 300rpx; width: 100%; text-align: center; color: $studio-muted; font-size: 30rpx; letter-spacing: 3rpx; pointer-events: none; }.empty-hint { display: block; margin-top: 20rpx; font-size: 22rpx; letter-spacing: 1rpx; }
 </style>

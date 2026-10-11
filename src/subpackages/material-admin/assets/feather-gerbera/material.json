@@ -1,0 +1,29 @@
+{
+  "id": "feather-gerbera",
+  "category": "flower",
+  "name": "拉丝非洲菊",
+  "group": "main",
+  "introduction": "非洲菊的细瓣类型，也叫拉丝扶郎花。花瓣细长，花形轻盈，适合增加花束的蓬松感。",
+  "flowerMeaning": "明朗与热情（常见象征表达，仅供创作参考）",
+  "version": 3,
+  "colors": [
+    {
+      "name": "柔粉",
+      "value": "#d28da6"
+    },
+    {
+      "name": "杏橙",
+      "value": "#dfad79"
+    },
+    {
+      "name": "奶白",
+      "value": "#eee4d3"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

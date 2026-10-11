@@ -1,1 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><path d="M53 105Q54 38 87 17" fill="none" stroke="#82976b" stroke-width="2"/><g transform="translate(-4 16) scale(.55)"><path d="M40 62Q24 39 41 28Q47 14 55 29Q66 14 71 31Q88 43 69 61Q55 77 40 62Z" fill="__COLOR__" stroke="#9e7973" stroke-width="0.8"/><circle cx="55" cy="55" r="6" fill="#d6b059"/></g><g transform="translate(3 -7) scale(.55)"><path d="M40 62Q24 39 41 28Q47 14 55 29Q66 14 71 31Q88 43 69 61Q55 77 40 62Z" fill="__COLOR__" stroke="#9e7973" stroke-width="0.8"/><circle cx="55" cy="55" r="6" fill="#d6b059"/></g><g transform="translate(17 -25) scale(.55)"><path d="M40 62Q24 39 41 28Q47 14 55 29Q66 14 71 31Q88 43 69 61Q55 77 40 62Z" fill="__COLOR__" stroke="#9e7973" stroke-width="0.8"/><circle cx="55" cy="55" r="6" fill="#d6b059"/></g><ellipse cx="86" cy="16" rx="5" ry="9" fill="#96a278" stroke="#9e7973" stroke-width=".6" transform="rotate(35 86 16)"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <path d="M55 104C52 67 60 28 92 17" fill="none" stroke="#82946a" stroke-width="1.1" />
+  <g transform="translate(39 62) rotate(-42) scale(0.7)">
+  <path d="M0 11C-10 2 -17 -12 -9 -17Q-7 -26 -1 -18Q5 -25 9 -16C19 -9 12 6 0 11Z" fill="__COLOR__" stroke="#a28e79" stroke-width=".55"/>
+  <path d="M0 10Q-5 -1 0 -10Q7 -1 0 10Z" fill="#d9ba6a" opacity=".6"/>
+  <path d="M-7 -13Q-4 -18 0 -14M3 -14Q7 -20 10 -13" fill="none" stroke="#fffae8" stroke-width="0.9" />
+  </g>
+  <path d="M39 69L53 74" fill="none" stroke="#84976c" stroke-width="0.8" />
+  <g transform="translate(48 43) rotate(-28) scale(0.65)">
+  <path d="M0 11C-10 2 -17 -12 -9 -17Q-7 -26 -1 -18Q5 -25 9 -16C19 -9 12 6 0 11Z" fill="__COLOR__" stroke="#a28e79" stroke-width=".55"/>
+  <path d="M0 10Q-5 -1 0 -10Q7 -1 0 10Z" fill="#d9ba6a" opacity=".6"/>
+  <path d="M-7 -13Q-4 -18 0 -14M3 -14Q7 -20 10 -13" fill="none" stroke="#fffae8" stroke-width="0.9" />
+  </g>
+  <path d="M48 50L62 55" fill="none" stroke="#84976c" stroke-width="0.8" />
+  <g transform="translate(65 29) rotate(-10) scale(0.5)">
+  <path d="M0 11C-10 2 -17 -12 -9 -17Q-7 -26 -1 -18Q5 -25 9 -16C19 -9 12 6 0 11Z" fill="__COLOR__" stroke="#a28e79" stroke-width=".55"/>
+  <path d="M0 10Q-5 -1 0 -10Q7 -1 0 10Z" fill="#d9ba6a" opacity=".6"/>
+  <path d="M-7 -13Q-4 -18 0 -14M3 -14Q7 -20 10 -13" fill="none" stroke="#fffae8" stroke-width="0.9" />
+  </g>
+  <path d="M65 36L79 41" fill="none" stroke="#84976c" stroke-width="0.8" />
+  <ellipse cx="80.00" cy="20.00" rx="3.50" ry="7.00" fill="__COLOR__" stroke="#899771" stroke-width=".6" transform="rotate(48 80 20)"/>
+  <ellipse cx="92.00" cy="16.00" rx="3.50" ry="7.00" fill="__COLOR__" stroke="#899771" stroke-width=".6" transform="rotate(66 92 16)"/>
+</svg>

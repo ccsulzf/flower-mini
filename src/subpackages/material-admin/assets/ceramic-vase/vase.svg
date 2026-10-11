@@ -1,6 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="140" height="170" viewBox="0 0 140 170">
-<defs><linearGradient id="ceramic" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0"><stop offset="0" stop-color="#e6e2d7"/><stop offset=".58" stop-color="#dedacf"/><stop offset="1" stop-color="#cdc9bd"/></linearGradient></defs>
-<path d="M0 8L140 8L140 135Q140 170 105 170L35 170Q0 170 0 135Z" fill="url(#ceramic)"/>
-<ellipse cx="70" cy="8" rx="67" ry="7" fill="#84917b" stroke="#ece8dc" stroke-width="3"/>
-<path d="M20 35L20 125" stroke="#fff" opacity=".12" stroke-width="5"/>
+  <defs>
+  <linearGradient id="ceramic-vase-body" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0">
+  <stop offset="0" stop-color="#eeebdf"/>
+  <stop offset="1" stop-color="#b5b4a3"/>
+  </linearGradient>
+  <linearGradient id="ceramic-vase-rim" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0">
+  <stop offset="0" stop-color="#b5b4a3"/>
+  <stop offset="1" stop-color="#eeebdf"/>
+  </linearGradient>
+  </defs>
+  <path d="M15.0 8C10.0 52 9 125 20 155Q27 171 70 168Q113 171 120 155C131 125 130.0 52 125.0 8Z" fill="url(#ceramic-vase-body)" stroke="#b5b4a3" stroke-width=".8" />
+  <path d="M24.0 26Q19.6 110.5 32.2 146L43.4 153Q30.8 88.4 34.0 26Z" fill="#eeebdf" opacity=".45"/>
+  <circle cx="39.20" cy="85.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="52.20" cy="102.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="65.20" cy="119.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="78.20" cy="136.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="91.20" cy="99.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="43.20" cy="116.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="56.20" cy="133.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="69.20" cy="96.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="82.20" cy="113.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="95.20" cy="130.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="47.20" cy="93.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="60.20" cy="110.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="73.20" cy="127.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="86.20" cy="90.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="99.20" cy="107.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="51.20" cy="124.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="64.20" cy="87.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="77.20" cy="104.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="90.20" cy="121.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="42.20" cy="138.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="55.20" cy="101.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="68.20" cy="118.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="81.20" cy="135.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="94.20" cy="98.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="46.20" cy="115.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="59.20" cy="132.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="72.20" cy="95.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="85.20" cy="112.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="98.20" cy="129.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="50.20" cy="92.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="63.20" cy="109.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="76.20" cy="126.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="89.20" cy="89.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="41.20" cy="106.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="54.20" cy="123.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <circle cx="67.20" cy="86.00" r="0.35" fill="#b5b4a3" opacity=".14"/>
+  <ellipse cx="70.00" cy="8.00" rx="55.00" ry="5.00" fill="url(#ceramic-vase-rim)" stroke="#b5b4a3" stroke-width=".6"/>
+  <ellipse cx="70.00" cy="8.00" rx="52.00" ry="3.00" fill="#72806a" opacity=".8"/>
+  <path d="M19.0 9Q70 15 121.0 9" fill="none" stroke="#eeebdf" stroke-width="1.1" stroke-opacity=".9"/>
 </svg>

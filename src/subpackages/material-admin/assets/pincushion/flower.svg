@@ -1,0 +1,280 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <defs>
+  <linearGradient id="pincushion-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
+  <stop offset="0" stop-color="__COLOR__"/>
+  <stop offset="1" stop-color="#947443"/>
+  </linearGradient>
+  </defs>
+  <circle cx="55.00" cy="55.00" r="27.00" fill="__COLOR__" />
+  <circle cx="55.00" cy="55.00" r="24.00" fill="#a17c43" opacity=".22"/>
+  <ellipse cx="56.43" cy="55.00" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(0 56.43 55.00)"/>
+  <ellipse cx="53.17" cy="56.68" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(17 53.17 56.68)"/>
+  <ellipse cx="55.28" cy="51.81" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(34 55.28 51.81)"/>
+  <ellipse cx="57.31" cy="58.01" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(51 57.31 58.01)"/>
+  <ellipse cx="50.76" cy="54.25" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(68 50.76 54.25)"/>
+  <ellipse cx="59.01" cy="52.45" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(85 59.01 52.45)"/>
+  <ellipse cx="53.66" cy="59.99" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(102 53.66 59.99)"/>
+  <ellipse cx="52.44" cy="50.07" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(119 52.44 50.07)"/>
+  <ellipse cx="60.55" cy="57.03" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(136 60.55 57.03)"/>
+  <ellipse cx="49.22" cy="57.39" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(153 49.22 57.39)"/>
+  <ellipse cx="57.79" cy="49.05" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(170 57.79 49.05)"/>
+  <ellipse cx="57.06" cy="61.56" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(187 57.06 61.56)"/>
+  <ellipse cx="48.80" cy="51.40" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(204 48.80 51.40)"/>
+  <ellipse cx="62.28" cy="53.40" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(221 62.28 53.40)"/>
+  <ellipse cx="50.56" cy="61.32" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(238 50.56 61.32)"/>
+  <ellipse cx="53.97" cy="47.08" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(255 53.97 47.08)"/>
+  <ellipse cx="61.30" cy="60.31" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(272 61.30 60.31)"/>
+  <ellipse cx="46.52" cy="55.35" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(289 46.52 55.35)"/>
+  <ellipse cx="61.18" cy="48.85" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(306 61.18 48.85)"/>
+  <ellipse cx="54.59" cy="63.95" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(323 54.59 63.95)"/>
+  <ellipse cx="49.12" cy="47.95" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(340 49.12 47.95)"/>
+  <ellipse cx="64.32" cy="56.25" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(357 64.32 56.25)"/>
+  <ellipse cx="47.10" cy="60.50" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(14 47.10 60.50)"/>
+  <ellipse cx="57.16" cy="45.41" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(31 57.16 45.41)"/>
+  <ellipse cx="59.99" cy="63.71" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(48 59.99 63.71)"/>
+  <ellipse cx="45.24" cy="51.89" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(65 45.24 51.89)"/>
+  <ellipse cx="64.48" cy="50.62" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(82 64.48 50.62)"/>
+  <ellipse cx="50.89" cy="64.81" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(99 50.89 64.81)"/>
+  <ellipse cx="51.33" cy="44.81" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(116 51.33 44.81)"/>
+  <ellipse cx="64.75" cy="60.12" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(133 64.75 60.12)"/>
+  <ellipse cx="44.17" cy="57.86" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(150 44.17 57.86)"/>
+  <ellipse cx="61.16" cy="45.42" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(167 61.16 45.42)"/>
+  <ellipse cx="56.96" cy="66.40" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(184 56.96 66.40)"/>
+  <ellipse cx="45.72" cy="47.81" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(201 45.72 47.81)"/>
+  <ellipse cx="66.87" cy="54.02" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(218 66.87 54.02)"/>
+  <ellipse cx="46.79" cy="63.87" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(235 46.79 63.87)"/>
+  <ellipse cx="55.06" cy="42.75" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(252 55.06 42.75)"/>
+  <ellipse cx="63.35" cy="64.20" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(269 63.35 64.20)"/>
+  <ellipse cx="42.47" cy="53.84" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(286 42.47 53.84)"/>
+  <ellipse cx="65.15" cy="47.29" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(303 65.15 47.29)"/>
+  <ellipse cx="52.69" cy="67.70" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(320 52.69 67.70)"/>
+  <ellipse cx="48.04" cy="43.94" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(337 48.04 43.94)"/>
+  <ellipse cx="67.75" cy="58.49" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(354 67.75 58.49)"/>
+  <ellipse cx="43.10" cy="61.11" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(11 43.10 61.11)"/>
+  <ellipse cx="59.70" cy="42.31" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(28 59.70 42.31)"/>
+  <ellipse cx="60.16" cy="67.67" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(45 60.16 67.67)"/>
+  <ellipse cx="42.50" cy="49.08" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(62 42.50 49.08)"/>
+  <ellipse cx="68.36" cy="50.88" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(79 68.36 50.88)"/>
+  <ellipse cx="47.86" cy="67.19" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(96 47.86 67.19)"/>
+  <ellipse cx="52.00" cy="41.05" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(113 52.00 41.05)"/>
+  <ellipse cx="66.75" cy="63.35" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(130 66.75 63.35)"/>
+  <ellipse cx="40.56" cy="56.80" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(147 40.56 56.80)"/>
+  <ellipse cx="64.52" cy="43.81" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(164 64.52 43.81)"/>
+  <ellipse cx="55.54" cy="69.83" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(181 55.54 69.83)"/>
+  <ellipse cx="44.49" cy="44.34" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(198 44.49 44.34)"/>
+  <ellipse cx="70.09" cy="55.77" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(215 70.09 55.77)"/>
+  <ellipse cx="43.25" cy="64.71" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(232 43.25 64.71)"/>
+  <ellipse cx="57.12" cy="39.77" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(249 57.12 39.77)"/>
+  <ellipse cx="63.80" cy="67.78" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(266 63.80 67.78)"/>
+  <ellipse cx="39.75" cy="51.49" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(283 39.75 51.49)"/>
+  <ellipse cx="68.73" cy="47.22" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(300 68.73 47.22)"/>
+  <ellipse cx="50.09" cy="70.13" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(317 50.09 70.13)"/>
+  <ellipse cx="48.34" cy="40.41" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(334 48.34 40.41)"/>
+  <ellipse cx="69.88" cy="61.31" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(351 69.88 61.31)"/>
+  <ellipse cx="39.65" cy="60.44" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(8 39.65 60.44)"/>
+  <ellipse cx="62.70" cy="40.50" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(25 62.70 40.50)"/>
+  <ellipse cx="59.14" cy="71.01" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(42 59.14 71.01)"/>
+  <ellipse cx="41.02" cy="45.92" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(59 41.02 45.92)"/>
+  <ellipse cx="71.56" cy="52.23" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(76 71.56 52.23)"/>
+  <ellipse cx="44.58" cy="68.32" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(93 44.58 68.32)"/>
+  <ellipse cx="53.67" cy="38.02" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(110 53.67 38.02)"/>
+  <ellipse cx="67.54" cy="66.71" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(127 67.54 66.71)"/>
+  <ellipse cx="37.73" cy="54.84" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(144 37.73 54.84)"/>
+  <ellipse cx="67.93" cy="43.38" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(161 67.93 43.38)"/>
+  <ellipse cx="53.30" cy="72.43" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(178 53.30 72.43)"/>
+  <ellipse cx="44.41" cy="40.91" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(195 44.41 40.91)"/>
+  <ellipse cx="72.44" cy="58.26" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(212 72.44 58.26)"/>
+  <ellipse cx="39.84" cy="64.44" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(229 39.84 64.44)"/>
+  <ellipse cx="59.83" cy="37.69" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(246 59.83 37.69)"/>
+  <ellipse cx="63.18" cy="71.13" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(263 63.18 71.13)"/>
+  <ellipse cx="37.97" cy="48.59" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(280 37.97 48.59)"/>
+  <ellipse cx="71.99" cy="48.17" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(297 71.99 48.17)"/>
+  <ellipse cx="47.03" cy="71.61" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(314 47.03 71.61)"/>
+  <ellipse cx="49.62" cy="37.26" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(331 49.62 37.26)"/>
+  <ellipse cx="71.04" cy="64.50" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(348 71.04 64.50)"/>
+  <ellipse cx="36.64" cy="58.85" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(5 36.64 58.85)"/>
+  <ellipse cx="66.00" cy="39.67" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(22 66.00 39.67)"/>
+  <ellipse cx="57.26" cy="73.84" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(39 57.26 73.84)"/>
+  <ellipse cx="40.53" cy="42.57" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(56 40.53 42.57)"/>
+  <ellipse cx="74.18" cy="54.39" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(73 74.18 54.39)"/>
+  <ellipse cx="41.19" cy="68.48" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(90 41.19 68.48)"/>
+  <ellipse cx="56.08" cy="35.63" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(107 56.08 35.63)"/>
+  <ellipse cx="67.36" cy="70.10" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(124 67.36 70.10)"/>
+  <ellipse cx="35.59" cy="52.20" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(141 35.59 52.20)"/>
+  <ellipse cx="71.29" cy="43.89" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(158 71.29 43.89)"/>
+  <ellipse cx="50.47" cy="74.30" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(175 50.47 74.30)"/>
+  <ellipse cx="45.26" cy="37.62" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(192 45.26 37.62)"/>
+  <ellipse cx="74.02" cy="61.27" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(209 74.02 61.27)"/>
+  <ellipse cx="36.65" cy="63.27" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(226 36.65 63.27)"/>
+  <ellipse cx="62.99" cy="36.41" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(243 62.99 36.41)"/>
+  <ellipse cx="61.70" cy="74.20" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(260 61.70 74.20)"/>
+  <ellipse cx="37.00" cy="45.32" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(277 37.00 45.32)"/>
+  <ellipse cx="74.91" cy="49.95" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(294 74.91 49.95)"/>
+  <ellipse cx="43.68" cy="72.25" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(311 43.68 72.25)"/>
+  <ellipse cx="51.68" cy="34.53" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(328 51.68 34.53)"/>
+  <ellipse cx="71.35" cy="67.91" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(345 71.35 67.91)"/>
+  <ellipse cx="34.12" cy="56.53" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(2 34.12 56.53)"/>
+  <ellipse cx="69.43" cy="39.70" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(19 69.43 39.70)"/>
+  <ellipse cx="54.70" cy="76.13" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(36 54.70 76.13)"/>
+  <ellipse cx="40.89" cy="39.15" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(53 40.89 39.15)"/>
+  <ellipse cx="76.21" cy="57.17" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(70 76.21 57.17)"/>
+  <ellipse cx="37.82" cy="67.79" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(87 37.82 67.79)"/>
+  <ellipse cx="59.05" cy="33.87" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(104 59.05 33.87)"/>
+  <ellipse cx="66.34" cy="73.40" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(121 66.34 73.40)"/>
+  <ellipse cx="34.12" cy="49.07" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(138 34.12 49.07)"/>
+  <ellipse cx="74.49" cy="45.23" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(155 74.49 45.23)"/>
+  <ellipse cx="47.20" cy="75.46" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(172 47.20 75.46)"/>
+  <ellipse cx="46.90" cy="34.56" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(189 46.90 34.56)"/>
+  <ellipse cx="74.86" cy="64.64" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(206 74.86 64.64)"/>
+  <ellipse cx="33.75" cy="61.33" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(223 33.75 61.33)"/>
+  <ellipse cx="66.44" cy="35.90" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(240 66.44 35.90)"/>
+  <ellipse cx="59.49" cy="76.90" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(257 59.49 76.90)"/>
+  <ellipse cx="36.82" cy="41.83" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(274 36.82 41.83)"/>
+  <ellipse cx="77.39" cy="52.42" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(291 77.39 52.42)"/>
+  <ellipse cx="40.17" cy="72.10" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(308 40.17 72.10)"/>
+  <ellipse cx="54.38" cy="32.29" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(325 54.38 32.29)"/>
+  <ellipse cx="70.86" cy="71.40" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(342 70.86 71.40)"/>
+  <ellipse cx="32.14" cy="53.62" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(359 32.14 53.62)"/>
+  <ellipse cx="72.86" cy="40.52" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(16 72.86 40.52)"/>
+  <ellipse cx="51.60" cy="77.83" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(33 51.60 77.83)"/>
+  <ellipse cx="42.04" cy="35.79" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(50 42.04 35.79)"/>
+  <ellipse cx="77.62" cy="60.43" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(67 77.62 60.43)"/>
+  <ellipse cx="34.58" cy="66.32" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(84 34.58 66.32)"/>
+  <ellipse cx="62.44" cy="32.78" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(101 62.44 32.78)"/>
+  <ellipse cx="64.56" cy="76.49" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(118 64.56 76.49)"/>
+  <ellipse cx="33.35" cy="45.58" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(135 33.35 45.58)"/>
+  <ellipse cx="77.41" cy="47.30" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(152 77.41 47.30)"/>
+  <ellipse cx="43.64" cy="75.89" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(169 43.64 75.89)"/>
+  <ellipse cx="49.24" cy="31.83" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(186 49.24 31.83)"/>
+  <ellipse cx="74.97" cy="68.24" rx="1.10" ry="2.40" fill="__COLOR__" transform="rotate(203 74.97 68.24)"/>
+  <path d="M57.28 55.00Q70.16 55.00 68.16 55.00" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="68.16" cy="55.00" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M52.09 57.67Q45.59 57.67 43.59 65.45" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="43.59" cy="65.45" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M55.45 49.92Q58.49 49.92 56.49 38.01" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="56.49" cy="38.01" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M58.67 59.79Q68.17 59.79 66.17 69.57" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="66.17" cy="69.57" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M48.26 53.81Q37.83 53.81 35.83 51.61" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="35.83" cy="51.61" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M61.38 50.94Q74.27 50.94 72.27 44.01" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="72.27" cy="44.01" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M52.87 62.94Q51.45 62.94 49.45 75.65" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="49.45" cy="75.65" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M50.93 47.16Q46.75 47.16 44.75 35.27" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="44.75" cy="35.27" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M63.83 58.23Q78.62 58.23 76.62 62.90" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="76.62" cy="62.90" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M45.81 58.79Q35.04 58.79 33.04 64.07" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="33.04" cy="64.07" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M59.43 45.54Q67.37 45.54 65.37 32.84" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="65.37" cy="32.84" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M58.27 65.43Q64.53 65.43 62.53 78.99" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="62.53" cy="78.99" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M45.13 49.28Q34.69 49.28 32.69 42.07" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="32.69" cy="42.07" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M66.57 52.46Q82.79 52.46 80.79 49.33" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="80.79" cy="49.33" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M47.94 65.05Q41.47 65.05 39.47 77.09" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="39.47" cy="77.09" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M53.37 42.41Q53.45 42.41 51.45 27.65" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="51.45" cy="27.65" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M65.02 63.44Q78.52 63.44 76.52 73.13" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="76.52" cy="73.13" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M41.52 55.56Q28.35 55.56 26.35 56.19" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="26.35" cy="56.19" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M64.83 45.22Q77.70 45.22 75.70 34.40" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="75.70" cy="34.40" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M54.34 69.23Q55.63 69.23 53.63 84.69" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="53.63" cy="84.69" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M45.64 43.79Q37.64 43.79 35.64 31.80" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="35.64" cy="31.80" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M69.82 56.99Q87.43 56.99 85.43 59.09" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="85.43" cy="59.09" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M42.44 63.74Q31.41 63.74 29.41 72.81" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="29.41" cy="72.81" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M58.43 39.75Q63.94 39.75 61.94 24.13" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="61.94" cy="24.13" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M62.94 68.85Q72.96 68.85 70.96 82.85" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="70.96" cy="82.85" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M39.49 50.05Q25.99 50.05 23.99 45.11" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="23.99" cy="45.11" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M70.07 48.04Q86.94 48.04 84.94 41.16" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="84.94" cy="41.16" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M48.47 70.60Q44.10 70.60 42.10 85.83" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="42.10" cy="85.83" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M49.17 38.80Q45.54 38.80 43.54 23.16" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="43.54" cy="23.16" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M70.51 63.15Q87.32 63.15 85.32 70.93" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="85.32" cy="70.93" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M37.78 59.54Q23.49 59.54 21.49 63.84" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="21.49" cy="63.84" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M64.79 39.77Q75.96 39.77 73.96 25.51" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="73.96" cy="25.51" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M58.12 73.12Q63.01 73.12 61.01 89.94" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="61.01" cy="89.94" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M40.24 43.57Q28.66 43.57 26.66 33.06" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="26.66" cy="33.06" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M73.88 53.43Q93.10 53.43 91.10 52.00" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="91.10" cy="52.00" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M41.95 69.11Q32.15 69.11 30.15 81.87" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="30.15" cy="81.87" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M55.09 35.52Q57.18 35.52 55.18 18.02" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="55.18" cy="18.02" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M68.27 69.63Q82.09 69.63 80.09 82.66" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="80.09" cy="82.66" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M35.08 53.16Q19.45 53.16 17.45 51.52" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="17.45" cy="51.52" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M71.14 42.74Q87.32 42.74 85.32 31.98" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="85.32" cy="31.98" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M51.33 75.19Q50.13 75.19 48.13 92.80" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="48.13" cy="92.80" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M43.93 37.42Q36.35 37.42 34.35 22.19" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="34.35" cy="22.19" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M75.28 60.55Q94.72 60.55 92.72 65.33" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="92.72" cy="65.33" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M36.08 64.71Q21.90 64.71 19.90 73.02" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="19.90" cy="73.02" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M62.48 34.83Q70.83 34.83 68.83 17.69" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="68.83" cy="17.69" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M63.20 75.15Q72.13 75.15 70.13 92.16" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="70.13" cy="92.16" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M35.13 45.59Q20.45 45.59 18.45 37.68" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="18.45" cy="37.68" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M76.24 48.45Q95.96 48.45 93.96 42.98" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="93.96" cy="42.98" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M43.65 74.38Q36.23 74.38 34.23 90.46" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="34.23" cy="90.46" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M50.23 32.82Q48.30 32.82 46.30 14.51" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="46.30" cy="14.51" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M73.69 68.27Q91.03 68.27 89.03 79.16" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="89.03" cy="79.16" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M32.04 57.87Q15.28 57.87 13.28 60.21" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="13.28" cy="60.21" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M70.14 37.20Q84.45 37.20 82.45 22.74" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="82.45" cy="22.74" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M55.86 78.57Q58.56 78.57 56.56 97.63" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="56.56" cy="97.63" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M38.29 38.05Q26.84 38.05 24.84 24.40" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="24.84" cy="24.40" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M78.99 56.22Q100.21 56.22 98.21 57.20" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="98.21" cy="57.20" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M36.32 70.44Q23.42 70.44 21.42 82.75" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="21.42" cy="82.75" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M58.37 30.78Q63.05 30.78 61.05 11.56" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="61.05" cy="11.56" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M68.99 75.31Q82.05 75.31 80.05 91.36" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="80.05" cy="91.36" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M30.76 49.43Q13.69 49.43 11.69 45.04" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="11.69" cy="45.04" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M76.82 42.63Q95.91 42.63 93.91 32.94" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="93.91" cy="32.94" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M47.20 79.06Q43.12 79.06 41.12 97.82" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="41.12" cy="97.82" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M44.42 31.81Q38.19 31.81 36.19 13.79" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="36.19" cy="13.79" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M78.66 65.03Q98.97 65.03 96.97 72.79" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="96.97" cy="72.79" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+  <path d="M30.59 63.65Q13.77 63.65 11.77 70.32" fill="none" stroke="__COLOR__" stroke-width="0.85" />
+  <circle cx="11.77" cy="70.32" r="1.25" fill="__COLOR__" stroke="#9e7541" stroke-width=".3"/>
+</svg>

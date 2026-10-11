@@ -1,9 +1,9 @@
 {
   "id": "low-round-bowl",
   "category": "vase",
-  "name": "矮圆花器",
-  "introduction": "宽口低矮的圆花器，适合横向铺展的桌面作品。",
-  "version": 1,
+  "name": "矮圆花瓶",
+  "introduction": "瓶口宽、瓶身低，适合横向展开的插花和低矮的桌面花艺。",
+  "version": 3,
   "geometry": {
     "width": 210,
     "height": 115,

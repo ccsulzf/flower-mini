@@ -1,0 +1,29 @@
+{
+  "id": "dendrobium",
+  "category": "flower",
+  "name": "石斛兰",
+  "group": "filler",
+  "introduction": "花朵沿细长花枝错落排列，舒展花瓣围着明显唇瓣，适合瓶插和花束配花。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "浅紫",
+      "value": "#baa1c5"
+    },
+    {
+      "name": "粉色",
+      "value": "#d0a1b5"
+    },
+    {
+      "name": "奶白",
+      "value": "#e8e2d8"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

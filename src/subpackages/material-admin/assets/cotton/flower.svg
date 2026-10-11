@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <path d="M55 100L55 62" fill="none" stroke="#8d8160" stroke-width="1.1" />
+  <g transform="translate(55 48) scale(1)">
+  <path d="M0 28L-23 12L-16 4L-28 -10L-9 -6L0 -25L8 -7L28 -11L19 7L25 15Z" fill="#8c7253" stroke="#715f46" stroke-width=".6"/>
+  <ellipse cx="-12.00" cy="-4.00" rx="15.00" ry="19.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
+  <path d="M-20 1Q-26 -11 -15 -16" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+  <ellipse cx="11.00" cy="-5.00" rx="16.00" ry="20.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
+  <path d="M3 0Q-3 -12 8 -17" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+  <ellipse cx="0.00" cy="13.00" rx="17.00" ry="16.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
+  <path d="M-8 18Q-14 6 -3 1" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+  </g>
+  <path d="M55 100L29 90" fill="none" stroke="#8d8160" stroke-width="1.1" />
+  <g transform="translate(29 76) scale(0.6)">
+  <path d="M0 28L-23 12L-16 4L-28 -10L-9 -6L0 -25L8 -7L28 -11L19 7L25 15Z" fill="#8c7253" stroke="#715f46" stroke-width=".6"/>
+  <ellipse cx="-12.00" cy="-4.00" rx="15.00" ry="19.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
+  <path d="M-20 1Q-26 -11 -15 -16" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+  <ellipse cx="11.00" cy="-5.00" rx="16.00" ry="20.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
+  <path d="M3 0Q-3 -12 8 -17" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+  <ellipse cx="0.00" cy="13.00" rx="17.00" ry="16.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
+  <path d="M-8 18Q-14 6 -3 1" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+  </g>
+  <path d="M55 100L81 96" fill="none" stroke="#8d8160" stroke-width="1.1" />
+  <g transform="translate(81 82) scale(0.52)">
+  <path d="M0 28L-23 12L-16 4L-28 -10L-9 -6L0 -25L8 -7L28 -11L19 7L25 15Z" fill="#8c7253" stroke="#715f46" stroke-width=".6"/>
+  <ellipse cx="-12.00" cy="-4.00" rx="15.00" ry="19.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
+  <path d="M-20 1Q-26 -11 -15 -16" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+  <ellipse cx="11.00" cy="-5.00" rx="16.00" ry="20.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
+  <path d="M3 0Q-3 -12 8 -17" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+  <ellipse cx="0.00" cy="13.00" rx="17.00" ry="16.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
+  <path d="M-8 18Q-14 6 -3 1" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+  </g>
+</svg>

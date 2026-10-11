@@ -49,15 +49,30 @@ export function parseArtwork(text: string): Artwork {
     throw new Error('JSON 语法错误，请检查引号、逗号和括号')
   }
   if (!record(data) || (data.version !== 1 && data.version !== 2) || !vaseOptions.includes(data.vase as VaseName)
-    || !['warm', 'sage', 'cocoa'].includes(data.background as string) || !Array.isArray(data.stems) || data.stems.length > 16)
+    || !backgroundOptions.some(option => option.value === data.background) || !Array.isArray(data.stems) || data.stems.length > 48)
     throw new Error('作品格式或版本不支持')
   const validReference = (id: unknown, revision: unknown) => typeof id === 'string' && /^[a-z][a-z0-9-]{0,63}$/.test(id) && typeof revision === 'string' && /^[a-f\d]{16}$/.test(revision)
   if ((data.vaseMaterialId !== undefined || data.vaseMaterialRevision !== undefined) && !validReference(data.vaseMaterialId, data.vaseMaterialRevision)) throw new Error('花瓶素材引用无效')
+  if ((data.backgroundMaterialId !== undefined || data.backgroundMaterialRevision !== undefined) && !validReference(data.backgroundMaterialId, data.backgroundMaterialRevision)) throw new Error('背景素材引用无效')
+  const containerLayouts: Artwork['containerLayouts'] = {}
+  if (data.containerLayouts !== undefined) {
+    if (!record(data.containerLayouts) || Object.keys(data.containerLayouts).length > 64) throw new Error('容器布局记录无效')
+    for (const [key, layout] of Object.entries(data.containerLayouts)) {
+      if (!/^(?:[a-z][a-z0-9-]{0,63}:[a-f\d]{16}|builtin:(?:陶瓶|玻璃瓶|圆花器|花束))$/.test(key) || !Array.isArray(layout) || layout.length > 48) throw new Error('容器布局记录无效')
+      const layoutIds = new Set<number>()
+      containerLayouts[key] = layout.map(row => {
+        if (!record(row) || !finite(row.id, 1, Number.MAX_SAFE_INTEGER - 48) || !Number.isInteger(row.id) || layoutIds.has(row.id)
+          || !finite(row.x, 0, studioMetrics.width) || !finite(row.angle, -65, 65) || !finite(row.stemHeight, studioMetrics.minStemHeight, studioMetrics.maxStemHeight) || !finite(row.flowerScale, .65, 1.35)) throw new Error('容器布局记录无效')
+        layoutIds.add(row.id)
+        return { id: row.id, x: row.x, angle: row.angle, stemHeight: row.stemHeight, flowerScale: row.flowerScale }
+      })
+    }
+  }
   const vase = data.vase as VaseName
   // 重复 ID 会破坏 Vue 列表键与花材选择，必须拒绝。
   const ids = new Set<number>()
   const stems = data.stems.map((value): Stem => {
-    if (!record(value) || !finite(value.id, 1, Number.MAX_SAFE_INTEGER - 16) || !Number.isInteger(value.id) || ids.has(value.id)
+    if (!record(value) || !finite(value.id, 1, Number.MAX_SAFE_INTEGER - 48) || !Number.isInteger(value.id) || ids.has(value.id)
       || !flowerCatalog.some(flower => flower.kind === value.kind) || !finite(value.x, 0, studioMetrics.width)
       || !finite(value.y, 0, studioMetrics.height) || !finite(value.angle, -65, 65)
       || typeof value.color !== 'string' || !/^#[\da-f]{6}$/i.test(value.color))
@@ -68,10 +83,11 @@ export function parseArtwork(text: string): Artwork {
     if (!finite(flowerScale, 0.65, 1.35) || !finite(stemHeight, studioMetrics.minStemHeight, studioMetrics.maxStemHeight))
       throw new Error('花朵大小或花枝高度无效')
     if ((value.materialId !== undefined || value.materialRevision !== undefined) && (!validReference(value.materialId, value.materialRevision) || (value.leafMode !== undefined && !['with', 'without'].includes(String(value.leafMode))))) throw new Error('花材素材引用无效')
+    if (value.mirrored !== undefined && typeof value.mirrored !== 'boolean') throw new Error('花材镜像参数无效')
     ids.add(value.id)
     // 横坐标收拢到瓶口，纵坐标按花器重设，兼容外部 JSON 并保证花茎插在瓶口。
-    const x = Math.max(338, Math.min(362, value.x))
-    return { ...(value.materialId ? { materialId: String(value.materialId), materialRevision: String(value.materialRevision), leafMode: (value.leafMode || 'with') as 'with' | 'without' } : {}), id: value.id, kind: value.kind as FlowerKind, flowerScale, color: value.color, ...constrainStem({ x, y: anchorY(vase), angle: value.angle, stemHeight }) }
+    const x = data.vaseMaterialId ? value.x : Math.max(338, Math.min(362, value.x))
+    return { ...(value.materialId ? { materialId: String(value.materialId), materialRevision: String(value.materialRevision), leafMode: (value.leafMode || 'without') as 'with' | 'without' } : {}), ...(value.mirrored ? { mirrored: true } : {}), id: value.id, kind: value.kind as FlowerKind, flowerScale, color: value.color, ...constrainStem({ x, y: anchorY(vase), angle: value.angle, stemHeight }) }
   })
-  return { version: 2, vase, ...(data.vaseMaterialId ? { vaseMaterialId: String(data.vaseMaterialId), vaseMaterialRevision: String(data.vaseMaterialRevision) } : {}), background: data.background as Artwork['background'], stems }
+  return { version: 2, vase, ...(data.vaseMaterialId ? { vaseMaterialId: String(data.vaseMaterialId), vaseMaterialRevision: String(data.vaseMaterialRevision) } : {}), ...(Object.keys(containerLayouts).length ? { containerLayouts } : {}), background: data.background as Artwork['background'], ...(data.backgroundMaterialId ? { backgroundMaterialId: String(data.backgroundMaterialId), backgroundMaterialRevision: String(data.backgroundMaterialRevision) } : {}), stems }
 }

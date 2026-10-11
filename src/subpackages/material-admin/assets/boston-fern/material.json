@@ -1,0 +1,25 @@
+{
+  "id": "boston-fern",
+  "category": "flower",
+  "name": "肾蕨",
+  "group": "foliage",
+  "introduction": "细长叶片两侧排列许多小叶，整体呈羽毛状弧线，是常用的插花配叶。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 1,
+  "colors": [
+    {
+      "name": "草绿",
+      "value": "#8ca078"
+    },
+    {
+      "name": "深绿",
+      "value": "#718f72"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

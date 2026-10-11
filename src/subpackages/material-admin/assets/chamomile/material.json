@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "洋甘菊",
   "group": "filler",
-  "introduction": "小型白色花瓣与黄花心，适合清新自然的花束。",
+  "introduction": "小巧的花朵带有浅色花瓣和黄色花心，适合搭配自然、清新的花束。",
   "flowerMeaning": "平静与治愈（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "奶白",

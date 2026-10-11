@@ -1,0 +1,29 @@
+{
+  "id": "bird-of-paradise",
+  "category": "flower",
+  "name": "鹤望兰",
+  "group": "main",
+  "introduction": "也叫天堂鸟。橙色和蓝紫色花瓣从绿色花苞中伸出，花形像鸟，适合突出线条和高度。",
+  "flowerMeaning": "自由与向往（常见象征表达，仅供创作参考）",
+  "version": 3,
+  "colors": [
+    {
+      "name": "暖橙",
+      "value": "#dba05a"
+    },
+    {
+      "name": "浅金",
+      "value": "#e1bc77"
+    },
+    {
+      "name": "珊瑚",
+      "value": "#d28e72"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 96
+  }
+}

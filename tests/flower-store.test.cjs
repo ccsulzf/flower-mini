@@ -23,7 +23,7 @@ test('store 的清空、撤销、重做与新会话初始化', () => {
   assert.equal(store.canRedo, false)
 })
 
-test('store 无效操作不记录历史，新编辑清除重做，最多16枝', () => {
+test('store 无效操作不记录历史，新编辑清除重做，最多48枝', () => {
   const { store } = setup()
   store.select(1)
   store.setColor('#f1e5bd')
@@ -34,11 +34,11 @@ test('store 无效操作不记录历史，新编辑清除重做，最多16枝', 
   assert.equal(store.canRedo, true)
   store.addFlower('poppy')
   assert.equal(store.canRedo, false)
-  while (store.stems.length < 16) store.addFlower('rose')
+  while (store.stems.length < 48) store.addFlower('rose')
   assert.equal(store.addFlower('rose'), null)
   store.select(1)
   assert.equal(store.duplicateSelected(), null)
-  assert.equal(new Set(store.stems.map(stem => stem.id)).size, 16)
+  assert.equal(new Set(store.stems.map(stem => stem.id)).size, 48)
 })
 
 test('store 快照不共享对象，历史只保留最近30步，JSON预览不污染作品', () => {

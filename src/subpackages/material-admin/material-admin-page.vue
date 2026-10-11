@@ -8,18 +8,20 @@ import type { MaterialGroup, MaterialDraft } from './lib/types'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '素材管理' } })
 const store = useMaterialAdminStore()
-const groups = [{ key: 'all', name: '全部' }, { key: 'main', name: '主花' }, { key: 'filler', name: '配花' }, { key: 'foliage', name: '叶材' }, { key: 'vase', name: '花瓶' }, { key: 'bouquet', name: '花束包装' }] as const
-const group = ref<MaterialGroup | 'all' | 'vase' | 'bouquet'>('all')
-const materials = computed(() => localCatalog.items.filter(item => group.value === 'all' || (group.value === 'vase' || group.value === 'bouquet' ? item.category === group.value : item.category === 'flower' && item.group === group.value)))
+const groups = [{ key: 'all', name: '全部' }, { key: 'main', name: '主花' }, { key: 'filler', name: '配花' }, { key: 'foliage', name: '叶材' }, { key: 'vase', name: '花瓶' }, { key: 'bouquet', name: '花束包装' }, { key: 'background', name: '背景' }] as const
+const group = ref<MaterialGroup | 'all' | 'vase' | 'bouquet' | 'background'>('all')
+const materials = computed(() => localCatalog.items.filter(item => group.value === 'all' || (group.value === 'vase' || group.value === 'bouquet' || group.value === 'background' ? item.category === group.value : item.category === 'flower' && item.group === group.value)))
 const selected = ref<MaterialDraft | null>(null)
+const canDelete = computed(() => !!selected.value && !!store.remote?.some(item => item.id === selected.value!.id))
+const failedMaterials = computed(() => localCatalog.items.filter(item => store.uploadFailures.some(failure => failure.id === item.id)))
 const color = ref('')
 const leafMode = ref<'with' | 'without'>('with')
 const wholePreview = computed(() => {
   const item = selected.value
   if (!item || item.category !== 'flower' || item.group === 'foliage') return null
   try {
-    const source = cloudPlantSvg({ ...item, category: 'flower', assets: {}, paths: {} }, {
-      id: 0, kind: 'rose', x: 55, y: 375, angle: 0, flowerScale: 1, stemHeight: 320, color: color.value, leafMode: leafMode.value,
+    const source = cloudPlantSvg({ ...item, category: 'flower', updatedAt: 0, assets: {}, paths: {} }, {
+      stemHeight: 320, color: color.value, leafMode: leafMode.value,
     })
     return { source: localPreviewSource(source, color.value), error: '' }
   } catch (value) { return { source: '', error: value instanceof Error ? value.message : '整枝预览生成失败' } }
@@ -28,16 +30,39 @@ const failedPreviews = ref<string[]>([])
 function previewFailed(key: string) { if (!failedPreviews.value.includes(key)) failedPreviews.value.push(key) }
 function previewLoaded(key: string) { failedPreviews.value = failedPreviews.value.filter(value => value !== key) }
 function open(item: MaterialDraft) { selected.value = item; leafMode.value = 'with'; color.value = item.colors[0]?.value || '#f4f0e6'; failedPreviews.value = [] }
-function thumbnail(item: MaterialDraft) { return localPreviewSource(item.sources.flower || item.sources.foliage || item.sources.vase || item.sources.bouquet || '', item.colors[0]?.value || '#f4f0e6') }
-function groupName(key: MaterialGroup | 'vase' | 'bouquet') { return groups.find(item => item.key === key)?.name }
+function thumbnail(item: MaterialDraft) { return localPreviewSource(item.sources.flower || item.sources.foliage || item.sources.vase || item.sources.bouquet || item.sources.background || '', item.colors[0]?.value || '#f4f0e6') }
+function groupName(key: MaterialGroup | 'vase' | 'bouquet' | 'background') { return groups.find(item => item.key === key)?.name }
+async function removeSelected() {
+  const item = selected.value
+  if (!item || store.busy || !canDelete.value) return
+  try {
+    const result = await new Promise<UniApp.ShowModalRes>((resolve, reject) => uni.showModal({
+      title: '删除云端素材', content: `确定从云端删除“${item.name}”吗？本地素材会保留，可再次上传。`,
+      confirmText: '删除', confirmColor: '#b82b36', success: resolve, fail: reject,
+    }))
+    if (result.confirm) await store.remove(item)
+  } catch { store.error = '无法打开删除确认，请重试' }
+}
 </script>
 
 <template>
   <view class="admin-page">
     <view class="heading"><view class="app-section-title">本地素材</view><button class="app-secondary-btn refresh" :disabled="store.busy" @click="store.refresh">检查上传状态</button></view>
+    <button class="app-primary-btn upload-all" :disabled="store.busy || !localCatalog.items.length" @click="store.uploadAll(localCatalog.items)">全部上传</button>
     <view class="hint">先查看素材，满意后上传。未检查云端时显示“待检查”。</view>
+    <view class="hint">全部上传包含所有分类，自动跳过已上传且没有更新的素材。</view>
+    <view v-if="store.batchProgress" class="batch-status">
+      <view class="status">上传进度 {{ store.batchProgress.completed }} / {{ store.batchProgress.total }} · 已跳过 {{ store.batchProgress.skipped }} 项</view>
+      <progress :percent="store.batchProgress.total ? store.batchProgress.completed / store.batchProgress.total * 100 : 100" :stroke-width="4" activeColor="#849c81" backgroundColor="#e4e8de" />
+      <view v-if="store.batchProgress.currentName" class="hint">正在上传：{{ store.batchProgress.currentName }}</view>
+    </view>
+    <view v-if="store.uploadFailures.length" class="batch-failures">
+      <view class="error">以下 {{ store.uploadFailures.length }} 项上传失败</view>
+      <view v-for="failure in store.uploadFailures" :key="failure.id" class="error">{{ failure.name }}：{{ failure.message }}</view>
+      <button class="app-secondary-btn" :disabled="store.busy" @click="store.uploadAll(failedMaterials)">重试失败项</button>
+    </view>
     <view class="catalog">
-      <view class="categories"><view v-for="item in groups" :key="item.key" class="category" :class="{ active: group === item.key }" @click="group = item.key">{{ item.name }}<text class="count">{{ item.key === 'all' ? localCatalog.items.length : localCatalog.items.filter(row => item.key === 'vase' || item.key === 'bouquet' ? row.category === item.key : row.category === 'flower' && row.group === item.key).length }}</text></view></view>
+      <view class="categories"><view v-for="item in groups" :key="item.key" class="category" :class="{ active: group === item.key }" @click="group = item.key">{{ item.name }}<text class="count">{{ item.key === 'all' ? localCatalog.items.length : localCatalog.items.filter(row => item.key === 'vase' || item.key === 'bouquet' || item.key === 'background' ? row.category === item.key : row.category === 'flower' && row.group === item.key).length }}</text></view></view>
       <view class="materials">
         <view v-for="item in materials" :key="item.id" class="material-row" @click="open(item)">
           <image class="thumbnail" :src="thumbnail(item)" mode="aspectFit" />
@@ -66,6 +91,8 @@ function groupName(key: MaterialGroup | 'vase' | 'bouquet') { return groups.find
         </scroll-view>
         <view v-if="store.error" class="error">{{ store.error }}</view><view v-if="store.message" class="status">{{ store.message }}</view>
         <button class="app-primary-btn" :disabled="store.busy || uploadStatus(selected, store.remote) === '已上传'" @click="store.upload(selected)">{{ store.busy ? '处理中…' : uploadStatus(selected, store.remote) === '有更新' ? '上传本地更新' : uploadStatus(selected, store.remote) === '已上传' ? '已上传' : '上传当前素材' }}</button>
+        <button class="delete-action" :disabled="store.busy || !canDelete" @click="removeSelected">删除云端素材</button>
+        <view v-if="store.remote === null" class="hint">检查上传状态后可删除云端素材。</view>
       </view>
     </view>
   </view>
@@ -73,6 +100,10 @@ function groupName(key: MaterialGroup | 'vase' | 'bouquet') { return groups.find
 
 <style scoped lang="scss">
 .admin-page { padding: 24rpx; }
+.upload-all { margin-top: 20rpx; }
+.batch-status, .batch-failures { padding: 16rpx; margin: 16rpx 0; background: #edf0e8; border-radius: 12rpx; }
+.delete-action { margin-top: 12rpx; color: #b82b36; background: #f7e9e7; font-size: 25rpx; }
+.delete-action[disabled] { color: #a49a95; }
 .heading { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; }
 .refresh, .close { font-size: 24rpx; margin: 0; padding: 0 18rpx; }
 .hint { font-size: 23rpx; color: #7b8276; line-height: 1.6; margin: 12rpx 0; }

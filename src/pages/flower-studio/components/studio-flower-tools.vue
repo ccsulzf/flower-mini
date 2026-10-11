@@ -7,12 +7,10 @@ import { flowerCatalog, flowerColors, type Stem } from '@/utils/flower/artwork'
 const props = defineProps<{ stem: Stem, colorsOpen: boolean, canMoveBack: boolean, canMoveFront: boolean }>()
 const emit = defineEmits<{
   close: [], color: [value: string], 'toggle-colors': [],
-  leaves: [], layer: [direction: 'front' | 'back'], duplicate: [], remove: [],
+  mirror: [], adjacent: [direction: 'previous' | 'next'], layer: [direction: 'front' | 'back'], duplicate: [], remove: [],
 }>()
 const catalog = useFlowerCatalogStore()
 const cloudMaterial = computed(() => props.stem.materialId && props.stem.materialRevision ? catalog.get(props.stem.materialId, props.stem.materialRevision) : undefined)
-const canToggleLeaves = computed(() => Boolean(cloudMaterial.value?.sources.stemWithLeaves && cloudMaterial.value?.sources.stemWithoutLeaves))
-const hasLeaves = computed(() => props.stem.leafMode !== 'without')
 const colors = computed(() => cloudMaterial.value ? cloudMaterial.value.colors.map(color => color.value) : flowerColors)
 const flowerName = computed(() => cloudMaterial.value?.name ?? flowerCatalog.find(item => item.kind === props.stem.kind)?.name ?? '花材')
 </script>
@@ -25,12 +23,13 @@ const flowerName = computed(() => cloudMaterial.value?.name ?? flowerCatalog.fin
     </view>
     <view class="tools-actions">
       <button class="color-button" :class="{ 'tool-active': colorsOpen }" @click="emit('toggle-colors')"><view class="current-color" :style="`background-color:${stem.color};`" /><text>颜色</text></button>
-      <button v-if="canToggleLeaves" class="icon-button leaf-button" :class="{ 'tool-active': hasLeaves }" :aria-label="hasLeaves ? '去掉叶子' : '加上叶子'" :aria-pressed="hasLeaves" @click="emit('leaves')"><view class="i-carbon-sprout" /></button>
+      <button class="icon-button" aria-label="左右镜像" :aria-pressed="Boolean(stem.mirrored)" @click="emit('mirror')"><view class="i-carbon-reflect-horizontal" /></button>
       <button :disabled="!canMoveBack" @click="emit('layer', 'back')">后移</button>
       <button :disabled="!canMoveFront" @click="emit('layer', 'front')">前移</button>
       <button class="icon-button" aria-label="复制花朵" @click="emit('duplicate')"><view class="i-carbon-copy" /></button>
       <button class="icon-button remove-button" aria-label="移除花朵" @click="emit('remove')"><view class="i-carbon-trash-can" /></button>
     </view>
+    <view class="stem-navigation"><button @click="emit('adjacent', 'previous')">上一枝</button><text>切换重叠花材</text><button @click="emit('adjacent', 'next')">下一枝</button></view>
     <view v-if="colorsOpen" class="tools-colors">
       <button v-for="color in colors" :key="color" class="color-choice" :class="{ 'dot-picked': stem.color === color }" :aria-label="`选择花色 ${color}`" @click="emit('color', color)"><view class="color-dot" :style="`background-color:${color};`" /></button>
     </view>
@@ -54,6 +53,7 @@ const flowerName = computed(() => cloudMaterial.value?.name ?? flowerCatalog.fin
 .tools-actions .remove-button { color: #ae626b; }
 .tools-actions .leaf-button { color: $studio-muted; background: $studio-secondary; }
 .tools-actions .tool-active { background: $studio-accent; color: #303829; }
+.stem-navigation button::after { border: none; }.stem-navigation { display: flex; align-items: center; justify-content: space-between; margin-top: 12rpx; }.stem-navigation text { font-size: 18rpx; color: $studio-muted; }.stem-navigation button { padding: 0 14rpx; margin: 0; line-height: 40rpx; font-size: 19rpx; background: $studio-secondary; color: $studio-ink; }
 .tools-colors { display: flex; justify-content: space-between; align-items: center; min-height: 64rpx; flex-wrap: wrap; gap: 8rpx; margin-top: 12rpx; }
 .color-choice { display: flex; align-items: center; justify-content: center; width: 58rpx; height: 58rpx; margin: 0; padding: 0; background: transparent; border: 2rpx solid transparent; border-radius: 50%; }
 .color-dot { width: 30rpx; height: 30rpx; border: 1rpx solid rgba(63,70,61,.15); border-radius: 50%; }

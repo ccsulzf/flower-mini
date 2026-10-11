@@ -3,9 +3,9 @@
   "category": "flower",
   "name": "百合",
   "group": "main",
-  "introduction": "六瓣星形花朵与清晰花蕊，适合作为舒展的主花。",
+  "introduction": "花瓣舒展，花蕊明显，花形较大，适合作为花束中的主花。",
   "flowerMeaning": "祝福与纯洁（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "奶白",

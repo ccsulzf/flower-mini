@@ -1,7 +1,11 @@
 import type { Artwork } from './artwork'
 
+export function copyContainerLayouts(layouts: Artwork['containerLayouts'] = {}): NonNullable<Artwork['containerLayouts']> {
+  return Object.fromEntries(Object.entries(layouts).map(([key, stems]) => [key, stems.map(stem => ({ ...stem }))]))
+}
+
 function copyArtwork(artwork: Artwork): Artwork {
-  return { ...artwork, stems: artwork.stems.map(stem => ({ ...stem })) }
+  return { ...artwork, ...(artwork.containerLayouts ? { containerLayouts: copyContainerLayouts(artwork.containerLayouts) } : {}), stems: artwork.stems.map(stem => ({ ...stem })) }
 }
 
 export class ArtworkHistory {

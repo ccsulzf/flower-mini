@@ -2,9 +2,9 @@
   "id": "rose",
   "name": "玫瑰",
   "group": "main",
-  "introduction": "花瓣层层包裹，花形饱满，适合作为作品中的主花。",
+  "introduction": "花瓣层层包裹，花形饱满，是常见主花，适合花束和日常瓶插。",
   "flowerMeaning": "爱与美好",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "深红",
@@ -18,5 +18,11 @@
       "name": "奶白",
       "value": "#f4f0e6"
     }
-  ]
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 88
+  }
 }

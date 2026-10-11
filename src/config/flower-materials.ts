@@ -14,7 +14,10 @@ export const flowerColors = ['#e1b94f', '#b82b36', '#f4f0e6', '#b394db', '#d7897
 export const backgroundOptions: { value: Artwork['background'], name: string, color: string }[] = [
   { value: 'cocoa', name: '可可棕', color: '#3c2f28' },
   { value: 'warm', name: '暖白', color: '#f6f3eb' },
-  { value: 'sage', name: '鼠尾草', color: '#dce3d5' },
+  { value: 'sage', name: '浅绿', color: '#dce3d5' },
+  { value: 'mist', name: '浅灰', color: '#e7e8e5' },
+  { value: 'blush', name: '淡粉', color: '#f0e1df' },
+  { value: 'sand', name: '浅杏', color: '#e9dfcc' },
 ]
 
 export function createDefaultArtwork(): Artwork {

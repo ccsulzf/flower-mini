@@ -23,13 +23,21 @@ module.exports = {
     }
     return { items }
   },
+  async remove(data) {
+    // _before 校验当前管理员身份；只下架档案，不删除被旧作品引用的云文件。
+    if (!data || typeof data.id !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(data.id)) {
+      throw { errCode: 'INVALID_MATERIAL', errMsg: '素材标识无效' }
+    }
+    await uniCloud.database().collection('flower-material-assets').doc(data.id).remove()
+    return { ok: true }
+  },
   async save(data) {
     const invalid = () => { throw { errCode: 'INVALID_MATERIAL', errMsg: '花材档案无效' } }
     if (!data || typeof data.id !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(data.id || '') || typeof data.name !== 'string' || !data.name.trim() || data.name.length > 40
       || typeof data.introduction !== 'string' || data.introduction.length > 2000 || !Number.isInteger(data.version) || data.version < 1
       || typeof data.revision !== 'string' || !/^[a-f0-9]{16}$/.test(data.revision)) invalid()
     const category = data.category || 'flower'
-    if (!['flower', 'vase', 'bouquet'].includes(category)) invalid()
+    if (!['flower', 'vase', 'bouquet', 'background'].includes(category)) invalid()
     if (category === 'flower' && (!['main', 'filler', 'foliage'].includes(data.group) || typeof data.flowerMeaning !== 'string' || data.flowerMeaning.length > 500
       || !Array.isArray(data.colors) || !data.colors.length || data.colors.length > 20
       || data.colors.some(color => !color || typeof color.name !== 'string' || !color.name.trim() || color.name.length > 20 || typeof color.value !== 'string' || !/^#[\da-f]{6}$/i.test(color.value)))) invalid()
@@ -38,7 +46,10 @@ module.exports = {
     const positive = value => typeof value === 'number' && Number.isFinite(value) && value > 0 && value <= 2000
     if (!geometry || !positive(geometry.width)) invalid()
     let cleanGeometry
-    if (category !== 'flower') {
+    if (category === 'background') {
+      if (!positive(geometry.height) || (geometry.surfaceY !== undefined && (typeof geometry.surfaceY !== 'number' || !Number.isFinite(geometry.surfaceY) || geometry.surfaceY < 0 || geometry.surfaceY > geometry.height))) invalid()
+      cleanGeometry = { width: geometry.width, height: geometry.height, ...(geometry.surfaceY !== undefined ? { surfaceY: geometry.surfaceY } : {}) }
+    } else if (category !== 'flower') {
       if (!positive(geometry.height) || !positive(geometry.mouthWidth) || geometry.mouthWidth > geometry.width
         || !Number.isFinite(geometry.mouthX) || !Number.isFinite(geometry.mouthY) || geometry.mouthX < geometry.mouthWidth / 2 || geometry.mouthX > geometry.width - geometry.mouthWidth / 2 || geometry.mouthY < 0 || geometry.mouthY >= geometry.height) invalid()
       cleanGeometry = { width: geometry.width, height: geometry.height, mouthX: geometry.mouthX, mouthY: geometry.mouthY, mouthWidth: geometry.mouthWidth }
@@ -46,7 +57,7 @@ module.exports = {
       if (!positive(geometry.flowerHeight) || !positive(geometry.stemHeight) || !positive(geometry.connectionY) || geometry.connectionY > geometry.flowerHeight) invalid()
       cleanGeometry = { width: geometry.width, flowerHeight: geometry.flowerHeight, stemHeight: geometry.stemHeight, connectionY: geometry.connectionY }
     }
-    const keys = category === 'vase' ? ['vase'] : category === 'bouquet' ? ['bouquet'] : data.group === 'foliage' ? ['foliage'] : ['flower', 'stemWithLeaves', 'stemWithoutLeaves']
+    const keys = category === 'background' ? ['background'] : category === 'vase' ? ['vase'] : category === 'bouquet' ? ['bouquet'] : data.group === 'foliage' ? ['foliage'] : ['flower', 'stemWithLeaves', 'stemWithoutLeaves']
     const assets = {}
     for (const key of keys) {
       const file = data.assets?.[key]

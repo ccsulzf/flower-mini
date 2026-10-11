@@ -1,0 +1,29 @@
+{
+  "id": "campanula",
+  "category": "flower",
+  "name": "风铃草",
+  "group": "filler",
+  "introduction": "钟形花朵沿枝条向外开放，花口有五个浅裂瓣，适合自然风花束和瓶插。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "浅紫",
+      "value": "#b0a1c6"
+    },
+    {
+      "name": "粉色",
+      "value": "#d6a5b9"
+    },
+    {
+      "name": "奶白",
+      "value": "#eae5dd"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

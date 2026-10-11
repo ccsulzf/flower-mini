@@ -1,1 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370"><path d="M54 365Q13 223 35 15Q62 159 54 365Z" fill="__COLOR__" stroke="#728862" stroke-width="0.8"/><path d="M56 365Q56 184 92 68Q90 240 56 365Z" fill="__COLOR__" stroke="#728862" stroke-width="0.8"/><path d="M52 365Q26 304 15 170Q55 258 52 365Z" fill="__COLOR__" stroke="#728862" stroke-width="0.8"/><path d="M54 363L35 35M57 359L88 91" fill="none" stroke="#b0bb91" stroke-width="0.7"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370">
+  <defs>
+  <linearGradient id="blade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="0">
+  <stop offset="0" stop-color="__COLOR__"/>
+  <stop offset="1" stop-color="#607f56"/>
+  </linearGradient>
+  </defs>
+  <path d="M54 370C27 251 23 125 38 13C52 95 61 243 54 370Z" fill="__COLOR__" stroke="#718863" stroke-width=".5"/>
+  <path d="M54 370C27 251 23 125 38 13C52 95 61 243 54 370Z" fill="url(#blade)" opacity=".3"/>
+  <path d="M54 363Q36 206 38 22" fill="none" stroke="#c6d0a2" stroke-width="0.65" />
+  <path d="M55 370Q63 175 94 61Q97 224 55 370Z" fill="__COLOR__" stroke="#718863" stroke-width=".5"/>
+  <path d="M55 370Q63 175 94 61Q97 224 55 370Z" fill="url(#blade)" opacity=".3"/>
+  <path d="M56 360Q78 179 92 76" fill="none" stroke="#c6d0a2" stroke-width="0.65" />
+  <path d="M53 370Q15 304 11 164Q44 232 53 370Z" fill="__COLOR__" stroke="#718863" stroke-width=".5"/>
+  <path d="M53 370Q15 304 11 164Q44 232 53 370Z" fill="url(#blade)" opacity=".3"/>
+  <path d="M51 360Q24 262 14 177" fill="none" stroke="#c6d0a2" stroke-width="0.65" />
+</svg>

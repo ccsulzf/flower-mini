@@ -3,7 +3,7 @@ import { onShow } from '@dcloudio/uni-app'
 import { ref } from 'vue'
 import { initializeAppAuth, waitForAppAuthReady } from '@/utils/appAuth'
 
-definePage({ type: 'home', layout: 'default', style: { navigationBarTitleText: '花草工作室' } })
+definePage({ layout: 'default', style: { navigationBarTitleText: '花草工作室' } })
 
 const busy = ref(false)
 const ready = ref(false)

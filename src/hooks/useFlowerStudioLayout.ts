@@ -4,13 +4,13 @@ import { computed } from 'vue'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 import { anchorY } from '@/utils/flower/artwork'
 
-export function useFlowerStudioLayout(selected: Ref<Stem | undefined>, vase: Ref<VaseName>) {
+export function useFlowerStudioLayout(selected: Ref<Stem | undefined>, vase: Ref<VaseName>, arrangementOffset?: Ref<number>, navigationInset = 0) {
   const device = uni.getSystemInfoSync()
   const unit = device.windowWidth / 750
   const safeBottom = Math.max(0, device.screenHeight - (device.safeArea?.bottom ?? device.screenHeight))
   // 画板按设备可用高度整体适配，拖动位移使用同一倍率，短屏也不会截掉长花枝。
   // 原生导航已在 windowHeight 外部，页面内只预留工具栏和紧凑间距。
-  const pageActionsTop = 16 * unit
+  const pageActionsTop = navigationInset + 16 * unit
   const toolbarBottom = safeBottom + 16 * unit
   const stageTop = pageActionsTop + (96 + 16) * unit
   const stageBottom = toolbarBottom + (96 + 16) * unit
@@ -37,10 +37,10 @@ export function useFlowerStudioLayout(selected: Ref<Stem | undefined>, vase: Ref
     const { left: boardLeft, top: boardTop } = boardPosition.value
     const visualHeight = (stem.stemHeight + 55) * stem.flowerScale
     const x = boardLeft + (stem.x + Math.sin(radians) * visualHeight) * scale
-    const flowerTop = boardTop + (anchorY(vase.value) - Math.cos(radians) * visualHeight) * scale
+    const flowerTop = boardTop + (anchorY(vase.value) + (arrangementOffset?.value || 0) - Math.cos(radians) * visualHeight) * scale
     const width = Math.min(520 * unit, device.windowWidth - 24)
     // 始终按展开色板后的高度定位，展开、收起或换色不重新切换上下位置。
-    const height = (stem.materialId ? 420 : 220) * unit
+    const height = 340 * unit
     const bloomHeight = (stem.kind === 'chrysanthemum' ? 190 : 140) * stem.flowerScale * scale
     const headPadding = (stem.kind === 'chrysanthemum' ? 40 : 16) * stem.flowerScale * scale
     const aboveTop = flowerTop - headPadding - height - 12

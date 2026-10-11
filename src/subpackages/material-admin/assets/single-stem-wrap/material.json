@@ -1,14 +1,14 @@
 {
   "id": "single-stem-wrap",
   "category": "bouquet",
-  "name": "迷你单枝包装",
-  "introduction": "窄幅折纸和细丝带，适合单枝或少量花材。",
-  "version": 1,
+  "name": "单枝花束包装",
+  "introduction": "窄幅包装纸搭配细丝带，修长纸张在两侧内卷，正面留出深开口，下方收束成纸尾，适合展示完整花束。",
+  "version": 4,
   "geometry": {
-    "width": 210,
-    "height": 285,
-    "mouthX": 105,
-    "mouthY": 130,
-    "mouthWidth": 46
+    "width": 220,
+    "height": 430,
+    "mouthX": 110.0,
+    "mouthY": 347,
+    "mouthWidth": 24
   }
 }

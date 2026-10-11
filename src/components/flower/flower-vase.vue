@@ -2,12 +2,14 @@
 import type { VaseName } from '@/utils/flower/artwork'
 import { computed } from 'vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
-import { svgImageSource, vasePlacement } from '@/utils/flower/material-render'
+import { bouquetLayers, svgImageSource, vasePlacement } from '@/utils/flower/material-render'
 import FlowerBouquet from './flower-bouquet.vue'
-const props = defineProps<{ vase: VaseName, materialId?: string, revision?: string }>()
+const props = defineProps<{ vase: VaseName, materialId?: string, revision?: string, layer?: 'back' | 'front' }>()
 const catalog = useFlowerCatalogStore()
 const material = computed(() => props.materialId && props.revision ? catalog.get(props.materialId, props.revision) : undefined)
 const source = computed(() => {
+  if (props.layer === 'back' && material.value?.category !== 'bouquet') return ''
+  if (material.value?.category === 'bouquet') return svgImageSource(bouquetLayers(material.value)[props.layer === 'back' ? 'back' : 'front'])
   const svg = material.value?.sources.vase || material.value?.sources.bouquet
   return svg ? svgImageSource(svg) : ''
 })
@@ -19,9 +21,9 @@ const imageStyle = computed(() => {
 </script>
 <template>
   <image v-if="materialId && source" :src="source" :style="imageStyle" mode="scaleToFill" />
-  <view v-else-if="materialId" class="vase-missing">花瓶素材不可用</view>
-  <FlowerBouquet v-else-if="vase === '花束'" />
-  <template v-else>
+  <view v-else-if="materialId && layer !== 'back'" class="vase-missing">容器素材不可用</view>
+  <FlowerBouquet v-else-if="vase === '花束' && layer !== 'back'" />
+  <template v-else-if="layer !== 'back'">
     <view class="studio-vase-shadow" />
     <view class="studio-vase" :class="{ 'vase-glass': vase === '玻璃瓶', 'vase-round': vase === '圆花器' }"><view class="vase-mouth" /><view class="vase-light" /></view>
   </template>

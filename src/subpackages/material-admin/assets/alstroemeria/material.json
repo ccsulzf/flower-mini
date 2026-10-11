@@ -1,0 +1,29 @@
+{
+  "id": "alstroemeria",
+  "category": "flower",
+  "name": "六出花（水仙百合）",
+  "group": "filler",
+  "introduction": "花朵在枝头成簇开放，内侧花瓣带细条纹，适合丰富花束的色彩和细节。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "蜜桃",
+      "value": "#dfaa91"
+    },
+    {
+      "name": "粉色",
+      "value": "#d4a0b0"
+    },
+    {
+      "name": "淡黄",
+      "value": "#ddcc9a"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

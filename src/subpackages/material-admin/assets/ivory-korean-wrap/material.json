@@ -1,14 +1,14 @@
 {
   "id": "ivory-korean-wrap",
   "category": "bouquet",
-  "name": "奶白韩式包装",
-  "introduction": "奶白色层叠包装纸，适合柔和清新的日常花束。",
-  "version": 1,
+  "name": "奶白多层花束包装",
+  "introduction": "奶白色包装纸分层展开，修长纸张在两侧内卷，正面留出深开口，下方收束成纸尾，适合展示完整花束。",
+  "version": 4,
   "geometry": {
-    "width": 350,
-    "height": 290,
-    "mouthX": 175,
-    "mouthY": 132,
-    "mouthWidth": 108
+    "width": 340,
+    "height": 430,
+    "mouthX": 170.0,
+    "mouthY": 347,
+    "mouthWidth": 24
   }
 }

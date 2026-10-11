@@ -12,8 +12,8 @@ module.exports = async function resolveAuth(ctx) {
   const uniId = uniID.createInstance({ context: ctx })
   const res = await uniId.checkToken(token)
 
-  if (res.code === 0) {
-    return { uid: res.uid }
+  if (res.errCode === 0 && res.uid) {
+    return { uid: res.uid, newToken: res.token && res.tokenExpired ? { token: res.token, tokenExpired: res.tokenExpired } : null }
   }
 
   return null

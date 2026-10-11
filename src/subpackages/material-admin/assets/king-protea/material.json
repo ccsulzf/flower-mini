@@ -1,0 +1,29 @@
+{
+  "id": "king-protea",
+  "category": "flower",
+  "name": "帝王花",
+  "group": "main",
+  "introduction": "尖形花苞包围饱满花心，花头较大，适合作为具有鲜明轮廓的主花。",
+  "flowerMeaning": "力量与坚韧（常见象征表达，仅供创作参考）",
+  "version": 3,
+  "colors": [
+    {
+      "name": "烟粉",
+      "value": "#bc9098"
+    },
+    {
+      "name": "浅粉",
+      "value": "#d2b1b6"
+    },
+    {
+      "name": "奶白",
+      "value": "#e3ddcb"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

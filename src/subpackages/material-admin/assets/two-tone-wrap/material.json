@@ -1,14 +1,14 @@
 {
   "id": "two-tone-wrap",
   "category": "bouquet",
-  "name": "双色叠纸包装",
-  "introduction": "鼠尾草绿与奶白纸张错层，适合有层次的花束。",
-  "version": 1,
+  "name": "双色花束包装",
+  "introduction": "浅灰绿和奶白色包装纸交叠，修长纸张在两侧内卷，正面留出深开口，下方收束成纸尾，适合展示完整花束。",
+  "version": 4,
   "geometry": {
-    "width": 350,
-    "height": 290,
-    "mouthX": 175,
-    "mouthY": 132,
-    "mouthWidth": 108
+    "width": 340,
+    "height": 430,
+    "mouthX": 170.0,
+    "mouthY": 347,
+    "mouthWidth": 24
   }
 }

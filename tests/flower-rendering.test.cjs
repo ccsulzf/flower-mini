@@ -8,7 +8,7 @@ const { createLoader } = require('./helpers/load-ts.cjs')
 function setupComponent(relative, props = {}, deviceOverrides = {}) {
   const target = relative.startsWith('components/') ? `src/components/flower/${relative.slice(11)}` : `src/pages/flower-studio/${relative}`
   const page = createLoader({ device: deviceOverrides }).setup(target, props)
-  if (relative === 'flower-studio-page.vue') page.store.initialize() // Interaction fixture explicitly supplies three branches.
+  if (relative === 'flower-studio-page.vue') { page.store.initialize(); page.pageReady.value = true } // Interaction fixture explicitly supplies three branches.
   return page
 }
 
@@ -48,6 +48,10 @@ test('选择目录花材只添加花枝，不自动打开浮动编辑工具栏',
   assert.equal(page.stems.value[3].materialId, material.id)
   assert.equal(page.showFlowerTools.value, false)
   assert.equal(page.selectedId.value, null)
+  assert.equal(page.activeTab.value, 'flowers')
+  await page.addCloudMaterial(material.id)
+  assert.equal(page.stems.value.length, 5)
+  assert.equal(page.activeTab.value, 'flowers')
   page.openFlowerTools(page.stems.value[3].id)
   assert.equal(page.showFlowerTools.value, true)
 })
@@ -84,11 +88,11 @@ test('最前和最后的花材只开放可用层次方向', () => {
   assert.equal(page.canMoveBack.value, false)
 })
 
-test('原生导航下不重复预留导航高度，长屏画板略上移，短屏不越界', () => {
+test('全屏导航避让状态栏与胶囊，长屏画板略上移，短屏不越界', () => {
   for (const windowHeight of [480, 800]) {
     const page = setupComponent('flower-studio-page.vue', {}, { windowHeight, screenHeight: windowHeight })
-    assert.ok(page.pageActionsTop < 24, '操作栏应靠近页面顶部，不能再次加状态栏和导航栏高度')
-    const board = page.boardPosition.value
+    assert.ok(page.pageActionsTop >= 68 && page.pageActionsTop < 90, '自定义导航须避让状态栏与胶囊')
+    const board = page.layout.boardPosition.value
     const scale = page.boardScale.value
     const height = 1000 * 0.5 * scale
     const width = 698 * 0.5 * scale
@@ -157,7 +161,7 @@ test('轻微移动仍算点击，取消触摸不弹工具栏；拖动多次只�
   assert.equal(page.canUndo.value, false)
   page.startDrag({ touches: [{ clientX: 100, clientY: 100 }] }, stem)
   page.endDrag(true)
-  assert.equal(page.showFlowerTools.value, false)
+  assert.equal(page.showFlowerTools.value, true)
   assert.equal(page.canUndo.value, false)
   page.startDrag({ touches: [{ clientX: 100, clientY: 100 }] }, stem)
   page.moveDrag({ touches: [{ clientX: 110, clientY: 90 }] })
@@ -177,7 +181,7 @@ test('不同屏幕上浮层保留完整色板高度且不超出工作区', () =>
       const left = Number.parseFloat(style.left), top = Number.parseFloat(style.top), width = Number.parseFloat(style.width)
       assert.ok(left >= 12 && left + width <= 363)
       assert.ok(top >= page.stageTop)
-      assert.ok(top + 220 * 0.5 <= windowHeight - page.stageBottom + 0.001)
+      assert.ok(top + 340 * 0.5 <= windowHeight - page.stageBottom + 0.001)
     }
   }
 })
@@ -200,4 +204,85 @@ test('清空花材需确认，取消保留作品，确认可撤销，空作品�
   assert.equal(dialogs.length, 2)
   page.undo()
   assert.equal(JSON.stringify(page.stems.value), before)
+})
+
+test('轻点花头不会先关闭再打开工具栏，重复点同一枝保持色板；真正拖动才收起', () => {
+  const page = setupComponent('flower-studio-page.vue')
+  const stem = page.stems.value[0]
+  page.openFlowerTools(stem.id); page.toolsColorsOpen.value = true
+  const touch = (x, y) => ({ touches: [{ clientX: x, clientY: y }] })
+  page.startDrag(touch(100, 200), stem)
+  assert.equal(page.showFlowerTools.value, true)
+  assert.equal(page.toolsColorsOpen.value, true)
+  page.endDrag(false)
+  assert.equal(page.showFlowerTools.value, true)
+  assert.equal(page.toolsColorsOpen.value, true)
+  page.startDrag(touch(100, 200), stem)
+  page.moveDrag(touch(110, 200))
+  assert.equal(page.showFlowerTools.value, false)
+  page.endDrag(false)
+  assert.equal(page.showFlowerTools.value, false)
+})
+
+test('肾蕨等云端叶材点击区覆盖整枝，主花保持花头点击区', () => {
+  const loader = createLoader()
+  const items = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items
+  const catalog = loader.load('src/stores/flowerCatalogStore.ts').useFlowerCatalogStore()
+  for (const id of ['boston-fern', 'eucalyptus', 'rose']) {
+    const material = items.find(item => item.id === id)
+    catalog.prepared[`${material.id}:${material.revision}`] = material
+    const stem = { id: 1, kind: 'rose', materialId: material.id, materialRevision: material.revision, x: 350, angle: 12, stemHeight: 410, flowerScale: 1, color: '#849c81' }
+    const state = loader.setup('src/components/flower/flower-stem.vue', { stem, anchor: 747, selected: true })
+    assert.equal(state.isFoliage.value, material.group === 'foliage')
+    assert.equal(state.touchAreaStyle.value, material.group === 'foliage' ? 'height:489rpx;' : '')
+  }
+})
+
+test('已有缓存花瓶立即使用，冷目录先准备花瓶再后台准备其他素材', async () => {
+  const loader = createLoader(), page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  const vase = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(item => item.category === 'vase')
+  page.catalog.materials = [vase]
+  page.catalog.prepared[`${vase.id}:${vase.revision}`] = vase
+  let release
+  page.catalog.load = () => new Promise(resolve => { release = resolve })
+  page.catalog.preload = async () => {}
+  const warm = page.loadMaterials()
+  assert.equal(page.vaseMaterialId.value, vase.id)
+  release(); await warm
+  page.store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
+  page.catalog.prepared = {}
+  const order = []
+  page.catalog.load = async () => { order.push('directory') }
+  page.catalog.ensure = async () => { order.push('vase'); return vase }
+  page.catalog.preload = async () => { order.push('background preload') }
+  await page.loadMaterials()
+  assert.deepEqual(order, ['directory', 'vase', 'background preload'])
+})
+
+test('拖到左侧时瓶口落点跟随到左侧，拖到右侧随到右侧，撤销恢复整枝', () => {
+  const loader = createLoader(), page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  const items = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items
+  const vase = items.find(item => item.id === 'ceramic-vase')
+  page.catalog.prepared[`${vase.id}:${vase.revision}`] = vase
+  page.store.setVaseMaterial(vase)
+  page.store.addFlower('rose')
+  const stem = page.stems.value[0]
+  stem.x = 375; stem.angle = 0; stem.stemHeight = 300
+  const before = JSON.stringify(stem)
+  const drag = (dx) => {
+    page.startDrag({ touches: [{ clientX: 200, clientY: 200 }] }, stem)
+    page.moveDrag({ touches: [{ clientX: 200 + dx, clientY: 200 }] })
+    page.endDrag(false)
+  }
+  drag(-85)
+  assert.ok(stem.x < 350)
+  const bounds = page.store.stemLandingBounds()
+  assert.ok(stem.x >= bounds.left && stem.x <= bounds.right)
+  const headX = stem.x + Math.sin(stem.angle * Math.PI / 180) * stem.stemHeight
+  assert.ok(Math.abs(headX - (375 - 85 / (page.unit * page.boardScale.value))) < .001)
+  page.undo(); assert.equal(JSON.stringify(page.stems.value[0]), before)
+  const current = page.stems.value[0]
+  page.startDrag({ touches: [{ clientX: 200, clientY: 200 }] }, current)
+  page.moveDrag({ touches: [{ clientX: 240, clientY: 200 }] }); page.endDrag(false)
+  assert.ok(current.x > 350 && current.x <= bounds.right)
 })

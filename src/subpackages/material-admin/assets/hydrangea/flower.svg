@@ -1,0 +1,841 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <defs>
+  <linearGradient id="hydrangea-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
+  <stop offset="0" stop-color="__COLOR__"/>
+  <stop offset="1" stop-color="#9c7e82"/>
+  </linearGradient>
+  </defs>
+  <ellipse cx="55.00" cy="54.00" rx="43.00" ry="40.00" fill="__COLOR__" stroke="#9f92a3" stroke-width=".4"/>
+  <g transform="rotate(0 58.23 54.00)">
+  <path d="M58.23 54.00Q54.03 53.16 55.29 49.80Q58.23 47.07 60.96 49.80Q62.43 53.37 58.23 54.00Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(90 58.23 54.00)">
+  <path d="M58.23 54.00Q54.03 53.16 55.29 49.80Q58.23 47.07 60.96 49.80Q62.43 53.37 58.23 54.00Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(180 58.23 54.00)">
+  <path d="M58.23 54.00Q54.03 53.16 55.29 49.80Q58.23 47.07 60.96 49.80Q62.43 53.37 58.23 54.00Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(270 58.23 54.00)">
+  <path d="M58.23 54.00Q54.03 53.16 55.29 49.80Q58.23 47.07 60.96 49.80Q62.43 53.37 58.23 54.00Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="58.23" cy="54.00" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(7 50.88 57.51)">
+  <path d="M50.88 57.51Q46.13 56.56 47.56 52.76Q50.88 49.68 53.97 52.76Q55.63 56.80 50.88 57.51Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(97 50.88 57.51)">
+  <path d="M50.88 57.51Q46.13 56.56 47.56 52.76Q50.88 49.68 53.97 52.76Q55.63 56.80 50.88 57.51Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(187 50.88 57.51)">
+  <path d="M50.88 57.51Q46.13 56.56 47.56 52.76Q50.88 49.68 53.97 52.76Q55.63 56.80 50.88 57.51Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(277 50.88 57.51)">
+  <path d="M50.88 57.51Q46.13 56.56 47.56 52.76Q50.88 49.68 53.97 52.76Q55.63 56.80 50.88 57.51Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="50.88" cy="57.51" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(14 55.63 47.32)">
+  <path d="M55.63 47.32Q50.84 46.36 52.28 42.53Q55.63 39.41 58.74 42.53Q60.42 46.60 55.63 47.32Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(104 55.63 47.32)">
+  <path d="M55.63 47.32Q50.84 46.36 52.28 42.53Q55.63 39.41 58.74 42.53Q60.42 46.60 55.63 47.32Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(194 55.63 47.32)">
+  <path d="M55.63 47.32Q50.84 46.36 52.28 42.53Q55.63 39.41 58.74 42.53Q60.42 46.60 55.63 47.32Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(284 55.63 47.32)">
+  <path d="M55.63 47.32Q50.84 46.36 52.28 42.53Q55.63 39.41 58.74 42.53Q60.42 46.60 55.63 47.32Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="55.63" cy="47.32" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(21 60.19 60.30)">
+  <path d="M60.19 60.30Q55.90 59.44 57.19 56.01Q60.19 53.22 62.98 56.01Q64.49 59.66 60.19 60.30Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(111 60.19 60.30)">
+  <path d="M60.19 60.30Q55.90 59.44 57.19 56.01Q60.19 53.22 62.98 56.01Q64.49 59.66 60.19 60.30Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(201 60.19 60.30)">
+  <path d="M60.19 60.30Q55.90 59.44 57.19 56.01Q60.19 53.22 62.98 56.01Q64.49 59.66 60.19 60.30Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(291 60.19 60.30)">
+  <path d="M60.19 60.30Q55.90 59.44 57.19 56.01Q60.19 53.22 62.98 56.01Q64.49 59.66 60.19 60.30Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="60.19" cy="60.30" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(28 45.47 52.43)">
+  <path d="M45.47 52.43Q41.76 51.69 42.87 48.72Q45.47 46.31 47.88 48.72Q49.18 51.88 45.47 52.43Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(118 45.47 52.43)">
+  <path d="M45.47 52.43Q41.76 51.69 42.87 48.72Q45.47 46.31 47.88 48.72Q49.18 51.88 45.47 52.43Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(208 45.47 52.43)">
+  <path d="M45.47 52.43Q41.76 51.69 42.87 48.72Q45.47 46.31 47.88 48.72Q49.18 51.88 45.47 52.43Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(298 45.47 52.43)">
+  <path d="M45.47 52.43Q41.76 51.69 42.87 48.72Q45.47 46.31 47.88 48.72Q49.18 51.88 45.47 52.43Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="45.47" cy="52.43" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(35 64.03 48.66)">
+  <path d="M64.03 48.66Q60.45 47.94 61.52 45.08Q64.03 42.76 66.35 45.08Q67.60 48.12 64.03 48.66Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(125 64.03 48.66)">
+  <path d="M64.03 48.66Q60.45 47.94 61.52 45.08Q64.03 42.76 66.35 45.08Q67.60 48.12 64.03 48.66Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(215 64.03 48.66)">
+  <path d="M64.03 48.66Q60.45 47.94 61.52 45.08Q64.03 42.76 66.35 45.08Q67.60 48.12 64.03 48.66Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(305 64.03 48.66)">
+  <path d="M64.03 48.66Q60.45 47.94 61.52 45.08Q64.03 42.76 66.35 45.08Q67.60 48.12 64.03 48.66Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="64.03" cy="48.66" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(42 51.98 64.45)">
+  <path d="M51.98 64.45Q47.96 63.64 49.17 60.43Q51.98 57.82 54.59 60.43Q56.00 63.84 51.98 64.45Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(132 51.98 64.45)">
+  <path d="M51.98 64.45Q47.96 63.64 49.17 60.43Q51.98 57.82 54.59 60.43Q56.00 63.84 51.98 64.45Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(222 51.98 64.45)">
+  <path d="M51.98 64.45Q47.96 63.64 49.17 60.43Q51.98 57.82 54.59 60.43Q56.00 63.84 51.98 64.45Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(312 51.98 64.45)">
+  <path d="M51.98 64.45Q47.96 63.64 49.17 60.43Q51.98 57.82 54.59 60.43Q56.00 63.84 51.98 64.45Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="51.98" cy="64.45" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(49 49.24 43.69)">
+  <path d="M49.24 43.69Q44.61 42.76 46.00 39.06Q49.24 36.05 52.25 39.06Q53.87 42.99 49.24 43.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(139 49.24 43.69)">
+  <path d="M49.24 43.69Q44.61 42.76 46.00 39.06Q49.24 36.05 52.25 39.06Q53.87 42.99 49.24 43.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(229 49.24 43.69)">
+  <path d="M49.24 43.69Q44.61 42.76 46.00 39.06Q49.24 36.05 52.25 39.06Q53.87 42.99 49.24 43.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(319 49.24 43.69)">
+  <path d="M49.24 43.69Q44.61 42.76 46.00 39.06Q49.24 36.05 52.25 39.06Q53.87 42.99 49.24 43.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="49.24" cy="43.69" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(56 67.49 58.24)">
+  <path d="M67.49 58.24Q62.65 57.27 64.10 53.40Q67.49 50.25 70.64 53.40Q72.34 57.52 67.49 58.24Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(146 67.49 58.24)">
+  <path d="M67.49 58.24Q62.65 57.27 64.10 53.40Q67.49 50.25 70.64 53.40Q72.34 57.52 67.49 58.24Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(236 67.49 58.24)">
+  <path d="M67.49 58.24Q62.65 57.27 64.10 53.40Q67.49 50.25 70.64 53.40Q72.34 57.52 67.49 58.24Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(326 67.49 58.24)">
+  <path d="M67.49 58.24Q62.65 57.27 64.10 53.40Q67.49 50.25 70.64 53.40Q72.34 57.52 67.49 58.24Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="67.49" cy="58.24" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(63 42.00 58.99)">
+  <path d="M42.00 58.99Q37.53 58.10 38.87 54.52Q42.00 51.62 44.91 54.52Q46.47 58.32 42.00 58.99Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(153 42.00 58.99)">
+  <path d="M42.00 58.99Q37.53 58.10 38.87 54.52Q42.00 51.62 44.91 54.52Q46.47 58.32 42.00 58.99Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(243 42.00 58.99)">
+  <path d="M42.00 58.99Q37.53 58.10 38.87 54.52Q42.00 51.62 44.91 54.52Q46.47 58.32 42.00 58.99Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(333 42.00 58.99)">
+  <path d="M42.00 58.99Q37.53 58.10 38.87 54.52Q42.00 51.62 44.91 54.52Q46.47 58.32 42.00 58.99Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="42.00" cy="58.99" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(70 61.27 41.55)">
+  <path d="M61.27 41.55Q57.42 40.78 58.57 37.70Q61.27 35.20 63.77 37.70Q65.11 40.97 61.27 41.55Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(160 61.27 41.55)">
+  <path d="M61.27 41.55Q57.42 40.78 58.57 37.70Q61.27 35.20 63.77 37.70Q65.11 40.97 61.27 41.55Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(250 61.27 41.55)">
+  <path d="M61.27 41.55Q57.42 40.78 58.57 37.70Q61.27 35.20 63.77 37.70Q65.11 40.97 61.27 41.55Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(340 61.27 41.55)">
+  <path d="M61.27 41.55Q57.42 40.78 58.57 37.70Q61.27 35.20 63.77 37.70Q65.11 40.97 61.27 41.55Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="61.27" cy="41.55" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(77 59.63 67.73)">
+  <path d="M59.63 67.73Q56.08 67.02 57.15 64.18Q59.63 61.87 61.94 64.18Q63.18 67.20 59.63 67.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(167 59.63 67.73)">
+  <path d="M59.63 67.73Q56.08 67.02 57.15 64.18Q59.63 61.87 61.94 64.18Q63.18 67.20 59.63 67.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(257 59.63 67.73)">
+  <path d="M59.63 67.73Q56.08 67.02 57.15 64.18Q59.63 61.87 61.94 64.18Q63.18 67.20 59.63 67.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(347 59.63 67.73)">
+  <path d="M59.63 67.73Q56.08 67.02 57.15 64.18Q59.63 61.87 61.94 64.18Q63.18 67.20 59.63 67.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="59.63" cy="67.73" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(84 41.04 46.48)">
+  <path d="M41.04 46.48Q37.19 45.71 38.35 42.63Q41.04 40.12 43.55 42.63Q44.89 45.90 41.04 46.48Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(174 41.04 46.48)">
+  <path d="M41.04 46.48Q37.19 45.71 38.35 42.63Q41.04 40.12 43.55 42.63Q44.89 45.90 41.04 46.48Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(264 41.04 46.48)">
+  <path d="M41.04 46.48Q37.19 45.71 38.35 42.63Q41.04 40.12 43.55 42.63Q44.89 45.90 41.04 46.48Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(354 41.04 46.48)">
+  <path d="M41.04 46.48Q37.19 45.71 38.35 42.63Q41.04 40.12 43.55 42.63Q44.89 45.90 41.04 46.48Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="41.04" cy="46.48" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(91 71.37 50.65)">
+  <path d="M71.37 50.65Q66.90 49.76 68.24 46.18Q71.37 43.27 74.28 46.18Q75.85 49.98 71.37 50.65Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(181 71.37 50.65)">
+  <path d="M71.37 50.65Q66.90 49.76 68.24 46.18Q71.37 43.27 74.28 46.18Q75.85 49.98 71.37 50.65Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(271 71.37 50.65)">
+  <path d="M71.37 50.65Q66.90 49.76 68.24 46.18Q71.37 43.27 74.28 46.18Q75.85 49.98 71.37 50.65Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(361 71.37 50.65)">
+  <path d="M71.37 50.65Q66.90 49.76 68.24 46.18Q71.37 43.27 74.28 46.18Q75.85 49.98 71.37 50.65Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="71.37" cy="50.65" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(98 45.01 67.22)">
+  <path d="M45.01 67.22Q40.16 66.25 41.62 62.37Q45.01 59.23 48.16 62.37Q49.85 66.49 45.01 67.22Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(188 45.01 67.22)">
+  <path d="M45.01 67.22Q40.16 66.25 41.62 62.37Q45.01 59.23 48.16 62.37Q49.85 66.49 45.01 67.22Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(278 45.01 67.22)">
+  <path d="M45.01 67.22Q40.16 66.25 41.62 62.37Q45.01 59.23 48.16 62.37Q49.85 66.49 45.01 67.22Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(368 45.01 67.22)">
+  <path d="M45.01 67.22Q40.16 66.25 41.62 62.37Q45.01 59.23 48.16 62.37Q49.85 66.49 45.01 67.22Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="45.01" cy="67.22" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(105 52.69 37.43)">
+  <path d="M52.69 37.43Q48.07 36.51 49.45 32.81Q52.69 29.81 55.70 32.81Q57.31 36.74 52.69 37.43Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(195 52.69 37.43)">
+  <path d="M52.69 37.43Q48.07 36.51 49.45 32.81Q52.69 29.81 55.70 32.81Q57.31 36.74 52.69 37.43Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(285 52.69 37.43)">
+  <path d="M52.69 37.43Q48.07 36.51 49.45 32.81Q52.69 29.81 55.70 32.81Q57.31 36.74 52.69 37.43Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(375 52.69 37.43)">
+  <path d="M52.69 37.43Q48.07 36.51 49.45 32.81Q52.69 29.81 55.70 32.81Q57.31 36.74 52.69 37.43Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="52.69" cy="37.43" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(112 69.17 65.11)">
+  <path d="M69.17 65.11Q65.16 64.30 66.36 61.09Q69.17 58.49 71.78 61.09Q73.18 64.50 69.17 65.11Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(202 69.17 65.11)">
+  <path d="M69.17 65.11Q65.16 64.30 66.36 61.09Q69.17 58.49 71.78 61.09Q73.18 64.50 69.17 65.11Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(292 69.17 65.11)">
+  <path d="M69.17 65.11Q65.16 64.30 66.36 61.09Q69.17 58.49 71.78 61.09Q73.18 64.50 69.17 65.11Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(382 69.17 65.11)">
+  <path d="M69.17 65.11Q65.16 64.30 66.36 61.09Q69.17 58.49 71.78 61.09Q73.18 64.50 69.17 65.11Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="69.17" cy="65.11" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(119 35.93 54.73)">
+  <path d="M35.93 54.73Q32.35 54.02 33.43 51.16Q35.93 48.84 38.25 51.16Q39.51 54.20 35.93 54.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(209 35.93 54.73)">
+  <path d="M35.93 54.73Q32.35 54.02 33.43 51.16Q35.93 48.84 38.25 51.16Q39.51 54.20 35.93 54.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(299 35.93 54.73)">
+  <path d="M35.93 54.73Q32.35 54.02 33.43 51.16Q35.93 48.84 38.25 51.16Q39.51 54.20 35.93 54.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(389 35.93 54.73)">
+  <path d="M35.93 54.73Q32.35 54.02 33.43 51.16Q35.93 48.84 38.25 51.16Q39.51 54.20 35.93 54.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="35.93" cy="54.73" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(126 68.91 41.13)">
+  <path d="M68.91 41.13Q65.20 40.38 66.31 37.41Q68.91 35.00 71.32 37.41Q72.62 40.57 68.91 41.13Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(216 68.91 41.13)">
+  <path d="M68.91 41.13Q65.20 40.38 66.31 37.41Q68.91 35.00 71.32 37.41Q72.62 40.57 68.91 41.13Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(306 68.91 41.13)">
+  <path d="M68.91 41.13Q65.20 40.38 66.31 37.41Q68.91 35.00 71.32 37.41Q72.62 40.57 68.91 41.13Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(396 68.91 41.13)">
+  <path d="M68.91 41.13Q65.20 40.38 66.31 37.41Q68.91 35.00 71.32 37.41Q72.62 40.57 68.91 41.13Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="68.91" cy="41.13" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(133 54.07 72.72)">
+  <path d="M54.07 72.72Q49.77 71.86 51.06 68.42Q54.07 65.63 56.86 68.42Q58.37 72.07 54.07 72.72Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(223 54.07 72.72)">
+  <path d="M54.07 72.72Q49.77 71.86 51.06 68.42Q54.07 65.63 56.86 68.42Q58.37 72.07 54.07 72.72Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(313 54.07 72.72)">
+  <path d="M54.07 72.72Q49.77 71.86 51.06 68.42Q54.07 65.63 56.86 68.42Q58.37 72.07 54.07 72.72Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(403 54.07 72.72)">
+  <path d="M54.07 72.72Q49.77 71.86 51.06 68.42Q54.07 65.63 56.86 68.42Q58.37 72.07 54.07 72.72Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="54.07" cy="72.72" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(140 41.76 39.25)">
+  <path d="M41.76 39.25Q36.97 38.29 38.41 34.46Q41.76 31.34 44.88 34.46Q46.56 38.53 41.76 39.25Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(230 41.76 39.25)">
+  <path d="M41.76 39.25Q36.97 38.29 38.41 34.46Q41.76 31.34 44.88 34.46Q46.56 38.53 41.76 39.25Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(320 41.76 39.25)">
+  <path d="M41.76 39.25Q36.97 38.29 38.41 34.46Q41.76 31.34 44.88 34.46Q46.56 38.53 41.76 39.25Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(410 41.76 39.25)">
+  <path d="M41.76 39.25Q36.97 38.29 38.41 34.46Q41.76 31.34 44.88 34.46Q46.56 38.53 41.76 39.25Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="41.76" cy="39.25" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(147 75.97 56.62)">
+  <path d="M75.97 56.62Q71.22 55.67 72.65 51.88Q75.97 48.79 79.05 51.88Q80.71 55.91 75.97 56.62Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(237 75.97 56.62)">
+  <path d="M75.97 56.62Q71.22 55.67 72.65 51.88Q75.97 48.79 79.05 51.88Q80.71 55.91 75.97 56.62Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(327 75.97 56.62)">
+  <path d="M75.97 56.62Q71.22 55.67 72.65 51.88Q75.97 48.79 79.05 51.88Q80.71 55.91 75.97 56.62Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(417 75.97 56.62)">
+  <path d="M75.97 56.62Q71.22 55.67 72.65 51.88Q75.97 48.79 79.05 51.88Q80.71 55.91 75.97 56.62Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="75.97" cy="56.62" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(154 37.24 65.50)">
+  <path d="M37.24 65.50Q33.04 64.66 34.30 61.30Q37.24 58.58 39.96 61.30Q41.43 64.87 37.24 65.50Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(244 37.24 65.50)">
+  <path d="M37.24 65.50Q33.04 64.66 34.30 61.30Q37.24 58.58 39.96 61.30Q41.43 64.87 37.24 65.50Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(334 37.24 65.50)">
+  <path d="M37.24 65.50Q33.04 64.66 34.30 61.30Q37.24 58.58 39.96 61.30Q41.43 64.87 37.24 65.50Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(424 37.24 65.50)">
+  <path d="M37.24 65.50Q33.04 64.66 34.30 61.30Q37.24 58.58 39.96 61.30Q41.43 64.87 37.24 65.50Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="37.24" cy="65.50" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(161 59.85 33.93)">
+  <path d="M59.85 33.93Q56.20 33.20 57.30 30.28Q59.85 27.91 62.23 30.28Q63.50 33.38 59.85 33.93Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(251 59.85 33.93)">
+  <path d="M59.85 33.93Q56.20 33.20 57.30 30.28Q59.85 27.91 62.23 30.28Q63.50 33.38 59.85 33.93Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(341 59.85 33.93)">
+  <path d="M59.85 33.93Q56.20 33.20 57.30 30.28Q59.85 27.91 62.23 30.28Q63.50 33.38 59.85 33.93Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(431 59.85 33.93)">
+  <path d="M59.85 33.93Q56.20 33.20 57.30 30.28Q59.85 27.91 62.23 30.28Q63.50 33.38 59.85 33.93Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="59.85" cy="33.93" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(168 66.23 72.22)">
+  <path d="M66.23 72.22Q62.62 71.50 63.70 68.61Q66.23 66.26 68.58 68.61Q69.84 71.68 66.23 72.22Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(258 66.23 72.22)">
+  <path d="M66.23 72.22Q62.62 71.50 63.70 68.61Q66.23 66.26 68.58 68.61Q69.84 71.68 66.23 72.22Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(348 66.23 72.22)">
+  <path d="M66.23 72.22Q62.62 71.50 63.70 68.61Q66.23 66.26 68.58 68.61Q69.84 71.68 66.23 72.22Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(438 66.23 72.22)">
+  <path d="M66.23 72.22Q62.62 71.50 63.70 68.61Q66.23 66.26 68.58 68.61Q69.84 71.68 66.23 72.22Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="66.23" cy="72.22" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(175 33.05 47.49)">
+  <path d="M33.05 47.49Q28.94 46.67 30.17 43.38Q33.05 40.70 35.72 43.38Q37.16 46.87 33.05 47.49Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(265 33.05 47.49)">
+  <path d="M33.05 47.49Q28.94 46.67 30.17 43.38Q33.05 40.70 35.72 43.38Q37.16 46.87 33.05 47.49Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(355 33.05 47.49)">
+  <path d="M33.05 47.49Q28.94 46.67 30.17 43.38Q33.05 40.70 35.72 43.38Q37.16 46.87 33.05 47.49Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(445 33.05 47.49)">
+  <path d="M33.05 47.49Q28.94 46.67 30.17 43.38Q33.05 40.70 35.72 43.38Q37.16 46.87 33.05 47.49Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="33.05" cy="47.49" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(182 76.32 44.84)">
+  <path d="M76.32 44.84Q71.62 43.90 73.03 40.14Q76.32 37.09 79.37 40.14Q81.02 44.13 76.32 44.84Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(272 76.32 44.84)">
+  <path d="M76.32 44.84Q71.62 43.90 73.03 40.14Q76.32 37.09 79.37 40.14Q81.02 44.13 76.32 44.84Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(362 76.32 44.84)">
+  <path d="M76.32 44.84Q71.62 43.90 73.03 40.14Q76.32 37.09 79.37 40.14Q81.02 44.13 76.32 44.84Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(452 76.32 44.84)">
+  <path d="M76.32 44.84Q71.62 43.90 73.03 40.14Q76.32 37.09 79.37 40.14Q81.02 44.13 76.32 44.84Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="76.32" cy="44.84" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(189 45.77 74.53)">
+  <path d="M45.77 74.53Q40.94 73.56 42.39 69.71Q45.77 66.57 48.90 69.71Q50.59 73.80 45.77 74.53Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(279 45.77 74.53)">
+  <path d="M45.77 74.53Q40.94 73.56 42.39 69.71Q45.77 66.57 48.90 69.71Q50.59 73.80 45.77 74.53Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(369 45.77 74.53)">
+  <path d="M45.77 74.53Q40.94 73.56 42.39 69.71Q45.77 66.57 48.90 69.71Q50.59 73.80 45.77 74.53Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(459 45.77 74.53)">
+  <path d="M45.77 74.53Q40.94 73.56 42.39 69.71Q45.77 66.57 48.90 69.71Q50.59 73.80 45.77 74.53Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="45.77" cy="74.53" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(196 46.75 32.69)">
+  <path d="M46.75 32.69Q42.38 31.81 43.69 28.31Q46.75 25.46 49.60 28.31Q51.13 32.03 46.75 32.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(286 46.75 32.69)">
+  <path d="M46.75 32.69Q42.38 31.81 43.69 28.31Q46.75 25.46 49.60 28.31Q51.13 32.03 46.75 32.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(376 46.75 32.69)">
+  <path d="M46.75 32.69Q42.38 31.81 43.69 28.31Q46.75 25.46 49.60 28.31Q51.13 32.03 46.75 32.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(466 46.75 32.69)">
+  <path d="M46.75 32.69Q42.38 31.81 43.69 28.31Q46.75 25.46 49.60 28.31Q51.13 32.03 46.75 32.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="46.75" cy="32.69" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(203 76.94 64.72)">
+  <path d="M76.94 64.72Q73.17 63.97 74.30 60.95Q76.94 58.50 79.39 60.95Q80.71 64.15 76.94 64.72Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(293 76.94 64.72)">
+  <path d="M76.94 64.72Q73.17 63.97 74.30 60.95Q76.94 58.50 79.39 60.95Q80.71 64.15 76.94 64.72Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(383 76.94 64.72)">
+  <path d="M76.94 64.72Q73.17 63.97 74.30 60.95Q76.94 58.50 79.39 60.95Q80.71 64.15 76.94 64.72Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(473 76.94 64.72)">
+  <path d="M76.94 64.72Q73.17 63.97 74.30 60.95Q76.94 58.50 79.39 60.95Q80.71 64.15 76.94 64.72Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="76.94" cy="64.72" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(210 30.64 59.98)">
+  <path d="M30.64 59.98Q27.08 59.26 28.15 56.42Q30.64 54.10 32.95 56.42Q34.19 59.44 30.64 59.98Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(300 30.64 59.98)">
+  <path d="M30.64 59.98Q27.08 59.26 28.15 56.42Q30.64 54.10 32.95 56.42Q34.19 59.44 30.64 59.98Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(390 30.64 59.98)">
+  <path d="M30.64 59.98Q27.08 59.26 28.15 56.42Q30.64 54.10 32.95 56.42Q34.19 59.44 30.64 59.98Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(480 30.64 59.98)">
+  <path d="M30.64 59.98Q27.08 59.26 28.15 56.42Q30.64 54.10 32.95 56.42Q34.19 59.44 30.64 59.98Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="30.64" cy="59.98" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(217 68.85 33.97)">
+  <path d="M68.85 33.97Q64.91 33.18 66.09 30.03Q68.85 27.47 71.41 30.03Q72.78 33.38 68.85 33.97Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(307 68.85 33.97)">
+  <path d="M68.85 33.97Q64.91 33.18 66.09 30.03Q68.85 27.47 71.41 30.03Q72.78 33.38 68.85 33.97Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(397 68.85 33.97)">
+  <path d="M68.85 33.97Q64.91 33.18 66.09 30.03Q68.85 27.47 71.41 30.03Q72.78 33.38 68.85 33.97Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(487 68.85 33.97)">
+  <path d="M68.85 33.97Q64.91 33.18 66.09 30.03Q68.85 27.47 71.41 30.03Q72.78 33.38 68.85 33.97Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="68.85" cy="33.97" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(224 59.41 77.84)">
+  <path d="M59.41 77.84Q54.85 76.93 56.22 73.28Q59.41 70.32 62.37 73.28Q63.97 77.16 59.41 77.84Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(314 59.41 77.84)">
+  <path d="M59.41 77.84Q54.85 76.93 56.22 73.28Q59.41 70.32 62.37 73.28Q63.97 77.16 59.41 77.84Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(404 59.41 77.84)">
+  <path d="M59.41 77.84Q54.85 76.93 56.22 73.28Q59.41 70.32 62.37 73.28Q63.97 77.16 59.41 77.84Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(494 59.41 77.84)">
+  <path d="M59.41 77.84Q54.85 76.93 56.22 73.28Q59.41 70.32 62.37 73.28Q63.97 77.16 59.41 77.84Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="59.41" cy="77.84" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(231 34.12 38.96)">
+  <path d="M34.12 38.96Q29.27 37.99 30.73 34.11Q34.12 30.96 37.27 34.11Q38.97 38.24 34.12 38.96Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(321 34.12 38.96)">
+  <path d="M34.12 38.96Q29.27 37.99 30.73 34.11Q34.12 30.96 37.27 34.11Q38.97 38.24 34.12 38.96Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(411 34.12 38.96)">
+  <path d="M34.12 38.96Q29.27 37.99 30.73 34.11Q34.12 30.96 37.27 34.11Q38.97 38.24 34.12 38.96Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(501 34.12 38.96)">
+  <path d="M34.12 38.96Q29.27 37.99 30.73 34.11Q34.12 30.96 37.27 34.11Q38.97 38.24 34.12 38.96Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="34.12" cy="38.96" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(238 81.71 51.94)">
+  <path d="M81.71 51.94Q77.16 51.03 78.53 47.40Q81.71 44.44 84.66 47.40Q86.25 51.26 81.71 51.94Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(328 81.71 51.94)">
+  <path d="M81.71 51.94Q77.16 51.03 78.53 47.40Q81.71 44.44 84.66 47.40Q86.25 51.26 81.71 51.94Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(418 81.71 51.94)">
+  <path d="M81.71 51.94Q77.16 51.03 78.53 47.40Q81.71 44.44 84.66 47.40Q86.25 51.26 81.71 51.94Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(508 81.71 51.94)">
+  <path d="M81.71 51.94Q77.16 51.03 78.53 47.40Q81.71 44.44 84.66 47.40Q86.25 51.26 81.71 51.94Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="81.71" cy="51.94" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(245 36.54 72.56)">
+  <path d="M36.54 72.56Q32.62 71.78 33.80 68.64Q36.54 66.09 39.09 68.64Q40.46 71.97 36.54 72.56Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(335 36.54 72.56)">
+  <path d="M36.54 72.56Q32.62 71.78 33.80 68.64Q36.54 66.09 39.09 68.64Q40.46 71.97 36.54 72.56Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(425 36.54 72.56)">
+  <path d="M36.54 72.56Q32.62 71.78 33.80 68.64Q36.54 66.09 39.09 68.64Q40.46 71.97 36.54 72.56Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(515 36.54 72.56)">
+  <path d="M36.54 72.56Q32.62 71.78 33.80 68.64Q36.54 66.09 39.09 68.64Q40.46 71.97 36.54 72.56Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="36.54" cy="72.56" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(252 55.13 28.37)">
+  <path d="M55.13 28.37Q51.58 27.65 52.64 24.81Q55.13 22.50 57.44 24.81Q58.69 27.83 55.13 28.37Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(342 55.13 28.37)">
+  <path d="M55.13 28.37Q51.58 27.65 52.64 24.81Q55.13 22.50 57.44 24.81Q58.69 27.83 55.13 28.37Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(432 55.13 28.37)">
+  <path d="M55.13 28.37Q51.58 27.65 52.64 24.81Q55.13 22.50 57.44 24.81Q58.69 27.83 55.13 28.37Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(522 55.13 28.37)">
+  <path d="M55.13 28.37Q51.58 27.65 52.64 24.81Q55.13 22.50 57.44 24.81Q58.69 27.83 55.13 28.37Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="55.13" cy="28.37" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(259 73.77 73.24)">
+  <path d="M73.77 73.24Q69.99 72.49 71.13 69.46Q73.77 67.00 76.23 69.46Q77.56 72.68 73.77 73.24Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(349 73.77 73.24)">
+  <path d="M73.77 73.24Q69.99 72.49 71.13 69.46Q73.77 67.00 76.23 69.46Q77.56 72.68 73.77 73.24Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(439 73.77 73.24)">
+  <path d="M73.77 73.24Q69.99 72.49 71.13 69.46Q73.77 67.00 76.23 69.46Q77.56 72.68 73.77 73.24Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(529 73.77 73.24)">
+  <path d="M73.77 73.24Q69.99 72.49 71.13 69.46Q73.77 67.00 76.23 69.46Q77.56 72.68 73.77 73.24Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="73.77" cy="73.24" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(266 26.81 51.57)">
+  <path d="M26.81 51.57Q22.42 50.70 23.74 47.18Q26.81 44.33 29.67 47.18Q31.20 50.91 26.81 51.57Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(356 26.81 51.57)">
+  <path d="M26.81 51.57Q22.42 50.70 23.74 47.18Q26.81 44.33 29.67 47.18Q31.20 50.91 26.81 51.57Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(446 26.81 51.57)">
+  <path d="M26.81 51.57Q22.42 50.70 23.74 47.18Q26.81 44.33 29.67 47.18Q31.20 50.91 26.81 51.57Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(536 26.81 51.57)">
+  <path d="M26.81 51.57Q22.42 50.70 23.74 47.18Q26.81 44.33 29.67 47.18Q31.20 50.91 26.81 51.57Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="26.81" cy="51.57" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(273 77.84 37.88)">
+  <path d="M77.84 37.88Q73.01 36.91 74.46 33.05Q77.84 29.91 80.98 33.05Q82.67 37.15 77.84 37.88Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(363 77.84 37.88)">
+  <path d="M77.84 37.88Q73.01 36.91 74.46 33.05Q77.84 29.91 80.98 33.05Q82.67 37.15 77.84 37.88Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(453 77.84 37.88)">
+  <path d="M77.84 37.88Q73.01 36.91 74.46 33.05Q77.84 29.91 80.98 33.05Q82.67 37.15 77.84 37.88Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(543 77.84 37.88)">
+  <path d="M77.84 37.88Q73.01 36.91 74.46 33.05Q77.84 29.91 80.98 33.05Q82.67 37.15 77.84 37.88Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="77.84" cy="37.88" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(280 49.81 80.57)">
+  <path d="M49.81 80.57Q45.12 79.63 46.53 75.88Q49.81 72.84 52.85 75.88Q54.49 79.87 49.81 80.57Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(370 49.81 80.57)">
+  <path d="M49.81 80.57Q45.12 79.63 46.53 75.88Q49.81 72.84 52.85 75.88Q54.49 79.87 49.81 80.57Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(460 49.81 80.57)">
+  <path d="M49.81 80.57Q45.12 79.63 46.53 75.88Q49.81 72.84 52.85 75.88Q54.49 79.87 49.81 80.57Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(550 49.81 80.57)">
+  <path d="M49.81 80.57Q45.12 79.63 46.53 75.88Q49.81 72.84 52.85 75.88Q54.49 79.87 49.81 80.57Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="49.81" cy="80.57" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(287 39.34 30.87)">
+  <path d="M39.34 30.87Q35.25 30.05 36.47 26.77Q39.34 24.11 42.01 26.77Q43.44 30.25 39.34 30.87Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(377 39.34 30.87)">
+  <path d="M39.34 30.87Q35.25 30.05 36.47 26.77Q39.34 24.11 42.01 26.77Q43.44 30.25 39.34 30.87Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(467 39.34 30.87)">
+  <path d="M39.34 30.87Q35.25 30.05 36.47 26.77Q39.34 24.11 42.01 26.77Q43.44 30.25 39.34 30.87Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(557 39.34 30.87)">
+  <path d="M39.34 30.87Q35.25 30.05 36.47 26.77Q39.34 24.11 42.01 26.77Q43.44 30.25 39.34 30.87Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="39.34" cy="30.87" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(294 83.69 61.31)">
+  <path d="M83.69 61.31Q80.08 60.59 81.16 57.70Q83.69 55.36 86.03 57.70Q87.29 60.77 83.69 61.31Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(384 83.69 61.31)">
+  <path d="M83.69 61.31Q80.08 60.59 81.16 57.70Q83.69 55.36 86.03 57.70Q87.29 60.77 83.69 61.31Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(474 83.69 61.31)">
+  <path d="M83.69 61.31Q80.08 60.59 81.16 57.70Q83.69 55.36 86.03 57.70Q87.29 60.77 83.69 61.31Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(564 83.69 61.31)">
+  <path d="M83.69 61.31Q80.08 60.59 81.16 57.70Q83.69 55.36 86.03 57.70Q87.29 60.77 83.69 61.31Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="83.69" cy="61.31" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(301 28.23 66.78)">
+  <path d="M28.23 66.78Q24.57 66.05 25.67 63.12Q28.23 60.74 30.61 63.12Q31.89 66.23 28.23 66.78Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(391 28.23 66.78)">
+  <path d="M28.23 66.78Q24.57 66.05 25.67 63.12Q28.23 60.74 30.61 63.12Q31.89 66.23 28.23 66.78Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(481 28.23 66.78)">
+  <path d="M28.23 66.78Q24.57 66.05 25.67 63.12Q28.23 60.74 30.61 63.12Q31.89 66.23 28.23 66.78Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(571 28.23 66.78)">
+  <path d="M28.23 66.78Q24.57 66.05 25.67 63.12Q28.23 60.74 30.61 63.12Q31.89 66.23 28.23 66.78Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="28.23" cy="66.78" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(308 65.58 27.46)">
+  <path d="M65.58 27.46Q61.36 26.62 62.63 23.25Q65.58 20.51 68.31 23.25Q69.79 26.83 65.58 27.46Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(398 65.58 27.46)">
+  <path d="M65.58 27.46Q61.36 26.62 62.63 23.25Q65.58 20.51 68.31 23.25Q69.79 26.83 65.58 27.46Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(488 65.58 27.46)">
+  <path d="M65.58 27.46Q61.36 26.62 62.63 23.25Q65.58 20.51 68.31 23.25Q69.79 26.83 65.58 27.46Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(578 65.58 27.46)">
+  <path d="M65.58 27.46Q61.36 26.62 62.63 23.25Q65.58 20.51 68.31 23.25Q69.79 26.83 65.58 27.46Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="65.58" cy="27.46" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(315 66.61 80.51)">
+  <path d="M66.61 80.51Q61.85 79.56 63.28 75.75Q66.61 72.66 69.70 75.75Q71.36 79.79 66.61 80.51Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(405 66.61 80.51)">
+  <path d="M66.61 80.51Q61.85 79.56 63.28 75.75Q66.61 72.66 69.70 75.75Q71.36 79.79 66.61 80.51Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(495 66.61 80.51)">
+  <path d="M66.61 80.51Q61.85 79.56 63.28 75.75Q66.61 72.66 69.70 75.75Q71.36 79.79 66.61 80.51Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(585 66.61 80.51)">
+  <path d="M66.61 80.51Q61.85 79.56 63.28 75.75Q66.61 72.66 69.70 75.75Q71.36 79.79 66.61 80.51Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="66.61" cy="80.51" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(322 26.88 41.61)">
+  <path d="M26.88 41.61Q22.10 40.66 23.53 36.83Q26.88 33.72 29.99 36.83Q31.67 40.89 26.88 41.61Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(412 26.88 41.61)">
+  <path d="M26.88 41.61Q22.10 40.66 23.53 36.83Q26.88 33.72 29.99 36.83Q31.67 40.89 26.88 41.61Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(502 26.88 41.61)">
+  <path d="M26.88 41.61Q22.10 40.66 23.53 36.83Q26.88 33.72 29.99 36.83Q31.67 40.89 26.88 41.61Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(592 26.88 41.61)">
+  <path d="M26.88 41.61Q22.10 40.66 23.53 36.83Q26.88 33.72 29.99 36.83Q31.67 40.89 26.88 41.61Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="26.88" cy="41.61" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(329 85.05 45.38)">
+  <path d="M85.05 45.38Q80.77 44.52 82.05 41.10Q85.05 38.32 87.83 41.10Q89.33 44.74 85.05 45.38Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(419 85.05 45.38)">
+  <path d="M85.05 45.38Q80.77 44.52 82.05 41.10Q85.05 38.32 87.83 41.10Q89.33 44.74 85.05 45.38Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(509 85.05 45.38)">
+  <path d="M85.05 45.38Q80.77 44.52 82.05 41.10Q85.05 38.32 87.83 41.10Q89.33 44.74 85.05 45.38Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(599 85.05 45.38)">
+  <path d="M85.05 45.38Q80.77 44.52 82.05 41.10Q85.05 38.32 87.83 41.10Q89.33 44.74 85.05 45.38Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="85.05" cy="45.38" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(336 38.94 79.50)">
+  <path d="M38.94 79.50Q35.24 78.76 36.35 75.80Q38.94 73.39 41.34 75.80Q42.64 78.94 38.94 79.50Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(426 38.94 79.50)">
+  <path d="M38.94 79.50Q35.24 78.76 36.35 75.80Q38.94 73.39 41.34 75.80Q42.64 78.94 38.94 79.50Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(516 38.94 79.50)">
+  <path d="M38.94 79.50Q35.24 78.76 36.35 75.80Q38.94 73.39 41.34 75.80Q42.64 78.94 38.94 79.50Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(606 38.94 79.50)">
+  <path d="M38.94 79.50Q35.24 78.76 36.35 75.80Q38.94 73.39 41.34 75.80Q42.64 78.94 38.94 79.50Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="38.94" cy="79.50" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(343 48.26 24.81)">
+  <path d="M48.26 24.81Q44.68 24.10 45.75 21.23Q48.26 18.91 50.58 21.23Q51.84 24.28 48.26 24.81Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(433 48.26 24.81)">
+  <path d="M48.26 24.81Q44.68 24.10 45.75 21.23Q48.26 18.91 50.58 21.23Q51.84 24.28 48.26 24.81Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(523 48.26 24.81)">
+  <path d="M48.26 24.81Q44.68 24.10 45.75 21.23Q48.26 18.91 50.58 21.23Q51.84 24.28 48.26 24.81Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(613 48.26 24.81)">
+  <path d="M48.26 24.81Q44.68 24.10 45.75 21.23Q48.26 18.91 50.58 21.23Q51.84 24.28 48.26 24.81Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="48.26" cy="24.81" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(350 81.44 71.46)">
+  <path d="M81.44 71.46Q77.41 70.65 78.61 67.43Q81.44 64.81 84.05 67.43Q85.46 70.85 81.44 71.46Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(440 81.44 71.46)">
+  <path d="M81.44 71.46Q77.41 70.65 78.61 67.43Q81.44 64.81 84.05 67.43Q85.46 70.85 81.44 71.46Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(530 81.44 71.46)">
+  <path d="M81.44 71.46Q77.41 70.65 78.61 67.43Q81.44 64.81 84.05 67.43Q85.46 70.85 81.44 71.46Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(620 81.44 71.46)">
+  <path d="M81.44 71.46Q77.41 70.65 78.61 67.43Q81.44 64.81 84.05 67.43Q85.46 70.85 81.44 71.46Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="81.44" cy="71.46" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(357 22.51 57.77)">
+  <path d="M22.51 57.77Q17.87 56.84 19.26 53.14Q22.51 50.12 25.52 53.14Q27.15 57.08 22.51 57.77Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(447 22.51 57.77)">
+  <path d="M22.51 57.77Q17.87 56.84 19.26 53.14Q22.51 50.12 25.52 53.14Q27.15 57.08 22.51 57.77Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(537 22.51 57.77)">
+  <path d="M22.51 57.77Q17.87 56.84 19.26 53.14Q22.51 50.12 25.52 53.14Q27.15 57.08 22.51 57.77Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(627 22.51 57.77)">
+  <path d="M22.51 57.77Q17.87 56.84 19.26 53.14Q22.51 50.12 25.52 53.14Q27.15 57.08 22.51 57.77Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="22.51" cy="57.77" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(364 76.42 30.58)">
+  <path d="M76.42 30.58Q71.58 29.62 73.03 25.74Q76.42 22.60 79.57 25.74Q81.26 29.86 76.42 30.58Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(454 76.42 30.58)">
+  <path d="M76.42 30.58Q71.58 29.62 73.03 25.74Q76.42 22.60 79.57 25.74Q81.26 29.86 76.42 30.58Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(544 76.42 30.58)">
+  <path d="M76.42 30.58Q71.58 29.62 73.03 25.74Q76.42 22.60 79.57 25.74Q81.26 29.86 76.42 30.58Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(634 76.42 30.58)">
+  <path d="M76.42 30.58Q71.58 29.62 73.03 25.74Q76.42 22.60 79.57 25.74Q81.26 29.86 76.42 30.58Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="76.42" cy="30.58" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(371 56.22 85.01)">
+  <path d="M56.22 85.01Q51.76 84.12 53.10 80.56Q56.22 77.66 59.12 80.56Q60.68 84.35 56.22 85.01Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(461 56.22 85.01)">
+  <path d="M56.22 85.01Q51.76 84.12 53.10 80.56Q56.22 77.66 59.12 80.56Q60.68 84.35 56.22 85.01Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(551 56.22 85.01)">
+  <path d="M56.22 85.01Q51.76 84.12 53.10 80.56Q56.22 77.66 59.12 80.56Q60.68 84.35 56.22 85.01Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(641 56.22 85.01)">
+  <path d="M56.22 85.01Q51.76 84.12 53.10 80.56Q56.22 77.66 59.12 80.56Q60.68 84.35 56.22 85.01Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="56.22" cy="85.01" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(378 31.35 31.69)">
+  <path d="M31.35 31.69Q27.52 30.93 28.67 27.86Q31.35 25.36 33.85 27.86Q35.19 31.12 31.35 31.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(468 31.35 31.69)">
+  <path d="M31.35 31.69Q27.52 30.93 28.67 27.86Q31.35 25.36 33.85 27.86Q35.19 31.12 31.35 31.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(558 31.35 31.69)">
+  <path d="M31.35 31.69Q27.52 30.93 28.67 27.86Q31.35 25.36 33.85 27.86Q35.19 31.12 31.35 31.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(648 31.35 31.69)">
+  <path d="M31.35 31.69Q27.52 30.93 28.67 27.86Q31.35 25.36 33.85 27.86Q35.19 31.12 31.35 31.69Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="31.35" cy="31.69" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(385 88.95 55.61)">
+  <path d="M88.95 55.61Q85.40 54.90 86.46 52.06Q88.95 49.75 91.25 52.06Q92.50 55.08 88.95 55.61Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(475 88.95 55.61)">
+  <path d="M88.95 55.61Q85.40 54.90 86.46 52.06Q88.95 49.75 91.25 52.06Q92.50 55.08 88.95 55.61Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(565 88.95 55.61)">
+  <path d="M88.95 55.61Q85.40 54.90 86.46 52.06Q88.95 49.75 91.25 52.06Q92.50 55.08 88.95 55.61Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(655 88.95 55.61)">
+  <path d="M88.95 55.61Q85.40 54.90 86.46 52.06Q88.95 49.75 91.25 52.06Q92.50 55.08 88.95 55.61Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="88.95" cy="55.61" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(392 28.57 74.32)">
+  <path d="M28.57 74.32Q24.71 73.55 25.86 70.46Q28.57 67.95 31.08 70.46Q32.43 73.74 28.57 74.32Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(482 28.57 74.32)">
+  <path d="M28.57 74.32Q24.71 73.55 25.86 70.46Q28.57 67.95 31.08 70.46Q32.43 73.74 28.57 74.32Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(572 28.57 74.32)">
+  <path d="M28.57 74.32Q24.71 73.55 25.86 70.46Q28.57 67.95 31.08 70.46Q32.43 73.74 28.57 74.32Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(662 28.57 74.32)">
+  <path d="M28.57 74.32Q24.71 73.55 25.86 70.46Q28.57 67.95 31.08 70.46Q32.43 73.74 28.57 74.32Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="28.57" cy="74.32" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(399 59.77 22.13)">
+  <path d="M59.77 22.13Q55.29 21.24 56.64 17.65Q59.77 14.73 62.69 17.65Q64.26 21.46 59.77 22.13Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(489 59.77 22.13)">
+  <path d="M59.77 22.13Q55.29 21.24 56.64 17.65Q59.77 14.73 62.69 17.65Q64.26 21.46 59.77 22.13Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(579 59.77 22.13)">
+  <path d="M59.77 22.13Q55.29 21.24 56.64 17.65Q59.77 14.73 62.69 17.65Q64.26 21.46 59.77 22.13Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(669 59.77 22.13)">
+  <path d="M59.77 22.13Q55.29 21.24 56.64 17.65Q59.77 14.73 62.69 17.65Q64.26 21.46 59.77 22.13Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="59.77" cy="22.13" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(406 74.80 80.73)">
+  <path d="M74.80 80.73Q69.95 79.76 71.40 75.88Q74.80 72.73 77.95 75.88Q79.64 80.00 74.80 80.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(496 74.80 80.73)">
+  <path d="M74.80 80.73Q69.95 79.76 71.40 75.88Q74.80 72.73 77.95 75.88Q79.64 80.00 74.80 80.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(586 74.80 80.73)">
+  <path d="M74.80 80.73Q69.95 79.76 71.40 75.88Q74.80 72.73 77.95 75.88Q79.64 80.00 74.80 80.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(676 74.80 80.73)">
+  <path d="M74.80 80.73Q69.95 79.76 71.40 75.88Q74.80 72.73 77.95 75.88Q79.64 80.00 74.80 80.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="74.80" cy="80.73" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(413 20.70 46.67)">
+  <path d="M20.70 46.67Q16.09 45.74 17.47 42.05Q20.70 39.05 23.70 42.05Q25.32 45.97 20.70 46.67Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(503 20.70 46.67)">
+  <path d="M20.70 46.67Q16.09 45.74 17.47 42.05Q20.70 39.05 23.70 42.05Q25.32 45.97 20.70 46.67Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(593 20.70 46.67)">
+  <path d="M20.70 46.67Q16.09 45.74 17.47 42.05Q20.70 39.05 23.70 42.05Q25.32 45.97 20.70 46.67Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(683 20.70 46.67)">
+  <path d="M20.70 46.67Q16.09 45.74 17.47 42.05Q20.70 39.05 23.70 42.05Q25.32 45.97 20.70 46.67Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="20.70" cy="46.67" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(420 85.87 37.73)">
+  <path d="M85.87 37.73Q81.87 36.93 83.07 33.72Q85.87 31.12 88.47 33.72Q89.88 37.13 85.87 37.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(510 85.87 37.73)">
+  <path d="M85.87 37.73Q81.87 36.93 83.07 33.72Q85.87 31.12 88.47 33.72Q89.88 37.13 85.87 37.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(600 85.87 37.73)">
+  <path d="M85.87 37.73Q81.87 36.93 83.07 33.72Q85.87 31.12 88.47 33.72Q89.88 37.13 85.87 37.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(690 85.87 37.73)">
+  <path d="M85.87 37.73Q81.87 36.93 83.07 33.72Q85.87 31.12 88.47 33.72Q89.88 37.13 85.87 37.73Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="85.87" cy="37.73" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(427 43.97 85.65)">
+  <path d="M43.97 85.65Q40.39 84.94 41.47 82.08Q43.97 79.76 46.29 82.08Q47.54 85.12 43.97 85.65Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(517 43.97 85.65)">
+  <path d="M43.97 85.65Q40.39 84.94 41.47 82.08Q43.97 79.76 46.29 82.08Q47.54 85.12 43.97 85.65Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(607 43.97 85.65)">
+  <path d="M43.97 85.65Q40.39 84.94 41.47 82.08Q43.97 79.76 46.29 82.08Q47.54 85.12 43.97 85.65Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(697 43.97 85.65)">
+  <path d="M43.97 85.65Q40.39 84.94 41.47 82.08Q43.97 79.76 46.29 82.08Q47.54 85.12 43.97 85.65Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="43.97" cy="85.65" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(434 40.02 23.48)">
+  <path d="M40.02 23.48Q36.31 22.74 37.42 19.76Q40.02 17.35 42.44 19.76Q43.74 22.92 40.02 23.48Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(524 40.02 23.48)">
+  <path d="M40.02 23.48Q36.31 22.74 37.42 19.76Q40.02 17.35 42.44 19.76Q43.74 22.92 40.02 23.48Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(614 40.02 23.48)">
+  <path d="M40.02 23.48Q36.31 22.74 37.42 19.76Q40.02 17.35 42.44 19.76Q43.74 22.92 40.02 23.48Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(704 40.02 23.48)">
+  <path d="M40.02 23.48Q36.31 22.74 37.42 19.76Q40.02 17.35 42.44 19.76Q43.74 22.92 40.02 23.48Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="40.02" cy="23.48" r="0.65" fill="#dad8b7" />
+  <g transform="rotate(441 88.47 67.20)">
+  <path d="M88.47 67.20Q84.16 66.34 85.46 62.89Q88.47 60.09 91.27 62.89Q92.78 66.55 88.47 67.20Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(531 88.47 67.20)">
+  <path d="M88.47 67.20Q84.16 66.34 85.46 62.89Q88.47 60.09 91.27 62.89Q92.78 66.55 88.47 67.20Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(621 88.47 67.20)">
+  <path d="M88.47 67.20Q84.16 66.34 85.46 62.89Q88.47 60.09 91.27 62.89Q92.78 66.55 88.47 67.20Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <g transform="rotate(711 88.47 67.20)">
+  <path d="M88.47 67.20Q84.16 66.34 85.46 62.89Q88.47 60.09 91.27 62.89Q92.78 66.55 88.47 67.20Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
+  </g>
+  <circle cx="88.47" cy="67.20" r="0.65" fill="#dad8b7" />
+</svg>

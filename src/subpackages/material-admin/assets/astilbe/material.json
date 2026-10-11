@@ -1,0 +1,29 @@
+{
+  "id": "astilbe",
+  "category": "flower",
+  "name": "落新妇",
+  "group": "filler",
+  "introduction": "细小花朵组成蓬松的羽毛状花序，适合柔化花束边缘，增加轻盈质感。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "浅粉",
+      "value": "#d8a9b5"
+    },
+    {
+      "name": "奶白",
+      "value": "#e5ded1"
+    },
+    {
+      "name": "玫红",
+      "value": "#b77591"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

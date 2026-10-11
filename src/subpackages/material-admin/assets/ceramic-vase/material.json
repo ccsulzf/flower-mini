@@ -1,9 +1,9 @@
 {
   "id": "ceramic-vase",
   "category": "vase",
-  "name": "陶瓶",
-  "introduction": "暖白陶质花瓶，适合日常桌面插花。",
-  "version": 1,
+  "name": "暖白陶瓷花瓶",
+  "introduction": "暖白色陶瓷花瓶，瓶口较宽，适合摆放多枝花材和日常桌面插花。",
+  "version": 3,
   "geometry": {
     "width": 140,
     "height": 170,

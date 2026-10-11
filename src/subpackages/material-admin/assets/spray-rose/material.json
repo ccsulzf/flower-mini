@@ -1,0 +1,29 @@
+{
+  "id": "spray-rose",
+  "category": "flower",
+  "name": "多头玫瑰",
+  "group": "filler",
+  "introduction": "一枝上分出多朵小玫瑰，花头大小错落，适合填充花束空隙和增加层次。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "浅粉",
+      "value": "#d2a0ac"
+    },
+    {
+      "name": "奶白",
+      "value": "#e8decf"
+    },
+    {
+      "name": "蜜桃",
+      "value": "#d6aa90"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

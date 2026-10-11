@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370"><path d="M55 365Q65 225 55 148" fill="none" stroke="__COLOR__" stroke-width="3"/><path d="M55 158C5 138 7 114 16 101L38 121L17 89Q7 70 19 57L42 92L23 42Q31 22 47 33L54 69L56 21Q77 17 86 34L68 84L94 46Q109 58 99 77L75 109L101 86Q111 109 92 129L70 140L86 134Q77 154 55 158Z" fill="__COLOR__" stroke="#6c8268" stroke-width="0.8"/><path d="M55 153Q51 95 56 32" fill="none" stroke="#6c8268" stroke-width="1.2"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370">
+  <defs>
+  <linearGradient id="monstera-shade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="180">
+  <stop offset="0" stop-color="__COLOR__"/>
+  <stop offset="1" stop-color="#466b53"/>
+  </linearGradient>
+  </defs>
+  <path d="M55 370C61 284 67 204 55 153" fill="none" stroke="__COLOR__" stroke-width="2.6" />
+  <path d="M55 165C26 154 9 137 12 119L35 134Q37 132 34 128L13 111Q6 94 14 80L40 111Q44 112 40 104L15 69Q12 51 25 43L46 91Q49 92 46 80L29 31Q43 20 53 40L55 70L58 29Q74 17 85 37L67 84Q66 91 70 87L92 46Q106 53 101 75L76 108Q74 114 79 110L103 83Q111 103 97 121L76 136Q75 141 80 138L95 132Q84 158 55 165Z" fill="__COLOR__" stroke="#5e7b60" stroke-width=".6"/>
+  <path d="M55 165C26 154 9 137 12 119L35 134Q37 132 34 128L13 111Q6 94 14 80L40 111Q44 112 40 104L15 69Q12 51 25 43L46 91Q49 92 46 80L29 31Q43 20 53 40L55 70L58 29Q74 17 85 37L67 84Q66 91 70 87L92 46Q106 53 101 75L76 108Q74 114 79 110L103 83Q111 103 97 121L76 136Q75 141 80 138L95 132Q84 158 55 165Z" fill="url(#monstera-shade)" opacity=".25"/>
+  <path d="M55 162Q51 98 58 37M54 133L22 117M54 110L19 78M54 83L33 43M56 132L93 112M56 105L93 72M56 78L75 43" fill="none" stroke="#b7c49a" stroke-width="0.8" stroke-opacity=".65"/>
+</svg>

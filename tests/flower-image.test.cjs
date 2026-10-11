@@ -111,5 +111,5 @@ test('新工作台从空作品开始，未加载目录花瓶时不能导出内�
   page.finish()
   assert.equal(page.showFinish.value, false)
   assert.equal(f.requests.length, 0)
-  assert.equal(f.notices.at(-1), '请先选择花瓶或包装')
+  assert.equal(f.notices.at(-1), '花瓶正在准备，请稍后再完成')
 })

@@ -1,8 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="260" viewBox="0 0 110 260">
-  <path d="M55 0C32 68 76 190 55 260" fill="none" stroke="#73835c" stroke-width="3.5"/>
-  <g fill="#819566" stroke="#5e754d" stroke-width="1">
-    <path d="M48 132L37 108L30 110L29 102L21 105L18 97L8 102L13 111L10 116L19 119L18 125L28 126L29 132Z"/>
-    <path d="M58 178L70 150L77 152L79 144L86 147L90 139L101 146L95 153L99 160L89 162L90 169L79 170L76 177Z"/>
-  </g>
-  <path d="M48 132L15 106M58 178L94 148" fill="none" stroke="#62784f" stroke-width="1"/>
+<path d="M55 0C51 68 60 165 55 260" fill="none" stroke="#748668" stroke-width="2.1"/><path d="M54.6 0C50.7 67 59.4 165 54.6 260" fill="none" stroke="#bdc5a0" stroke-width=".45"/><g transform="translate(54 88) rotate(-57) scale(0.92)"><path d="M0 0C-15 -4 -22 -22 -12 -35L-8 -33L-5 -40L-1 -37L3 -43C16 -31 18 -10 0 0Z" fill="#829773" stroke="#637d58" stroke-width=".5"/><path d="M0 -2Q-3 -18 -2 -36M-2 -11L-11 -18M-2 -19L7 -27M-2 -25L-10 -30" fill="none" stroke="#bbc4a1" stroke-width=".55"/></g><g transform="translate(55 148) rotate(58) scale(1.07)"><path d="M0 0C-15 -4 -22 -22 -12 -35L-8 -33L-5 -40L-1 -37L3 -43C16 -31 18 -10 0 0Z" fill="#829773" stroke="#637d58" stroke-width=".5"/><path d="M0 -2Q-3 -18 -2 -36M-2 -11L-11 -18M-2 -19L7 -27M-2 -25L-10 -30" fill="none" stroke="#bbc4a1" stroke-width=".55"/></g><g transform="translate(57 192) rotate(-64) scale(0.73)"><path d="M0 0C-15 -4 -22 -22 -12 -35L-8 -33L-5 -40L-1 -37L3 -43C16 -31 18 -10 0 0Z" fill="#829773" stroke="#637d58" stroke-width=".5"/><path d="M0 -2Q-3 -18 -2 -36M-2 -11L-11 -18M-2 -19L7 -27M-2 -25L-10 -30" fill="none" stroke="#bbc4a1" stroke-width=".55"/></g><path d="M55 5Q43 3 37 -7Q51 -7 55 0Q58 -7 73 -8Q66 4 55 5Z" fill="#829773" />
 </svg>

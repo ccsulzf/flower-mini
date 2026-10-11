@@ -1,0 +1,29 @@
+{
+  "id": "oncidium",
+  "category": "flower",
+  "name": "文心兰",
+  "group": "filler",
+  "introduction": "小花唇瓣像舞裙，花枝轻巧、分枝疏朗，适合增加花束的轻盈线条。",
+  "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
+  "version": 2,
+  "colors": [
+    {
+      "name": "金黄",
+      "value": "#d8bb6c"
+    },
+    {
+      "name": "浅黄",
+      "value": "#e0ce96"
+    },
+    {
+      "name": "铜橙",
+      "value": "#cda077"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

@@ -1,0 +1,25 @@
+[
+  {
+    "IndexName": "owner_updated",
+    "MgoKeySchema": {
+      "MgoIndexKeys": [
+        {
+          "Name": "user_id",
+          "Direction": "1",
+          "Type": "varchar"
+        },
+        {
+          "Name": "updatedAt",
+          "Direction": "-1",
+          "Type": "long"
+        },
+        {
+          "Name": "_id",
+          "Direction": "-1",
+          "Type": "varchar"
+        }
+      ],
+      "MgoIsUnique": false
+    }
+  }
+]

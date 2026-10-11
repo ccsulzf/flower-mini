@@ -1,11 +1,11 @@
 {
   "id": "statice",
   "category": "flower",
-  "name": "补血草",
+  "name": "勿忘我（补血草）",
   "group": "filler",
-  "introduction": "分枝顶端聚集细小花簇，适合点缀色彩与层次。",
+  "introduction": "花店常称勿忘我，植物名称为补血草。细枝顶端聚集小花簇，适合作为配花或干花素材。",
   "flowerMeaning": "长久的思念（常见象征表达，仅供创作参考）",
-  "version": 1,
+  "version": 4,
   "colors": [
     {
       "name": "淡紫",

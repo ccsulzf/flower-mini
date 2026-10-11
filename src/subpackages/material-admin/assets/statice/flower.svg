@@ -1,1 +1,527 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><path d="M55 104Q55 49 25 35" fill="none" stroke="#82976b" stroke-width="1.3"/><path d="M55 104Q55 39 40 25" fill="none" stroke="#82976b" stroke-width="1.3"/><path d="M55 104Q55 32 59 18" fill="none" stroke="#82976b" stroke-width="1.3"/><path d="M55 104Q55 46 77 32" fill="none" stroke="#82976b" stroke-width="1.3"/><path d="M55 104Q55 67 87 53" fill="none" stroke="#82976b" stroke-width="1.3"/><path d="M55 104Q55 66 40 52" fill="none" stroke="#82976b" stroke-width="1.3"/><path d="M55 104Q55 62 59 48" fill="none" stroke="#82976b" stroke-width="1.3"/><ellipse cx="21" cy="31.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 21 33)"/><ellipse cx="21" cy="31.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 21 33)"/><ellipse cx="21" cy="31.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 21 33)"/><ellipse cx="21" cy="31.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 21 33)"/><ellipse cx="21" cy="31.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 21 33)"/><circle cx="21" cy="33" r="0.75" fill="#cfb767"/><ellipse cx="27" cy="29.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 27 31)"/><ellipse cx="27" cy="29.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 27 31)"/><ellipse cx="27" cy="29.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 27 31)"/><ellipse cx="27" cy="29.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 27 31)"/><ellipse cx="27" cy="29.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 27 31)"/><circle cx="27" cy="31" r="0.75" fill="#cfb767"/><ellipse cx="29" cy="36.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 29 38)"/><ellipse cx="29" cy="36.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 29 38)"/><ellipse cx="29" cy="36.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 29 38)"/><ellipse cx="29" cy="36.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 29 38)"/><ellipse cx="29" cy="36.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 29 38)"/><circle cx="29" cy="38" r="0.75" fill="#cfb767"/><ellipse cx="23" cy="37.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 23 39)"/><ellipse cx="23" cy="37.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 23 39)"/><ellipse cx="23" cy="37.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 23 39)"/><ellipse cx="23" cy="37.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 23 39)"/><ellipse cx="23" cy="37.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 23 39)"/><circle cx="23" cy="39" r="0.75" fill="#cfb767"/><ellipse cx="36" cy="21.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 36 23)"/><ellipse cx="36" cy="21.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 36 23)"/><ellipse cx="36" cy="21.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 36 23)"/><ellipse cx="36" cy="21.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 36 23)"/><ellipse cx="36" cy="21.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 36 23)"/><circle cx="36" cy="23" r="0.75" fill="#cfb767"/><ellipse cx="42" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 42 21)"/><ellipse cx="42" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 42 21)"/><ellipse cx="42" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 42 21)"/><ellipse cx="42" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 42 21)"/><ellipse cx="42" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 42 21)"/><circle cx="42" cy="21" r="0.75" fill="#cfb767"/><ellipse cx="44" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 44 28)"/><ellipse cx="44" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 44 28)"/><ellipse cx="44" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 44 28)"/><ellipse cx="44" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 44 28)"/><ellipse cx="44" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 44 28)"/><circle cx="44" cy="28" r="0.75" fill="#cfb767"/><ellipse cx="38" cy="27.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 38 29)"/><ellipse cx="38" cy="27.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 38 29)"/><ellipse cx="38" cy="27.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 38 29)"/><ellipse cx="38" cy="27.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 38 29)"/><ellipse cx="38" cy="27.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 38 29)"/><circle cx="38" cy="29" r="0.75" fill="#cfb767"/><ellipse cx="55" cy="14.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 55 16)"/><ellipse cx="55" cy="14.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 55 16)"/><ellipse cx="55" cy="14.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 55 16)"/><ellipse cx="55" cy="14.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 55 16)"/><ellipse cx="55" cy="14.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 55 16)"/><circle cx="55" cy="16" r="0.75" fill="#cfb767"/><ellipse cx="61" cy="12.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 61 14)"/><ellipse cx="61" cy="12.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 61 14)"/><ellipse cx="61" cy="12.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 61 14)"/><ellipse cx="61" cy="12.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 61 14)"/><ellipse cx="61" cy="12.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 61 14)"/><circle cx="61" cy="14" r="0.75" fill="#cfb767"/><ellipse cx="63" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 63 21)"/><ellipse cx="63" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 63 21)"/><ellipse cx="63" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 63 21)"/><ellipse cx="63" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 63 21)"/><ellipse cx="63" cy="19.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 63 21)"/><circle cx="63" cy="21" r="0.75" fill="#cfb767"/><ellipse cx="57" cy="20.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 57 22)"/><ellipse cx="57" cy="20.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 57 22)"/><ellipse cx="57" cy="20.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 57 22)"/><ellipse cx="57" cy="20.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 57 22)"/><ellipse cx="57" cy="20.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 57 22)"/><circle cx="57" cy="22" r="0.75" fill="#cfb767"/><ellipse cx="73" cy="28.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 73 30)"/><ellipse cx="73" cy="28.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 73 30)"/><ellipse cx="73" cy="28.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 73 30)"/><ellipse cx="73" cy="28.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 73 30)"/><ellipse cx="73" cy="28.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 73 30)"/><circle cx="73" cy="30" r="0.75" fill="#cfb767"/><ellipse cx="79" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 79 28)"/><ellipse cx="79" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 79 28)"/><ellipse cx="79" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 79 28)"/><ellipse cx="79" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 79 28)"/><ellipse cx="79" cy="26.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 79 28)"/><circle cx="79" cy="28" r="0.75" fill="#cfb767"/><ellipse cx="81" cy="33.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 81 35)"/><ellipse cx="81" cy="33.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 81 35)"/><ellipse cx="81" cy="33.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 81 35)"/><ellipse cx="81" cy="33.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 81 35)"/><ellipse cx="81" cy="33.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 81 35)"/><circle cx="81" cy="35" r="0.75" fill="#cfb767"/><ellipse cx="75" cy="34.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 75 36)"/><ellipse cx="75" cy="34.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 75 36)"/><ellipse cx="75" cy="34.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 75 36)"/><ellipse cx="75" cy="34.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 75 36)"/><ellipse cx="75" cy="34.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 75 36)"/><circle cx="75" cy="36" r="0.75" fill="#cfb767"/><ellipse cx="83" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 83 51)"/><ellipse cx="83" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 83 51)"/><ellipse cx="83" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 83 51)"/><ellipse cx="83" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 83 51)"/><ellipse cx="83" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 83 51)"/><circle cx="83" cy="51" r="0.75" fill="#cfb767"/><ellipse cx="89" cy="47.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 89 49)"/><ellipse cx="89" cy="47.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 89 49)"/><ellipse cx="89" cy="47.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 89 49)"/><ellipse cx="89" cy="47.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 89 49)"/><ellipse cx="89" cy="47.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 89 49)"/><circle cx="89" cy="49" r="0.75" fill="#cfb767"/><ellipse cx="91" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 91 56)"/><ellipse cx="91" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 91 56)"/><ellipse cx="91" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 91 56)"/><ellipse cx="91" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 91 56)"/><ellipse cx="91" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 91 56)"/><circle cx="91" cy="56" r="0.75" fill="#cfb767"/><ellipse cx="85" cy="55.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 85 57)"/><ellipse cx="85" cy="55.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 85 57)"/><ellipse cx="85" cy="55.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 85 57)"/><ellipse cx="85" cy="55.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 85 57)"/><ellipse cx="85" cy="55.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 85 57)"/><circle cx="85" cy="57" r="0.75" fill="#cfb767"/><ellipse cx="36" cy="48.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 36 50)"/><ellipse cx="36" cy="48.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 36 50)"/><ellipse cx="36" cy="48.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 36 50)"/><ellipse cx="36" cy="48.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 36 50)"/><ellipse cx="36" cy="48.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 36 50)"/><circle cx="36" cy="50" r="0.75" fill="#cfb767"/><ellipse cx="42" cy="46.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 42 48)"/><ellipse cx="42" cy="46.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 42 48)"/><ellipse cx="42" cy="46.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 42 48)"/><ellipse cx="42" cy="46.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 42 48)"/><ellipse cx="42" cy="46.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 42 48)"/><circle cx="42" cy="48" r="0.75" fill="#cfb767"/><ellipse cx="44" cy="53.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 44 55)"/><ellipse cx="44" cy="53.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 44 55)"/><ellipse cx="44" cy="53.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 44 55)"/><ellipse cx="44" cy="53.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 44 55)"/><ellipse cx="44" cy="53.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 44 55)"/><circle cx="44" cy="55" r="0.75" fill="#cfb767"/><ellipse cx="38" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 38 56)"/><ellipse cx="38" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 38 56)"/><ellipse cx="38" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 38 56)"/><ellipse cx="38" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 38 56)"/><ellipse cx="38" cy="54.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 38 56)"/><circle cx="38" cy="56" r="0.75" fill="#cfb767"/><ellipse cx="55" cy="44.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 55 46)"/><ellipse cx="55" cy="44.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 55 46)"/><ellipse cx="55" cy="44.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 55 46)"/><ellipse cx="55" cy="44.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 55 46)"/><ellipse cx="55" cy="44.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 55 46)"/><circle cx="55" cy="46" r="0.75" fill="#cfb767"/><ellipse cx="61" cy="42.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 61 44)"/><ellipse cx="61" cy="42.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 61 44)"/><ellipse cx="61" cy="42.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 61 44)"/><ellipse cx="61" cy="42.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 61 44)"/><ellipse cx="61" cy="42.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 61 44)"/><circle cx="61" cy="44" r="0.75" fill="#cfb767"/><ellipse cx="63" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 63 51)"/><ellipse cx="63" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 63 51)"/><ellipse cx="63" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 63 51)"/><ellipse cx="63" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 63 51)"/><ellipse cx="63" cy="49.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 63 51)"/><circle cx="63" cy="51" r="0.75" fill="#cfb767"/><ellipse cx="57" cy="50.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(0.0 57 52)"/><ellipse cx="57" cy="50.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(72.0 57 52)"/><ellipse cx="57" cy="50.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(144.0 57 52)"/><ellipse cx="57" cy="50.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(216.0 57 52)"/><ellipse cx="57" cy="50.05" rx="1.5" ry="1.9500000000000002" fill="__COLOR__" stroke="#9e7973" stroke-width=".6" transform="rotate(288.0 57 52)"/><circle cx="57" cy="52" r="0.75" fill="#cfb767"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <path d="M55 104Q50.2 57 23 37" fill="none" stroke="#87976e" stroke-width="0.75" />
+  <path d="M23 37L23.00 37.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="23.00" cy="37.94" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="23.89" cy="37.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="23.55" cy="36.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="22.45" cy="36.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="22.11" cy="37.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="23.00" cy="37.00" r="0.34" fill="#c6b37a" />
+  <circle cx="23.00" cy="37.00" r="0.50" fill="#f8f0da" />
+  <path d="M23 37L20.89 38.43" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="20.89" cy="39.36" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="21.78" cy="38.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="21.44" cy="37.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="20.34" cy="37.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="20.00" cy="38.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="20.89" cy="38.43" r="0.34" fill="#c6b37a" />
+  <path d="M23 37L23.35 34.02" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="23.35" cy="34.96" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="24.24" cy="34.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="23.90" cy="33.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="22.80" cy="33.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="22.46" cy="34.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="23.35" cy="34.02" r="0.34" fill="#c6b37a" />
+  <path d="M23 37L26.01 39.90" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="26.01" cy="40.84" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="26.90" cy="40.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="26.56" cy="39.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="25.46" cy="39.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="25.12" cy="40.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="26.01" cy="39.90" r="0.34" fill="#c6b37a" />
+  <circle cx="26.01" cy="39.90" r="0.50" fill="#f8f0da" />
+  <path d="M23 37L17.37 36.26" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="17.37" cy="37.20" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="18.26" cy="36.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="17.92" cy="35.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="16.82" cy="35.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="16.48" cy="36.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="17.37" cy="36.26" r="0.34" fill="#c6b37a" />
+  <path d="M23 37L28.40 34.47" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="28.40" cy="35.40" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="29.29" cy="34.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="28.95" cy="33.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="27.85" cy="33.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="27.51" cy="34.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="28.40" cy="34.47" r="0.34" fill="#c6b37a" />
+  <path d="M23 37L21.18 42.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="21.18" cy="42.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="22.07" cy="42.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="21.73" cy="41.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="20.63" cy="41.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="20.29" cy="42.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="21.18" cy="42.00" r="0.34" fill="#c6b37a" />
+  <circle cx="21.18" cy="42.00" r="0.50" fill="#f8f0da" />
+  <path d="M23 37L19.51 32.04" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="19.51" cy="32.98" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="20.40" cy="32.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="20.06" cy="31.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="18.96" cy="31.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="18.62" cy="32.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="19.51" cy="32.04" r="0.34" fill="#c6b37a" />
+  <path d="M23 37L30.60 39.05" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="30.60" cy="39.99" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="31.49" cy="39.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="31.15" cy="38.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="30.05" cy="38.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="29.71" cy="39.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="30.60" cy="39.05" r="0.34" fill="#c6b37a" />
+  <path d="M23 37L15.07 39.42" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="15.07" cy="40.35" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="15.96" cy="39.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="15.62" cy="38.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="14.52" cy="38.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="14.18" cy="39.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="15.07" cy="39.42" r="0.34" fill="#c6b37a" />
+  <circle cx="15.07" cy="39.42" r="0.50" fill="#f8f0da" />
+  <path d="M55 104Q52.5 45 38 25" fill="none" stroke="#87976e" stroke-width="0.75" />
+  <path d="M38 25L38.00 25.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="38.00" cy="25.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="38.89" cy="25.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="38.55" cy="24.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="37.45" cy="24.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="37.11" cy="25.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="38.00" cy="25.00" r="0.34" fill="#c6b37a" />
+  <circle cx="38.00" cy="25.00" r="0.50" fill="#f8f0da" />
+  <path d="M38 25L35.89 26.43" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="35.89" cy="27.36" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="36.78" cy="26.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="36.44" cy="25.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="35.34" cy="25.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="35.00" cy="26.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="35.89" cy="26.43" r="0.34" fill="#c6b37a" />
+  <path d="M38 25L38.35 22.02" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="38.35" cy="22.96" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="39.24" cy="22.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="38.90" cy="21.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="37.80" cy="21.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="37.46" cy="22.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="38.35" cy="22.02" r="0.34" fill="#c6b37a" />
+  <path d="M38 25L41.01 27.90" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="41.01" cy="28.84" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="41.90" cy="28.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="41.56" cy="27.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="40.46" cy="27.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="40.12" cy="28.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="41.01" cy="27.90" r="0.34" fill="#c6b37a" />
+  <circle cx="41.01" cy="27.90" r="0.50" fill="#f8f0da" />
+  <path d="M38 25L32.37 24.26" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="32.37" cy="25.20" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="33.26" cy="24.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="32.92" cy="23.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="31.82" cy="23.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="31.48" cy="24.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="32.37" cy="24.26" r="0.34" fill="#c6b37a" />
+  <path d="M38 25L43.40 22.47" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="43.40" cy="23.40" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="44.29" cy="22.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="43.95" cy="21.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="42.85" cy="21.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="42.51" cy="22.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="43.40" cy="22.47" r="0.34" fill="#c6b37a" />
+  <path d="M38 25L36.18 30.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="36.18" cy="30.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="37.07" cy="30.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="36.73" cy="29.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="35.63" cy="29.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="35.29" cy="30.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="36.18" cy="30.00" r="0.34" fill="#c6b37a" />
+  <circle cx="36.18" cy="30.00" r="0.50" fill="#f8f0da" />
+  <path d="M38 25L34.51 20.04" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="34.51" cy="20.98" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="35.40" cy="20.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="35.06" cy="19.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="33.96" cy="19.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="33.62" cy="20.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="34.51" cy="20.04" r="0.34" fill="#c6b37a" />
+  <path d="M38 25L45.60 27.05" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="45.60" cy="27.99" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="46.49" cy="27.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="46.15" cy="26.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="45.05" cy="26.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="44.71" cy="27.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="45.60" cy="27.05" r="0.34" fill="#c6b37a" />
+  <path d="M38 25L30.07 27.42" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="30.07" cy="28.35" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="30.96" cy="27.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="30.62" cy="26.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="29.52" cy="26.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="29.18" cy="27.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="30.07" cy="27.42" r="0.34" fill="#c6b37a" />
+  <circle cx="30.07" cy="27.42" r="0.50" fill="#f8f0da" />
+  <path d="M55 104Q55.3 36 57 16" fill="none" stroke="#87976e" stroke-width="0.75" />
+  <path d="M57 16L57.00 16.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="57.00" cy="16.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="57.89" cy="16.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="57.55" cy="15.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="56.45" cy="15.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="56.11" cy="16.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="57.00" cy="16.00" r="0.34" fill="#c6b37a" />
+  <circle cx="57.00" cy="16.00" r="0.50" fill="#f8f0da" />
+  <path d="M57 16L54.89 17.43" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="54.89" cy="18.36" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="55.78" cy="17.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="55.44" cy="16.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="54.34" cy="16.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="54.00" cy="17.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="54.89" cy="17.43" r="0.34" fill="#c6b37a" />
+  <path d="M57 16L57.35 13.02" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="57.35" cy="13.96" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="58.24" cy="13.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="57.90" cy="12.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="56.80" cy="12.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="56.46" cy="13.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="57.35" cy="13.02" r="0.34" fill="#c6b37a" />
+  <path d="M57 16L60.01 18.90" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="60.01" cy="19.84" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="60.90" cy="19.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="60.56" cy="18.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="59.46" cy="18.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="59.12" cy="19.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="60.01" cy="18.90" r="0.34" fill="#c6b37a" />
+  <circle cx="60.01" cy="18.90" r="0.50" fill="#f8f0da" />
+  <path d="M57 16L51.37 15.26" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="51.37" cy="16.20" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="52.26" cy="15.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="51.92" cy="14.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="50.82" cy="14.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="50.48" cy="15.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="51.37" cy="15.26" r="0.34" fill="#c6b37a" />
+  <path d="M57 16L62.40 13.47" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="62.40" cy="14.40" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="63.29" cy="13.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="62.95" cy="12.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="61.85" cy="12.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="61.51" cy="13.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="62.40" cy="13.47" r="0.34" fill="#c6b37a" />
+  <path d="M57 16L55.18 21.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="55.18" cy="21.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="56.07" cy="21.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="55.73" cy="20.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="54.63" cy="20.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="54.29" cy="21.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="55.18" cy="21.00" r="0.34" fill="#c6b37a" />
+  <circle cx="55.18" cy="21.00" r="0.50" fill="#f8f0da" />
+  <path d="M57 16L53.51 11.04" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="53.51" cy="11.98" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="54.40" cy="11.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="54.06" cy="10.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="52.96" cy="10.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="52.62" cy="11.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="53.51" cy="11.04" r="0.34" fill="#c6b37a" />
+  <path d="M57 16L64.60 18.05" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="64.60" cy="18.99" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="65.49" cy="18.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="65.15" cy="17.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="64.05" cy="17.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="63.71" cy="18.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="64.60" cy="18.05" r="0.34" fill="#c6b37a" />
+  <path d="M57 16L49.07 18.42" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="49.07" cy="19.35" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="49.96" cy="18.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="49.62" cy="17.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="48.52" cy="17.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="48.18" cy="18.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="49.07" cy="18.42" r="0.34" fill="#c6b37a" />
+  <circle cx="49.07" cy="18.42" r="0.50" fill="#f8f0da" />
+  <path d="M55 104Q58.3 51 77 31" fill="none" stroke="#87976e" stroke-width="0.75" />
+  <path d="M77 31L77.00 31.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="77.00" cy="31.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="77.89" cy="31.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="77.55" cy="30.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="76.45" cy="30.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="76.11" cy="31.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="77.00" cy="31.00" r="0.34" fill="#c6b37a" />
+  <circle cx="77.00" cy="31.00" r="0.50" fill="#f8f0da" />
+  <path d="M77 31L74.89 32.43" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="74.89" cy="33.36" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="75.78" cy="32.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="75.44" cy="31.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="74.34" cy="31.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="74.00" cy="32.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="74.89" cy="32.43" r="0.34" fill="#c6b37a" />
+  <path d="M77 31L77.35 28.02" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="77.35" cy="28.96" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="78.24" cy="28.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="77.90" cy="27.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="76.80" cy="27.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="76.46" cy="28.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="77.35" cy="28.02" r="0.34" fill="#c6b37a" />
+  <path d="M77 31L80.01 33.90" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="80.01" cy="34.84" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="80.90" cy="34.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="80.56" cy="33.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="79.46" cy="33.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="79.12" cy="34.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="80.01" cy="33.90" r="0.34" fill="#c6b37a" />
+  <circle cx="80.01" cy="33.90" r="0.50" fill="#f8f0da" />
+  <path d="M77 31L71.37 30.26" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="71.37" cy="31.20" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="72.26" cy="30.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="71.92" cy="29.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="70.82" cy="29.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="70.48" cy="30.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="71.37" cy="30.26" r="0.34" fill="#c6b37a" />
+  <path d="M77 31L82.40 28.47" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="82.40" cy="29.40" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="83.29" cy="28.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="82.95" cy="27.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="81.85" cy="27.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="81.51" cy="28.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="82.40" cy="28.47" r="0.34" fill="#c6b37a" />
+  <path d="M77 31L75.18 36.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="75.18" cy="36.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="76.07" cy="36.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="75.73" cy="35.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="74.63" cy="35.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="74.29" cy="36.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="75.18" cy="36.00" r="0.34" fill="#c6b37a" />
+  <circle cx="75.18" cy="36.00" r="0.50" fill="#f8f0da" />
+  <path d="M77 31L73.51 26.04" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="73.51" cy="26.98" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="74.40" cy="26.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="74.06" cy="25.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="72.96" cy="25.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="72.62" cy="26.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="73.51" cy="26.04" r="0.34" fill="#c6b37a" />
+  <path d="M77 31L84.60 33.05" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="84.60" cy="33.99" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="85.49" cy="33.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="85.15" cy="32.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="84.05" cy="32.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="83.71" cy="33.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="84.60" cy="33.05" r="0.34" fill="#c6b37a" />
+  <path d="M77 31L69.07 33.42" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="69.07" cy="34.35" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="69.96" cy="33.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="69.62" cy="32.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="68.52" cy="32.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="68.18" cy="33.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="69.07" cy="33.42" r="0.34" fill="#c6b37a" />
+  <circle cx="69.07" cy="33.42" r="0.50" fill="#f8f0da" />
+  <path d="M55 104Q60.0 72 88 52" fill="none" stroke="#87976e" stroke-width="0.75" />
+  <path d="M88 52L88.00 52.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="88.00" cy="52.94" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="88.89" cy="52.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="88.55" cy="51.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="87.45" cy="51.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="87.11" cy="52.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="88.00" cy="52.00" r="0.34" fill="#c6b37a" />
+  <circle cx="88.00" cy="52.00" r="0.50" fill="#f8f0da" />
+  <path d="M88 52L85.89 53.43" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="85.89" cy="54.36" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="86.78" cy="53.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="86.44" cy="52.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="85.34" cy="52.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="85.00" cy="53.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="85.89" cy="53.43" r="0.34" fill="#c6b37a" />
+  <path d="M88 52L88.35 49.02" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="88.35" cy="49.96" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="89.24" cy="49.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="88.90" cy="48.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="87.80" cy="48.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="87.46" cy="49.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="88.35" cy="49.02" r="0.34" fill="#c6b37a" />
+  <path d="M88 52L91.01 54.90" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="91.01" cy="55.84" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="91.90" cy="55.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="91.56" cy="54.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="90.46" cy="54.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="90.12" cy="55.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="91.01" cy="54.90" r="0.34" fill="#c6b37a" />
+  <circle cx="91.01" cy="54.90" r="0.50" fill="#f8f0da" />
+  <path d="M88 52L82.37 51.26" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="82.37" cy="52.20" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="83.26" cy="51.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="82.92" cy="50.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="81.82" cy="50.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="81.48" cy="51.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="82.37" cy="51.26" r="0.34" fill="#c6b37a" />
+  <path d="M88 52L93.40 49.47" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="93.40" cy="50.40" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="94.29" cy="49.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="93.95" cy="48.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="92.85" cy="48.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="92.51" cy="49.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="93.40" cy="49.47" r="0.34" fill="#c6b37a" />
+  <path d="M88 52L86.18 57.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="86.18" cy="57.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="87.07" cy="57.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="86.73" cy="56.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="85.63" cy="56.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="85.29" cy="57.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="86.18" cy="57.00" r="0.34" fill="#c6b37a" />
+  <circle cx="86.18" cy="57.00" r="0.50" fill="#f8f0da" />
+  <path d="M88 52L84.51 47.04" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="84.51" cy="47.98" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="85.40" cy="47.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="85.06" cy="46.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="83.96" cy="46.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="83.62" cy="47.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="84.51" cy="47.04" r="0.34" fill="#c6b37a" />
+  <path d="M88 52L95.60 54.05" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="95.60" cy="54.99" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="96.49" cy="54.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="96.15" cy="53.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="95.05" cy="53.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="94.71" cy="54.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="95.60" cy="54.05" r="0.34" fill="#c6b37a" />
+  <path d="M88 52L80.07 54.42" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="80.07" cy="55.35" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="80.96" cy="54.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="80.62" cy="53.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="79.52" cy="53.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="79.18" cy="54.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="80.07" cy="54.42" r="0.34" fill="#c6b37a" />
+  <circle cx="80.07" cy="54.42" r="0.50" fill="#f8f0da" />
+  <path d="M55 104Q52.6 78 39 58" fill="none" stroke="#87976e" stroke-width="0.75" />
+  <path d="M39 58L39.00 58.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="39.00" cy="58.94" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="39.89" cy="58.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="39.55" cy="57.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="38.45" cy="57.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="38.11" cy="58.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="39.00" cy="58.00" r="0.34" fill="#c6b37a" />
+  <circle cx="39.00" cy="58.00" r="0.50" fill="#f8f0da" />
+  <path d="M39 58L36.89 59.43" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="36.89" cy="60.36" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="37.78" cy="59.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="37.44" cy="58.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="36.34" cy="58.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="36.00" cy="59.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="36.89" cy="59.43" r="0.34" fill="#c6b37a" />
+  <path d="M39 58L39.35 55.02" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="39.35" cy="55.96" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="40.24" cy="55.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="39.90" cy="54.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="38.80" cy="54.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="38.46" cy="55.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="39.35" cy="55.02" r="0.34" fill="#c6b37a" />
+  <path d="M39 58L42.01 60.90" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="42.01" cy="61.84" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="42.90" cy="61.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="42.56" cy="60.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="41.46" cy="60.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="41.12" cy="61.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="42.01" cy="60.90" r="0.34" fill="#c6b37a" />
+  <circle cx="42.01" cy="60.90" r="0.50" fill="#f8f0da" />
+  <path d="M39 58L33.37 57.26" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="33.37" cy="58.20" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="34.26" cy="57.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="33.92" cy="56.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="32.82" cy="56.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="32.48" cy="57.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="33.37" cy="57.26" r="0.34" fill="#c6b37a" />
+  <path d="M39 58L44.40 55.47" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="44.40" cy="56.40" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="45.29" cy="55.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="44.95" cy="54.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="43.85" cy="54.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="43.51" cy="55.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="44.40" cy="55.47" r="0.34" fill="#c6b37a" />
+  <path d="M39 58L37.18 63.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="37.18" cy="63.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="38.07" cy="63.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="37.73" cy="62.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="36.63" cy="62.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="36.29" cy="63.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="37.18" cy="63.00" r="0.34" fill="#c6b37a" />
+  <circle cx="37.18" cy="63.00" r="0.50" fill="#f8f0da" />
+  <path d="M39 58L35.51 53.04" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="35.51" cy="53.98" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="36.40" cy="53.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="36.06" cy="52.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="34.96" cy="52.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="34.62" cy="53.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="35.51" cy="53.04" r="0.34" fill="#c6b37a" />
+  <path d="M39 58L46.60 60.05" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="46.60" cy="60.99" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="47.49" cy="60.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="47.15" cy="59.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="46.05" cy="59.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="45.71" cy="60.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="46.60" cy="60.05" r="0.34" fill="#c6b37a" />
+  <path d="M39 58L31.07 60.42" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="31.07" cy="61.35" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="31.96" cy="60.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="31.62" cy="59.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="30.52" cy="59.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="30.18" cy="60.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="31.07" cy="60.42" r="0.34" fill="#c6b37a" />
+  <circle cx="31.07" cy="60.42" r="0.50" fill="#f8f0da" />
+  <path d="M55 104Q56.5 71 65 51" fill="none" stroke="#87976e" stroke-width="0.75" />
+  <path d="M65 51L65.00 51.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="65.00" cy="51.94" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="65.89" cy="51.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="65.55" cy="50.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="64.45" cy="50.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="64.11" cy="51.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="65.00" cy="51.00" r="0.34" fill="#c6b37a" />
+  <circle cx="65.00" cy="51.00" r="0.50" fill="#f8f0da" />
+  <path d="M65 51L62.89 52.43" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="62.89" cy="53.36" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="63.78" cy="52.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="63.44" cy="51.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="62.34" cy="51.67" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="62.00" cy="52.72" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="62.89" cy="52.43" r="0.34" fill="#c6b37a" />
+  <path d="M65 51L65.35 48.02" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="65.35" cy="48.96" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="66.24" cy="48.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="65.90" cy="47.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="64.80" cy="47.27" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="64.46" cy="48.31" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="65.35" cy="48.02" r="0.34" fill="#c6b37a" />
+  <path d="M65 51L68.01 53.90" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="68.01" cy="54.84" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="68.90" cy="54.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="68.56" cy="53.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="67.46" cy="53.15" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="67.12" cy="54.19" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="68.01" cy="53.90" r="0.34" fill="#c6b37a" />
+  <circle cx="68.01" cy="53.90" r="0.50" fill="#f8f0da" />
+  <path d="M65 51L59.37 50.26" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="59.37" cy="51.20" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="60.26" cy="50.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="59.92" cy="49.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="58.82" cy="49.51" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="58.48" cy="50.55" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="59.37" cy="50.26" r="0.34" fill="#c6b37a" />
+  <path d="M65 51L70.40 48.47" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="70.40" cy="49.40" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="71.29" cy="48.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="70.95" cy="47.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="69.85" cy="47.71" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="69.51" cy="48.75" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="70.40" cy="48.47" r="0.34" fill="#c6b37a" />
+  <path d="M65 51L63.18 56.00" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="63.18" cy="56.93" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="64.07" cy="56.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="63.73" cy="55.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="62.63" cy="55.24" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="62.29" cy="56.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="63.18" cy="56.00" r="0.34" fill="#c6b37a" />
+  <circle cx="63.18" cy="56.00" r="0.50" fill="#f8f0da" />
+  <path d="M65 51L61.51 46.04" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="61.51" cy="46.98" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="62.40" cy="46.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="62.06" cy="45.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="60.96" cy="45.28" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="60.62" cy="46.33" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="61.51" cy="46.04" r="0.34" fill="#c6b37a" />
+  <path d="M65 51L72.60 53.05" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="72.60" cy="53.99" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="73.49" cy="53.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="73.15" cy="52.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="72.05" cy="52.29" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="71.71" cy="53.34" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="72.60" cy="53.05" r="0.34" fill="#c6b37a" />
+  <path d="M65 51L57.07 53.42" fill="none" stroke="#88966f" stroke-width="0.3" />
+  <ellipse cx="57.07" cy="54.35" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="57.96" cy="53.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="57.62" cy="52.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="56.52" cy="52.66" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <ellipse cx="56.18" cy="53.70" rx="0.82" ry="1.02" fill="__COLOR__"/>
+  <circle cx="57.07" cy="53.42" r="0.34" fill="#c6b37a" />
+  <circle cx="57.07" cy="53.42" r="0.50" fill="#f8f0da" />
+</svg>
