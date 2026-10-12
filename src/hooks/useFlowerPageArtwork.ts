@@ -10,6 +10,7 @@ import { useArtworkImage } from './useArtworkImage'
 export function useFlowerPageArtwork(options: { savedOnly?: boolean } = {}) {
   const draft = ref<CreationDraft>()
   const title = ref('这束花')
+  const description = ref('')
   const thumbnail = ref('')
   const loading = ref(true)
   const error = ref('')
@@ -41,6 +42,7 @@ export function useFlowerPageArtwork(options: { savedOnly?: boolean } = {}) {
         const work = await useFlowerWorksStore().get(workId)
         value = work.draft
         title.value = work.title
+        description.value = work.description
         thumbnail.value = work.thumbnailUrl || ''
         saved.value = true
       }
@@ -87,5 +89,5 @@ export function useFlowerPageArtwork(options: { savedOnly?: boolean } = {}) {
     alive = false
     images.invalidate()
   })
-  return { draft, title, thumbnail, loading, error, saved, owner, images, channel, current: () => alive && owner.value === uniCloud.getCurrentUserInfo().uid, retry: () => prepare(draft.value, owner.value) }
+  return { draft, title, description, thumbnail, loading, error, saved, owner, images, channel, current: () => alive && owner.value === uniCloud.getCurrentUserInfo().uid, retry: () => prepare(draft.value, owner.value) }
 }

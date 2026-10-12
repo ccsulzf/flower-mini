@@ -45,20 +45,30 @@ export default defineConfig({
   // 主题设置
 
   theme: {
-    // 颜色：用“语义 token”，别在业务里裸写 #xxxxxx
     colors: {
-      primary: '#0B5CAB',
-      primaryStrong: '#0A477F',
-      surface: '#F2F7FD',
-      surfaceCard: '#FFFFFF',
-      surfaceRow: '#F1F5F9',
-      textBase: '#0F172A',
-      textSoft: '#425466',
-      positive: '#0B5CAB',
-      neutral: '#A98A35',
-      negative: '#C24157',
-      muted: '#64748B',
-      subtle: '#94A3B8',
+      page: '#F6F3EB',
+      surface: '#FFFDF7',
+      surfaceMuted: '#F0EFE6',
+      ink: '#3F463D',
+      inkMuted: '#737B6C',
+      brand: '#74806B',
+      brandStrong: '#596451',
+      brandSoft: '#DFE6D7',
+      line: '#DDE1D4',
+      danger: '#A85F62',
+      dangerSoft: '#F7E9E7',
+      // 兼容现有管理页和演示页的旧语义名。
+      primary: '#74806B',
+      primaryStrong: '#596451',
+      surfaceCard: '#FFFDF7',
+      surfaceRow: '#F0EFE6',
+      textBase: '#3F463D',
+      textSoft: '#737B6C',
+      positive: '#74806B',
+      neutral: '#9B7A3C',
+      negative: '#A85F62',
+      muted: '#737B6C',
+      subtle: '#949B8D',
     },
 
   },
@@ -68,14 +78,16 @@ export default defineConfig({
       'flex-center',
       'flex items-center justify-center',
     ],
+    ['app-page', 'min-h-screen bg-page text-ink'],
+    ['app-surface', 'box-border border-2rpx border-line rounded-28rpx bg-surface'],
   ],
   rules: [
     [
       'app-gradient-page',
       {
         'min-height': '100vh',
-        'background': 'linear-gradient(180deg, #e3eaf3 0%, #edf4fb 28%, #f2f7fd 100%)',
-        'color': '#0f172a',
+        'background': 'linear-gradient(180deg, #f6f3eb 0%, #f8f5ee 42%, #f0efe6 100%)',
+        'color': '#3f463d',
       },
     ],
     [
@@ -83,20 +95,20 @@ export default defineConfig({
       {
         'box-sizing': 'border-box',
         'padding': '28rpx',
-        'border': '2rpx solid rgba(148, 163, 184, 0.28)',
+        'border': '2rpx solid #dde1d4',
         'border-radius': '28rpx',
-        'background': '#fff',
-        'box-shadow': '0 12rpx 30rpx rgba(15, 23, 42, 0.055)',
+        'background': '#fffdf7',
+        'box-shadow': '0 10rpx 28rpx rgba(63, 70, 61, 0.055)',
       },
     ],
     [
       'app-card-paper',
       {
         'box-sizing': 'border-box',
-        'border': '2rpx solid rgba(148, 163, 184, 0.28)',
+        'border': '2rpx solid #dde1d4',
         'border-radius': '34rpx',
-        'background': 'linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.96)), #fff',
-        'box-shadow': '0 8rpx 22rpx rgba(15, 23, 42, 0.045)',
+        'background': 'linear-gradient(180deg, #fffdf7, #f8f5ee)',
+        'box-shadow': '0 8rpx 22rpx rgba(63, 70, 61, 0.045)',
       },
     ],
     [
@@ -105,7 +117,7 @@ export default defineConfig({
         'font-size': '30rpx',
         'line-height': '1.25',
         'font-weight': '700',
-        'color': '#0f172a',
+        'color': '#3f463d',
       },
     ],
     [
@@ -113,14 +125,14 @@ export default defineConfig({
       {
         'font-size': '22rpx',
         'line-height': '1.6',
-        'color': '#64748b',
+        'color': '#737b6c',
       },
     ],
     [
-      /^app-(primary|secondary|danger)-btn$/,
+      /^app-(primary|secondary|ghost|danger)-btn$/,
       ([, type]) => {
         const style = {
-          'min-height': '84rpx',
+          'min-height': '76rpx',
           'box-sizing': 'border-box',
           'display': 'flex',
           'align-items': 'center',
@@ -129,35 +141,49 @@ export default defineConfig({
           'border-radius': '999rpx',
           'font-size': '26rpx',
           'line-height': '1.2',
-          'font-weight': '700',
+          'font-weight': '600',
+          'transition': 'opacity 160ms ease, transform 160ms ease, background-color 160ms ease',
         }
 
         if (type === 'primary') {
           return {
             ...style,
             'color': '#fff',
-            'background': '#0b5cab',
-            'box-shadow': '0 10rpx 24rpx rgba(11, 92, 171, 0.18)',
+            'background': '#74806b',
+            'box-shadow': '0 10rpx 24rpx rgba(89, 100, 81, 0.18)',
           }
         }
 
         if (type === 'danger') {
           return {
             ...style,
-            color: '#c24157',
-            background: '#fff1f2',
-            border: '2rpx solid rgba(194, 65, 87, 0.18)',
+            color: '#a85f62',
+            background: '#f7e9e7',
+            border: '2rpx solid rgba(168, 95, 98, 0.2)',
+          }
+        }
+
+        if (type === 'ghost') {
+          return {
+            ...style,
+            color: '#596451',
+            background: 'transparent',
+            border: '2rpx solid transparent',
+            'box-shadow': 'none',
           }
         }
 
         return {
           ...style,
-          color: '#425466',
-          background: '#f1f5f9',
-          border: '2rpx solid rgba(148, 163, 184, 0.28)',
+          color: '#596451',
+          background: '#fffdf7',
+          border: '2rpx solid #dde1d4',
         }
       },
     ],
+    [/^app-control-(disabled|pressed)$/, ([, state]) => state === 'disabled'
+      ? { opacity: '0.42', 'pointer-events': 'none' }
+      : { opacity: '0.82', transform: 'scale(0.98)' }],
     [
       'p-safe',
       {

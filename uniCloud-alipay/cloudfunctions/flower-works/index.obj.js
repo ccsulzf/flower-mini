@@ -17,7 +17,7 @@ async function expose(rows) {
             urls = new Map(result.fileList.map(file => [file.fileID, file.tempFileURL]));
         }
         catch { /* Keep editable records visible when storage URL service is unavailable. */ }
-    return rows.map(row => ({ id: row._id, title: row.title, createdAt: row.createdAt, updatedAt: row.updatedAt, revision: row.revision, thumbnailFileId: row.thumbnailFileId, thumbnailUrl: urls.get(row.thumbnailFileId) || '', draft: { version: 1, artwork: row.artwork, card: row.card, updatedAt: row.updatedAt, workId: row._id, workRevision: row.revision } }));
+    return rows.map(row => ({ id: row._id, title: row.title, description: row.description || '', createdAt: row.createdAt, updatedAt: row.updatedAt, revision: row.revision, thumbnailFileId: row.thumbnailFileId, thumbnailUrl: urls.get(row.thumbnailFileId) || '', draft: { version: 1, artwork: row.artwork, card: row.card, updatedAt: row.updatedAt, workId: row._id, workRevision: row.revision } }));
 }
 module.exports = {
     async _before() { const auth = await resolveAuth(this); if (!auth?.uid)
@@ -34,6 +34,9 @@ module.exports = {
         if (typeof input.title !== 'string' || input.title.length > 40)
             validate.fail('作品名称最多 40 字');
         const title = input.title.trim() || `我的插花 ${new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 16).replace('T', ' ')}`;
+        if (input.description !== undefined && (typeof input.description !== 'string' || input.description.length > 160))
+            validate.fail('作品介绍最多 160 字');
+        const description = (input.description || '').trim();
         const id = input.id === undefined ? randomBytes(16).toString('hex') : validate.id(input.id);
         let old;
         if (input.id !== undefined) {
@@ -50,7 +53,7 @@ module.exports = {
         const upload = await uniCloud.uploadFile({ cloudPath, fileContent: buffer });
         if (!upload.fileID)
             throw { errCode: 'THUMBNAIL_FAILED', errMsg: '缩略图上传失败，作品尚未保存' };
-        const row = { _id: id, user_id: this.auth.uid, title, artwork, card, thumbnailFileId: upload.fileID, thumbnailPath: cloudPath, createdAt: old?.createdAt || now, updatedAt: now, revision };
+        const row = { _id: id, user_id: this.auth.uid, title, description, artwork, card, thumbnailFileId: upload.fileID, thumbnailPath: cloudPath, createdAt: old?.createdAt || now, updatedAt: now, revision };
         try {
             if (old) {
                 const { _id, user_id, createdAt, ...changes } = row;

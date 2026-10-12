@@ -15,7 +15,8 @@ import Feedback from '@/components/feedback/feedback.vue'
 <style lang="scss" scoped>
 .layout-default {
   height: 100vh;
-  background: linear-gradient(180deg, #e3eaf3 0%, #e9eef5 18%, #edf2f7 100%);
+  background: #f6f3eb;
+  color: #3f463d;
   position: relative;
 }
 

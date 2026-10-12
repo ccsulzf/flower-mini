@@ -14,6 +14,7 @@ export interface CreationDraft {
 export interface SavedFlowerWork {
   id: string
   title: string
+  description: string
   createdAt: number
   updatedAt: number
   draft: CreationDraft

@@ -75,35 +75,35 @@ onBeforeUnmount(() => {
   font-weight: 700;
   white-space: nowrap;
   animation: cover-toast-fade 1.65s ease forwards;
-  box-shadow: 0 8rpx 18rpx rgba(15, 23, 42, 0.1);
+  box-shadow: 0 12rpx 28rpx rgba(63, 70, 61, 0.12);
 }
 
 .cover-toast-success {
-  color: #064e3b;
-  background: rgba(236, 253, 245, 1);
-  border: 2rpx solid rgba(16, 185, 129, 0.32);
+  color: #596451;
+  background: #eef1e9;
+  border: 2rpx solid #d2dac9;
 }
 
 .cover-toast-warning {
-  color: #7c2d12;
-  background: rgba(255, 247, 237, 1);
-  border: 2rpx solid rgba(249, 115, 22, 0.3);
+  color: #84642f;
+  background: #fbf1dc;
+  border: 2rpx solid #ead6aa;
 }
 
 .cover-toast-error {
-  color: #991b1b;
-  background: rgba(254, 242, 242, 1);
-  border: 2rpx solid rgba(239, 68, 68, 0.32);
+  color: #8e4f52;
+  background: #f7e9e7;
+  border: 2rpx solid #e8c9c6;
 }
 
-.cover-toast-title { color: #1f2937; }
+.cover-toast-title { color: #3f463d; }
 
 .cover-toast-message {
   padding: 6rpx 14rpx;
   border-radius: 16rpx;
-  background: rgba(255, 255, 255, 0.98);
-  color: #111827;
-  box-shadow: inset 0 0 0 2rpx rgba(255, 255, 255, 0.92);
+  background: rgba(255, 253, 247, 0.98);
+  color: #596451;
+  box-shadow: inset 0 0 0 2rpx rgba(255, 255, 255, 0.72);
 }
 
 @keyframes cover-toast-fade {

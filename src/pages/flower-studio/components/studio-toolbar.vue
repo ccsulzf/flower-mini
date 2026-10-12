@@ -43,8 +43,8 @@ const tabs: { value: StudioTab, label: string, icon: string }[] = [
 
 .tool-active {
   background: $studio-accent;
-  color: #2d3427;
-  font-weight: 500;
+  color: #3f463d;
+  font-weight: 600;
 }
 
 .tool-icon {

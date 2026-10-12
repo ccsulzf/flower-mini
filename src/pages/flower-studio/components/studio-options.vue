@@ -6,7 +6,7 @@ import { type Artwork, backgroundOptions, flowerGroups, type VaseName } from '@/
 import { backgroundSceneSource } from '@/utils/flower/background-render'
 import { cloudPlantSvg, svgImageSource } from '@/utils/flower/material-render'
 
-const props = defineProps<{ tab: StudioTab, vase: VaseName, background: Artwork['background'], backgroundMaterialId?: string, adding?: boolean }>()
+const props = defineProps<{ tab: StudioTab, vase: VaseName, background: Artwork['background'], backgroundMaterialId?: string, addedMaterialId?: string, adding?: boolean }>()
 const emit = defineEmits<{
   cloud: [id: string]
   close: []
@@ -74,14 +74,15 @@ const subtitles: Record<StudioTab, string> = { flowers: '从一枝开始，慢�
       </view>
       <scroll-view :key="activeGroup" scroll-y class="flowers-scroll">
         <view class="material-grid">
-          <button v-for="flower in visibleFlowers" :key="flower.id" class="material-card" hover-class="none" :aria-disabled="adding || (catalog.loading && !catalog.loaded)" :disabled="catalog.loading && !catalog.loaded" :aria-label="`添加${flower.name}`" @click="emit('cloud', flower.id)">
-            <view class="material-add i-carbon-add" />
+          <button v-for="flower in visibleFlowers" :key="flower.id" class="material-card" hover-class="material-card-pressed" :class="{ 'material-card-added': addedMaterialId === flower.id }" :aria-disabled="adding || (catalog.loading && !catalog.loaded)" :disabled="catalog.loading && !catalog.loaded" :aria-label="addedMaterialId === flower.id ? `${flower.name}已添加` : `添加${flower.name}`" @click="emit('cloud', flower.id)">
+            <view class="material-add" :class="addedMaterialId === flower.id ? 'i-carbon-checkmark' : 'i-carbon-add'" />
             <view class="material-art">
               <image v-if="thumbnail(flower.id, flower.revision)" :src="thumbnail(flower.id, flower.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-sprout" />
             </view>
             <text class="material-name">
               {{ flower.name }}
             </text>
+            <text v-if="addedMaterialId === flower.id" class="material-added-label">已添加</text>
           </button>
         </view>
         <text v-if="!catalog.loading && !catalog.preparing && !catalog.error && !visibleFlowers.length" class="material-note">
@@ -149,15 +150,16 @@ const subtitles: Record<StudioTab, string> = { flowers: '从一枝开始，慢�
 
 <style scoped lang="scss">
 @use '@/styles/flower-studio.scss' as *;
-.options-card { padding: 28rpx; border: 2rpx solid $studio-border; border-radius: 32rpx; background: $studio-panel; color: $studio-ink; box-shadow: 0 -12rpx 48rpx rgba(0,0,0,.12); }
-.options-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22rpx; }.options-heading, .options-subtitle { display: block; }.options-heading { font-size: 27rpx; }.options-subtitle { margin-top: 8rpx; color: $studio-muted; font-size: 19rpx; }.close-option { display: flex; align-items: center; justify-content: center; width: 56rpx; height: 56rpx; padding: 0; margin: 0; font-size: 26rpx; background: $studio-secondary; color: $studio-muted; border-radius: 50%; }.close-option::after { border: none; }
+.options-card { padding: 24rpx; border: 2rpx solid $studio-border; border-radius: 30rpx; background: $studio-panel; color: $studio-ink; box-shadow: 0 -12rpx 42rpx rgba(63,70,61,.12); }
+.options-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18rpx; }.options-heading, .options-subtitle { display: block; }.options-heading { font-size: 28rpx; font-weight: 600; }.options-subtitle { margin-top: 6rpx; color: $studio-muted; font-size: 20rpx; }.close-option { display: flex; align-items: center; justify-content: center; width: 60rpx; height: 60rpx; padding: 0; margin: 0; font-size: 26rpx; background: $studio-secondary; color: $studio-muted; border-radius: 50%; }.close-option::after { border: none; }.close-option:active { opacity: .75; transform: scale(.96); }
 .catalog-summary { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12rpx; font-size: 18rpx; color: $studio-muted; }.catalog-summary button { margin: 0; padding: 0 10rpx; font-size: 18rpx; line-height: 32rpx; color: $studio-ink; background: $studio-secondary; }.catalog-summary button::after { border: none; }
 .flower-tabs { display: flex; gap: 14rpx; margin-bottom: 18rpx; }
-.flower-tab { flex: 1; margin: 0; padding: 12rpx 0; border: 2rpx solid $studio-border; border-radius: 12rpx; color: $studio-muted; background: transparent; font-size: 23rpx; line-height: 1.5; }
+.flower-tab { flex: 1; min-height: 64rpx; margin: 0; padding: 10rpx 0; border: 2rpx solid $studio-border; border-radius: 16rpx; color: $studio-muted; background: transparent; font-size: 23rpx; line-height: 1.5; }
 .flower-tab::after { border: none; }.flower-tab-active { color: $studio-ink; background: $studio-accent; border-color: $studio-accent; }
-.flowers-scroll { height: 410rpx; }.material-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18rpx; }
-.material-card { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20rpx 16rpx 18rpx; margin: 0; min-width: 0; height: 284rpx; box-sizing: border-box; border-radius: 14rpx; background: $studio-secondary; color: $studio-ink; font-size: 25rpx; line-height: 1.5; }
-.material-card.choice-selected::after { border: 2rpx solid $studio-accent; border-radius: 14rpx; }.material-card::after { border: none; }.material-add { position: absolute; right: 16rpx; top: 16rpx; color: $studio-muted; font-size: 28rpx; }.material-art { display: flex; align-items: center; justify-content: center; width: 100%; height: 190rpx; pointer-events: none; }.material-image { width: 150rpx; height: 190rpx; }.material-name { display: block; margin-top: 10rpx; max-width: 100%; text-align: center; }
+.flowers-scroll { height: 340rpx; }.material-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16rpx; }
+.material-card { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16rpx 14rpx; margin: 0; min-width: 0; height: 236rpx; box-sizing: border-box; border: 2rpx solid transparent; border-radius: 18rpx; background: $studio-secondary; color: $studio-ink; font-size: 24rpx; line-height: 1.4; transition: border-color .16s ease, background-color .16s ease, transform .16s ease; }
+.material-card-pressed { opacity: .82; transform: scale(.98); }.material-card-added { border-color: #aebba3; background: #e7ecdf; }
+.material-card.choice-selected::after { border: 2rpx solid $studio-accent; border-radius: 18rpx; }.material-card::after { border: none; }.material-add { position: absolute; right: 14rpx; top: 14rpx; color: $studio-muted; font-size: 28rpx; }.material-card-added .material-add { color: #596451; }.material-art { display: flex; align-items: center; justify-content: center; width: 100%; height: 148rpx; pointer-events: none; }.material-image { width: 132rpx; height: 148rpx; }.material-name { display: block; margin-top: 8rpx; max-width: 100%; text-align: center; }.material-added-label { position: absolute; left: 14rpx; top: 14rpx; color: #596451; font-size: 20rpx; font-weight: 600; }
 
 .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16rpx; }.choice-card { margin: 0; padding: 24rpx 10rpx 16rpx; color: $studio-ink; background: $studio-secondary; border-radius: 20rpx; font-size: 23rpx; line-height: 1.8; border: 2rpx solid transparent; }.choice-card::after { border: none; }.choice-selected { border-color: $studio-accent; }.mini-vase { width: 48rpx; height: 62rpx; margin: 0 auto 16rpx; background: linear-gradient(100deg,#e6e2d7,#cdc9bd); border-radius: 12% 12% 20% 20%; }.mini-glass { background: rgba(193,220,203,.45); border: 1rpx solid #b2c4b4; }.mini-round { width: 62rpx; height: 52rpx; margin-top: 10rpx; border-radius: 40%; background: #d4b8a4; }.background-sample { width: 62rpx; height: 62rpx; margin: 0 auto 16rpx; border-radius: 50%; border: 1rpx solid rgba(63,70,61,.18); }
 .material-status { height: 31rpx; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }

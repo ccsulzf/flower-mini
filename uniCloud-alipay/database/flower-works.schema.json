@@ -27,6 +27,10 @@
       "bsonType": "string",
       "maxLength": 40
     },
+    "description": {
+      "bsonType": "string",
+      "maxLength": 160
+    },
     "artwork": {
       "bsonType": "object"
     },

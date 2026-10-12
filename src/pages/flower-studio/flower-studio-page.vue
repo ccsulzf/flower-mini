@@ -29,6 +29,7 @@ const store = useCreationArtworkStore()
 store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
 const { stems, vase, vaseMaterialId, vaseMaterialRevision, background, backgroundMaterialId, backgroundMaterialRevision, selectedId, selected, canUndo, canRedo, canClear, canMoveBack, canMoveFront } = storeToRefs(store)
 const catalog = useFlowerCatalogStore()
+const materialsLoading = computed(() => catalog.loading || catalog.preparing || catalog.downloading > 0)
 const session = useFlowerCreationSession(store)
 const { view, pendingDraft, storageError, readonly, initialized, draftReadFailed } = session
 const editingExisting = computed(() => Boolean(session.workId.value))
@@ -49,13 +50,18 @@ const navigationHeight = navigationCapsule.height && navigationCapsule.top >= na
   : 44
 const navigationInset = navigationStatusTop + navigationHeight
 const addingMaterial = ref(false)
+const addedMaterialId = ref('')
+let addedMaterialTimer: ReturnType<typeof setTimeout> | null = null
 const activeTab = ref<StudioTab | null>(null)
 const showFinish = computed(() => view.value !== 'edit')
 const showFlowerTools = ref(false)
 const toolsColorsOpen = ref(false)
 const arrangementOffset = computed(() => backgroundOffset(backgroundMaterialId.value && backgroundMaterialRevision.value ? catalog.get(backgroundMaterialId.value, backgroundMaterialRevision.value) : undefined, vaseMaterialId.value && vaseMaterialRevision.value ? catalog.get(vaseMaterialId.value, vaseMaterialRevision.value) : undefined, vase.value))
 const layout = useFlowerStudioLayout(selected, vase, arrangementOffset, navigationInset)
-const { device, unit, pageActionsTop, toolbarBottom, stageTop, stageBottom, boardScale, artworkStyle, flowerToolsStyle } = layout
+const { device, unit, pageActionsTop, toolbarBottom, stageTop, stageBottom, boardScale, boardPosition, artworkStyle, flowerToolsStyle } = layout
+const studioArtworkStyle = computed(() => activeTab.value
+  ? `left:${boardPosition.value.left}px;top:${boardPosition.value.top - stageTop - 260 * unit}px;transform:scale(${boardScale.value});`
+  : artworkStyle.value)
 const images = useArtworkImage(store.snapshot)
 const { exportCanvasId, canvasHeight } = images
 const { startDrag, moveDrag, endDrag } = useFlowerDrag(store, boardScale, unit, openFlowerTools, () => {
@@ -173,7 +179,7 @@ async function loadMaterials() {
   const cachedVase = knownVase ? catalog.get(knownVase.id, knownVase.revision) : undefined
   if (!pendingDraft.value && !readonly.value && !vaseMaterialId.value && cachedVase) {
     applying = true
-    store.setVaseMaterial(cachedVase)
+    store.setVaseMaterial(cachedVase, false)
     applying = false
   }
   if (!catalog.loaded)
@@ -186,7 +192,7 @@ async function loadMaterials() {
         // 用户可能已在等待期间主动选了另一个容器。
         if (alive && !pendingDraft.value && !readonly.value && !vaseMaterialId.value) {
           applying = true
-          store.setVaseMaterial(material)
+          store.setVaseMaterial(material, false)
           applying = false
         }
       }
@@ -197,9 +203,17 @@ async function loadMaterials() {
   }
   void catalog.preload()
 }
+function retryMaterials() {
+  catalog.loaded = false
+  catalog.ready = false
+  catalog.error = ''
+  void catalog.preload()
+}
 
 onUnload(() => {
   alive = false
+  if (addedMaterialTimer)
+    clearTimeout(addedMaterialTimer)
   sessionVersion++
   endDrag(true)
   session.dispose()
@@ -284,6 +298,11 @@ function endCreation() {
   sessionVersion++
   images.invalidate()
   addingMaterial.value = false
+  addedMaterialId.value = ''
+  if (addedMaterialTimer) {
+    clearTimeout(addedMaterialTimer)
+    addedMaterialTimer = null
+  }
   activeTab.value = null
   closeFlowerTools()
   startupError.value = ''
@@ -324,6 +343,7 @@ async function addCloudMaterial(id: string) {
     if (!alive || request !== sessionVersion || owner !== pageOwner || (owner && owner !== uniCloud.getCurrentUserInfo().uid))
       return
     endDrag(true)
+    let addedStemId: number | null = null
     if (material.category === 'background') {
       store.setBackgroundMaterial(material)
     }
@@ -331,11 +351,28 @@ async function addCloudMaterial(id: string) {
       store.setVaseMaterial(material)
       activeTab.value = null
     }
-    else if (store.addMaterial(material) === null) {
-      notify('最多放入 48 枝花材')
-      return
+    else {
+      addedStemId = store.addMaterial(material)
+      if (addedStemId === null) {
+        notify('最多放入 48 枝花材')
+        return
+      }
     }
-    closeFlowerTools()
+    if (addedStemId !== null) {
+      showFlowerTools.value = false
+      toolsColorsOpen.value = false
+      store.select(addedStemId)
+      addedMaterialId.value = material.id
+      if (addedMaterialTimer)
+        clearTimeout(addedMaterialTimer)
+      addedMaterialTimer = setTimeout(() => {
+        if (addedMaterialId.value === material.id)
+          addedMaterialId.value = ''
+      }, 1200)
+    }
+    else {
+      closeFlowerTools()
+    }
   }
   catch (value) {
     if (alive && request === sessionVersion && owner === pageOwner)
@@ -404,17 +441,36 @@ function removeSelected() {
     :style="{ backgroundColor: '#f6f3eb', height: `${device.windowHeight}px` }"
   >
     <view v-if="view === 'edit'" class="studio-stage" :style="{ bottom: `${stageBottom}px`, top: `${stageTop}px` }">
-      <view class="studio-artwork" :style="artworkStyle">
+      <view class="studio-artwork" :class="{ 'studio-artwork-panel-open': activeTab }" :style="studioArtworkStyle">
         <FlowerBoard
           :background="background" :background-material-id="backgroundMaterialId" :background-material-revision="backgroundMaterialRevision" :stems="stems" :vase="vase" :vase-material-id="vaseMaterialId" :vase-material-revision="vaseMaterialRevision" :selected-id="selectedId" @start="startDrag" @move="moveDrag"
           @end="endDrag" @clear="closeFlowerTools"
         />
       </view>
+      <view v-if="materialsLoading || catalog.error" class="canvas-material-overlay" @touchmove.stop.prevent>
+        <view class="materials-loading-card">
+          <template v-if="materialsLoading">
+            <view class="materials-loading-spinner" />
+            <text>素材加载中…</text>
+          </template>
+          <template v-else>
+            <text class="materials-loading-error">
+              素材加载失败
+            </text>
+            <text class="materials-loading-detail">
+              {{ catalog.error }}
+            </text>
+            <button class="creation-button creation-primary" @click="retryMaterials">
+              重试
+            </button>
+          </template>
+        </view>
+      </view>
     </view>
     <view v-if="activeTab && view === 'edit'" class="panel-backdrop" @click="closePanels" @touchmove.stop.prevent />
     <view v-if="activeTab" class="studio-options-position" :style="{ bottom: `${stageBottom}px` }">
       <StudioOptions
-        :tab="activeTab" :vase="vase" :background="background" :background-material-id="backgroundMaterialId" :adding="addingMaterial" @close="activeTab = null" @cloud="addCloudMaterial"
+        :tab="activeTab" :vase="vase" :background="background" :background-material-id="backgroundMaterialId" :added-material-id="addedMaterialId" :adding="addingMaterial" @close="activeTab = null" @cloud="addCloudMaterial"
         @background="setBackground"
       />
     </view>
@@ -450,7 +506,7 @@ function removeSelected() {
         重新开始
       </text>
     </view>
-    <view v-if="!pageReady && !startupError" class="startup-note" :style="{ top: `${pageActionsTop + 58}px` }">
+    <view v-if="!pageReady && !startupError && !materialsLoading && !catalog.error" class="startup-note" :style="{ top: `${pageActionsTop + 58}px` }">
       正在连接账号与素材…
     </view>
     <view v-if="startupError" class="creation-overlay" @touchmove.stop.prevent>
@@ -502,6 +558,7 @@ function removeSelected() {
 .studio-artwork {
   position: absolute;
   transform-origin: 0 0;
+  transition: top .2s ease;
 }
 
 .studio-toolbar-position {
@@ -562,4 +619,11 @@ function removeSelected() {
 .work-name-input { padding: 20rpx; height: 56rpx; font-size: 28rpx; background: #fffdf7; border-radius: 16rpx; margin-bottom: 24rpx; }
 .storage-warning { position: absolute; z-index: 8; left: 26rpx; right: 26rpx; font-size: 22rpx; color: #995c50; display: flex; gap: 20rpx; }
 .startup-note { position: absolute; left: 0; right: 0; text-align: center; font-size: 24rpx; color: #7c8474; }
+.canvas-material-overlay { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; padding: 24rpx; box-sizing: border-box; background: rgba(246,243,235,.94); }
+.materials-loading-card { display: flex; max-width: 620rpx; flex-direction: column; align-items: center; gap: 20rpx; padding: 36rpx 42rpx; border: 2rpx solid #e1e5d9; border-radius: 28rpx; background: rgba(255,253,247,.96); color: #6f7964; font-size: 28rpx; text-align: center; }
+.materials-loading-spinner { width: 44rpx; height: 44rpx; border: 5rpx solid #d5dccb; border-top-color: #74806b; border-radius: 50%; animation: materials-loading-spin .8s linear infinite; }
+.materials-loading-error { color: #995c50; font-weight: 600; }
+.materials-loading-detail { color: #7c8474; font-size: 23rpx; line-height: 1.5; }
+.materials-loading-card button { margin: 0; padding: 0 42rpx; line-height: 72rpx; }
+@keyframes materials-loading-spin { to { transform: rotate(360deg); } }
 </style>

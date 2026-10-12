@@ -98,7 +98,7 @@ function artworkState() {
       ...constrainStem({ x: materialLandingX(stems.value.length), y: anchorY(vase.value), angle: vase.value === '花束' ? [0, -16, 16, -9, 9][(id - 1) % 5] : [-12, 0, 12][(id - 1) % 3], stemHeight: vase.value === '花束' ? [390, 365, 375, 350, 360][(id - 1) % 5] : 410 }) })
     return id
   }
-  function setVaseMaterial(material: CachedMaterial) {
+  function setVaseMaterial(material: CachedMaterial, recordHistory = true) {
     const placement = vasePlacement(material)
     if (vaseMaterialId.value === material.id && vaseMaterialRevision.value === material.revision) return
     const enteringBouquet = material.category === 'bouquet' && vase.value !== '花束'
@@ -108,7 +108,10 @@ function artworkState() {
     const previousLayout = containerLayouts.value[targetKey]
     const clustered = material.category === 'vase' && stems.value.length > 1
       && (leavingBouquet || Math.max(...stems.value.map(stem => stem.x)) - Math.min(...stems.value.map(stem => stem.x)) < 8)
-    remember()
+    if (recordHistory)
+      remember()
+    else
+      endStemEdit()
     containerLayouts.value[currentKey] = stems.value.map(({ id, x, angle, stemHeight, flowerScale }) => ({ id, x, angle, stemHeight, flowerScale }))
     vase.value = material.category === 'bouquet' ? '花束' : '陶瓶'; vaseMaterialId.value = material.id; vaseMaterialRevision.value = material.revision
     const inset = Math.min(4, (placement.mouthRight - placement.mouthLeft) / 2)

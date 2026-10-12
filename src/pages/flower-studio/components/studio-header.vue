@@ -25,5 +25,5 @@ const emit = defineEmits<{ undo: [], redo: [], reset: [], finish: [] }>()
 .page-actions { @include studio-toolbar-shell; }
 .action-button { @include studio-toolbar-button; }
 .action-icon { @include studio-toolbar-icon; }
-.finish-button { background: $studio-accent; color: #2d3427; font-weight: 500; }
+.finish-button { background: #74806b; color: #fffdf7; font-weight: 600; box-shadow: 0 8rpx 18rpx rgba(89,100,81,.16); }
 </style>

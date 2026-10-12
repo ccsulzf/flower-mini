@@ -4,20 +4,20 @@ import { ref } from 'vue'
 import { waitForAppAuthReady } from '@/utils/appAuth'
 import { validateDraft } from '@/utils/flower/creation-storage'
 
-interface SaveWorkInput { draft: CreationDraft, title: string, imagePath: string, workId?: string, expectedRevision?: number }
+interface SaveWorkInput { draft: CreationDraft, title: string, description: string, imagePath: string, workId?: string, expectedRevision?: number }
 interface WorksCloud {
   list: (input: { page: number, pageSize: number }) => Promise<{ items: SavedFlowerWork[], hasMore: boolean }>
   get: (input: { id: string }) => Promise<SavedFlowerWork>
-  save: (input: { id?: string, expectedRevision?: number, title: string, artwork: CreationDraft['artwork'], card: CreationDraft['card'], thumbnailBase64: string }) => Promise<SavedFlowerWork>
+  save: (input: { id?: string, expectedRevision?: number, title: string, description: string, artwork: CreationDraft['artwork'], card: CreationDraft['card'], thumbnailBase64: string }) => Promise<SavedFlowerWork>
   remove: (input: { id: string, expectedRevision: number }) => Promise<unknown>
 }
 export function creationFailure(error: unknown) {
   return error instanceof Error ? error.message : typeof error === 'object' && error !== null && 'errMsg' in error ? String(error.errMsg) : '作品操作失败，请重试'
 }
 function normalize(work: SavedFlowerWork): SavedFlowerWork {
-  if (!work || !/^[a-f\d]{32}$/.test(work.id) || typeof work.title !== 'string' || work.title.length > 40 || !Number.isSafeInteger(work.revision) || work.revision < 1 || !Number.isFinite(work.updatedAt) || !Number.isFinite(work.createdAt))
+  if (!work || !/^[a-f\d]{32}$/.test(work.id) || typeof work.title !== 'string' || work.title.length > 40 || work.description !== undefined && (typeof work.description !== 'string' || work.description.length > 160) || !Number.isSafeInteger(work.revision) || work.revision < 1 || !Number.isFinite(work.updatedAt) || !Number.isFinite(work.createdAt))
     throw new Error('云端作品数据无效')
-  return { ...work, draft: validateDraft({ ...work.draft, workId: work.id, workRevision: work.revision }) }
+  return { ...work, description: work.description || '', draft: validateDraft({ ...work.draft, workId: work.id, workRevision: work.revision }) }
 }
 function readImage(path: string) {
   return new Promise<string>((resolve, reject) => {
@@ -101,7 +101,7 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
       const thumbnailBase64 = await readImage(input.imagePath)
       if (!current(context.uid, context.epoch))
         throw new Error('账号已切换，请重新保存')
-      const work = normalize(await context.cloud.save({ ...(input.workId ? { id: input.workId, expectedRevision: input.expectedRevision } : {}), title: input.title, artwork: draft.artwork, card: draft.card, thumbnailBase64 }))
+      const work = normalize(await context.cloud.save({ ...(input.workId ? { id: input.workId, expectedRevision: input.expectedRevision } : {}), title: input.title, description: input.description, artwork: draft.artwork, card: draft.card, thumbnailBase64 }))
       if (!current(context.uid, context.epoch))
         throw new Error('账号已切换，请重新打开作品列表')
       items.value = [work, ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
@@ -144,7 +144,7 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
       const thumbnailBase64 = await readImage(imagePath)
       if (!current(context.uid, context.epoch))
         throw new Error('账号已切换，请重新打开作品列表')
-      const work = normalize(await context.cloud.save({ title: `${original.title.slice(0, 37)} 副本`, artwork: original.draft.artwork, card: original.draft.card, thumbnailBase64 }))
+      const work = normalize(await context.cloud.save({ title: `${original.title.slice(0, 37)} 副本`, description: original.description, artwork: original.draft.artwork, card: original.draft.card, thumbnailBase64 }))
       if (!current(context.uid, context.epoch))
         throw new Error('账号已切换，请重新打开作品列表')
       items.value = [work, ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))

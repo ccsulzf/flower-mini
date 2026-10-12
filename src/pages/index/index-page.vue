@@ -45,7 +45,7 @@ onShow(() => checkAuth())
 </script>
 
 <template>
-  <view class="home-page app-gradient-page">
+  <view class="home-page app-page">
     <view class="app-card section">
       <view class="app-section-title">
         花草工作室

@@ -30,6 +30,23 @@ test('首次下载、再次命中持久缓存，损坏文件重新下载', async
   files.delete('/saved'); assert.equal((await prepare(record)).downloaded, 1)
   assert.equal(downloads, 2)
 })
+test('工作室只在花瓶画布显示统一素材加载状态', () => {
+  const loader = createLoader()
+  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  const source = fs.readFileSync('src/pages/flower-studio/flower-studio-page.vue', 'utf8')
+  page.catalog.loading = true
+  assert.equal(page.materialsLoading.value, true)
+  page.catalog.loading = false
+  page.catalog.preparing = true
+  assert.equal(page.materialsLoading.value, true)
+  page.catalog.preparing = false
+  page.catalog.downloading = 1
+  assert.equal(page.materialsLoading.value, true)
+  assert.match(source, /class="canvas-material-overlay"/)
+  assert.doesNotMatch(source, /class="materials-loading-overlay"/)
+  assert.doesNotMatch(fs.readFileSync('src/components/flower/flower-stem.vue', 'utf8'), /素材加载中/)
+  assert.doesNotMatch(fs.readFileSync('src/components/flower/flower-vase.vue', 'utf8'), /容器加载中/)
+})
 test('云素材及花瓶引用在复制、切换、撤销和重做中保留，切回内置时清除引用', () => {
   const loader = createLoader(), store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
   const normalize = loader.load('src/utils/flower/material-catalog.ts').normalizeMaterial

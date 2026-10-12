@@ -22,9 +22,7 @@ export async function renderFlowerCard(ctx: UniApp.CanvasContext, artworkImagePa
   if (text.recipient !== undefined) {
     if (typeof text.recipient !== 'string' || text.recipient.length > 24)
       throw new Error('送给最多填写24字')
-    if (lines.length > 3)
-      throw new Error('祝福语最多三行，自动换行也计入行数，请缩短文字')
-    const height = 1260
+    const height = Math.max(1260, 1102 + lines.length * 42 + (card.signature ? 54 : 0))
     if (resize)
       await resize(height)
     ctx.setFillStyle('#f6f3eb')

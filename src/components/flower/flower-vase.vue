@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import type { VaseName } from '@/utils/flower/artwork'
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { bouquetLayers, svgImageSource, vasePlacement } from '@/utils/flower/material-render'
 import FlowerBouquet from './flower-bouquet.vue'
 const props = defineProps<{ vase: VaseName, materialId?: string, revision?: string, layer?: 'back' | 'front' }>()
 const catalog = useFlowerCatalogStore()
 const material = computed(() => props.materialId && props.revision ? catalog.get(props.materialId, props.revision) : undefined)
+const imageFailed = ref(false)
 const source = computed(() => {
   if (props.layer === 'back' && material.value?.category !== 'bouquet') return ''
   if (material.value?.category === 'bouquet') return svgImageSource(bouquetLayers(material.value)[props.layer === 'back' ? 'back' : 'front'])
   const svg = material.value?.sources.vase || material.value?.sources.bouquet
   return svg ? svgImageSource(svg) : ''
 })
+watch(source, () => { imageFailed.value = false })
 const imageStyle = computed(() => {
   if (!material.value) return ''
   const p = vasePlacement(material.value)
@@ -20,7 +22,7 @@ const imageStyle = computed(() => {
 })
 </script>
 <template>
-  <image v-if="materialId && source" :src="source" :style="imageStyle" mode="scaleToFill" />
+  <image v-if="materialId && source && !imageFailed" :src="source" :style="imageStyle" mode="scaleToFill" @error="imageFailed = true" />
   <view v-else-if="materialId && layer !== 'back'" class="vase-missing">容器素材不可用</view>
   <FlowerBouquet v-else-if="vase === '花束' && layer !== 'back'" />
   <template v-else-if="layer !== 'back'">

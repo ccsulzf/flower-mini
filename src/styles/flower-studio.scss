@@ -1,10 +1,10 @@
 // 工作台统一配色，组件共享，避免各面板分别维护颜色。
 $studio-ink: #3f463d;
-$studio-muted: #7e8578;
-$studio-panel: #f2f0e7;
-$studio-border: #cbd0c3;
-$studio-accent: #c8d5bd;
-$studio-secondary: #e4e8dd;
+$studio-muted: #737b6c;
+$studio-panel: #fffdf7;
+$studio-border: #dde1d4;
+$studio-accent: #dfe6d7;
+$studio-secondary: #f0efe6;
 
 // 上下工具栏共用尺寸和按钮规则，避免局部样式逐渐分叉。
 @mixin studio-toolbar-shell {
@@ -16,7 +16,7 @@ $studio-secondary: #e4e8dd;
   padding: 14rpx;
   box-sizing: border-box;
   border: 2rpx solid $studio-border;
-  border-radius: 24rpx;
+  border-radius: 22rpx;
   background: $studio-panel;
 }
 
@@ -30,7 +30,7 @@ $studio-secondary: #e4e8dd;
   height: 64rpx;
   padding: 0 6rpx;
   margin: 0;
-  border-radius: 14rpx;
+  border-radius: 16rpx;
   background: $studio-secondary;
   color: $studio-ink;
   font-size: 22rpx;
@@ -38,6 +38,7 @@ $studio-secondary: #e4e8dd;
   white-space: nowrap;
   &::after { border: none; }
   &[disabled] { color: $studio-muted; opacity: .4; }
+  &:active { opacity: .82; transform: scale(.98); }
 }
 
 @mixin studio-toolbar-icon {
