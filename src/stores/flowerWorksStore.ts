@@ -121,5 +121,42 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
     if (current(context.uid, context.epoch))
       items.value = items.value.filter(row => row.id !== id)
   }
-  return { items, loading, saving, error, hasMore, load, get, save, remove }
+  async function duplicate(id: string) {
+    if (saving.value)
+      throw new Error('作品正在保存，请稍候')
+    saving.value = true
+    error.value = ''
+    try {
+      const context = await client()
+      const original = normalize(await context.cloud.get({ id }))
+      if (!current(context.uid, context.epoch))
+        throw new Error('账号已切换，请重新打开作品列表')
+      if (!original.thumbnailUrl)
+        throw new Error('作品图片暂不可用，请稍后重试')
+      const imagePath = await new Promise<string>((resolve, reject) => {
+        uni.downloadFile({ url: original.thumbnailUrl!, success: (result) => {
+          if (result.statusCode === 200 && result.tempFilePath)
+            resolve(result.tempFilePath)
+          else
+            reject(new Error('作品图片读取失败，请重试'))
+        }, fail: reject })
+      })
+      const thumbnailBase64 = await readImage(imagePath)
+      if (!current(context.uid, context.epoch))
+        throw new Error('账号已切换，请重新打开作品列表')
+      const work = normalize(await context.cloud.save({ title: `${original.title.slice(0, 37)} 副本`, artwork: original.draft.artwork, card: original.draft.card, thumbnailBase64 }))
+      if (!current(context.uid, context.epoch))
+        throw new Error('账号已切换，请重新打开作品列表')
+      items.value = [work, ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
+      return work
+    }
+    catch (value) {
+      error.value = creationFailure(value)
+      throw value
+    }
+    finally {
+      saving.value = false
+    }
+  }
+  return { items, loading, saving, error, hasMore, load, get, save, remove, duplicate }
 })

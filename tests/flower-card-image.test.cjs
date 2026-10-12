@@ -14,3 +14,17 @@ test('只有署名、只有祝福和多段换行均可绘制，长文本不被�
         if (text.blessing.length === 120) assert.ok(size.height > 1800);
     }
 });
+
+test('参考贺卡布局显示送给、三行祝福和署名，拒绝第四行及自动换行溢出', async () => {
+  const calls = []
+  const ctx = new Proxy({ measureText: value => ({ width: Array.from(value).length * 26 }) }, { get: (target, key) => key in target ? target[key] : key === 'draw' ? (_, callback) => callback() : (...args) => calls.push([key, ...args]) })
+  const render = createLoader().load('src/utils/flower/render-flower-card.ts').renderFlowerCard
+  const size = await render(ctx, '/art.png', { recipient: '亲爱的你', blessing: '愿你开心\n愿你自由\n愿你有花开', signature: '小花' })
+  assert.equal(size.height, 1260)
+  assert.ok(calls.some(row => row[0] === 'fillText' && row[1] === '送给 亲爱的你'))
+  assert.ok(calls.some(row => row[0] === 'fillText' && row[1] === '小花'))
+  await assert.rejects(render(ctx, '/art.png', { recipient: '', blessing: '一\n二\n三\n四', signature: '' }), /最多三行/)
+  await assert.rejects(render(ctx, '/art.png', { recipient: '', blessing: '花'.repeat(70), signature: '' }), /最多三行/)
+  await assert.rejects(render(ctx, '/art.png', { recipient: '你'.repeat(25), blessing: '', signature: '' }), /24字/)
+  await render(ctx, '/art.png', { recipient: '', blessing: '', signature: '' })
+})

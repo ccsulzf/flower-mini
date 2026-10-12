@@ -58,3 +58,16 @@ test('作品恢复保留布局记忆，非法布局参数被拒绝，历史快�
   snapshot.containerLayouts[key][0].stemHeight=120
   assert.notEqual(history.undo(snapshot).containerLayouts[key][0].stemHeight,120)
 })
+test('首次切换花束时花头高于包装上沿，切回花瓶仍恢复原布局', () => {
+  const { loader, store, vase, bouquet } = fixture()
+  store.setVaseMaterial(vase)
+  const original = JSON.stringify(shape(store))
+  store.setVaseMaterial(bouquet)
+  const placement = loader.load('src/utils/flower/material-render.ts').vasePlacement(bouquet)
+  for (const stem of store.stems.filter(s => s.kind !== 'leaf')) {
+    const headY = 747 - Math.cos(stem.angle * Math.PI / 180) * (stem.stemHeight + 55) * stem.flowerScale
+    assert.ok(headY < placement.y - 20, '花头应明显露出包装上沿')
+  }
+  store.setVaseMaterial(vase)
+  assert.equal(JSON.stringify(shape(store)), original)
+})

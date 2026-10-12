@@ -64,3 +64,26 @@ test('背景选择保持面板打开，不添加花枝；编辑和导出使用�
   const moveIndex = calls.findIndex(([method, args]) => method === 'translate' && args[0] === 0 && args[1] === board.arrangementOffset.value)
   assert.ok(backgroundIndex >= 0 && moveIndex > backgroundIndex)
 })
+test('纯色只改变作品画板，不修改系统导航配色', () => {
+  const changes = []
+  const loader = createLoader({ uni: { setNavigationBarColor: value => changes.push(value) } })
+  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  page.store.setBackground('cocoa')
+  page.store.setBackground('blush')
+  assert.equal(changes.length, 0)
+  const board = loader.setup('src/components/flower/flower-board.vue', { background: 'cocoa', stems: [], vase: '陶瓶', selectedId: null })
+  assert.equal(board.boardColor.value, loader.load('src/utils/flower/artwork.ts').artworkBackground('cocoa'))
+})
+test('背景增强同时适用于旧云素材，纹理可见且木桌石台有明确桌面', () => {
+  const loader = createLoader(), render = loader.load('src/utils/flower/background-render.ts')
+  const catalog = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog
+  for (const id of ['paper-ivory', 'paper-blush', 'paper-linen', 'scene-ivory-table', 'scene-sage-table']) {
+    const material = catalog.items.find(item => item.id === id)
+    const source = render.backgroundSceneSource(material)
+    assert.ok(source.includes('studio-background:v2'))
+    assert.equal(render.backgroundSceneSource({ ...material, sources: { background: source } }), source)
+  }
+  const vase = catalog.items.find(item => item.category === 'vase')
+  const placement = loader.load('src/utils/flower/material-render.ts').vasePlacement(vase)
+  assert.equal(render.backgroundOffset(catalog.items.find(item => item.id === 'scene-ivory-table'), vase, '陶瓶') + placement.y + placement.height, 820)
+})

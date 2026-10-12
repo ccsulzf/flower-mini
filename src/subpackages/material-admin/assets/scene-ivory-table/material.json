@@ -2,14 +2,14 @@
   "id": "scene-ivory-table",
   "category": "background",
   "name": "暖白墙与木桌",
-  "introduction": "柔和低对比背景，为中间的花材搭配留出空间。",
+  "introduction": "暖白墙面搭配原木桌面，木纹、接缝与侧光让花器自然落在桌上。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 1,
+  "version": 2,
   "geometry": {
     "width": 698,
     "height": 1000,
-    "surfaceY": 910
+    "surfaceY": 820
   }
 }

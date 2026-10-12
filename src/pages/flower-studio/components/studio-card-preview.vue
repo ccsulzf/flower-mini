@@ -5,8 +5,13 @@ defineEmits<{ back: [], editText: [], retry: [], previewImage: [], saveImage: []
 
 <template>
   <view class="creation-preview">
-    <view class="creation-title">
-      花卡预览
+    <view class="preview-header">
+      <button class="preview-link" @click="$emit('back')">
+        返回作品
+      </button>
+      <button class="preview-link" :disabled="exporting" @click="$emit('editText')">
+        修改文字
+      </button>
     </view>
     <view class="creation-image-area">
       <image v-if="imagePath" class="creation-image" :src="imagePath" mode="aspectFit" @click="$emit('previewImage')" />
@@ -22,18 +27,12 @@ defineEmits<{ back: [], editText: [], retry: [], previewImage: [], saveImage: []
         </button>
       </view>
     </view>
-    <view class="creation-actions">
-      <button class="creation-button" @click="$emit('back')">
-        返回作品
-      </button>
-      <button class="creation-button" :disabled="exporting" @click="$emit('editText')">
-        修改祝福或署名
-      </button>
+    <view class="creation-actions preview-primary-actions">
       <button class="creation-button" :disabled="!imagePath || exporting" @click="$emit('saveImage')">
-        保存图片
+        保存到相册
       </button>
       <button class="creation-button creation-primary" :disabled="!imagePath || exporting" @click="$emit('share')">
-        分享花卡
+        分享贺卡
       </button>
     </view>
   </view>

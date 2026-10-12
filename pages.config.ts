@@ -16,7 +16,7 @@ export default defineUniPages({
     backgroundTextStyle: 'dark',
     navigationBarBackgroundColor: '#E3EAF3',
     navigationBarTextStyle: 'black',
-    navigationBarTitleText: '花草工作室',
+    navigationBarTitleText: '花瓶小作',
     navigationStyle: 'default',
   },
   // tabBar: {

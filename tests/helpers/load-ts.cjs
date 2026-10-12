@@ -12,7 +12,7 @@ function createLoader(options = {}) {
   const uni = {
     getSystemInfoSync: () => ({ windowWidth: 375, windowHeight: 800, screenHeight: 800, statusBarHeight: 24, ...options.device }),
     arrayBufferToBase64: buffer => Buffer.from(buffer).toString('base64'),
-    setNavigationBarColor() {}, showToast() {}, showLoading() {}, hideLoading() {},
+    setNavigationBarColor() {}, setNavigationBarTitle() {}, showToast() {}, showLoading() {}, hideLoading() {},
     ...options.uni,
   }
   function load(relative) {
@@ -31,6 +31,7 @@ function createLoader(options = {}) {
         return Object.fromEntries(walk(base).filter(([name]) => pattern.endsWith('material.json') ? name.endsWith('/material.json') : name.endsWith('.svg')).map(([name, value]) => [name, pattern.endsWith('material.json') ? JSON.parse(value) : value]))
       }, uniCloud: options.uniCloud, wx: options.wx, definePage() {}, setTimeout, clearTimeout,
       require(name) {
+        if (name === 'vue' && options.eventChannel) return { ...require('vue'), getCurrentInstance: () => ({ proxy: { getOpenerEventChannel: () => options.eventChannel } }) }
         if (name === '@dcloudio/uni-app') return Object.fromEntries(['onUnload', 'onLoad', 'onShow', 'onHide', 'onReachBottom'].map(event => [event, callback => { options.lifecycle?.[event]?.push(callback) }]))
         if (!name.startsWith('.') && !name.startsWith('@/')) return require(name)
         const target = name.startsWith('@/') ? path.resolve(root, 'src', name.slice(2)) : path.resolve(path.dirname(filename), name)
@@ -42,6 +43,6 @@ function createLoader(options = {}) {
     })
     return exports
   }
-  return { load, setup: (relative, props = {}) => load(relative).default.setup(props, { expose() {}, emit() {} }) }
+  return { load, setup: (relative, props = {}) => load(relative).default.setup(props, { expose() {}, emit: options.emit || (() => {}) }) }
 }
 module.exports = { createLoader }

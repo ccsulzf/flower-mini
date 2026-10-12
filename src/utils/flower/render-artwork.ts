@@ -1,6 +1,6 @@
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { bouquetLayers, cloudPlantSvg, vasePlacement } from './material-render'
-import { backgroundOffset } from './background-render'
+import { backgroundOffset, backgroundSceneSource } from './background-render'
 import { drawSvg } from './svg-canvas'
 import { studioMetrics } from './arrangement.cjs'
 import { anchorY, artworkBackground, chrysanthemumRay, curveFor, type Artwork, type Stem } from './artwork'
@@ -189,7 +189,7 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
   // 绘制顺序：背景 → 桌面/阴影 → 花材 → 花器 → 落款，后绘制内容遮住前层。
   ctx.setFillStyle(artworkBackground(artwork.background))
   ctx.fillRect(0, 0, studioMetrics.width, studioMetrics.height)
-  if (cloudBackground) drawSvg(ctx, cloudBackground.sources.background!, studioMetrics.width, studioMetrics.height)
+  if (cloudBackground) drawSvg(ctx, backgroundSceneSource(cloudBackground), studioMetrics.width, studioMetrics.height)
   ctx.save(); ctx.translate(0, backgroundOffset(cloudBackground, cloudVase, artwork.vase))
   if (artwork.vase !== '花束' && cloudVase?.category !== 'bouquet') {
     ctx.setFillStyle('rgba(0,0,0,.12)')

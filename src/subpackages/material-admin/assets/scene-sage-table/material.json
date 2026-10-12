@@ -2,14 +2,14 @@
   "id": "scene-sage-table",
   "category": "background",
   "name": "浅绿墙与石台",
-  "introduction": "柔和低对比背景，为中间的花材搭配留出空间。",
+  "introduction": "浅绿墙板搭配石纹台面，柔和明暗与石材纹理衬托花材。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 1,
+  "version": 2,
   "geometry": {
     "width": 698,
     "height": 1000,
-    "surfaceY": 910
+    "surfaceY": 820
   }
 }

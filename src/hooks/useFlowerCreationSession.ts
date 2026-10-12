@@ -140,8 +140,19 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
   function saved(work: SavedFlowerWork) {
     workId.value = work.id
     workRevision.value = work.revision
-    markEdited()
-    flushDraft()
+    cancelTimer()
+    readonly.value = true
+    dirty.value = false
+    pendingDraft.value = null
+    try {
+      clearDraft(owner)
+      storageError.value = ''
+      return true
+    }
+    catch (error) {
+      storageError.value = (error as Error).message
+      return false
+    }
   }
   function dispose() {
     flushDraft()

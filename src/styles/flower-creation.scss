@@ -11,3 +11,12 @@
 .creation-image-area { flex: 1; min-height: 0; display: flex; justify-content: center; align-items: center; border-radius: 24rpx; overflow: hidden; background: rgba(255,255,255,.35); }
 .creation-image { width: 100%; height: 100%; }
 .creation-state { padding: 36rpx; text-align: center; font-size: 28rpx; }
+
+.preview-header { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; }
+.preview-title { font-size: 30rpx; font-weight: 600; }
+.preview-link { min-width: 112rpx; margin: 0; padding: 0; background: transparent; color: #59634f; font-size: 26rpx; line-height: 64rpx; }
+.preview-link::after { border: none; }
+.preview-primary-actions { flex-wrap: nowrap; }
+.preview-primary-actions .creation-button { min-width: 0; }
+
+.preview-header-detail { justify-content: flex-end; }

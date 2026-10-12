@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { backgroundOptions, flowerGroups, type Artwork, type VaseName } from '@/utils/flower/artwork'
 import type { StudioTab } from '../studio-types'
 import { computed, ref } from 'vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
+import { type Artwork, backgroundOptions, flowerGroups, type VaseName } from '@/utils/flower/artwork'
+import { backgroundSceneSource } from '@/utils/flower/background-render'
 import { cloudPlantSvg, svgImageSource } from '@/utils/flower/material-render'
+
 const props = defineProps<{ tab: StudioTab, vase: VaseName, background: Artwork['background'], backgroundMaterialId?: string, adding?: boolean }>()
 const emit = defineEmits<{
-  cloud: [id: string], close: [], background: [value: Artwork['background']],
+  cloud: [id: string]
+  close: []
+  background: [value: Artwork['background']]
 }>()
 const catalog = useFlowerCatalogStore()
 const cloudFlowers = computed(() => catalog.materials.filter(item => item.category === 'flower'))
@@ -21,76 +25,128 @@ const thumbnailCache = new Map<string, string>()
 function thumbnail(id: string, revision: string) {
   const key = `${id}:${revision}`
   const cached = thumbnailCache.get(key)
-  if (cached) return cached
+  if (cached)
+    return cached
   const item = catalog.get(id, revision)
-  if (!item) return ''
+  if (!item)
+    return ''
   const color = item.colors[0]?.value || '#f4f0e6'
-  const source = item.category === 'flower' ? cloudPlantSvg(item, { color, stemHeight: 230, leafMode: 'without' }) : (item.sources.vase || item.sources.bouquet || item.sources.background || '').replace(/__COLOR__/g, color)
+  const source = item.category === 'flower' ? cloudPlantSvg(item, { color, stemHeight: 230, leafMode: 'without' }) : (item.category === 'background' ? backgroundSceneSource(item) : item.sources.vase || item.sources.bouquet || '').replace(/__COLOR__/g, color)
   const result = source ? svgImageSource(source) : ''
-  if (result) thumbnailCache.set(key, result)
+  if (result)
+    thumbnailCache.set(key, result)
   return result
 }
-async function refreshCatalog() { await catalog.load(); void catalog.preload() }
+async function refreshCatalog() {
+  await catalog.load()
+  void catalog.preload()
+}
 const titles: Record<StudioTab, string> = { flowers: '今天，想选什么花？', vases: '选一个容器', backgrounds: '为日常添一点颜色' }
 const subtitles: Record<StudioTab, string> = { flowers: '从一枝开始，慢慢放进生活里。', vases: '切换形式，保留你搭配好的花朵。', backgrounds: '换一个背景，让作品有不同的气氛。' }
 </script>
+
 <template>
   <view class="options-card" @touchmove.stop>
-    <view class="options-title"><view><text class="options-heading">{{ titles[tab] }}</text><text class="options-subtitle">{{ subtitles[tab] }}</text></view><button class="close-option" aria-label="关闭面板" @click="emit('close')"><view class="i-carbon-close" /></button></view>
+    <view class="options-title">
+      <view>
+        <text class="options-heading">
+          {{ titles[tab] }}
+        </text><text class="options-subtitle">
+          {{ subtitles[tab] }}
+        </text>
+      </view><button class="close-option" aria-label="关闭面板" @click="emit('close')">
+        <view class="i-carbon-close" />
+      </button>
+    </view>
     <view v-if="tab !== 'backgrounds'" class="material-note material-status" aria-live="polite">
       <text>{{ catalog.error || (adding ? '正在添加花材…' : catalog.preparing || catalog.loading ? '正在准备素材…' : '') }}</text>
     </view>
     <view v-if="tab === 'flowers'" class="flowers-panel">
-      <view class="catalog-summary"><text>花材 {{ cloudFlowers.length }} 种</text><button :disabled="catalog.loading" @click="refreshCatalog">刷新目录</button></view>
+      <view class="catalog-summary">
+        <text>花材 {{ cloudFlowers.length }} 种</text><button :disabled="catalog.loading" @click="refreshCatalog">
+          刷新目录
+        </button>
+      </view>
       <view class="flower-tabs" role="tablist" aria-label="花材分类">
-        <button v-for="group in flowerGroups" :key="group.value" class="flower-tab" :class="{ 'flower-tab-active': activeGroup === group.value }" role="tab" :aria-selected="activeGroup === group.value" @click="activeGroup = group.value">{{ group.name }} {{ cloudFlowers.filter(item => item.group === group.value).length }}</button>
+        <button v-for="group in flowerGroups" :key="group.value" class="flower-tab" :class="{ 'flower-tab-active': activeGroup === group.value }" role="tab" :aria-selected="activeGroup === group.value" @click="activeGroup = group.value">
+          {{ group.name }} {{ cloudFlowers.filter(item => item.group === group.value).length }}
+        </button>
       </view>
       <scroll-view :key="activeGroup" scroll-y class="flowers-scroll">
         <view class="material-grid">
           <button v-for="flower in visibleFlowers" :key="flower.id" class="material-card" hover-class="none" :aria-disabled="adding || (catalog.loading && !catalog.loaded)" :disabled="catalog.loading && !catalog.loaded" :aria-label="`添加${flower.name}`" @click="emit('cloud', flower.id)">
             <view class="material-add i-carbon-add" />
-            <view class="material-art"><image v-if="thumbnail(flower.id, flower.revision)" :src="thumbnail(flower.id, flower.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-sprout" /></view>
-            <text class="material-name">{{ flower.name }}</text>
+            <view class="material-art">
+              <image v-if="thumbnail(flower.id, flower.revision)" :src="thumbnail(flower.id, flower.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-sprout" />
+            </view>
+            <text class="material-name">
+              {{ flower.name }}
+            </text>
           </button>
         </view>
-        <text v-if="!catalog.loading && !catalog.preparing && !catalog.error && !visibleFlowers.length" class="material-note">该分类暂无花材</text>
+        <text v-if="!catalog.loading && !catalog.preparing && !catalog.error && !visibleFlowers.length" class="material-note">
+          该分类暂无花材
+        </text>
       </scroll-view>
     </view>
     <view v-else-if="tab === 'vases'" class="containers-panel">
       <view class="flower-tabs" role="tablist" aria-label="容器分类">
-        <button v-for="group in containerTabs" :key="group.value" class="flower-tab" :class="{ 'flower-tab-active': activeContainer === group.value }" role="tab" :aria-selected="activeContainer === group.value" @click="activeContainer = group.value">{{ group.name }}</button>
+        <button v-for="group in containerTabs" :key="group.value" class="flower-tab" :class="{ 'flower-tab-active': activeContainer === group.value }" role="tab" :aria-selected="activeContainer === group.value" @click="activeContainer = group.value">
+          {{ group.name }}
+        </button>
       </view>
       <scroll-view :key="activeContainer" scroll-y class="flowers-scroll">
         <view class="material-grid">
           <button v-for="item in visibleContainers" :key="item.id" class="material-card" hover-class="none" :aria-disabled="adding || (catalog.loading && !catalog.loaded)" :disabled="catalog.loading && !catalog.loaded" :aria-label="`选择${item.name}`" @click="emit('cloud', item.id)">
-            <view class="material-art"><image v-if="thumbnail(item.id, item.revision)" :src="thumbnail(item.id, item.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-chemistry" /></view>
-            <text class="material-name">{{ item.name }}</text>
+            <view class="material-art">
+              <image v-if="thumbnail(item.id, item.revision)" :src="thumbnail(item.id, item.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-chemistry" />
+            </view>
+            <text class="material-name">
+              {{ item.name }}
+            </text>
           </button>
         </view>
-        <text v-if="!catalog.loading && !catalog.preparing && !catalog.error && !visibleContainers.length" class="material-note">{{ activeContainer === 'vase' ? '暂无花瓶' : '暂无花束' }}</text>
+        <text v-if="!catalog.loading && !catalog.preparing && !catalog.error && !visibleContainers.length" class="material-note">
+          {{ activeContainer === 'vase' ? '暂无花瓶' : '暂无花束' }}
+        </text>
       </scroll-view>
     </view>
     <view v-else class="backgrounds-panel">
       <view class="flower-tabs" role="tablist" aria-label="背景分类">
-        <button class="flower-tab" :class="{ 'flower-tab-active': activeBackground === 'solid' }" role="tab" :aria-selected="activeBackground === 'solid'" @click="activeBackground = 'solid'">纯色</button>
-        <button class="flower-tab" :class="{ 'flower-tab-active': activeBackground === 'scene' }" role="tab" :aria-selected="activeBackground === 'scene'" @click="activeBackground = 'scene'">场景</button>
+        <button class="flower-tab" :class="{ 'flower-tab-active': activeBackground === 'solid' }" role="tab" :aria-selected="activeBackground === 'solid'" @click="activeBackground = 'solid'">
+          纯色
+        </button>
+        <button class="flower-tab" :class="{ 'flower-tab-active': activeBackground === 'scene' }" role="tab" :aria-selected="activeBackground === 'scene'" @click="activeBackground = 'scene'">
+          场景
+        </button>
       </view>
       <view v-if="activeBackground === 'solid'" class="choice-grid">
-        <button v-for="option in backgroundOptions" :key="option.value" class="choice-card" hover-class="none" :class="{ 'choice-selected': !backgroundMaterialId && background === option.value }" @click="emit('background', option.value)"><view class="background-sample" :style="{ backgroundColor: option.color }" /><text>{{ option.name }}</text></button>
+        <button v-for="option in backgroundOptions" :key="option.value" class="choice-card" hover-class="none" :class="{ 'choice-selected': !backgroundMaterialId && background === option.value }" @click="emit('background', option.value)">
+          <view class="background-sample" :style="{ backgroundColor: option.color }" /><text>{{ option.name }}</text>
+        </button>
       </view>
       <scroll-view v-else scroll-y class="flowers-scroll">
         <view class="material-grid">
           <button v-for="item in sceneBackgrounds" :key="item.id" class="material-card" hover-class="none" :class="{ 'choice-selected': backgroundMaterialId === item.id }" :aria-label="`选择${item.name}背景`" :aria-disabled="adding" @click="emit('cloud', item.id)">
-            <view class="material-art"><image v-if="thumbnail(item.id, item.revision)" :src="thumbnail(item.id, item.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-image" /></view>
-            <text class="material-name">{{ item.name }}</text>
+            <view class="material-art">
+              <image v-if="thumbnail(item.id, item.revision)" :src="thumbnail(item.id, item.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-image" />
+            </view>
+            <text class="material-name">
+              {{ item.name }}
+            </text>
           </button>
         </view>
-        <text v-if="!sceneBackgrounds.length" class="material-note">{{ catalog.loading ? '正在加载背景…' : '暂无场景背景，请在素材管理上传' }}</text>
-        <text v-if="catalog.error" class="material-note">{{ catalog.error }}</text>
+        <text v-if="!sceneBackgrounds.length" class="material-note">
+          {{ catalog.loading ? '正在加载背景…' : '暂无场景背景，请在素材管理上传' }}
+        </text>
+        <text v-if="catalog.error" class="material-note">
+          {{ catalog.error }}
+        </text>
       </scroll-view>
     </view>
   </view>
 </template>
+
 <style scoped lang="scss">
 @use '@/styles/flower-studio.scss' as *;
 .options-card { padding: 28rpx; border: 2rpx solid $studio-border; border-radius: 32rpx; background: $studio-panel; color: $studio-ink; box-shadow: 0 -12rpx 48rpx rgba(0,0,0,.12); }

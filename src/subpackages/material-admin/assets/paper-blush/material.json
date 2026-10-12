@@ -2,11 +2,11 @@
   "id": "paper-blush",
   "category": "background",
   "name": "淡粉纸纹",
-  "introduction": "柔和低对比背景，为中间的花材搭配留出空间。",
+  "introduction": "柔和纸色搭配可见纤维与轻微纸张起伏，让作品像画在手工纸上。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 1,
+  "version": 2,
   "geometry": {
     "width": 698,
     "height": 1000

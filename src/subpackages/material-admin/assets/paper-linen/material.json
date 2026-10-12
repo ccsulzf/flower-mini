@@ -2,11 +2,11 @@
   "id": "paper-linen",
   "category": "background",
   "name": "浅灰麻纹",
-  "introduction": "柔和低对比背景，为中间的花材搭配留出空间。",
+  "introduction": "浅灰底色搭配细密交织的麻布纹理，带一点自然织物的质感。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 1,
+  "version": 2,
   "geometry": {
     "width": 698,
     "height": 1000

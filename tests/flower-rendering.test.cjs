@@ -88,10 +88,10 @@ test('最前和最后的花材只开放可用层次方向', () => {
   assert.equal(page.canMoveBack.value, false)
 })
 
-test('全屏导航避让状态栏与胶囊，长屏画板略上移，短屏不越界', () => {
+test('自定义导航预留状态栏，长屏画板略上移，短屏不越界', () => {
   for (const windowHeight of [480, 800]) {
     const page = setupComponent('flower-studio-page.vue', {}, { windowHeight, screenHeight: windowHeight })
-    assert.ok(page.pageActionsTop >= 68 && page.pageActionsTop < 90, '自定义导航须避让状态栏与胶囊')
+    assert.equal(page.pageActionsTop, 76, '自定义导航包含24像素状态栏和44像素导航栏')
     const board = page.layout.boardPosition.value
     const scale = page.boardScale.value
     const height = 1000 * 0.5 * scale
@@ -172,16 +172,19 @@ test('轻微移动仍算点击，取消触摸不弹工具栏；拖动多次只�
   assert.equal(page.canUndo.value, false)
 })
 
-test('不同屏幕上浮层保留完整色板高度且不超出工作区', () => {
+test('不同屏幕上工具栏固定在底部，切换花材不跳动且不超出屏幕', () => {
   for (const windowHeight of [480, 800]) {
     const page = setupComponent('flower-studio-page.vue', {}, { windowHeight, screenHeight: windowHeight })
     for (const stem of page.stems.value) {
       page.openFlowerTools(stem.id)
       const style = page.flowerToolsStyle.value
-      const left = Number.parseFloat(style.left), top = Number.parseFloat(style.top), width = Number.parseFloat(style.width)
+      const left = Number.parseFloat(style.left), bottom = Number.parseFloat(style.bottom), width = Number.parseFloat(style.width)
       assert.ok(left >= 12 && left + width <= 363)
-      assert.ok(top >= page.stageTop)
-      assert.ok(top + 340 * 0.5 <= windowHeight - page.stageBottom + 0.001)
+      assert.equal(bottom, page.stageBottom)
+      assert.ok(windowHeight - bottom - 400 * 0.5 >= page.stageTop)
+      const before = JSON.stringify(style)
+      page.store.selectAdjacent('next')
+      assert.equal(JSON.stringify(page.flowerToolsStyle.value), before)
     }
   }
 })

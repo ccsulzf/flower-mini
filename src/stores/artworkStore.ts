@@ -95,7 +95,7 @@ function artworkState() {
     const id = ++nextId
     const kind = flowerCatalog.some(item => item.kind === material.id) ? material.id as FlowerKind : material.group === 'foliage' ? 'leaf' : 'rose'
     stems.value.push({ id, kind, materialId: material.id, materialRevision: material.revision, leafMode: 'without', flowerScale: 1, color: material.colors[0].value,
-      ...constrainStem({ x: materialLandingX(stems.value.length), y: anchorY(vase.value), angle: vase.value === '花束' ? [0, -16, 16, -9, 9][(id - 1) % 5] : [-12, 0, 12][(id - 1) % 3], stemHeight: vase.value === '花束' ? [300, 280, 285, 220, 240][(id - 1) % 5] : 410 }) })
+      ...constrainStem({ x: materialLandingX(stems.value.length), y: anchorY(vase.value), angle: vase.value === '花束' ? [0, -16, 16, -9, 9][(id - 1) % 5] : [-12, 0, 12][(id - 1) % 3], stemHeight: vase.value === '花束' ? [390, 365, 375, 350, 360][(id - 1) % 5] : 410 }) })
     return id
   }
   function setVaseMaterial(material: CachedMaterial) {
@@ -118,8 +118,8 @@ function artworkState() {
       if (saved) return { ...stem, ...saved, x: Math.max(left, Math.min(right, saved.x)), y: 747 }
       const x = clustered ? left + (right - left) * (.2 + .6 * index / (stems.value.length - 1)) : Math.max(left, Math.min(right, stem.x))
       return { ...stem, x, y: 747,
-        ...(enteringBouquet ? { angle: Math.max(-24, Math.min(24, stem.angle)), stemHeight: Math.max(170, Math.min(315, stem.stemHeight * .75)) } : {}),
-        ...(leavingBouquet ? constrainStem({ x, y: 747, angle: stem.angle, stemHeight: stem.stemHeight / .75 }) : {}) }
+        ...(enteringBouquet ? { angle: Math.max(-24, Math.min(24, stem.angle)), stemHeight: stem.kind === 'leaf' ? Math.max(170, Math.min(315, stem.stemHeight * .75)) : Math.max(350 / stem.flowerScale, Math.min(420, stem.stemHeight * .9)) } : {}),
+        ...(leavingBouquet ? constrainStem({ x, y: 747, angle: stem.angle, stemHeight: stem.stemHeight / (stem.kind === 'leaf' ? .75 : .9) }) : {}) }
     })
   }
   function adjustSelected(field: 'angle' | 'height' | 'size', delta: number) {
