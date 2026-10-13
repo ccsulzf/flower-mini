@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import type { FlowerCardText, FlowerGreetingText } from '@/models/flower-creation'
+import type { FlowerGreetingText } from '@/models/flower-creation'
 import { onUnload } from '@dcloudio/uni-app'
-import { computed, ref, watch } from 'vue'
+import { computed, getCurrentInstance, nextTick, ref, watch } from 'vue'
 import { useFlowerPageArtwork } from '@/hooks/useFlowerPageArtwork'
 import { validateCard } from '@/utils/flower/creation-storage'
+import { renderFlowerCard } from '@/utils/flower/render-flower-card'
 
 definePage({ style: { navigationBarTitleText: '制作贺卡', navigationBarBackgroundColor: '#f6f3eb' } })
-const { draft, loading, error, thumbnail, images, retry } = useFlowerPageArtwork()
-const { exportCanvasId, canvasHeight, imagePath, cardImagePath, exportingCard, cardImageError } = images
+const { draft, loading, error, images, retry } = useFlowerPageArtwork()
+const { imagePath, cardImagePath, exportingCard, cardImageError } = images
 const text = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })
 const appliedText = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })
 const fieldInputStyles = {
@@ -18,12 +19,14 @@ const fieldInputStyles = {
 const showEditor = ref(false)
 const renderedKey = ref('')
 const previewPath = ref('')
+const canvasHeight = ref(1260)
 const failedPreviewSources = ref<string[]>([])
-const previewImageLoaded = ref(false)
+const pageInstance = getCurrentInstance()?.proxy
+const cardCanvasId = 'flower-card-export'
 const contentKey = computed(() => JSON.stringify([appliedText.value.recipient.trim(), appliedText.value.blessing.trim(), appliedText.value.signature.trim()]))
 const canExport = computed(() => !loading.value && !exportingCard.value && renderedKey.value === contentKey.value && Boolean(cardImagePath.value))
-const previewUpdating = computed(() => exportingCard.value || (Boolean(renderedKey.value) && renderedKey.value !== contentKey.value))
-const previewImageSource = computed(() => [previewPath.value, imagePath.value, thumbnail.value].find(path => path && !failedPreviewSources.value.includes(path)) || '')
+const previewImageSource = computed(() => previewPath.value && !failedPreviewSources.value.includes(previewPath.value) ? previewPath.value : '')
+const previewError = computed(() => cardImageError.value || (previewPath.value && failedPreviewSources.value.includes(previewPath.value) ? '预览图片暂不可用' : ''))
 const blessingCount = computed(() => text.value.blessing.length)
 let timer: ReturnType<typeof setTimeout> | undefined
 let alive = true
@@ -39,7 +42,30 @@ watch(draft, (value) => {
 async function preview(value: FlowerGreetingText = appliedText.value) {
   const greeting = { ...validateCard(value), recipient: value.recipient.trim() }
   const key = JSON.stringify([greeting.recipient, greeting.blessing, greeting.signature])
-  const ok = await images.exportCard(greeting)
+  const imageReady = await images.exportImage()
+  if (!imageReady || !imagePath.value)
+    return false
+  const ok = await images.exportCard(greeting, async () => {
+    const context = uni.createCanvasContext(cardCanvasId, pageInstance)
+    const { height } = await renderFlowerCard(context, imagePath.value, greeting, async (nextHeight) => {
+      canvasHeight.value = nextHeight
+      await nextTick()
+    })
+    return new Promise<string>((resolve, reject) => {
+      uni.canvasToTempFilePath({
+        canvasId: cardCanvasId,
+        x: 0,
+        y: 0,
+        width: 698,
+        height,
+        destWidth: 698,
+        destHeight: height,
+        fileType: 'png',
+        success: result => resolve(result.tempFilePath),
+        fail: reject,
+      }, pageInstance)
+    })
+  })
   if (alive && ok && key === contentKey.value) {
     renderedKey.value = key
     previewPath.value = cardImagePath.value
@@ -53,7 +79,6 @@ watch([loading, contentKey], () => {
   if (!loading.value && draft.value && !error.value)
     timer = setTimeout(() => { void preview() }, 350)
 })
-watch(previewImageSource, () => { previewImageLoaded.value = false })
 onUnload(() => {
   alive = false
   if (timer)
@@ -71,12 +96,8 @@ function onPreviewImageError() {
   if (previewImageSource.value && !failedPreviewSources.value.includes(previewImageSource.value))
     failedPreviewSources.value.push(previewImageSource.value)
 }
-function onPreviewImageLoad() {
-  previewImageLoaded.value = true
-}
 function retryPreview() {
   failedPreviewSources.value = []
-  previewImageLoaded.value = false
   void preview()
 }
 function openEditor() {
@@ -106,30 +127,21 @@ function applyEditor() {
       </button>
     </view>
     <template v-else>
-      <view class="greeting-preview" @click="canExport ? images.previewImage('card') : images.previewImage()">
+      <canvas
+        :canvas-id="cardCanvasId" :width="698" :height="canvasHeight"
+        class="card-export-canvas" :style="{ height: `${canvasHeight}px` }"
+      />
+      <view class="greeting-preview" @click="canExport && images.previewImage('card')">
         <image
           v-if="previewImageSource" :src="previewImageSource" mode="aspectFit" class="greeting-image"
-          @load="onPreviewImageLoad" @error="onPreviewImageError"
+          @error="onPreviewImageError"
         />
-        <view v-if="previewImageSource && !previewImageLoaded" class="preview-placeholder">
-          <view class="preview-spinner" />
-          <text>{{ exportingCard ? '正在生成贺卡预览…' : '正在加载预览…' }}</text>
-        </view>
-        <view v-if="!previewImageSource" class="preview-placeholder">
-          <text>{{ exportingCard ? '正在生成贺卡预览…' : cardImageError || '预览图片暂不可用' }}</text>
+        <view v-if="previewError" class="preview-error">
+          <text>{{ previewError }}</text>
           <button v-if="!exportingCard" @click.stop="retryPreview">
             重新生成预览
           </button>
         </view>
-        <text v-if="previewUpdating" class="preview-status">
-          正在更新贺卡预览…
-        </text>
-      </view>
-      <view v-if="cardImageError" class="greeting-error">
-        {{ cardImageError }}
-        <button :disabled="exportingCard" @click="retryPreview">
-          重试
-        </button>
       </view>
       <view class="greeting-actions">
         <button class="greeting-edit" :disabled="exportingCard" @click="openEditor">
@@ -197,10 +209,6 @@ function applyEditor() {
         </view>
       </view>
     </template>
-    <canvas
-      :id="exportCanvasId" :canvas-id="exportCanvasId" class="export-canvas"
-      :style="{ height: `${canvasHeight}px` }"
-    />
   </view>
 </template>
 
@@ -225,6 +233,14 @@ function applyEditor() {
   border-radius: 24rpx;
 }
 
+.card-export-canvas {
+  position: fixed;
+  left: -2000rpx;
+  top: 0;
+  width: 698px;
+  pointer-events: none;
+}
+
 .greeting-image {
   position: absolute;
   left: 0;
@@ -233,7 +249,7 @@ function applyEditor() {
   height: 100%;
 }
 
-.preview-placeholder {
+.preview-error {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,22 +258,7 @@ function applyEditor() {
   font-size: 26rpx;
 }
 
-.preview-spinner {
-  width: 36rpx;
-  height: 36rpx;
-  border: 4rpx solid #d5dccb;
-  border-top-color: #74806b;
-  border-radius: 50%;
-  animation: preview-spin .8s linear infinite;
-}
-
-@keyframes preview-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.preview-placeholder button {
+.preview-error button {
   margin: 0;
   padding: 0 22rpx;
   border-radius: 14rpx;
@@ -455,11 +456,4 @@ button::after {
   border: none;
 }
 
-.export-canvas {
-  position: fixed;
-  left: -2000px;
-  top: 0;
-  width: 698px;
-  pointer-events: none;
-}
 </style>

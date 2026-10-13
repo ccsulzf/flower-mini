@@ -1,26 +1,24 @@
 import type { Artwork } from '@/models/artwork'
 import type { FlowerCardText } from '@/models/flower-creation'
-import { getCurrentInstance, nextTick, ref } from 'vue'
-import { studioMetrics } from '@/utils/flower/arrangement.cjs'
-import { renderArtwork } from '@/utils/flower/render-artwork'
-import { renderFlowerCard } from '@/utils/flower/render-flower-card'
+import { ref } from 'vue'
+import { renderArtworkSvg } from '@/utils/flower/artwork-svg'
+import { renderCloudImage } from '@/utils/flower/cloud-image-renderer'
+import { readImageCache, removeCachedImage, writeImageCache } from '@/utils/flower/image-cache'
+import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 
 type ImageKind = 'artwork' | 'card'
-// A page owns its canvas. Rendering is serialized and stale callbacks never restore an ended session.
-export function useArtworkImage(createSnapshot: () => Artwork) {
-  const instance = getCurrentInstance()
+
+// Ignore stale cloud render results after a page closes or a newer request replaces them.
+export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () => string = () => '') {
   const exportingImage = ref(false)
   const imagePath = ref('')
   const imageError = ref('')
   const exportingCard = ref(false)
   const cardImagePath = ref('')
   const cardImageError = ref('')
-  const canvasHeight = ref(1600)
-  const exportCanvasId = 'flowerArtworkExport'
   let generation = 0
   let artworkRequest = 0
   let cardRequest = 0
-  let pending: Promise<void> = Promise.resolve()
   function notify(title: string) {
     uni.showToast({ title, icon: 'none' })
   }
@@ -42,22 +40,8 @@ export function useArtworkImage(createSnapshot: () => Artwork) {
     cardImagePath.value = ''
     cardImageError.value = ''
   }
-  async function serial<T>(task: () => Promise<T>) {
-    const previous = pending
-    let release!: () => void
-    pending = new Promise<void>((resolve) => {
-      release = resolve
-    })
-    try {
-      await previous
-      return await task()
-    }
-    finally {
-      release()
-    }
-  }
-  function capture(width: number, height: number, scale = 2) {
-    return new Promise<string>((resolve, reject) => uni.canvasToTempFilePath({ canvasId: exportCanvasId, x: 0, y: 0, width, height, destWidth: Math.round(width * scale), destHeight: Math.round(height * scale), fileType: 'png', success: result => resolve(result.tempFilePath), fail: reject }, instance?.proxy))
+  function artworkSvg(artwork: Artwork) {
+    return renderArtworkSvg(artwork, useFlowerCatalogStore().get)
   }
   async function exportImage(): Promise<boolean> {
     if (exportingImage.value)
@@ -65,23 +49,30 @@ export function useArtworkImage(createSnapshot: () => Artwork) {
     const epoch = generation
     const request = ++artworkRequest
     const artwork = createSnapshot()
+    const signature = JSON.stringify(artwork)
+    const scope = cacheScope()
+    const cacheKey = `${scope ? `${scope}:` : ''}artwork:${signature}`
+    const cached = readImageCache(cacheKey)
+    if (cached) {
+      artworkRequest++
+      imagePath.value = cached
+      exportingImage.value = false
+      imageError.value = ''
+      return true
+    }
     const current = () => epoch === generation && request === artworkRequest
     exportingImage.value = true
     imagePath.value = ''
     imageError.value = ''
     try {
-      return await serial(async () => {
-        if (!current())
-          return false
-        await renderArtwork(uni.createCanvasContext(exportCanvasId, instance?.proxy), artwork)
-        if (!current())
-          return false
-        const path = await capture(studioMetrics.width, studioMetrics.height)
-        if (!current())
-          return false
-        imagePath.value = path
-        return true
-      })
+      const path = await renderCloudImage(artworkSvg(artwork), 1000)
+      if (!current()) {
+        removeCachedImage(path)
+        return false
+      }
+      imagePath.value = path
+      writeImageCache(cacheKey, path)
+      return true
     }
     catch (error) {
       if (current())
@@ -93,35 +84,36 @@ export function useArtworkImage(createSnapshot: () => Artwork) {
         exportingImage.value = false
     }
   }
-  async function exportCard(text: FlowerCardText): Promise<boolean> {
-    if (!imagePath.value && !await exportImage())
-      return false
+  async function exportCard(text: FlowerCardText, render: () => Promise<string>): Promise<boolean> {
+    const signature = JSON.stringify(createSnapshot())
+    const card = { ...text }
+    const scope = cacheScope()
+    const cacheKey = `${scope ? `${scope}:` : ''}card:${JSON.stringify([signature, card])}`
+    const cached = readImageCache(cacheKey)
+    if (cached) {
+      cardRequest++
+      exportingCard.value = false
+      cardImagePath.value = cached
+      cardImageError.value = ''
+      return true
+    }
     const epoch = generation
     const request = ++cardRequest
-    const original = imagePath.value
-    const card = { ...text }
     const current = () => epoch === generation && request === cardRequest
     exportingCard.value = true
     cardImagePath.value = ''
     cardImageError.value = ''
     try {
-      return await serial(async () => {
-        if (!current())
-          return false
-        canvasHeight.value = 1800
-        await nextTick()
-        const size = await renderFlowerCard(uni.createCanvasContext(exportCanvasId, instance?.proxy), original, card, async (height) => {
-          canvasHeight.value = height
-          await nextTick()
-        })
-        if (!current())
-          return false
-        const path = await capture(size.width, size.height)
-        if (!current())
-          return false
-        cardImagePath.value = path
-        return true
-      })
+      const path = await render()
+      if (!path)
+        throw new Error('贺卡图片导出失败')
+      if (!current()) {
+        removeCachedImage(path)
+        return false
+      }
+      cardImagePath.value = path
+      writeImageCache(cacheKey, path)
+      return true
     }
     catch (error) {
       if (current())
@@ -132,19 +124,6 @@ export function useArtworkImage(createSnapshot: () => Artwork) {
       if (current())
         exportingCard.value = false
     }
-  }
-  async function exportThumbnail(): Promise<string> {
-    const epoch = generation
-    const artwork = createSnapshot()
-    return serial(async () => {
-      if (epoch !== generation)
-        throw new Error('创作已切换，请重新保存')
-      await renderArtwork(uni.createCanvasContext(exportCanvasId, instance?.proxy), artwork)
-      const path = await capture(698, 1000, 0.5)
-      if (epoch !== generation)
-        throw new Error('创作已切换，请重新保存')
-      return path
-    })
   }
   function pathFor(kind: ImageKind) {
     return kind === 'card' ? exportingCard.value ? '' : cardImagePath.value : exportingImage.value ? '' : imagePath.value
@@ -186,5 +165,5 @@ export function useArtworkImage(createSnapshot: () => Artwork) {
     if (path)
       uni.previewImage({ urls: [path], current: path })
   }
-  return { exportCanvasId, canvasHeight, exportingImage, imagePath, imageError, exportingCard, cardImagePath, cardImageError, exportImage, exportCard, exportThumbnail, invalidate, saveImage, shareImage, previewImage }
+  return { exportingImage, imagePath, imageError, exportingCard, cardImagePath, cardImageError, exportImage, exportCard, invalidate, saveImage, shareImage, previewImage }
 }

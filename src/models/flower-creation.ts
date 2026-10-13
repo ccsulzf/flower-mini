@@ -18,7 +18,5 @@ export interface SavedFlowerWork {
   createdAt: number
   updatedAt: number
   draft: CreationDraft
-  thumbnailFileId: string
-  thumbnailUrl?: string
   revision: number
 }

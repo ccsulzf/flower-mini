@@ -1,25 +1,32 @@
 <script setup lang="ts">
-import type { StudioTab } from '../studio-types'
+import type { Artwork } from '@/models/artwork'
 import { computed, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useCreationArtworkStore } from '@/stores/artworkStore'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
-import { type Artwork, backgroundOptions, flowerGroups, type VaseName } from '@/utils/flower/artwork'
+import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
+import { backgroundOptions, flowerGroups } from '@/utils/flower/artwork'
 import { backgroundSceneSource } from '@/utils/flower/background-render'
 import { cloudPlantSvg, svgImageSource } from '@/utils/flower/material-render'
 
-const props = defineProps<{ tab: StudioTab, vase: VaseName, background: Artwork['background'], backgroundMaterialId?: string, addedMaterialId?: string, adding?: boolean }>()
 const emit = defineEmits<{
   cloud: [id: string]
   close: []
   background: [value: Artwork['background']]
 }>()
 const catalog = useFlowerCatalogStore()
+const artwork = useCreationArtworkStore()
+const studio = useFlowerStudioStore()
+const { vase, background, backgroundMaterialId } = storeToRefs(artwork)
+const { addedMaterialId, addingMaterial: adding } = storeToRefs(studio)
+const tab = computed(() => studio.activeTab || 'flowers')
 const cloudFlowers = computed(() => catalog.materials.filter(item => item.category === 'flower'))
 const activeGroup = ref<(typeof flowerGroups)[number]['value']>('main')
 const visibleFlowers = computed(() => cloudFlowers.value.filter(item => item.group === activeGroup.value))
 const containerTabs = [{ value: 'vase', name: '花瓶' }, { value: 'bouquet', name: '花束' }] as const
 const activeContainer = ref<(typeof containerTabs)[number]['value']>('vase')
 const visibleContainers = computed(() => catalog.materials.filter(item => item.category === activeContainer.value))
-const activeBackground = ref<'solid' | 'scene'>(props.backgroundMaterialId ? 'scene' : 'solid')
+const activeBackground = ref<'solid' | 'scene'>(backgroundMaterialId.value ? 'scene' : 'solid')
 const sceneBackgrounds = computed(() => catalog.materials.filter(item => item.category === 'background'))
 const thumbnailCache = new Map<string, string>()
 function thumbnail(id: string, revision: string) {
@@ -41,8 +48,8 @@ async function refreshCatalog() {
   await catalog.load()
   void catalog.preload()
 }
-const titles: Record<StudioTab, string> = { flowers: '今天，想选什么花？', vases: '选一个容器', backgrounds: '为日常添一点颜色' }
-const subtitles: Record<StudioTab, string> = { flowers: '从一枝开始，慢慢放进生活里。', vases: '切换形式，保留你搭配好的花朵。', backgrounds: '换一个背景，让作品有不同的气氛。' }
+const titles = { flowers: '今天，想选什么花？', vases: '选一个容器', backgrounds: '为日常添一点颜色' } as const
+const subtitles = { flowers: '从一枝开始，慢慢放进生活里。', vases: '切换形式，保留你搭配好的花朵。', backgrounds: '换一个背景，让作品有不同的气氛。' } as const
 </script>
 
 <template>

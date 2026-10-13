@@ -61,7 +61,7 @@ function fillExample() {
     </view>
     <view class="preview" :style="previewStyle">
       <view v-if="artwork" class="preview-board">
-        <FlowerBoard :stems="artwork.stems" :vase="artwork.vase" :selected-id="null" />
+        <FlowerBoard :background="artwork.background" :stems="artwork.stems" :vase="artwork.vase" :selected-id="null" />
       </view>
       <view v-else class="preview-empty">
         <text>你的花束会出现在这里</text>

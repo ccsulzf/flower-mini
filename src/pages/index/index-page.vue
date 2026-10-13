@@ -21,6 +21,10 @@ function openFlowerJson() {
   uni.navigateTo({ url: '/pages/flower-json/flower-json-page' })
 }
 
+function openFlowerRenderTest() {
+  uni.navigateTo({ url: '/pages/flower-render-test/flower-render-test-page' })
+}
+
 async function checkAuth(retry = false) {
   if (busy.value)
     return
@@ -80,6 +84,17 @@ onShow(() => checkAuth())
       </view>
       <button class="app-secondary-btn" @click="openFlowerJson">
         导入花束
+      </button>
+    </view>
+    <view class="app-card section">
+      <view class="app-section-title">
+        渲染路线验证
+      </view>
+      <view class="app-section-desc">
+        并排对比 Vue 预览和云端生成的 PNG。
+      </view>
+      <button class="app-secondary-btn" @click="openFlowerRenderTest">
+        打开验证页
       </button>
     </view>
     <view v-if="materialAdminEnabled" class="app-card section">

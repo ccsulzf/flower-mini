@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import type { StudioTab } from './studio-types'
 import type { Artwork } from '@/models/artwork'
-import type { SavedFlowerWork } from '@/models/flower-creation'
 import { onHide, onLoad, onShow, onUnload } from '@dcloudio/uni-app'
 import { storeToRefs } from 'pinia'
-import { computed, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import FlowerBoard from '@/components/flower/flower-board.vue'
 import { useArtworkImage } from '@/hooks/useArtworkImage'
 import { useFlowerCreationSession } from '@/hooks/useFlowerCreationSession'
@@ -12,13 +11,13 @@ import { useFlowerDrag } from '@/hooks/useFlowerDrag'
 import { useFlowerStudioLayout } from '@/hooks/useFlowerStudioLayout'
 import { useCreationArtworkStore } from '@/stores/artworkStore'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
+import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
+import { useUserInfoStore } from '@/stores/userInfoStore'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
-import { initializeAppAuth, waitForAppAuthReady } from '@/utils/appAuth'
-import { backgroundOffset } from '@/utils/flower/background-render'
-import StudioFlowerTools from './components/studio-flower-tools.vue'
-import StudioHeader from './components/studio-header.vue'
-import StudioOptions from './components/studio-options.vue'
-import StudioToolbar from './components/studio-toolbar.vue'
+import { initializeAppAuth } from '@/utils/appAuth'
+import StudioFlowerToolbar from './components/studio-flower-toolbar.vue'
+import StudioMaterialDock from './components/studio-material-dock.vue'
+import StudioTopToolbar from './components/studio-top-toolbar.vue'
 
 definePage({
   type: 'home',
@@ -27,46 +26,26 @@ definePage({
 })
 const store = useCreationArtworkStore()
 store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
-const { stems, vase, vaseMaterialId, vaseMaterialRevision, background, backgroundMaterialId, backgroundMaterialRevision, selectedId, selected, canUndo, canRedo, canClear, canMoveBack, canMoveFront } = storeToRefs(store)
+const { stems, vase, vaseMaterialId, vaseMaterialRevision, background, backgroundMaterialId, backgroundMaterialRevision, selectedId, canClear } = storeToRefs(store)
 const catalog = useFlowerCatalogStore()
-const materialsLoading = computed(() => catalog.loading || catalog.preparing || catalog.downloading > 0)
 const session = useFlowerCreationSession(store)
-const { view, pendingDraft, storageError, readonly, initialized, draftReadFailed } = session
-const editingExisting = computed(() => Boolean(session.workId.value))
+const { pendingDraft, storageError, readonly, initialized, draftReadFailed } = session
 const works = useFlowerWorksStore()
-const pageReady = ref(false)
-const startupError = ref('')
+const userInfo = useUserInfoStore()
+const studio = useFlowerStudioStore()
+studio.reset()
+const { pageReady, finishing, startupError, addingMaterial, addedMaterialId, activeTab, showFlowerTools, toolsColorsOpen } = storeToRefs(studio)
 const detailId = ref('')
 let applying = false
 let alive = true
 let sessionVersion = 0
 let bootTask: Promise<void> | null = null
-let pageOwner = ''
-const navigationDevice = uni.getSystemInfoSync()
-const navigationStatusTop = navigationDevice.statusBarHeight || 0
-const navigationCapsule = uni.getMenuButtonBoundingClientRect?.() || { top: navigationStatusTop, height: 0 }
-const navigationHeight = navigationCapsule.height && navigationCapsule.top >= navigationStatusTop
-  ? (navigationCapsule.top - navigationStatusTop) * 2 + navigationCapsule.height
-  : 44
-const navigationInset = navigationStatusTop + navigationHeight
-const addingMaterial = ref(false)
-const addedMaterialId = ref('')
 let addedMaterialTimer: ReturnType<typeof setTimeout> | null = null
-const activeTab = ref<StudioTab | null>(null)
-const showFinish = computed(() => view.value !== 'edit')
-const showFlowerTools = ref(false)
-const toolsColorsOpen = ref(false)
-const arrangementOffset = computed(() => backgroundOffset(backgroundMaterialId.value && backgroundMaterialRevision.value ? catalog.get(backgroundMaterialId.value, backgroundMaterialRevision.value) : undefined, vaseMaterialId.value && vaseMaterialRevision.value ? catalog.get(vaseMaterialId.value, vaseMaterialRevision.value) : undefined, vase.value))
-const layout = useFlowerStudioLayout(selected, vase, arrangementOffset, navigationInset)
-const { device, unit, pageActionsTop, toolbarBottom, stageTop, stageBottom, boardScale, boardPosition, artworkStyle, flowerToolsStyle } = layout
-const studioArtworkStyle = computed(() => activeTab.value
-  ? `left:${boardPosition.value.left}px;top:${boardPosition.value.top - stageTop - 260 * unit}px;transform:scale(${boardScale.value});`
-  : artworkStyle.value)
+const layout = useFlowerStudioLayout()
+const { device, unit, pageActionsTop, stageTop, stageBottom, boardScale, artworkStyle, flowerToolsStyle } = layout
 const images = useArtworkImage(store.snapshot)
-const { exportCanvasId, canvasHeight } = images
 const { startDrag, moveDrag, endDrag } = useFlowerDrag(store, boardScale, unit, openFlowerTools, () => {
-  toolsColorsOpen.value = false
-  showFlowerTools.value = false
+  studio.closeFlowerTools()
 })
 
 onLoad((query) => {
@@ -102,27 +81,11 @@ function bootstrap(): Promise<void> {
     return bootTask
   bootTask = (async () => {
     try {
-      await waitForAppAuthReady()
+      const uid = await userInfo.requireUid('请先登录后创作')
       if (!alive)
         return
-      const uid = uniCloud.getCurrentUserInfo().uid
-      if (!uid)
-        throw new Error('请先登录后创作')
-      if (pageOwner && pageOwner !== uid) {
-        sessionVersion++
-        images.invalidate()
-        closePanels()
-        pageReady.value = false
-
-        addingMaterial.value = false
-
-        applying = true
-        store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
-        applying = false
-      }
-      if (pageReady.value && pageOwner === uid)
+      if (pageReady.value)
         return
-      pageOwner = uid
       session.initialize(uid, Boolean(detailId.value))
       const restoring = Boolean(pendingDraft.value)
       if (restoring) {
@@ -135,7 +98,7 @@ function bootstrap(): Promise<void> {
         throw new Error('作品链接无效')
       if (detailId.value) {
         const work = await works.get(detailId.value)
-        if (!alive || uid !== uniCloud.getCurrentUserInfo().uid)
+        if (!alive)
           return
         applying = true
         session.openWork(work)
@@ -144,7 +107,7 @@ function bootstrap(): Promise<void> {
         applying = false
       }
       await loadMaterials()
-      if (!alive || uid !== uniCloud.getCurrentUserInfo().uid)
+      if (!alive)
         return
       if (detailId.value || restoring)
         await prepareArtwork()
@@ -203,13 +166,6 @@ async function loadMaterials() {
   }
   void catalog.preload()
 }
-function retryMaterials() {
-  catalog.loaded = false
-  catalog.ready = false
-  catalog.error = ''
-  void catalog.preload()
-}
-
 onUnload(() => {
   alive = false
   if (addedMaterialTimer)
@@ -218,52 +174,87 @@ onUnload(() => {
   endDrag(true)
   session.dispose()
   images.invalidate()
+  studio.reset()
   store.$dispose()
 })
 function notify(title: string) {
   uni.showToast({ title, icon: 'none' })
 }
-function closeFinish() {
-  view.value = 'edit'
-  images.invalidate()
-}
 function closeFlowerTools() {
-  showFlowerTools.value = false
-  toolsColorsOpen.value = false
+  studio.closeFlowerTools()
   store.select(null)
 }
 function closePanels() {
-  activeTab.value = null
-  closeFinish()
-  closeFlowerTools()
+  studio.closePanel()
+  store.select(null)
+  images.invalidate()
 }
 function toggleTab(tab: StudioTab) {
   if (!pageReady.value || pendingDraft.value)
     return
   endDrag(true)
-  closeFinish()
-  closeFlowerTools()
-  activeTab.value = activeTab.value === tab ? null : tab
+  store.select(null)
+  images.invalidate()
+  studio.toggleTab(tab)
 }
-function finish() {
+async function finish() {
+  if (finishing.value)
+    return
   if (addingMaterial.value) {
     notify('素材正在准备，请稍后再完成')
     return
   }
   endDrag(true)
   closeFlowerTools()
-  activeTab.value = null
+  studio.closePanel()
   if (!pendingDraft.value && !readonly.value && !vaseMaterialId.value) {
     notify('花瓶正在准备，请稍后再完成')
     return
   }
   session.flushDraft()
   const draft = session.snapshot()
-  uni.navigateTo({
-    url: '/pages/flower-complete/flower-complete-page',
-    events: { saved: (work: SavedFlowerWork) => session.saved(work) },
-    success: result => result.eventChannel.emit('artwork', { draft, owner: pageOwner }),
-  })
+  finishing.value = true
+  try {
+    await prepareArtwork()
+    if (!alive)
+      return
+    let title = `花意 ${new Date().getMonth() + 1}月${new Date().getDate()}日`
+    let description = ''
+    if (draft.workId) {
+      const original = await works.get(draft.workId)
+      if (!alive)
+        return
+      title = original.title
+      description = original.description
+    }
+    const work = await works.save({
+      draft,
+      title,
+      description,
+      workId: draft.workId,
+      expectedRevision: draft.workRevision,
+    })
+    if (!alive)
+      return
+    applying = true
+    const draftCleared = session.saved()
+    applying = false
+    if (!draftCleared)
+      notify(storageError.value || '作品已保存，但本地草稿清理失败')
+    detailId.value = ''
+    images.invalidate()
+    studio.closePanel()
+    store.select(null)
+    void loadMaterials()
+    uni.navigateTo({ url: `/pages/flower-detail/flower-detail-page?workId=${work.id}` })
+  }
+  catch (error) {
+    if (alive)
+      notify(creationFailure(error))
+  }
+  finally {
+    finishing.value = false
+  }
 }
 
 async function retryLocalDraft() {
@@ -303,8 +294,8 @@ function endCreation() {
     clearTimeout(addedMaterialTimer)
     addedMaterialTimer = null
   }
-  activeTab.value = null
-  closeFlowerTools()
+  studio.closePanel()
+  store.select(null)
   startupError.value = ''
 
   detailId.value = ''
@@ -321,13 +312,14 @@ function closeDetail() {
   uni.navigateBack()
 }
 function openFlowerTools(id: number) {
+  if (activeTab.value)
+    studio.closePanel()
   if (showFlowerTools.value && selectedId.value === id)
     return
   store.select(id)
   toolsColorsOpen.value = false
-  activeTab.value = null
-  closeFinish()
-  showFlowerTools.value = true
+  images.invalidate()
+  studio.openFlowerTools()
 }
 async function addCloudMaterial(id: string) {
   if (!pageReady.value || pendingDraft.value)
@@ -337,10 +329,9 @@ async function addCloudMaterial(id: string) {
     return
   addingMaterial.value = true
   const request = sessionVersion
-  const owner = pageOwner
   try {
     const material = await catalog.ensure(row.id, row.revision)
-    if (!alive || request !== sessionVersion || owner !== pageOwner || (owner && owner !== uniCloud.getCurrentUserInfo().uid))
+    if (!alive || request !== sessionVersion)
       return
     endDrag(true)
     let addedStemId: number | null = null
@@ -349,19 +340,16 @@ async function addCloudMaterial(id: string) {
     }
     else if (material.category === 'vase' || material.category === 'bouquet') {
       store.setVaseMaterial(material)
-      activeTab.value = null
+      studio.closePanel()
     }
     else {
       addedStemId = store.addMaterial(material)
-      if (addedStemId === null) {
-        notify('最多放入 48 枝花材')
+      if (addedStemId === null)
         return
-      }
     }
     if (addedStemId !== null) {
-      showFlowerTools.value = false
-      toolsColorsOpen.value = false
-      store.select(addedStemId)
+      studio.closeFlowerTools()
+      store.select(activeTab.value ? null : addedStemId)
       addedMaterialId.value = material.id
       if (addedMaterialTimer)
         clearTimeout(addedMaterialTimer)
@@ -375,11 +363,11 @@ async function addCloudMaterial(id: string) {
     }
   }
   catch (value) {
-    if (alive && request === sessionVersion && owner === pageOwner)
+    if (alive && request === sessionVersion)
       notify(value instanceof Error ? value.message : '素材加载失败')
   }
   finally {
-    if (request === sessionVersion && owner === pageOwner)
+    if (request === sessionVersion)
       addingMaterial.value = false
   }
 }
@@ -425,8 +413,6 @@ function duplicateSelected() {
   const id = store.duplicateSelected()
   if (id !== null)
     openFlowerTools(id)
-  else if (stems.value.length >= 48)
-    notify('最多放入 48 枝花材')
 }
 function removeSelected() {
   endDrag(true)
@@ -440,74 +426,32 @@ function removeSelected() {
     class="flower-studio studio-light"
     :style="{ backgroundColor: '#f6f3eb', height: `${device.windowHeight}px` }"
   >
-    <view v-if="view === 'edit'" class="studio-stage" :style="{ bottom: `${stageBottom}px`, top: `${stageTop}px` }">
-      <view class="studio-artwork" :class="{ 'studio-artwork-panel-open': activeTab }" :style="studioArtworkStyle">
+    <view class="studio-stage" :style="{ bottom: `${stageBottom}px`, top: `${stageTop}px` }">
+      <view class="studio-artwork" :style="artworkStyle">
         <FlowerBoard
-          :background="background" :background-material-id="backgroundMaterialId" :background-material-revision="backgroundMaterialRevision" :stems="stems" :vase="vase" :vase-material-id="vaseMaterialId" :vase-material-revision="vaseMaterialRevision" :selected-id="selectedId" @start="startDrag" @move="moveDrag"
-          @end="endDrag" @clear="closeFlowerTools"
+          :background="background" :background-material-id="backgroundMaterialId" :background-material-revision="backgroundMaterialRevision"
+          :stems="stems" :vase="vase" :vase-material-id="vaseMaterialId" :vase-material-revision="vaseMaterialRevision"
+          :selected-id="selectedId" @start="startDrag" @move="moveDrag" @end="endDrag" @clear="closeFlowerTools"
         />
       </view>
-      <view v-if="materialsLoading || catalog.error" class="canvas-material-overlay" @touchmove.stop.prevent>
-        <view class="materials-loading-card">
-          <template v-if="materialsLoading">
-            <view class="materials-loading-spinner" />
-            <text>素材加载中…</text>
-          </template>
-          <template v-else>
-            <text class="materials-loading-error">
-              素材加载失败
-            </text>
-            <text class="materials-loading-detail">
-              {{ catalog.error }}
-            </text>
-            <button class="creation-button creation-primary" @click="retryMaterials">
-              重试
-            </button>
-          </template>
-        </view>
-      </view>
+      <StudioMaterialStatus />
     </view>
-    <view v-if="activeTab && view === 'edit'" class="panel-backdrop" @click="closePanels" @touchmove.stop.prevent />
-    <view v-if="activeTab" class="studio-options-position" :style="{ bottom: `${stageBottom}px` }">
-      <StudioOptions
-        :tab="activeTab" :vase="vase" :background="background" :background-material-id="backgroundMaterialId" :added-material-id="addedMaterialId" :adding="addingMaterial" @close="activeTab = null" @cloud="addCloudMaterial"
-        @background="setBackground"
-      />
-    </view>
-    <view v-if="showFlowerTools && selected" class="studio-flower-tools-position" :style="flowerToolsStyle">
-      <StudioFlowerTools
-        :stem="selected" :colors-open="toolsColorsOpen" :can-move-back="canMoveBack"
-        :can-move-front="canMoveFront" @close="closeFlowerTools" @color="setColor"
-        @toggle-colors="toolsColorsOpen = !toolsColorsOpen" @layer="setLayer" @duplicate="duplicateSelected"
-        @remove="removeSelected" @mirror="store.mirrorSelected()" @adjacent="store.selectAdjacent"
-      />
-    </view>
-    <view v-if="!showFinish" class="studio-page-actions-position" :style="{ top: `${pageActionsTop}px` }">
-      <StudioHeader
-        :can-undo="canUndo" :can-redo="canRedo"
-        :can-clear="canClear" :editing-existing="editingExisting" @undo="undo" @redo="redo" @reset="reset" @finish="finish"
-      />
-    </view>
-    <view v-if="!showFinish" class="studio-toolbar-position" :style="{ bottom: `${toolbarBottom}px` }">
-      <StudioToolbar :active-tab="activeTab" @select="toggleTab" />
-    </view>
-    <view class="studio-navigation" :style="{ top: `${navigationStatusTop}px`, height: `${navigationHeight}px` }">
-      <text class="studio-navigation-title">
-        插花
-      </text>
-      <button class="studio-works-link" :disabled="!pageReady" @click="openWorks">
-        我的作品
-      </button>
-    </view>
+    <StudioMaterialDock
+      @select="toggleTab" @close="studio.closePanel" @dismiss="closePanels" @cloud="addCloudMaterial"
+      @background="setBackground"
+    />
+    <StudioFlowerToolbar
+      @close="closeFlowerTools" @color="setColor"
+      @toggle-colors="toolsColorsOpen = !toolsColorsOpen" @layer="setLayer" @duplicate="duplicateSelected"
+      @remove="removeSelected" @mirror="store.mirrorSelected()" @adjacent="store.selectAdjacent"
+    />
+    <StudioTopToolbar @works="openWorks" @undo="undo" @redo="redo" @reset="reset" @finish="finish" />
     <view v-if="storageError && !pendingDraft && !startupError" class="storage-warning" :style="{ top: `${pageActionsTop + 58}px` }">
       <text>{{ storageError }}</text><text v-if="draftReadFailed" @click="retryLocalDraft">
         重新读取
       </text><text @click="endCreation">
         重新开始
       </text>
-    </view>
-    <view v-if="!pageReady && !startupError && !materialsLoading && !catalog.error" class="startup-note" :style="{ top: `${pageActionsTop + 58}px` }">
-      正在连接账号与素材…
     </view>
     <view v-if="startupError" class="creation-overlay" @touchmove.stop.prevent>
       <view class="creation-modal">
@@ -532,7 +476,6 @@ function removeSelected() {
       </view>
     </view>
     <!-- 仅导出时绘制，保留真实尺寸，不能 display:none。 -->
-    <canvas :id="exportCanvasId" :canvas-id="exportCanvasId" class="artwork-export-canvas" :style="{ height: `${canvasHeight}px` }" />
   </view>
 </template>
 
@@ -552,6 +495,7 @@ function removeSelected() {
   position: absolute;
   left: 0;
   right: 0;
+  z-index: 5;
   overflow: hidden;
 }
 
@@ -561,69 +505,9 @@ function removeSelected() {
   transition: top .2s ease;
 }
 
-.studio-toolbar-position {
-  position: absolute;
-  z-index: 7;
-  left: 26rpx;
-  right: 26rpx;
-}
-
-.studio-page-actions-position {
-  position: absolute;
-  z-index: 7;
-  left: 26rpx;
-  right: 26rpx;
-}
-
-.panel-backdrop {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  background: rgba(17, 20, 15, .2);
-}
-
-.studio-options-position {
-  position: absolute;
-  z-index: 6;
-  left: 26rpx;
-  right: 26rpx;
-}
-
-.studio-flower-tools-position {
-  position: absolute;
-  z-index: 3;
-}
-
-.studio-finish-position {
-  position: absolute;
-  z-index: 8;
-  left: 26rpx;
-  right: 26rpx;
-}
-
-.artwork-export-canvas {
-  position: fixed;
-  left: -2000px;
-  top: 0;
-  width: 698px;
-  height: 1000px;
-  pointer-events: none;
-}
-.studio-navigation { position: absolute; z-index: 9; left: 26rpx; right: 26rpx; height: 44px; display: flex; align-items: center; gap: 20rpx; font-size: 30rpx; }
-.studio-navigation-title { position: absolute; left: 0; right: 0; text-align: center; pointer-events: none; font-size: 32rpx; font-weight: 500; }
-.studio-works-link { position: relative; z-index: 1; margin: 0; padding: 0 14rpx; background: #e4e8dd; color: #3f463d; border-radius: 18rpx; font-size: 24rpx; line-height: 56rpx; }
-.studio-works-link::after { border: none; }
 .studio-preview-position { position: absolute; left: 0; right: 0; z-index: 8; }
 .creation-overlay { position: fixed; inset: 0; z-index: 20; background: rgba(17,20,15,.25); display: flex; align-items: center; justify-content: center; padding: 30rpx; box-sizing: border-box; }
 .creation-modal { width: 100%; max-height: 80vh; overflow: auto; }
 .work-name-input { padding: 20rpx; height: 56rpx; font-size: 28rpx; background: #fffdf7; border-radius: 16rpx; margin-bottom: 24rpx; }
 .storage-warning { position: absolute; z-index: 8; left: 26rpx; right: 26rpx; font-size: 22rpx; color: #995c50; display: flex; gap: 20rpx; }
-.startup-note { position: absolute; left: 0; right: 0; text-align: center; font-size: 24rpx; color: #7c8474; }
-.canvas-material-overlay { position: absolute; inset: 0; z-index: 2; display: flex; align-items: center; justify-content: center; padding: 24rpx; box-sizing: border-box; background: rgba(246,243,235,.94); }
-.materials-loading-card { display: flex; max-width: 620rpx; flex-direction: column; align-items: center; gap: 20rpx; padding: 36rpx 42rpx; border: 2rpx solid #e1e5d9; border-radius: 28rpx; background: rgba(255,253,247,.96); color: #6f7964; font-size: 28rpx; text-align: center; }
-.materials-loading-spinner { width: 44rpx; height: 44rpx; border: 5rpx solid #d5dccb; border-top-color: #74806b; border-radius: 50%; animation: materials-loading-spin .8s linear infinite; }
-.materials-loading-error { color: #995c50; font-weight: 600; }
-.materials-loading-detail { color: #7c8474; font-size: 23rpx; line-height: 1.5; }
-.materials-loading-card button { margin: 0; padding: 0 42rpx; line-height: 72rpx; }
-@keyframes materials-loading-spin { to { transform: rotate(360deg); } }
 </style>

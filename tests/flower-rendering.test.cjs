@@ -79,31 +79,88 @@ test('点花默认收起色板，连续选色保持展开，其他操作收起',
 test('最前和最后的花材只开放可用层次方向', () => {
   const page = setupComponent('flower-studio-page.vue')
   page.openFlowerTools(1)
-  assert.equal(page.canMoveBack.value, false)
-  assert.equal(page.canMoveFront.value, true)
+  assert.equal(page.store.canMoveBack, false)
+  assert.equal(page.store.canMoveFront, true)
   page.setLayer('front')
-  assert.equal(page.canMoveBack.value, true)
-  assert.equal(page.canMoveFront.value, false)
+  assert.equal(page.store.canMoveBack, true)
+  assert.equal(page.store.canMoveFront, false)
   page.setLayer('back')
-  assert.equal(page.canMoveBack.value, false)
+  assert.equal(page.store.canMoveBack, false)
 })
 
 test('自定义导航预留状态栏，长屏画板略上移，短屏不越界', () => {
   for (const windowHeight of [480, 800]) {
     const page = setupComponent('flower-studio-page.vue', {}, { windowHeight, screenHeight: windowHeight })
-    assert.equal(page.pageActionsTop, 76, '自定义导航包含24像素状态栏和44像素导航栏')
+    assert.equal(page.layout.pageActionsTop, 76, '自定义导航包含24像素状态栏和44像素导航栏')
     const board = page.layout.boardPosition.value
     const scale = page.boardScale.value
     const height = 1000 * 0.5 * scale
     const width = 698 * 0.5 * scale
-    const spaceAbove = board.top - page.stageTop
-    const spaceBelow = windowHeight - page.stageBottom - board.top - height
+    const spaceAbove = board.top - page.layout.stageTop
+    const spaceBelow = windowHeight - page.layout.stageBottom - board.top - height
     assert.ok(spaceAbove >= -0.001)
     assert.ok(spaceBelow >= -0.001)
     assert.ok(spaceAbove <= spaceBelow + 0.001)
     if (windowHeight === 800) assert.ok(spaceAbove < spaceBelow)
     assert.ok(Math.abs(board.left - (375 - board.left - width)) < 0.001)
   }
+})
+
+test('画布和工作室区域从共享 stores 读取展示状态，不层层传递状态 props', () => {
+  const loader = createLoader()
+  const artwork = loader.load('src/stores/artworkStore.ts').useArtworkStore()
+  const studio = loader.load('src/stores/flowerStudioStore.ts').useFlowerStudioStore()
+  const source = fs.readFileSync(path.resolve(__dirname, '../src/pages/flower-studio/flower-studio-page.vue'), 'utf8')
+  assert.equal(artwork.vase, '陶瓶')
+  assert.match(source, /<FlowerBoard[\s\S]*@start="startDrag" @move="moveDrag" @end="endDrag"/)
+  assert.doesNotMatch(source, /<StudioCanvas/)
+  studio.activeTab = 'flowers'
+
+  const sourceFiles = [
+    'studio-material-dock.vue',
+    'studio-flower-toolbar.vue',
+    'studio-top-toolbar.vue',
+    'studio-material-status.vue',
+    'studio-options.vue',
+  ]
+  for (const filename of sourceFiles) {
+    const source = fs.readFileSync(path.resolve(__dirname, `../src/pages/flower-studio/components/${filename}`), 'utf8')
+    assert.doesNotMatch(source, /defineProps\s*</, `${filename} should read shared presentation state from stores`)
+  }
+})
+
+test('素材面板打开时点击花朵会进入编辑并展示工具栏', () => {
+  const loader = createLoader()
+  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  page.store.initialize()
+  page.activeTab.value = 'flowers'
+  page.openFlowerTools(page.stems.value[0].id)
+
+  const toolbar = loader.setup('src/pages/flower-studio/components/studio-flower-toolbar.vue')
+  assert.equal(page.activeTab.value, null)
+  assert.equal(page.showFlowerTools.value, true)
+  assert.equal(toolbar.showFlowerTools.value, true)
+  assert.equal(toolbar.selected.value.id, page.stems.value[0].id)
+
+  const pageSource = fs.readFileSync(path.resolve(__dirname, '../src/pages/flower-studio/flower-studio-page.vue'), 'utf8')
+  const toolbarSource = fs.readFileSync(path.resolve(__dirname, '../src/pages/flower-studio/components/studio-flower-toolbar.vue'), 'utf8')
+  assert.match(pageSource, /\.studio-stage\s*\{[^}]*z-index:\s*5;/)
+  assert.match(toolbarSource, /\.studio-flower-tools-position\s*\{[^}]*z-index:\s*8;/)
+})
+
+test('打开花材面板不会移动作品背景、花材或花瓶', () => {
+  const loader = createLoader()
+  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  const source = fs.readFileSync(path.resolve(__dirname, '../src/pages/flower-studio/flower-studio-page.vue'), 'utf8')
+  const artwork = loader.load('src/stores/artworkStore.ts').useCreationArtworkStore()
+  artwork.initialize()
+  const initialStyle = page.layout.artworkStyle.value
+
+  page.activeTab.value = 'flowers'
+
+  assert.equal(page.layout.artworkStyle.value, initialStyle)
+  assert.match(source, /class="studio-artwork" :style="artworkStyle"/)
+  assert.doesNotMatch(source, /studioArtworkStyle|260 \* unit/)
 })
 
 test('居中画板仍支持拖动，拖动结束不弹编辑栏，点击花朵才打开', () => {
@@ -124,12 +181,12 @@ test('展开收起色板或选色时浮层不跳位，花材姿态保持不变',
   const page = setupComponent('flower-studio-page.vue')
   page.stems.value[2].stemHeight = 420
   page.openFlowerTools(3)
-  const before = { ...page.flowerToolsStyle.value }
+  const before = { ...page.layout.flowerToolsStyle.value }
   const { x, y, angle, stemHeight } = page.stems.value[2]
   page.toolsColorsOpen.value = true
-  assert.deepEqual({ ...page.flowerToolsStyle.value }, before)
+  assert.deepEqual({ ...page.layout.flowerToolsStyle.value }, before)
   page.setColor('#849c81')
-  assert.deepEqual({ ...page.flowerToolsStyle.value }, before)
+  assert.deepEqual({ ...page.layout.flowerToolsStyle.value }, before)
   const stem = page.stems.value[2]
   assert.deepEqual({ x: stem.x, y: stem.y, angle: stem.angle, stemHeight: stem.stemHeight }, { x, y, angle, stemHeight })
 })
@@ -158,18 +215,18 @@ test('轻微移动仍算点击，取消触摸不弹工具栏；拖动多次只�
   page.moveDrag({ touches: [{ clientX: 101, clientY: 100 }] })
   page.endDrag(false)
   assert.equal(page.showFlowerTools.value, true)
-  assert.equal(page.canUndo.value, false)
+  assert.equal(page.store.canUndo, false)
   page.startDrag({ touches: [{ clientX: 100, clientY: 100 }] }, stem)
   page.endDrag(true)
   assert.equal(page.showFlowerTools.value, true)
-  assert.equal(page.canUndo.value, false)
+  assert.equal(page.store.canUndo, false)
   page.startDrag({ touches: [{ clientX: 100, clientY: 100 }] }, stem)
   page.moveDrag({ touches: [{ clientX: 110, clientY: 90 }] })
   page.moveDrag({ touches: [{ clientX: 120, clientY: 80 }] })
   page.endDrag(false)
   page.undo()
   assert.equal(JSON.stringify(page.stems.value), before)
-  assert.equal(page.canUndo.value, false)
+  assert.equal(page.store.canUndo, false)
 })
 
 test('不同屏幕上工具栏固定在底部，切换花材不跳动且不超出屏幕', () => {
@@ -177,14 +234,14 @@ test('不同屏幕上工具栏固定在底部，切换花材不跳动且不超�
     const page = setupComponent('flower-studio-page.vue', {}, { windowHeight, screenHeight: windowHeight })
     for (const stem of page.stems.value) {
       page.openFlowerTools(stem.id)
-      const style = page.flowerToolsStyle.value
+      const style = page.layout.flowerToolsStyle.value
       const left = Number.parseFloat(style.left), bottom = Number.parseFloat(style.bottom), width = Number.parseFloat(style.width)
       assert.ok(left >= 12 && left + width <= 363)
-      assert.equal(bottom, page.stageBottom)
-      assert.ok(windowHeight - bottom - 400 * 0.5 >= page.stageTop)
+      assert.equal(bottom, page.layout.stageBottom)
+      assert.ok(windowHeight - bottom - 400 * 0.5 >= page.layout.stageTop)
       const before = JSON.stringify(style)
       page.store.selectAdjacent('next')
-      assert.equal(JSON.stringify(page.flowerToolsStyle.value), before)
+      assert.equal(JSON.stringify(page.layout.flowerToolsStyle.value), before)
     }
   }
 })
@@ -199,7 +256,7 @@ test('清空花材需确认，取消保留作品，确认可撤销，空作品�
   assert.equal(JSON.stringify(page.stems.value), before)
   dialogs[0].success({ confirm: false, cancel: true })
   assert.equal(JSON.stringify(page.stems.value), before)
-  assert.equal(page.canUndo.value, false)
+  assert.equal(page.store.canUndo, false)
   page.reset()
   dialogs[1].success({ confirm: true, cancel: false })
   assert.equal(page.stems.value.length, 0)
@@ -282,7 +339,7 @@ test('拖到左侧时瓶口落点跟随到左侧，拖到右侧随到右侧，�
   const bounds = page.store.stemLandingBounds()
   assert.ok(stem.x >= bounds.left && stem.x <= bounds.right)
   const headX = stem.x + Math.sin(stem.angle * Math.PI / 180) * stem.stemHeight
-  assert.ok(Math.abs(headX - (375 - 85 / (page.unit * page.boardScale.value))) < .001)
+  assert.ok(Math.abs(headX - (375 - 85 / (page.layout.unit * page.boardScale.value))) < .001)
   page.undo(); assert.equal(JSON.stringify(page.stems.value[0]), before)
   const current = page.stems.value[0]
   page.startDrag({ touches: [{ clientX: 200, clientY: 200 }] }, current)

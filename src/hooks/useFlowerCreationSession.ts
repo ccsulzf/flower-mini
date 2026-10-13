@@ -26,11 +26,9 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     return { version: 1, artwork: store.snapshot(), card: { ...card.value }, updatedAt: Date.now(), ...(workId.value ? { workId: workId.value, workRevision: workRevision.value } : {}) }
   }
   function initialize(uid: string, detail = false) {
-    if (initialized.value && owner === uid)
+    if (initialized.value)
       return
     cancelTimer()
-    if (owner && owner !== uid)
-      store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
     card.value = { blessing: '', signature: '' }
     workId.value = undefined
     workRevision.value = undefined
@@ -137,22 +135,8 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     card.value = validateCard(text)
     markEdited()
   }
-  function saved(work: SavedFlowerWork) {
-    workId.value = work.id
-    workRevision.value = work.revision
-    cancelTimer()
-    readonly.value = true
-    dirty.value = false
-    pendingDraft.value = null
-    try {
-      clearDraft(owner)
-      storageError.value = ''
-      return true
-    }
-    catch (error) {
-      storageError.value = (error as Error).message
-      return false
-    }
+  function saved() {
+    return restart()
   }
   function dispose() {
     flushDraft()

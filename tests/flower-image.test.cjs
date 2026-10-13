@@ -4,22 +4,43 @@ const { createLoader } = require('./helpers/load-ts.cjs')
 const flush = () => new Promise(resolve => setImmediate(resolve))
 
 function fixture(options = {}) {
-  const requests = [], saved = [], shared = [], previews = [], notices = []
-  const ctx = new Proxy({}, { get: (_, key) => key === 'createLinearGradient' ? () => ({ addColorStop() {} }) : key === 'draw' ? (_, callback) => callback() : () => {} })
+  const requests = [], saved = [], shared = [], previews = [], notices = [], removedFiles = []
+  let imageNumber = 0, shouldFail = Boolean(options.renderFailure)
   const loader = createLoader({
     uni: {
-      createCanvasContext: () => ctx,
-      getImageInfo: args => options.loadFailure ? args.fail({ errMsg: 'load failed' }) : args.success({ path: args.src }),
-      canvasToTempFilePath: args => requests.push(args),
       saveImageToPhotosAlbum: args => saved.push(args),
       previewImage: args => previews.push(args),
       showToast: args => notices.push(args.title),
     },
-    wx: options.wx === false ? undefined : { canIUse: () => options.supported !== false, showShareImageMenu: args => shared.push(args) },
+    uniCloud: {
+      importObject: () => ({
+        render: ({ svg }) => new Promise((resolve, reject) => {
+          const height = Number(svg.match(/^\s*<svg\b[^>]*\bheight=["'](\d+)["']/)?.[1])
+          requests.push({
+            svg,
+            succeed: () => resolve({ width: 698, height, pngBase64: Buffer.from(`image-${++imageNumber}`).toString('base64') }),
+            fail: reject,
+          })
+          if (shouldFail) {
+            shouldFail = false
+            requests.at(-1).fail(new Error('cloud render failed'))
+          }
+        }),
+      }),
+    },
+    wx: options.wx === false ? undefined : {
+      env: { USER_DATA_PATH: '/user' },
+      getFileSystemManager: () => ({
+        writeFile: args => args.success(),
+        unlink: args => removedFiles.push(args.filePath),
+      }),
+      canIUse: () => options.supported !== false,
+      showShareImageMenu: args => shared.push(args),
+    },
   })
   const store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
   const images = loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(store.snapshot)
-  return { loader, store, images, requests, saved, shared, previews, notices }
+  return { loader, store, images, requests, saved, shared, previews, notices, removedFiles }
 }
 
 test('图片生成期间不重复导出，捕获当前快照，结果可保存预览和分享', async () => {
@@ -30,62 +51,82 @@ test('图片生成期间不重复导出，捕获当前快照，结果可保存�
   assert.equal(await f.images.exportImage(), false)
   await flush()
   assert.equal(f.requests.length, 1)
-  assert.equal(f.requests[0].destWidth, 1396)
-  assert.equal(f.requests[0].destHeight, 2000)
-  f.requests[0].success({ tempFilePath: '/first.png' })
+  assert.match(f.requests[0].svg, /width="698" height="1000"/)
+  f.requests[0].succeed()
   assert.equal(await work, true)
+  const artworkPath = f.images.imagePath.value
+  assert.match(artworkPath, /^\/user\/flower-cloud-.*\.png$/)
   f.images.saveImage(); f.images.shareImage(); f.images.previewImage()
-  assert.equal(f.saved[0].filePath, '/first.png')
-  assert.equal(f.shared[0].path, '/first.png')
-  assert.deepEqual(Array.from(f.previews[0].urls), ['/first.png'])
+  assert.equal(f.saved[0].filePath, artworkPath)
+  assert.equal(f.shared[0].path, artworkPath)
+  assert.deepEqual(Array.from(f.previews[0].urls), [artworkPath])
   assert.deepEqual(f.store.snapshot(), initial)
+  const cached = await f.images.exportImage()
+  assert.equal(cached, true)
+  assert.equal(f.images.imagePath.value, artworkPath)
+  assert.equal(f.requests.length, 1)
+  f.store.setBackground('sage')
   const next = f.images.exportImage()
-  assert.equal(f.images.imagePath.value, '')
   await flush()
-  f.requests[1].success({ tempFilePath: '/second.png' })
+  f.requests[1].succeed()
   await next
-  assert.equal(f.images.imagePath.value, '/second.png')
+  assert.match(f.images.imagePath.value, /^\/user\/flower-cloud-.*\.png$/)
+  f.store.setBackground(initial.background)
+  const restored = await f.images.exportImage()
+  assert.equal(restored, true)
+  assert.equal(f.images.imagePath.value, artworkPath)
+  assert.equal(f.requests.length, 2)
 })
 
-test('关闭并重新完成后旧回调不覆盖状态，单个 Canvas 串行绘制', async () => {
+test('关闭并重新完成后旧云端回调不覆盖新请求状态', async () => {
   for (const fails of [false, true]) {
     const f = fixture()
     const old = f.images.exportImage()
     await flush()
     f.images.invalidate()
     const current = f.images.exportImage()
-    await flush()
-    assert.equal(f.requests.length, 1, '旧 Canvas 导出未结束，不能开始新绘制')
-    if (fails) f.requests[0].fail({ errMsg: 'old failure' })
-    else f.requests[0].success({ tempFilePath: '/old.png' })
+    assert.equal(f.requests.length, 2)
+    if (fails) f.requests[0].fail(new Error('old failure'))
+    else f.requests[0].succeed()
     assert.equal(await old, false)
-    await flush()
     assert.equal(f.images.imagePath.value, '')
     assert.equal(f.images.imageError.value, '')
     assert.equal(f.images.exportingImage.value, true)
-    f.requests[1].success({ tempFilePath: '/current.png' })
+    f.requests[1].succeed()
     assert.equal(await current, true)
-    assert.equal(f.images.imagePath.value, '/current.png')
+    assert.match(f.images.imagePath.value, /^\/user\/flower-cloud-.*\.png$/)
+    assert.equal(f.removedFiles.length, fails ? 0 : 1)
   }
 })
 
 test('素材与导出失败显示错误，重试能恢复；关闭后不保留旧结果', async () => {
-  const missing = fixture({ loadFailure: true })
-  assert.equal(await missing.images.exportImage(), false)
-  assert.equal(missing.requests.length, 0)
-  assert.match(missing.images.imageError.value, /重试/)
-  const f = fixture(), first = f.images.exportImage()
-  await flush()
-  f.requests[0].fail({ errMsg: 'canvas error' })
+  const f = fixture({ renderFailure: true })
+  const first = f.images.exportImage()
   assert.equal(await first, false)
+  assert.equal(f.requests.length, 1)
+  assert.match(f.images.imageError.value, /重试/)
   assert.equal(f.images.exportingImage.value, false)
   const retry = f.images.exportImage()
   assert.equal(f.images.imageError.value, '')
   await flush()
-  f.requests[1].success({ tempFilePath: '/retry.png' })
+  f.requests[1].succeed()
   assert.equal(await retry, true)
   f.images.invalidate()
   assert.equal(f.images.imagePath.value, '')
+})
+
+test('不同页面实例复用相同作品的图片缓存', async () => {
+  const f = fixture()
+  const first = f.images.exportImage()
+  f.requests[0].succeed()
+  assert.equal(await first, true)
+  const cachedPath = f.images.imagePath.value
+  f.images.invalidate()
+  const anotherPage = f.loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(f.store.snapshot)
+  assert.equal(await anotherPage.exportImage(), true)
+  assert.equal(anotherPage.imagePath.value, cachedPath)
+  assert.match(anotherPage.imagePath.value, /^\/user\/flower-cloud-.*\.png$/)
+  assert.equal(f.requests.length, 1)
 })
 
 test('平台能力、取消与相册权限错误正确处理，不真实分享图片', async () => {
@@ -109,7 +150,7 @@ test('新工作台从空作品开始，未加载目录花瓶时不能导出内�
   const f = fixture(), page = f.loader.setup('src/pages/flower-studio/flower-studio-page.vue')
   assert.equal(page.stems.value.length, 0)
   page.finish()
-  assert.equal(page.showFinish.value, false)
+  assert.equal(page.finishing.value, false)
   assert.equal(f.requests.length, 0)
   assert.equal(f.notices.at(-1), '花瓶正在准备，请稍后再完成')
 })

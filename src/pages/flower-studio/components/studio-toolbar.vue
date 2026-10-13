@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import type { StudioTab } from '../studio-types'
+import { storeToRefs } from 'pinia'
+import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 
-defineProps<{ activeTab: StudioTab | null }>()
+const studio = useFlowerStudioStore()
+const { activeTab } = storeToRefs(studio)
 const emit = defineEmits<{ select: [tab: StudioTab] }>()
 const tabs: { value: StudioTab, label: string, icon: string }[] = [
   { value: 'flowers', label: '花材', icon: 'i-carbon-sprout' },

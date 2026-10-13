@@ -23,7 +23,6 @@ const imageStyle = computed(() => {
 </script>
 <template>
   <image v-if="materialId && source && !imageFailed" :src="source" :style="imageStyle" mode="scaleToFill" @error="imageFailed = true" />
-  <view v-else-if="materialId && layer !== 'back'" class="vase-missing">容器素材不可用</view>
   <FlowerBouquet v-else-if="vase === '花束' && layer !== 'back'" />
   <template v-else-if="layer !== 'back'">
     <view class="studio-vase-shadow" />
@@ -31,7 +30,6 @@ const imageStyle = computed(() => {
   </template>
 </template>
 <style scoped lang="scss">
-.vase-missing { position: absolute; left: 280rpx; top: 747rpx; color: #b82b36; font-size: 22rpx; }
 .studio-vase-shadow { position: absolute; left: 242rpx; top: 895rpx; width: 218rpx; height: 30rpx; border-radius: 50%; background: radial-gradient(ellipse, rgba(0,0,0,.22), transparent 70%); pointer-events: none; }
 .studio-vase { position: absolute; width: 140rpx; height: 170rpx; left: 280rpx; top: 735rpx; border-radius: 12% 12% 19% 19%; background: linear-gradient(100deg, #e6e2d7, #dedacf 58%, #cdc9bd); pointer-events: none; }
 .vase-mouth { position: absolute; left: 0; top: -6rpx; width: 100%; height: 17rpx; background: #84917b; border: 3rpx solid #ece8dc; border-radius: 50%; box-sizing: border-box; }

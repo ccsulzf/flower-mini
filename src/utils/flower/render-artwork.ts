@@ -2,11 +2,14 @@ import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { bouquetLayers, cloudPlantSvg, vasePlacement } from './material-render'
 import { backgroundOffset, backgroundSceneSource } from './background-render'
 import { drawSvg } from './svg-canvas'
+import { plantSvgMarkup } from './svg-artwork'
 import { studioMetrics } from './arrangement.cjs'
 import { anchorY, artworkBackground, chrysanthemumRay, curveFor, type Artwork, type Stem } from './artwork'
 
+const flowerStrokeOpacityScale = 0.25
+
 // 此文件只负责导出：编辑器使用普通节点，导出按同样的坐标重绘作品。
-// 画板逻辑尺寸为 698 × 1000，花瓣/花器以 Canvas 形状近似页面样式，并非 DOM 截图。
+// 画板逻辑尺寸为 698 × 1000；花材优先使用与编辑器相同的 SVG。
 function oval(ctx: UniApp.CanvasContext, x: number, y: number, rx: number, ry: number) {
   // 四段三次贝塞尔近似椭圆，兼容旧版 CanvasContext，不依赖 ellipse()。
   const k = 0.55228475
@@ -179,7 +182,7 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
   const cloudVase = artwork.vaseMaterialId ? await catalog.ensure(artwork.vaseMaterialId, artwork.vaseMaterialRevision || '') : undefined
   const cloudBackground = artwork.backgroundMaterialId ? await catalog.ensure(artwork.backgroundMaterialId, artwork.backgroundMaterialRevision || '') : undefined
   if (cloudBackground && (cloudBackground.category !== 'background' || !cloudBackground.sources.background)) throw new Error('背景素材不可用')
-  const paths = [...new Set(artwork.stems.filter(stem => !stem.materialId).map(stem => curveFor(stem).image))]
+  const paths = [...new Set(artwork.stems.filter(stem => !stem.materialId && !plantSvgMarkup(stem.kind, stem.color, stem.stemHeight, true)).map(stem => curveFor(stem).image))]
   const loaded = await Promise.all(paths.map(src => new Promise<[string, string]>((resolve, reject) => {
     // getImageInfo 返回的包内路径可能丢失开头的 /，这里继续使用原始根路径。
     // 否则 Canvas 会错误地从当前页面目录中查找 static 素材。
@@ -205,8 +208,19 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
       const asset = cloudAssets.get(`${stem.materialId}:${stem.materialRevision}`)!
       ctx.save(); ctx.translate(stem.x, anchorY(artwork.vase)); ctx.rotate(stem.angle * Math.PI / 180)
       ctx.scale(stem.mirrored ? -stem.flowerScale : stem.flowerScale, stem.flowerScale); ctx.translate(-55, -stem.stemHeight - 55)
-      drawSvg(ctx, cloudPlantSvg(asset, { ...stem, leafMode: 'without' }), 110, stem.stemHeight + 55)
+      drawSvg(ctx, cloudPlantSvg(asset, { ...stem, leafMode: 'without' }), 110, stem.stemHeight + 55, flowerStrokeOpacityScale)
       ctx.restore(); continue
+    }
+    const plant = plantSvgMarkup(stem.kind, stem.color, stem.stemHeight, true)
+    if (plant) {
+      ctx.save()
+      ctx.translate(stem.x, anchorY(artwork.vase))
+      ctx.rotate(stem.angle * Math.PI / 180)
+      ctx.scale(stem.mirrored ? -stem.flowerScale : stem.flowerScale, stem.flowerScale)
+      ctx.translate(-55, -stem.stemHeight - 55)
+      drawSvg(ctx, plant, 110, stem.stemHeight + 55, flowerStrokeOpacityScale)
+      ctx.restore()
+      continue
     }
     const curve = curveFor(stem)
     ctx.save()

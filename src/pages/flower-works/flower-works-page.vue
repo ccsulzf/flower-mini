@@ -2,6 +2,7 @@
 import type { SavedFlowerWork } from '@/models/flower-creation'
 import { onReachBottom, onShow } from '@dcloudio/uni-app'
 import { ref } from 'vue'
+import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '我的作品', navigationBarBackgroundColor: '#f6f3eb', backgroundColor: '#f6f3eb' } })
@@ -90,10 +91,7 @@ function remove(work: SavedFlowerWork) {
     <view class="works-grid">
       <view v-for="work in works.items" :key="work.id" class="work-card">
         <view class="work-cover" @click="open(work)">
-          <image v-if="work.thumbnailUrl" class="work-image" :src="work.thumbnailUrl" mode="aspectFit" />
-          <view v-else class="work-missing">
-            点开查看作品
-          </view>
+          <FlowerArtworkPreview :artwork="work.draft.artwork" :scale="0.44" />
         </view>
         <view class="work-title" @click="open(work)">
           {{ work.title }}
@@ -167,20 +165,6 @@ function remove(work: SavedFlowerWork) {
 .work-cover {
   height: 440rpx;
   background: #eeeee5;
-}
-
-.work-image {
-  width: 100%;
-  height: 100%;
-}
-
-.work-missing {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24rpx;
-  color: #7c8474;
 }
 
 .work-title {

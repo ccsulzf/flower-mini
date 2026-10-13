@@ -7,8 +7,7 @@
     "card",
     "revision",
     "createdAt",
-    "updatedAt",
-    "thumbnailFileId"
+    "updatedAt"
   ],
   "permission": {
     "read": false,

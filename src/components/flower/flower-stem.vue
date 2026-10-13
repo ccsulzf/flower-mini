@@ -42,7 +42,6 @@ const plantImageStyle = computed(() => `width:110rpx;height:${props.stem.stemHei
       <view v-else-if="!stem.materialId" class="stem-image-clip" :style="stemClipStyle">
         <image class="stem-image" :src="curve.image" @error="svgFailed = true" mode="scaleToFill" :style="stemImageStyle" />
       </view>
-      <view v-if="stem.materialId && (!cloudSource || svgFailed)" class="cloud-error">素材加载失败</view>
       <view class="flower-touch" :style="touchAreaStyle" :class="{ 'mum-touch': stem.kind === 'chrysanthemum', 'foliage-touch': isFoliage }" @tap.stop @touchstart.stop="emit('start', $event)" @touchmove.stop.prevent="emit('move', $event)" @touchend.stop="emit('end', false)" @touchcancel.stop="emit('end', true)">
         <view v-if="!usesSvgPlant && !stem.materialId" class="flower-art-position"><FlowerBloom :kind="stem.kind" :color="stem.color" /></view>
         <view v-if="selected" class="flower-outline" />
@@ -51,7 +50,6 @@ const plantImageStyle = computed(() => `width:110rpx;height:${props.stem.stemHei
   </view>
 </template>
 <style scoped lang="scss">
-.cloud-error { position: absolute; top: 0; color: #b82b36; font-size: 18rpx; }
 .studio-stem { position: absolute; width: 110rpx; height: 260rpx; transform-origin: 50% 100%; pointer-events: none; }
 .flower-instance { position: absolute; inset: 0; width: 110rpx; height: 100%; pointer-events: none; }
 .plant-image { position: absolute; left: 0; top: 0; pointer-events: none; }

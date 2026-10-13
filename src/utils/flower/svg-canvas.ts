@@ -81,7 +81,7 @@ function path(ctx: UniApp.CanvasContext, data: string) {
     x = endX; y = endY; previous = op
   }
 }
-export function drawSvg(ctx: UniApp.CanvasContext, source: string, width: number, height: number) {
+export function drawSvg(ctx: UniApp.CanvasContext, source: string, width: number, height: number, strokeOpacityScale = 1) {
   const root = parse(source), gradients = new Map<string, Node>()
   const scan = (node: Node) => { if (node.tag === 'linearGradient' && node.attrs.id) gradients.set(node.attrs.id, node); node.children.forEach(scan) }
   scan(root)
@@ -126,7 +126,7 @@ export function drawSvg(ctx: UniApp.CanvasContext, source: string, width: number
       else if (tag === 'line') { ctx.moveTo(number(own.x1), number(own.y1)); ctx.lineTo(number(own.x2), number(own.y2)) }
       else { const coordinates = numbers(own.points || ''); if (coordinates.length < 4 || coordinates.length % 2) throw new Error('SVG 点坐标无效'); ctx.moveTo(coordinates[0], coordinates[1]); for (let i = 2; i < coordinates.length; i += 2) ctx.lineTo(coordinates[i], coordinates[i + 1]); if (tag === 'polygon') ctx.closePath() }
       if ((attrs.fill || '#000') !== 'none') { ctx.setGlobalAlpha(opacity * number(attrs['fill-opacity'], 1)); ctx.setFillStyle(paint(attrs.fill || '#000', areaWidth, areaHeight)); if (attrs['fill-rule'] === 'evenodd') throw new Error('SVG evenodd 填充暂不支持'); ctx.fill() }
-      if (attrs.stroke && attrs.stroke !== 'none') { ctx.setGlobalAlpha(opacity * number(attrs['stroke-opacity'], 1)); if (attrs.stroke.startsWith('url(')) throw new Error('SVG 渐变描边暂不支持'); ctx.setStrokeStyle(attrs.stroke); ctx.setLineWidth(number(attrs['stroke-width'], 1)); ctx.setLineCap((attrs['stroke-linecap'] || 'butt') as 'butt'); ctx.setLineJoin((attrs['stroke-linejoin'] || 'miter') as 'miter'); if (attrs['stroke-dasharray']) throw new Error('SVG 虚线暂不支持'); ctx.stroke() }
+      if (attrs.stroke && attrs.stroke !== 'none') { ctx.setGlobalAlpha(opacity * number(attrs['stroke-opacity'], 1) * strokeOpacityScale); if (attrs.stroke.startsWith('url(')) throw new Error('SVG 渐变描边暂不支持'); ctx.setStrokeStyle(attrs.stroke); ctx.setLineWidth(number(attrs['stroke-width'], 1)); ctx.setLineCap((attrs['stroke-linecap'] || 'butt') as 'butt'); ctx.setLineJoin((attrs['stroke-linejoin'] || 'miter') as 'miter'); if (attrs['stroke-dasharray']) throw new Error('SVG 虚线暂不支持'); ctx.stroke() }
     }
     ctx.restore()
   }

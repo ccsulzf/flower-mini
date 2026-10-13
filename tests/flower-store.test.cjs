@@ -23,7 +23,18 @@ test('store 的清空、撤销、重做与新会话初始化', () => {
   assert.equal(store.canRedo, false)
 })
 
-test('store 无效操作不记录历史，新编辑清除重做，最多48枝', () => {
+test('工作室页面和子组件共享同一个创作作品 store', () => {
+  const { loader } = setup()
+  const { useCreationArtworkStore } = loader.load('src/stores/artworkStore.ts')
+  const pageStore = useCreationArtworkStore()
+  const toolbarStore = useCreationArtworkStore()
+  pageStore.initialize()
+  pageStore.select(1)
+  assert.equal(toolbarStore, pageStore)
+  assert.equal(toolbarStore.selected.id, 1)
+})
+
+test('store 无效操作不记录历史，新编辑清除重做，花枝数量不设硬性上限', () => {
   const { store } = setup()
   store.select(1)
   store.setColor('#f1e5bd')
@@ -34,11 +45,12 @@ test('store 无效操作不记录历史，新编辑清除重做，最多48枝', 
   assert.equal(store.canRedo, true)
   store.addFlower('poppy')
   assert.equal(store.canRedo, false)
-  while (store.stems.length < 48) store.addFlower('rose')
-  assert.equal(store.addFlower('rose'), null)
+  while (store.stems.length < 50) store.addFlower('rose')
+  assert.notEqual(store.addFlower('rose'), null)
   store.select(1)
-  assert.equal(store.duplicateSelected(), null)
-  assert.equal(new Set(store.stems.map(stem => stem.id)).size, 48)
+  assert.notEqual(store.duplicateSelected(), null)
+  assert.equal(store.stems.length, 52)
+  assert.equal(new Set(store.stems.map(stem => stem.id)).size, 52)
 })
 
 test('store 快照不共享对象，历史只保留最近30步，JSON预览不污染作品', () => {

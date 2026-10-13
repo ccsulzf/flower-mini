@@ -49,7 +49,7 @@ export function parseArtwork(text: string): Artwork {
     throw new Error('JSON 语法错误，请检查引号、逗号和括号')
   }
   if (!record(data) || (data.version !== 1 && data.version !== 2) || !vaseOptions.includes(data.vase as VaseName)
-    || !backgroundOptions.some(option => option.value === data.background) || !Array.isArray(data.stems) || data.stems.length > 48)
+    || !backgroundOptions.some(option => option.value === data.background) || !Array.isArray(data.stems))
     throw new Error('作品格式或版本不支持')
   const validReference = (id: unknown, revision: unknown) => typeof id === 'string' && /^[a-z][a-z0-9-]{0,63}$/.test(id) && typeof revision === 'string' && /^[a-f\d]{16}$/.test(revision)
   if ((data.vaseMaterialId !== undefined || data.vaseMaterialRevision !== undefined) && !validReference(data.vaseMaterialId, data.vaseMaterialRevision)) throw new Error('花瓶素材引用无效')
@@ -58,10 +58,10 @@ export function parseArtwork(text: string): Artwork {
   if (data.containerLayouts !== undefined) {
     if (!record(data.containerLayouts) || Object.keys(data.containerLayouts).length > 64) throw new Error('容器布局记录无效')
     for (const [key, layout] of Object.entries(data.containerLayouts)) {
-      if (!/^(?:[a-z][a-z0-9-]{0,63}:[a-f\d]{16}|builtin:(?:陶瓶|玻璃瓶|圆花器|花束))$/.test(key) || !Array.isArray(layout) || layout.length > 48) throw new Error('容器布局记录无效')
+      if (!/^(?:[a-z][a-z0-9-]{0,63}:[a-f\d]{16}|builtin:(?:陶瓶|玻璃瓶|圆花器|花束))$/.test(key) || !Array.isArray(layout)) throw new Error('容器布局记录无效')
       const layoutIds = new Set<number>()
       containerLayouts[key] = layout.map(row => {
-        if (!record(row) || !finite(row.id, 1, Number.MAX_SAFE_INTEGER - 48) || !Number.isInteger(row.id) || layoutIds.has(row.id)
+        if (!record(row) || !finite(row.id, 1, Number.MAX_SAFE_INTEGER) || !Number.isInteger(row.id) || layoutIds.has(row.id)
           || !finite(row.x, 0, studioMetrics.width) || !finite(row.angle, -65, 65) || !finite(row.stemHeight, studioMetrics.minStemHeight, studioMetrics.maxStemHeight) || !finite(row.flowerScale, .65, 1.35)) throw new Error('容器布局记录无效')
         layoutIds.add(row.id)
         return { id: row.id, x: row.x, angle: row.angle, stemHeight: row.stemHeight, flowerScale: row.flowerScale }
@@ -72,7 +72,7 @@ export function parseArtwork(text: string): Artwork {
   // 重复 ID 会破坏 Vue 列表键与花材选择，必须拒绝。
   const ids = new Set<number>()
   const stems = data.stems.map((value): Stem => {
-    if (!record(value) || !finite(value.id, 1, Number.MAX_SAFE_INTEGER - 48) || !Number.isInteger(value.id) || ids.has(value.id)
+    if (!record(value) || !finite(value.id, 1, Number.MAX_SAFE_INTEGER) || !Number.isInteger(value.id) || ids.has(value.id)
       || !flowerCatalog.some(flower => flower.kind === value.kind) || !finite(value.x, 0, studioMetrics.width)
       || !finite(value.y, 0, studioMetrics.height) || !finite(value.angle, -65, 65)
       || typeof value.color !== 'string' || !/^#[\da-f]{6}$/i.test(value.color))

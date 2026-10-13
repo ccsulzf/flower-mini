@@ -24,12 +24,19 @@ function innerSvg(svg: string) {
   return svg.replace(/^\s*<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '')
 }
 
-export function bloomSvgSource(kind: FlowerKind, color: string) {
-  const material = materials[kind]
-  if (!material) return undefined
+function safeFlowerColor(color: string) {
   // 导入颜色和页面调色均只允许六位十六进制，避免将任意文本插进 XML。
-  const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd'
-  return imageSource(material.bloom.replace(/__COLOR__/g, safeColor))
+  return /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd'
+}
+
+export function bloomSvgMarkup(kind: FlowerKind, color: string) {
+  const material = materials[kind]
+  return material?.bloom.replace(/__COLOR__/g, safeFlowerColor(color))
+}
+
+export function bloomSvgSource(kind: FlowerKind, color: string) {
+  const markup = bloomSvgMarkup(kind, color)
+  return markup ? imageSource(markup) : undefined
 }
 
 export function stemSvgSource(kind: FlowerKind) {
@@ -49,15 +56,20 @@ export function flowerConnectionY(kind: FlowerKind) {
   return 55
 }
 
-export function plantSvgSource(kind: FlowerKind, color: string, stemHeight: number, withoutLeaves = false) {
+export function plantSvgMarkup(kind: FlowerKind, color: string, stemHeight: number, withoutLeaves = false) {
   const material = materials[kind]
   if (!material) return undefined
-  const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd'
+  const safeColor = safeFlowerColor(color)
   const connection = flowerConnectionY(kind)
   const height = stemHeight + 55
   const stemScale = (height - connection) / 260
   const bloom = innerSvg(material.bloom.replace(/__COLOR__/g, safeColor))
   const stem = withoutLeaves ? (innerSvg(material.stem).match(/<path\b[^>]*fill="none"[^>]*\/>/)?.[0] || '<path d="M55 0L55 260" fill="none" stroke="#73835c" stroke-width="2"/>') : innerSvg(material.stem)
   // 花茎先绘制，花头盖住少量重叠；高度仍使花茎底端准确落在瓶口。
-  return imageSource(`<svg xmlns="http://www.w3.org/2000/svg" width="110" height="${height}" viewBox="0 0 110 ${height}"><g transform="translate(0 ${connection}) scale(1 ${stemScale})">${stem}</g>${bloom}</svg>`)
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="110" height="${height}" viewBox="0 0 110 ${height}"><g transform="translate(0 ${connection}) scale(1 ${stemScale})">${stem}</g>${bloom}</svg>`
+}
+
+export function plantSvgSource(kind: FlowerKind, color: string, stemHeight: number, withoutLeaves = false) {
+  const markup = plantSvgMarkup(kind, color, stemHeight, withoutLeaves)
+  return markup ? imageSource(markup) : undefined
 }

@@ -33,19 +33,28 @@ test('首次下载、再次命中持久缓存，损坏文件重新下载', async
 test('工作室只在花瓶画布显示统一素材加载状态', () => {
   const loader = createLoader()
   const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
-  const source = fs.readFileSync('src/pages/flower-studio/flower-studio-page.vue', 'utf8')
+  const studio = loader.load('src/stores/flowerStudioStore.ts').useFlowerStudioStore()
+  const source = fs.readFileSync('src/pages/flower-studio/components/studio-material-status.vue', 'utf8')
   page.catalog.loading = true
-  assert.equal(page.materialsLoading.value, true)
+  assert.equal(studio.materialsLoading, true)
   page.catalog.loading = false
   page.catalog.preparing = true
-  assert.equal(page.materialsLoading.value, true)
+  assert.equal(studio.materialsLoading, true)
   page.catalog.preparing = false
   page.catalog.downloading = 1
-  assert.equal(page.materialsLoading.value, true)
+  assert.equal(studio.materialsLoading, true)
+  page.catalog.downloading = 0
+  page.catalog.error = 'Network unavailable'
+  assert.equal(studio.materialsLoading, false)
   assert.match(source, /class="canvas-material-overlay"/)
+  assert.match(source, /\.canvas-material-overlay\s*\{[^}]*pointer-events:\s*none/s)
+  assert.match(source, /\.materials-loading-card\s*\{[^}]*pointer-events:\s*auto/s)
+  assert.doesNotMatch(source, /@touchmove\.stop\.prevent/)
   assert.doesNotMatch(source, /class="materials-loading-overlay"/)
-  assert.doesNotMatch(fs.readFileSync('src/components/flower/flower-stem.vue', 'utf8'), /素材加载中/)
-  assert.doesNotMatch(fs.readFileSync('src/components/flower/flower-vase.vue', 'utf8'), /容器加载中/)
+  assert.match(source, /v-if="loading"/)
+  assert.doesNotMatch(source, /素材加载失败|materialsError|error|@retry/)
+  assert.doesNotMatch(fs.readFileSync('src/components/flower/flower-stem.vue', 'utf8'), /素材加载失败/)
+  assert.doesNotMatch(fs.readFileSync('src/components/flower/flower-vase.vue', 'utf8'), /容器素材不可用/)
 })
 test('云素材及花瓶引用在复制、切换、撤销和重做中保留，切回内置时清除引用', () => {
   const loader = createLoader(), store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
@@ -76,6 +85,15 @@ test('下载的 SVG 按几何拼装；Canvas 直接绘制同一来源，未知�
   const arcContext = new Proxy({}, { get: (_, method) => (...args) => { if (method === 'bezierCurveTo') endpoints.push(args.slice(4)); } })
   drawSvg(arcContext, '<svg viewBox="0 0 100 100"><path d="M10 50A40 30 0 0 1 90 50" fill="none" stroke="#000" /></svg>', 100, 100)
   assert.ok(Math.abs(endpoints.at(-1)[0] - 90) < 1e-8); assert.ok(Math.abs(endpoints.at(-1)[1] - 50) < 1e-8)
+})
+
+test('导出花材时按比例降低 SVG 描边不透明度', () => {
+  const { drawSvg } = createLoader().load('src/utils/flower/svg-canvas.ts')
+  const alphas = []
+  const ctx = new Proxy({}, { get: (_, method) => (...args) => { if (method === 'setGlobalAlpha') alphas.push(args[0]) } })
+  const source = '<svg viewBox="0 0 100 100"><g opacity=".5"><path d="M0 0L100 100" fill="none" stroke="#333" stroke-opacity=".8" /></g></svg>'
+  drawSvg(ctx, source, 100, 100, 0.25)
+  assert.equal(alphas.at(-1), 0.1)
 })
 
 test('切换窄瓶口只移动花枝底端，保留高度和角度；不支持的渐变明确拒绝', () => {

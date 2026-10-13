@@ -53,7 +53,7 @@ test('背景选择保持面板打开，不添加花枝；编辑和导出使用�
   assert.equal(page.backgroundMaterialId.value, scene.id)
   const board = loader.setup('src/components/flower/flower-board.vue', { stems: [], vase: '陶瓶', selectedId: null, vaseMaterialId: vase.id, vaseMaterialRevision: vase.revision, backgroundMaterialId: scene.id, backgroundMaterialRevision: scene.revision })
   assert.ok(Buffer.from(board.backgroundSource.value.split(',')[1], 'base64').toString().includes('#eeeeee'))
-  assert.equal(board.arrangementOffset.value, page.arrangementOffset.value)
+  assert.equal(board.arrangementOffset.value, loader.load('src/utils/flower/background-render.ts').backgroundOffset(scene, vase, '陶瓶'))
   const calls = [], ctx = new Proxy({}, { get: (_, method) => (...args) => {
     calls.push([method, args])
     if (method === 'createLinearGradient') return { addColorStop() {} }

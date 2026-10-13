@@ -9,15 +9,7 @@ async function cleanup(fileId) { if (fileId)
     }
     catch { /* Record is authoritative; failed cleanup never rolls back a saved work. */ } }
 async function expose(rows) {
-    const ids = rows.map(row => row.thumbnailFileId).filter(Boolean);
-    let urls = new Map();
-    if (ids.length)
-        try {
-            const result = await uniCloud.getTempFileURL({ fileList: ids });
-            urls = new Map(result.fileList.map(file => [file.fileID, file.tempFileURL]));
-        }
-        catch { /* Keep editable records visible when storage URL service is unavailable. */ }
-    return rows.map(row => ({ id: row._id, title: row.title, description: row.description || '', createdAt: row.createdAt, updatedAt: row.updatedAt, revision: row.revision, thumbnailFileId: row.thumbnailFileId, thumbnailUrl: urls.get(row.thumbnailFileId) || '', draft: { version: 1, artwork: row.artwork, card: row.card, updatedAt: row.updatedAt, workId: row._id, workRevision: row.revision } }));
+    return rows.map(row => ({ id: row._id, title: row.title, description: row.description || '', createdAt: row.createdAt, updatedAt: row.updatedAt, revision: row.revision, draft: { version: 1, artwork: row.artwork, card: row.card, updatedAt: row.updatedAt, workId: row._id, workRevision: row.revision } }));
 }
 module.exports = {
     async _before() { const auth = await resolveAuth(this); if (!auth?.uid)
@@ -49,11 +41,15 @@ module.exports = {
                 conflict();
         }
         const revision = (old?.revision || 0) + 1, now = Date.now(), owner = createHash('sha256').update(this.auth.uid).digest('hex');
-        const cloudPath = `flower-works/${owner}/${id}/${randomBytes(16).toString('hex')}.png`;
-        const upload = await uniCloud.uploadFile({ cloudPath, fileContent: buffer });
-        if (!upload.fileID)
-            throw { errCode: 'THUMBNAIL_FAILED', errMsg: '缩略图上传失败，作品尚未保存' };
-        const row = { _id: id, user_id: this.auth.uid, title, description, artwork, card, thumbnailFileId: upload.fileID, thumbnailPath: cloudPath, createdAt: old?.createdAt || now, updatedAt: now, revision };
+        let upload;
+        let cloudPath;
+        if (buffer) {
+            cloudPath = `flower-works/${owner}/${id}/${randomBytes(16).toString('hex')}.png`;
+            upload = await uniCloud.uploadFile({ cloudPath, fileContent: buffer });
+            if (!upload.fileID)
+                throw { errCode: 'THUMBNAIL_FAILED', errMsg: '缩略图上传失败，作品尚未保存' };
+        }
+        const row = { _id: id, user_id: this.auth.uid, title, description, artwork, card, ...(upload?.fileID ? { thumbnailFileId: upload.fileID, thumbnailPath: cloudPath } : old?.thumbnailFileId ? { thumbnailFileId: old.thumbnailFileId, thumbnailPath: old.thumbnailPath } : {}), createdAt: old?.createdAt || now, updatedAt: now, revision };
         try {
             if (old) {
                 const { _id, user_id, createdAt, ...changes } = row;
@@ -65,10 +61,10 @@ module.exports = {
                 await collection().add(row);
         }
         catch (error) {
-            await cleanup(upload.fileID);
+            await cleanup(upload?.fileID);
             throw error;
         }
-        if (old?.thumbnailPath?.startsWith(`flower-works/${owner}/${id}/`))
+        if (upload && old?.thumbnailPath?.startsWith(`flower-works/${owner}/${id}/`))
             await cleanup(old.thumbnailFileId);
         return (await expose([row]))[0];
     },

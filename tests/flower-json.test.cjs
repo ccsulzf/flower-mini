@@ -23,6 +23,16 @@ test('转义字符串仍执行花材校验，不接受重复 ID 或画板外坐�
   }
 })
 
+test('作品和容器布局允许超过48枝花材', () => {
+  const stems = Array.from({ length: 60 }, (_, index) => ({ ...artwork.stems[0], id: index + 1 }))
+  const containerLayouts = {
+    'builtin:陶瓶': stems.map(({ id }) => ({ id, x: 350, angle: 0, flowerScale: 1, stemHeight: 350 })),
+  }
+  const result = parseArtwork(JSON.stringify({ ...artwork, stems, containerLayouts }))
+  assert.equal(result.stems.length, 60)
+  assert.equal(result.containerLayouts['builtin:陶瓶'].length, 60)
+})
+
 test('此前生成的花束横坐标自动收拢到瓶口，普通和转义 JSON 都能导入', () => {
   const raw = JSON.stringify({
     ...artwork,
@@ -70,6 +80,34 @@ test('花束图片导出绘制豆沙粉丝带，而不是花瓶的瓶口', async
   await renderArtwork(ctx, { ...artwork, vase: '花束', stems: [] })
   assert.ok(colors.includes('#c98b94'))
   assert.ok(!colors.includes('#84917b'))
+})
+
+test('内置 SVG 花材导出复用编辑器中的整枝素材，避免 Canvas 近似产生额外纹理', async () => {
+  const isolated = createLoader({
+    uni: {
+      getImageInfo: ({ fail }) => fail(new Error('SVG 花材导出不应加载 PNG 花茎')),
+    },
+  })
+  const artworkModule = isolated.load('src/utils/flower/svg-artwork.ts')
+  const renderer = isolated.load('src/utils/flower/render-artwork.ts')
+  const svgCanvas = isolated.load('src/utils/flower/svg-canvas.ts')
+  const rendered = []
+  svgCanvas.drawSvg = (_, source) => rendered.push(source)
+  const ctx = new Proxy({}, {
+    get: (_, key) => {
+      if (key === 'draw') return (_, done) => done()
+      if (key === 'createLinearGradient') return () => ({ addColorStop() {} })
+      return () => {}
+    },
+  })
+
+  for (const [index, kind] of ['rose', 'daisy', 'tulip'].entries()) {
+    const stem = { ...artwork.stems[0], id: index + 1, kind, color: '#b82b36' }
+    const expected = artworkModule.plantSvgMarkup(kind, stem.color, stem.stemHeight, true)
+    await renderer.renderArtwork(ctx, { ...artwork, stems: [stem] })
+    assert.ok(rendered.includes(expected))
+  }
+  assert.equal(rendered.length, 3)
 })
 
 test('页面内置示例能生成 12 枝无叶花束', () => {

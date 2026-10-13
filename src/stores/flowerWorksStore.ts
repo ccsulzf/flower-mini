@@ -1,14 +1,15 @@
 import type { CreationDraft, SavedFlowerWork } from '@/models/flower-creation'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { waitForAppAuthReady } from '@/utils/appAuth'
+import { useUserInfoStore } from '@/stores/userInfoStore'
 import { validateDraft } from '@/utils/flower/creation-storage'
+import { clearImageCacheScope } from '@/utils/flower/image-cache'
 
-interface SaveWorkInput { draft: CreationDraft, title: string, description: string, imagePath: string, workId?: string, expectedRevision?: number }
+interface SaveWorkInput { draft: CreationDraft, title: string, description: string, imagePath?: string, workId?: string, expectedRevision?: number }
 interface WorksCloud {
   list: (input: { page: number, pageSize: number }) => Promise<{ items: SavedFlowerWork[], hasMore: boolean }>
   get: (input: { id: string }) => Promise<SavedFlowerWork>
-  save: (input: { id?: string, expectedRevision?: number, title: string, description: string, artwork: CreationDraft['artwork'], card: CreationDraft['card'], thumbnailBase64: string }) => Promise<SavedFlowerWork>
+  save: (input: { id?: string, expectedRevision?: number, title: string, description: string, artwork: CreationDraft['artwork'], card: CreationDraft['card'], thumbnailBase64?: string }) => Promise<SavedFlowerWork>
   remove: (input: { id: string, expectedRevision: number }) => Promise<unknown>
 }
 export function creationFailure(error: unknown) {
@@ -36,25 +37,10 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
   const saving = ref(false)
   const error = ref('')
   const hasMore = ref(true)
-  let owner = ''
   let page = 1
-  let epoch = 0
-  async function client() {
-    await waitForAppAuthReady()
-    const uid = uniCloud.getCurrentUserInfo().uid
-    if (!uid)
-      throw new Error('请先登录后查看作品')
-    if (owner !== uid) {
-      owner = uid
-      epoch++
-      page = 1
-      items.value = []
-      hasMore.value = true
-    }
-    return { cloud: uniCloud.importObject('flower-works', { customUI: true }) as WorksCloud, uid, epoch }
-  }
-  function current(uid: string, request: number) {
-    return uid === uniCloud.getCurrentUserInfo().uid && request === epoch
+  async function client(): Promise<{ cloud: WorksCloud }> {
+    await useUserInfoStore().requireUid('请先登录后查看作品')
+    return { cloud: uniCloud.importObject('flower-works', { customUI: true }) as WorksCloud }
   }
   async function load(reset = false) {
     if (loading.value)
@@ -62,14 +48,12 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
     loading.value = true
     error.value = ''
     try {
-      const context = await client()
+      const { cloud } = await client()
       if (reset)
         page = 1
       if (!reset && !hasMore.value)
         return
-      const result = await context.cloud.list({ page, pageSize: 20 })
-      if (!current(context.uid, context.epoch))
-        return
+      const result = await cloud.list({ page, pageSize: 20 })
       const rows = result.items.map(normalize)
       const merged = reset ? rows : [...items.value, ...rows]
       items.value = [...new Map(merged.map(row => [row.id, row])).values()].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
@@ -84,11 +68,8 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
     }
   }
   async function get(id: string) {
-    const context = await client()
-    const work = normalize(await context.cloud.get({ id }))
-    if (!current(context.uid, context.epoch))
-      throw new Error('账号已切换，请重新打开作品')
-    return work
+    const { cloud } = await client()
+    return normalize(await cloud.get({ id }))
   }
   async function save(input: SaveWorkInput) {
     if (saving.value)
@@ -96,14 +77,10 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
     saving.value = true
     error.value = ''
     try {
-      const context = await client()
+      const { cloud } = await client()
       const draft = validateDraft(input.draft)
-      const thumbnailBase64 = await readImage(input.imagePath)
-      if (!current(context.uid, context.epoch))
-        throw new Error('账号已切换，请重新保存')
-      const work = normalize(await context.cloud.save({ ...(input.workId ? { id: input.workId, expectedRevision: input.expectedRevision } : {}), title: input.title, description: input.description, artwork: draft.artwork, card: draft.card, thumbnailBase64 }))
-      if (!current(context.uid, context.epoch))
-        throw new Error('账号已切换，请重新打开作品列表')
+      const thumbnailBase64 = input.imagePath ? await readImage(input.imagePath) : undefined
+      const work = normalize(await cloud.save({ ...(input.workId ? { id: input.workId, expectedRevision: input.expectedRevision } : {}), title: input.title, description: input.description, artwork: draft.artwork, card: draft.card, ...(thumbnailBase64 ? { thumbnailBase64 } : {}) }))
       items.value = [work, ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
       return work
     }
@@ -116,10 +93,10 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
     }
   }
   async function remove(id: string, expectedRevision: number) {
-    const context = await client()
-    await context.cloud.remove({ id, expectedRevision })
-    if (current(context.uid, context.epoch))
-      items.value = items.value.filter(row => row.id !== id)
+    const { cloud } = await client()
+    await cloud.remove({ id, expectedRevision })
+    clearImageCacheScope(`work:${id}`)
+    items.value = items.value.filter(row => row.id !== id)
   }
   async function duplicate(id: string) {
     if (saving.value)
@@ -127,26 +104,9 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
     saving.value = true
     error.value = ''
     try {
-      const context = await client()
-      const original = normalize(await context.cloud.get({ id }))
-      if (!current(context.uid, context.epoch))
-        throw new Error('账号已切换，请重新打开作品列表')
-      if (!original.thumbnailUrl)
-        throw new Error('作品图片暂不可用，请稍后重试')
-      const imagePath = await new Promise<string>((resolve, reject) => {
-        uni.downloadFile({ url: original.thumbnailUrl!, success: (result) => {
-          if (result.statusCode === 200 && result.tempFilePath)
-            resolve(result.tempFilePath)
-          else
-            reject(new Error('作品图片读取失败，请重试'))
-        }, fail: reject })
-      })
-      const thumbnailBase64 = await readImage(imagePath)
-      if (!current(context.uid, context.epoch))
-        throw new Error('账号已切换，请重新打开作品列表')
-      const work = normalize(await context.cloud.save({ title: `${original.title.slice(0, 37)} 副本`, description: original.description, artwork: original.draft.artwork, card: original.draft.card, thumbnailBase64 }))
-      if (!current(context.uid, context.epoch))
-        throw new Error('账号已切换，请重新打开作品列表')
+      const { cloud } = await client()
+      const original = normalize(await cloud.get({ id }))
+      const work = normalize(await cloud.save({ title: `${original.title.slice(0, 37)} 副本`, description: original.description, artwork: original.draft.artwork, card: original.draft.card }))
       items.value = [work, ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
       return work
     }

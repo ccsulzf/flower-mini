@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
 import { useFlowerPageArtwork } from '@/hooks/useFlowerPageArtwork'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 
 definePage({ style: { navigationBarTitleText: '作品详情', navigationBarBackgroundColor: '#f6f3eb', disableScroll: true } })
-const { draft, title, description, thumbnail, loading, error, owner, images, current, retry } = useFlowerPageArtwork({ savedOnly: true })
-const { imagePath, exportingImage, imageError, exportCanvasId, canvasHeight } = images
-const displayImage = computed(() => imagePath.value || thumbnail.value)
+const { draft, title, description, loading, error, images, retry } = useFlowerPageArtwork({ savedOnly: true })
+const { exportingImage, imageError } = images
+const artworkScale = computed(() => {
+  const info = uni.getSystemInfoSync?.()
+  const width = info?.windowWidth ? info.windowWidth * 2 : 750
+  const height = info?.windowHeight ? info.windowHeight * 2 : 1334
+  return Math.max(0.1, Math.min(1, (width - 56) / 698, (height - 350) / 1000))
+})
 const showMetadataEditor = ref(false)
 const savingMetadata = ref(false)
 const editTitle = ref('')
@@ -21,6 +27,18 @@ function edit() {
     uni.navigateTo({ url: `/pages/flower-studio/flower-studio-page?workId=${draft.value.workId}&edit=1` })
   else
     uni.navigateBack()
+}
+async function shareArtwork() {
+  if (!draft.value || exportingImage.value)
+    return
+  if (await images.exportImage())
+    images.shareImage()
+}
+async function saveArtwork() {
+  if (!draft.value || exportingImage.value)
+    return
+  if (await images.exportImage())
+    images.saveImage()
 }
 function makeCard() {
   if (!draft.value?.workId)
@@ -39,25 +57,16 @@ async function saveMetadata() {
     return
   savingMetadata.value = true
   try {
-    if (!current())
-      throw new Error('账号已切换，请重新打开作品')
-    const imagePath = await images.exportThumbnail()
-    if (!current())
-      throw new Error('账号已切换，请重新打开作品')
     const work = await useFlowerWorksStore().save({
       draft: draft.value,
       title: editTitle.value,
       description: editDescription.value,
-      imagePath,
       workId: draft.value.workId,
       expectedRevision: draft.value.workRevision,
     })
-    if (!current())
-      throw new Error('账号已切换，请重新打开作品')
     draft.value = work.draft
     title.value = work.title
     description.value = work.description
-    thumbnail.value = work.thumbnailUrl || ''
     showMetadataEditor.value = false
     uni.showToast({ title: '作品信息已更新', icon: 'none' })
   }
@@ -80,24 +89,29 @@ async function saveMetadata() {
         </button>
       </view>
       <view class="detail-action-group">
-        <button :disabled="loading || exportingImage || !imagePath" @click="images.shareImage()">
+        <button :disabled="loading || exportingImage || !draft" @click="shareArtwork">
           <view class="i-carbon-share" />
           分享
         </button>
-        <button :disabled="loading || exportingImage || savingMetadata || !imagePath" @click="makeCard">
+        <button :disabled="loading || exportingImage || savingMetadata || !draft" @click="saveArtwork">
+          <view class="i-carbon-download" />
+          保存
+        </button>
+        <button :disabled="loading || exportingImage || savingMetadata || !draft" @click="makeCard">
           <view class="i-carbon-image" />
           贺卡
         </button>
       </view>
     </view>
-    <view class="detail-artwork" @click="images.previewImage()">
-      <image v-if="displayImage" :src="displayImage" mode="aspectFit" class="detail-image" />
+    <view class="detail-artwork">
+      <FlowerArtworkPreview v-if="draft && !loading && !error" :artwork="draft.artwork" :scale="artworkScale" />
       <view v-else class="detail-state">
-        <text>{{ loading || exportingImage ? '正在准备作品…' : error || imageError || '作品尚未生成' }}</text>
+        <text>{{ loading || exportingImage ? '正在准备作品…' : error || imageError || '作品尚未准备好' }}</text>
         <button v-if="!loading && !exportingImage" @click.stop="retry">
           重新加载
         </button>
       </view>
+      <text v-if="imageError" class="image-export-error">{{ imageError }}</text>
     </view>
     <view class="detail-info">
       <view class="detail-heading" @click="editMetadata">
@@ -151,8 +165,6 @@ async function saveMetadata() {
         </view>
       </view>
     </view>
-    <canvas :id="exportCanvasId" :canvas-id="exportCanvasId" class="export-canvas"
-      :style="{ height: `${canvasHeight}px` }" />
   </view>
 </template>
 
@@ -194,6 +206,16 @@ async function saveMetadata() {
 .detail-image {
   width: 100%;
   height: 100%;
+}
+
+.image-export-error {
+  position: absolute;
+  bottom: 8rpx;
+  left: 0;
+  width: 100%;
+  color: #995c50;
+  font-size: 22rpx;
+  text-align: center;
 }
 
 .detail-state {
@@ -377,11 +399,4 @@ button::after {
   margin-top: 26rpx;
 }
 
-.export-canvas {
-  position: fixed;
-  left: -2000px;
-  top: 0;
-  width: 698px;
-  pointer-events: none;
-}
 </style>
