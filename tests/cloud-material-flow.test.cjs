@@ -69,6 +69,22 @@ test('云素材及花瓶引用在复制、切换、撤销和重做中保留，�
   store.undo(); assert.equal(store.snapshot().vaseMaterialId, 'vase')
   store.redo(); assert.equal(store.snapshot().vaseMaterialId, undefined)
 })
+test('连续添加99枝相同花材时默认姿态保持充分分散', () => {
+  const loader = createLoader(), store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
+  const material = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(row => row.id === 'rose')
+  store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
+  for (let index = 0; index < 99; index++)
+    store.addMaterial(material)
+  const poses = store.stems.map(stem => `${stem.x.toFixed(2)}:${stem.angle.toFixed(2)}:${stem.stemHeight.toFixed(2)}`)
+  const headCells = store.stems.map((stem) => {
+    const radians = stem.angle * Math.PI / 180
+    return `${Math.round((stem.x + Math.sin(radians) * stem.stemHeight) / 12)}:${Math.round((stem.y - Math.cos(radians) * stem.stemHeight) / 12)}`
+  })
+  assert.ok(new Set(poses).size >= 90)
+  assert.ok(new Set(headCells).size >= 80)
+  assert.ok(new Set(store.stems.map(stem => stem.angle.toFixed(2))).size >= 20)
+  assert.ok(new Set(store.stems.map(stem => stem.stemHeight.toFixed(2))).size >= 20)
+})
 test('下载的 SVG 按几何拼装；Canvas 直接绘制同一来源，未知图形拒绝导出', () => {
   const loader = createLoader(), files = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items
   const { cloudPlantSvg } = loader.load('src/utils/flower/material-render.ts')

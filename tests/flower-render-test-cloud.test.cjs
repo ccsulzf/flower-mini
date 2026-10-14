@@ -8,13 +8,15 @@ const { createLoader } = require('./helpers/load-ts.cjs')
 const cloudFunctionDir = path.resolve('uniCloud-alipay/cloudfunctions/flower-render-test')
 const revision = '0123456789abcdef'
 
-function loadCloudObject(wasm) {
+function loadCloudObject(wasm, options = {}) {
   const cloudModule = { exports: {} }
   const cloudRequire = (name) => {
     if (name === 'auth')
       return async () => ({ uid: 'test-user' })
     if (name === '@resvg/resvg-wasm')
       return wasm
+    if (name === 'node:fs')
+      return options.fs || fs
     return require(name)
   }
   cloudRequire.resolve = name => require.resolve(name, { paths: [cloudFunctionDir] })
@@ -24,7 +26,8 @@ function loadCloudObject(wasm) {
     require: cloudRequire,
     Buffer,
     Date,
-    fs,
+    fs: options.fs || fs,
+    uniCloud: options.uniCloud,
   })
   return cloudModule.exports
 }
@@ -64,14 +67,15 @@ function complexArtworkSvg() {
     sources: { background: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000"><rect width="698" height="820" fill="#eee7db"/><rect y="820" width="698" height="180" fill="#c4a27e"/></svg>' },
     paths: {},
   })
-  return { artwork, svg: renderTestArtworkSvg(artwork, (id, materialRevision) => prepared.get(id)?.revision === materialRevision ? prepared.get(id) : undefined) }
+  return { artwork, prepared, svg: renderTestArtworkSvg(artwork, (id, materialRevision) => prepared.get(id)?.revision === materialRevision ? prepared.get(id) : undefined) }
 }
 
 const complex = complexArtworkSvg()
 
 test('客户端先将作品 JSON 与本地素材组装成完整 SVG', () => {
   const { artwork, svg } = complex
-  assert.equal(artwork.stems.length, 48)
+  assert.equal(artwork.stems.length, 64)
+  assert.equal(new Set(artwork.stems.map(stem => stem.materialId)).size, 4)
   assert.ok(new Set(artwork.stems.map(stem => stem.kind)).size >= 4)
   assert.ok(new Set(artwork.stems.map(stem => stem.color)).size >= 3)
   assert.ok(new Set(artwork.stems.map(stem => stem.stemHeight)).size >= 20)
@@ -84,6 +88,88 @@ test('客户端先将作品 JSON 与本地素材组装成完整 SVG', () => {
   assert.equal(artwork.backgroundMaterialId, 'room-background')
   assert.match(svg, /width="698" height="1000" viewBox="0 0 698 1000"/)
   assert.equal((svg.match(/<g transform="translate\(\d+ 680\) rotate\(/g) || []).length, artwork.stems.length)
+})
+
+test('云端按作品素材版本从 flower-material-assets 和 fileId 获取 SVG 后渲染', async () => {
+  let submittedSvg = ''
+  const fileContents = new Map()
+  const records = new Map()
+  const downloads = []
+  for (const [id, material] of complex.prepared) {
+    const assets = {}
+    for (const [part, source] of Object.entries(material.sources)) {
+      const fileId = `cloud://env-test/flower-materials/${id}/${part}.svg`
+      assets[part] = { fileId }
+      fileContents.set(fileId, source)
+    }
+    records.set(id, { ...material, assets })
+  }
+  const cloudApi = {
+    database: () => ({
+      collection: name => {
+        assert.equal(name, 'flower-material-assets')
+        return { doc: id => ({ get: async () => ({ data: records.has(id) ? [records.get(id)] : [] }) }) }
+      },
+    }),
+    downloadFile: async ({ fileID }) => {
+      downloads.push(fileID)
+      return { fileContent: Buffer.from(fileContents.get(fileID), 'utf8') }
+    },
+  }
+  class TestResvg {
+    constructor(svg) { submittedSvg = svg }
+    render() {
+      return { width: 698, height: 1000, asPng: () => Buffer.from('png'), free() {} }
+    }
+    free() {}
+  }
+  const object = loadCloudObject({ initWasm: async () => {}, Resvg: TestResvg }, { uniCloud: cloudApi })
+  const context = { getUniIdToken() {} }
+  await object._before.call(context)
+
+  const result = await object.renderArtwork.call(context, { artwork: complex.artwork })
+  assert.equal(result.width, 698)
+  assert.equal(result.height, 1000)
+  const referencedMaterials = new Set([
+    ...complex.artwork.stems.map(stem => `${stem.materialId}:${stem.materialRevision}`),
+    `${complex.artwork.vaseMaterialId}:${complex.artwork.vaseMaterialRevision}`,
+    `${complex.artwork.backgroundMaterialId}:${complex.artwork.backgroundMaterialRevision}`,
+  ])
+  assert.equal(result.assetCount, referencedMaterials.size)
+  assert.ok(downloads.length > 0)
+  assert.ok(downloads.every(fileId => fileId.startsWith('cloud://env-test/flower-materials/')))
+  assert.match(submittedSvg, /width="698" height="1000"/)
+  assert.match(submittedSvg, /translate\(\d+ 680\) rotate\(/)
+  assert.match(submittedSvg, /<circle[^>]*fill="#/)
+  assert.match(submittedSvg, /#eee7db/)
+  assert.doesNotMatch(submittedSvg, /__COLOR__/)
+  const staleArtwork = structuredClone(complex.artwork)
+  staleArtwork.stems[0].materialRevision = 'f'.repeat(16)
+  await assert.rejects(object.renderArtwork.call(context, { artwork: staleArtwork }), /不存在或版本已变化/)
+})
+
+test('云存储下载未返回 fileContent 时报告素材下载失败', async () => {
+  const material = complex.prepared.get('daisy')
+  const record = {
+    ...material,
+    assets: { flower: { fileId: 'cloud://env-test/flower-materials/daisy/flower.svg' } },
+  }
+  const object = loadCloudObject({ initWasm: async () => {}, Resvg: class {} }, {
+    uniCloud: {
+      database: () => ({
+        collection: () => ({ doc: () => ({ get: async () => ({ data: [record] }) }) }),
+      }),
+      downloadFile: async () => ({ requestId: 'download-request' }),
+    },
+  })
+  await object._before.call({ getUniIdToken() {} })
+  const artwork = {
+    version: 2,
+    vase: '陶瓶',
+    background: 'warm',
+    stems: [{ id: 1, x: 350, angle: 0, flowerScale: 1, stemHeight: 300, color: '#f1e5bd', materialId: 'daisy', materialRevision: revision }],
+  }
+  await assert.rejects(object.renderArtwork.call({}, { artwork }), /雏菊的云文件下载失败/)
 })
 
 test('云端 WASM 直接栅格化客户端准备的完整 SVG', async (context) => {

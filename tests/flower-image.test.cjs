@@ -14,10 +14,10 @@ function fixture(options = {}) {
     },
     uniCloud: {
       importObject: () => ({
-        render: ({ svg }) => new Promise((resolve, reject) => {
-          const height = Number(svg.match(/^\s*<svg\b[^>]*\bheight=["'](\d+)["']/)?.[1])
+        renderWork: input => new Promise((resolve, reject) => {
+          const height = 1000
           requests.push({
-            svg,
+            input,
             succeed: () => resolve({ width: 698, height, pngBase64: Buffer.from(`image-${++imageNumber}`).toString('base64') }),
             fail: reject,
           })
@@ -39,7 +39,7 @@ function fixture(options = {}) {
     },
   })
   const store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
-  const images = loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(store.snapshot)
+  const images = loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(store.snapshot, () => 'work:abcdef', () => ({ id: 'a'.repeat(32), revision: 1 }))
   return { loader, store, images, requests, saved, shared, previews, notices, removedFiles }
 }
 
@@ -51,7 +51,7 @@ test('图片生成期间不重复导出，捕获当前快照，结果可保存�
   assert.equal(await f.images.exportImage(), false)
   await flush()
   assert.equal(f.requests.length, 1)
-  assert.match(f.requests[0].svg, /width="698" height="1000"/)
+  assert.equal(JSON.stringify(f.requests[0].input), JSON.stringify({ workId: 'a'.repeat(32), expectedRevision: 1 }))
   f.requests[0].succeed()
   assert.equal(await work, true)
   const artworkPath = f.images.imagePath.value
@@ -122,7 +122,7 @@ test('不同页面实例复用相同作品的图片缓存', async () => {
   assert.equal(await first, true)
   const cachedPath = f.images.imagePath.value
   f.images.invalidate()
-  const anotherPage = f.loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(f.store.snapshot)
+  const anotherPage = f.loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(f.store.snapshot, () => 'work:abcdef', () => ({ id: 'a'.repeat(32), revision: 1 }))
   assert.equal(await anotherPage.exportImage(), true)
   assert.equal(anotherPage.imagePath.value, cachedPath)
   assert.match(anotherPage.imagePath.value, /^\/user\/flower-cloud-.*\.png$/)

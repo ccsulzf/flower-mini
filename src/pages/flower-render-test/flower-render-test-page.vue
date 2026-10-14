@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import FlowerBoard from '@/components/flower/flower-board.vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { type Artwork, artworkBackground, parseArtwork } from '@/utils/flower/artwork'
-import { createComplexRenderTestArtwork, renderTestArtworkSvg } from '@/utils/flower/render-test-svg'
+import { createComplexRenderTestArtwork } from '@/utils/flower/render-test-svg'
 
 definePage({
   layout: 'default',
@@ -17,9 +17,11 @@ const cloudError = ref('')
 const cloudImagePath = ref('')
 const cloudRenderMs = ref<number | null>(null)
 const cloudPngBytes = ref(0)
+const cloudAssetCount = ref(0)
 const cloudLoading = ref(false)
 const cloudExampleLoading = ref(false)
 const previewStyle = computed(() => `background-color:${artwork.value ? artworkBackground(artwork.value.background) : '#f6f3eb'};`)
+const flowerMaterialCount = computed(() => new Set(artwork.value?.stems.map(stem => stem.materialId).filter(Boolean)).size)
 const catalog = useFlowerCatalogStore()
 
 async function prepareCloudMaterials(value: Artwork) {
@@ -50,6 +52,7 @@ async function renderVue() {
     cloudImagePath.value = ''
     cloudRenderMs.value = null
     cloudPngBytes.value = 0
+    cloudAssetCount.value = 0
   }
   catch (cause) {
     error.value = cause instanceof Error ? cause.message : '作品 JSON 或云端素材无效'
@@ -76,6 +79,7 @@ async function fillCloudExample() {
     cloudImagePath.value = ''
     cloudRenderMs.value = null
     cloudPngBytes.value = 0
+    cloudAssetCount.value = 0
   }
   catch (cause) {
     error.value = cause instanceof Error ? cause.message : '读取云端素材失败'
@@ -92,9 +96,8 @@ async function renderCloud() {
   cloudError.value = ''
   cloudImagePath.value = ''
   try {
-    const svg = renderTestArtworkSvg(artwork.value, catalog.get)
     const cloud = uniCloud.importObject('flower-render-test', { customUI: true })
-    const result = await cloud.render({ svg })
+    const result = await cloud.renderArtwork({ artwork: artwork.value })
     if (result.width !== 698 || result.height !== 1000 || !result.pngBase64)
       throw new Error('云端图片尺寸或内容无效')
     const filePath = `${wx.env.USER_DATA_PATH}/flower-render-test.png`
@@ -110,6 +113,7 @@ async function renderCloud() {
     cloudImagePath.value = filePath
     cloudRenderMs.value = result.renderMs
     cloudPngBytes.value = result.pngBytes
+    cloudAssetCount.value = result.assetCount
   }
   catch (cause) {
     cloudError.value = cause instanceof Error ? cause.message : '云端图片生成失败'
@@ -133,7 +137,7 @@ onMounted(() => {
   <view class="render-test-page">
     <view class="intro">
       <text class="title">Vue 预览与云端 PNG</text>
-      <text class="description">使用同一张客户端准备好的完整 SVG，左侧由 Vue 展示，右侧由云端栅格化为 PNG。</text>
+      <text class="description">左侧由 Vue 预览；右侧仅发送作品 JSON，由云端按素材 ID 和版本读取云存储 SVG、组装并栅格化。</text>
     </view>
     <view class="input-card">
       <text class="input-title">作品 JSON</text>
@@ -145,7 +149,7 @@ onMounted(() => {
         placeholder="粘贴作品 JSON…" :auto-height="false" :adjust-position="true"
         :disable-default-padding="true"
       />
-      <text class="input-hint">作品 SVG 在本地使用已加载的内置或云端素材组装；云端只负责将这张完整 SVG 转为 PNG。</text>
+      <text class="input-hint">云端 PNG 路径不上传作品 SVG 或素材文件；测试云对象会根据作品引用查询素材档案，并从 fileId 下载对应 SVG。</text>
       <text v-if="error" class="error-message">{{ error }}</text>
       <button class="vue-button" :disabled="cloudExampleLoading" @click="renderVue">
         {{ catalog.preparing ? '正在准备云端素材…' : '更新 Vue 预览' }}
@@ -153,7 +157,7 @@ onMounted(() => {
     </view>
     <view class="comparison-heading">
       <text>并排对比</text>
-      <text v-if="artwork" class="stem-count">{{ artwork.stems.length }} 枝 · {{ artwork.vase }}</text>
+      <text v-if="artwork" class="stem-count">{{ artwork.stems.length }} 枝 · {{ flowerMaterialCount }} 种云端花材 · {{ artwork.vase }}</text>
     </view>
     <button class="cloud-button" :disabled="!artwork || cloudLoading" @click="renderCloud">
       {{ cloudLoading ? '云端生成中…' : '生成云端 PNG' }}
@@ -177,7 +181,7 @@ onMounted(() => {
       <view class="comparison-column">
         <text class="comparison-label">
           云端 PNG
-          <text v-if="cloudRenderMs !== null">· 698×1000 · {{ cloudRenderMs }} ms · {{ Math.ceil(cloudPngBytes / 1024) }} KB</text>
+          <text v-if="cloudRenderMs !== null">· 698×1000 · {{ cloudAssetCount }} 个素材 · {{ cloudRenderMs }} ms · {{ Math.ceil(cloudPngBytes / 1024) }} KB</text>
         </text>
         <view class="preview cloud-preview" :style="previewStyle">
           <image

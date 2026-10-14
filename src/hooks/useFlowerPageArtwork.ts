@@ -21,7 +21,9 @@ export function useFlowerPageArtwork(options: { savedOnly?: boolean } = {}) {
     if (!draft.value)
       throw new Error('作品尚未准备好')
     return draft.value.artwork
-  }, () => workId ? `work:${workId}` : '')
+  }, () => workId ? `work:${workId}` : '', () => workId && draft.value?.workRevision
+    ? { id: workId, revision: draft.value.workRevision }
+    : undefined)
   const userInfo = useUserInfoStore()
   function channel() {
     return (instance?.proxy as unknown as { getOpenerEventChannel?: () => UniApp.EventChannel })?.getOpenerEventChannel?.()

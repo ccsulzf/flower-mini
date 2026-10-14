@@ -1,66 +1,52 @@
-import type { FlowerCardText } from '@/models/flower-creation'
-import { validateCard } from './creation-storage'
+import type { FlowerGreetingText } from '@/models/flower-creation'
 
-export async function renderFlowerCard(ctx: UniApp.CanvasContext, artworkImagePath: string, text: FlowerCardText & { recipient?: string }, resize?: (height: number) => Promise<void>) {
-  const card = validateCard(text)
-  const width = 698
-  ctx.setFontSize(26)
+const canvasId = 'flower-card-canvas'
+const canvasWidth = 698
+const canvasHeight = 1260
+
+function greetingLines(blessing: string) {
   const lines: string[] = []
-  for (const paragraph of card.blessing.split('\n')) {
-    let line = ''
-    for (const char of paragraph) {
-      if (line && ctx.measureText(line + char).width > width - 96) {
-        lines.push(line)
-        line = ''
-      }
-      line += char
-    }
-    lines.push(line)
+  for (const paragraph of blessing.split('\n')) {
+    const characters = Array.from(paragraph)
+    for (let offset = 0; offset < characters.length; offset += 22)
+      lines.push(characters.slice(offset, offset + 22).join(''))
   }
-  if (!card.blessing)
-    lines.length = 0
-  if (text.recipient !== undefined) {
-    if (typeof text.recipient !== 'string' || text.recipient.length > 24)
-      throw new Error('送给最多填写24字')
-    const height = Math.max(1260, 1102 + lines.length * 42 + (card.signature ? 54 : 0))
-    if (resize)
-      await resize(height)
-    ctx.setFillStyle('#f6f3eb')
-    ctx.fillRect(0, 0, width, height)
-    ctx.setFillStyle('#3f463d')
-    ctx.setTextAlign('left')
-    ctx.setFontSize(24)
-    if (text.recipient.trim()) {
-      const recipient = `送给 ${text.recipient.trim()}`
-      ctx.setFontSize(Math.min(24, 24 * (width - 96) / Math.max(1, ctx.measureText(recipient).width)))
-      ctx.fillText(recipient, 48, 64)
+  return lines
+}
+
+export function renderFlowerCard(artworkPath: string, text: FlowerGreetingText): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const context = uni.createCanvasContext(canvasId)
+    context.setFillStyle('#f6f3eb')
+    context.fillRect(0, 0, canvasWidth, canvasHeight)
+    context.drawImage(artworkPath, 32, 88, 634, 908)
+    context.setFillStyle('#3f463d')
+    context.setTextAlign('left')
+    context.setFontSize(24)
+    if (text.recipient)
+      context.fillText(`送给 ${text.recipient}`, 48, 64)
+    context.setFontSize(26)
+    greetingLines(text.blessing).forEach((line, index) => {
+      context.fillText(line, 48, 1044 + index * 42)
+    })
+    if (text.signature) {
+      context.setFontSize(22)
+      context.setTextAlign('right')
+      context.fillText(text.signature, 650, 1212)
     }
-    ctx.drawImage(artworkImagePath, 32, 88, 634, 908)
-    ctx.setFontSize(26)
-    lines.forEach((line, i) => ctx.fillText(line, 48, 1044 + i * 42))
-    if (card.signature) {
-      ctx.setTextAlign('right')
-      ctx.setFontSize(22)
-      ctx.fillText(card.signature, width - 48, height - 48)
-    }
-    await new Promise<void>(resolve => ctx.draw(false, () => resolve()))
-    return { width, height }
-  }
-  const height = 1000 + Math.max(150, 80 + lines.length * 42 + (card.signature ? 54 : 0))
-  if (resize)
-    await resize(height)
-  ctx.setFillStyle('#f6f3eb')
-  ctx.fillRect(0, 0, width, height)
-  ctx.drawImage(artworkImagePath, 0, 0, width, 1000)
-  ctx.setFillStyle('#3f463d')
-  ctx.setTextAlign('left')
-  ctx.setFontSize(26)
-  lines.forEach((line, i) => ctx.fillText(line, 48, 1048 + i * 42))
-  if (card.signature) {
-    ctx.setTextAlign('right')
-    ctx.setFontSize(22)
-    ctx.fillText(card.signature, width - 48, height - 40)
-  }
-  await new Promise<void>(resolve => ctx.draw(false, () => resolve()))
-  return { width, height }
+    context.draw(false, () => {
+      uni.canvasToTempFilePath({
+        canvasId,
+        x: 0,
+        y: 0,
+        width: canvasWidth,
+        height: canvasHeight,
+        destWidth: canvasWidth,
+        destHeight: canvasHeight,
+        fileType: 'png',
+        success: result => resolve(result.tempFilePath),
+        fail: reject,
+      })
+    })
+  })
 }

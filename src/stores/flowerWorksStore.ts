@@ -5,11 +5,11 @@ import { useUserInfoStore } from '@/stores/userInfoStore'
 import { validateDraft } from '@/utils/flower/creation-storage'
 import { clearImageCacheScope } from '@/utils/flower/image-cache'
 
-interface SaveWorkInput { draft: CreationDraft, title: string, description: string, imagePath?: string, workId?: string, expectedRevision?: number }
+interface SaveWorkInput { draft: CreationDraft, title: string, description: string, workId?: string, expectedRevision?: number }
 interface WorksCloud {
   list: (input: { page: number, pageSize: number }) => Promise<{ items: SavedFlowerWork[], hasMore: boolean }>
   get: (input: { id: string }) => Promise<SavedFlowerWork>
-  save: (input: { id?: string, expectedRevision?: number, title: string, description: string, artwork: CreationDraft['artwork'], card: CreationDraft['card'], thumbnailBase64?: string }) => Promise<SavedFlowerWork>
+  save: (input: { id?: string, expectedRevision?: number, title: string, description: string, artwork: CreationDraft['artwork'], card: CreationDraft['card'] }) => Promise<SavedFlowerWork>
   remove: (input: { id: string, expectedRevision: number }) => Promise<unknown>
 }
 export function creationFailure(error: unknown) {
@@ -19,17 +19,6 @@ function normalize(work: SavedFlowerWork): SavedFlowerWork {
   if (!work || !/^[a-f\d]{32}$/.test(work.id) || typeof work.title !== 'string' || work.title.length > 40 || work.description !== undefined && (typeof work.description !== 'string' || work.description.length > 160) || !Number.isSafeInteger(work.revision) || work.revision < 1 || !Number.isFinite(work.updatedAt) || !Number.isFinite(work.createdAt))
     throw new Error('云端作品数据无效')
   return { ...work, description: work.description || '', draft: validateDraft({ ...work.draft, workId: work.id, workRevision: work.revision }) }
-}
-function readImage(path: string) {
-  return new Promise<string>((resolve, reject) => {
-    // #ifdef MP-WEIXIN
-    if (typeof wx !== 'undefined') {
-      wx.getFileSystemManager().readFile({ filePath: path, encoding: 'base64', success: result => resolve(String(result.data)), fail: reject })
-      return
-    }
-    // #endif
-    reject(new Error('当前平台暂不支持云端保存作品'))
-  })
 }
 export const useFlowerWorksStore = defineStore('flowerWorks', () => {
   const items = ref<SavedFlowerWork[]>([])
@@ -79,8 +68,7 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
     try {
       const { cloud } = await client()
       const draft = validateDraft(input.draft)
-      const thumbnailBase64 = input.imagePath ? await readImage(input.imagePath) : undefined
-      const work = normalize(await cloud.save({ ...(input.workId ? { id: input.workId, expectedRevision: input.expectedRevision } : {}), title: input.title, description: input.description, artwork: draft.artwork, card: draft.card, ...(thumbnailBase64 ? { thumbnailBase64 } : {}) }))
+      const work = normalize(await cloud.save({ ...(input.workId ? { id: input.workId, expectedRevision: input.expectedRevision } : {}), title: input.title, description: input.description, artwork: draft.artwork, card: draft.card }))
       items.value = [work, ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
       return work
     }

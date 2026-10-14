@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import type { FlowerGreetingText } from '@/models/flower-creation'
 import { onUnload } from '@dcloudio/uni-app'
-import { computed, getCurrentInstance, nextTick, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useFlowerPageArtwork } from '@/hooks/useFlowerPageArtwork'
 import { validateCard } from '@/utils/flower/creation-storage'
 import { renderFlowerCard } from '@/utils/flower/render-flower-card'
 
 definePage({ style: { navigationBarTitleText: '制作贺卡', navigationBarBackgroundColor: '#f6f3eb' } })
 const { draft, loading, error, images, retry } = useFlowerPageArtwork()
-const { imagePath, cardImagePath, exportingCard, cardImageError } = images
+const { cardImagePath, exportingCard, cardImageError } = images
 const text = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })
 const appliedText = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })
 const fieldInputStyles = {
@@ -19,10 +19,7 @@ const fieldInputStyles = {
 const showEditor = ref(false)
 const renderedKey = ref('')
 const previewPath = ref('')
-const canvasHeight = ref(1260)
 const failedPreviewSources = ref<string[]>([])
-const pageInstance = getCurrentInstance()?.proxy
-const cardCanvasId = 'flower-card-export'
 const contentKey = computed(() => JSON.stringify([appliedText.value.recipient.trim(), appliedText.value.blessing.trim(), appliedText.value.signature.trim()]))
 const canExport = computed(() => !loading.value && !exportingCard.value && renderedKey.value === contentKey.value && Boolean(cardImagePath.value))
 const previewImageSource = computed(() => previewPath.value && !failedPreviewSources.value.includes(previewPath.value) ? previewPath.value : '')
@@ -42,30 +39,7 @@ watch(draft, (value) => {
 async function preview(value: FlowerGreetingText = appliedText.value) {
   const greeting = { ...validateCard(value), recipient: value.recipient.trim() }
   const key = JSON.stringify([greeting.recipient, greeting.blessing, greeting.signature])
-  const imageReady = await images.exportImage()
-  if (!imageReady || !imagePath.value)
-    return false
-  const ok = await images.exportCard(greeting, async () => {
-    const context = uni.createCanvasContext(cardCanvasId, pageInstance)
-    const { height } = await renderFlowerCard(context, imagePath.value, greeting, async (nextHeight) => {
-      canvasHeight.value = nextHeight
-      await nextTick()
-    })
-    return new Promise<string>((resolve, reject) => {
-      uni.canvasToTempFilePath({
-        canvasId: cardCanvasId,
-        x: 0,
-        y: 0,
-        width: 698,
-        height,
-        destWidth: 698,
-        destHeight: height,
-        fileType: 'png',
-        success: result => resolve(result.tempFilePath),
-        fail: reject,
-      }, pageInstance)
-    })
-  })
+  const ok = await images.exportCard(greeting, (artworkPath, card) => renderFlowerCard(artworkPath, card))
   if (alive && ok && key === contentKey.value) {
     renderedKey.value = key
     previewPath.value = cardImagePath.value
@@ -120,6 +94,7 @@ function applyEditor() {
 
 <template>
   <view class="greeting-page">
+    <canvas canvas-id="flower-card-canvas" class="card-canvas" width="698" height="1260" />
     <view v-if="loading || error" class="greeting-state">
       <text>{{ loading ? '正在准备贺卡…' : error }}</text>
       <button v-if="error" @click="retry">
@@ -127,10 +102,6 @@ function applyEditor() {
       </button>
     </view>
     <template v-else>
-      <canvas
-        :canvas-id="cardCanvasId" :width="698" :height="canvasHeight"
-        class="card-export-canvas" :style="{ height: `${canvasHeight}px` }"
-      />
       <view class="greeting-preview" @click="canExport && images.previewImage('card')">
         <image
           v-if="previewImageSource" :src="previewImageSource" mode="aspectFit" class="greeting-image"
@@ -222,6 +193,14 @@ function applyEditor() {
   padding: 18rpx 28rpx calc(18rpx + env(safe-area-inset-bottom));
 }
 
+.card-canvas {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  width: 698px;
+  height: 1260px;
+}
+
 .greeting-preview {
   position: relative;
   display: flex;
@@ -231,14 +210,6 @@ function applyEditor() {
   justify-content: center;
   overflow: hidden;
   border-radius: 24rpx;
-}
-
-.card-export-canvas {
-  position: fixed;
-  left: -2000rpx;
-  top: 0;
-  width: 698px;
-  pointer-events: none;
 }
 
 .greeting-image {

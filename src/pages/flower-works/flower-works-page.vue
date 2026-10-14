@@ -20,6 +20,10 @@ function open(work: SavedFlowerWork) {
   if (!deletingId.value && !copyingId.value)
     uni.navigateTo({ url: `/pages/flower-detail/flower-detail-page?workId=${work.id}` })
 }
+function edit(work: SavedFlowerWork) {
+  if (!deletingId.value && !copyingId.value)
+    uni.navigateTo({ url: `/pages/flower-studio/flower-studio-page?workId=${work.id}&edit=1` })
+}
 function date(value: number) {
   const d = new Date(value)
   return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
@@ -99,6 +103,9 @@ function remove(work: SavedFlowerWork) {
         <view class="work-meta">
           <text>{{ date(work.updatedAt) }}</text>
           <view class="work-actions">
+            <button class="work-edit" :disabled="!!deletingId || !!copyingId" @click="edit(work)">
+              编辑
+            </button>
             <button class="work-copy" :disabled="!!deletingId || !!copyingId" @click="copy(work)">
               {{ copyingId === work.id ? '复制中' : '复制' }}
             </button>
@@ -193,6 +200,7 @@ function remove(work: SavedFlowerWork) {
   gap: 20rpx;
 }
 
+.work-edit,
 .work-copy {
   margin: 0;
   padding: 0 10rpx;
@@ -202,6 +210,11 @@ function remove(work: SavedFlowerWork) {
   line-height: 56rpx;
 }
 
+.work-edit {
+  margin-right: auto;
+}
+
+.work-edit::after,
 .work-copy::after {
   border: none;
 }

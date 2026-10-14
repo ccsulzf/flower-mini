@@ -218,7 +218,8 @@ async function finish() {
     await prepareArtwork()
     if (!alive)
       return
-    let title = `花意 ${new Date().getMonth() + 1}月${new Date().getDate()}日`
+    const now = new Date()
+    let title = `花意 ${now.getMonth() + 1}月${now.getDate()}日 ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
     let description = ''
     if (draft.workId) {
       const original = await works.get(draft.workId)
@@ -236,6 +237,15 @@ async function finish() {
     })
     if (!alive)
       return
+    await new Promise<void>((resolve, reject) => {
+      uni.navigateTo({
+        url: `/pages/flower-detail/flower-detail-page?workId=${work.id}`,
+        success: () => resolve(),
+        fail: reject,
+      })
+    })
+    if (!alive)
+      return
     applying = true
     const draftCleared = session.saved()
     applying = false
@@ -246,7 +256,6 @@ async function finish() {
     studio.closePanel()
     store.select(null)
     void loadMaterials()
-    uni.navigateTo({ url: `/pages/flower-detail/flower-detail-page?workId=${work.id}` })
   }
   catch (error) {
     if (alive)

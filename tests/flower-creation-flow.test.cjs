@@ -12,23 +12,25 @@ test('默认花器初始化不产生撤销历史，用户切换花器可以撤�
   assert.equal(store.vaseMaterialId, materials[0].id)
 })
 test('新作点击完成作品后直接保存并进入详情；贺卡只在完成填写后提交文字', async () => {
-  const records = new Map(), routes = [], inputs = []
+  const records = new Map(), routes = [], inputs = [], stemsAtNavigation = []
+  let page
   const loader = createLoader({
     uni: {
       getStorageSync: key => records.get(key),
       removeStorageSync: key => records.delete(key),
       setStorageSync: (key, value) => records.set(key, value),
-      navigateTo: value => routes.push(value),
+      navigateTo: (value) => { routes.push(value); stemsAtNavigation.push(page.stems.value.length); value.success?.() },
       showToast() {},
     },
     uniCloud: { getCurrentUserInfo: () => ({ uid: 'alice' }) },
   })
-  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
   const vase = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(item => item.id === 'ceramic-vase')
   page.session.initialize('alice')
   page.pageReady.value = true
   page.userInfo.uid = 'alice'
   page.store.setVaseMaterial(vase, false)
+  page.store.addFlower('rose')
   page.catalog.materials = [vase]
   page.catalog.ensure = async () => vase
   const works = page.works
@@ -46,12 +48,13 @@ test('新作点击完成作品后直接保存并进入详情；贺卡只在完�
   failSave = false
   await page.finish()
   assert.equal(inputs.length, 2)
-  assert.match(inputs[0].title, /^花意 \d+月\d+日$/)
+  assert.match(inputs[0].title, /^花意 \d+月\d+日 \d{2}:\d{2}$/)
   assert.equal(inputs[0].description, '')
   assert.equal(inputs[0].workId, undefined)
   assert.equal(inputs[0].expectedRevision, undefined)
   assert.equal(routes.length, 1)
   assert.equal(routes[0].url, `/pages/flower-detail/flower-detail-page?workId=${'a'.repeat(32)}`)
+  assert.equal(stemsAtNavigation[0], 1)
   assert.equal(page.session.readonly.value, false)
   assert.equal(page.session.workId.value, undefined)
   assert.equal(page.session.workRevision.value, undefined)
@@ -60,7 +63,6 @@ test('新作点击完成作品后直接保存并进入详情；贺卡只在完�
   assert.equal(records.size, 0)
   const card = loader.setup('src/pages/flower-card/flower-card-page.vue')
   const exported = []
-  card.images.exportImage = async () => { card.images.imagePath.value = '/art.png'; return true }
   card.images.exportCard = async value => { exported.push(value); card.images.cardImagePath.value = '/card.png'; return true }
   card.text.value = { recipient: '朋友', blessing: '祝福', signature: '小花' }
   assert.deepEqual(exported, [])
@@ -104,7 +106,7 @@ test('完成编辑直接更新后台并进入详情，不经过完成作品页',
       getStorageSync: key => records.get(key),
       setStorageSync: (key, value) => records.set(key, value),
       removeStorageSync: key => records.delete(key),
-      navigateTo: value => routes.push(value),
+      navigateTo: (value) => { routes.push(value); value.success?.() },
       showToast() {},
     },
     uniCloud: { getCurrentUserInfo: () => ({ uid: 'alice' }) },
@@ -215,7 +217,6 @@ test('贺卡编辑时保留当前预览，完成填写后才更新内容', async
   await new Promise(resolve => setTimeout(resolve, 0))
   card.text.value = { recipient: ' 朋友 ', blessing: ' 愿你开心 ', signature: ' 小花 ' }
   const rendered = []
-  card.images.exportImage = async () => { card.images.imagePath.value = '/art.png'; return true }
   card.images.exportCard = async value => { rendered.push(value); card.images.cardImagePath.value = `/card-${rendered.length}.png`; return true }
   card.applyEditor()
   await card.preview()
@@ -252,34 +253,34 @@ test('贺卡预览在图片加载失败时显示重试入口，祝福显示120�
   assert.doesNotMatch(source, /preview-spinner|previewUpdating|正在生成贺卡预览|正在加载预览/)
 })
 
-test('贺卡使用作品生成图和 canvas 合成，导出图用于预览、保存和分享', () => {
+test('贺卡复用作品图片并在本地 canvas 合成后预览、保存和分享', () => {
   const fs = require('node:fs')
   const source = fs.readFileSync('src/pages/flower-card/flower-card-page.vue', 'utf8')
   assert.match(source, /<image[\s\S]*?:src="previewImageSource"/)
-  assert.match(source, /images\.exportImage\(\)/)
-  assert.match(source, /renderFlowerCard\(context, imagePath\.value, greeting/)
-  assert.match(source, /uni\.canvasToTempFilePath/)
-  assert.match(source, /images\.exportCard\(greeting,/)
+  assert.match(source, /images\.exportCard\(greeting,[\s\S]*?renderFlowerCard\(artworkPath, card\)/)
+  assert.match(source, /canvas-id="flower-card-canvas"/)
   assert.match(source, /images\.saveImage\('card'\)/)
   assert.match(source, /images\.shareImage\('card'\)/)
   assert.doesNotMatch(source, /FlowerArtworkPreview/)
 })
 
-test('作品列表只进入已保存详情，详情编辑与贺卡入口使用作品编号', () => {
+test('作品列表可进入详情或直接编辑，详情编辑与贺卡入口使用作品编号', () => {
   const routes = [], lifecycle = { onLoad: [] }
   const loader = createLoader({ lifecycle, uni: { navigateTo: value => routes.push(value) } })
   const works = loader.setup('src/pages/flower-works/flower-works-page.vue')
   const id = 'a'.repeat(32)
   works.open({ id })
   assert.equal(routes[0].url, `/pages/flower-detail/flower-detail-page?workId=${id}`)
+  works.edit({ id })
+  assert.equal(routes[1].url, `/pages/flower-studio/flower-studio-page?workId=${id}&edit=1`)
   const detail = loader.setup('src/pages/flower-detail/flower-detail-page.vue')
   lifecycle.onLoad[0]({})
   assert.equal(detail.error.value, '请选择已保存的作品')
   assert.equal(detail.loading.value, false)
   detail.draft.value = { workId: id }
   detail.edit(); detail.makeCard()
-  assert.equal(routes[1].url, `/pages/flower-studio/flower-studio-page?workId=${id}&edit=1`)
-  assert.equal(routes[2].url, `/pages/flower-card/flower-card-page?workId=${id}`)
+  assert.equal(routes[2].url, `/pages/flower-studio/flower-studio-page?workId=${id}&edit=1`)
+  assert.equal(routes[3].url, `/pages/flower-card/flower-card-page?workId=${id}`)
   assert.equal(typeof detail.save, 'undefined')
 })
 

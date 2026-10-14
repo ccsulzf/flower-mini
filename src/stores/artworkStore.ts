@@ -87,10 +87,25 @@ function artworkState() {
     const inset = Math.min(4, (placement.mouthRight - placement.mouthLeft) / 2)
     return { left: placement.mouthLeft + inset, right: placement.mouthRight - inset }
   }
+  function distributedFraction(index: number, step: number) {
+    return index === 0 ? 0.5 : (index * step) % 1
+  }
   function materialLandingX(index: number) {
     const bounds = stemLandingBounds()
-    const fraction = [0.5, 0.22, 0.78, 0.36, 0.64][index % 5]
+    const fraction = distributedFraction(index, 0.6180339887498949)
     return bounds.left + (bounds.right - bounds.left) * fraction
+  }
+  function materialPose(index: number) {
+    const bouquet = vase.value === '花束'
+    const angleRange = bouquet ? 48 : 84
+    const angle = -angleRange / 2 + angleRange * distributedFraction(index, 0.7548776662466927)
+    const minHeight = bouquet ? 350 : 330
+    const heightRange = bouquet ? 70 : 140
+    return {
+      x: materialLandingX(index),
+      angle,
+      stemHeight: minHeight + heightRange * distributedFraction(index, 0.5698402909980532),
+    }
   }
   function addMaterial(material: CachedMaterial): number | null {
     if (material.category !== 'flower')
@@ -98,7 +113,7 @@ function artworkState() {
     remember()
     const id = ++nextId
     const kind = flowerCatalog.some(item => item.kind === material.id) ? material.id as FlowerKind : material.group === 'foliage' ? 'leaf' : 'rose'
-    stems.value.push({ id, kind, materialId: material.id, materialRevision: material.revision, leafMode: 'without', flowerScale: 1, color: material.colors[0].value, ...constrainStem({ x: materialLandingX(stems.value.length), y: anchorY(vase.value), angle: vase.value === '花束' ? [0, -16, 16, -9, 9][(id - 1) % 5] : [-12, 0, 12][(id - 1) % 3], stemHeight: vase.value === '花束' ? [390, 365, 375, 350, 360][(id - 1) % 5] : 410 }) })
+    stems.value.push({ id, kind, materialId: material.id, materialRevision: material.revision, leafMode: 'without', flowerScale: 1, color: material.colors[0].value, ...constrainStem({ ...materialPose(stems.value.length), y: anchorY(vase.value) }) })
     return id
   }
   function setVaseMaterial(material: CachedMaterial, recordHistory = true) {

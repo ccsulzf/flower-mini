@@ -9,12 +9,12 @@ export function createComplexRenderTestArtwork(materials: UploadedMaterial[]): A
   if (!flowers.length)
     throw new Error('素材库中没有可用于当前作品格式的云端花材')
 
-  const selected = flowers.slice(0, 6)
+  const selected = flowers
   const positions = [310, 318, 326, 334, 342, 350, 358, 366, 374, 382, 390, 386, 378, 370, 362, 354]
   const angles = [-48, -42, -36, -30, -24, -18, -12, -6, 0, 6, 12, 18, 24, 30, 36, 42]
   const heightOffsets = [-40, 5, 30, -15, 45, -25, 15, -5, 35, -35, 10, 50, -20, 25, -10, 40]
   const scales = [0.78, 0.92, 1.08, 1.24, 0.86, 1.16, 1.3, 0.98, 1.22, 0.82, 1.12, 0.9, 1.28, 1.02, 0.88, 1.18]
-  const stems: Stem[] = Array.from({ length: 48 }, (_, index) => {
+  const stems: Stem[] = Array.from({ length: 64 }, (_, index) => {
     const layer = Math.floor(index / positions.length)
     const position = index % positions.length
     const material = selected[(position * 5 + layer * 2) % selected.length]

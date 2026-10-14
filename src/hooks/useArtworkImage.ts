@@ -1,15 +1,13 @@
 import type { Artwork } from '@/models/artwork'
-import type { FlowerCardText } from '@/models/flower-creation'
+import type { FlowerCardText, FlowerGreetingText } from '@/models/flower-creation'
 import { ref } from 'vue'
-import { renderArtworkSvg } from '@/utils/flower/artwork-svg'
 import { renderCloudImage } from '@/utils/flower/cloud-image-renderer'
 import { readImageCache, removeCachedImage, writeImageCache } from '@/utils/flower/image-cache'
-import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 
 type ImageKind = 'artwork' | 'card'
 
 // Ignore stale cloud render results after a page closes or a newer request replaces them.
-export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () => string = () => '') {
+export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () => string = () => '', getWorkIdentity: () => { id: string, revision: number } | undefined = () => undefined) {
   const exportingImage = ref(false)
   const imagePath = ref('')
   const imageError = ref('')
@@ -23,7 +21,11 @@ export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () =>
     uni.showToast({ title, icon: 'none' })
   }
   function message(error: unknown) {
-    return error instanceof Error ? error.message : typeof error === 'object' && error !== null && 'errMsg' in error ? String(error.errMsg) : ''
+    if (error instanceof Error)
+      return error.message
+    if (typeof error === 'object' && error !== null && 'message' in error && typeof error.message === 'string')
+      return error.message
+    return typeof error === 'object' && error !== null && 'errMsg' in error ? String(error.errMsg) : ''
   }
   function reportError(error: unknown, fallback: string) {
     if (!message(error).includes('cancel'))
@@ -40,8 +42,11 @@ export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () =>
     cardImagePath.value = ''
     cardImageError.value = ''
   }
-  function artworkSvg(artwork: Artwork) {
-    return renderArtworkSvg(artwork, useFlowerCatalogStore().get)
+  function workIdentity() {
+    const identity = getWorkIdentity()
+    if (!identity || !/^[a-f\d]{32}$/.test(identity.id) || !Number.isSafeInteger(identity.revision) || identity.revision < 1)
+      throw new Error('请先保存作品，再生成图片')
+    return identity
   }
   async function exportImage(): Promise<boolean> {
     if (exportingImage.value)
@@ -65,7 +70,8 @@ export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () =>
     imagePath.value = ''
     imageError.value = ''
     try {
-      const path = await renderCloudImage(artworkSvg(artwork), 1000)
+      const identity = workIdentity()
+      const path = await renderCloudImage(identity.id, identity.revision)
       if (!current()) {
         removeCachedImage(path)
         return false
@@ -84,7 +90,10 @@ export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () =>
         exportingImage.value = false
     }
   }
-  async function exportCard(text: FlowerCardText, render: () => Promise<string>): Promise<boolean> {
+  async function exportCard(
+    text: FlowerCardText & Partial<Pick<FlowerGreetingText, 'recipient'>>,
+    compose: (artworkPath: string, text: FlowerGreetingText) => Promise<string>,
+  ): Promise<boolean> {
     const signature = JSON.stringify(createSnapshot())
     const card = { ...text }
     const scope = cacheScope()
@@ -104,7 +113,20 @@ export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () =>
     cardImagePath.value = ''
     cardImageError.value = ''
     try {
-      const path = await render()
+      // 作品图按作品内容缓存：新作或改动后的签名不同才会请求云端；未改动直接复用本地图片。
+      if (!await exportImage())
+        throw new Error(imageError.value || '作品图片准备失败')
+      if (!current())
+        return false
+      const artworkPath = imagePath.value
+      if (!artworkPath)
+        throw new Error('作品图片尚未准备好')
+      // 贺卡只在客户端 Canvas 合成，导出的临时文件不会上传云端。
+      const path = await compose(artworkPath, {
+        recipient: text.recipient || '',
+        blessing: card.blessing,
+        signature: card.signature,
+      })
       if (!path)
         throw new Error('贺卡图片导出失败')
       if (!current()) {
