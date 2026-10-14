@@ -7,7 +7,17 @@ import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { validateDraft } from '@/utils/flower/creation-storage'
 import { useArtworkImage } from './useArtworkImage'
 
-export function useFlowerPageArtwork(options: { savedOnly?: boolean } = {}) {
+export interface FlowerPageDailyInput {
+  draft: CreationDraft
+  imagePath: string
+  title: string
+  description: string
+}
+
+export function useFlowerPageArtwork(options: {
+  savedOnly?: boolean
+  loadDailyFlower?: (date: string) => Promise<FlowerPageDailyInput>
+} = {}) {
   const draft = ref<CreationDraft>()
   const title = ref('这束花')
   const description = ref('')
@@ -17,16 +27,44 @@ export function useFlowerPageArtwork(options: { savedOnly?: boolean } = {}) {
   const instance = getCurrentInstance()
   let alive = true
   let workId = ''
+  let dailyFlowerDate = ''
+  let existingArtworkImagePath = ''
+  let imageScope = ''
   const images = useArtworkImage(() => {
     if (!draft.value)
       throw new Error('作品尚未准备好')
     return draft.value.artwork
-  }, () => workId ? `work:${workId}` : '', () => workId && draft.value?.workRevision
+  }, () => workId ? `work:${workId}` : imageScope, () => workId && draft.value?.workRevision
     ? { id: workId, revision: draft.value.workRevision }
-    : undefined)
+    : undefined, () => existingArtworkImagePath)
   const userInfo = useUserInfoStore()
   function channel() {
     return (instance?.proxy as unknown as { getOpenerEventChannel?: () => UniApp.EventChannel })?.getOpenerEventChannel?.()
+  }
+  async function prepareDailyFlower(date: string) {
+    if (!options.loadDailyFlower)
+      return
+    loading.value = true
+    error.value = ''
+    try {
+      await userInfo.requireUid('请先登录后制作今日花束贺卡')
+      const value = await options.loadDailyFlower(date)
+      if (!alive)
+        return
+      draft.value = validateDraft(value.draft)
+      title.value = value.title
+      description.value = value.description
+      existingArtworkImagePath = value.imagePath
+      imageScope = `daily:${date}`
+    }
+    catch (value) {
+      if (alive)
+        error.value = creationFailure(value)
+    }
+    finally {
+      if (alive)
+        loading.value = false
+    }
   }
   async function prepare(value?: CreationDraft) {
     loading.value = true
@@ -63,6 +101,11 @@ export function useFlowerPageArtwork(options: { savedOnly?: boolean } = {}) {
   }
   onLoad((query) => {
     workId = String(query?.workId || '')
+    dailyFlowerDate = String(query?.dailyFlowerDate || '')
+    if (dailyFlowerDate && options.loadDailyFlower) {
+      void prepareDailyFlower(dailyFlowerDate)
+      return
+    }
     if (workId) {
       void prepare()
     }
@@ -80,5 +123,17 @@ export function useFlowerPageArtwork(options: { savedOnly?: boolean } = {}) {
     alive = false
     images.invalidate()
   })
-  return { draft, title, description, loading, error, saved, images, channel, retry: () => prepare(draft.value) }
+  return {
+    draft,
+    title,
+    description,
+    loading,
+    error,
+    saved,
+    images,
+    channel,
+    retry: () => dailyFlowerDate && options.loadDailyFlower
+      ? prepareDailyFlower(dailyFlowerDate)
+      : prepare(draft.value),
+  }
 }

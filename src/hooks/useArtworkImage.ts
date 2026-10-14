@@ -7,7 +7,12 @@ import { readImageCache, removeCachedImage, writeImageCache } from '@/utils/flow
 type ImageKind = 'artwork' | 'card'
 
 // Ignore stale cloud render results after a page closes or a newer request replaces them.
-export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () => string = () => '', getWorkIdentity: () => { id: string, revision: number } | undefined = () => undefined) {
+export function useArtworkImage(
+  createSnapshot: () => Artwork,
+  cacheScope: () => string = () => '',
+  getWorkIdentity: () => { id: string, revision: number } | undefined = () => undefined,
+  getExistingImagePath: () => string = () => '',
+) {
   const exportingImage = ref(false)
   const imagePath = ref('')
   const imageError = ref('')
@@ -61,6 +66,14 @@ export function useArtworkImage(createSnapshot: () => Artwork, cacheScope: () =>
     if (cached) {
       artworkRequest++
       imagePath.value = cached
+      exportingImage.value = false
+      imageError.value = ''
+      return true
+    }
+    const existingPath = getExistingImagePath()
+    if (existingPath) {
+      artworkRequest++
+      imagePath.value = existingPath
       exportingImage.value = false
       imageError.value = ''
       return true

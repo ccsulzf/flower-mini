@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "flowers": {
+    "chrysanthemum": ["firework-chrysanthemum", "ping-pong-chrysanthemum", "peony-chrysanthemum"],
+    "rose": ["rose", "spray-rose"],
+    "poppy": ["dahlia", "gerbera", "pincushion"],
+    "daisy": ["solidago", "gypsophila", "chamomile", "daisy"],
+    "leaf": ["eucalyptus", "spirea", "dusty-miller", "ivy"]
+  },
+  "vases": ["ceramic-vase", "matte-ceramic-vase", "ribbed-ceramic-vase"],
+  "backgrounds": ["scene-sage-table", "scene-window-table", "scene-ivory-table"]
+}

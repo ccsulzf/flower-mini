@@ -1,0 +1,8 @@
+{
+  "name": "flower-daily",
+  "version": "1.0.0",
+  "main": "index.obj.js",
+  "dependencies": {
+    "daily-flower": "file:../common/daily-flower"
+  }
+}

@@ -3,11 +3,29 @@ import type { FlowerGreetingText } from '@/models/flower-creation'
 import { onUnload } from '@dcloudio/uni-app'
 import { computed, ref, watch } from 'vue'
 import { useFlowerPageArtwork } from '@/hooks/useFlowerPageArtwork'
+import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { validateCard } from '@/utils/flower/creation-storage'
 import { renderFlowerCard } from '@/utils/flower/render-flower-card'
 
 definePage({ style: { navigationBarTitleText: '制作贺卡', navigationBarBackgroundColor: '#f6f3eb' } })
-const { draft, loading, error, images, retry } = useFlowerPageArtwork()
+const { draft, loading, error, images, retry } = useFlowerPageArtwork({
+  loadDailyFlower: async (date) => {
+    const flower = await useDailyFlowerStore().loadDate(date)
+    if (!flower)
+      throw new Error('今日花束不存在或已下架')
+    return {
+      draft: {
+        version: 1,
+        artwork: flower.artwork,
+        card: { blessing: '', signature: '' },
+        updatedAt: Date.now(),
+      },
+      imagePath: flower.imagePath,
+      title: '今日花束',
+      description: flower.description,
+    }
+  },
+})
 const { cardImagePath, exportingCard, cardImageError } = images
 const text = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })
 const appliedText = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })

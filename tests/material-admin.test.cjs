@@ -21,8 +21,9 @@ test('实际 Vite 配置支持小程序开发 watch，发行环境排除管理�
     env.UNI_NODE_ENV = uniNodeEnv
     const config = exports.default({ command, mode })
     const pages = config.plugins.find(plugin => plugin.options?.dir === 'src/pages').options
-    assert.equal(pages.subPackages.length, included ? 1 : 0)
+    assert.equal(pages.subPackages.length, included ? 2 : 0)
     assert.equal(config.define.__MATERIAL_ADMIN__, String(included))
+    assert.equal(config.define.__DAILY_FLOWER_ADMIN__, String(included))
     assert.equal(pages.mergePages, true)
   }
 })
@@ -36,7 +37,10 @@ test('真实页面插件扫描主包，并从旧开发路由中移除正式包�
   try {
     fs.mkdirSync(path.join(root, 'src/pages/index'), { recursive: true })
     fs.writeFileSync(path.join(root, 'src/pages/index/index.vue'), '<template><view /></template>')
-    fs.writeFileSync(path.join(root, 'src/pages.json'), JSON.stringify({ pages: [], subPackages: [{ root: 'subpackages/material-admin', pages: [{ path: 'material-admin-page' }] }] }))
+    fs.writeFileSync(path.join(root, 'src/pages.json'), JSON.stringify({ pages: [], subPackages: [
+      { root: 'subpackages/material-admin', pages: [{ path: 'material-admin-page' }] },
+      { root: 'subpackages/daily-flower-admin', pages: [{ path: 'daily-flower-admin-page' }] },
+    ] }))
     const ctx = new PageContext({ dir: 'src/pages', mergePages: true, dts: false, onBeforeWriteFile: excludeMaterialAdmin }, root)
     await ctx.updatePagesJSON()
     const result = ts.parseConfigFileTextToJson('pages.json', fs.readFileSync(path.join(root, 'src/pages.json'), 'utf8')).config

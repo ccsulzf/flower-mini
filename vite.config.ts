@@ -30,7 +30,10 @@ export default defineConfig(({ command, mode }) => {
     : basePageExclude
 
   return {
-    define: { __MATERIAL_ADMIN__: JSON.stringify(includeMaterialAdmin) },
+    define: {
+      __MATERIAL_ADMIN__: JSON.stringify(includeMaterialAdmin),
+      __DAILY_FLOWER_ADMIN__: JSON.stringify(includeMaterialAdmin),
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
@@ -55,7 +58,9 @@ export default defineConfig(({ command, mode }) => {
       // https://uni-helper.js.org/vite-plugin-uni-pages
       UniHelperPages({
         dir: 'src/pages', // 👈 明确主包
-        subPackages: includeMaterialAdmin ? ['src/subpackages/material-admin'] : [],
+        subPackages: includeMaterialAdmin
+          ? ['src/subpackages/material-admin', 'src/subpackages/daily-flower-admin']
+          : [],
         mergePages: true,
         onBeforeWriteFile: includeMaterialAdmin ? undefined : excludeMaterialAdmin,
         dts: 'src/uni-pages.d.ts',

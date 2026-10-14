@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Feedback from '@/components/feedback/feedback.vue'
+import DailyFlowerPopup from '@/components/flower/daily-flower-popup.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import Feedback from '@/components/feedback/feedback.vue'
     <view class="feedback-layer">
       <Feedback />
     </view>
+    <DailyFlowerPopup />
   </view>
 </template>
 

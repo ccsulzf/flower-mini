@@ -4,6 +4,7 @@
   "main": "index.obj.js",
   "dependencies": {
     "@resvg/resvg-wasm": "2.6.2",
-    "auth": "file:../common/auth"
+    "auth": "file:../common/auth",
+    "daily-flower": "file:../common/daily-flower"
   }
 }

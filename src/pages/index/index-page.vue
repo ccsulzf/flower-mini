@@ -9,8 +9,13 @@ const busy = ref(false)
 const ready = ref(false)
 const error = ref('')
 const materialAdminEnabled = __MATERIAL_ADMIN__
+const dailyFlowerAdminEnabled = __DAILY_FLOWER_ADMIN__
 function openMaterialAdmin() {
   if (__MATERIAL_ADMIN__) uni.navigateTo({ url: '/subpackages/material-admin/material-admin-page' })
+}
+
+function openDailyFlowerAdmin() {
+  if (__DAILY_FLOWER_ADMIN__) uni.navigateTo({ url: '/subpackages/daily-flower-admin/daily-flower-admin-page' })
 }
 
 function openFlowerStudio() {
@@ -101,6 +106,11 @@ onShow(() => checkAuth())
       <view class="app-section-title">素材管理</view>
       <view class="app-section-desc">上传 SVG、管理目录与验证缓存</view>
       <button class="app-secondary-btn" @click="openMaterialAdmin">管理素材</button>
+    </view>
+    <view v-if="dailyFlowerAdminEnabled" class="app-card section">
+      <view class="app-section-title">每日插花维护</view>
+      <view class="app-section-desc">导入本地花束 JSON，预览后发布当天花束</view>
+      <button class="app-secondary-btn" @click="openDailyFlowerAdmin">维护每日插花</button>
     </view>
   </view>
 </template>

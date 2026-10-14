@@ -11,7 +11,10 @@ function excludeMaterialAdmin(context) {
   const generate = context.genratePagesJSON.bind(context)
   context.genratePagesJSON = async () => {
     const result = await generate()
-    result.subPackages = (result.subPackages || []).filter(item => item.root !== 'subpackages/material-admin')
+    result.subPackages = (result.subPackages || []).filter(item => ![
+      'subpackages/material-admin',
+      'subpackages/daily-flower-admin',
+    ].includes(item.root))
     return result
   }
 }

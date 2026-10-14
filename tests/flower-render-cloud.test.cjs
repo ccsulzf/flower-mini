@@ -37,6 +37,8 @@ function loadCloudObject(options = {}) {
       return options.wasm || { initWasm: async () => { initCount++ }, Resvg }
     if (name === 'node:fs')
       return options.fs || { readFileSync: () => Buffer.from('wasm') }
+    if (name === '../common/daily-flower')
+      return require(path.resolve(cloudFunctionDir, '../common/daily-flower'))
     return require(name)
   }
   cloudRequire.resolve = name => options.wasmPath || '/tmp/mock-wasm'
@@ -72,6 +74,37 @@ test('正式云渲染对象要求登录并回传 PNG', async () => {
   assert.equal(metrics().rendererOptions.font.loadSystemFonts, true)
   assert.equal(metrics().freedImage, true)
   assert.equal(metrics().freedRenderer, true)
+})
+
+test('每日花束云渲染仅允许管理员调用', async () => {
+  let roles = []
+  const uniCloud = {
+    database: () => ({
+      collection: (name) => {
+        assert.equal(name, 'uni-id-users')
+        return { doc: () => ({ field: () => ({ get: async () => ({ data: [{ role: roles }] }) }) }) }
+      },
+    }),
+  }
+  const { object, metrics } = loadCloudObject({ uniCloud })
+  const context = { getUniIdToken() {} }
+  await object._before.call(context)
+  const artwork = {
+    version: 2,
+    vase: '陶瓶',
+    background: 'warm',
+    stems: [{ id: 1, kind: 'rose', x: 350, y: 747, angle: 0, flowerScale: 1, stemHeight: 260, color: '#d85f70' }],
+  }
+  await assert.rejects(object.renderDailyArtwork.call(context, { artwork }), (error) => error.errCode === 'ADMIN_REQUIRED')
+  assert.equal(metrics().renderCount, 0)
+  roles = ['admin']
+  const result = await object.renderDailyArtwork.call(context, { artwork: {
+    ...artwork,
+  } })
+  assert.equal(result.width, 698)
+  assert.equal(result.height, 1000)
+  assert.equal(Buffer.from(result.pngBase64, 'base64').toString(), 'png')
+  assert.equal(metrics().renderCount, 1)
 })
 
 test('未登录与无效 SVG 在启动 WASM 之前被拒绝', async () => {

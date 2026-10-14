@@ -94,8 +94,9 @@ function remove(work: SavedFlowerWork) {
     </view>
     <view class="works-grid">
       <view v-for="work in works.items" :key="work.id" class="work-card">
-        <view class="work-cover" @click="open(work)">
+        <view class="work-cover">
           <FlowerArtworkPreview :artwork="work.draft.artwork" :scale="0.44" />
+          <view class="work-cover-hitarea" @tap="open(work)" />
         </view>
         <view class="work-title" @click="open(work)">
           {{ work.title }}
@@ -170,8 +171,16 @@ function remove(work: SavedFlowerWork) {
 }
 
 .work-cover {
+  position: relative;
   height: 440rpx;
   background: #eeeee5;
+}
+
+.work-cover-hitarea {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background: transparent;
 }
 
 .work-title {

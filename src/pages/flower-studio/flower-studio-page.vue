@@ -317,6 +317,43 @@ function openWorks() {
   session.flushDraft()
   uni.navigateTo({ url: '/pages/flower-works/flower-works-page' })
 }
+function openDailyFlowers() {
+  endDrag(true)
+  session.flushDraft()
+  closePanels()
+  uni.navigateTo({
+    url: '/pages/daily-flower/daily-flower-page',
+    events: {
+      'daily-flower-copied': (payload: { workId: string }) => {
+        void openCopiedDailyFlower(payload.workId)
+      },
+    },
+  })
+}
+async function openCopiedDailyFlower(workId: string) {
+  if (!/^[a-f\d]{32}$/.test(workId))
+    return notify('复制的作品编号无效')
+  pageReady.value = false
+  applying = true
+  try {
+    const work = await works.get(workId)
+    if (!alive)
+      return
+    closePanels()
+    session.openWork(work)
+    session.editWork()
+    detailId.value = work.id
+    startupError.value = ''
+    await prepareArtwork()
+  }
+  catch (error) {
+    startupError.value = creationFailure(error)
+  }
+  finally {
+    applying = false
+    pageReady.value = true
+  }
+}
 function closeDetail() {
   uni.navigateBack()
 }
@@ -454,7 +491,9 @@ function removeSelected() {
       @toggle-colors="toolsColorsOpen = !toolsColorsOpen" @layer="setLayer" @duplicate="duplicateSelected"
       @remove="removeSelected" @mirror="store.mirrorSelected()" @adjacent="store.selectAdjacent"
     />
-    <StudioTopToolbar @works="openWorks" @undo="undo" @redo="redo" @reset="reset" @finish="finish" />
+    <StudioTopToolbar
+      @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="reset" @finish="finish"
+    />
     <view v-if="storageError && !pendingDraft && !startupError" class="storage-warning" :style="{ top: `${pageActionsTop + 58}px` }">
       <text>{{ storageError }}</text><text v-if="draftReadFailed" @click="retryLocalDraft">
         重新读取

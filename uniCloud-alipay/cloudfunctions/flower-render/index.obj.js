@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const resolveAuth = require('auth');
+const dailyFlower = require('../common/daily-flower');
 const { createHash } = require('node:crypto');
 const { initWasm, Resvg } = require('@resvg/resvg-wasm');
 
@@ -250,6 +251,16 @@ module.exports = {
         const svg = await buildArtworkSvg(work.artwork);
         const result = await module.exports.render.call(this, { svg });
         return { ...result, workRevision: work.revision };
+    },
+    async renderDailyArtwork({ artwork } = {}) {
+        const user = await uniCloud.database().collection('uni-id-users')
+            .doc(this.auth.uid).field({ role: true }).get();
+        const roles = user.data?.[0]?.role;
+        if (!Array.isArray(roles) || !roles.includes('admin'))
+            throw { errCode: 'ADMIN_REQUIRED', errMsg: '此账号没有每日插花维护权限' };
+        const validArtwork = dailyFlower.validateArtwork(artwork);
+        const svg = await buildArtworkSvg(validArtwork);
+        return module.exports.render.call(this, { svg });
     },
     async render({ svg } = {}) {
         const startedAt = Date.now();
