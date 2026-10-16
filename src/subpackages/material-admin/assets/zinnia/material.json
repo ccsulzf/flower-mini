@@ -1,0 +1,29 @@
+{
+  "id": "zinnia",
+  "category": "flower",
+  "name": "百日菊",
+  "group": "main",
+  "introduction": "花瓣一层层展开，花形饱满，适合做花束里的亮色主花。",
+  "flowerMeaning": "长久、思念",
+  "version": 2,
+  "colors": [
+    {
+      "name": "橘色",
+      "value": "#d98f6c"
+    },
+    {
+      "name": "粉色",
+      "value": "#cf8e9a"
+    },
+    {
+      "name": "黄色",
+      "value": "#dfc47c"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

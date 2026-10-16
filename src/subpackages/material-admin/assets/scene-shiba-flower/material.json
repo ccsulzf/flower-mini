@@ -1,0 +1,15 @@
+{
+  "id": "scene-shiba-flower",
+  "category": "background",
+  "name": "柴犬等花",
+  "introduction": "浅木柜台旁的柴犬歪头看花，暖白与浅杏色空间保留中央花艺展示区域。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 820
+  }
+}

@@ -9,7 +9,7 @@ export function naturalStemSource(source: string, id: string) {
     const numbers = path.match(/^M([\d.]+) ([\d.]+)C([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)$/)
     if (!numbers) return whole
     const [startX, startY, firstX, , secondX, , endX, endY] = numbers.slice(1).map(Number)
-    if (startY > 1 || endY !== 260 || Math.abs(firstX - startX) > 8 || Math.abs(secondX - endX) > 8) return whole
+    if (firstX === startX || startY > 1 || endY !== 260 || Math.abs(firstX - startX) > 8 || Math.abs(secondX - endX) > 8) return whole
     const offset = startX < 54 && id !== 'bird-of-paradise' ? -.4 : changed === 1 ? -.4 : 0
     let control1: number, control2: number
     if (softLeft.has(id)) { control1 = 18; control2 = 12 }
@@ -31,5 +31,14 @@ export function smoothStemTip(source: string) {
     if (matched >= 2 || Number(y) > 1) return whole
     matched++
     return `${prefix}${start}${x}${rest}`
+  })
+}
+
+// 明确绘制的倾斜花序按原切线接入；拉伸茎高时只补偿首个控制点。
+export function fitStemJoin(source: string, heightScale: number) {
+  if (!source.includes('<!-- continuous-stem-join -->')) return source
+  return source.replace(/(<path\b[^>]*\bd="M)([\d.-]+) 0C([\d.-]+)( [\d.-]+)/g, (_whole, prefix: string, x: string, control: string, rest: string) => {
+    const fitted = Number((Number(x) + (Number(control) - Number(x)) * heightScale).toFixed(6))
+    return `${prefix}${x} 0C${fitted}${rest}`
   })
 }

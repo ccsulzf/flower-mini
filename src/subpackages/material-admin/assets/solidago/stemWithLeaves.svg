@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="260" viewBox="0 0 110 260">
-  <path d="M55 0C51 65 59 157 55 260" fill="none" stroke="#7e906d" stroke-width="1.1" />
-  <path d="M54.6 1C50.6 65 58.6 157 54.6 260" fill="none" stroke="#c2caa5" stroke-width="0.4" />
-  <g transform="translate(54 85) rotate(-60) scale(0.40)">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="260" viewBox="0 0 110 260"><!-- continuous-stem-join -->
+  <path d="M55 0C57.447438 35 78.5 92 80 145C81.5 198 63.75 238 55 260" fill="none" stroke="#87976e" stroke-width="0.95"  stroke-linecap="round"/>
+
+  <g transform="translate(72.064 85) rotate(-60) scale(0.40)">
   <path d="M0 0C-14 -5 -17 -26 0 -40C14 -30 17 -11 0 0Z" fill="#879b76" stroke="#718561" stroke-width=".45"/>
   <path d="M0 -2Q-2 -19 0 -37M-1 -12L-8 -19M-1 -21L7 -28" fill="none" stroke="#c2cbaa" stroke-width="0.6" />
   </g>
-  <g transform="translate(54 142) rotate(61) scale(0.44)">
+  <g transform="translate(79.895 142) rotate(61) scale(0.44)">
   <path d="M0 0C-14 -5 -17 -26 0 -40C14 -30 17 -11 0 0Z" fill="#879b76" stroke="#718561" stroke-width=".45"/>
   <path d="M0 -2Q-2 -19 0 -37M-1 -12L-8 -19M-1 -21L7 -28" fill="none" stroke="#c2cbaa" stroke-width="0.6" />
   </g>
-  <g transform="translate(56 191) rotate(-55) scale(0.48)">
+  <g transform="translate(76.581 191) rotate(-55) scale(0.48)">
   <path d="M0 0C-14 -5 -17 -26 0 -40C14 -30 17 -11 0 0Z" fill="#879b76" stroke="#718561" stroke-width=".45"/>
   <path d="M0 -2Q-2 -19 0 -37M-1 -12L-8 -19M-1 -21L7 -28" fill="none" stroke="#c2cbaa" stroke-width="0.6" />
   </g>

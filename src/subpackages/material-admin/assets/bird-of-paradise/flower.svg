@@ -4,7 +4,7 @@
   <stop offset="0" stop-color="__COLOR__"/>
   <stop offset="1" stop-color="#ad7644"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(-4 29 96)">
   <path d="M19 91L27 85L34 65L83 68L105 61Q84 82 45 88L30 97Z" fill="#6f8b69" stroke="#637756" stroke-width=".6"/>
   <path d="M41 71Q28 36 29 11Q45 35 47 69Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
   <path d="M41 71Q28 36 29 11Q45 35 47 69Z" fill="url(#bird-of-paradise-fold)" opacity="0.13"/>
@@ -16,4 +16,4 @@
   <path d="M50 77Q60 48 64 39L58 80Z" fill="#9498b3" />
   <path d="M37 75Q60 74 92 66" fill="none" stroke="#b7c8a1" stroke-width="0.8" />
   <path d="M26 86L29 81L43 77L39 85Z" fill="#b27868" />
-</svg>
+</g></svg>

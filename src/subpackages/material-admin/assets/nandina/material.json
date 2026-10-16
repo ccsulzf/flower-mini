@@ -1,0 +1,25 @@
+{
+  "id": "nandina",
+  "category": "flower",
+  "name": "南天竹",
+  "group": "foliage",
+  "introduction": "细枝上生着一簇簇小叶，姿态轻盈，适合自然舒展的插花。",
+  "flowerMeaning": "吉祥、平安",
+  "version": 2,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#a0b18a"
+    },
+    {
+      "name": "红褐色",
+      "value": "#b78f7e"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

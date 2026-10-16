@@ -1,0 +1,25 @@
+{
+  "id": "milan-leaf",
+  "category": "flower",
+  "name": "米兰叶",
+  "group": "foliage",
+  "introduction": "小巧圆润的叶片沿细枝排列，适合做细致、自然的配叶。",
+  "flowerMeaning": "勇敢、热爱生活",
+  "version": 2,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#9aad7e"
+    },
+    {
+      "name": "浅绿",
+      "value": "#b4c595"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

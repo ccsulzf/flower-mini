@@ -1,3 +1,4 @@
+import { colorizeMaterialSvg } from '@/utils/flower/material-color'
 import { defaultFlowerGeometry, materialParts, normalizeMaterial } from '@/utils/flower/material-catalog'
 import type { MaterialDraft, MaterialMetadata, SvgPart, UploadedMaterial } from './types'
 export const svgParts: { key: SvgPart, name: string }[] = [
@@ -41,7 +42,7 @@ export function uploadStatus(local: MaterialDraft, remote: UploadedMaterial[] | 
   return !row ? '未上传' : row.revision === local.revision ? '已上传' : '有更新'
 }
 export function localPreviewSource(svg: string, color: string) {
-  const source = svg.replace(/__COLOR__/g, /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd')
+  const source = colorizeMaterialSvg(svg, color)
   const encoded = encodeURIComponent(source).replace(/%([\dA-F]{2})/g, (_, hex) => String.fromCharCode(Number.parseInt(hex, 16)))
   const bytes = Uint8Array.from(encoded, char => char.charCodeAt(0))
   return `data:image/svg+xml;base64,${uni.arrayBufferToBase64(bytes.buffer)}`

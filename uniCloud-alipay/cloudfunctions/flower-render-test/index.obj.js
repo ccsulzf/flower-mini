@@ -4,6 +4,16 @@ const { initWasm, Resvg } = require('@resvg/resvg-wasm')
 
 let wasmReady
 
+function colorizeMaterialSvg(svg, color) {
+  const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd';
+  let source = svg.replace(/__COLOR__/g, safeColor);
+  if (!svg.includes('<!-- adaptive-petal-outline -->')) return source;
+  const channels = [1, 3, 5].map(offset => Number.parseInt(safeColor.slice(offset, offset + 2), 16) / 255);
+  const brightness = channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722;
+  if (brightness < .38) source = source.replace(/stroke="#9d4b4f" stroke-opacity="\.5"/g, 'stroke="#e8a39d" stroke-opacity=".65"');
+  return source;
+}
+
 function assertReference(id, revision) {
   if (typeof id !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(id)
     || typeof revision !== 'string' || !/^[a-f\d]{16}$/.test(revision))
@@ -180,7 +190,7 @@ async function artworkSvg(artwork) {
     const join = Math.max(headTop, headTop + connection - 8)
     const stemSource = stem.leafMode === 'with' ? material.sources.stemWithLeaves : material.sources.stemWithoutLeaves
     const flowerSource = material.sources.flower
-    const plant = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${nested(stemSource, 0, join, 110, total - join)}${nested(flowerSource.replace(/__COLOR__/g, stem.color), 0, headTop, 110, headHeight)}</svg>`
+    const plant = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${nested(stemSource, 0, join, 110, total - join)}${nested(colorizeMaterialSvg(flowerSource, stem.color), 0, headTop, 110, headHeight)}</svg>`
     const scaleX = stem.mirrored ? -stem.flowerScale : stem.flowerScale
     return `<g transform="translate(${stem.x} ${anchorY}) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-total})">${plant.replace(/^\s*<svg\b[^>]*>/i, '').replace(/<\/svg>\s*$/i, '')}</g>`
   }).join('')

@@ -128,8 +128,10 @@ test('本地物料 JSON 仅将已存在于云端的候选物料关联到每日�
     cloudMaterial('rose', 'flower', 'b'.repeat(16)),
     cloudMaterial('dahlia', 'flower', 'c'.repeat(16)),
     cloudMaterial('solidago', 'flower', 'f'.repeat(16)),
+    cloudMaterial('spirea', 'flower', '3'.repeat(16)),
     cloudMaterial('eucalyptus', 'flower', '1'.repeat(16)),
     cloudMaterial('ceramic-vase', 'vase', 'd'.repeat(16)),
+    cloudMaterial('scene-window-table', 'background', '2'.repeat(16)),
     cloudMaterial('scene-sage-table', 'background', 'e'.repeat(16)),
   ]
   const manifest = JSON.parse(fs.readFileSync('src/subpackages/daily-flower-admin/assets/daily-flower-materials.json', 'utf8'))
@@ -148,15 +150,17 @@ test('本地物料 JSON 仅将已存在于云端的候选物料关联到每日�
   const localJson = JSON.parse(fs.readFileSync('src/subpackages/daily-flower-admin/assets/daily-flower.json', 'utf8'))
   const parsed = createLoader().load('src/utils/flower/daily-flower.ts').parseDailyFlower(JSON.stringify(localJson))
   const artwork = attachCloudMaterials(parsed.artwork, materials, manifest)
-  assert.equal(artwork.stems.length, 44)
-  assert.ok(artwork.stems.filter(stem => stem.kind === 'chrysanthemum').length >= 10)
+  assert.equal(artwork.stems.length, 37)
+  assert.equal(artwork.stems.filter(stem => stem.kind === 'chrysanthemum').length, 8)
+  assert.equal(artwork.stems.filter(stem => stem.kind === 'rose').length, 8)
+  assert.equal(artwork.stems.filter(stem => stem.kind === 'leaf').length, 6)
   assert.ok(new Set(artwork.stems.map(stem => stem.kind)).size >= 5)
   assert.ok(artwork.stems.every(stem => stem.materialId && stem.materialRevision))
   assert.equal(artwork.vaseMaterialId, 'ceramic-vase')
-  assert.equal(artwork.backgroundMaterialId, 'scene-sage-table')
-  assert.equal(artwork.stems[0].materialId, 'firework-chrysanthemum')
+  assert.equal(artwork.backgroundMaterialId, 'scene-window-table')
+  assert.equal(artwork.stems[0].materialId, 'spirea')
   assert.ok(artwork.stems.every(stem => materials.some(material => material.id === stem.materialId)))
-  assert.throws(() => attachCloudMaterials(parsed.artwork, [], manifest), /没有本地物料清单中可用于 chrysanthemum/)
+  assert.throws(() => attachCloudMaterials(parsed.artwork, [], manifest), /没有本地物料清单中可用于 leaf/)
 })
 
 test('每日花束云对象拒绝非管理员，并验证 PNG 图片尺寸', async () => {

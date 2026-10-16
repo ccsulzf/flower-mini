@@ -1,14 +1,15 @@
 {
   "id": "paper-blush",
   "category": "background",
-  "name": "淡粉纸纹",
-  "introduction": "柔和纸色搭配可见纤维与轻微纸张起伏，让作品像画在手工纸上。",
+  "name": "赤陶拱廊",
+  "introduction": "低饱和陶土拱廊搭配浅沙色石台，以建筑轮廓和暖色明暗衬托花艺。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 2,
+  "version": 3,
   "geometry": {
     "width": 698,
-    "height": 1000
+    "height": 1000,
+    "surfaceY": 820
   }
 }

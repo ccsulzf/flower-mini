@@ -1,0 +1,29 @@
+{
+  "id": "clematis",
+  "category": "flower",
+  "name": "铁线莲",
+  "group": "main",
+  "introduction": "六枚舒展的尖卵形花被片围绕细密花蕊，浅色中脉与瓣缘微卷，适合作为轻盈主花。",
+  "flowerMeaning": "舒展、灵感",
+  "version": 1,
+  "colors": [
+    {
+      "name": "淡紫",
+      "value": "#a296c3"
+    },
+    {
+      "name": "蓝紫",
+      "value": "#7f87b7"
+    },
+    {
+      "name": "奶白",
+      "value": "#e8e3d8"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

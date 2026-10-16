@@ -1,0 +1,25 @@
+{
+  "id": "pieris",
+  "category": "flower",
+  "name": "马醉木",
+  "group": "foliage",
+  "introduction": "木质枝条上长着成簇的细长叶，适合自然舒展、带有枝条感的搭配。",
+  "flowerMeaning": "自然、安宁",
+  "version": 2,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#9eb08b"
+    },
+    {
+      "name": "浅绿",
+      "value": "#b6c39a"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

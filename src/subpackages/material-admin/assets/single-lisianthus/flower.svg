@@ -4,7 +4,7 @@
   <stop offset="0" stop-color="__COLOR__"/>
   <stop offset="1" stop-color="#9c7e82"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(-8 55 94)"><path d="M55 94C50 90 48 84 48 78Q55 84 63 78C62 86 58 90 55 94Z" fill="#819272"/>
   <g transform="rotate(0.00 55 55)">
   <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
   <path d="M52 60C32 53 29 34 39 23Q48 18 55 26Q62 18 72 26C82 41 68 55 58 61Z" fill="url(#single-lisianthus-fold)" opacity="0.12"/>
@@ -47,4 +47,4 @@
   <circle cx="55.00" cy="48.00" r="0.70" fill="#d2ba6e" />
   <path d="M55 56L59.95 50.05" fill="none" stroke="#afa16b" stroke-width="0.5" />
   <circle cx="59.95" cy="50.05" r="0.70" fill="#d2ba6e" />
-</svg>
+</g></svg>

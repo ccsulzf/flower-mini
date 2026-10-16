@@ -1,0 +1,25 @@
+{
+  "id": "acacia",
+  "category": "flower",
+  "name": "金合欢",
+  "group": "filler",
+  "introduction": "细长分枝上聚着圆形绒球状花序，密集花丝带来轻盈蓬松的金黄色点缀。",
+  "flowerMeaning": "温暖、友谊",
+  "version": 1,
+  "colors": [
+    {
+      "name": "金黄",
+      "value": "#d8bd6b"
+    },
+    {
+      "name": "浅黄",
+      "value": "#e2cf8d"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

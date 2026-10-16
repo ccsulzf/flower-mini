@@ -1,14 +1,15 @@
 {
   "id": "paper-linen",
   "category": "background",
-  "name": "浅灰麻纹",
-  "introduction": "浅灰底色搭配细密交织的麻布纹理，带一点自然织物的质感。",
+  "name": "燕麦亚麻",
+  "introduction": "燕麦色空间搭配自然垂落的亚麻布，宽松褶皱适合花束与自然风作品。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 2,
+  "version": 3,
   "geometry": {
     "width": 698,
-    "height": 1000
+    "height": 1000,
+    "surfaceY": 850
   }
 }

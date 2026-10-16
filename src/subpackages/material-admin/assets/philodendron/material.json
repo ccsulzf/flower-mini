@@ -1,0 +1,25 @@
+{
+  "id": "philodendron",
+  "category": "flower",
+  "name": "春羽",
+  "group": "foliage",
+  "introduction": "叶片有明显的深裂口，形态舒展，适合增加热带感和层次。",
+  "flowerMeaning": "生机、自由",
+  "version": 2,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#91a67b"
+    },
+    {
+      "name": "深绿",
+      "value": "#7d9572"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

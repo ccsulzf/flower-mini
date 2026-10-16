@@ -121,7 +121,9 @@ test('画布和工作室区域从共享 stores 读取展示状态，不层层传
     'studio-flower-toolbar.vue',
     'studio-top-toolbar.vue',
     'studio-material-status.vue',
-    'studio-options.vue',
+    'studio-flower-panel.vue',
+    'studio-container-panel.vue',
+    'studio-background-panel.vue',
   ]
   for (const filename of sourceFiles) {
     const source = fs.readFileSync(path.resolve(__dirname, `../src/pages/flower-studio/components/${filename}`), 'utf8')

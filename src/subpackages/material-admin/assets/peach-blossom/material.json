@@ -1,0 +1,25 @@
+{
+  "id": "peach-blossom",
+  "category": "flower",
+  "name": "桃花",
+  "group": "filler",
+  "introduction": "粉色花朵沿枝条开放，花形圆润，适合营造明亮的春日气息。",
+  "flowerMeaning": "爱情、美好",
+  "version": 2,
+  "colors": [
+    {
+      "name": "粉色",
+      "value": "#dca6b1"
+    },
+    {
+      "name": "浅粉",
+      "value": "#ebc8cc"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

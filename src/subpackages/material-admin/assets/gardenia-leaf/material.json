@@ -1,0 +1,25 @@
+{
+  "id": "gardenia-leaf",
+  "category": "flower",
+  "name": "栀子叶",
+  "group": "foliage",
+  "introduction": "椭圆形叶片光洁饱满，适合清新花束和日常瓶插。",
+  "flowerMeaning": "纯洁、守候",
+  "version": 2,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#8fa57b"
+    },
+    {
+      "name": "浅绿",
+      "value": "#adbc91"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

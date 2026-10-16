@@ -1,6 +1,7 @@
+import { colorizeMaterialSvg } from './material-color'
 import type { CachedMaterial, FlowerGeometry, VaseGeometry } from '@/models/material'
 import type { Stem } from '@/models/artwork'
-import { naturalStemSource, smoothStemTip } from './stem-curves'
+import { fitStemJoin, naturalStemSource, smoothStemTip } from './stem-curves'
 export function svgImageSource(source: string) {
   const encoded = encodeURIComponent(source).replace(/%([\dA-F]{2})/g, (_, hex) => String.fromCharCode(Number.parseInt(hex, 16)))
   return `data:image/svg+xml;base64,${uni.arrayBufferToBase64(Uint8Array.from(encoded, char => char.charCodeAt(0)).buffer)}`
@@ -25,8 +26,11 @@ export function cloudPlantSvg(material: CachedMaterial, stem: Pick<Stem, 'color'
   // 花心保持 y=55，花茎连接点由素材提供，花器盖住底端。
   const headTop = 55 - headHeight / 2
   // 旧银莲花档案连接点落在透明留白里；兼容旧云版本并让茎顶藏进花瓣。
-  const join = Math.max(headTop, headTop + (material.id === 'anemone' ? Math.min(connection, 84) : connection) - 8)
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${nested(smoothStemTip(stem.leafMode === 'without' ? naturalStemSource(stemSource, material.id) : stemSource), 0, join, 110, total - join)}${nested(material.sources.flower.replace(/__COLOR__/g, safeColor), 0, headTop, 110, headHeight)}</svg>`
+  const overlap = stemSource.includes('<!-- continuous-stem-join -->') ? 0 : 8
+  const join = Math.max(headTop, headTop + (material.id === 'anemone' ? Math.min(connection, 84) : connection) - overlap)
+  const shapedStem = smoothStemTip(stem.leafMode === 'without' ? naturalStemSource(stemSource, material.id) : stemSource)
+  const fittedStem = fitStemJoin(shapedStem, (total - join) / geometry.stemHeight / (110 / geometry.width))
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${nested(fittedStem, 0, join, 110, total - join)}${nested(colorizeMaterialSvg(material.sources.flower, safeColor), 0, headTop, 110, headHeight)}</svg>`
 }
 export function vasePlacement(material: CachedMaterial) {
   if ((material.category !== 'vase' && material.category !== 'bouquet') || !material.geometry || !(material.sources.vase || material.sources.bouquet)) throw new Error('花瓶素材不可用')

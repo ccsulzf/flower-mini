@@ -37,7 +37,7 @@ function loadCloudObject(options = {}) {
       return options.wasm || { initWasm: async () => { initCount++ }, Resvg }
     if (name === 'node:fs')
       return options.fs || { readFileSync: () => Buffer.from('wasm') }
-    if (name === '../common/daily-flower')
+    if (name === 'daily-flower')
       return require(path.resolve(cloudFunctionDir, '../common/daily-flower'))
     return require(name)
   }

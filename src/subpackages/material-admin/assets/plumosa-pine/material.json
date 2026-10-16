@@ -1,0 +1,25 @@
+{
+  "id": "plumosa-pine",
+  "category": "flower",
+  "name": "蓬莱松",
+  "group": "foliage",
+  "introduction": "细密针叶聚成蓬松的小簇，适合填补空隙，让花束更轻盈。",
+  "flowerMeaning": "长寿、吉祥",
+  "version": 2,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#94aa7a"
+    },
+    {
+      "name": "浅绿",
+      "value": "#b0c28f"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

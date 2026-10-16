@@ -4,7 +4,7 @@
   <stop offset="0" stop-color="__COLOR__"/>
   <stop offset="1" stop-color="#9c7e82"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(-4 55 94)">
   <ellipse cx="55.00" cy="54.00" rx="43.00" ry="40.00" fill="__COLOR__" stroke="#9f92a3" stroke-width=".4"/>
   <g transform="rotate(0 58.23 54.00)">
   <path d="M58.23 54.00Q54.03 53.16 55.29 49.80Q58.23 47.07 60.96 49.80Q62.43 53.37 58.23 54.00Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
@@ -838,4 +838,4 @@
   <path d="M88.47 67.20Q84.16 66.34 85.46 62.89Q88.47 60.09 91.27 62.89Q92.78 66.55 88.47 67.20Z" fill="__COLOR__" stroke="#837c95" stroke-opacity=".45" stroke-width=".3"/>
   </g>
   <circle cx="88.47" cy="67.20" r="0.65" fill="#dad8b7" />
-</svg>
+</g></svg>

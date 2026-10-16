@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
-  <path d="M55 104Q56 79 55 59" fill="none" stroke="#84946e" stroke-width="1" />
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><g transform="rotate(0 55 104)">
+  <path d="M55 104C55 87.3333 55.6667 72.3333 55 59" fill="none" stroke="#84946e" stroke-width="1" />
   <path d="M55 72Q35.0 48 15.0 56.5" fill="none" stroke="#8c9a77" stroke-width="0.6" />
   <path d="M15.0 56.5L19.0 56.5" fill="none" stroke="#8c9a77" stroke-width="0.35" />
   <ellipse cx="19.00" cy="57.37" rx="0.74" ry="0.93" fill="__COLOR__"/>
@@ -469,4 +469,4 @@
   <ellipse cx="88.25" cy="56.26" rx="0.74" ry="0.93" fill="__COLOR__"/>
   <circle cx="89.06" cy="56.00" r="0.31" fill="#c6b37a" />
   <path d="M55 78L48 63L54 69L57 60L59 69L66 63Z" fill="#8f9d7b" />
-</svg>
+</g></svg>

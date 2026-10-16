@@ -1,0 +1,15 @@
+{
+  "id": "scene-rainy-puppy",
+  "category": "background",
+  "name": "雨天等你",
+  "introduction": "雾蓝玄关里，小白狗坐在门边，旁边是一把收起的伞，中央留给温暖的花艺作品。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 820
+  }
+}

@@ -77,13 +77,13 @@ test('未检查不假装未上传；说明或 SVG 改动均显示有更新，预
   const source = Buffer.from(localPreviewSource(item.sources.flower, '#abcdef').split(',')[1], 'base64').toString('utf8')
   assert.ok(source.includes('#abcdef') && !source.includes('__COLOR__'))
   const page = loader.setup('src/subpackages/material-admin/material-admin-page.vue')
-  assert.equal(page.materials.value.length, 78)
+  assert.equal(page.materials.value.length, 122)
   assert.ok(!page.materials.value.some(material => material.id === 'poppy'))
   assert.equal(page.materials.value.find(material => material.id === 'ranunculus').name, '洋牡丹')
   assert.equal(page.materials.value.find(material => material.id === 'anthurium').name, '红掌')
   page.open(item); assert.equal(page.selected.value.id, item.id)
-  page.group.value = 'main'; assert.equal(page.materials.value.length, 28)
-  page.group.value = 'filler'; assert.equal(page.materials.value.length, 19)
+  page.group.value = 'main'; assert.equal(page.materials.value.length, 35)
+  page.group.value = 'filler'; assert.equal(page.materials.value.length, 33)
 })
 test('管理员云对象验证身份、完整档案并允许新花材标识', async () => {
   let identity = { errCode: 0, uid: 'normal-user', role: [] }
@@ -110,7 +110,7 @@ test('管理员云对象验证身份、完整档案并允许新花材标识', as
   const backgroundAssets = { background: { fileId: 'cloud:scene', hash: 'c'.repeat(40) } }
   await cloud.save({ ...scene, assets: backgroundAssets })
   assert.equal(records.get(scene.id).category, 'background')
-  assert.equal(records.get(scene.id).geometry.surfaceY, 910)
+  assert.equal(records.get(scene.id).geometry.surfaceY, scene.geometry.surfaceY)
   await assert.rejects(cloud.save({ ...scene, assets: backgroundAssets, geometry: { ...scene.geometry, surfaceY: 1001 } }), error => error.errCode === 'INVALID_MATERIAL')
   databaseRoles = []; identity.role = ['admin']
   await assert.rejects(cloud._before(), error => error.errCode === 'ADMIN_REQUIRED')

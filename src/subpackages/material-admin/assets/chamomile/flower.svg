@@ -1,43 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
-  <path d="M55 104Q49.6 57 28 44" fill="none" stroke="#8c9b71" stroke-width="0.85" />
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="chamomile-petal-0" gradientUnits="userSpaceOnUse" x1="24" y1="24" x2="40" y2="40"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="chamomile-petal-1" gradientUnits="userSpaceOnUse" x1="15" y1="15" x2="66" y2="66"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="chamomile-petal-2" gradientUnits="userSpaceOnUse" x1="48" y1="48" x2="87" y2="87"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="chamomile-petal-3" gradientUnits="userSpaceOnUse" x1="42" y1="42" x2="70" y2="70"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient></defs><g transform="rotate(-4 55 104)">
+  <path d="M55 104C55 72.6667 42.4 52.6667 28 44" fill="none" stroke="#8c9b71" stroke-width="0.85" />
   <g transform="rotate(0.00 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(30.22 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(58.11 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(83.50 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(108.50 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(135.58 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(165.32 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(195.82 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(224.51 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(250.47 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(275.29 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(301.62 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <g transform="rotate(330.70 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
   </g>
   <circle cx="28.00" cy="40.00" r="3.85" fill="#ac9551" />
   <circle cx="28.00" cy="40.00" r="3.16" fill="#b7a461" />
@@ -66,43 +66,43 @@
   <circle cx="25.25" cy="41.91" r="0.40" fill="#8c753b" />
   <path d="M55 104Q56.4 42 62 29" fill="none" stroke="#8c9b71" stroke-width="0.85" />
   <g transform="rotate(0.00 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(30.22 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(58.11 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(83.50 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(108.50 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(135.58 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(165.32 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(195.82 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(224.51 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(250.47 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(275.29 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(301.62 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <g transform="rotate(330.70 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
   </g>
   <circle cx="62.00" cy="25.00" r="3.50" fill="#ac9551" />
   <circle cx="62.00" cy="25.00" r="2.87" fill="#b7a461" />
@@ -131,43 +131,43 @@
   <circle cx="59.50" cy="26.74" r="0.40" fill="#8c753b" />
   <path d="M55 104Q60.6 74 83 61" fill="none" stroke="#8c9b71" stroke-width="0.85" />
   <g transform="rotate(0.00 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(30.22 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(58.11 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(83.50 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(108.50 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(135.58 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(165.32 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(195.82 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(224.51 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(250.47 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(275.29 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(301.62 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <g transform="rotate(330.70 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
   </g>
   <circle cx="83.00" cy="57.00" r="3.15" fill="#ac9551" />
   <circle cx="83.00" cy="57.00" r="2.58" fill="#b7a461" />
@@ -196,43 +196,43 @@
   <circle cx="80.75" cy="58.57" r="0.40" fill="#8c753b" />
   <path d="M55 104Q53.2 87 46 74" fill="none" stroke="#8c9b71" stroke-width="0.85" />
   <g transform="rotate(0.00 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(30.22 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(58.11 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(83.50 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(108.50 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(135.58 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(165.32 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(195.82 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(224.51 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(250.47 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(275.29 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(301.62 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <g transform="rotate(330.70 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke="#c5bfaa" stroke-width=".2"/>
+  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
   </g>
   <circle cx="46.00" cy="70.00" r="2.80" fill="#ac9551" />
   <circle cx="46.00" cy="70.00" r="2.30" fill="#b7a461" />
@@ -260,4 +260,4 @@
   <circle cx="48.36" cy="70.32" r="0.40" fill="#e7d391" />
   <circle cx="44.00" cy="71.39" r="0.40" fill="#8c753b" />
   <path d="M54 85L43 79M46 82L40 74M54 93L70 84M65 87L69 78" fill="none" stroke="#8c9b71" stroke-width="0.6" />
-</svg>
+</g></svg>

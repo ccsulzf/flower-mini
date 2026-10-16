@@ -1,0 +1,25 @@
+{
+  "id": "camellia-leaf",
+  "category": "flower",
+  "name": "山茶叶",
+  "group": "foliage",
+  "introduction": "叶片厚实，边缘有细锯齿，适合衬托主花，让花束更饱满。",
+  "flowerMeaning": "坚韧、长久",
+  "version": 2,
+  "colors": [
+    {
+      "name": "深绿",
+      "value": "#819779"
+    },
+    {
+      "name": "绿色",
+      "value": "#9aab89"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

@@ -2,9 +2,9 @@
   <defs>
   <linearGradient id="carnation-fold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="110">
   <stop offset="0" stop-color="__COLOR__"/>
-  <stop offset="1" stop-color="#8d6d75"/>
+  <stop offset="1" stop-color="#85856d"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(-6 55 94)">
   <path d="M55 94Q41 91 34 80Q48 86 55 89Q64 81 77 80Q70 92 55 94Z" fill="#80916b" />
   <g transform="rotate(0.00 55 55)">
   <path d="M51 61Q40.00 35 43.00 20.00L43.00 15.00L45.00 18.10L47.00 16.36L49.00 17.60L51.00 14.38L53.00 15.63L55.00 13.92L57.00 17.02L59.00 16.11L61.00 18.36L63.00 15.58L65.00 16.36L67.00 13.63Q70.00 36 59 61Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
@@ -232,4 +232,4 @@
   <path d="M53 54Q51 34 52.77 50.07M57 51Q58 30 58.35 50.07" fill="none" stroke="#fff5e4" stroke-width="0.45" stroke-opacity=".45"/>
   </g>
   <circle cx="55.00" cy="55.00" r="2.20" fill="__COLOR__" />
-</svg>
+</g></svg>

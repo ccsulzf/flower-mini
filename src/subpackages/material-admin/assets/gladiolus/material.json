@@ -1,0 +1,29 @@
+{
+  "id": "gladiolus",
+  "category": "flower",
+  "name": "剑兰",
+  "group": "main",
+  "introduction": "花朵沿着长花枝依次开放，适合做插花中向上伸展的线条。",
+  "flowerMeaning": "用心、坚强",
+  "version": 2,
+  "colors": [
+    {
+      "name": "粉色",
+      "value": "#d498a3"
+    },
+    {
+      "name": "白色",
+      "value": "#eee6d6"
+    },
+    {
+      "name": "橘色",
+      "value": "#d8987b"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

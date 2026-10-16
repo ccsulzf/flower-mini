@@ -1,0 +1,29 @@
+{
+  "id": "crabapple-blossom",
+  "category": "flower",
+  "name": "海棠花",
+  "group": "filler",
+  "introduction": "花苞与开放的小花错落分布，适合增加花束的春日感和层次。",
+  "flowerMeaning": "温柔、思念",
+  "version": 2,
+  "colors": [
+    {
+      "name": "粉色",
+      "value": "#d49aa7"
+    },
+    {
+      "name": "浅粉",
+      "value": "#e6c2c7"
+    },
+    {
+      "name": "白色",
+      "value": "#eee7dc"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

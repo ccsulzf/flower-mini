@@ -1,0 +1,29 @@
+{
+  "id": "eucalyptus-pods",
+  "category": "flower",
+  "name": "尤加利果",
+  "group": "filler",
+  "introduction": "小型杯状木质蒴果有清楚的果缘与顶孔，沿分枝聚生，适合增加花束结构感。",
+  "flowerMeaning": "坚韧、守护",
+  "version": 1,
+  "colors": [
+    {
+      "name": "灰绿",
+      "value": "#a3ad96"
+    },
+    {
+      "name": "银灰",
+      "value": "#b7b8a9"
+    },
+    {
+      "name": "棕绿",
+      "value": "#a8997f"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

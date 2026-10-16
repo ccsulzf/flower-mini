@@ -1,0 +1,15 @@
+{
+  "id": "scene-corgi-peek",
+  "category": "background",
+  "name": "柯基探头",
+  "introduction": "奶油色桌沿下露出柯基的大耳朵、圆眼睛与两只短爪，带来轻快的陪伴感。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 820
+  }
+}

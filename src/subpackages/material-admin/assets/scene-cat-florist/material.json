@@ -1,0 +1,15 @@
+{
+  "id": "scene-cat-florist",
+  "category": "background",
+  "name": "小猫花店",
+  "introduction": "浅木花店柜台与淡淡格窗，右侧纸箱里蜷着小猫，留出中央花艺陈列空间。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 2,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 820
+  }
+}

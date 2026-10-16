@@ -1,0 +1,25 @@
+{
+  "id": "olive-leaf",
+  "category": "flower",
+  "name": "橄榄叶",
+  "group": "foliage",
+  "introduction": "细长的灰绿色叶片成对分布，适合柔和、自然的花束搭配。",
+  "flowerMeaning": "和平、希望",
+  "version": 2,
+  "colors": [
+    {
+      "name": "灰绿",
+      "value": "#a8b39b"
+    },
+    {
+      "name": "绿色",
+      "value": "#94a686"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

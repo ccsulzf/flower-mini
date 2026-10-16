@@ -1,0 +1,25 @@
+{
+  "id": "fatsia",
+  "category": "flower",
+  "name": "八角金盘",
+  "group": "foliage",
+  "introduction": "大叶片像张开的手掌，轮廓鲜明，适合做插花中的面状配叶。",
+  "flowerMeaning": "坚强、守护",
+  "version": 2,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#91a87e"
+    },
+    {
+      "name": "深绿",
+      "value": "#7e9875"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

@@ -4,7 +4,7 @@
   <stop offset="0" stop-color="__COLOR__"/>
   <stop offset="1" stop-color="#9d794a"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(-8 55 94)">
   <g transform="rotate(0.00 55 55)">
   <path d="M54 55C52.50 38 48.00 9.00 55.00 5.00C55.50 19.00 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
   </g>
@@ -381,4 +381,4 @@
   <circle cx="58.75" cy="55.50" r="0.45" fill="#d0c187" />
   <circle cx="51.82" cy="57.21" r="0.45" fill="#d0c187" />
   <circle cx="55.87" cy="51.14" r="0.45" fill="#d0c187" />
-</svg>
+</g></svg>

@@ -4,7 +4,7 @@
   <stop offset="0" stop-color="__COLOR__"/>
   <stop offset="1" stop-color="#9c7e82"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(2 55 96)"><path d="M55 100C51 98 48 94 47 88Q55 93 63 88C62 95 59 99 55 100Z" fill="#80906d"/>
   <g transform="rotate(0.00 55 55)">
   <path d="M52 60C51.0 44 51.0 16.0 55 13.0C59.0 14.0 59.0 41 58 60Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
   <path d="M52 60C51.0 44 51.0 16.0 55 13.0C59.0 14.0 59.0 41 58 60Z" fill="url(#ping-pong-chrysanthemum-fold)" opacity="0.13"/>
@@ -506,4 +506,4 @@
   <path d="M53.5 51.7Q55 46.7 56.5 51.7" fill="none" stroke="#fff7e6" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <circle cx="55.00" cy="55.00" r="2.60" fill="__COLOR__" />
-</svg>
+</g></svg>

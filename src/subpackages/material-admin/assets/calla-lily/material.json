@@ -5,7 +5,7 @@
   "group": "main",
   "introduction": "佛焰苞卷成流畅的漏斗形，花枝修长，适合简洁花束和线条感插花。",
   "flowerMeaning": "自然与美好（创作象征表达，仅供参考）",
-  "version": 2,
+  "version": 5,
   "colors": [
     {
       "name": "奶白",
@@ -24,6 +24,6 @@
     "width": 110,
     "flowerHeight": 110,
     "stemHeight": 260,
-    "connectionY": 104
+    "connectionY": 102
   }
 }

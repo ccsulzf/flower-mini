@@ -2,8 +2,8 @@
   "id": "frosted-wrap",
   "category": "bouquet",
   "name": "米白雾面花束包装",
-  "introduction": "米白色雾面包装纸，修长纸张在两侧内卷，正面留出深开口，下方收束成纸尾，适合展示完整花束。",
-  "version": 4,
+  "introduction": "米白半透雾面纸错层展开，以轻薄折边和灰绿细绳收束，适合轻盈自然的花束。",
+  "version": 5,
   "geometry": {
     "width": 340,
     "height": 430,

@@ -1,12 +1,12 @@
 {
   "id": "scene-sage-table",
   "category": "background",
-  "name": "浅绿墙与石台",
-  "introduction": "浅绿墙板搭配石纹台面，柔和明暗与石材纹理衬托花材。",
+  "name": "雾蓝展台",
+  "introduction": "雾蓝灰空间与圆柱展台，柔和侧光衬托粉白花材和现代插花。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 2,
+  "version": 3,
   "geometry": {
     "width": 698,
     "height": 1000,

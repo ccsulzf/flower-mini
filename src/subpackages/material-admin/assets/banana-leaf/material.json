@@ -1,0 +1,25 @@
+{
+  "id": "banana-leaf",
+  "category": "flower",
+  "name": "芭蕉叶",
+  "group": "foliage",
+  "introduction": "宽长叶片带明显中肋、平行侧脉和少量自然裂口，适合做大面积背景配叶。",
+  "flowerMeaning": "舒展、生机",
+  "version": 1,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#91a578"
+    },
+    {
+      "name": "深绿",
+      "value": "#718d68"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

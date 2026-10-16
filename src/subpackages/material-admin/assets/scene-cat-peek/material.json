@@ -1,0 +1,15 @@
+{
+  "id": "scene-cat-peek",
+  "category": "background",
+  "name": "猫咪偷看",
+  "introduction": "浅鼠尾草色墙面与米白桌沿，小奶牛猫在右侧探头，露出耳朵、眼睛和爪子。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 2,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 820
+  }
+}

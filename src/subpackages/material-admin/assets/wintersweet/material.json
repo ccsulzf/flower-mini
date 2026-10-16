@@ -1,0 +1,25 @@
+{
+  "id": "wintersweet",
+  "category": "flower",
+  "name": "腊梅",
+  "group": "filler",
+  "introduction": "细枝上点缀黄色小花，疏密自然，适合冬季瓶插和简洁的搭配。",
+  "flowerMeaning": "坚强、希望",
+  "version": 2,
+  "colors": [
+    {
+      "name": "黄色",
+      "value": "#ddc57e"
+    },
+    {
+      "name": "浅黄",
+      "value": "#e8d8a8"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

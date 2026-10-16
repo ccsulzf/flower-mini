@@ -24,12 +24,12 @@ test('场景选择、纯色切换、撤销及 JSON 恢复保留背景引用', ()
   assert.equal(store.backgroundMaterialId, scene.id)
   assert.throws(() => parse(JSON.stringify({ ...restored, backgroundMaterialRevision: 'broken' })))
 })
-test('首批背景包含六个纯色和六个可上传场景，桌面落点随花瓶底部对齐', () => {
+test('背景包含六个纯色和十四个可上传场景，桌面落点随花瓶底部对齐', () => {
   const loader = createLoader()
   assert.equal(loader.load('src/config/flower-materials.ts').backgroundOptions.length, 6)
   const catalog = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog
   assert.equal(catalog.errors.length, 0)
-  assert.equal(catalog.items.filter(item => item.category === 'background').length, 6)
+  assert.equal(catalog.items.filter(item => item.category === 'background').length, 14)
   const { backgroundOffset } = loader.load('src/utils/flower/background-render.ts')
   const vase = catalog.items.find(item => item.category === 'vase')
   const placement = loader.load('src/utils/flower/material-render.ts').vasePlacement(vase)

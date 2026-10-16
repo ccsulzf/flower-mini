@@ -4,10 +4,10 @@
   <stop offset="0" stop-color="__COLOR__"/>
   <stop offset="1" stop-color="#824c4d"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(7 55 98)">
   <path d="M55 98C43 88 19 69 18 45C15 22 39 13 55 32C74 9 99 28 92 51C86 73 64 92 55 98Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
   <path d="M55 98C43 88 19 69 18 45C15 22 39 13 55 32C74 9 99 28 92 51C86 73 64 92 55 98Z" fill="url(#anthurium-fold)" opacity="0.32"/>
-  <path d="M55 93Q44 57 55 32M50 70Q29 57 25 37M58 74Q77 61 86 43" fill="none" stroke="#eac6b1" stroke-width="0.7" stroke-opacity=".45"/>
+  <path d="M55 98C55 83 44 57 55 32M50 70Q29 57 25 37M58 74Q77 61 86 43" fill="none" stroke="#eac6b1" stroke-width="0.7" stroke-opacity=".45"/>
   <path d="M52 68L57 25Q60 21 62 25L58 69Z" fill="#d7c68c" stroke="#9f9d66" stroke-width=".5"/>
   <path d="M54.00 64.00L57.00 64.00" fill="none" stroke="#a7a271" stroke-width="0.35" />
   <path d="M54.25 61.90L57.25 61.90" fill="none" stroke="#a7a271" stroke-width="0.35" />
@@ -26,4 +26,4 @@
   <path d="M57.50 34.60L60.50 34.60" fill="none" stroke="#a7a271" stroke-width="0.35" />
   <path d="M57.75 32.50L60.75 32.50" fill="none" stroke="#a7a271" stroke-width="0.35" />
   <path d="M58.00 30.40L61.00 30.40" fill="none" stroke="#a7a271" stroke-width="0.35" />
-</svg>
+</g></svg>

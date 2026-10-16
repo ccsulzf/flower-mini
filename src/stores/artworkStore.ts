@@ -5,7 +5,7 @@ import { defineStore } from 'pinia'
 import { computed, reactive, ref } from 'vue'
 import { createDefaultArtwork, flowerCatalog } from '@/config/flower-materials'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
-import { constrainStem } from '@/utils/flower/arrangement.cjs'
+import { constrainStem, maxStemHeight, studioMetrics } from '@/utils/flower/arrangement.cjs'
 import { anchorY } from '@/utils/flower/artwork'
 import { ArtworkHistory, copyContainerLayouts } from '@/utils/flower/artwork-history'
 import { vasePlacement } from '@/utils/flower/material-render'
@@ -29,10 +29,27 @@ function artworkState() {
   const canClear = computed(() => stems.value.length > 0)
   const canMoveBack = computed(() => selectedIndex.value > 0)
   const canMoveFront = computed(() => selectedIndex.value >= 0 && selectedIndex.value < stems.value.length - 1)
+  const selectedControlBounds = computed(() => {
+    const stem = selected.value
+    if (!stem)
+      return null
+    const landing = stemLandingBounds()
+    const minRatio = Math.max(-1, Math.min(1, (studioMetrics.headMargin - landing.right) / stem.stemHeight))
+    const maxRatio = Math.max(-1, Math.min(1, (studioMetrics.width - studioMetrics.headMargin - landing.left) / stem.stemHeight))
+    const minAngle = Math.asin(minRatio) * 180 / Math.PI
+    const maxAngle = Math.asin(maxRatio) * 180 / Math.PI
+    return {
+      positionMin: Math.ceil(Math.max(-65, minAngle)),
+      positionMax: Math.floor(Math.min(65, maxAngle)),
+      heightMin: studioMetrics.minStemHeight,
+      heightMax: Math.floor(maxStemHeight(stem)),
+    }
+  })
   let nextId = 3
   let dragSnapshot: Artwork | null = null
   let dragId: number | null = null
   let dragRecorded = false
+  let controlOrigin: Stem | null = null
 
   function snapshot(): Artwork {
     return { version: 2, vase: vase.value, ...(vaseMaterialId.value ? { vaseMaterialId: vaseMaterialId.value, vaseMaterialRevision: vaseMaterialRevision.value } : {}), ...(Object.keys(containerLayouts.value).length ? { containerLayouts: copyContainerLayouts(containerLayouts.value) } : {}), background: background.value, ...(backgroundMaterialId.value ? { backgroundMaterialId: backgroundMaterialId.value, backgroundMaterialRevision: backgroundMaterialRevision.value } : {}), stems: stems.value.map(stem => ({ ...stem, y: anchorY(vase.value) })) }
@@ -40,7 +57,7 @@ function artworkState() {
   function select(id: number | null) {
     selectedId.value = stems.value.some(stem => stem.id === id) ? id : null
   }
-  function endStemEdit() { dragSnapshot = null; dragId = null; dragRecorded = false }
+  function endStemEdit() { dragSnapshot = null; dragId = null; dragRecorded = false; controlOrigin = null }
   function applyArtwork(artwork: Artwork) {
     endStemEdit()
     stems.value = artwork.stems.map(stem => ({ ...stem, y: anchorY(artwork.vase) }))
@@ -242,7 +259,32 @@ function artworkState() {
     if (!dragRecorded) { history.remember(dragSnapshot); dragRecorded = true }
     Object.assign(stem, next)
   }
-  return { stems, vase, vaseMaterialId, vaseMaterialRevision, background, backgroundMaterialId, backgroundMaterialRevision, selectedId, selected, canUndo, canRedo, canClear, canMoveBack, canMoveFront, initialize, select, snapshot, stemLandingBounds, replaceArtwork, addFlower, addMaterial, setVaseMaterial, adjustSelected, mirrorSelected, selectAdjacent, toggleLeaves, duplicateSelected, removeSelected, clearArtwork, setColor, setVase, setBackground, setBackgroundMaterial, setLayer, undo, redo, beginStemEdit, updateStem, endStemEdit }
+  function beginSelectedControl() {
+    if (selectedId.value !== null)
+      controlOrigin = beginStemEdit(selectedId.value)
+  }
+  function updateSelectedControl(field: 'position' | 'height', value: number) {
+    const stem = selected.value
+    const bounds = selectedControlBounds.value
+    if (!stem || !bounds || !Number.isFinite(value))
+      return
+    if (field === 'position') {
+      const origin = controlOrigin ?? stem
+      const angle = Math.max(bounds.positionMin, Math.min(bounds.positionMax, value))
+      const landing = stemLandingBounds()
+      const center = (landing.left + landing.right) / 2
+      const halfWidth = (landing.right - landing.left) / 2
+      const headOffset = Math.sin(angle * Math.PI / 180) * origin.stemHeight
+      const desiredX = center + Math.max(-1, Math.min(1, headOffset / 240)) * halfWidth
+      const minX = Math.max(landing.left, studioMetrics.headMargin - headOffset)
+      const maxX = Math.min(landing.right, studioMetrics.width - studioMetrics.headMargin - headOffset)
+      const x = Math.max(minX, Math.min(maxX, desiredX))
+      updateStem(stem.id, { x, y: origin.y, angle, stemHeight: origin.stemHeight })
+      return
+    }
+    updateStem(stem.id, { x: stem.x, y: stem.y, angle: stem.angle, stemHeight: Math.max(bounds.heightMin, Math.min(bounds.heightMax, value)) })
+  }
+  return { stems, vase, vaseMaterialId, vaseMaterialRevision, background, backgroundMaterialId, backgroundMaterialRevision, selectedId, selected, selectedControlBounds, canUndo, canRedo, canClear, canMoveBack, canMoveFront, initialize, select, snapshot, stemLandingBounds, replaceArtwork, addFlower, addMaterial, setVaseMaterial, adjustSelected, mirrorSelected, selectAdjacent, toggleLeaves, duplicateSelected, removeSelected, clearArtwork, setColor, setVase, setBackground, setBackgroundMaterial, setLayer, undo, redo, beginStemEdit, beginSelectedControl, updateStem, updateSelectedControl, endStemEdit }
 }
 export function createArtworkStore(id: string) { return defineStore(id, artworkState) }
 export const useArtworkStore = createArtworkStore('artwork')

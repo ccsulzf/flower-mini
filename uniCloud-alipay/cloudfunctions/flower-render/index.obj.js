@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 const resolveAuth = require('auth');
-const dailyFlower = require('../common/daily-flower');
+const dailyFlower = require('daily-flower');
 const { createHash } = require('node:crypto');
 const { initWasm, Resvg } = require('@resvg/resvg-wasm');
 
@@ -9,6 +9,16 @@ let wasmReady;
 const workIdPattern = /^[a-f\d]{32}$/;
 const materialIdPattern = /^[a-z][a-z0-9-]{0,63}$/;
 const revisionPattern = /^[a-f\d]{16}$/;
+
+function colorizeMaterialSvg(svg, color) {
+  const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd';
+  let source = svg.replace(/__COLOR__/g, safeColor);
+  if (!svg.includes('<!-- adaptive-petal-outline -->')) return source;
+  const channels = [1, 3, 5].map(offset => Number.parseInt(safeColor.slice(offset, offset + 2), 16) / 255);
+  const brightness = channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722;
+  if (brightness < .38) source = source.replace(/stroke="#9d4b4f" stroke-opacity="\.5"/g, 'stroke="#e8a39d" stroke-opacity=".65"');
+  return source;
+}
 
 function nested(source, x, y, width, height) {
     const root = source.match(/<svg\b[^>]*>/i)?.[0];
@@ -194,7 +204,7 @@ async function buildArtworkSvg(artwork) {
             stems.push(`<g transform="translate(${stem.x} ${anchorY}) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-total})">${nested(source, 0, 0, 110, total)}</g>`);
             continue;
         }
-        const flower = (await materialSource(material, 'flower')).replace(/__COLOR__/g, stem.color);
+        const flower = colorizeMaterialSvg(await materialSource(material, 'flower'), stem.color);
         const stemPart = stem.leafMode === 'with' ? 'stemWithLeaves' : 'stemWithoutLeaves';
         const stemSource = await materialSource(material, stemPart);
         const geometry = material.geometry;

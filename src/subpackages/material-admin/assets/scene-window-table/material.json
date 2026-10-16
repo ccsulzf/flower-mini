@@ -1,15 +1,15 @@
 {
   "id": "scene-window-table",
   "category": "background",
-  "name": "窗边柔光",
-  "introduction": "柔和低对比背景，为中间的花材搭配留出空间。",
+  "name": "日光石台",
+  "introduction": "左侧窗影落在暖白墙面，浅石台保留自然纹理，中央为花头留白。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 1,
+  "version": 2,
   "geometry": {
     "width": 698,
     "height": 1000,
-    "surfaceY": 910
+    "surfaceY": 820
   }
 }

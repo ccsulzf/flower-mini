@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="260" viewBox="0 0 110 260">
-  <path d="M55 0C92 76 99 180 55 260" fill="none" stroke="#80906d" stroke-width="1.4" />
-  <path d="M54.7 1C91.6 76 98.6 180 54.7 260" fill="none" stroke="#bfc6a1" stroke-width="0.4" />
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="260" viewBox="0 0 110 260"><!-- continuous-stem-join -->
+  <path d="M55 0C59.918929 35 76.62 92 78 145C79.38 198 63.05 238 55 260" fill="none" stroke="#80906d" stroke-width="1.57" />
+  <path d="M54.7 0C59.618929 35 76.32 92 77.7 145C79.08 198 62.75 238 54.7 260" fill="none" stroke="#bfc6a1" stroke-width="0.4" />
 </svg>

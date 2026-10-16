@@ -1,0 +1,29 @@
+{
+  "id": "hyacinth",
+  "category": "flower",
+  "name": "风信子",
+  "group": "main",
+  "introduction": "许多小花紧密聚成一串，花头饱满，适合增加花束的色彩和体积。",
+  "flowerMeaning": "喜悦、希望",
+  "version": 2,
+  "colors": [
+    {
+      "name": "淡紫",
+      "value": "#b5a4c8"
+    },
+    {
+      "name": "粉色",
+      "value": "#d7a4b3"
+    },
+    {
+      "name": "白色",
+      "value": "#eee8da"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

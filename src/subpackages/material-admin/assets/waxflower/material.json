@@ -1,0 +1,29 @@
+{
+  "id": "waxflower",
+  "category": "flower",
+  "name": "澳洲蜡梅",
+  "group": "filler",
+  "introduction": "细小五瓣花带明显的杯状花心，散生于针叶状枝条间，适合填充空隙与增加细节。",
+  "flowerMeaning": "陪伴、长久",
+  "version": 1,
+  "colors": [
+    {
+      "name": "浅粉",
+      "value": "#d5a0b0"
+    },
+    {
+      "name": "奶白",
+      "value": "#eee7db"
+    },
+    {
+      "name": "玫粉",
+      "value": "#bd809e"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

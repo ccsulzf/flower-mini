@@ -1,0 +1,29 @@
+{
+  "id": "bunny-tail",
+  "category": "flower",
+  "name": "兔尾草",
+  "group": "filler",
+  "introduction": "短椭圆花穗披着细密绒毛，穗轴和细茎轻轻弯曲，适合自然风或干花搭配。",
+  "flowerMeaning": "柔软、安宁",
+  "version": 1,
+  "colors": [
+    {
+      "name": "麦白",
+      "value": "#d9cdb1"
+    },
+    {
+      "name": "浅棕",
+      "value": "#bba788"
+    },
+    {
+      "name": "浅粉",
+      "value": "#ceb1b2"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

@@ -2,8 +2,8 @@
   "id": "kraft-wrap",
   "category": "bouquet",
   "name": "牛皮纸花束包装",
-  "introduction": "暖棕色牛皮纸搭配细丝带，修长纸张在两侧内卷，正面留出深开口，下方收束成纸尾，适合展示完整花束。",
-  "version": 4,
+  "introduction": "浅棕牛皮纸搭配米白内衬，斜折纸角和棉绳束口保留自然纸感，适合野趣花束。",
+  "version": 5,
   "geometry": {
     "width": 340,
     "height": 430,

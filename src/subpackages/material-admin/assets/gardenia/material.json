@@ -1,0 +1,25 @@
+{
+  "id": "gardenia",
+  "category": "flower",
+  "name": "栀子花",
+  "group": "main",
+  "introduction": "奶白色花瓣层层舒展，花形清秀，适合清淡、自然的花束。",
+  "flowerMeaning": "纯洁、永恒的爱",
+  "version": 2,
+  "colors": [
+    {
+      "name": "白色",
+      "value": "#f0eadb"
+    },
+    {
+      "name": "奶黄",
+      "value": "#e9dfbc"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 94
+  }
+}

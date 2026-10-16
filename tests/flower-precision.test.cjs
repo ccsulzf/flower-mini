@@ -43,6 +43,64 @@ test('重叠花材按上一枝和下一枝循环选择，不修改作品历史',
   store.selectAdjacent('next'); assert.equal(store.selectedId, ids[0])
   assert.equal(store.canUndo, false)
 })
+test('位置滑杆让花茎自然摆动而不是沿水平轨道平移，连续调整只需撤销一次', () => {
+  const { store } = fixture()
+  const original = { ...store.selected }
+  const bounds = store.selectedControlBounds
+  assert.equal(bounds.heightMin, 120)
+
+  store.beginSelectedControl()
+  store.updateSelectedControl('position', 30)
+  assert.equal(store.selected.angle, 30)
+  assert.equal(store.selected.stemHeight, original.stemHeight)
+  const landing = store.stemLandingBounds()
+  assert.ok(store.selected.x >= landing.left && store.selected.x <= landing.right)
+  const movedBounds = store.selectedControlBounds
+  store.updateSelectedControl('height', movedBounds.heightMax + 100)
+  store.endStemEdit()
+
+  assert.equal(store.selected.stemHeight, movedBounds.heightMax)
+  store.undo()
+  assert.equal(JSON.stringify(store.stems[0]), JSON.stringify(original))
+  assert.equal(store.canUndo, false)
+})
+test('位置滑杆边界随枝长收敛，不会在两端突然截短花茎', () => {
+  const { store } = fixture()
+  const originalHeight = store.selected.stemHeight
+  const { positionMin, positionMax } = store.selectedControlBounds
+
+  store.beginSelectedControl()
+  store.updateSelectedControl('position', positionMax)
+  assert.ok(positionMax < 65)
+  assert.ok(Math.abs(store.selected.stemHeight - originalHeight) < 0.001)
+  store.endStemEdit()
+
+  store.undo()
+  store.select(store.stems[0].id)
+  store.beginSelectedControl()
+  store.updateSelectedControl('position', positionMin)
+  assert.ok(positionMin > -65)
+  assert.ok(Math.abs(store.selected.stemHeight - originalHeight) < 0.001)
+})
+test('位置和高度滑杆把连续拖动作为一次编辑发送', () => {
+  const events = []
+  const loader = createLoader({ emit: (...event) => events.push(event) })
+  const stem = { id: 1, kind: 'leaf', x: 350, y: 747, angle: 30, stemHeight: 200, flowerScale: 1, color: '#69805e' }
+  const tools = loader.setup('src/pages/flower-studio/components/studio-flower-tools.vue', {
+    stem, colorsOpen: false, canMoveBack: false, canMoveFront: false,
+    controlBounds: { positionMin: 300, positionMax: 400, heightMin: 120, heightMax: 620 },
+  })
+
+  assert.equal(tools.positionValue.value, 30)
+  tools.beginControl()
+  tools.changeControl('position', { detail: { value: 376 } })
+  tools.changeControl('height', { detail: { value: 412 } })
+  tools.endControl()
+
+  assert.equal(JSON.stringify(events), JSON.stringify([
+    ['controlStart'], ['control', 'position', 376], ['control', 'height', 412], ['controlEnd'],
+  ]))
+})
 test('旧作品带叶设置在工作台强制去叶，镜像不改变花枝旋转', () => {
   const { loader } = fixture()
   const material = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(row => row.id === 'bird-of-paradise')
@@ -51,7 +109,9 @@ test('旧作品带叶设置在工作台强制去叶，镜像不改变花枝旋�
   const stem = { id: 1, kind: 'rose', x: 350, y: 747, angle: 12, stemHeight: 300, flowerScale: 1, color: '#abcdef', materialId: material.id, materialRevision: material.revision, leafMode: 'with', mirrored: true }
   const state = loader.setup('src/components/flower/flower-stem.vue', { stem, anchor: 747, selected: true })
   const decoded = Buffer.from(state.cloudSource.value.split(',')[1], 'base64').toString('utf8')
-  assert.ok(decoded.includes(loader.load('src/utils/flower/stem-curves.ts').smoothStemTip(material.sources.stemWithoutLeaves).split('\n')[1].trim()))
+  const leaf = material.sources.stemWithLeaves.match(/<path d="([^"]+)"[^>]*fill="(?!none")[^"]+"/)
+  assert.ok(leaf)
+  assert.ok(!decoded.includes(`d="${leaf[1]}"`))
   assert.ok(state.flowerInstanceStyle.value.includes('scale(-1, 1)'))
   assert.ok(state.studioStemStyle.value.includes('rotate(12deg)'))
 })

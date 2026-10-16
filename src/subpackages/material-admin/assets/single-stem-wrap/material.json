@@ -2,8 +2,8 @@
   "id": "single-stem-wrap",
   "category": "bouquet",
   "name": "单枝花束包装",
-  "introduction": "窄幅包装纸搭配细丝带，修长纸张在两侧内卷，正面留出深开口，下方收束成纸尾，适合展示完整花束。",
-  "version": 4,
+  "introduction": "窄幅米色纸张以斜角包裹，细绳束口与不对称纸尾保持轻巧，适合单枝花和线条花材。",
+  "version": 5,
   "geometry": {
     "width": 220,
     "height": 430,

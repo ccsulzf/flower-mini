@@ -181,10 +181,12 @@ function notify(title: string) {
   uni.showToast({ title, icon: 'none' })
 }
 function closeFlowerTools() {
+  store.endStemEdit()
   studio.closeFlowerTools()
   store.select(null)
 }
 function closePanels() {
+  store.endStemEdit()
   studio.closePanel()
   store.select(null)
   images.invalidate()
@@ -490,6 +492,7 @@ function removeSelected() {
       @close="closeFlowerTools" @color="setColor"
       @toggle-colors="toolsColorsOpen = !toolsColorsOpen" @layer="setLayer" @duplicate="duplicateSelected"
       @remove="removeSelected" @mirror="store.mirrorSelected()" @adjacent="store.selectAdjacent"
+      @control-start="store.beginSelectedControl" @control="store.updateSelectedControl" @control-end="store.endStemEdit"
     />
     <StudioTopToolbar
       @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="reset" @finish="finish"

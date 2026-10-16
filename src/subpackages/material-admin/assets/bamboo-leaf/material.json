@@ -1,0 +1,25 @@
+{
+  "id": "bamboo-leaf",
+  "category": "flower",
+  "name": "竹叶",
+  "group": "foliage",
+  "introduction": "细长叶片沿竹枝舒展，线条轻巧，适合清雅、疏朗的插花。",
+  "flowerMeaning": "平安、坚韧",
+  "version": 2,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#a0b383"
+    },
+    {
+      "name": "浅绿",
+      "value": "#bac797"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

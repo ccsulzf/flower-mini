@@ -2,8 +2,8 @@
   "id": "two-tone-wrap",
   "category": "bouquet",
   "name": "双色花束包装",
-  "introduction": "浅灰绿和奶白色包装纸交叠，修长纸张在两侧内卷，正面留出深开口，下方收束成纸尾，适合展示完整花束。",
-  "version": 4,
+  "introduction": "深苔绿外纸与米白内纸形成不对称折面，浅香槟窄丝带收束，适合轮廓鲜明的花束。",
+  "version": 5,
   "geometry": {
     "width": 340,
     "height": 430,

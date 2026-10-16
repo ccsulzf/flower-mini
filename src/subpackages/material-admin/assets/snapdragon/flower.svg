@@ -1,60 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
-  <path d="M55 104Q53 58 59 10" fill="none" stroke="#83956d" stroke-width="1.2" />
-  <g transform="translate(61.0 23.0) rotate(12) scale(0.45)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="snapdragon-petal-0" gradientUnits="userSpaceOnUse" x1="-18" y1="-18" x2="19" y2="19"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient></defs><g transform="rotate(5 55 104)">
+  <path d="M55 104C55 73.3333 55 42 59 10" fill="none" stroke="#83956d" stroke-width="1.2" />
+  <g transform="translate(61.0 23.0) rotate(-4) rotate(12) scale(0.45)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(50.4 29.4) rotate(-16) scale(0.48)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(50.4 29.4) rotate(3) rotate(-16) scale(0.48)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(62.3 35.8) rotate(12) scale(0.50)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(62.3 35.8) rotate(-2) rotate(12) scale(0.50)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(49.0 42.2) rotate(-16) scale(0.53)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(49.0 42.2) rotate(4) rotate(-16) scale(0.53)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(63.6 48.6) rotate(12) scale(0.55)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(63.6 48.6) rotate(-3) rotate(12) scale(0.55)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(47.8 55.0) rotate(-16) scale(0.57)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(47.8 55.0) rotate(-4) rotate(-16) scale(0.57)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(64.9 61.4) rotate(12) scale(0.60)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(64.9 61.4) rotate(3) rotate(12) scale(0.60)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(46.5 67.8) rotate(-16) scale(0.62)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(46.5 67.8) rotate(-2) rotate(-16) scale(0.62)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(66.2 74.2) rotate(12) scale(0.65)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(66.2 74.2) rotate(4) rotate(12) scale(0.65)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(45.1 80.6) rotate(-16) scale(0.68)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(45.1 80.6) rotate(-3) rotate(-16) scale(0.68)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
-  <g transform="translate(67.5 87.0) rotate(12) scale(0.70)">
-  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke="#9d7885" stroke-width=".45"/>
+  <g transform="translate(67.5 87.0) rotate(-4) rotate(12) scale(0.70)">
+  <path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9d7885" stroke-width=".45"/><path d="M0 8Q-10 8 -12 1Q-18 -5 -12 -10Q-5 -15 0 -8Q8 -16 13 -9Q19 -2 11 2Q12 11 0 8Z" fill="url(#snapdragon-petal-0)" opacity=".14"/>
   <path d="M-5 2Q0 -3 6 2Q3 7 -5 2Z" fill="#fff5d6" opacity=".5"/>
   <path d="M-9 -8Q-6 -12 -2 -7M3 -7Q8 -12 12 -7" fill="none" stroke="#fff5e9" stroke-width="0.6" stroke-opacity=".6"/>
   </g>
   <ellipse cx="59.00" cy="12.00" rx="2.00" ry="3.50" fill="__COLOR__" stroke="#8c9976" stroke-width=".4"/>
   <ellipse cx="59.00" cy="18.00" rx="2.00" ry="3.50" fill="__COLOR__" stroke="#8c9976" stroke-width=".4"/>
-</svg>
+</g></svg>

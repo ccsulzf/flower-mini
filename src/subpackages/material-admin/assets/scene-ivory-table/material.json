@@ -1,12 +1,12 @@
 {
   "id": "scene-ivory-table",
   "category": "background",
-  "name": "暖白墙与木桌",
-  "introduction": "暖白墙面搭配原木桌面，木纹、接缝与侧光让花器自然落在桌上。",
+  "name": "猫咪晒太阳",
+  "introduction": "奶油色窗边与浅木台面，小橘猫在右侧晒太阳打盹，花艺置于中央。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 2,
+  "version": 3,
   "geometry": {
     "width": 698,
     "height": 1000,

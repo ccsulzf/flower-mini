@@ -1,0 +1,29 @@
+{
+  "id": "cockscomb",
+  "category": "flower",
+  "name": "鸡冠花",
+  "group": "main",
+  "introduction": "花朵像起伏的鸡冠，颜色醒目，适合给花束增加层次。",
+  "flowerMeaning": "热情、真爱",
+  "version": 2,
+  "colors": [
+    {
+      "name": "红色",
+      "value": "#c16b7f"
+    },
+    {
+      "name": "橘色",
+      "value": "#d6936c"
+    },
+    {
+      "name": "黄色",
+      "value": "#d9be78"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 96
+  }
+}

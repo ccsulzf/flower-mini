@@ -122,14 +122,14 @@ test('切换窄瓶口只移动花枝底端，保留高度和角度；不支持�
   assert.throws(() => drawSvg(ctx, '<svg viewBox="0 0 110 110"><defs><linearGradient id="g"><stop offset="0" stop-color="#000" /></linearGradient></defs><rect x="40" y="30" width="20" height="10" fill="url(#g)" /></svg>', 110, 110), /userSpaceOnUse/)
 })
 
-test('扩充后的花材档案完整，主花 28 种，叶材颜色可用于工作台', () => {
+test('扩充后的花材档案完整，主花 35 种，叶材颜色可用于工作台', () => {
   const loader = createLoader()
   const catalog = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog
   assert.equal(catalog.errors.length, 0)
   const additions = catalog.items.filter(item => item.category === 'flower' && !['rose', 'tulip', 'daisy'].includes(item.id))
-  assert.equal(catalog.items.filter(item => item.category === 'flower' && item.group === 'main').length, 28)
-  assert.equal(additions.filter(item => item.group === 'filler').length, 18)
-  assert.equal(additions.filter(item => item.group === 'foliage').length, 10)
+  assert.equal(catalog.items.filter(item => item.category === 'flower' && item.group === 'main').length, 35)
+  assert.equal(additions.filter(item => item.group === 'filler').length, 32)
+  assert.equal(additions.filter(item => item.group === 'foliage').length, 25)
   const { cloudPlantSvg } = loader.load('src/utils/flower/material-render.ts')
   for (const item of additions) {
     assert.ok(item.introduction && item.flowerMeaning && item.geometry && item.colors.length > 1)

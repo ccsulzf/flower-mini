@@ -1,0 +1,29 @@
+{
+  "id": "blue-star",
+  "category": "flower",
+  "name": "蓝星花",
+  "group": "filler",
+  "introduction": "五枚带轻微扭转的花瓣组成星形小花，花心偏浅，纤细分枝适合点缀花束。",
+  "flowerMeaning": "信任、温柔",
+  "version": 1,
+  "colors": [
+    {
+      "name": "雾蓝",
+      "value": "#9ab8c8"
+    },
+    {
+      "name": "浅蓝",
+      "value": "#b7cdd6"
+    },
+    {
+      "name": "奶白",
+      "value": "#ece8dd"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "snowberry",
+  "category": "flower",
+  "name": "雪果",
+  "group": "filler",
+  "introduction": "圆润的小果成簇排列，果顶保留小型萼痕，适合用柔和点状轮廓衬托花束。",
+  "flowerMeaning": "纯净、团聚",
+  "version": 1,
+  "colors": [
+    {
+      "name": "奶白",
+      "value": "#e9e5da"
+    },
+    {
+      "name": "浅粉",
+      "value": "#d9b3ba"
+    },
+    {
+      "name": "浅绿",
+      "value": "#b8c5a0"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

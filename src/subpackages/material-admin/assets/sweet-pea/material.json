@@ -1,0 +1,29 @@
+{
+  "id": "sweet-pea",
+  "category": "flower",
+  "name": "香豌豆",
+  "group": "filler",
+  "introduction": "薄而起伏的旗瓣与两侧翼瓣像轻展的蝶翼，沿细枝错落开放，适合自然风花束。",
+  "flowerMeaning": "温柔、相遇",
+  "version": 1,
+  "colors": [
+    {
+      "name": "浅粉",
+      "value": "#dba9ba"
+    },
+    {
+      "name": "淡紫",
+      "value": "#b8a2c8"
+    },
+    {
+      "name": "奶白",
+      "value": "#ede6db"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

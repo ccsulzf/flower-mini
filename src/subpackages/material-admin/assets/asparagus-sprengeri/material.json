@@ -1,0 +1,25 @@
+{
+  "id": "asparagus-sprengeri",
+  "category": "flower",
+  "name": "天门冬",
+  "group": "foliage",
+  "introduction": "弯曲分枝上密生短针状叶枝，层层散开，适合衬托花朵并增加细碎绿意。",
+  "flowerMeaning": "生机、陪伴",
+  "version": 1,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#91a67c"
+    },
+    {
+      "name": "深绿",
+      "value": "#738e66"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

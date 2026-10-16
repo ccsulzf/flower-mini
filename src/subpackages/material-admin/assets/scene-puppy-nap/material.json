@@ -1,0 +1,15 @@
+{
+  "id": "scene-puppy-nap",
+  "category": "background",
+  "name": "小狗午睡",
+  "introduction": "暖白窗边的小金毛趴在编织地毯上打盹，花艺陈列在中央的低矮木台。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 820
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "cherry-blossom",
+  "category": "flower",
+  "name": "樱花",
+  "group": "filler",
+  "introduction": "花瓣轻薄，边缘带小缺口，适合做柔和、轻盈的春日配花。",
+  "flowerMeaning": "美好、希望",
+  "version": 2,
+  "colors": [
+    {
+      "name": "浅粉",
+      "value": "#e6bcc4"
+    },
+    {
+      "name": "白色",
+      "value": "#eee5dc"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

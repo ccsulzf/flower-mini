@@ -56,8 +56,7 @@ async function preview() {
     const parsed = parseDailyFlower(source.value)
     previewing.value = true
     await waitForAppAuthReady()
-    if (!catalog.loaded)
-      await catalog.load()
+    await catalog.load()
     if (catalog.error)
       throw new Error(catalog.error)
     parsed.artwork = attachCloudMaterials(

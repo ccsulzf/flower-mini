@@ -1,0 +1,25 @@
+{
+  "id": "lily-of-the-valley",
+  "category": "flower",
+  "name": "铃兰",
+  "group": "filler",
+  "introduction": "小铃铛一样的白花沿弯曲花枝垂下，适合清新、轻巧的搭配。",
+  "flowerMeaning": "幸福归来",
+  "version": 2,
+  "colors": [
+    {
+      "name": "白色",
+      "value": "#f1ecdf"
+    },
+    {
+      "name": "淡粉",
+      "value": "#e5cbd0"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

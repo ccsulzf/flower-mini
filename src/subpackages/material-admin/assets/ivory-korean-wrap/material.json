@@ -2,8 +2,8 @@
   "id": "ivory-korean-wrap",
   "category": "bouquet",
   "name": "奶白多层花束包装",
-  "introduction": "奶白色包装纸分层展开，修长纸张在两侧内卷，正面留出深开口，下方收束成纸尾，适合展示完整花束。",
-  "version": 4,
+  "introduction": "奶白纸张以三层错位折角展开，深棕窄丝带收束，强调纸张厚度、折面与疏朗开口。",
+  "version": 5,
   "geometry": {
     "width": 340,
     "height": 430,

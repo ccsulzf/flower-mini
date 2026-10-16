@@ -5,8 +5,8 @@
     "rose": ["rose", "spray-rose"],
     "poppy": ["dahlia", "gerbera", "pincushion"],
     "daisy": ["solidago", "gypsophila", "chamomile", "daisy"],
-    "leaf": ["eucalyptus", "spirea", "dusty-miller", "ivy"]
+    "leaf": ["spirea", "eucalyptus", "dusty-miller", "ivy"]
   },
   "vases": ["ceramic-vase", "matte-ceramic-vase", "ribbed-ceramic-vase"],
-  "backgrounds": ["scene-sage-table", "scene-window-table", "scene-ivory-table"]
+  "backgrounds": ["scene-window-table", "scene-ivory-table", "scene-sage-table"]
 }

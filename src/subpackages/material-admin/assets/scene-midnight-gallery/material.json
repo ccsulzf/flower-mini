@@ -1,0 +1,15 @@
+{
+  "id": "scene-midnight-gallery",
+  "category": "background",
+  "name": "午夜画廊",
+  "introduction": "暖炭灰展墙、低调侧光与深色台面，适合浅色花和轮廓鲜明的插花。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 2,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 850
+  }
+}

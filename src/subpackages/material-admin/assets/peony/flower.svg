@@ -2,9 +2,9 @@
   <defs>
   <linearGradient id="peony-fold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="110">
   <stop offset="0" stop-color="__COLOR__"/>
-  <stop offset="1" stop-color="#8d6d75"/>
+  <stop offset="1" stop-color="#85856d"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(-5 55 94)">
   <path d="M55 94Q41 91 34 80Q48 86 55 89Q64 81 77 80Q70 92 55 94Z" fill="#80916b" />
   <g transform="rotate(0.00 55 55)">
   <path d="M49 63C29.00 45 34.00 18.00 45.55 16.00Q55 8.00 63.40 15.00C76.00 10.00 83.00 46 61 63Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
@@ -142,4 +142,4 @@
   <path d="M46.01 44.07Q55 38.07 63.99 45.07" fill="none" stroke="#fff6e9" stroke-width="0.7" stroke-opacity=".38"/>
   </g>
   <circle cx="55.00" cy="55.00" r="2.20" fill="__COLOR__" />
-</svg>
+</g></svg>

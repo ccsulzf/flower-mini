@@ -4,8 +4,12 @@
   "group": "main",
   "introduction": "花瓣层层包裹，花形饱满，是常见主花，适合花束和日常瓶插。",
   "flowerMeaning": "爱与美好",
-  "version": 4,
+  "version": 10,
   "colors": [
+    {
+      "name": "珊瑚红",
+      "value": "#ed6965"
+    },
     {
       "name": "深红",
       "value": "#b82b36"
@@ -23,6 +27,6 @@
     "width": 110,
     "flowerHeight": 110,
     "stemHeight": 260,
-    "connectionY": 88
+    "connectionY": 90
   }
 }

@@ -1,0 +1,29 @@
+{
+  "id": "fountain-grass",
+  "category": "flower",
+  "name": "喷泉草",
+  "group": "foliage",
+  "introduction": "细长叶片与弧形穗枝向外舒展，花穗轻柔有毛感，适合增加疏朗线条。",
+  "flowerMeaning": "自由、轻盈",
+  "version": 1,
+  "colors": [
+    {
+      "name": "麦色",
+      "value": "#c3b290"
+    },
+    {
+      "name": "灰绿",
+      "value": "#a5af91"
+    },
+    {
+      "name": "浅褐",
+      "value": "#ae9987"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

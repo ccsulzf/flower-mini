@@ -2,277 +2,277 @@
   <defs>
   <linearGradient id="gerbera-fold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="110">
   <stop offset="0" stop-color="__COLOR__"/>
-  <stop offset="1" stop-color="#8d6d75"/>
+  <stop offset="1" stop-color="#85856d"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(-9 55 94)">
   <g transform="rotate(0.00 55 55)">
   <path d="M52 53C49.9 40 51.9 11.0 54 9.0Q58.1 8.0 58.1 15.0C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 11.0 54 9.0Q58.1 8.0 58.1 15.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 11.0 54 9.0Q58.1 8.0 58.1 15.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 14.0" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(13.55 55 55)">
   <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 16.5" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(22.71 55 55)">
   <path d="M52 53C49.9 40 51.9 9.8 54 7.8Q58.1 6.8 58.1 13.8C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 9.8 54 7.8Q58.1 6.8 58.1 13.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 9.8 54 7.8Q58.1 6.8 58.1 13.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 12.8" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(35.52 55 55)">
   <path d="M52 53C49.9 40 51.9 9.0 54 7.0Q58.1 6.0 58.1 13.0C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 9.0 54 7.0Q58.1 6.0 58.1 13.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 9.0 54 7.0Q58.1 6.0 58.1 13.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 12.0" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(49.68 55 55)">
   <path d="M52 53C49.9 40 51.9 13.1 54 11.1Q58.1 10.1 58.1 17.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 13.1 54 11.1Q58.1 10.1 58.1 17.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 13.1 54 11.1Q58.1 10.1 58.1 17.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 16.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(59.08 55 55)">
   <path d="M52 53C49.9 40 51.9 12.1 54 10.1Q58.1 9.1 58.1 16.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 12.1 54 10.1Q58.1 9.1 58.1 16.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 12.1 54 10.1Q58.1 9.1 58.1 16.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 15.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(71.09 55 55)">
   <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 11.4" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(85.68 55 55)">
   <path d="M52 53C49.9 40 51.9 11.1 54 9.1Q58.1 8.1 58.1 15.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 11.1 54 9.1Q58.1 8.1 58.1 15.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 11.1 54 9.1Q58.1 8.1 58.1 15.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 14.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(95.51 55 55)">
   <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 16.5" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(106.72 55 55)">
   <path d="M52 53C49.9 40 51.9 9.8 54 7.8Q58.1 6.8 58.1 13.8C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 9.8 54 7.8Q58.1 6.8 58.1 13.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 9.8 54 7.8Q58.1 6.8 58.1 13.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 12.8" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(121.55 55 55)">
   <path d="M52 53C49.9 40 51.9 9.0 54 7.0Q58.1 6.0 58.1 13.0C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 9.0 54 7.0Q58.1 6.0 58.1 13.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 9.0 54 7.0Q58.1 6.0 58.1 13.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 12.0" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(131.98 55 55)">
   <path d="M52 53C49.9 40 51.9 13.1 54 11.1Q58.1 10.1 58.1 17.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 13.1 54 11.1Q58.1 10.1 58.1 17.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 13.1 54 11.1Q58.1 10.1 58.1 17.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 16.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(142.46 55 55)">
   <path d="M52 53C49.9 40 51.9 12.0 54 10.0Q58.1 9.0 58.1 16.0C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 12.0 54 10.0Q58.1 9.0 58.1 16.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 12.0 54 10.0Q58.1 9.0 58.1 16.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 15.0" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(157.30 55 55)">
   <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 11.4" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(168.46 55 55)">
   <path d="M52 53C49.9 40 51.9 11.2 54 9.2Q58.1 8.2 58.1 15.2C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 11.2 54 9.2Q58.1 8.2 58.1 15.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 11.2 54 9.2Q58.1 8.2 58.1 15.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 14.2" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(178.32 55 55)">
   <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 16.5" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(192.94 55 55)">
   <path d="M52 53C49.9 40 51.9 9.7 54 7.7Q58.1 6.7 58.1 13.7C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 9.7 54 7.7Q58.1 6.7 58.1 13.7C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 9.7 54 7.7Q58.1 6.7 58.1 13.7C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 12.7" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(204.90 55 55)">
   <path d="M52 53C49.9 40 51.9 9.1 54 7.1Q58.1 6.1 58.1 13.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 9.1 54 7.1Q58.1 6.1 58.1 13.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 9.1 54 7.1Q58.1 6.1 58.1 13.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 12.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(214.31 55 55)">
   <path d="M52 53C49.9 40 51.9 13.2 54 11.2Q58.1 10.2 58.1 17.2C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 13.2 54 11.2Q58.1 10.2 58.1 17.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 13.2 54 11.2Q58.1 10.2 58.1 17.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 16.2" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(228.50 55 55)">
   <path d="M52 53C49.9 40 51.9 11.9 54 9.9Q58.1 8.9 58.1 15.9C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 11.9 54 9.9Q58.1 8.9 58.1 15.9C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 11.9 54 9.9Q58.1 8.9 58.1 15.9C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 14.9" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(241.27 55 55)">
   <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 11.4" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(250.44 55 55)">
   <path d="M52 53C49.9 40 51.9 11.3 54 9.3Q58.1 8.3 58.1 15.3C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 11.3 54 9.3Q58.1 8.3 58.1 15.3C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 11.3 54 9.3Q58.1 8.3 58.1 15.3C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 14.3" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(264.03 55 55)">
   <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 13.5 54 11.5Q58.1 10.5 58.1 17.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 16.5" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(277.53 55 55)">
   <path d="M52 53C49.9 40 51.9 9.6 54 7.6Q58.1 6.6 58.1 13.6C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 9.6 54 7.6Q58.1 6.6 58.1 13.6C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 9.6 54 7.6Q58.1 6.6 58.1 13.6C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 12.6" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(286.69 55 55)">
   <path d="M52 53C49.9 40 51.9 9.2 54 7.2Q58.1 6.2 58.1 13.2C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 9.2 54 7.2Q58.1 6.2 58.1 13.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 9.2 54 7.2Q58.1 6.2 58.1 13.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 12.2" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(299.55 55 55)">
   <path d="M52 53C49.9 40 51.9 13.2 54 11.2Q58.1 10.2 58.1 17.2C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 13.2 54 11.2Q58.1 10.2 58.1 17.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 13.2 54 11.2Q58.1 10.2 58.1 17.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 16.2" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(313.68 55 55)">
   <path d="M52 53C49.9 40 51.9 11.8 54 9.8Q58.1 8.8 58.1 15.8C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 11.8 54 9.8Q58.1 8.8 58.1 15.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 11.8 54 9.8Q58.1 8.8 58.1 15.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 14.8" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(323.05 55 55)">
   <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 8.4 54 6.4Q58.1 5.4 58.1 12.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 11.4" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(335.11 55 55)">
   <path d="M52 53C49.9 40 51.9 11.3 54 9.3Q58.1 8.3 58.1 15.3C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 11.3 54 9.3Q58.1 8.3 58.1 15.3C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 11.3 54 9.3Q58.1 8.3 58.1 15.3C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 14.3" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(349.69 55 55)">
   <path d="M52 53C49.9 40 51.9 13.4 54 11.4Q58.1 10.4 58.1 17.4C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 13.4 54 11.4Q58.1 10.4 58.1 17.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 13.4 54 11.4Q58.1 10.4 58.1 17.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 16.4" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(6.00 55 55)">
   <path d="M52 53C49.9 40 51.9 20.0 54 18.0Q58.1 17.0 58.1 24.0C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 20.0 54 18.0Q58.1 17.0 58.1 24.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 20.0 54 18.0Q58.1 17.0 58.1 24.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 23.0" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(22.55 55 55)">
   <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 25.5" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(34.71 55 55)">
   <path d="M52 53C49.9 40 51.9 18.8 54 16.8Q58.1 15.8 58.1 22.8C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 18.8 54 16.8Q58.1 15.8 58.1 22.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 18.8 54 16.8Q58.1 15.8 58.1 22.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 21.8" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(50.52 55 55)">
   <path d="M52 53C49.9 40 51.9 18.0 54 16.0Q58.1 15.0 58.1 22.0C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 18.0 54 16.0Q58.1 15.0 58.1 22.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 18.0 54 16.0Q58.1 15.0 58.1 22.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 21.0" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(67.68 55 55)">
   <path d="M52 53C49.9 40 51.9 22.1 54 20.1Q58.1 19.1 58.1 26.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 22.1 54 20.1Q58.1 19.1 58.1 26.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 22.1 54 20.1Q58.1 19.1 58.1 26.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 25.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(80.08 55 55)">
   <path d="M52 53C49.9 40 51.9 21.1 54 19.1Q58.1 18.1 58.1 25.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 21.1 54 19.1Q58.1 18.1 58.1 25.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 21.1 54 19.1Q58.1 18.1 58.1 25.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 24.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(95.09 55 55)">
   <path d="M52 53C49.9 40 51.9 17.4 54 15.4Q58.1 14.4 58.1 21.4C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 17.4 54 15.4Q58.1 14.4 58.1 21.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 17.4 54 15.4Q58.1 14.4 58.1 21.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 20.4" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(112.68 55 55)">
   <path d="M52 53C49.9 40 51.9 20.1 54 18.1Q58.1 17.1 58.1 24.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 20.1 54 18.1Q58.1 17.1 58.1 24.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 20.1 54 18.1Q58.1 17.1 58.1 24.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 23.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(125.51 55 55)">
   <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 25.5" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(139.72 55 55)">
   <path d="M52 53C49.9 40 51.9 18.8 54 16.8Q58.1 15.8 58.1 22.8C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 18.8 54 16.8Q58.1 15.8 58.1 22.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 18.8 54 16.8Q58.1 15.8 58.1 22.8C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 21.8" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(157.55 55 55)">
   <path d="M52 53C49.9 40 51.9 18.0 54 16.0Q58.1 15.0 58.1 22.0C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 18.0 54 16.0Q58.1 15.0 58.1 22.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 18.0 54 16.0Q58.1 15.0 58.1 22.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 21.0" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(170.98 55 55)">
   <path d="M52 53C49.9 40 51.9 22.1 54 20.1Q58.1 19.1 58.1 26.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 22.1 54 20.1Q58.1 19.1 58.1 26.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 22.1 54 20.1Q58.1 19.1 58.1 26.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 25.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(184.46 55 55)">
   <path d="M52 53C49.9 40 51.9 21.0 54 19.0Q58.1 18.0 58.1 25.0C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 21.0 54 19.0Q58.1 18.0 58.1 25.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 21.0 54 19.0Q58.1 18.0 58.1 25.0C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 24.0" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(202.30 55 55)">
   <path d="M52 53C49.9 40 51.9 17.4 54 15.4Q58.1 14.4 58.1 21.4C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 17.4 54 15.4Q58.1 14.4 58.1 21.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 17.4 54 15.4Q58.1 14.4 58.1 21.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 20.4" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(216.46 55 55)">
   <path d="M52 53C49.9 40 51.9 20.2 54 18.2Q58.1 17.2 58.1 24.2C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 20.2 54 18.2Q58.1 17.2 58.1 24.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 20.2 54 18.2Q58.1 17.2 58.1 24.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 23.2" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(229.32 55 55)">
   <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 25.5" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(246.94 55 55)">
   <path d="M52 53C49.9 40 51.9 18.7 54 16.7Q58.1 15.7 58.1 22.7C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 18.7 54 16.7Q58.1 15.7 58.1 22.7C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 18.7 54 16.7Q58.1 15.7 58.1 22.7C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 21.7" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(261.90 55 55)">
   <path d="M52 53C49.9 40 51.9 18.1 54 16.1Q58.1 15.1 58.1 22.1C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 18.1 54 16.1Q58.1 15.1 58.1 22.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 18.1 54 16.1Q58.1 15.1 58.1 22.1C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 21.1" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(274.31 55 55)">
   <path d="M52 53C49.9 40 51.9 22.2 54 20.2Q58.1 19.2 58.1 26.2C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 22.2 54 20.2Q58.1 19.2 58.1 26.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 22.2 54 20.2Q58.1 19.2 58.1 26.2C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 25.2" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(291.50 55 55)">
   <path d="M52 53C49.9 40 51.9 20.9 54 18.9Q58.1 17.9 58.1 24.9C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 20.9 54 18.9Q58.1 17.9 58.1 24.9C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 20.9 54 18.9Q58.1 17.9 58.1 24.9C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 23.9" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(307.27 55 55)">
   <path d="M52 53C49.9 40 51.9 17.4 54 15.4Q58.1 14.4 58.1 21.4C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 17.4 54 15.4Q58.1 14.4 58.1 21.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 17.4 54 15.4Q58.1 14.4 58.1 21.4C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 20.4" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(319.44 55 55)">
   <path d="M52 53C49.9 40 51.9 20.3 54 18.3Q58.1 17.3 58.1 24.3C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 20.3 54 18.3Q58.1 17.3 58.1 24.3C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 20.3 54 18.3Q58.1 17.3 58.1 24.3C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 23.3" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(336.03 55 55)">
   <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 22.5 54 20.5Q58.1 19.5 58.1 26.5C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 25.5" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <g transform="rotate(352.53 55 55)">
   <path d="M52 53C49.9 40 51.9 18.6 54 16.6Q58.1 15.6 58.1 22.6C59.1 27 59 43 58 54Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M52 53C49.9 40 51.9 18.6 54 16.6Q58.1 15.6 58.1 22.6C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.16"/>
+  <path d="M52 53C49.9 40 51.9 18.6 54 16.6Q58.1 15.6 58.1 22.6C59.1 27 59 43 58 54Z" fill="url(#gerbera-fold)" opacity="0.13"/>
   <path d="M55 48Q54 26 55 21.6" fill="none" stroke="#fff6df" stroke-width="0.5" stroke-opacity=".4"/>
   </g>
   <circle cx="55.00" cy="55.00" r="9.00" fill="#ac9551" />
@@ -348,4 +348,4 @@
   <circle cx="62.73" cy="53.71" r="0.40" fill="#c7ad60" />
   <circle cx="50.14" cy="61.22" r="0.40" fill="#e7d391" />
   <circle cx="55.00" cy="55.00" r="4.00" fill="#6e704c" />
-</svg>
+</g></svg>

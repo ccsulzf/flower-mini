@@ -1,3 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="260" viewBox="0 0 110 260">
-<path d="M55 0C83 76 67 180 55 260" fill="none" stroke="#819272" stroke-width="1.3" /><path d="M54.6 1C82.6 76 66.6 180 54.6 260" fill="none" stroke="#c4cdb0" stroke-width="0.35" />
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="260" viewBox="0 0 110 260"><!-- continuous-stem-join -->
+<path d="M55 0C51.937897 35 34.32 92 33 145C31.68 198 47.3 238 55 260" fill="none" stroke="#819272" stroke-width="0.85"  stroke-linecap="round"/>
 </svg>

@@ -1,0 +1,29 @@
+{
+  "id": "photinia",
+  "category": "flower",
+  "name": "红叶石楠",
+  "group": "foliage",
+  "introduction": "新叶带红色，叶片修长，适合给花束增加温暖的色彩变化。",
+  "flowerMeaning": "希望、生机",
+  "version": 2,
+  "colors": [
+    {
+      "name": "红褐色",
+      "value": "#be9182"
+    },
+    {
+      "name": "浅褐色",
+      "value": "#c9aa8b"
+    },
+    {
+      "name": "绿色",
+      "value": "#a2ae88"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

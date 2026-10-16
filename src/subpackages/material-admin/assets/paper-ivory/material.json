@@ -1,14 +1,15 @@
 {
   "id": "paper-ivory",
   "category": "background",
-  "name": "米白纸纹",
-  "introduction": "柔和纸色搭配可见纤维与轻微纸张起伏，让作品像画在手工纸上。",
+  "name": "奶油无缝棚",
+  "introduction": "奶油白墙地自然过渡，柔和落地阴影与宽阔留白衬托花艺。",
   "flowerMeaning": "",
   "group": "main",
   "colors": [],
-  "version": 2,
+  "version": 3,
   "geometry": {
     "width": 698,
-    "height": 1000
+    "height": 1000,
+    "surfaceY": 870
   }
 }

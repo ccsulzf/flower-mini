@@ -2,9 +2,9 @@
   <defs>
   <linearGradient id="lily-fold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="110">
   <stop offset="0" stop-color="__COLOR__"/>
-  <stop offset="1" stop-color="#8d6d75"/>
+  <stop offset="1" stop-color="#85856d"/>
   </linearGradient>
-  </defs>
+  </defs><g transform="rotate(-6 55 86)">
   <g transform="rotate(5 55 55)">
   <path d="M55 62C34 46 38 27 55 12C63 24 79 36 62 53Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
   <path d="M55 62C34 46 38 27 55 12C63 24 79 36 62 53Z" fill="url(#lily-fold)" opacity="0.15"/>
@@ -109,4 +109,4 @@
   <ellipse cx="67.00" cy="47.00" rx="1.50" ry="3.50" fill="#9c7348" transform="rotate(-25 67 47)"/>
   <path d="M55 58L57 36" fill="none" stroke="#7c9162" stroke-width="1.2" />
   <circle cx="57.00" cy="36.00" r="1.70" fill="#9fba7a" />
-</svg>
+</g></svg>

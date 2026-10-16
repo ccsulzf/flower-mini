@@ -1,0 +1,25 @@
+{
+  "id": "lucky-bamboo",
+  "category": "flower",
+  "name": "富贵竹",
+  "group": "foliage",
+  "introduction": "竹节分明，叶片细长，适合增加向上伸展的线条。",
+  "flowerMeaning": "富贵、平安",
+  "version": 2,
+  "colors": [
+    {
+      "name": "绿色",
+      "value": "#9fb77f"
+    },
+    {
+      "name": "浅绿",
+      "value": "#b9c990"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 370,
+    "stemHeight": 370,
+    "connectionY": 104
+  }
+}

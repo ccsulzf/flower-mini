@@ -1,0 +1,15 @@
+{
+  "id": "scene-rainy-cat",
+  "category": "background",
+  "name": "雨天小窗",
+  "introduction": "雾蓝雨窗、温暖室内窗台与背对画面的小白猫，营造安静的雨天花艺场景。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 2,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 820
+  }
+}

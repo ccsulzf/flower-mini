@@ -1,0 +1,29 @@
+{
+  "id": "kangaroo-paw",
+  "category": "flower",
+  "name": "袋鼠爪",
+  "group": "filler",
+  "introduction": "绒毛质感的筒状花在枝端分叉排列，花口裂齿像小爪，适合增加花束的线条。",
+  "flowerMeaning": "独特、活力",
+  "version": 1,
+  "colors": [
+    {
+      "name": "砖红",
+      "value": "#b77e68"
+    },
+    {
+      "name": "暖黄",
+      "value": "#cbb56e"
+    },
+    {
+      "name": "浅绿",
+      "value": "#a1af7c"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 104
+  }
+}

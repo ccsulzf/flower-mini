@@ -3,7 +3,7 @@
   "category": "vase",
   "name": "方形花瓶",
   "introduction": "浅灰绿色方口花瓶，瓶身平直，适合简洁、利落的桌面插花。",
-  "version": 4,
+  "version": 5,
   "geometry": {
     "width": 160,
     "height": 180,
