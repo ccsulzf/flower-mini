@@ -20,3 +20,5 @@ export interface SavedFlowerWork {
   draft: CreationDraft
   revision: number
 }
+
+export type SavedFlowerWorkSummary = Omit<SavedFlowerWork, 'draft'>

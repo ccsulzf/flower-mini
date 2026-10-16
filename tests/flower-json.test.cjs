@@ -82,6 +82,25 @@ test('花束图片导出绘制豆沙粉丝带，而不是花瓶的瓶口', async
   assert.ok(!colors.includes('#84917b'))
 })
 
+test('内置花瓶导出使用与素材一致的灰绿色瓶口', async () => {
+  const { renderArtwork } = loader.load('src/utils/flower/render-artwork.ts')
+  for (const [vase, expected] of [['陶瓶', '#667568'], ['玻璃瓶', '#78958b']]) {
+    const colors = []
+    const ctx = new Proxy({}, {
+      get: (_, key) => {
+        if (key === 'setFillStyle') return color => colors.push(color)
+        if (key === 'createLinearGradient') return () => ({ addColorStop() {} })
+        if (key === 'draw') return (_, done) => done()
+        return () => {}
+      },
+    })
+    await renderArtwork(ctx, { ...artwork, vase, stems: [] })
+    assert.ok(colors.includes(expected), `${vase} 缺少统一瓶口内腔色`)
+    assert.ok(!colors.includes('#84917b'))
+    assert.ok(!colors.includes('#a4beb0'))
+  }
+})
+
 test('内置 SVG 花材导出复用编辑器中的整枝素材，避免 Canvas 近似产生额外纹理', async () => {
   const isolated = createLoader({
     uni: {

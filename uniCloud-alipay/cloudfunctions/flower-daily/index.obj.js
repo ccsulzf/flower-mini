@@ -16,6 +16,17 @@ function publicRecord(record, date) {
   return { date, description, artwork, imageFileId: record.imageFileId }
 }
 
+function publicSummary(record, date) {
+  const description = dailyFlower.validateDescription(record.description)
+  if (record._id !== date || record.date !== date || typeof record.imageFileId !== 'string'
+    || !record.imageFileId.startsWith('cloud://')
+    || !record.imageFileId.includes(`/daily-flower/${date}/`)
+    || record.imageFileId.length > 1024) {
+    invalid('每日花束记录或图片无效')
+  }
+  return { date, description }
+}
+
 module.exports = {
   async getByDate(input = {}) {
     const date = dailyFlower.validateDate(input.date)
@@ -34,6 +45,16 @@ module.exports = {
     return { flower: { ...flower, imageUrl: image.tempFileURL } }
   },
 
+  async getArtwork(input = {}) {
+    const date = dailyFlower.validateDate(input.date)
+    const result = await uniCloud.database().collection('daily-flower').doc(date).get()
+    const record = result.data?.[0]
+    if (!record)
+      return { flower: null }
+    const flower = publicRecord(record, date)
+    return { flower: { date, description: flower.description, artwork: flower.artwork } }
+  },
+
   async listHistory(input = {}) {
     const today = dailyFlower.validateDate(input.today)
     const selectedDate = input.date === undefined ? '' : dailyFlower.validateDate(input.date)
@@ -50,7 +71,7 @@ module.exports = {
         return { items: [], hasMore: false }
       const result = await db.collection('daily-flower').doc(selectedDate).get()
       const record = result.data?.[0]
-      return { items: record ? [publicRecord(record, selectedDate)] : [], hasMore: false }
+      return { items: record ? [publicSummary(record, selectedDate)] : [], hasMore: false }
     }
 
     const result = await db.collection('daily-flower')
@@ -59,7 +80,12 @@ module.exports = {
       .skip((page - 1) * pageSize)
       .limit(pageSize + 1)
       .get()
-    const rows = result.data.slice(0, pageSize).map(record => publicRecord(record, record.date))
+    const rows = result.data.slice(0, pageSize).map((record) => {
+      const date = dailyFlower.validateDate(record.date)
+      if (date > today)
+        invalid('历史花束日期无效')
+      return publicSummary(record, date)
+    })
     if (rows.some(row => row.date > today))
       invalid('历史花束日期无效')
     return { items: rows, hasMore: result.data.length > pageSize }

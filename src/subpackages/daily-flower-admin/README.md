@@ -13,7 +13,7 @@
 1. 登录有 `admin` 角色的账号。
 2. 将准备好的 JSON 保存到 `assets/daily-flower.json`，在首页开发入口打开维护页面，等待 JSON 与云端素材加载并预览。
 3. 预览花束、日期和描述。
-4. 确认发布后，云端渲染器生成 698 × 1000 PNG；图片以带唯一版本路径的文件上传，云对象验证图片和花束数据后写入 `daily-flower` 集合。
+4. 确认发布后，云端渲染器将 698 × 1000 SVG 画布直接栅格化为 1396 × 2000 PNG；图片以带唯一版本路径的文件上传，云对象验证图片和花束数据后写入 `daily-flower` 集合。
 5. 同一日期再次发布会覆盖文档并删除旧图片；如果云存储清理失败，页面会显示警告。
 
 新增云对象 `flower-daily-admin`、更新 `flower-render` 的管理端渲染方法，并部署 `uniCloud-alipay/database/daily-flower.schema.json` 后，管理端才能完成云端发布。

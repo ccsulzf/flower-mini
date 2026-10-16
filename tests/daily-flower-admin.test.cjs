@@ -24,7 +24,7 @@ function sampleArtwork() {
   }
 }
 
-function makePng(width = 698, height = 1000) {
+function makePng(width = 1396, height = 2000) {
   const data = Buffer.alloc(24)
   Buffer.from('89504e470d0a1a0a', 'hex').copy(data)
   data.writeUInt32BE(width, 16)
@@ -35,7 +35,7 @@ function makePng(width = 698, height = 1000) {
 function setupCloud(options = {}) {
   const records = new Map()
   const deletedFiles = []
-  const uploadedFile = makePng()
+  const uploadedFile = makePng(options.imageWidth, options.imageHeight)
   const module = { exports: {} }
   vm.runInNewContext(fs.readFileSync('uniCloud-alipay/cloudfunctions/flower-daily-admin/index.obj.js', 'utf8'), {
     module,
@@ -115,6 +115,50 @@ test('本地每日花束 JSON 由用户提供并在预览前完整校验', () =>
   })), /描述不能为空/)
 })
 
+test('每日花束发布直接使用渲染云函数返回的云文件，不经客户端转码或重复上传', async () => {
+  const calls = []
+  const loader = createLoader({
+    uniCloud: {
+      importObject: (name) => {
+        if (name === 'flower-render') {
+          return {
+            renderDailyArtwork: async input => {
+              calls.push(['render', input])
+              return {
+                width: 1396,
+                height: 2000,
+                fileID: 'cloud://space/daily-flower/2026-10-16/render.png',
+                cloudPath: 'daily-flower/2026-10-16/render.png',
+              }
+            },
+          }
+        }
+        assert.equal(name, 'flower-daily-admin')
+        return {
+          publish: async input => {
+            calls.push(['publish', input])
+            return { ok: true }
+          },
+        }
+      },
+      uploadFile: async () => {
+        throw new Error('客户端不应重复上传渲染结果')
+      },
+    },
+  })
+  const draft = {
+    date: '2026-10-16',
+    description: '晨光里的玫瑰',
+    artwork: sampleArtwork(),
+  }
+  const result = await loader.load('src/subpackages/daily-flower-admin/lib/publish.ts').publishDailyFlower(draft)
+  assert.deepEqual(result, { ok: true })
+  assert.deepEqual(JSON.parse(JSON.stringify(calls)), [
+    ['render', { artwork: draft.artwork, date: draft.date }],
+    ['publish', { date: draft.date, description: draft.description, artwork: draft.artwork, imageFileId: 'cloud://space/daily-flower/2026-10-16/render.png' }],
+  ])
+})
+
 test('本地物料 JSON 仅将已存在于云端的候选物料关联到每日花束', () => {
   const attachCloudMaterials = createLoader().load('src/subpackages/daily-flower-admin/lib/daily-flower-preview.ts').attachCloudMaterials
   const cloudMaterial = (id, category, revision) => ({
@@ -126,12 +170,20 @@ test('本地物料 JSON 仅将已存在于云端的候选物料关联到每日�
   const materials = [
     cloudMaterial('firework-chrysanthemum', 'flower', 'a'.repeat(16)),
     cloudMaterial('rose', 'flower', 'b'.repeat(16)),
+    cloudMaterial('spray-rose', 'flower', '6'.repeat(16)),
     cloudMaterial('dahlia', 'flower', 'c'.repeat(16)),
+    cloudMaterial('gerbera', 'flower', '7'.repeat(16)),
+    cloudMaterial('pincushion', 'flower', '8'.repeat(16)),
+    cloudMaterial('gypsophila', 'flower', '9'.repeat(16)),
+    cloudMaterial('chamomile', 'flower', 'a'.repeat(16)),
     cloudMaterial('solidago', 'flower', 'f'.repeat(16)),
     cloudMaterial('spirea', 'flower', '3'.repeat(16)),
     cloudMaterial('eucalyptus', 'flower', '1'.repeat(16)),
+    cloudMaterial('dusty-miller', 'flower', 'b'.repeat(16)),
     cloudMaterial('ceramic-vase', 'vase', 'd'.repeat(16)),
+    cloudMaterial('ribbed-ceramic-vase', 'vase', '4'.repeat(16)),
     cloudMaterial('scene-window-table', 'background', '2'.repeat(16)),
+    cloudMaterial('scene-ivory-table', 'background', '5'.repeat(16)),
     cloudMaterial('scene-sage-table', 'background', 'e'.repeat(16)),
   ]
   const manifest = JSON.parse(fs.readFileSync('src/subpackages/daily-flower-admin/assets/daily-flower-materials.json', 'utf8'))
@@ -150,15 +202,31 @@ test('本地物料 JSON 仅将已存在于云端的候选物料关联到每日�
   const localJson = JSON.parse(fs.readFileSync('src/subpackages/daily-flower-admin/assets/daily-flower.json', 'utf8'))
   const parsed = createLoader().load('src/utils/flower/daily-flower.ts').parseDailyFlower(JSON.stringify(localJson))
   const artwork = attachCloudMaterials(parsed.artwork, materials, manifest)
-  assert.equal(artwork.stems.length, 37)
-  assert.equal(artwork.stems.filter(stem => stem.kind === 'chrysanthemum').length, 8)
-  assert.equal(artwork.stems.filter(stem => stem.kind === 'rose').length, 8)
-  assert.equal(artwork.stems.filter(stem => stem.kind === 'leaf').length, 6)
-  assert.ok(new Set(artwork.stems.map(stem => stem.kind)).size >= 5)
+  assert.ok(artwork.stems.length >= 30)
+  assert.equal(artwork.stems.length, 64)
+  assert.equal(artwork.stems.filter(stem => stem.kind === 'chrysanthemum').length, 0)
+  assert.equal(artwork.stems.filter(stem => stem.kind === 'rose').length, 16)
+  assert.equal(artwork.stems.filter(stem => stem.kind === 'poppy').length, 18)
+  assert.equal(artwork.stems.filter(stem => stem.kind === 'leaf').length, 10)
+  assert.equal(artwork.stems.filter(stem => stem.kind === 'daisy').length, 20)
+  assert.equal(new Set(artwork.stems.map(stem => stem.kind)).size, 4)
+  const bloomHeads = artwork.stems.slice(30).map((stem) => {
+    const radians = stem.angle * Math.PI / 180
+    return [
+      stem.x + Math.sin(radians) * stem.stemHeight,
+      stem.y - Math.cos(radians) * stem.stemHeight,
+    ]
+  })
+  assert.ok(Math.max(...bloomHeads.map(([x]) => x)) - Math.min(...bloomHeads.map(([x]) => x)) >= 330)
+  assert.ok(Math.max(...bloomHeads.map(([, y]) => y)) - Math.min(...bloomHeads.map(([, y]) => y)) >= 250)
+  assert.ok(artwork.stems.some(stem => stem.color === '#d99eaa'))
+  assert.ok(artwork.stems.some(stem => stem.color === '#a99db9'))
+  assert.ok(artwork.stems.every(stem => !['#793b4b', '#c76d43', '#748ad6'].includes(stem.color)))
+  assert.ok(new Set(artwork.stems.map(stem => stem.materialId)).size >= 8)
   assert.ok(artwork.stems.every(stem => stem.materialId && stem.materialRevision))
-  assert.equal(artwork.vaseMaterialId, 'ceramic-vase')
-  assert.equal(artwork.backgroundMaterialId, 'scene-window-table')
-  assert.equal(artwork.stems[0].materialId, 'spirea')
+  assert.equal(artwork.vaseMaterialId, 'ribbed-ceramic-vase')
+  assert.equal(artwork.backgroundMaterialId, 'scene-sage-table')
+  assert.equal(artwork.stems[0].materialId, 'eucalyptus')
   assert.ok(artwork.stems.every(stem => materials.some(material => material.id === stem.materialId)))
   assert.throws(() => attachCloudMaterials(parsed.artwork, [], manifest), /没有本地物料清单中可用于 leaf/)
 })
@@ -175,6 +243,18 @@ test('每日花束云对象拒绝非管理员，并验证 PNG 图片尺寸', asy
     artwork: sampleArtwork(),
     imageFileId: 'cloud://space/daily-flower/2026-10-14/new.png',
   }), error => error.errCode === 'INVALID_DAILY_FLOWER_IMAGE')
+})
+
+test('每日花束云对象继续接受旧尺寸 PNG', async () => {
+  const { cloud } = setupCloud({ roles: ['admin'], imageWidth: 698, imageHeight: 1000 })
+  await cloud._before()
+  const result = await cloud.publish({
+    date: '2026-10-14',
+    description: '晨光里的玫瑰',
+    artwork: sampleArtwork(),
+    imageFileId: 'cloud://space/daily-flower/2026-10-14/legacy.png',
+  })
+  assert.equal(result.updated, false)
 })
 
 test('同日再次发布覆盖花束与图片，并清理旧图片', async () => {

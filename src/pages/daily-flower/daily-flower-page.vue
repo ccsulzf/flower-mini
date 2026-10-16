@@ -113,7 +113,7 @@ function openFlower(date: string) {
         class="history-card"
       >
         <view class="history-cover">
-          <FlowerArtworkPreview :artwork="flower.artwork" :scale="0.44" />
+          <FlowerArtworkPreview :daily-date="flower.date" :scale="0.44" />
           <view class="history-cover-hitarea" @tap="openFlower(flower.date)" />
         </view>
         <view class="history-content" @click="openFlower(flower.date)">

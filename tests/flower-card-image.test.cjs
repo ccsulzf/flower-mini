@@ -2,7 +2,13 @@ const test = require('node:test'), assert = require('node:assert/strict'), { cre
 
 test('新作或改动作品生成作品图，未改动时复用作品图并在本地合成贺卡', async () => {
   const requests = [], shared = [], loader = createLoader({
-    uniCloud: { importObject: () => ({ renderWork: input => new Promise(resolve => requests.push({ input, resolve: () => resolve({ width: 698, height: 1000, pngBase64: 'cG5n' }) })) }) },
+    uniCloud: {
+      getTempFileURL: async ({ fileList }) => ({ fileList: fileList.map(fileID => ({ fileID, tempFileURL: `https://image/${fileID}` })) }),
+      importObject: () => ({
+        renderWork: input => new Promise(resolve => requests.push({ input, resolve: () => resolve({ width: 1396, height: 2000, fileID: 'cloud://test/artwork.png', cloudPath: `flower-works/${'a'.repeat(64)}/${input.workId}/artwork.png` }) })),
+      }),
+    },
+    uni: { downloadFile: args => args.success({ statusCode: 200, tempFilePath: args.filePath }) },
     wx: { env: { USER_DATA_PATH: '/user' }, getFileSystemManager: () => ({ writeFile: args => args.success() }), canIUse: () => true, showShareImageMenu: args => shared.push(args.path) },
   })
   const store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
@@ -29,12 +35,18 @@ test('新作或改动作品生成作品图，未改动时复用作品图并在�
 test('新花卡文字取代正在本地合成的旧贺卡，不发布旧结果', async () => {
   const requests = [], compositions = []
   const loader = createLoader({
-    uniCloud: { importObject: () => ({ renderWork: input => new Promise((resolve, reject) => requests.push({ input, resolve, reject })) }) },
+    uniCloud: {
+      getTempFileURL: async ({ fileList }) => ({ fileList: fileList.map(fileID => ({ fileID, tempFileURL: `https://image/${fileID}` })) }),
+      importObject: () => ({
+        renderWork: input => new Promise((resolve, reject) => requests.push({ input, resolve, reject })),
+      }),
+    },
+    uni: { downloadFile: args => args.success({ statusCode: 200, tempFilePath: args.filePath }) },
     wx: { env: { USER_DATA_PATH: '/user' }, getFileSystemManager: () => ({ writeFile: args => args.success(), unlink() {} }) },
   })
   const images = loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(() => ({ version: 2, vase: '陶瓶', background: 'warm', stems: [] }), () => 'work:abcdef', () => ({ id: 'b'.repeat(32), revision: 1 }))
   const old = images.exportCard({ recipient: '', blessing: '旧祝福', signature: '' }, () => new Promise(resolve => compositions.push({ text: 'old', resolve })))
-  requests[0].resolve({ width: 698, height: 1000, pngBase64: 'YXJ0' })
+  requests[0].resolve({ width: 1396, height: 2000, fileID: 'cloud://test/artwork.png', cloudPath: `flower-works/${'b'.repeat(64)}/${'b'.repeat(32)}/artwork.png` })
   await new Promise(resolve => setImmediate(resolve))
   const next = images.exportCard({ recipient: '', blessing: '新祝福', signature: '' }, () => new Promise(resolve => compositions.push({ text: 'new', resolve })))
   await new Promise(resolve => setImmediate(resolve))

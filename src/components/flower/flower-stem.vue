@@ -5,13 +5,9 @@ import { flowerConnectionY, plantSvgSource, stemSvgSource } from '@/utils/flower
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { cloudPlantSvg, svgImageSource } from '@/utils/flower/material-render'
 import FlowerBloom from './flower-bloom.vue'
-const props = defineProps<{ stem: Stem, anchor: number, selected: boolean }>()
-const emit = defineEmits<{ start: [event: { touches: { clientX: number, clientY: number }[] }], move: [event: { touches: { clientX: number, clientY: number }[] }], end: [cancelled: boolean] }>()
+const props = defineProps<{ stem: Stem, anchor: number }>()
 const catalog = useFlowerCatalogStore()
 const cloudMaterial = computed(() => props.stem.materialId && props.stem.materialRevision ? catalog.get(props.stem.materialId, props.stem.materialRevision) : undefined)
-const isFoliage = computed(() => cloudMaterial.value ? cloudMaterial.value.group === 'foliage' : props.stem.kind === 'leaf')
-// 叶片分布在整枝，点击区跟随高度及实例的旋转、镜像与缩放。
-const touchAreaStyle = computed(() => isFoliage.value ? `height:${props.stem.stemHeight + 55 + 24}rpx;` : '')
 const cloudSource = computed(() => {
   if (!cloudMaterial.value) return ''
   try { return svgImageSource(cloudPlantSvg(cloudMaterial.value, { ...props.stem, leafMode: 'without' })) } catch { return '' }
@@ -42,9 +38,8 @@ const plantImageStyle = computed(() => `width:110rpx;height:${props.stem.stemHei
       <view v-else-if="!stem.materialId" class="stem-image-clip" :style="stemClipStyle">
         <image class="stem-image" :src="curve.image" @error="svgFailed = true" mode="scaleToFill" :style="stemImageStyle" />
       </view>
-      <view class="flower-touch" :style="touchAreaStyle" :class="{ 'mum-touch': stem.kind === 'chrysanthemum', 'foliage-touch': isFoliage }" @tap.stop @touchstart.stop="emit('start', $event)" @touchmove.stop.prevent="emit('move', $event)" @touchend.stop="emit('end', false)" @touchcancel.stop="emit('end', true)">
+      <view class="flower-touch" :class="{ 'mum-touch': stem.kind === 'chrysanthemum' }">
         <view v-if="!usesSvgPlant && !stem.materialId" class="flower-art-position"><FlowerBloom :kind="stem.kind" :color="stem.color" /></view>
-        <view v-if="selected" class="flower-outline" />
       </view>
     </view>
   </view>
@@ -56,9 +51,7 @@ const plantImageStyle = computed(() => `width:110rpx;height:${props.stem.stemHei
 .stem-image-clip { position: absolute; left: 0; width: 110rpx; overflow: hidden; pointer-events: none; }
 .stem-image { position: absolute; left: 0; top: 0; width: 110rpx; height: 260rpx; pointer-events: none; }
 .side-leaf { position: absolute; top: 140rpx; width: 40rpx; height: 18rpx; background: #879b71; border-radius: 100% 0 100% 0; transform: rotate(-30deg); }
-.flower-touch { position: absolute; left: -12rpx; top: -12rpx; width: 134rpx; height: 134rpx; border-radius: 50%; pointer-events: auto; }
+.flower-touch { position: absolute; left: -12rpx; top: -12rpx; width: 134rpx; height: 134rpx; border-radius: 50%; pointer-events: none; }
 .flower-art-position { position: absolute; left: 12rpx; top: 12rpx; pointer-events: none; }
 .mum-touch { width: 190rpx; height: 190rpx; left: -40rpx; top: -40rpx; }.mum-touch .flower-art-position { left: 40rpx; top: 40rpx; }
-.foliage-touch { border-radius: 12rpx; }.foliage-touch .flower-outline { border-radius: 12rpx; }
-.flower-outline { position: absolute; inset: 8rpx; border: 2rpx dashed rgba(101, 119, 90, .72); border-radius: 50%; pointer-events: none; }
 </style>

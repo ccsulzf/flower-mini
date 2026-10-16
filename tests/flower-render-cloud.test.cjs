@@ -8,6 +8,14 @@ const cloudFunctionDir = path.resolve('uniCloud-alipay/cloudfunctions/flower-ren
 const sharedRuntimeDir = path.resolve('uniCloud-alipay/cloudfunctions/flower-render-test')
 
 function loadCloudObject(options = {}) {
+  const uploads = []
+  const uniCloud = {
+    uploadFile: async input => {
+      uploads.push(input)
+      return { fileID: `cloud://test/${input.cloudPath}` }
+    },
+    ...options.uniCloud,
+  }
   let rendererOptions, renderCount = 0, initCount = 0, freedImage = false, freedRenderer = false
   class Resvg {
     constructor(svg, config) {
@@ -18,8 +26,8 @@ function loadCloudObject(options = {}) {
     render() {
       renderCount++
       return {
-        width: 698,
-        height: Number(this.svg.match(/\bheight="(\d+)"/)[1]),
+        width: 1396,
+        height: Number(this.svg.match(/\bheight="(\d+)"/)[1]) * 2,
         asPng: () => Buffer.from('png'),
         free: () => { freedImage = true },
       }
@@ -49,29 +57,58 @@ function loadCloudObject(options = {}) {
     Buffer,
     Date,
     fs: options.fs || { readFileSync: () => Buffer.from('wasm') },
-    uniCloud: options.uniCloud,
+    uniCloud,
   })
   return {
     object: cloudModule.exports,
-    metrics: () => ({ rendererOptions, renderCount, initCount, freedImage, freedRenderer }),
+    metrics: () => ({ rendererOptions, renderCount, initCount, freedImage, freedRenderer, uploads }),
   }
 }
 
-const svg = height => `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="${height}"><rect width="698" height="${height}" fill="#fff"/></svg>`
-
-test('正式云渲染对象要求登录并回传 PNG', async () => {
-  const { object, metrics } = loadCloudObject()
+test('正式作品渲染要求登录并将 PNG 上传固定云路径后返回文件引用', async () => {
+  const workId = 'a'.repeat(32)
+  const cloud = {
+    database: () => ({
+      collection: name => {
+        assert.equal(name, 'flower-works')
+        return {
+          where: filter => ({
+            limit: () => ({
+              get: async () => ({
+                data: [{
+                  _id: workId,
+                  user_id: 'test-user',
+                  revision: 1,
+                  artwork: {
+                    version: 2,
+                    vase: '陶瓶',
+                    background: 'warm',
+                    stems: [{ id: 1, kind: 'rose', x: 350, y: 747, angle: 0, flowerScale: 1, stemHeight: 260, color: '#d85f70' }],
+                  },
+                }],
+              }),
+            }),
+          }),
+        }
+      },
+    }),
+  }
+  const { object, metrics } = loadCloudObject({ uniCloud: cloud })
   const context = { getUniIdToken() {} }
   await object._before.call(context)
-  const rendered = await object.render.call(context, { svg: svg(1000) })
+  const rendered = await object.renderWork.call(context, { workId, expectedRevision: 1 })
   const result = object._after.call(context, null, rendered)
-  assert.equal(result.width, 698)
-  assert.equal(result.height, 1000)
-  assert.equal(Buffer.from(result.pngBase64, 'base64').toString(), 'png')
+  assert.equal(result.width, 1396)
+  assert.equal(result.height, 2000)
+  assert.equal(result.fileID, `cloud://test/${result.cloudPath}`)
+  assert.equal(result.cloudPath, `flower-works/${require('node:crypto').createHash('sha256').update('test-user').digest('hex')}/${workId}/artwork.png`)
+  assert.equal(metrics().uploads[0].fileContent.toString(), 'png')
+  assert.equal('pngBase64' in result, false)
   assert.equal(result.newToken, 'refreshed-token')
   assert.equal(metrics().renderCount, 1)
   assert.equal(metrics().initCount, 1)
   assert.equal(metrics().rendererOptions.font.loadSystemFonts, true)
+  assert.deepEqual(JSON.parse(JSON.stringify(metrics().rendererOptions.fitTo)), { mode: 'width', value: 1396 })
   assert.equal(metrics().freedImage, true)
   assert.equal(metrics().freedRenderer, true)
 })
@@ -98,30 +135,40 @@ test('每日花束云渲染仅允许管理员调用', async () => {
   await assert.rejects(object.renderDailyArtwork.call(context, { artwork }), (error) => error.errCode === 'ADMIN_REQUIRED')
   assert.equal(metrics().renderCount, 0)
   roles = ['admin']
-  const result = await object.renderDailyArtwork.call(context, { artwork: {
+  const date = '2026-10-16'
+  const result = await object.renderDailyArtwork.call(context, { date, artwork: {
     ...artwork,
   } })
-  assert.equal(result.width, 698)
-  assert.equal(result.height, 1000)
-  assert.equal(Buffer.from(result.pngBase64, 'base64').toString(), 'png')
+  assert.equal(result.width, 1396)
+  assert.equal(result.height, 2000)
+  assert.equal(result.fileID, `cloud://test/${result.cloudPath}`)
+  assert.match(result.cloudPath, new RegExp(`^daily-flower/${date}/render-[a-f\\d]{32}\\.png$`))
+  assert.equal(metrics().uploads[0].fileContent.toString(), 'png')
+  assert.equal('pngBase64' in result, false)
   assert.equal(metrics().renderCount, 1)
 })
 
-test('未登录与无效 SVG 在启动 WASM 之前被拒绝', async () => {
+test('未登录与无效作品在启动 WASM 之前被拒绝', async () => {
   const unauthenticated = loadCloudObject({ auth: false })
   await assert.rejects(unauthenticated.object._before.call({ getUniIdToken() {} }), error => error.errCode === 'AUTH_REQUIRED')
 
-  const { object, metrics } = loadCloudObject()
-  await object._before.call({ getUniIdToken() {} })
-  for (const invalid of [
-    '<svg width="698" height="1000"><script>alert(1)</script></svg>',
-    '<svg width="698" height="1000"><image href="https://example.org/image.png"/></svg>',
-    svg(999),
-    svg(2001),
-    `${svg(1000)}${'x'.repeat(1024 * 1024)}`,
-  ]) {
-    await assert.rejects(object.render.call({}, { svg: invalid }), /SVG 无效/)
+  const invalidWork = {
+    _id: 'a'.repeat(32),
+    user_id: 'test-user',
+    revision: 1,
+    artwork: { version: 99, stems: [] },
   }
+  const cloud = {
+    database: () => ({
+      collection: () => ({
+        where: () => ({ limit: () => ({ get: async () => ({ data: [invalidWork] }) }) }),
+      }),
+    }),
+  }
+  const { object, metrics } = loadCloudObject({ uniCloud: cloud })
+  const authenticated = { getUniIdToken() {} }
+  await object._before.call(authenticated)
+  await assert.rejects(object.renderWork.call(authenticated, { workId: invalidWork._id, expectedRevision: invalidWork.revision }), /作品格式版本/)
   assert.equal(metrics().initCount, 0)
   assert.equal(metrics().renderCount, 0)
 })
@@ -169,7 +216,7 @@ test('正式云函数只凭作品 ID 读取归属用户的作品并生成作品�
     constructor(svg) { latestSvg = svg }
     render() {
       const height = Number(latestSvg.match(/\bheight="(\d+)"/)[1])
-      return { width: 698, height, asPng: () => Buffer.from('png'), free() {} }
+      return { width: 1396, height: height * 2, asPng: () => Buffer.from('png'), free() {} }
     }
     free() {}
   }
@@ -178,8 +225,12 @@ test('正式云函数只凭作品 ID 读取归属用户的作品并生成作品�
   await object._before.call(context)
 
   const artworkResult = await object.renderWork.call(context, { workId: savedWork._id, expectedRevision: 3 })
-  assert.equal(artworkResult.width, 698)
-  assert.equal(artworkResult.height, 1000)
+  assert.equal(artworkResult.width, 1396)
+  assert.equal(artworkResult.height, 2000)
+  assert.equal(artworkResult.cloudPath, `flower-works/${require('node:crypto').createHash('sha256').update('test-user').digest('hex')}/${savedWork._id}/artwork.png`)
+  assert.equal('pngBase64' in artworkResult, false)
+  const repeatedRender = await object.renderWork.call(context, { workId: savedWork._id, expectedRevision: 3 })
+  assert.equal(repeatedRender.cloudPath, artworkResult.cloudPath)
   assert.match(latestSvg, /width="698" height="1000"/)
   assert.equal((latestSvg.match(/<g transform="translate\(350 747\)/g) || []).length, 65)
   assert.equal(JSON.stringify(queries[0]), JSON.stringify({ filter: { _id: savedWork._id, user_id: 'test-user' }, count: 1 }))
@@ -226,7 +277,7 @@ test('正式云函数按作品素材 ID 和版本读取 fileId 中的 SVG', asyn
   }
   class CaptureResvg {
     constructor(svg) { assembledSvg = svg }
-    render() { return { width: 698, height: 1000, asPng: () => Buffer.from('png'), free() {} } }
+    render() { return { width: 1396, height: 2000, asPng: () => Buffer.from('png'), free() {} } }
     free() {}
   }
   const { object } = loadCloudObject({ uniCloud: cloud, wasm: { initWasm: async () => {}, Resvg: CaptureResvg } })
@@ -293,7 +344,7 @@ test('正式云渲染按花束背层、花枝、花束前层顺序绘制并对�
   }
   class CaptureResvg {
     constructor(svg) { assembledSvg = svg }
-    render() { return { width: 698, height: 1000, asPng: () => Buffer.from('png'), free() {} } }
+    render() { return { width: 1396, height: 2000, asPng: () => Buffer.from('png'), free() {} } }
     free() {}
   }
   const { object } = loadCloudObject({ uniCloud: cloud, wasm: { initWasm: async () => {}, Resvg: CaptureResvg } })
@@ -319,16 +370,43 @@ test('正式云函数用 Resvg 输出有效 PNG', async (context) => {
     return
   }
   const wasmPath = require.resolve('@resvg/resvg-wasm/index_bg.wasm', { paths: [sharedRuntimeDir] })
-  const { object } = loadCloudObject({ wasm: require(resvgPath), wasmPath, fs })
+  const workId = 'c'.repeat(32)
+  const cloud = {
+    database: () => ({
+      collection: name => {
+        assert.equal(name, 'flower-works')
+        return {
+          where: filter => ({
+            limit: () => ({
+              get: async () => ({
+                data: [{
+                  _id: workId,
+                  user_id: 'test-user',
+                  revision: 1,
+                  artwork: {
+                    version: 2,
+                    vase: '陶瓶',
+                    background: 'warm',
+                    stems: [{ id: 1, kind: 'rose', x: 350, y: 747, angle: 0, flowerScale: 1, stemHeight: 260, color: '#d85f70' }],
+                  },
+                }],
+              }),
+            }),
+          }),
+        }
+      },
+    }),
+  }
+  const { object, metrics } = loadCloudObject({ wasm: require(resvgPath), wasmPath, fs, uniCloud: cloud })
   const auth = { getUniIdToken() {} }
   await object._before.call(auth)
-  const output = await object.render.call(auth, {
-    svg: '<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000"><rect width="698" height="1000" fill="#fff"/><text x="40" y="80" font-size="28">愿你花开</text></svg>',
-  })
-  const png = Buffer.from(output.pngBase64, 'base64')
-  assert.equal(output.width, 698)
-  assert.equal(output.height, 1000)
+  const output = await object.renderWork.call(auth, { workId, expectedRevision: 1 })
+  const png = metrics().uploads[0].fileContent
+  assert.equal(output.width, 1396)
+  assert.equal(output.height, 2000)
+  assert.equal(output.fileID, `cloud://test/${output.cloudPath}`)
+  assert.equal('pngBase64' in output, false)
   assert.equal(png.subarray(0, 8).toString('hex'), '89504e470d0a1a0a')
-  assert.equal(png.readUInt32BE(16), 698)
-  assert.equal(png.readUInt32BE(20), 1000)
+  assert.equal(png.readUInt32BE(16), 1396)
+  assert.equal(png.readUInt32BE(20), 2000)
 })

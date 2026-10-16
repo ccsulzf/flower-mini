@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { type Artwork, artworkBackground, parseArtwork } from '@/utils/flower/artwork'
-import FlowerBoard from '@/components/flower/flower-board.vue'
+import FlowerArtworkRenderer from '@/components/flower/flower-artwork-renderer.vue'
 import { exampleJson } from './example'
 
 definePage({
@@ -61,7 +61,7 @@ function fillExample() {
     </view>
     <view class="preview" :style="previewStyle">
       <view v-if="artwork" class="preview-board">
-        <FlowerBoard :background="artwork.background" :stems="artwork.stems" :vase="artwork.vase" :selected-id="null" />
+        <FlowerArtworkRenderer :background="artwork.background" :stems="artwork.stems" :vase="artwork.vase" />
       </view>
       <view v-else class="preview-empty">
         <text>你的花束会出现在这里</text>

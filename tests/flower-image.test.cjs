@@ -7,18 +7,13 @@ function fixture(options = {}) {
   const requests = [], saved = [], shared = [], previews = [], notices = [], removedFiles = []
   let imageNumber = 0, shouldFail = Boolean(options.renderFailure)
   const loader = createLoader({
-    uni: {
-      saveImageToPhotosAlbum: args => saved.push(args),
-      previewImage: args => previews.push(args),
-      showToast: args => notices.push(args.title),
-    },
     uniCloud: {
+      getTempFileURL: async ({ fileList }) => ({ fileList: fileList.map(fileID => ({ fileID, tempFileURL: `https://image/${fileID}` })) }),
       importObject: () => ({
         renderWork: input => new Promise((resolve, reject) => {
-          const height = 1000
           requests.push({
             input,
-            succeed: () => resolve({ width: 698, height, pngBase64: Buffer.from(`image-${++imageNumber}`).toString('base64') }),
+            succeed: () => resolve({ width: 1396, height: 2000, fileID: `cloud://test/${++imageNumber}.png`, cloudPath: `flower-works/${'a'.repeat(64)}/${input.workId}/artwork.png` }),
             fail: reject,
           })
           if (shouldFail) {
@@ -27,6 +22,12 @@ function fixture(options = {}) {
           }
         }),
       }),
+    },
+    uni: {
+      saveImageToPhotosAlbum: args => saved.push(args),
+      previewImage: args => previews.push(args),
+      showToast: args => notices.push(args.title),
+      downloadFile: args => args.success({ statusCode: 200, tempFilePath: args.filePath }),
     },
     wx: options.wx === false ? undefined : {
       env: { USER_DATA_PATH: '/user' },

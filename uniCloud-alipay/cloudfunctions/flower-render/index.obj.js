@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const resolveAuth = require('auth');
 const dailyFlower = require('daily-flower');
-const { createHash } = require('node:crypto');
+const { createHash, randomBytes } = require('node:crypto');
 const { initWasm, Resvg } = require('@resvg/resvg-wasm');
 
 let wasmReady;
@@ -50,7 +50,7 @@ function builtInVase(name) {
     const width = round ? 180 : 140;
     const height = round ? 140 : 170;
     const opacity = glass ? ' opacity=".72"' : '';
-    return `<g><ellipse cx="350" cy="910" rx="109" ry="15" fill="#000" opacity=".12"/><path d="M${left + width * .18} ${top} C${left} ${top} ${left} ${top + height * .15} ${left} ${top + height * .42} C${left} ${top + height} ${left + width * .18} ${top + height} ${left + width * .5} ${top + height} C${left + width * .82} ${top + height} ${left + width} ${top + height} ${left + width} ${top + height * .42} C${left + width} ${top + height * .15} ${left + width * .82} ${top} ${left + width * .82} ${top} Z" fill="url(#vase)"${opacity}/><ellipse cx="350" cy="${top + 2}" rx="${round ? 45 : 70}" ry="7.5" fill="${glass ? '#a4beb0' : '#84917b'}"/><ellipse cx="${left + 30}" cy="${top + 81}" rx="4" ry="49" fill="#fff" opacity=".2"/></g>`;
+    return `<g><ellipse cx="350" cy="910" rx="109" ry="15" fill="#000" opacity=".12"/><path d="M${left + width * .18} ${top} C${left} ${top} ${left} ${top + height * .15} ${left} ${top + height * .42} C${left} ${top + height} ${left + width * .18} ${top + height} ${left + width * .5} ${top + height} C${left + width * .82} ${top + height} ${left + width} ${top + height} ${left + width} ${top + height * .42} C${left + width} ${top + height * .15} ${left + width * .82} ${top} ${left + width * .82} ${top} Z" fill="url(#vase)"${opacity}/><ellipse cx="350" cy="${top + 2}" rx="${round ? 45 : 70}" ry="7.5" fill="${glass ? '#78958b' : '#667568'}"${glass ? ' opacity=".2"' : ''}/><ellipse cx="${left + 30}" cy="${top + 81}" rx="4" ry="49" fill="#fff" opacity=".2"/></g>`;
 }
 
 function bouquetLayers(source, material) {
@@ -234,6 +234,56 @@ async function buildArtworkSvg(artwork) {
     return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><defs><linearGradient id="vase" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e6e2d7"/><stop offset=".58" stop-color="#dedacf"/><stop offset="1" stop-color="#cdc9bd"/></linearGradient></defs><rect width="698" height="1000" fill="${backgroundColor(artwork.background)}"/>${background}<g transform="translate(0 ${anchorOffset})">${vaseBack}${stems.join('')}${vaseFront}</g></svg>`;
 }
 
+async function renderSvg(svg, cloudPath) {
+    const startedAt = Date.now();
+    const root = typeof svg === 'string' ? svg.match(/^\s*(<svg\b[^>]*>)/i)?.[1] : undefined;
+    const width = root && Number(root.match(/\bwidth=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
+    const height = root && Number(root.match(/\bheight=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
+    if (typeof svg !== 'string' || svg.length > 1024 * 1024
+        || !root || !/<\/svg>\s*$/i.test(svg)
+        || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|\b(?:href|xlink:href)\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(svg)
+        || width !== 698 || !Number.isInteger(height) || height < 1000 || height > 2000)
+        throw new Error('作品 SVG 无效或尺寸不符合要求');
+    if (!wasmReady) {
+        const wasmPath = require.resolve('@resvg/resvg-wasm/index_bg.wasm');
+        wasmReady = initWasm(fs.readFileSync(wasmPath)).catch((error) => {
+            if (error?.message === 'Already initialized. The `initWasm()` function can be used only once.')
+                return;
+            wasmReady = undefined;
+            throw error;
+        });
+    }
+    await wasmReady;
+    const renderer = new Resvg(svg, {
+        fitTo: { mode: 'width', value: 1396 },
+        font: { loadSystemFonts: true },
+    });
+    let image;
+    let png;
+    let renderedWidth;
+    let renderedHeight;
+    try {
+        image = renderer.render();
+        renderedWidth = image.width;
+        renderedHeight = image.height;
+        png = image.asPng();
+    }
+    finally {
+        image?.free();
+        renderer.free();
+    }
+    const uploaded = await uniCloud.uploadFile({ cloudPath, fileContent: Buffer.from(png) });
+    if (!uploaded?.fileID)
+        throw new Error('云端图片上传失败');
+    return {
+        width: renderedWidth,
+        height: renderedHeight,
+        fileID: uploaded.fileID,
+        cloudPath,
+        renderMs: Date.now() - startedAt,
+    };
+}
+
 module.exports = {
     async _before() {
         const auth = await resolveAuth(this);
@@ -259,62 +309,21 @@ module.exports = {
         if (work.revision !== expectedRevision)
             throw { errCode: 'WORK_CONFLICT', errMsg: '作品已更新，请刷新后重新生成图片' };
         const svg = await buildArtworkSvg(work.artwork);
-        const result = await module.exports.render.call(this, { svg });
+        const owner = createHash('sha256').update(this.auth.uid).digest('hex');
+        const cloudPath = `flower-works/${owner}/${workId}/artwork.png`;
+        const result = await renderSvg(svg, cloudPath);
         return { ...result, workRevision: work.revision };
     },
-    async renderDailyArtwork({ artwork } = {}) {
+    async renderDailyArtwork({ artwork, date } = {}) {
         const user = await uniCloud.database().collection('uni-id-users')
             .doc(this.auth.uid).field({ role: true }).get();
         const roles = user.data?.[0]?.role;
         if (!Array.isArray(roles) || !roles.includes('admin'))
             throw { errCode: 'ADMIN_REQUIRED', errMsg: '此账号没有每日插花维护权限' };
+        const validDate = dailyFlower.validateDate(date);
         const validArtwork = dailyFlower.validateArtwork(artwork);
         const svg = await buildArtworkSvg(validArtwork);
-        return module.exports.render.call(this, { svg });
-    },
-    async render({ svg } = {}) {
-        const startedAt = Date.now();
-        const root = typeof svg === 'string' ? svg.match(/^\s*(<svg\b[^>]*>)/i)?.[1] : undefined;
-        const width = root && Number(root.match(/\bwidth=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
-        const height = root && Number(root.match(/\bheight=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
-        if (typeof svg !== 'string' || svg.length > 1024 * 1024
-            || !root || !/<\/svg>\s*$/i.test(svg)
-            || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|\b(?:href|xlink:href)\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(svg)
-            || width !== 698 || !Number.isInteger(height) || height < 1000 || height > 2000)
-            throw new Error('作品 SVG 无效或尺寸不符合要求');
-        if (!wasmReady) {
-            const wasmPath = require.resolve('@resvg/resvg-wasm/index_bg.wasm');
-            wasmReady = initWasm(fs.readFileSync(wasmPath)).catch((error) => {
-                if (error?.message === 'Already initialized. The `initWasm()` function can be used only once.')
-                    return;
-                wasmReady = undefined;
-                throw error;
-            });
-        }
-        await wasmReady;
-        const renderer = new Resvg(svg, {
-            fitTo: { mode: 'original' },
-            font: { loadSystemFonts: true },
-        });
-        let image;
-        let png;
-        let renderedWidth;
-        let renderedHeight;
-        try {
-            image = renderer.render();
-            renderedWidth = image.width;
-            renderedHeight = image.height;
-            png = image.asPng();
-        }
-        finally {
-            image?.free();
-            renderer.free();
-        }
-        return {
-            width: renderedWidth,
-            height: renderedHeight,
-            pngBase64: Buffer.from(png).toString('base64'),
-            renderMs: Date.now() - startedAt,
-        };
+        const cloudPath = `daily-flower/${validDate}/render-${randomBytes(16).toString('hex')}.png`;
+        return renderSvg(svg, cloudPath);
     },
 };

@@ -11,6 +11,9 @@ async function cleanup(fileId) { if (fileId)
 async function expose(rows) {
     return rows.map(row => ({ id: row._id, title: row.title, description: row.description || '', createdAt: row.createdAt, updatedAt: row.updatedAt, revision: row.revision, draft: { version: 1, artwork: row.artwork, card: row.card, updatedAt: row.updatedAt, workId: row._id, workRevision: row.revision } }));
 }
+function exposeSummaries(rows) {
+    return rows.map(row => ({ id: row._id, title: row.title, description: row.description || '', createdAt: row.createdAt, updatedAt: row.updatedAt, revision: row.revision }));
+}
 module.exports = {
     async _before() { const auth = await resolveAuth(this); if (!auth?.uid)
         throw { errCode: 'AUTH_REQUIRED', errMsg: '请先登录后查看或保存作品' }; this.auth = auth; },
@@ -18,7 +21,7 @@ module.exports = {
         throw error; if (this.auth.newToken)
         result.newToken = this.auth.newToken; return result; },
     async list({ page = 1, pageSize = 20 } = {}) { if (!Number.isSafeInteger(page) || page < 1 || page > 10000 || !Number.isSafeInteger(pageSize) || pageSize < 1 || pageSize > 50)
-        validate.fail('分页参数无效'); const result = await collection().where({ user_id: this.auth.uid }).orderBy('updatedAt', 'desc').orderBy('_id', 'desc').skip((page - 1) * pageSize).limit(pageSize + 1).get(); return { items: await expose(result.data.slice(0, pageSize)), hasMore: result.data.length > pageSize }; },
+        validate.fail('分页参数无效'); const result = await collection().where({ user_id: this.auth.uid }).orderBy('updatedAt', 'desc').orderBy('_id', 'desc').skip((page - 1) * pageSize).limit(pageSize + 1).get(); return { items: exposeSummaries(result.data.slice(0, pageSize)), hasMore: result.data.length > pageSize }; },
     async get({ id } = {}) { validate.id(id); const result = await collection().where({ _id: id, user_id: this.auth.uid }).limit(1).get(); if (!result.data[0])
         throw { errCode: 'WORK_NOT_FOUND', errMsg: '作品不存在或已删除' }; return (await expose(result.data))[0]; },
     async save(input = {}) {

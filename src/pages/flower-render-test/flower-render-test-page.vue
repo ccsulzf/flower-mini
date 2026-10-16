@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import FlowerBoard from '@/components/flower/flower-board.vue'
+import FlowerArtworkRenderer from '@/components/flower/flower-artwork-renderer.vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { type Artwork, artworkBackground, parseArtwork } from '@/utils/flower/artwork'
 import { createComplexRenderTestArtwork } from '@/utils/flower/render-test-svg'
@@ -167,11 +167,11 @@ onMounted(() => {
       <view class="comparison-column">
         <text class="comparison-label">Vue 预览</text>
         <view class="preview" :style="previewStyle">
-          <FlowerBoard
+          <FlowerArtworkRenderer
             v-if="artwork" :background="artwork.background" :stems="artwork.stems"
             :background-material-id="artwork.backgroundMaterialId" :background-material-revision="artwork.backgroundMaterialRevision"
             :vase="artwork.vase" :vase-material-id="artwork.vaseMaterialId"
-            :vase-material-revision="artwork.vaseMaterialRevision" :selected-id="null"
+            :vase-material-revision="artwork.vaseMaterialRevision"
           />
           <view v-else class="preview-empty">
             <text>粘贴云端作品 JSON，或载入素材示例</text>

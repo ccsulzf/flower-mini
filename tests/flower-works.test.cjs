@@ -84,6 +84,7 @@ test('作品列表分页去重排序，重载清空分页，失败可重试', as
   await store.load(true)
   await store.load()
   assert.deepEqual(Array.from(store.items, r => r.id[0]), ['a', 'c', 'd'])
+  assert.equal(store.items.some(row => 'draft' in row || 'artwork' in row), false)
   assert.deepEqual(calls.map(r => r.page), [1, 2])
   await store.load(true)
   assert.equal(calls.at(-1).page, 1)

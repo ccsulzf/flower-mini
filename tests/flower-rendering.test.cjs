@@ -294,7 +294,7 @@ test('肾蕨等云端叶材点击区覆盖整枝，主花保持花头点击区',
     const material = items.find(item => item.id === id)
     catalog.prepared[`${material.id}:${material.revision}`] = material
     const stem = { id: 1, kind: 'rose', materialId: material.id, materialRevision: material.revision, x: 350, angle: 12, stemHeight: 410, flowerScale: 1, color: '#849c81' }
-    const state = loader.setup('src/components/flower/flower-stem.vue', { stem, anchor: 747, selected: true })
+    const state = loader.setup('src/components/flower/flower-stem-control.vue', { stem, anchor: 747, selected: true })
     assert.equal(state.isFoliage.value, material.group === 'foliage')
     assert.equal(state.touchAreaStyle.value, material.group === 'foliage' ? 'height:489rpx;' : '')
   }

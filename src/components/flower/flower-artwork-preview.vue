@@ -1,46 +1,63 @@
 <script setup lang="ts">
 import type { Artwork } from '@/models/artwork'
 import { onMounted, ref, watch } from 'vue'
+import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
-import FlowerBoard from './flower-board.vue'
+import { useFlowerWorksStore } from '@/stores/flowerWorksStore'
+import FlowerArtworkRenderer from './flower-artwork-renderer.vue'
 
-const props = defineProps<{ artwork: Artwork, scale: number }>()
+const props = defineProps<{ artwork?: Artwork, workId?: string, dailyDate?: string, scale: number }>()
 const catalog = useFlowerCatalogStore()
+const dailyFlowers = useDailyFlowerStore()
+const works = useFlowerWorksStore()
 const loading = ref(true)
 const error = ref('')
+const artwork = ref<Artwork | null>(null)
+let requestId = 0
 
 async function prepare() {
+  const currentRequestId = ++requestId
   loading.value = true
   error.value = ''
   try {
+    let source = props.artwork
+    if (!source && props.workId)
+      source = (await works.get(props.workId)).draft.artwork
+    else if (!source && props.dailyDate)
+      source = await dailyFlowers.getArtwork(props.dailyDate) ?? undefined
+    if (!source)
+      throw new Error('作品花束数据不存在')
     if (!catalog.loaded)
       await catalog.load()
     if (catalog.error)
       throw new Error(catalog.error)
-    const artwork = props.artwork
     const refs = [
-      ...artwork.stems.filter(stem => stem.materialId).map(stem => [stem.materialId!, stem.materialRevision!] as const),
-      ...(artwork.vaseMaterialId ? [[artwork.vaseMaterialId, artwork.vaseMaterialRevision!] as const] : []),
-      ...(artwork.backgroundMaterialId ? [[artwork.backgroundMaterialId, artwork.backgroundMaterialRevision!] as const] : []),
+      ...source.stems.filter(stem => stem.materialId).map(stem => [stem.materialId!, stem.materialRevision!] as const),
+      ...(source.vaseMaterialId ? [[source.vaseMaterialId, source.vaseMaterialRevision!] as const] : []),
+      ...(source.backgroundMaterialId ? [[source.backgroundMaterialId, source.backgroundMaterialRevision!] as const] : []),
     ]
     await Promise.all(refs.map(([id, revision]) => catalog.ensure(id, revision)))
+    if (currentRequestId === requestId)
+      artwork.value = source
   }
   catch (value) {
-    error.value = '作品暂时无法展示'
+    if (currentRequestId === requestId)
+      error.value = value instanceof Error ? value.message : '作品暂时无法展示'
   }
   finally {
-    loading.value = false
+    if (currentRequestId === requestId)
+      loading.value = false
   }
 }
 
 onMounted(() => { void prepare() })
-watch(() => JSON.stringify(props.artwork), () => { void prepare() })
+watch(() => [JSON.stringify(props.artwork), props.workId, props.dailyDate], () => { void prepare() })
 </script>
 
 <template>
   <view class="artwork-preview">
-    <FlowerBoard
-      v-if="!loading && !error"
+    <FlowerArtworkRenderer
+      v-if="!loading && !error && artwork"
       class="artwork-preview-board"
       :style="{ transform: `translate(-50%, -50%) scale(${scale})` }"
       :background="artwork.background"
@@ -48,7 +65,6 @@ watch(() => JSON.stringify(props.artwork), () => { void prepare() })
       :background-material-revision="artwork.backgroundMaterialRevision"
       :stems="artwork.stems"
       :vase="artwork.vase"
-      :selected-id="null"
       :vase-material-id="artwork.vaseMaterialId"
       :vase-material-revision="artwork.vaseMaterialRevision"
     />

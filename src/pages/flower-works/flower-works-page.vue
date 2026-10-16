@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SavedFlowerWork } from '@/models/flower-creation'
+import type { SavedFlowerWorkSummary } from '@/models/flower-creation'
 import { onReachBottom, onShow } from '@dcloudio/uni-app'
 import { ref } from 'vue'
 import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
@@ -16,11 +16,11 @@ onReachBottom(() => {
   if (works.hasMore)
     void works.load()
 })
-function open(work: SavedFlowerWork) {
+function open(work: SavedFlowerWorkSummary) {
   if (!deletingId.value && !copyingId.value)
     uni.navigateTo({ url: `/pages/flower-detail/flower-detail-page?workId=${work.id}` })
 }
-function edit(work: SavedFlowerWork) {
+function edit(work: SavedFlowerWorkSummary) {
   if (!deletingId.value && !copyingId.value)
     uni.navigateTo({ url: `/pages/flower-studio/flower-studio-page?workId=${work.id}&edit=1` })
 }
@@ -31,7 +31,7 @@ function date(value: number) {
 function back() {
   uni.navigateBack({ fail: () => uni.reLaunch({ url: '/pages/flower-studio/flower-studio-page' }) })
 }
-async function copy(work: SavedFlowerWork) {
+async function copy(work: SavedFlowerWorkSummary) {
   if (copyingId.value || deletingId.value)
     return
   copyingId.value = work.id
@@ -46,7 +46,7 @@ async function copy(work: SavedFlowerWork) {
     copyingId.value = ''
   }
 }
-function remove(work: SavedFlowerWork) {
+function remove(work: SavedFlowerWorkSummary) {
   if (deletingId.value || copyingId.value)
     return
   uni.showModal({
@@ -95,7 +95,7 @@ function remove(work: SavedFlowerWork) {
     <view class="works-grid">
       <view v-for="work in works.items" :key="work.id" class="work-card">
         <view class="work-cover">
-          <FlowerArtworkPreview :artwork="work.draft.artwork" :scale="0.44" />
+          <FlowerArtworkPreview :work-id="work.id" :scale="0.44" />
           <view class="work-cover-hitarea" @tap="open(work)" />
         </view>
         <view class="work-title" @click="open(work)">

@@ -15,11 +15,11 @@ export interface PublishedDailyFlower {
 export interface DailyFlowerHistoryItem {
   date: string
   description: string
-  artwork: Artwork
 }
 
 interface DailyFlowerCloud {
   getByDate: (input: { date: string }) => Promise<{ flower: Omit<PublishedDailyFlower, 'imagePath'> | null }>
+  getArtwork: (input: { date: string }) => Promise<{ flower: { date: string, description: string, artwork: Artwork } | null }>
   listHistory: (input: { today: string, page: number, pageSize: number, date?: string }) => Promise<{ items: DailyFlowerHistoryItem[], hasMore: boolean }>
 }
 
@@ -129,6 +129,14 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
     return task
   }
 
+  async function getArtwork(date: string) {
+    const cloud = uniCloud.importObject('flower-daily', { customUI: true }) as DailyFlowerCloud
+    const { flower } = await cloud.getArtwork({ date })
+    if (!flower)
+      return null
+    return parseDailyFlower(JSON.stringify(flower)).artwork
+  }
+
   async function checkToday() {
     const date = localDate()
     const dismissedDate = uni.getStorageSync(dismissedStorageKey)
@@ -185,7 +193,7 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
         const flower = parseDailyFlower(JSON.stringify(item))
         if (flower.date > date)
           throw new Error('历史花束日期无效')
-        return { date: flower.date, description: flower.description, artwork: flower.artwork }
+        return { date: flower.date, description: flower.description }
       })
       const merged = reset ? parsed : [...historyItems.value, ...parsed]
       historyItems.value = [...new Map(merged.map(item => [item.date, item])).values()]
@@ -224,6 +232,7 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
     historyHasMore,
     historyDateFilter,
     loadDate,
+    getArtwork,
     checkToday,
     loadHistory,
     dismissToday,

@@ -95,6 +95,15 @@ test('每日花束读取接口公开可读，不要求登录', async () => {
   assert.equal(publicUser.requestedFileIDs().join(','), sampleRecord().imageFileId)
 })
 
+test('按日期读取花束 JSON 不请求图片 URL', async () => {
+  const publicUser = setupCloud({ record: sampleRecord() })
+  const result = await publicUser.cloud.getArtwork({ date: '2026-10-14' })
+  assert.equal(result.flower.description, '秋日花束')
+  assert.equal(result.flower.artwork.stems.length, 1)
+  assert.deepEqual(publicUser.requestedFileIDs(), [])
+  assert.equal((await setupCloud().cloud.getArtwork({ date: '2026-10-14' })).flower, null)
+})
+
 test('今日花束未发布返回空结果，坏记录和查询日期被拒绝', async () => {
   const empty = setupCloud()
   assert.equal((await empty.cloud.getByDate({ date: '2026-10-14' })).flower, null)
@@ -122,8 +131,9 @@ test('历史列表只返回今天及以前的公开花束，并支持分页', as
   const first = await cloud.listHistory({ today: '2026-10-14', page: 1, pageSize: 1 })
   assert.deepEqual(first.items.map(item => item.date), ['2026-10-14'])
   assert.equal(first.hasMore, true)
-  assert.equal(first.items[0].imageFileId, newest.imageFileId)
-  assert.equal(first.items[0].updatedBy, undefined)
+  assert.equal(first.items[0].description, newest.description)
+  assert.equal(first.items[0].artwork, undefined)
+  assert.equal(first.items[0].imageFileId, undefined)
 
   const second = await cloud.listHistory({ today: '2026-10-14', page: 2, pageSize: 1 })
   assert.deepEqual(second.items.map(item => item.date), ['2026-10-13'])

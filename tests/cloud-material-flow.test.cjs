@@ -103,6 +103,28 @@ test('下载的 SVG 按几何拼装；Canvas 直接绘制同一来源，未知�
   assert.ok(Math.abs(endpoints.at(-1)[0] - 90) < 1e-8); assert.ok(Math.abs(endpoints.at(-1)[1] - 50) < 1e-8)
 })
 
+test('所有花瓶的瓶口内腔使用与花茎协调的低饱和灰绿色', () => {
+  const loader = createLoader()
+  const vases = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.filter(item => item.category === 'vase')
+  const { drawSvg } = loader.load('src/utils/flower/svg-canvas.ts')
+  const acceptedMouthColors = new Set(['#667568', '#78958b'])
+
+  assert.equal(vases.length, 9)
+  for (const vase of vases) {
+    const fills = []
+    const ctx = new Proxy({}, {
+      get: (_, method) => (...args) => {
+        if (method === 'setFillStyle' && typeof args[0] === 'string')
+          fills.push(args[0].toLowerCase())
+        if (method === 'createLinearGradient')
+          return { addColorStop() {} }
+      },
+    })
+    drawSvg(ctx, vase.sources.vase, vase.geometry.width, vase.geometry.height)
+    assert.ok(fills.some(color => acceptedMouthColors.has(color)), `${vase.id} 缺少统一瓶口内腔色`)
+  }
+})
+
 test('导出花材时按比例降低 SVG 描边不透明度', () => {
   const { drawSvg } = createLoader().load('src/utils/flower/svg-canvas.ts')
   const alphas = []

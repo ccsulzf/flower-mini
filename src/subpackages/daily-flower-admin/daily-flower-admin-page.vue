@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { Artwork } from '@/models/artwork'
 import { computed, onMounted, ref } from 'vue'
-import FlowerBoard from '@/components/flower/flower-board.vue'
-import localDailyFlowerJson from './assets/daily-flower.json'
-import localDailyFlowerMaterialsJson from './assets/daily-flower-materials.json'
+import FlowerArtworkRenderer from '@/components/flower/flower-artwork-renderer.vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { waitForAppAuthReady } from '@/utils/appAuth'
 import { artworkBackground } from '@/utils/flower/artwork'
 import { type DailyFlowerDraft, parseDailyFlower } from '@/utils/flower/daily-flower'
+import localDailyFlowerMaterialsJson from './assets/daily-flower-materials.json'
+import localDailyFlowerJson from './assets/daily-flower.json'
 import { attachCloudMaterials, type DailyFlowerMaterialManifest } from './lib/daily-flower-preview'
 import { publishDailyFlower } from './lib/publish'
 
@@ -169,14 +169,13 @@ onMounted(() => preview())
         <text>{{ draft.description }}</text>
       </view>
       <view class="preview" :style="previewStyle">
-        <FlowerBoard
+        <FlowerArtworkRenderer
           v-if="artwork"
           :background="artwork.background"
           :background-material-id="artwork.backgroundMaterialId"
           :background-material-revision="artwork.backgroundMaterialRevision"
           :stems="artwork.stems"
           :vase="artwork.vase"
-          :selected-id="null"
           :vase-material-id="artwork.vaseMaterialId"
           :vase-material-revision="artwork.vaseMaterialRevision"
         />

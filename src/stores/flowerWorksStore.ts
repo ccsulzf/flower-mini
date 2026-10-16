@@ -1,4 +1,4 @@
-import type { CreationDraft, SavedFlowerWork } from '@/models/flower-creation'
+import type { CreationDraft, SavedFlowerWork, SavedFlowerWorkSummary } from '@/models/flower-creation'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useUserInfoStore } from '@/stores/userInfoStore'
@@ -7,7 +7,7 @@ import { clearImageCacheScope } from '@/utils/flower/image-cache'
 
 interface SaveWorkInput { draft: CreationDraft, title: string, description: string, workId?: string, expectedRevision?: number }
 interface WorksCloud {
-  list: (input: { page: number, pageSize: number }) => Promise<{ items: SavedFlowerWork[], hasMore: boolean }>
+  list: (input: { page: number, pageSize: number }) => Promise<{ items: SavedFlowerWorkSummary[], hasMore: boolean }>
   get: (input: { id: string }) => Promise<SavedFlowerWork>
   save: (input: { id?: string, expectedRevision?: number, title: string, description: string, artwork: CreationDraft['artwork'], card: CreationDraft['card'] }) => Promise<SavedFlowerWork>
   remove: (input: { id: string, expectedRevision: number }) => Promise<unknown>
@@ -20,8 +20,24 @@ function normalize(work: SavedFlowerWork): SavedFlowerWork {
     throw new Error('云端作品数据无效')
   return { ...work, description: work.description || '', draft: validateDraft({ ...work.draft, workId: work.id, workRevision: work.revision }) }
 }
+function normalizeSummary(work: SavedFlowerWorkSummary): SavedFlowerWorkSummary {
+  if (!work || !/^[a-f\d]{32}$/.test(work.id) || typeof work.title !== 'string' || work.title.length > 40 || work.description !== undefined && (typeof work.description !== 'string' || work.description.length > 160) || !Number.isSafeInteger(work.revision) || work.revision < 1 || !Number.isFinite(work.updatedAt) || !Number.isFinite(work.createdAt))
+    throw new Error('云端作品列表数据无效')
+  return {
+    id: work.id,
+    title: work.title,
+    description: work.description || '',
+    createdAt: work.createdAt,
+    updatedAt: work.updatedAt,
+    revision: work.revision,
+  }
+}
+function summary(work: SavedFlowerWork): SavedFlowerWorkSummary {
+  const { draft: _draft, ...row } = work
+  return row
+}
 export const useFlowerWorksStore = defineStore('flowerWorks', () => {
-  const items = ref<SavedFlowerWork[]>([])
+  const items = ref<SavedFlowerWorkSummary[]>([])
   const loading = ref(false)
   const saving = ref(false)
   const error = ref('')
@@ -43,7 +59,7 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
       if (!reset && !hasMore.value)
         return
       const result = await cloud.list({ page, pageSize: 20 })
-      const rows = result.items.map(normalize)
+      const rows = result.items.map(normalizeSummary)
       const merged = reset ? rows : [...items.value, ...rows]
       items.value = [...new Map(merged.map(row => [row.id, row])).values()].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
       hasMore.value = result.hasMore
@@ -69,7 +85,7 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
       const { cloud } = await client()
       const draft = validateDraft(input.draft)
       const work = normalize(await cloud.save({ ...(input.workId ? { id: input.workId, expectedRevision: input.expectedRevision } : {}), title: input.title, description: input.description, artwork: draft.artwork, card: draft.card }))
-      items.value = [work, ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
+      items.value = [summary(work), ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
       return work
     }
     catch (value) {
@@ -95,7 +111,7 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
       const { cloud } = await client()
       const original = normalize(await cloud.get({ id }))
       const work = normalize(await cloud.save({ title: `${original.title.slice(0, 37)} 副本`, description: original.description, artwork: original.draft.artwork, card: original.draft.card }))
-      items.value = [work, ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
+      items.value = [summary(work), ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
       return work
     }
     catch (value) {

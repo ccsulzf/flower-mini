@@ -22,7 +22,8 @@ function validateImage(fileID, fileContent) {
   if (typeof fileID !== 'string' || !fileID.startsWith('cloud://') || fileID.length > 1024
     || !Buffer.isBuffer(fileContent) || fileContent.length < 24 || fileContent.length > 12 * 1024 * 1024
     || fileContent.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a'
-    || fileContent.readUInt32BE(16) !== 698 || fileContent.readUInt32BE(20) !== 1000) {
+    || ![[698, 1000], [1396, 2000]].some(([width, height]) =>
+      fileContent.readUInt32BE(16) === width && fileContent.readUInt32BE(20) === height)) {
     throw { errCode: 'INVALID_DAILY_FLOWER_IMAGE', errMsg: '花束图片无效，请重新生成后发布' }
   }
 }

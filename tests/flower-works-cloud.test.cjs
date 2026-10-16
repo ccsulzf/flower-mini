@@ -46,6 +46,9 @@ test('云端作品鉴权、账号隔离、同 ID 更新和修订冲突', async (
     await assert.rejects(f.invoke('save', { ...input, id: saved.id, expectedRevision: 1 }), error => error.errCode === 'WORK_CONFLICT');
     const list = await f.invoke('list', { page: 1, pageSize: 20 });
     assert.equal(list.items.length, 1);
+    assert.equal(list.items[0].draft, undefined);
+    assert.equal(list.items[0].artwork, undefined);
+    assert.equal(list.items[0].id, saved.id);
     await f.invoke('remove', { id: saved.id, expectedRevision: 2 });
     assert.equal(f.rows.length, 0);
 });
