@@ -4,6 +4,10 @@ function invalid(message) {
   throw { errCode: 'INVALID_DAILY_FLOWER', errMsg: message }
 }
 
+function shanghaiDate(now = new Date()) {
+  return new Date(now.getTime() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10)
+}
+
 function publicRecord(record, date) {
   const description = dailyFlower.validateDescription(record.description)
   const artwork = dailyFlower.validateArtwork(record.artwork)
@@ -33,7 +37,7 @@ module.exports = {
     const result = await uniCloud.database().collection('daily-flower').doc(date).get()
     const record = result.data?.[0]
     if (!record)
-      return { flower: null }
+      return { code: 0, data: { flower: null } }
 
     const flower = publicRecord(record, date)
 
@@ -42,7 +46,7 @@ module.exports = {
     if (!image || typeof image.tempFileURL !== 'string' || !/^https:\/\//.test(image.tempFileURL))
       throw { errCode: 'DAILY_FLOWER_IMAGE_UNAVAILABLE', errMsg: '今日花束图片暂不可用' }
 
-    return { flower: { ...flower, imageUrl: image.tempFileURL } }
+    return { code: 0, data: { flower: { ...flower, imageUrl: image.tempFileURL } } }
   },
 
   async getArtwork(input = {}) {
@@ -50,13 +54,13 @@ module.exports = {
     const result = await uniCloud.database().collection('daily-flower').doc(date).get()
     const record = result.data?.[0]
     if (!record)
-      return { flower: null }
+      return { code: 0, data: { flower: null } }
     const flower = publicRecord(record, date)
-    return { flower: { date, description: flower.description, artwork: flower.artwork } }
+    return { code: 0, data: { flower: { date, description: flower.description, artwork: flower.artwork } } }
   },
 
   async listHistory(input = {}) {
-    const today = dailyFlower.validateDate(input.today)
+    const today = shanghaiDate()
     const selectedDate = input.date === undefined ? '' : dailyFlower.validateDate(input.date)
     const page = input.page === undefined ? 1 : input.page
     const pageSize = input.pageSize === undefined ? 20 : input.pageSize
@@ -68,10 +72,10 @@ module.exports = {
     const db = uniCloud.database()
     if (selectedDate) {
       if (selectedDate > today)
-        return { items: [], hasMore: false }
+        return { code: 0, data: { items: [], hasMore: false } }
       const result = await db.collection('daily-flower').doc(selectedDate).get()
       const record = result.data?.[0]
-      return { items: record ? [publicSummary(record, selectedDate)] : [], hasMore: false }
+      return { code: 0, data: { items: record ? [publicSummary(record, selectedDate)] : [], hasMore: false } }
     }
 
     const result = await db.collection('daily-flower')
@@ -88,6 +92,6 @@ module.exports = {
     })
     if (rows.some(row => row.date > today))
       invalid('历史花束日期无效')
-    return { items: rows, hasMore: result.data.length > pageSize }
+    return { code: 0, data: { items: rows, hasMore: result.data.length > pageSize } }
   },
 }

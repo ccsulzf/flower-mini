@@ -14,6 +14,7 @@ function setupCloud(options = {}) {
   const rows = options.records || (record ? [record] : [])
   vm.runInNewContext(source, {
     module,
+    Date: options.Date || Date,
     require: (name) => {
       if (name === 'daily-flower')
         return dailyFlower
@@ -90,24 +91,26 @@ function sampleRecord(overrides = {}) {
 test('每日花束读取接口公开可读，不要求登录', async () => {
   const publicUser = setupCloud({ record: sampleRecord() })
   const result = await publicUser.cloud.getByDate({ date: '2026-10-14' })
-  assert.equal(result.flower.description, '秋日花束')
-  assert.equal(result.flower.imageUrl, 'https://example.com/daily-flower.png')
-  assert.equal(result.flower.updatedBy, undefined)
+  assert.equal(result.code, 0)
+  assert.equal(result.data.flower.description, '秋日花束')
+  assert.equal(result.data.flower.imageUrl, 'https://example.com/daily-flower.png')
+  assert.equal(result.data.flower.updatedBy, undefined)
   assert.equal(publicUser.requestedFileIDs().join(','), sampleRecord().imageFileId)
 })
 
 test('按日期读取花束 JSON 不请求图片 URL', async () => {
   const publicUser = setupCloud({ record: sampleRecord() })
   const result = await publicUser.cloud.getArtwork({ date: '2026-10-14' })
-  assert.equal(result.flower.description, '秋日花束')
-  assert.equal(result.flower.artwork.stems.length, 1)
+  assert.equal(result.code, 0)
+  assert.equal(result.data.flower.description, '秋日花束')
+  assert.equal(result.data.flower.artwork.stems.length, 1)
   assert.deepEqual(publicUser.requestedFileIDs(), [])
-  assert.equal((await setupCloud().cloud.getArtwork({ date: '2026-10-14' })).flower, null)
+  assert.equal((await setupCloud().cloud.getArtwork({ date: '2026-10-14' })).data.flower, null)
 })
 
 test('今日花束未发布返回空结果，坏记录和查询日期被拒绝', async () => {
   const empty = setupCloud()
-  assert.equal((await empty.cloud.getByDate({ date: '2026-10-14' })).flower, null)
+  assert.equal((await empty.cloud.getByDate({ date: '2026-10-14' })).data.flower, null)
 
   const badDate = setupCloud()
   await assert.rejects(badDate.cloud.getByDate({ date: '2026-02-30' }), error => error.errCode === 'INVALID_DAILY_FLOWER')
@@ -128,32 +131,58 @@ test('历史列表只返回今天及以前的公开花束，并支持分页', as
     date: '2026-10-15',
     imageFileId: 'cloud://space/daily-flower/2026-10-15/flower.png',
   })
-  const { cloud } = setupCloud({ records: [older, future, newest] })
-  const first = await cloud.listHistory({ today: '2026-10-14', page: 1, pageSize: 1 })
+  class FixedDate extends Date {
+    constructor(...args) { super(...(args.length ? args : ['2026-10-14T03:00:00.000Z'])) }
+  }
+  const { cloud } = setupCloud({ records: [older, future, newest], date: '2026-10-14', Date: FixedDate })
+  const first = (await cloud.listHistory({ page: 1, pageSize: 1 })).data
   assert.deepEqual(first.items.map(item => item.date), ['2026-10-14'])
   assert.equal(first.hasMore, true)
   assert.equal(first.items[0].description, newest.description)
   assert.equal(first.items[0].artwork, undefined)
   assert.equal(first.items[0].imageFileId, undefined)
 
-  const second = await cloud.listHistory({ today: '2026-10-14', page: 2, pageSize: 1 })
+  const second = (await cloud.listHistory({ page: 2, pageSize: 1 })).data
   assert.deepEqual(second.items.map(item => item.date), ['2026-10-13'])
   assert.equal(second.hasMore, false)
 
-  const exact = await cloud.listHistory({ today: '2026-10-14', date: '2026-10-13' })
+  const exact = (await cloud.listHistory({ date: '2026-10-13' })).data
   assert.equal(exact.items.length, 1)
   assert.equal(exact.items[0].date, '2026-10-13')
   assert.equal(exact.hasMore, false)
-  const futureExact = await cloud.listHistory({ today: '2026-10-14', date: '2026-10-15' })
+  const futureExact = (await cloud.listHistory({ date: '2026-10-15' })).data
   assert.equal(futureExact.items.length, 0)
 })
 
 test('历史列表拒绝无效分页参数和损坏记录', async () => {
-  const { cloud } = setupCloud({ records: [sampleRecord()] })
-  await assert.rejects(cloud.listHistory({ today: '2026-10-14', page: 0, pageSize: 20 }), error => error.errCode === 'INVALID_DAILY_FLOWER')
+  class FixedDate extends Date {
+    constructor(...args) { super(...(args.length ? args : ['2026-10-14T03:00:00.000Z'])) }
+  }
+  const { cloud } = setupCloud({ records: [sampleRecord()], date: '2026-10-14', Date: FixedDate })
+  await assert.rejects(cloud.listHistory({ page: 0, pageSize: 20 }), error => error.errCode === 'INVALID_DAILY_FLOWER')
 
-  const bad = setupCloud({ records: [sampleRecord({ _id: '2026-10-13' })] })
-  await assert.rejects(bad.cloud.listHistory({ today: '2026-10-14' }), error => error.errCode === 'INVALID_DAILY_FLOWER')
+  const bad = setupCloud({ records: [sampleRecord({ _id: '2026-10-13' })], date: '2026-10-14', Date: FixedDate })
+  await assert.rejects(bad.cloud.listHistory({}), error => error.errCode === 'INVALID_DAILY_FLOWER')
+})
+
+test('历史列表忽略客户端 today，以 Asia/Shanghai 服务端日期限制未来数据', async () => {
+  class FixedDate extends Date {
+    constructor(...args) { super(...(args.length ? args : ['2026-10-18T16:30:00.000Z'])) }
+  }
+  const today = sampleRecord({
+    _id: '2026-10-19',
+    date: '2026-10-19',
+    imageFileId: 'cloud://space/daily-flower/2026-10-19/flower.png',
+  })
+  const future = sampleRecord({
+    _id: '2026-10-20',
+    date: '2026-10-20',
+    imageFileId: 'cloud://space/daily-flower/2026-10-20/flower.png',
+  })
+  const { cloud } = setupCloud({ records: [future, today], date: '2026-10-19', Date: FixedDate })
+  const result = await cloud.listHistory({ today: '2999-12-31', page: 1, pageSize: 20 })
+  assert.equal(result.code, 0)
+  assert.deepEqual(result.data.items.map(item => item.date), ['2026-10-19'])
 })
 
 test('每日花束历史页按云端摘要加载，不要求列表项包含 artwork', async () => {
