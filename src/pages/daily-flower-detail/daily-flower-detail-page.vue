@@ -13,6 +13,7 @@ const date = ref('')
 const loading = ref(true)
 const error = ref('')
 const copying = ref(false)
+const sharing = ref(false)
 const instance = getCurrentInstance()
 let alive = true
 
@@ -30,6 +31,7 @@ async function loadFlower() {
     loading.value = false
     return
   }
+
   loading.value = true
   error.value = ''
   try {
@@ -53,6 +55,37 @@ async function loadFlower() {
 function displayDate(value: string) {
   const [year, month, day] = value.split('-')
   return `${year}年${Number(month)}月${Number(day)}日`
+}
+
+function makeCard() {
+  if (!flower.value)
+    return
+  uni.navigateTo({
+    url: `/pages/flower-card/flower-card-page?dailyFlowerDate=${flower.value.date}`,
+  })
+}
+
+function shareFlower() {
+  const original = flower.value
+  if (!original || sharing.value)
+    return
+  // #ifdef MP-WEIXIN
+  if (typeof wx !== 'undefined' && typeof wx.showShareImageMenu === 'function' && wx.canIUse('showShareImageMenu')) {
+    sharing.value = true
+    wx.showShareImageMenu({
+      path: original.imagePath,
+      complete: () => {
+        sharing.value = false
+      },
+      fail: (value) => {
+        if (!String(value.errMsg || '').includes('cancel'))
+          uni.showToast({ title: '分享失败，请重试', icon: 'none' })
+      },
+    })
+    return
+  }
+  // #endif
+  uni.showToast({ title: '当前平台不支持直接分享图片', icon: 'none' })
 }
 
 async function copyToStudio() {
@@ -101,17 +134,26 @@ async function copyToStudio() {
       </button>
     </view>
     <template v-else-if="flower">
+      <view class="detail-top-actions">
+        <button :disabled="copying || sharing" @click="makeCard">
+          <view class="i-carbon-image" />
+          贺卡
+        </button>
+        <button :disabled="copying || sharing" @click="shareFlower">
+          <view class="i-carbon-share" />
+          分享
+        </button>
+        <button :disabled="copying || sharing" @click="copyToStudio">
+          <view class="i-carbon-copy" />
+          {{ copying ? '复制中' : '复制' }}
+        </button>
+      </view>
       <view class="detail-image-wrap">
         <image class="detail-image" :src="flower.imagePath" mode="aspectFit" />
       </view>
       <view class="detail-content">
         <text class="detail-date">{{ displayDate(flower.date) }}</text>
         <text class="detail-description">{{ flower.description }}</text>
-      </view>
-      <view class="detail-footer">
-        <button class="copy-button" :disabled="copying" @click="copyToStudio">
-          {{ copying ? '复制中' : '复制' }}
-        </button>
       </view>
     </template>
   </view>
@@ -126,6 +168,7 @@ async function copyToStudio() {
   padding: 26rpx 26rpx calc(32rpx + env(safe-area-inset-bottom));
   background: #f6f3eb;
   color: #3f463d;
+  justify-content: space-between;
 }
 
 .detail-image-wrap {
@@ -162,29 +205,43 @@ async function copyToStudio() {
   line-height: 1.7;
 }
 
-.detail-footer {
-  margin-top: auto;
-  padding-top: 24rpx;
+.detail-top-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12rpx;
+  flex-shrink: 0;
+  padding: 0 6rpx 12rpx;
 }
 
-.copy-button {
-  width: 100%;
-  height: 84rpx;
+.detail-top-actions button {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
   margin: 0;
   border: 0;
-  border-radius: 44rpx;
-  background: #758c70;
-  color: #fffdf7;
-  font-size: 26rpx;
-  line-height: 84rpx;
+  border-radius: 14rpx;
+  background: transparent;
+  color: #596451;
+  font-size: 24rpx;
+  line-height: 48rpx;
+  padding: 8rpx 10rpx;
 }
 
-.copy-button::after {
+.detail-top-actions button view {
+  font-size: 28rpx;
+}
+
+.detail-top-actions button::after {
   border: 0;
 }
 
-.copy-button[disabled] {
+.detail-top-actions button[disabled] {
   opacity: .55;
+}
+
+.detail-top-actions button:not([disabled]):active {
+  background: #e9ecdf;
 }
 
 .detail-state {

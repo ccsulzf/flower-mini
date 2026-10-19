@@ -208,7 +208,8 @@ function applyEditor() {
   min-height: 100vh;
   box-sizing: border-box;
   color: #3f463d;
-  padding: 18rpx 28rpx calc(18rpx + env(safe-area-inset-bottom));
+  padding: 22rpx 30rpx calc(22rpx + env(safe-area-inset-bottom));
+  background: #eeeae1;
 }
 
 .card-canvas {
@@ -227,7 +228,11 @@ function applyEditor() {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: 24rpx;
+  margin: 4rpx 2rpx 0;
+  border: 2rpx solid #e1d9c9;
+  border-radius: 10rpx;
+  background: #f6f3eb;
+  box-shadow: 0 14rpx 34rpx rgba(75, 69, 54, .12);
 }
 
 .greeting-image {
@@ -272,8 +277,8 @@ function applyEditor() {
   flex-shrink: 0;
   display: flex;
   justify-content: center;
-  gap: 12rpx;
-  padding: 14rpx 0 0;
+  gap: 14rpx;
+  padding: 20rpx 0 4rpx;
 }
 
 .greeting-actions button {
@@ -281,15 +286,22 @@ function applyEditor() {
   flex: 1;
   align-items: center;
   justify-content: center;
-  gap: 8rpx;
+  gap: 10rpx;
+  min-width: 0;
+  height: 82rpx;
   margin: 0;
-  padding: 8rpx 4rpx;
-  background: transparent;
-  color: #75806c;
-  line-height: 48rpx;
+  padding: 0 4rpx;
+  border: 1rpx solid #ded8ca;
+  border-radius: 18rpx;
+  background: #f8f6ef;
+  color: #626c58;
+  line-height: 1;
   font-size: 22rpx;
-  border-radius: 12rpx;
   white-space: nowrap;
+}
+
+.greeting-actions button::after {
+  border: none;
 }
 
 .greeting-actions button view {
@@ -297,12 +309,15 @@ function applyEditor() {
 }
 
 .greeting-actions .greeting-primary {
-  background: transparent;
-  color: #75806c;
-  font-weight: 400;
+  border-color: #687a62;
+  background: #687a62;
+  color: #fffdf7;
+  font-weight: 500;
 }
 
 .greeting-actions .greeting-edit {
+  border-color: #d1d8c9;
+  background: #edf0e8;
   color: #515c49;
 }
 

@@ -12,8 +12,8 @@ import { useFlowerStudioLayout } from '@/hooks/useFlowerStudioLayout'
 import { useCreationArtworkStore } from '@/stores/artworkStore'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
-import { useUserInfoStore } from '@/stores/userInfoStore'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
+import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
 import StudioFlowerToolbar from './components/studio-flower-toolbar.vue'
 import StudioMaterialDock from './components/studio-material-dock.vue'
@@ -214,30 +214,10 @@ async function finish() {
     return
   }
   session.flushDraft()
-  const draft = session.snapshot()
   finishing.value = true
   try {
-    await prepareArtwork()
-    if (!alive)
-      return
-    const now = new Date()
-    let title = `花意 ${now.getMonth() + 1}月${now.getDate()}日 ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
-    let description = ''
-    if (draft.workId) {
-      const original = await works.get(draft.workId)
-      if (!alive)
-        return
-      title = original.title
-      description = original.description
-    }
-    const work = await works.save({
-      draft,
-      title,
-      description,
-      workId: draft.workId,
-      expectedRevision: draft.workRevision,
-    })
-    if (!alive)
+    const work = await saveCurrentWork()
+    if (!work || !alive)
       return
     await new Promise<void>((resolve, reject) => {
       uni.navigateTo({
@@ -249,7 +229,7 @@ async function finish() {
     if (!alive)
       return
     applying = true
-    const draftCleared = session.saved()
+    const draftCleared = session.saved(work)
     applying = false
     if (!draftCleared)
       notify(storageError.value || '作品已保存，但本地草稿清理失败')
@@ -266,6 +246,80 @@ async function finish() {
   finally {
     finishing.value = false
   }
+}
+
+async function saveCurrentWork() {
+  if (!pendingDraft.value && !readonly.value && !vaseMaterialId.value)
+    throw new Error('花瓶正在准备，请稍后再保存或离开')
+  const draft = session.snapshot()
+  await prepareArtwork()
+  if (!alive)
+    return null
+  const now = new Date()
+  let title = `花意 ${now.getMonth() + 1}月${now.getDate()}日 ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
+  let description = ''
+  if (draft.workId) {
+    const original = await works.get(draft.workId)
+    if (!alive)
+      return null
+    title = original.title
+    description = original.description
+  }
+  return works.save({
+    draft,
+    title,
+    description,
+    workId: draft.workId,
+    expectedRevision: draft.workRevision,
+  })
+}
+
+function requestLeave(leave: () => void) {
+  if (finishing.value)
+    return
+  endDrag(true)
+  const hasMeaningfulChanges = addingMaterial.value || session.hasUnsavedChanges.value || store.stems.length > 0 || Boolean(session.card.value.blessing || session.card.value.signature) || Boolean(session.workId.value)
+  if (!hasMeaningfulChanges) {
+    session.flushDraft()
+    leave()
+    return
+  }
+  uni.showModal({
+    title: '作品尚未保存',
+    content: '保存作品后再离开吗？',
+    confirmText: '保存作品',
+    cancelText: '放弃离开',
+    success: async (result) => {
+      if (!result.confirm) {
+        sessionVersion++
+        addingMaterial.value = false
+        if (session.restart())
+          leave()
+        return
+      }
+      if (addingMaterial.value) {
+        notify('素材正在准备，请稍后再保存')
+        return
+      }
+      finishing.value = true
+      try {
+        const work = await saveCurrentWork()
+        if (!work || !alive)
+          return
+        if (!session.saved(work))
+          notify(storageError.value || '作品已保存，但本地草稿清理失败')
+        leave()
+      }
+      catch (error) {
+        if (alive)
+          notify(creationFailure(error))
+      }
+      finally {
+        finishing.value = false
+      }
+    },
+    fail: (error) => notify(creationFailure(error)),
+  })
 }
 
 async function retryLocalDraft() {
@@ -315,21 +369,19 @@ function endCreation() {
   void loadMaterials()
 }
 function openWorks() {
-  endDrag(true)
-  session.flushDraft()
-  uni.navigateTo({ url: '/pages/flower-works/flower-works-page' })
+  requestLeave(() => uni.navigateTo({ url: '/pages/flower-works/flower-works-page' }))
 }
 function openDailyFlowers() {
-  endDrag(true)
-  session.flushDraft()
-  closePanels()
-  uni.navigateTo({
-    url: '/pages/daily-flower/daily-flower-page',
-    events: {
-      'daily-flower-copied': (payload: { workId: string }) => {
-        void openCopiedDailyFlower(payload.workId)
+  requestLeave(() => {
+    closePanels()
+    uni.navigateTo({
+      url: '/pages/daily-flower/daily-flower-page',
+      events: {
+        'daily-flower-copied': (payload: { workId: string }) => {
+          void openCopiedDailyFlower(payload.workId)
+        },
       },
-    },
+    })
   })
 }
 async function openCopiedDailyFlower(workId: string) {

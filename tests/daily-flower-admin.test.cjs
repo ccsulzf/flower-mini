@@ -115,6 +115,25 @@ test('本地每日花束 JSON 由用户提供并在预览前完整校验', () =>
   })), /描述不能为空/)
 })
 
+test('每日花束历史摘要只校验日期和描述，不要求返回 artwork', () => {
+  const parser = createLoader().load('src/utils/flower/daily-flower.ts')
+  assert.deepEqual(
+    JSON.parse(JSON.stringify(parser.parseDailyFlowerSummary(JSON.stringify({
+      date: '2026-10-14',
+      description: '秋日花束',
+    })))),
+    { date: '2026-10-14', description: '秋日花束' },
+  )
+  assert.throws(() => parser.parseDailyFlowerSummary(JSON.stringify({
+    date: '2026-02-30',
+    description: '花束',
+  })), /日期无效/)
+  assert.throws(() => parser.parseDailyFlowerSummary(JSON.stringify({
+    date: '2026-10-14',
+    description: '',
+  })), /描述不能为空/)
+})
+
 test('每日花束发布直接使用渲染云函数返回的云文件，不经客户端转码或重复上传', async () => {
   const calls = []
   const loader = createLoader({

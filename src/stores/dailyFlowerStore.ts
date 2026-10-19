@@ -1,7 +1,7 @@
 import type { Artwork } from '@/models/artwork'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { parseDailyFlower } from '@/utils/flower/daily-flower'
+import { parseDailyFlower, parseDailyFlowerSummary } from '@/utils/flower/daily-flower'
 
 export interface PublishedDailyFlower {
   date: string
@@ -190,10 +190,10 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
       if (!Array.isArray(result.items) || typeof result.hasMore !== 'boolean')
         throw new Error('历史花束数据格式无效')
       const parsed = result.items.map((item) => {
-        const flower = parseDailyFlower(JSON.stringify(item))
+        const flower = parseDailyFlowerSummary(JSON.stringify(item))
         if (flower.date > date)
           throw new Error('历史花束日期无效')
-        return { date: flower.date, description: flower.description }
+        return flower
       })
       const merged = reset ? parsed : [...historyItems.value, ...parsed]
       historyItems.value = [...new Map(merged.map(item => [item.date, item])).values()]

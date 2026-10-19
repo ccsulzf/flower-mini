@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 import { useFlowerStudioLayoutStore } from '@/stores/flowerStudioLayoutStore'
+import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 import StudioHeader from './studio-header.vue'
 
-const studio = useFlowerStudioStore()
-const layout = useFlowerStudioLayoutStore()
-const { pageReady, finishing } = storeToRefs(studio)
-const { navigationStatusTop: navigationTop, navigationHeight, pageActionsTop: actionsTop } = storeToRefs(layout)
 const emit = defineEmits<{
   works: []
   today: []
@@ -16,20 +12,21 @@ const emit = defineEmits<{
   reset: []
   finish: []
 }>()
+const studio = useFlowerStudioStore()
+const layout = useFlowerStudioLayoutStore()
+const { pageReady, finishing } = storeToRefs(studio)
+const { navigationStatusTop: navigationTop, navigationHeight, pageActionsTop: actionsTop } = storeToRefs(layout)
 </script>
 
 <template>
   <view class="studio-navigation" :style="{ top: `${navigationTop}px`, height: `${navigationHeight}px` }">
-    <text class="studio-navigation-title">
-      插花
-    </text>
     <button class="studio-works-link" :disabled="!pageReady" @click="emit('works')">
       <view class="studio-works-icon i-carbon-folder-open" />
       <text>我的作品</text>
     </button>
     <button class="studio-today-badge" :disabled="!pageReady" @click="emit('today')">
       <view class="studio-today-icon i-carbon-calendar" />
-      <text>今日</text>
+      <text>今日花束</text>
     </button>
   </view>
   <view class="studio-page-actions-position" :style="{ top: `${actionsTop}px` }">

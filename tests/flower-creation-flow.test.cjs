@@ -151,6 +151,156 @@ test('完成编辑直接更新后台并进入详情，不经过完成作品页',
   assert.equal(page.stems.value.length, 0)
   page.session.dispose()
 })
+test('主动离开有改动的作品时可保存后进入我的作品并清除本地草稿', async () => {
+  const records = new Map(), routes = [], modals = []
+  const loader = createLoader({
+    uni: {
+      getStorageSync: key => records.get(key),
+      setStorageSync: (key, value) => records.set(key, value),
+      removeStorageSync: key => records.delete(key),
+      showModal: value => modals.push(value),
+      navigateTo: value => routes.push(value),
+      showToast() {},
+    },
+    uniCloud: { getCurrentUserInfo: () => ({ uid: 'alice' }) },
+  })
+  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  const vase = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(item => item.id === 'ceramic-vase')
+  page.session.initialize('alice')
+  page.userInfo.uid = 'alice'
+  page.pageReady.value = true
+  page.store.setVaseMaterial(vase, false)
+  page.store.addFlower('rose')
+  page.catalog.ensure = async () => vase
+  let savedInput
+  page.works.save = async input => {
+    savedInput = input
+    return { id: 'b'.repeat(32), revision: 1 }
+  }
+
+  page.openWorks()
+  assert.equal(modals.length, 1)
+  assert.equal(routes.length, 0)
+  assert.equal(modals[0].confirmText, '保存作品')
+  assert.equal(modals[0].cancelText, '放弃离开')
+  assert.ok([...modals[0].confirmText].length <= 4)
+  assert.ok([...modals[0].cancelText].length <= 4)
+  await modals[0].success({ confirm: true })
+
+  assert.equal(savedInput.draft.artwork.stems.length, 1)
+  assert.equal(routes[0].url, '/pages/flower-works/flower-works-page')
+  assert.equal(records.size, 0)
+  assert.equal(page.session.hasUnsavedChanges.value, false)
+  page.session.dispose()
+})
+test('主动离开选择放弃时清除本地草稿且不保存云端', async () => {
+  const records = new Map(), routes = [], modals = []
+  const loader = createLoader({
+    uni: {
+      getStorageSync: key => records.get(key),
+      setStorageSync: (key, value) => records.set(key, value),
+      removeStorageSync: key => records.delete(key),
+      showModal: value => modals.push(value),
+      navigateTo: value => routes.push(value),
+      showToast() {},
+    },
+  })
+  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  page.session.initialize('alice')
+  page.pageReady.value = true
+  page.store.addFlower('rose')
+  page.session.flushDraft()
+  let saveCount = 0
+  page.works.save = async () => { saveCount++; throw new Error('不应保存') }
+
+  page.openWorks()
+  await modals[0].success({ confirm: false, cancel: true })
+
+  assert.equal(saveCount, 0)
+  assert.equal(routes[0].url, '/pages/flower-works/flower-works-page')
+  assert.equal(records.size, 0)
+  assert.equal(page.stems.value.length, 0)
+  page.session.dispose()
+})
+test('空白作品直接离开时不弹保存，只有真实编辑才拦截', async () => {
+  const records = new Map(), routes = [], modals = []
+  const loader = createLoader({
+    uni: {
+      getStorageSync: key => records.get(key),
+      setStorageSync: (key, value) => records.set(key, value),
+      removeStorageSync: key => records.delete(key),
+      showModal: value => modals.push(value),
+      navigateTo: value => routes.push(value),
+      showToast() {},
+    },
+  })
+  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  page.session.initialize('alice')
+  page.pageReady.value = true
+
+  page.openWorks()
+
+  assert.equal(modals.length, 0)
+  assert.equal(routes[0].url, '/pages/flower-works/flower-works-page')
+  page.session.dispose()
+})
+test('点击我的作品时按真实改动状态确认离开，不依赖系统返回事件', async () => {
+  const records = new Map(), routes = [], modals = []
+  const loader = createLoader({
+    uni: {
+      getStorageSync: key => records.get(key),
+      setStorageSync: (key, value) => records.set(key, value),
+      removeStorageSync: key => records.delete(key),
+      showModal: value => modals.push(value),
+      navigateTo: value => routes.push(value),
+      showToast() {},
+    },
+  })
+  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  page.session.initialize('alice')
+  page.pageReady.value = true
+  page.store.addFlower('rose')
+  page.openWorks()
+  assert.equal(modals.length, 1)
+  assert.equal(routes.length, 0)
+  await modals[0].success({ confirm: false, cancel: true })
+  assert.equal(routes[0].url, '/pages/flower-works/flower-works-page')
+  assert.equal(records.size, 0)
+  page.session.dispose()
+})
+test('容器素材准备期间点击我的作品仍显示提示，放弃后阻止迟到的素材改动', async () => {
+  const routes = [], modals = []
+  const loader = createLoader({
+    uni: {
+      getStorageSync: () => '',
+      setStorageSync() {},
+      removeStorageSync() {},
+      showModal: value => modals.push(value),
+      navigateTo: value => routes.push(value),
+      showToast() {},
+    },
+  })
+  const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
+  const vase = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(item => item.category === 'vase')
+  page.session.initialize('alice')
+  page.pageReady.value = true
+  page.catalog.materials = [vase]
+  let resolveMaterial
+  page.catalog.ensure = () => new Promise(resolve => { resolveMaterial = resolve })
+  const adding = page.addCloudMaterial(vase.id)
+  assert.equal(page.addingMaterial.value, true)
+
+  page.openWorks()
+  assert.equal(modals.length, 1)
+  assert.equal(routes.length, 0)
+  await modals[0].success({ confirm: false, cancel: true })
+  resolveMaterial(vase)
+  await adding
+
+  assert.equal(routes[0].url, '/pages/flower-works/flower-works-page')
+  assert.equal(page.vaseMaterialId.value, undefined)
+  page.session.dispose()
+})
 test('结束创作后迟到的花材下载不能插入新作品', async () => { const loader = createLoader({ uni: { getStorageSync: () => '', removeStorageSync() { }, setStorageSync() { } } }); const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue'); page.session.initialize('a'); page.pageReady.value = true; page.catalog.load = async () => { }; page.catalog.preload = async () => { }; const material = { id: 'test-flower', revision: 'a'.repeat(16), category: 'flower', name: '测试花', colors: [{ value: '#abcdef' }] }; page.catalog.materials = [material]; let release; page.catalog.ensure = () => new Promise(r => { release = r; }); const adding = page.addCloudMaterial(material.id); page.endCreation(); release(material); await adding; assert.equal(page.stems.value.length, 0); assert.equal(page.session.dirty.value, false); page.session.dispose(); });
 test('添加花材后选中新花材并提供短时添加反馈', async () => {
   const loader = createLoader({ uni: { getStorageSync: () => '', removeStorageSync() {}, setStorageSync() {} } })

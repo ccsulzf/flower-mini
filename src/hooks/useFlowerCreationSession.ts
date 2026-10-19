@@ -11,11 +11,13 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
   const workId = ref<string>()
   const workRevision = ref<number>()
   const dirty = ref(false)
+  const hasUnsavedChanges = ref(false)
   const storageError = ref('')
   const readonly = ref(false)
   const initialized = ref(false)
   const draftReadFailed = ref(false)
   let owner = ''
+  let baselineSnapshot = ''
   let timer: ReturnType<typeof setTimeout> | undefined
   function cancelTimer() {
     if (timer !== undefined)
@@ -24,6 +26,11 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
   }
   function snapshot(): CreationDraft {
     return { version: 1, artwork: store.snapshot(), card: { ...card.value }, updatedAt: Date.now(), ...(workId.value ? { workId: workId.value, workRevision: workRevision.value } : {}) }
+  }
+  function refreshBaseline() {
+    baselineSnapshot = JSON.stringify(snapshot())
+    dirty.value = false
+    hasUnsavedChanges.value = false
   }
   function initialize(uid: string, detail = false) {
     if (initialized.value)
@@ -36,7 +43,9 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     owner = uid
     initialized.value = true
     readonly.value = detail
+    baselineSnapshot = ''
     dirty.value = false
+    hasUnsavedChanges.value = false
     pendingDraft.value = null
     storageError.value = ''
     draftReadFailed.value = false
@@ -65,6 +74,9 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     card.value = value.card
     workId.value = value.workId
     workRevision.value = value.workRevision
+    baselineSnapshot = JSON.stringify(snapshot())
+    dirty.value = false
+    hasUnsavedChanges.value = false
   }
   function continueDraft() {
     if (!pendingDraft.value)
@@ -73,6 +85,7 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     pendingDraft.value = null
     view.value = 'edit'
     dirty.value = false
+    hasUnsavedChanges.value = false
   }
   function restart() {
     cancelTimer()
@@ -92,7 +105,9 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     workRevision.value = undefined
     pendingDraft.value = null
     view.value = 'edit'
+    baselineSnapshot = JSON.stringify(snapshot())
     dirty.value = false
+    hasUnsavedChanges.value = false
     readonly.value = false
     draftReadFailed.value = false
     storageError.value = ''
@@ -105,6 +120,7 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     try {
       writeDraft(owner, snapshot())
       dirty.value = false
+      baselineSnapshot = JSON.stringify(snapshot())
       storageError.value = ''
     }
     catch (error) {
@@ -114,7 +130,10 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
   function markEdited() {
     if (!initialized.value || readonly.value || pendingDraft.value || draftReadFailed.value)
       return
-    dirty.value = true
+    const current = JSON.stringify(snapshot())
+    const changed = current !== baselineSnapshot
+    dirty.value = changed
+    hasUnsavedChanges.value = true
     cancelTimer()
     timer = setTimeout(flushDraft, 300)
   }
@@ -122,25 +141,43 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     cancelTimer()
     readonly.value = true
     dirty.value = false
+    hasUnsavedChanges.value = false
     pendingDraft.value = null
     apply({ ...work.draft, workId: work.id, workRevision: work.revision })
+    baselineSnapshot = JSON.stringify(snapshot())
     view.value = 'artwork'
   }
   function editWork() {
     readonly.value = false
     view.value = 'edit'
-    markEdited()
+    refreshBaseline()
   }
   function commitCard(text: FlowerCardText) {
     card.value = validateCard(text)
     markEdited()
   }
-  function saved() {
-    return restart()
+  function saved(work?: Pick<SavedFlowerWork, 'id' | 'revision'>) {
+    if (work) {
+      cancelTimer()
+      workId.value = work.id
+      workRevision.value = work.revision
+      dirty.value = false
+      hasUnsavedChanges.value = false
+    }
+    const cleared = restart()
+    if (!cleared && work) {
+      try {
+        writeDraft(owner, snapshot())
+      }
+      catch (error) {
+        storageError.value = (error as Error).message
+      }
+    }
+    return cleared
   }
   function dispose() {
     flushDraft()
     cancelTimer()
   }
-  return { view, card, pendingDraft, workId, workRevision, dirty, storageError, readonly, initialized, draftReadFailed, retryDraft, initialize, continueDraft, restart, markEdited, flushDraft, openWork, editWork, commitCard, saved, snapshot, dispose }
+  return { view, card, pendingDraft, workId, workRevision, dirty, hasUnsavedChanges, storageError, readonly, initialized, draftReadFailed, retryDraft, initialize, continueDraft, restart, markEdited, flushDraft, openWork, editWork, commitCard, saved, snapshot, dispose }
 }

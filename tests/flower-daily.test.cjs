@@ -3,6 +3,7 @@ const fs = require('node:fs')
 const test = require('node:test')
 const vm = require('node:vm')
 const dailyFlower = require('../uniCloud-alipay/cloudfunctions/common/daily-flower')
+const { createLoader } = require('./helpers/load-ts.cjs')
 
 const source = fs.readFileSync('uniCloud-alipay/cloudfunctions/flower-daily/index.obj.js', 'utf8')
 
@@ -153,4 +154,29 @@ test('历史列表拒绝无效分页参数和损坏记录', async () => {
 
   const bad = setupCloud({ records: [sampleRecord({ _id: '2026-10-13' })] })
   await assert.rejects(bad.cloud.listHistory({ today: '2026-10-14' }), error => error.errCode === 'INVALID_DAILY_FLOWER')
+})
+
+test('每日花束历史页按云端摘要加载，不要求列表项包含 artwork', async () => {
+  const loader = createLoader({
+    uniCloud: {
+      importObject: name => {
+        assert.equal(name, 'flower-daily')
+        return {
+          listHistory: async ({ today }) => ({
+            items: [{ date: today, description: '秋日花束' }],
+            hasMore: false,
+          }),
+        }
+      },
+    },
+  })
+  const store = loader.load('src/stores/dailyFlowerStore.ts').useDailyFlowerStore()
+
+  await store.loadHistory(true)
+
+  assert.deepEqual(JSON.parse(JSON.stringify(store.historyItems)), [
+    { date: store.historyItems[0].date, description: '秋日花束' },
+  ])
+  assert.equal(store.historyError, '')
+  assert.equal(store.historyHasMore, false)
 })
