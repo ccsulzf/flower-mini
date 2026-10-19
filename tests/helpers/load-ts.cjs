@@ -31,6 +31,7 @@ function createLoader(options = {}) {
         return Object.fromEntries(walk(base).filter(([name]) => pattern.endsWith('material.json') ? name.endsWith('/material.json') : name.endsWith('.svg')).map(([name, value]) => [name, pattern.endsWith('material.json') ? JSON.parse(value) : value]))
       }, uniCloud: options.uniCloud, wx: options.wx, definePage() {}, setTimeout, clearTimeout,
       require(name) {
+        if (options.modules && Object.prototype.hasOwnProperty.call(options.modules, name)) return options.modules[name]
         if (name === 'vue' && options.eventChannel) return { ...require('vue'), getCurrentInstance: () => ({ proxy: { getOpenerEventChannel: () => options.eventChannel } }) }
         if (name === '@dcloudio/uni-app') return Object.fromEntries(['onUnload', 'onLoad', 'onShow', 'onHide', 'onBackPress', 'onReachBottom'].map(event => [event, callback => { options.lifecycle?.[event]?.push(callback) }]))
         if (!name.startsWith('.') && !name.startsWith('@/')) return require(name)
