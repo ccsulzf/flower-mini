@@ -115,6 +115,33 @@ test('本地每日花束 JSON 由用户提供并在预览前完整校验', () =>
   })), /描述不能为空/)
 })
 
+test('管理页日期草稿均可解析且花材引用符合本地候选清单', () => {
+  const parseDailyFlower = createLoader().load('src/utils/flower/daily-flower.ts').parseDailyFlower
+  const materials = JSON.parse(fs.readFileSync('src/subpackages/daily-flower-admin/assets/daily-flower-materials.json', 'utf8'))
+  const dates = [
+    { date: '2026-10-16' },
+    { date: '2026-10-17', stemCount: 50, materialCount: 29 },
+    { date: '2026-10-18', stemCount: 52, materialCount: 34 },
+    { date: '2026-10-19', stemCount: 48, materialCount: 37 },
+  ]
+
+  for (const { date, stemCount, materialCount } of dates) {
+    const path = date === '2026-10-16'
+      ? 'src/subpackages/daily-flower-admin/assets/daily-flower.json'
+      : `docs/daily-flowers/${date}.json`
+    const draft = parseDailyFlower(fs.readFileSync(path, 'utf8'))
+    assert.equal(draft.date, date)
+    assert.ok(draft.artwork.stems.length >= 30)
+    if (stemCount !== undefined)
+      assert.equal(draft.artwork.stems.length, stemCount)
+    assert.ok(new Set(draft.artwork.stems.map(stem => stem.materialId)).size >= (materialCount || 8))
+    assert.ok(materials.vases.includes(draft.artwork.vaseMaterialId))
+    assert.ok(materials.backgrounds.includes(draft.artwork.backgroundMaterialId))
+    for (const stem of draft.artwork.stems)
+      assert.ok(materials.flowers[stem.kind]?.includes(stem.materialId), `${date}: ${stem.materialId} is not a ${stem.kind} candidate`)
+  }
+})
+
 test('每日花束历史摘要只校验日期和描述，不要求返回 artwork', () => {
   const parser = createLoader().load('src/utils/flower/daily-flower.ts')
   assert.deepEqual(

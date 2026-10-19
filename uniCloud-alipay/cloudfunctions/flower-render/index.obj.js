@@ -9,6 +9,7 @@ let wasmReady;
 const workIdPattern = /^[a-f\d]{32}$/;
 const materialIdPattern = /^[a-z][a-z0-9-]{0,63}$/;
 const revisionPattern = /^[a-f\d]{16}$/;
+const maxRenderSvgLength = 8 * 1024 * 1024;
 
 function colorizeMaterialSvg(svg, color) {
   const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd';
@@ -239,7 +240,7 @@ async function renderSvg(svg, cloudPath) {
     const root = typeof svg === 'string' ? svg.match(/^\s*(<svg\b[^>]*>)/i)?.[1] : undefined;
     const width = root && Number(root.match(/\bwidth=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
     const height = root && Number(root.match(/\bheight=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
-    if (typeof svg !== 'string' || svg.length > 1024 * 1024
+    if (typeof svg !== 'string' || svg.length > maxRenderSvgLength
         || !root || !/<\/svg>\s*$/i.test(svg)
         || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|\b(?:href|xlink:href)\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(svg)
         || width !== 698 || !Number.isInteger(height) || height < 1000 || height > 2000)

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { getCurrentInstance } from 'vue'
 import { onReachBottom, onShow } from '@dcloudio/uni-app'
-import { ref } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
 import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 
@@ -66,8 +65,12 @@ function openFlower(date: string) {
   <view class="daily-page">
     <view class="daily-heading">
       <view>
-        <text class="daily-title">每日花束</text>
-        <text class="daily-subtitle">留住每一份花意</text>
+        <text class="daily-title">
+          每日花束
+        </text>
+        <text class="daily-subtitle">
+          留住每一份花意
+        </text>
       </view>
     </view>
 
@@ -117,8 +120,12 @@ function openFlower(date: string) {
           <view class="history-cover-hitarea" @tap="openFlower(flower.date)" />
         </view>
         <view class="history-content" @click="openFlower(flower.date)">
-          <text class="history-date">{{ displayDate(flower.date) }}</text>
-          <text class="history-description">{{ flower.description }}</text>
+          <text class="history-date">
+            {{ displayDate(flower.date) }}
+          </text>
+          <text class="history-description">
+            {{ flower.description }}
+          </text>
         </view>
       </view>
     </view>

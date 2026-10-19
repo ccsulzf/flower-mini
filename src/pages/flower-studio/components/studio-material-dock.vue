@@ -1,18 +1,14 @@
 <script setup lang="ts">
-import type { Artwork } from '@/models/artwork'
 import type { StudioTab } from '../studio-types'
+import type { Artwork } from '@/models/artwork'
 import { storeToRefs } from 'pinia'
-import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 import { useFlowerStudioLayoutStore } from '@/stores/flowerStudioLayoutStore'
+import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 import StudioBackgroundPanel from './studio-background-panel.vue'
 import StudioContainerPanel from './studio-container-panel.vue'
 import StudioFlowerPanel from './studio-flower-panel.vue'
 import StudioToolbar from './studio-toolbar.vue'
 
-const studio = useFlowerStudioStore()
-const layout = useFlowerStudioLayoutStore()
-const { activeTab } = storeToRefs(studio)
-const { toolbarBottom, stageBottom } = storeToRefs(layout)
 const emit = defineEmits<{
   select: [tab: StudioTab]
   close: []
@@ -20,6 +16,10 @@ const emit = defineEmits<{
   cloud: [id: string]
   background: [value: Artwork['background']]
 }>()
+const studio = useFlowerStudioStore()
+const layout = useFlowerStudioLayoutStore()
+const { activeTab } = storeToRefs(studio)
+const { toolbarBottom, stageBottom } = storeToRefs(layout)
 </script>
 
 <template>

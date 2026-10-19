@@ -3,6 +3,7 @@ const resolveAuth = require('auth')
 const { initWasm, Resvg } = require('@resvg/resvg-wasm')
 
 let wasmReady
+const maxRenderSvgLength = 8 * 1024 * 1024
 
 function colorizeMaterialSvg(svg, color) {
   const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd';
@@ -211,7 +212,7 @@ async function artworkSvg(artwork) {
 async function renderSvg(svg) {
   const startedAt = Date.now()
   const root = typeof svg === 'string' ? svg.match(/^\s*(<svg\b[^>]*>)/i)?.[1] : undefined
-  if (typeof svg !== 'string' || svg.length > 1024 * 1024
+  if (typeof svg !== 'string' || svg.length > maxRenderSvgLength
     || !root || !/<\/svg>\s*$/i.test(svg)
     || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|\b(?:href|xlink:href)\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(svg)
     || !/\bwidth=["']698["']/i.test(root) || !/\bheight=["']1000["']/i.test(root))

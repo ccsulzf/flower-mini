@@ -237,3 +237,26 @@ test('云端 SVG 入口拒绝外部资源、主动内容和非目标尺寸', asy
   await assert.rejects(cloudModule.exports.render.call(ctx, { svg: '<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000"><image href="https:\/\/example.com/a.svg"/></svg>' }), /SVG 无效/)
   await assert.rejects(cloudModule.exports.render.call(ctx, { svg: complex.svg.replace('width="698"', 'width="100"') }), /SVG 无效/)
 })
+
+test('云端 SVG 入口允许超过 1 MiB 的作品并拒绝超过上限的输入', async () => {
+  let renderedSvg = ''
+  class CaptureResvg {
+    constructor(svg) { renderedSvg = svg }
+    render() {
+      return { width: 698, height: 1000, asPng: () => Buffer.from('png'), free() {} }
+    }
+    free() {}
+  }
+  const object = loadCloudObject({ initWasm: async () => {}, Resvg: CaptureResvg })
+  const context = { getUniIdToken() {} }
+  await object._before.call(context)
+
+  const largeSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000">${' '.repeat(1024 * 1024 + 1)}</svg>`
+  const result = await object.render.call(context, { svg: largeSvg })
+  assert.equal(renderedSvg, largeSvg)
+  assert.equal(result.width, 698)
+  assert.equal(result.height, 1000)
+
+  const oversizedSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000">${' '.repeat(8 * 1024 * 1024)}</svg>`
+  await assert.rejects(object.render.call(context, { svg: oversizedSvg }), /SVG 无效/)
+})

@@ -13,17 +13,23 @@ const rays = Array.from({ length: 64 }, (_, index) => chrysanthemumRay(index))
 
 <template>
   <view class="bloom-art">
-    <image v-if="svgSource && !svgFailed" class="svg-bloom" :src="svgSource" mode="scaleToFill"
-      @error="svgFailed = true" />
+    <image
+      v-if="svgSource && !svgFailed" class="svg-bloom" :src="svgSource" mode="scaleToFill"
+      @error="svgFailed = true"
+    />
     <template v-else>
       <view v-if="kind === 'chrysanthemum'" class="mum-art">
-        <view v-for="(ray, index) in rays" :key="index" class="mum-ray"
-          :style="{ width: `${ray.length}rpx`, height: `${ray.width}rpx`, transform: `rotate(${ray.angle}deg)`, background: `linear-gradient(90deg, #bd7e3c 0%, ${color} 74%)` }" />
+        <view
+          v-for="(ray, index) in rays" :key="index" class="mum-ray"
+          :style="{ width: `${ray.length}rpx`, height: `${ray.width}rpx`, transform: `rotate(${ray.angle}deg)`, background: `linear-gradient(90deg, #bd7e3c 0%, ${color} 74%)` }"
+        />
         <view class="mum-heart" :style="{ backgroundColor: color }" />
       </view>
       <view v-else-if="kind === 'rose'" class="rose-art">
-        <view v-for="n in 8" :key="n" class="rose-petal"
-          :style="{ transform: `rotate(${n * 45}deg)`, backgroundColor: color }" />
+        <view
+          v-for="n in 8" :key="n" class="rose-petal"
+          :style="{ transform: `rotate(${n * 45}deg)`, backgroundColor: color }"
+        />
         <view class="rose-middle" :style="{ backgroundColor: color }">
           <view class="rose-coil coil-outer">
             <view class="rose-coil coil-inner">
@@ -42,12 +48,16 @@ const rays = Array.from({ length: 64 }, (_, index) => chrysanthemumRay(index))
         <view class="tulip-leaf leaf-right" />
       </view>
       <view v-else-if="kind === 'leaf'" class="foliage-art">
-        <view v-for="n in 6" :key="n" class="foliage-leaf"
-          :style="{ top: `${n * 23}rpx`, left: n % 2 ? '24rpx' : '55rpx', transform: `rotate(${n % 2 ? -35 : 35}deg)`, backgroundColor: color }" />
+        <view
+          v-for="n in 6" :key="n" class="foliage-leaf"
+          :style="{ top: `${n * 23}rpx`, left: n % 2 ? '24rpx' : '55rpx', transform: `rotate(${n % 2 ? -35 : 35}deg)`, backgroundColor: color }"
+        />
       </view>
       <view v-else class="simple-art" :class="{ 'poppy-art': kind === 'poppy' }">
-        <view v-for="n in (kind === 'daisy' ? 8 : 5)" :key="n" class="simple-petal"
-          :style="{ backgroundColor: color, transform: `rotate(${n * (kind === 'daisy' ? 45 : 72)}deg)` }" />
+        <view
+          v-for="n in (kind === 'daisy' ? 8 : 5)" :key="n" class="simple-petal"
+          :style="{ backgroundColor: color, transform: `rotate(${n * (kind === 'daisy' ? 45 : 72)}deg)` }"
+        />
         <view class="simple-heart" />
       </view>
     </template>

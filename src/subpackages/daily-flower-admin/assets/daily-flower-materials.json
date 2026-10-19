@@ -3,10 +3,11 @@
   "flowers": {
     "chrysanthemum": ["firework-chrysanthemum", "ping-pong-chrysanthemum", "peony-chrysanthemum"],
     "rose": ["rose", "spray-rose"],
-    "poppy": ["dahlia", "gerbera", "pincushion"],
-    "daisy": ["solidago", "gypsophila", "chamomile", "daisy"],
-    "leaf": ["spirea", "eucalyptus", "dusty-miller", "ivy"]
+    "poppy": ["dahlia", "gerbera", "pincushion", "amaryllis", "anemone", "anthurium", "bird-of-paradise", "calla-lily", "carnation", "clematis", "cockscomb", "cotton", "cymbidium", "feather-gerbera", "gardenia", "gladiolus", "herbaceous-peony", "hyacinth", "hydrangea", "iris", "king-protea", "lily", "lisianthus", "lotus", "peony", "phalaenopsis", "ping-pong-chrysanthemum", "ranunculus", "single-lisianthus", "sunflower", "zinnia"],
+    "tulip": ["tulip"],
+    "daisy": ["solidago", "gypsophila", "chamomile", "daisy", "acacia", "alstroemeria", "astilbe", "blue-star", "bunny-tail", "campanula", "cherry-blossom", "crabapple-blossom", "delphinium", "dendrobium", "eucalyptus-pods", "freesia", "globe-amaranth", "hypericum", "jasmine", "kangaroo-paw", "lily-of-the-valley", "oncidium", "peach-blossom", "queen-annes-lace", "scabiosa", "snapdragon", "snowberry", "spray-rose", "statice", "stock", "sweet-pea", "waxflower", "wintersweet"],
+    "leaf": ["spirea", "eucalyptus", "dusty-miller", "ivy", "areca-palm", "asparagus-fern", "asparagus-sprengeri", "bamboo-leaf", "banana-leaf", "boston-fern", "camellia-leaf", "fatsia", "fountain-grass", "gardenia-leaf", "lucky-bamboo", "milan-leaf", "monstera", "nandina", "olive-leaf", "philodendron", "photinia", "pieris", "plumosa-pine", "pussy-willow", "sword-leaf"]
   },
-  "vases": ["ceramic-vase", "matte-ceramic-vase", "ribbed-ceramic-vase"],
-  "backgrounds": ["scene-window-table", "scene-ivory-table", "scene-sage-table"]
+  "vases": ["ceramic-vase", "matte-ceramic-vase", "ribbed-ceramic-vase", "glass-cylinder", "glass-bud-vase", "long-neck-vase", "low-round-bowl", "round-ceramic-vase", "square-vase"],
+  "backgrounds": ["scene-window-table", "scene-ivory-table", "scene-sage-table", "paper-ivory", "paper-blush", "paper-linen", "scene-midnight-gallery", "scene-shiba-flower", "scene-corgi-peek", "scene-puppy-nap", "scene-rainy-puppy", "scene-cat-peek", "scene-cat-florist", "scene-rainy-cat"]
 }

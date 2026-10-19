@@ -22,8 +22,12 @@ module.exports = {
     const items = data.map(({ id, category, name, introduction, flowerMeaning, group, colors, version, revision, geometry, assets, updatedAt }) => ({ id, category: category || 'flower', name, introduction, flowerMeaning, group, colors, version, revision, geometry, assets, updatedAt }))
     const ids = [...new Set(items.flatMap(row => Object.values(row.assets || {}).map(file => file.fileId)))]
     const byId = new Map()
+    const batches = []
     for (let index = 0; index < ids.length; index += 50) {
-      const result = await uniCloud.getTempFileURL({ fileList: ids.slice(index, index + 50) })
+      batches.push(ids.slice(index, index + 50))
+    }
+    const urlResults = await Promise.all(batches.map(fileList => uniCloud.getTempFileURL({ fileList })))
+    for (const result of urlResults) {
       for (const file of result.fileList) byId.set(file.fileID, file.tempFileURL)
     }
     for (const row of items) {

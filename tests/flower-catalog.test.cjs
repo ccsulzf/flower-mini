@@ -4,11 +4,11 @@ const fs = require('node:fs')
 const vm = require('node:vm')
 const { createLoader } = require('./helpers/load-ts.cjs')
 const rows = require('../uniCloud-alipay/cloudfunctions/flower-catalog/catalog.json')
-function cloudObject(identity) {
+function cloudObject(identity, options = {}) {
   const module = { exports: {} }
-  const fixtures = [{ id: 'rose', name: '玫瑰', assets: { flower: { fileId: 'cloud:flower', hash: 'a'.repeat(40) } } }]
+  const fixtures = options.fixtures || [{ id: 'rose', name: '玫瑰', assets: { flower: { fileId: 'cloud:flower', hash: 'a'.repeat(40) } } }]
   vm.runInNewContext(fs.readFileSync('uniCloud-alipay/cloudfunctions/flower-catalog/index.obj.js', 'utf8'), {
-    module, uniCloud: { database: () => ({ collection: name => { assert.equal(name, 'flower-material-assets'); return { orderBy: () => ({ skip: () => ({ limit: () => ({ get: async () => ({ data: fixtures.map(row => ({ ...row })) }) }) }) }) } } }), getTempFileURL: async () => ({ fileList: [{ fileID: 'cloud:flower', tempFileURL: 'https://test/flower' }] }) }, require: () => ({ createInstance: () => ({ checkToken: async () => identity || { errCode: 1 } }) })
+    module, uniCloud: { database: () => ({ collection: name => { assert.equal(name, 'flower-material-assets'); return { orderBy: () => ({ skip: () => ({ limit: () => ({ get: async () => ({ data: fixtures.map(row => ({ ...row })) }) }) }) }) } } }), getTempFileURL: options.getTempFileURL || (async () => ({ fileList: [{ fileID: 'cloud:flower', tempFileURL: 'https://test/flower' }] })) }, require: () => ({ createInstance: () => ({ checkToken: async () => identity || { errCode: 1 } }) })
   })
   module.exports.getUniIdToken = () => 'token'
   return module.exports
@@ -19,6 +19,31 @@ test('云目录拒绝未登录；查询档案集合，返回文件下载地址�
   const result = await cloud.list(); assert.equal(result.version, 2)
   assert.equal(result.items[0].assets.flower.url, 'https://test/flower')
   result.items[0].name = 'changed'; assert.equal((await cloud.list()).items[0].name, '玫瑰')
+})
+
+test('临时下载地址分批并行获取，避免累加网络延迟', async () => {
+  const assets = Object.fromEntries(Array.from({ length: 101 }, (_, index) => [
+    `asset${index}`,
+    { fileId: `cloud:file-${index}`, hash: 'a'.repeat(40) },
+  ]))
+  let active = 0
+  let maxActive = 0
+  const cloud = cloudObject({ errCode: 0, uid: 'server-user' }, {
+    fixtures: [{ id: 'many-assets', name: '多素材', assets }],
+    getTempFileURL: async ({ fileList }) => {
+      active++
+      maxActive = Math.max(maxActive, active)
+      await new Promise(resolve => setTimeout(resolve, 10))
+      active--
+      return { fileList: fileList.map(fileID => ({ fileID, tempFileURL: `https://test/${fileID}` })) }
+    },
+  })
+
+  await cloud._before()
+  const result = await cloud.list()
+
+  assert.equal(result.items[0].assets.asset100.url, 'https://test/cloud:file-100')
+  assert.equal(maxActive, 3)
 })
 test('客户端解析云目录，拒绝未知花材、重复数据和非法尺寸', () => {
   const parse = createLoader().load('src/utils/flower/catalog.ts').parseFlowerCatalog

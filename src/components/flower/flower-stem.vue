@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { curveFor, type Stem } from '@/utils/flower/artwork'
-import { flowerConnectionY, plantSvgSource, stemSvgSource } from '@/utils/flower/svg-artwork'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
+import { curveFor, type Stem } from '@/utils/flower/artwork'
 import { cloudPlantSvg, svgImageSource } from '@/utils/flower/material-render'
+import { flowerConnectionY, plantSvgSource, stemSvgSource } from '@/utils/flower/svg-artwork'
 import FlowerBloom from './flower-bloom.vue'
+
 const props = defineProps<{ stem: Stem, anchor: number }>()
 const catalog = useFlowerCatalogStore()
 const cloudMaterial = computed(() => props.stem.materialId && props.stem.materialRevision ? catalog.get(props.stem.materialId, props.stem.materialRevision) : undefined)
 const cloudSource = computed(() => {
-  if (!cloudMaterial.value) return ''
-  try { return svgImageSource(cloudPlantSvg(cloudMaterial.value, { ...props.stem, leafMode: 'without' })) } catch { return '' }
+  if (!cloudMaterial.value)
+    return ''
+  try { return svgImageSource(cloudPlantSvg(cloudMaterial.value, { ...props.stem, leafMode: 'without' })) }
+  catch { return '' }
 })
 const curve = computed(() => curveFor(props.stem))
 const svgSource = computed(() => stemSvgSource(props.stem.kind))
@@ -28,22 +31,26 @@ const stemImageStyle = computed(() => usesSvgPlant.value
   : `top:${-55 * props.stem.stemHeight / 205}rpx;height:${260 * props.stem.stemHeight / 205}rpx;`)
 const plantImageStyle = computed(() => `width:110rpx;height:${props.stem.stemHeight + 55}rpx;`)
 </script>
+
 <template>
   <!-- 花头与花茎共享瓶口固定点，不分层绘制，防止拖动分离。 -->
   <view class="studio-stem" :style="studioStemStyle">
     <!-- 每一枝花材都是一个完整实例：花头、花茎、叶片和选中框共享同一变换。 -->
     <view class="flower-instance" :style="flowerInstanceStyle">
       <!-- SVG 使用整枝素材；PNG 单独裁掉透明留白，从花心连接到瓶口。 -->
-      <image v-if="usesSvgPlant" class="plant-image" :src="plantSource" @error="svgFailed = true" mode="scaleToFill" :style="plantImageStyle" />
+      <image v-if="usesSvgPlant" class="plant-image" :src="plantSource" mode="scaleToFill" :style="plantImageStyle" @error="svgFailed = true" />
       <view v-else-if="!stem.materialId" class="stem-image-clip" :style="stemClipStyle">
-        <image class="stem-image" :src="curve.image" @error="svgFailed = true" mode="scaleToFill" :style="stemImageStyle" />
+        <image class="stem-image" :src="curve.image" mode="scaleToFill" :style="stemImageStyle" @error="svgFailed = true" />
       </view>
       <view class="flower-touch" :class="{ 'mum-touch': stem.kind === 'chrysanthemum' }">
-        <view v-if="!usesSvgPlant && !stem.materialId" class="flower-art-position"><FlowerBloom :kind="stem.kind" :color="stem.color" /></view>
+        <view v-if="!usesSvgPlant && !stem.materialId" class="flower-art-position">
+          <FlowerBloom :kind="stem.kind" :color="stem.color" />
+        </view>
       </view>
     </view>
   </view>
 </template>
+
 <style scoped lang="scss">
 .studio-stem { position: absolute; width: 110rpx; height: 260rpx; transform-origin: 50% 100%; pointer-events: none; }
 .flower-instance { position: absolute; inset: 0; width: 110rpx; height: 100%; pointer-events: none; }

@@ -247,7 +247,7 @@ test('正式云函数按作品素材 ID 和版本读取 fileId 中的 SVG', asyn
     stemWithoutLeaves: 'cloud://env-test/flower-materials/daisy/stem.svg',
   }
   const sources = {
-    flower: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110"><circle cx="55" cy="55" r="30" fill="__COLOR__"/></svg>',
+    flower: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 110"><circle cx="55" cy="55" r="30" fill="__COLOR__"/>${' '.repeat(60_000)}</svg>`,
     stemWithoutLeaves: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 260"><path d="M55 0V260" stroke="#73835c" stroke-width="4"/></svg>',
   }
   const downloadedIds = []
@@ -261,7 +261,30 @@ test('正式云函数按作品素材 ID 和版本读取 fileId 中的 SVG', asyn
           }),
           where: () => ({
             limit: () => ({
-              get: async () => ({ data: [{ _id: workId, user_id: 'test-user', revision: 1, artwork: { version: 2, vase: '陶瓶', background: 'warm', stems: [{ id: 1, kind: 'daisy', x: 350, angle: 0, flowerScale: 1, stemHeight: 300, color: '#f1e5bd', materialId, materialRevision, leafMode: 'without' }] } }] }),
+              get: async () => ({
+                data: [{
+                  _id: workId,
+                  user_id: 'test-user',
+                  revision: 1,
+                  artwork: {
+                    version: 2,
+                    vase: '陶瓶',
+                    background: 'warm',
+                    stems: Array.from({ length: 20 }, (_, index) => ({
+                      id: index + 1,
+                      kind: 'daisy',
+                      x: 350,
+                      angle: 0,
+                      flowerScale: 1,
+                      stemHeight: 300,
+                      color: '#f1e5bd',
+                      materialId,
+                      materialRevision,
+                      leafMode: 'without',
+                    })),
+                  },
+                }],
+              }),
             }),
           }),
         }
@@ -285,6 +308,7 @@ test('正式云函数按作品素材 ID 和版本读取 fileId 中的 SVG', asyn
   await object._before.call(context)
   await object.renderWork.call(context, { workId, expectedRevision: 1 })
   assert.equal(JSON.stringify(downloadedIds.sort()), JSON.stringify(Object.values(assetIds).sort()))
+  assert.ok(assembledSvg.length > 1024 * 1024)
   assert.match(assembledSvg, /<circle[^>]*fill="#f1e5bd"/)
   assert.match(assembledSvg, /#73835c/)
   assert.match(assembledSvg, /<svg x="0" y="[^"]+" width="110" height="[^"]+" viewBox="0 0 110 260"/)

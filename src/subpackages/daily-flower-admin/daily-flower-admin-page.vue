@@ -8,17 +8,30 @@ import { artworkBackground } from '@/utils/flower/artwork'
 import { type DailyFlowerDraft, parseDailyFlower } from '@/utils/flower/daily-flower'
 import localDailyFlowerMaterialsJson from './assets/daily-flower-materials.json'
 import localDailyFlowerJson from './assets/daily-flower.json'
+import dailyFlower20261017 from '../../../docs/daily-flowers/2026-10-17.json'
+import dailyFlower20261018 from '../../../docs/daily-flowers/2026-10-18.json'
+import dailyFlower20261019 from '../../../docs/daily-flowers/2026-10-19.json'
 import { attachCloudMaterials, type DailyFlowerMaterialManifest } from './lib/daily-flower-preview'
 import { publishDailyFlower } from './lib/publish'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花维护' } })
 
+const localDrafts = [
+  localDailyFlowerJson,
+  dailyFlower20261017,
+  dailyFlower20261018,
+  dailyFlower20261019,
+].sort((left, right) => left.date.localeCompare(right.date))
+const localDraftDates = localDrafts.map(item => item.date)
+const draftSources = new Map(localDrafts.map(item => [item.date, JSON.stringify(item, null, 2)]))
+const selectedDate = ref(localDailyFlowerJson.date)
 const source = ref(JSON.stringify(localDailyFlowerJson, null, 2))
 const draft = ref<DailyFlowerDraft | null>(null)
 const error = ref('')
 const message = ref('')
 const busy = ref(false)
 const previewing = ref(false)
+const selectedDraftIndex = computed(() => localDraftDates.indexOf(selectedDate.value))
 const previewStyle = computed(() => ({
   backgroundColor: draft.value ? artworkBackground(draft.value.artwork.background) : '#f6f3eb',
 }))
@@ -77,8 +90,32 @@ async function preview() {
   }
 }
 
+function selectDraft(event: { detail: { value: string } }) {
+  const nextDate = localDraftDates[Number(event.detail.value)]
+  if (!nextDate || nextDate === selectedDate.value || busy.value || previewing.value)
+    return
+
+  const nextSource = draftSources.get(nextDate)
+  if (nextSource === undefined) {
+    error.value = `找不到 ${nextDate} 的本地花束草稿`
+    return
+  }
+  draftSources.set(selectedDate.value, source.value)
+  selectedDate.value = nextDate
+  source.value = nextSource
+  error.value = ''
+  message.value = ''
+  void preview()
+}
+
 function resetLocalJson() {
-  source.value = JSON.stringify(localDailyFlowerJson, null, 2)
+  const localDraft = localDrafts.find(item => item.date === selectedDate.value)
+  if (!localDraft) {
+    error.value = `找不到 ${selectedDate.value} 的本地花束草稿`
+    return
+  }
+  source.value = JSON.stringify(localDraft, null, 2)
+  draftSources.set(selectedDate.value, source.value)
   void preview()
 }
 
@@ -135,9 +172,26 @@ onMounted(() => preview())
     </view>
     <view class="input-card">
       <view class="input-heading">
-        <text class="input-title">
-          今日花束 JSON
-        </text>
+        <view>
+          <text class="input-title">
+            今日花束 JSON
+          </text>
+          <text class="selected-date">
+            {{ selectedDate }}
+          </text>
+        </view>
+        <picker
+          class="date-picker"
+          :range="localDraftDates"
+          :value="selectedDraftIndex"
+          :disabled="busy || previewing"
+          @change="selectDraft"
+        >
+          <view class="date-picker-label">
+            切换日期
+            <view class="i-carbon-chevron-down" />
+          </view>
+        </picker>
       </view>
       <textarea
         v-model="source" class="json-input" :maxlength="70000"
@@ -194,6 +248,9 @@ onMounted(() => preview())
 .input-card, .preview-card { padding: 24rpx; border: 1rpx solid #e3dfd3; border-radius: 24rpx; background: #fffdf7; }
 .input-heading { display: flex; align-items: center; justify-content: space-between; gap: 12rpx; margin-bottom: 18rpx; }
 .input-title { font-size: 28rpx; font-weight: 600; }
+.selected-date { display: block; margin-top: 6rpx; color: #7b8276; font-size: 23rpx; }
+.date-picker { flex: none; }
+.date-picker-label { display: flex; align-items: center; gap: 8rpx; padding: 10rpx 14rpx; border: 1rpx solid #e3dfd3; border-radius: 12rpx; color: #53624d; font-size: 23rpx; }
 .json-input { display: block; width: 100%; height: 300rpx; padding: 20rpx; box-sizing: border-box; border-radius: 14rpx; background: #f1f0e9; color: #3f463d; font-family: monospace; font-size: 22rpx; line-height: 1.6; }
 .error { margin: 16rpx 0; color: #b82b36; font-size: 24rpx; line-height: 1.6; overflow-wrap: anywhere; }
 .status { margin: 16rpx 0; color: #456344; font-size: 24rpx; line-height: 1.6; }

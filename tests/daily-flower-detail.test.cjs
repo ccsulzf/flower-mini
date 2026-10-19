@@ -58,3 +58,20 @@ test('每日花束详情顶部提供贺卡、分享、复制操作', async () =>
   assert.match(source, /detail-top-actions[\s\S]*贺卡[\s\S]*分享[\s\S]*复制/)
   assert.doesNotMatch(source, /变成我的|detail-footer/)
 })
+
+test('每日花束详情首次进入复用 store 缓存，仅重试时强制刷新', async () => {
+  const lifecycle = { onLoad: [], onUnload: [] }
+  const loader = createLoader({ lifecycle })
+  const page = loader.setup('src/pages/daily-flower-detail/daily-flower-detail-page.vue')
+  const refreshes = []
+  page.dailyFlowers.loadDate = async (_date, refresh) => {
+    refreshes.push(refresh)
+    throw new Error('加载失败')
+  }
+
+  lifecycle.onLoad[0]({ date: '2026-10-16' })
+  await new Promise(resolve => setTimeout(resolve, 0))
+  await page.loadFlower(true)
+
+  assert.deepEqual(refreshes, [false, true])
+})

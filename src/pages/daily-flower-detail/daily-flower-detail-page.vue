@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getCurrentInstance, ref } from 'vue'
 import { onLoad, onUnload } from '@dcloudio/uni-app'
+import { getCurrentInstance, ref } from 'vue'
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 
@@ -25,7 +25,7 @@ onUnload(() => {
   alive = false
 })
 
-async function loadFlower() {
+async function loadFlower(refresh = false) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date.value)) {
     error.value = '每日花束日期无效'
     loading.value = false
@@ -35,7 +35,7 @@ async function loadFlower() {
   loading.value = true
   error.value = ''
   try {
-    const result = await dailyFlowers.loadDate(date.value, true)
+    const result = await dailyFlowers.loadDate(date.value, refresh)
     if (!alive)
       return
     if (!result)
@@ -129,7 +129,7 @@ async function copyToStudio() {
     </view>
     <view v-else-if="error" class="detail-state detail-error">
       <text>{{ error }}</text>
-      <button class="retry-button" @click="loadFlower">
+      <button class="retry-button" @click="loadFlower(true)">
         重试
       </button>
     </view>
@@ -152,8 +152,12 @@ async function copyToStudio() {
         <image class="detail-image" :src="flower.imagePath" mode="aspectFit" />
       </view>
       <view class="detail-content">
-        <text class="detail-date">{{ displayDate(flower.date) }}</text>
-        <text class="detail-description">{{ flower.description }}</text>
+        <text class="detail-date">
+          {{ displayDate(flower.date) }}
+        </text>
+        <text class="detail-description">
+          {{ flower.description }}
+        </text>
       </view>
     </template>
   </view>
