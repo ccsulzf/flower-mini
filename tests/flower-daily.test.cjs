@@ -185,21 +185,33 @@ test('历史列表忽略客户端 today，以 Asia/Shanghai 服务端日期限�
   assert.deepEqual(result.data.items.map(item => item.date), ['2026-10-19'])
 })
 
-test('每日花束历史页按云端摘要加载，不要求列表项包含 artwork', async () => {
+function setupStore(apiOverrides = {}) {
+  const calls = { dates: [], history: [], artwork: [] }
+  const api = {
+    getDailyFlowerByDate: async (date) => {
+      calls.dates.push(date)
+      return sampleRecord({ _id: undefined, date, imageFileId: `cloud://space/daily-flower/${date}/flower.png`, imageUrl: 'https://example.com/daily-flower.png' })
+    },
+    getDailyFlowerArtwork: async (date) => { calls.artwork.push(date); return sampleRecord().artwork },
+    listDailyFlowerHistory: async (input) => { calls.history.push(input); return { items: [], hasMore: false } },
+    ...apiOverrides,
+  }
   const loader = createLoader({
-    uniCloud: {
-      importObject: name => {
-        assert.equal(name, 'flower-daily')
-        return {
-          listHistory: async ({ today }) => ({
-            items: [{ date: today, description: '秋日花束' }],
-            hasMore: false,
-          }),
-        }
-      },
+    modules: {
+      '@/api/flower-daily': api,
+      '@/utils/flower/daily-flower-image-cache': { resolveDailyFlowerImage: async () => '/saved/flower.png' },
     },
   })
-  const store = loader.load('src/stores/dailyFlowerStore.ts').useDailyFlowerStore()
+  return { store: loader.load('src/stores/dailyFlowerStore.ts').useDailyFlowerStore(), calls }
+}
+
+test('每日花束历史页按云端摘要加载，不要求列表项包含 artwork', async () => {
+  const { store } = setupStore({
+    listDailyFlowerHistory: async () => ({
+      items: [{ date: '2026-10-14', description: '秋日花束' }],
+      hasMore: false,
+    }),
+  })
 
   await store.loadHistory(true)
 
@@ -208,4 +220,53 @@ test('每日花束历史页按云端摘要加载，不要求列表项包含 artw
   ])
   assert.equal(store.historyError, '')
   assert.equal(store.historyHasMore, false)
+})
+
+test('同一日期并发加载只调用一次领域 API，refresh 才绕过结果缓存', async () => {
+  let release
+  let count = 0
+  const pending = new Promise(resolve => { release = resolve })
+  const { store } = setupStore({
+    getDailyFlowerByDate: async (date) => {
+      count++
+      await pending
+      return sampleRecord({ _id: undefined, date, imageFileId: `cloud://space/daily-flower/${date}/flower.png`, imageUrl: 'https://example.com/daily-flower.png' })
+    },
+  })
+  const first = store.loadDate('2026-10-14')
+  const second = store.loadDate('2026-10-14')
+  await new Promise(resolve => setTimeout(resolve, 0))
+  assert.equal(count, 1)
+  release()
+  await Promise.all([first, second])
+  await store.loadDate('2026-10-14')
+  assert.equal(count, 1)
+  await store.loadDate('2026-10-14', true)
+  assert.equal(count, 2)
+})
+
+test('历史分页不发送 today，追加结果按日期去重', async () => {
+  let call = 0
+  const { store, calls } = setupStore({
+    listDailyFlowerHistory: async (input) => {
+      calls.history.push(input)
+      call++
+      return call === 1
+        ? { items: [{ date: '2026-10-14', description: '第一版' }], hasMore: true }
+        : { items: [{ date: '2026-10-14', description: '第二版' }, { date: '2026-10-13', description: '旧花束' }], hasMore: false }
+    },
+  })
+  await store.loadHistory(true)
+  await store.loadHistory()
+  assert.equal(calls.history.some(input => 'today' in input), false)
+  assert.deepEqual(calls.history.map(input => input.page), [1, 2])
+  assert.deepEqual(Array.from(store.historyItems, item => item.date), ['2026-10-14', '2026-10-13'])
+})
+
+test('领域 API 失败后历史 loading 复位并保留可展示错误', async () => {
+  const { store } = setupStore({ listDailyFlowerHistory: async () => { throw new Error('服务暂不可用') } })
+  await store.loadHistory(true)
+  assert.equal(store.historyLoading, false)
+  assert.equal(typeof store.historyError, 'string')
+  assert.notEqual(store.historyError, '')
 })

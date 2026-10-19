@@ -1,32 +1,11 @@
-import type { Artwork } from '@/models/artwork'
+import type { DailyFlowerSummary, LocalDailyFlower } from '@/models/daily-flower'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { parseDailyFlower, parseDailyFlowerSummary } from '@/utils/flower/daily-flower'
+import { getDailyFlowerArtwork, getDailyFlowerByDate, listDailyFlowerHistory } from '@/api/flower-daily'
+import { resolveDailyFlowerImage } from '@/utils/flower/daily-flower-image-cache'
 
-export interface PublishedDailyFlower {
-  date: string
-  description: string
-  artwork: Artwork
-  imageFileId: string
-  imageUrl: string
-  imagePath: string
-}
-
-export interface DailyFlowerHistoryItem {
-  date: string
-  description: string
-}
-
-interface DailyFlowerCloud {
-  getByDate: (input: { date: string }) => Promise<{ flower: Omit<PublishedDailyFlower, 'imagePath'> | null }>
-  getArtwork: (input: { date: string }) => Promise<{ flower: { date: string, description: string, artwork: Artwork } | null }>
-  listHistory: (input: { today: string, page: number, pageSize: number, date?: string }) => Promise<{ items: DailyFlowerHistoryItem[], hasMore: boolean }>
-}
-
-interface CachedDailyImage {
-  imageFileId: string
-  imagePath: string
-}
+export type PublishedDailyFlower = LocalDailyFlower
+export type DailyFlowerHistoryItem = DailyFlowerSummary
 
 const dismissedStorageKey = 'daily-flower-dismissed-date:v1'
 
@@ -35,71 +14,12 @@ function localDate() {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
 }
 
-function cacheKey(date: string) {
-  return `daily-flower-image:v1:${date}`
-}
-
-function fileExists(filePath: string) {
-  if (typeof wx === 'undefined' || !wx.getFileSystemManager())
-    return Promise.resolve(false)
-  return new Promise<boolean>((resolve) => {
-    wx.getFileSystemManager().getFileInfo({
-      filePath,
-      success: () => resolve(true),
-      fail: () => resolve(false),
-    })
-  })
-}
-
-async function cachedOrDownloadImage(record: Omit<PublishedDailyFlower, 'imagePath'>) {
-  const key = cacheKey(record.date)
-  const cached: unknown = uni.getStorageSync(key)
-  if (typeof cached === 'object' && cached !== null && 'imageFileId' in cached && 'imagePath' in cached
-    && cached.imageFileId === record.imageFileId && typeof cached.imagePath === 'string'
-    && await fileExists(cached.imagePath)) {
-    return cached.imagePath
-  }
-
-  let download: UniApp.DownloadSuccessData | undefined
-  let lastError: unknown
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      download = await new Promise<UniApp.DownloadSuccessData>((resolve, reject) => {
-        uni.downloadFile({ url: record.imageUrl, success: resolve, fail: reject })
-      })
-      break
-    }
-    catch (error) {
-      lastError = error
-    }
-  }
-  if (!download)
-    throw lastError
-  if (download.statusCode !== 200)
-    throw new Error('今日花束图片下载失败')
-
-  const saved = await new Promise<UniApp.SaveFileSuccess>((resolve, reject) => {
-    uni.saveFile({ tempFilePath: download.tempFilePath, success: resolve, fail: reject })
-  })
-  uni.setStorageSync(key, { imageFileId: record.imageFileId, imagePath: saved.savedFilePath } satisfies CachedDailyImage)
-  return saved.savedFilePath
-}
-
 async function fetchDailyFlower(date: string): Promise<PublishedDailyFlower | null> {
-  const cloud = uniCloud.importObject('flower-daily', { customUI: true }) as DailyFlowerCloud
-  const { flower: result } = await cloud.getByDate({ date })
+  const result = await getDailyFlowerByDate(date)
   if (!result)
     return null
-  if (result.date !== date || typeof result.imageUrl !== 'string' || !/^https:\/\//.test(result.imageUrl))
-    throw new Error('今日花束记录无效')
-
-  const parsed = parseDailyFlower(JSON.stringify({
-    date: result.date,
-    description: result.description,
-    artwork: result.artwork,
-  }))
-  const imagePath = await cachedOrDownloadImage({ ...result, ...parsed })
-  return { ...parsed, imageFileId: result.imageFileId, imageUrl: result.imageUrl, imagePath }
+  const imagePath = await resolveDailyFlowerImage(result)
+  return { ...result, imagePath }
 }
 
 export const useDailyFlowerStore = defineStore('dailyFlower', () => {
@@ -130,11 +50,7 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
   }
 
   async function getArtwork(date: string) {
-    const cloud = uniCloud.importObject('flower-daily', { customUI: true }) as DailyFlowerCloud
-    const { flower } = await cloud.getArtwork({ date })
-    if (!flower)
-      return null
-    return parseDailyFlower(JSON.stringify(flower)).artwork
+    return getDailyFlowerArtwork(date)
   }
 
   async function checkToday() {
@@ -178,24 +94,13 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
     historyLoading.value = true
     historyError.value = ''
     try {
-      const date = localDate()
-      const cloud = uniCloud.importObject('flower-daily', { customUI: true }) as DailyFlowerCloud
       const page = reset ? 1 : historyPage
-      const result = await cloud.listHistory({
-        today: date,
+      const result = await listDailyFlowerHistory({
         page,
         pageSize: 20,
         ...(historyDateFilter.value ? { date: historyDateFilter.value } : {}),
       })
-      if (!Array.isArray(result.items) || typeof result.hasMore !== 'boolean')
-        throw new Error('历史花束数据格式无效')
-      const parsed = result.items.map((item) => {
-        const flower = parseDailyFlowerSummary(JSON.stringify(item))
-        if (flower.date > date)
-          throw new Error('历史花束日期无效')
-        return flower
-      })
-      const merged = reset ? parsed : [...historyItems.value, ...parsed]
+      const merged = reset ? result.items : [...historyItems.value, ...result.items]
       historyItems.value = [...new Map(merged.map(item => [item.date, item])).values()]
       historyHasMore.value = result.hasMore
       historyPage = page + 1
