@@ -98,3 +98,73 @@ test('历史 API 拒绝重复日期和损坏摘要', async () => {
   const broken = fixture(() => ({ items: [{ date: 'not-a-date', description: '' }], hasMore: false }))
   await assert.rejects(broken.api.listDailyFlowerHistory({ page: 1, pageSize: 20 }))
 })
+
+function imageCacheFixture(options = {}) {
+  const storage = new Map(options.cached ? [[`daily-flower-image:v1:${options.cached.date}`, options.cached.value]] : [])
+  const calls = { downloads: 0, saves: 0 }
+  const uni = {
+    getStorageSync: key => storage.get(key),
+    setStorageSync: (key, value) => storage.set(key, value),
+    downloadFile: ({ success, fail }) => {
+      calls.downloads++
+      if (options.downloadFailures && calls.downloads <= options.downloadFailures) return fail(new Error('network'))
+      success({ statusCode: options.statusCode ?? 200, tempFilePath: '/tmp/download.png' })
+    },
+    saveFile: ({ success }) => {
+      calls.saves++
+      success({ savedFilePath: '/saved/flower.png' })
+    },
+  }
+  const wx = options.withFileSystem === false
+    ? undefined
+    : { getFileSystemManager: () => ({ getFileInfo: ({ success, fail }) => options.fileExists ? success({}) : fail(new Error('missing')) }) }
+  const loader = createLoader({ uni, wx })
+  return {
+    calls,
+    storage,
+    resolve: loader.load('src/utils/flower/daily-flower-image-cache.ts').resolveDailyFlowerImage,
+  }
+}
+
+test('有效持久文件直接命中且不下载', async () => {
+  const value = record()
+  const fixture = imageCacheFixture({
+    cached: { date: value.date, value: { imageFileId: value.imageFileId, imagePath: '/saved/cached.png' } },
+    fileExists: true,
+  })
+  assert.equal(await fixture.resolve(value), '/saved/cached.png')
+  assert.equal(fixture.calls.downloads, 0)
+})
+
+test('缓存路径对应文件已丢失时重新下载并保存', async () => {
+  const value = record()
+  const fixture = imageCacheFixture({
+    cached: { date: value.date, value: { imageFileId: value.imageFileId, imagePath: '/saved/missing.png' } },
+    fileExists: false,
+  })
+  assert.equal(await fixture.resolve(value), '/saved/flower.png')
+  assert.equal(fixture.calls.downloads, 1)
+  assert.equal(fixture.calls.saves, 1)
+  assert.equal(fixture.storage.get(`daily-flower-image:v1:${value.date}`).imagePath, '/saved/flower.png')
+})
+
+test('下载最多尝试两次并拒绝非 200 响应', async () => {
+  const failed = imageCacheFixture({ downloadFailures: 2 })
+  await assert.rejects(failed.resolve(record()), /network/)
+  assert.equal(failed.calls.downloads, 2)
+
+  const badStatus = imageCacheFixture({ statusCode: 503 })
+  await assert.rejects(badStatus.resolve(record()), /今日花束图片下载失败/)
+  assert.equal(badStatus.calls.downloads <= 2, true)
+  assert.equal(badStatus.calls.saves, 0)
+})
+
+test('文件系统 API 不存在时缓存视为未命中', async () => {
+  const value = record()
+  const fixture = imageCacheFixture({
+    cached: { date: value.date, value: { imageFileId: value.imageFileId, imagePath: '/saved/cached.png' } },
+    withFileSystem: false,
+  })
+  assert.equal(await fixture.resolve(value), '/saved/flower.png')
+  assert.equal(fixture.calls.downloads, 1)
+})
