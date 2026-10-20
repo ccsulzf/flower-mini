@@ -15,7 +15,6 @@ const { draft, loading, error, images, retry } = useFlowerPageArtwork({
       throw new Error('今日花束不存在或已下架')
     return {
       draft: {
-        version: 1,
         artwork: flower.artwork,
         card: { blessing: '', signature: '' },
         updatedAt: Date.now(),

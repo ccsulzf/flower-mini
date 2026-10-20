@@ -15,9 +15,8 @@ function colorizeMaterialSvg(svg, color) {
   return source;
 }
 
-function assertReference(id, revision) {
-  if (typeof id !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(id)
-    || typeof revision !== 'string' || !/^[a-f\d]{16}$/.test(revision))
+function assertReference(id) {
+  if (typeof id !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(id))
     throw new Error('作品中的云素材引用无效')
 }
 
@@ -52,12 +51,12 @@ function backgroundColor(name) {
   return { warm: '#f4efe5', sage: '#e7eadf', cocoa: '#e8ded3', mist: '#edf0ed', blush: '#f2e4e3', sand: '#eee6d6' }[name]
 }
 
-async function loadMaterial(id, revision) {
-  assertReference(id, revision)
+async function loadMaterial(id) {
+  assertReference(id)
   const result = await uniCloud.database().collection('flower-material-assets').doc(id).get()
   const material = result.data?.[0]
-  if (!material || material.id !== id || material.revision !== revision)
-    throw new Error(`素材 ${id} 不存在或版本已变化`)
+  if (!material || material.id !== id)
+    throw new Error(`素材 ${id} 不存在`)
   return material
 }
 
@@ -82,16 +81,15 @@ async function materialWithSources(material, parts) {
 }
 
 async function artworkSvg(artwork) {
-  if (!artwork || artwork.version !== 2 || !Array.isArray(artwork.stems) || artwork.stems.length > 64
+  if (!artwork || !Array.isArray(artwork.stems) || artwork.stems.length > 64
     || !['陶瓶', '玻璃瓶', '圆花器', '花束'].includes(artwork.vase)
     || !backgroundColor(artwork.background))
     throw new Error('作品数据无效或超出云端测试范围')
 
   const references = new Map()
-  const add = (id, revision) => {
-    assertReference(id, revision)
-    const key = `${id}:${revision}`
-    references.set(key, { id, revision })
+  const add = (id) => {
+    assertReference(id)
+    references.set(id, { id })
   }
   for (const stem of artwork.stems) {
     if (!stem || !Number.isFinite(stem.x) || stem.x < 0 || stem.x > 698
@@ -99,64 +97,63 @@ async function artworkSvg(artwork) {
       || !Number.isFinite(stem.flowerScale) || stem.flowerScale < .65 || stem.flowerScale > 1.35
       || !Number.isFinite(stem.stemHeight) || stem.stemHeight < 120 || stem.stemHeight > 620
       || typeof stem.color !== 'string' || !/^#[\da-f]{6}$/i.test(stem.color)
-      || !stem.materialId || !stem.materialRevision
-      || (stem.leafMode !== undefined && !['with', 'without'].includes(stem.leafMode))
+      || !stem.materialId
       || (stem.mirrored !== undefined && typeof stem.mirrored !== 'boolean'))
       throw new Error('云端测试要求每枝花都引用有效的云端素材')
-    add(stem.materialId, stem.materialRevision)
+    add(stem.materialId)
   }
   if (artwork.vaseMaterialId)
-    add(artwork.vaseMaterialId, artwork.vaseMaterialRevision)
+    add(artwork.vaseMaterialId)
   if (artwork.backgroundMaterialId)
-    add(artwork.backgroundMaterialId, artwork.backgroundMaterialRevision)
+    add(artwork.backgroundMaterialId)
 
   const materials = new Map()
-  for (const { id, revision } of references.values()) {
-    const material = await loadMaterial(id, revision)
-    materials.set(`${id}:${revision}`, material)
+  for (const { id } of references.values()) {
+    const material = await loadMaterial(id)
+    materials.set(id, material)
   }
   const requestedParts = new Map()
-  const requirePart = (id, revision, part) => {
-    const key = `${id}:${revision}`
+  const requirePart = (id, part) => {
+    const key = id
     const parts = requestedParts.get(key) || new Set()
     parts.add(part)
     requestedParts.set(key, parts)
   }
   for (const stem of artwork.stems) {
-    const material = materials.get(`${stem.materialId}:${stem.materialRevision}`)
+    const material = materials.get(stem.materialId)
     if (!material || material.category !== 'flower')
       throw new Error('作品引用的云端花材类型无效')
     if (material.group === 'foliage') {
-      requirePart(material.id, material.revision, 'foliage')
+      requirePart(material.id, 'foliage')
     }
     else {
-      requirePart(material.id, material.revision, 'flower')
-      requirePart(material.id, material.revision, stem.leafMode === 'with' ? 'stemWithLeaves' : 'stemWithoutLeaves')
+      requirePart(material.id, 'flower')
+      requirePart(material.id, 'stemWithoutLeaves')
     }
   }
   if (artwork.vaseMaterialId) {
-    const material = materials.get(`${artwork.vaseMaterialId}:${artwork.vaseMaterialRevision}`)
+    const material = materials.get(artwork.vaseMaterialId)
     if (!material || !['vase', 'bouquet'].includes(material.category))
       throw new Error('作品引用的云端花器类型无效')
-    requirePart(material.id, material.revision, material.category === 'bouquet' ? 'bouquet' : 'vase')
+    requirePart(material.id, material.category === 'bouquet' ? 'bouquet' : 'vase')
   }
   if (artwork.backgroundMaterialId) {
-    const material = materials.get(`${artwork.backgroundMaterialId}:${artwork.backgroundMaterialRevision}`)
+    const material = materials.get(artwork.backgroundMaterialId)
     if (!material || material.category !== 'background')
       throw new Error('作品引用的云端背景类型无效')
-    requirePart(material.id, material.revision, 'background')
+    requirePart(material.id, 'background')
   }
   for (const [key, parts] of requestedParts) {
     materials.set(key, await materialWithSources(materials.get(key), [...parts]))
   }
-  const getMaterial = (id, revision) => materials.get(`${id}:${revision}`)
+  const getMaterial = id => materials.get(id)
   let anchorOffset = 0
   if (artwork.backgroundMaterialId) {
-    const backgroundMaterial = getMaterial(artwork.backgroundMaterialId, artwork.backgroundMaterialRevision)
+    const backgroundMaterial = getMaterial(artwork.backgroundMaterialId)
     if (backgroundMaterial.geometry?.surfaceY !== undefined) {
       let vaseBottom = artwork.vase === '花束' ? 915 : 905
       if (artwork.vaseMaterialId) {
-        const vaseMaterial = getMaterial(artwork.vaseMaterialId, artwork.vaseMaterialRevision)
+        const vaseMaterial = getMaterial(artwork.vaseMaterialId)
         let mouthY = vaseMaterial.geometry.mouthY
         if (vaseMaterial.category === 'bouquet' && mouthY < vaseMaterial.geometry.height * .65)
           mouthY = vaseMaterial.geometry.height * .86
@@ -171,11 +168,11 @@ async function artworkSvg(artwork) {
   const anchorY = (artwork.vase === '圆花器' ? 777 : 747) + anchorOffset
   let background = ''
   if (artwork.backgroundMaterialId) {
-    const material = getMaterial(artwork.backgroundMaterialId, artwork.backgroundMaterialRevision)
+    const material = getMaterial(artwork.backgroundMaterialId)
     background = nested(material.sources.background, 0, 0, 698, 1000)
   }
   const stems = artwork.stems.map((stem) => {
-    const material = getMaterial(stem.materialId, stem.materialRevision)
+    const material = getMaterial(stem.materialId)
     if (!material || material.category !== 'flower' || !material.geometry)
       throw new Error('作品引用的云端花材类型或几何信息无效')
     const geometry = material.geometry
@@ -189,7 +186,7 @@ async function artworkSvg(artwork) {
     const connection = geometry.connectionY * 110 / geometry.width
     const headTop = 55 - headHeight / 2
     const join = Math.max(headTop, headTop + connection - 8)
-    const stemSource = stem.leafMode === 'with' ? material.sources.stemWithLeaves : material.sources.stemWithoutLeaves
+    const stemSource = material.sources.stemWithoutLeaves
     const flowerSource = material.sources.flower
     const plant = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${nested(stemSource, 0, join, 110, total - join)}${nested(colorizeMaterialSvg(flowerSource, stem.color), 0, headTop, 110, headHeight)}</svg>`
     const scaleX = stem.mirrored ? -stem.flowerScale : stem.flowerScale
@@ -197,7 +194,7 @@ async function artworkSvg(artwork) {
   }).join('')
   let vase = builtInVase(artwork.vase)
   if (artwork.vaseMaterialId) {
-    const material = getMaterial(artwork.vaseMaterialId, artwork.vaseMaterialRevision)
+    const material = getMaterial(artwork.vaseMaterialId)
     if (!material?.geometry || !material.sources.vase)
       throw new Error('作品引用的云端花器素材无效')
     const { width, height, mouthX } = material.geometry
@@ -272,9 +269,9 @@ module.exports = {
     const svg = await artworkSvg(artwork)
     const result = await renderSvg(svg)
     const assetCount = new Set([
-      ...artwork.stems.map(stem => `${stem.materialId}:${stem.materialRevision}`),
-      artwork.vaseMaterialId && `${artwork.vaseMaterialId}:${artwork.vaseMaterialRevision}`,
-      artwork.backgroundMaterialId && `${artwork.backgroundMaterialId}:${artwork.backgroundMaterialRevision}`,
+      ...artwork.stems.map(stem => stem.materialId),
+      artwork.vaseMaterialId,
+      artwork.backgroundMaterialId,
     ].filter(Boolean)).size
     return { ...result, assetCount }
   },

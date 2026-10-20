@@ -22,7 +22,7 @@ const emit = defineEmits<{
   'controlEnd': []
 }>()
 const catalog = useFlowerCatalogStore()
-const cloudMaterial = computed(() => props.stem.materialId && props.stem.materialRevision ? catalog.get(props.stem.materialId, props.stem.materialRevision) : undefined)
+const cloudMaterial = computed(() => props.stem.materialId ? catalog.get(props.stem.materialId) : undefined)
 const colors = computed(() => cloudMaterial.value ? cloudMaterial.value.colors.map(color => color.value) : flowerColors)
 const flowerName = computed(() => cloudMaterial.value?.name ?? flowerCatalog.find(item => item.kind === props.stem.kind)?.name ?? '花材')
 const positionValue = computed(() => Math.round(props.stem.angle))

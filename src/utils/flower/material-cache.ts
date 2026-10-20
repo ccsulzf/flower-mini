@@ -16,7 +16,7 @@ export async function prepareMaterial(record: UploadedMaterial) {
   let downloaded = 0, cached = 0
   for (const key of Object.keys(record.assets) as SvgPart[]) {
     const asset = record.assets[key]!
-    const storageKey = `flower-material-file:v1:${asset.hash}`
+    const storageKey = `flower-material-file:${asset.hash}`
     const old: unknown = uni.getStorageSync(storageKey)
     if (typeof old === 'string') {
       try { sources[key] = await read(old, asset.hash); paths[key] = old; cached++; continue }
@@ -31,7 +31,7 @@ export async function prepareMaterial(record: UploadedMaterial) {
     uni.setStorageSync(storageKey, saved.savedFilePath); downloaded++
   }
   const material: CachedMaterial = { ...record, paths, sources }
-  uni.setStorageSync(`flower-material-record:v1:${record.id}:${record.revision}`, record)
+  uni.setStorageSync(`flower-material-record:${record.id}`, record)
   return { material, downloaded, cached }
 }
-export function cachedRecord(id: string, revision: string): unknown { return uni.getStorageSync(`flower-material-record:v1:${id}:${revision}`) }
+export function cachedRecord(id: string): unknown { return uni.getStorageSync(`flower-material-record:${id}`) }

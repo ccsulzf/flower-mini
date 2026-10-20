@@ -6,7 +6,6 @@ const vm = require('node:vm')
 const { createLoader } = require('./helpers/load-ts.cjs')
 
 const cloudFunctionDir = path.resolve('uniCloud-alipay/cloudfunctions/flower-render-test')
-const revision = '0123456789abcdef'
 
 function loadCloudObject(wasm, options = {}) {
   const cloudModule = { exports: {} }
@@ -36,7 +35,7 @@ function complexArtworkSvg() {
   const loader = createLoader()
   const { createComplexRenderTestArtwork, renderTestArtworkSvg } = loader.load('src/utils/flower/render-test-svg.ts')
   const { parseArtwork } = loader.load('src/utils/flower/artwork.ts')
-  const baseMaterial = { introduction: '', flowerMeaning: '', version: 1, updatedAt: 0, revision }
+  const baseMaterial = { introduction: '', flowerMeaning: '', updatedAt: 0 }
   const flowerMaterials = [
     { ...baseMaterial, id: 'daisy', category: 'flower', name: '雏菊', group: 'filler', colors: [{ name: '奶油黄', value: '#f1e5bd' }, { name: '粉红', value: '#d78979' }], geometry: { width: 110, flowerHeight: 110, stemHeight: 260, connectionY: 102 }, assets: {} },
     { ...baseMaterial, id: 'rose', category: 'flower', name: '玫瑰', group: 'main', colors: [{ name: '深红', value: '#b82b36' }, { name: '浅粉', value: '#d77b83' }], geometry: { width: 110, flowerHeight: 110, stemHeight: 260, connectionY: 101 }, assets: {} },
@@ -53,7 +52,7 @@ function complexArtworkSvg() {
     const foliage = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 260"><path d="M55 0C55 76 55 180 55 260" fill="none" stroke="#849c81" stroke-width="3"/><ellipse cx="35" cy="90" rx="25" ry="10" fill="__COLOR__"/></svg>'
     prepared.set(material.id, {
       ...material,
-      sources: material.group === 'foliage' ? { foliage } : { flower, stemWithoutLeaves: stem, stemWithLeaves: stem },
+      sources: material.group === 'foliage' ? { foliage } : { flower, stemWithoutLeaves: stem },
       paths: {},
     })
   }
@@ -67,7 +66,7 @@ function complexArtworkSvg() {
     sources: { background: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000"><rect width="698" height="820" fill="#eee7db"/><rect y="820" width="698" height="180" fill="#c4a27e"/></svg>' },
     paths: {},
   })
-  return { artwork, prepared, svg: renderTestArtworkSvg(artwork, (id, materialRevision) => prepared.get(id)?.revision === materialRevision ? prepared.get(id) : undefined) }
+  return { artwork, prepared, svg: renderTestArtworkSvg(artwork, id => prepared.get(id)) }
 }
 
 const complex = complexArtworkSvg()
@@ -82,7 +81,6 @@ test('客户端先将作品 JSON 与本地素材组装成完整 SVG', () => {
   assert.ok(new Set(artwork.stems.map(stem => stem.angle)).size >= 12)
   assert.ok(new Set(artwork.stems.map(stem => stem.flowerScale)).size >= 12)
   assert.ok(artwork.stems.some(stem => stem.mirrored))
-  assert.ok(artwork.stems.some(stem => stem.leafMode === 'with'))
   assert.ok(artwork.stems.some(stem => stem.kind === 'leaf'))
   assert.equal(artwork.vaseMaterialId, 'ceramic-vase')
   assert.equal(artwork.backgroundMaterialId, 'room-background')
@@ -90,7 +88,7 @@ test('客户端先将作品 JSON 与本地素材组装成完整 SVG', () => {
   assert.equal((svg.match(/<g transform="translate\(\d+ 680\) rotate\(/g) || []).length, artwork.stems.length)
 })
 
-test('云端按作品素材版本从 flower-material-assets 和 fileId 获取 SVG 后渲染', async () => {
+test('云端按作品素材 ID 从 flower-material-assets 和 fileId 获取 SVG 后渲染', async () => {
   let submittedSvg = ''
   const fileContents = new Map()
   const records = new Map()
@@ -131,9 +129,9 @@ test('云端按作品素材版本从 flower-material-assets 和 fileId 获取 SV
   assert.equal(result.width, 698)
   assert.equal(result.height, 1000)
   const referencedMaterials = new Set([
-    ...complex.artwork.stems.map(stem => `${stem.materialId}:${stem.materialRevision}`),
-    `${complex.artwork.vaseMaterialId}:${complex.artwork.vaseMaterialRevision}`,
-    `${complex.artwork.backgroundMaterialId}:${complex.artwork.backgroundMaterialRevision}`,
+    ...complex.artwork.stems.map(stem => stem.materialId),
+    complex.artwork.vaseMaterialId,
+    complex.artwork.backgroundMaterialId,
   ])
   assert.equal(result.assetCount, referencedMaterials.size)
   assert.ok(downloads.length > 0)
@@ -143,9 +141,9 @@ test('云端按作品素材版本从 flower-material-assets 和 fileId 获取 SV
   assert.match(submittedSvg, /<circle[^>]*fill="#/)
   assert.match(submittedSvg, /#eee7db/)
   assert.doesNotMatch(submittedSvg, /__COLOR__/)
-  const staleArtwork = structuredClone(complex.artwork)
-  staleArtwork.stems[0].materialRevision = 'f'.repeat(16)
-  await assert.rejects(object.renderArtwork.call(context, { artwork: staleArtwork }), /不存在或版本已变化/)
+  const missingArtwork = structuredClone(complex.artwork)
+  missingArtwork.stems[0].materialId = 'missing-flower'
+  await assert.rejects(object.renderArtwork.call(context, { artwork: missingArtwork }), /不存在/)
 })
 
 test('云存储下载未返回 fileContent 时报告素材下载失败', async () => {
@@ -164,10 +162,9 @@ test('云存储下载未返回 fileContent 时报告素材下载失败', async (
   })
   await object._before.call({ getUniIdToken() {} })
   const artwork = {
-    version: 2,
     vase: '陶瓶',
     background: 'warm',
-    stems: [{ id: 1, x: 350, angle: 0, flowerScale: 1, stemHeight: 300, color: '#f1e5bd', materialId: 'daisy', materialRevision: revision }],
+    stems: [{ id: 1, x: 350, angle: 0, flowerScale: 1, stemHeight: 300, color: '#f1e5bd', materialId: 'daisy' }],
   }
   await assert.rejects(object.renderArtwork.call({}, { artwork }), /雏菊的云文件下载失败/)
 })

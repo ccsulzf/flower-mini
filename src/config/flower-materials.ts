@@ -21,7 +21,7 @@ export const backgroundOptions: { value: Artwork['background'], name: string, co
 ]
 
 export function createDefaultArtwork(): Artwork {
-  return { version: 2, vase: '陶瓶', background: 'warm', stems: [
+  return { vase: '陶瓶', background: 'warm', stems: [
     { id: 1, kind: 'daisy', x: 338, y: 747, angle: -24, flowerScale: 1, stemHeight: 410, color: '#f1e5bd' },
     { id: 2, kind: 'rose', x: 350, y: 747, angle: -5, flowerScale: 1.2, stemHeight: 530, color: '#b82b36' },
     { id: 3, kind: 'tulip', x: 362, y: 747, angle: 25, flowerScale: 1.35, stemHeight: 450, color: '#f4f0e6' },

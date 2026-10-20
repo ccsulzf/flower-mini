@@ -14,15 +14,15 @@ const cloudFlowers = computed(() => catalog.materials.filter(item => item.catego
 const activeGroup = ref<(typeof flowerGroups)[number]['value']>('main')
 const visibleFlowers = computed(() => cloudFlowers.value.filter(item => item.group === activeGroup.value))
 const thumbnailCache = new Map<string, string>()
-function thumbnail(id: string, revision: string) {
-  const key = `${id}:${revision}`
+function thumbnail(id: string) {
+  const key = id
   const cached = thumbnailCache.get(key)
   if (cached)
     return cached
-  const item = catalog.get(id, revision)
+  const item = catalog.get(id)
   if (!item || item.category !== 'flower')
     return ''
-  const source = cloudPlantSvg(item, { color: item.colors[0]?.value || '#f4f0e6', stemHeight: 230, leafMode: 'without' })
+  const source = cloudPlantSvg(item, { color: item.colors[0]?.value || '#f4f0e6', stemHeight: 230 })
   const result = source ? svgImageSource(source) : ''
   if (result)
     thumbnailCache.set(key, result)
@@ -56,7 +56,7 @@ function thumbnail(id: string, revision: string) {
         <view class="material-grid">
           <button v-for="flower in visibleFlowers" :key="flower.id" class="material-card" hover-class="material-card-pressed" :aria-disabled="adding || (catalog.loading && !catalog.loaded)" :disabled="catalog.loading && !catalog.loaded" :aria-label="`添加${flower.name}`" @click="emit('cloud', flower.id)">
             <view class="material-art">
-              <image v-if="thumbnail(flower.id, flower.revision)" :src="thumbnail(flower.id, flower.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-sprout" />
+              <image v-if="thumbnail(flower.id)" :src="thumbnail(flower.id)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-sprout" />
             </view>
             <text class="material-name">
               {{ flower.name }}

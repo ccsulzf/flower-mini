@@ -6,11 +6,10 @@ export function defaultFlowerGeometry(id: string): FlowerGeometry | undefined {
   const connectionY = ({ rose: 101, tulip: 93, daisy: 102 } as Record<string, number>)[id]
   return connectionY ? { width: 110, flowerHeight: 110, stemHeight: 260, connectionY } : undefined
 }
-export function materialParts(row: { category?: string, group?: string }): SvgPart[] { return row.category === 'background' ? ['background'] : row.category === 'vase' ? ['vase'] : row.category === 'bouquet' ? ['bouquet'] : row.group === 'foliage' ? ['foliage'] : ['flower', 'stemWithLeaves', 'stemWithoutLeaves'] }
+export function materialParts(row: { category?: string, group?: string }): SvgPart[] { return row.category === 'background' ? ['background'] : row.category === 'vase' ? ['vase'] : row.category === 'bouquet' ? ['bouquet'] : row.group === 'foliage' ? ['foliage'] : ['flower', 'stemWithoutLeaves'] }
 export function normalizeMaterial(value: unknown): UploadedMaterial {
   if (!object(value) || typeof value.id !== 'string' || !idPattern.test(value.id) || typeof value.name !== 'string' || !value.name.trim() || value.name.length > 40
-    || typeof value.introduction !== 'string' || value.introduction.length > 2000 || !Number.isInteger(value.version) || Number(value.version) < 1
-    || typeof value.revision !== 'string' || !/^[a-f\d]{16}$/.test(value.revision) || !object(value.assets)) throw new Error('云端素材档案无效')
+    || typeof value.introduction !== 'string' || value.introduction.length > 2000 || !object(value.assets)) throw new Error('云端素材档案无效')
   const category = value.category === undefined ? 'flower' : value.category
   if (category !== 'flower' && category !== 'vase' && category !== 'bouquet' && category !== 'background') throw new Error('素材类型无效')
   const geometry = value.geometry || (category === 'flower' ? defaultFlowerGeometry(value.id) : undefined)
@@ -33,10 +32,10 @@ export function normalizeMaterial(value: unknown): UploadedMaterial {
       || (file.url !== undefined && (typeof file.url !== 'string' || !/^https:\/\//.test(file.url)))) throw new Error('素材文件信息无效')
     assets[key] = { fileId: file.fileId, hash: file.hash, ...(file.url ? { url: String(file.url) } : {}) }
   }
-  return { id: value.id, category, name: value.name, introduction: value.introduction, flowerMeaning: category === 'flower' ? String(value.flowerMeaning) : '', group: category === 'flower' ? value.group as UploadedMaterial['group'] : 'main', colors: category === 'flower' ? value.colors as UploadedMaterial['colors'] : [], version: Number(value.version), revision: value.revision, geometry: geometry as unknown as FlowerGeometry | VaseGeometry | BackgroundGeometry, assets, updatedAt: typeof value.updatedAt === 'number' ? value.updatedAt : 0 }
+  return { id: value.id, category, name: value.name, introduction: value.introduction, flowerMeaning: category === 'flower' ? String(value.flowerMeaning) : '', group: category === 'flower' ? value.group as UploadedMaterial['group'] : 'main', colors: category === 'flower' ? value.colors as UploadedMaterial['colors'] : [], geometry: geometry as unknown as FlowerGeometry | VaseGeometry | BackgroundGeometry, assets, updatedAt: typeof value.updatedAt === 'number' ? value.updatedAt : 0 }
 }
 export function parseMaterialCatalog(value: unknown): UploadedMaterial[] {
-  if (!object(value) || value.version !== 2 || !Array.isArray(value.items) || value.items.length > 10000) throw new Error('素材目录格式无效')
+  if (!object(value) || !Array.isArray(value.items) || value.items.length > 10000) throw new Error('素材目录格式无效')
   const items = value.items.map(normalizeMaterial)
   if (new Set(items.map(item => item.id)).size !== items.length) throw new Error('素材标识重复')
   return items

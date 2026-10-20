@@ -6,7 +6,7 @@ function record(value: unknown): value is Record<string, unknown> {
 }
 
 export function parseFlowerCatalog(value: unknown): FlowerMaterial[] {
-  if (!record(value) || value.version !== 1 || !Array.isArray(value.items) || value.items.length > 100)
+  if (!record(value) || !Array.isArray(value.items) || value.items.length > 100)
     throw new Error('云端花材目录格式不正确')
   const kinds = new Set<string>()
   return value.items.map((item): FlowerMaterial => {

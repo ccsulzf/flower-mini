@@ -13,12 +13,12 @@ const containerTabs = [{ value: 'vase', name: '花瓶' }, { value: 'bouquet', na
 const activeContainer = ref<(typeof containerTabs)[number]['value']>('vase')
 const visibleContainers = computed(() => catalog.materials.filter(item => item.category === activeContainer.value))
 const thumbnailCache = new Map<string, string>()
-function thumbnail(id: string, revision: string) {
-  const key = `${id}:${revision}`
+function thumbnail(id: string) {
+  const key = id
   const cached = thumbnailCache.get(key)
   if (cached)
     return cached
-  const item = catalog.get(id, revision)
+  const item = catalog.get(id)
   if (!item || (item.category !== 'vase' && item.category !== 'bouquet'))
     return ''
   const source = (item.sources.vase || item.sources.bouquet || '').replace(/__COLOR__/g, item.colors[0]?.value || '#f4f0e6')
@@ -55,7 +55,7 @@ function thumbnail(id: string, revision: string) {
         <view class="material-grid">
           <button v-for="item in visibleContainers" :key="item.id" class="material-card" hover-class="none" :aria-disabled="adding || (catalog.loading && !catalog.loaded)" :disabled="catalog.loading && !catalog.loaded" :aria-label="`选择${item.name}`" @click="emit('cloud', item.id)">
             <view class="material-art">
-              <image v-if="thumbnail(item.id, item.revision)" :src="thumbnail(item.id, item.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-chemistry" />
+              <image v-if="thumbnail(item.id)" :src="thumbnail(item.id)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-chemistry" />
             </view>
             <text class="material-name">
               {{ item.name }}

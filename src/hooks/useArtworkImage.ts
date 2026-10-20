@@ -10,7 +10,7 @@ type ImageKind = 'artwork' | 'card'
 export function useArtworkImage(
   createSnapshot: () => Artwork,
   cacheScope: () => string = () => '',
-  getWorkIdentity: () => { id: string, revision: number } | undefined = () => undefined,
+  getWorkIdentity: () => { id: string } | undefined = () => undefined,
   getExistingImagePath: () => string = () => '',
 ) {
   const exportingImage = ref(false)
@@ -49,7 +49,7 @@ export function useArtworkImage(
   }
   function workIdentity() {
     const identity = getWorkIdentity()
-    if (!identity || !/^[a-f\d]{32}$/.test(identity.id) || !Number.isSafeInteger(identity.revision) || identity.revision < 1)
+    if (!identity || !/^[a-f\d]{32}$/.test(identity.id))
       throw new Error('请先保存作品，再生成图片')
     return identity
   }
@@ -84,7 +84,7 @@ export function useArtworkImage(
     imageError.value = ''
     try {
       const identity = workIdentity()
-      const path = await renderCloudImage(identity.id, identity.revision)
+      const path = await renderCloudImage(identity.id)
       if (!current()) {
         removeCachedImage(path)
         return false

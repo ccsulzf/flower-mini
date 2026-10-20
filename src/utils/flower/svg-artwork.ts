@@ -56,7 +56,7 @@ export function flowerConnectionY(kind: FlowerKind) {
   return 55
 }
 
-export function plantSvgMarkup(kind: FlowerKind, color: string, stemHeight: number, withoutLeaves = false) {
+export function plantSvgMarkup(kind: FlowerKind, color: string, stemHeight: number) {
   const material = materials[kind]
   if (!material) return undefined
   const safeColor = safeFlowerColor(color)
@@ -64,12 +64,12 @@ export function plantSvgMarkup(kind: FlowerKind, color: string, stemHeight: numb
   const height = stemHeight + 55
   const stemScale = (height - connection) / 260
   const bloom = innerSvg(material.bloom.replace(/__COLOR__/g, safeColor))
-  const stem = withoutLeaves ? (innerSvg(material.stem).match(/<path\b[^>]*fill="none"[^>]*\/>/)?.[0] || '<path d="M55 0L55 260" fill="none" stroke="#73835c" stroke-width="2"/>') : innerSvg(material.stem)
+  const stem = innerSvg(material.stem)
   // 花茎先绘制，花头盖住少量重叠；高度仍使花茎底端准确落在瓶口。
   return `<svg xmlns="http://www.w3.org/2000/svg" width="110" height="${height}" viewBox="0 0 110 ${height}"><g transform="translate(0 ${connection}) scale(1 ${stemScale})">${stem}</g>${bloom}</svg>`
 }
 
-export function plantSvgSource(kind: FlowerKind, color: string, stemHeight: number, withoutLeaves = false) {
-  const markup = plantSvgMarkup(kind, color, stemHeight, withoutLeaves)
+export function plantSvgSource(kind: FlowerKind, color: string, stemHeight: number) {
+  const markup = plantSvgMarkup(kind, color, stemHeight)
   return markup ? imageSource(markup) : undefined
 }

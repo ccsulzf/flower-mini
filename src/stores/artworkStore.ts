@@ -15,10 +15,8 @@ function artworkState() {
   const stems = ref<Stem[]>(initial.stems)
   const vase = ref<VaseName>(initial.vase)
   const vaseMaterialId = ref<string | undefined>()
-  const vaseMaterialRevision = ref<string | undefined>()
   const background = ref<Artwork['background']>(initial.background)
   const backgroundMaterialId = ref<string | undefined>()
-  const backgroundMaterialRevision = ref<string | undefined>()
   const containerLayouts = ref<NonNullable<Artwork['containerLayouts']>>({})
   const selectedId = ref<number | null>(null)
   const history = reactive(new ArtworkHistory())
@@ -52,7 +50,7 @@ function artworkState() {
   let controlOrigin: Stem | null = null
 
   function snapshot(): Artwork {
-    return { version: 2, vase: vase.value, ...(vaseMaterialId.value ? { vaseMaterialId: vaseMaterialId.value, vaseMaterialRevision: vaseMaterialRevision.value } : {}), ...(Object.keys(containerLayouts.value).length ? { containerLayouts: copyContainerLayouts(containerLayouts.value) } : {}), background: background.value, ...(backgroundMaterialId.value ? { backgroundMaterialId: backgroundMaterialId.value, backgroundMaterialRevision: backgroundMaterialRevision.value } : {}), stems: stems.value.map(stem => ({ ...stem, y: anchorY(vase.value) })) }
+    return { vase: vase.value, ...(vaseMaterialId.value ? { vaseMaterialId: vaseMaterialId.value } : {}), ...(Object.keys(containerLayouts.value).length ? { containerLayouts: copyContainerLayouts(containerLayouts.value) } : {}), background: background.value, ...(backgroundMaterialId.value ? { backgroundMaterialId: backgroundMaterialId.value } : {}), stems: stems.value.map(stem => ({ ...stem, y: anchorY(vase.value) })) }
   }
   function select(id: number | null) {
     selectedId.value = stems.value.some(stem => stem.id === id) ? id : null
@@ -63,11 +61,9 @@ function artworkState() {
     stems.value = artwork.stems.map(stem => ({ ...stem, y: anchorY(artwork.vase) }))
     vase.value = artwork.vase
     vaseMaterialId.value = artwork.vaseMaterialId
-    vaseMaterialRevision.value = artwork.vaseMaterialRevision
     containerLayouts.value = copyContainerLayouts(artwork.containerLayouts)
     background.value = artwork.background
     backgroundMaterialId.value = artwork.backgroundMaterialId
-    backgroundMaterialRevision.value = artwork.backgroundMaterialRevision
     nextId = Math.max(0, ...stems.value.map(stem => stem.id))
     selectedId.value = null
   }
@@ -97,8 +93,8 @@ function artworkState() {
     return id
   }
   function stemLandingBounds() {
-    const container = vaseMaterialId.value && vaseMaterialRevision.value
-      ? useFlowerCatalogStore().get(vaseMaterialId.value, vaseMaterialRevision.value)
+    const container = vaseMaterialId.value
+      ? useFlowerCatalogStore().get(vaseMaterialId.value)
       : undefined
     const placement = container ? vasePlacement(container) : { mouthLeft: vase.value === '花束' ? 338 : 280, mouthRight: vase.value === '花束' ? 362 : 420 }
     const inset = Math.min(4, (placement.mouthRight - placement.mouthLeft) / 2)
@@ -130,17 +126,17 @@ function artworkState() {
     remember()
     const id = ++nextId
     const kind = flowerCatalog.some(item => item.kind === material.id) ? material.id as FlowerKind : material.group === 'foliage' ? 'leaf' : 'rose'
-    stems.value.push({ id, kind, materialId: material.id, materialRevision: material.revision, leafMode: 'without', flowerScale: 1, color: material.colors[0].value, ...constrainStem({ ...materialPose(stems.value.length), y: anchorY(vase.value) }) })
+    stems.value.push({ id, kind, materialId: material.id, flowerScale: 1, color: material.colors[0].value, ...constrainStem({ ...materialPose(stems.value.length), y: anchorY(vase.value) }) })
     return id
   }
   function setVaseMaterial(material: CachedMaterial, recordHistory = true) {
     const placement = vasePlacement(material)
-    if (vaseMaterialId.value === material.id && vaseMaterialRevision.value === material.revision)
+    if (vaseMaterialId.value === material.id)
       return
     const enteringBouquet = material.category === 'bouquet' && vase.value !== '花束'
     const leavingBouquet = material.category === 'vase' && vase.value === '花束'
-    const targetKey = `${material.id}:${material.revision}`
-    const currentKey = vaseMaterialId.value ? `${vaseMaterialId.value}:${vaseMaterialRevision.value}` : `builtin:${vase.value}`
+    const targetKey = material.id
+    const currentKey = vaseMaterialId.value || `builtin:${vase.value}`
     const previousLayout = containerLayouts.value[targetKey]
     const clustered = material.category === 'vase' && stems.value.length > 1
       && (leavingBouquet || Math.max(...stems.value.map(stem => stem.x)) - Math.min(...stems.value.map(stem => stem.x)) < 8)
@@ -149,7 +145,7 @@ function artworkState() {
     else
       endStemEdit()
     containerLayouts.value[currentKey] = stems.value.map(({ id, x, angle, stemHeight, flowerScale }) => ({ id, x, angle, stemHeight, flowerScale }))
-    vase.value = material.category === 'bouquet' ? '花束' : '陶瓶'; vaseMaterialId.value = material.id; vaseMaterialRevision.value = material.revision
+    vase.value = material.category === 'bouquet' ? '花束' : '陶瓶'; vaseMaterialId.value = material.id
     const inset = Math.min(4, (placement.mouthRight - placement.mouthLeft) / 2)
     const left = placement.mouthLeft + inset; const right = placement.mouthRight - inset
     stems.value = stems.value.map((stem, index) => {
@@ -179,11 +175,6 @@ function artworkState() {
       return
     const index = selectedIndex.value
     select(stems.value[(index + (direction === 'next' ? 1 : -1) + stems.value.length) % stems.value.length].id)
-  }
-  function toggleLeaves() {
-    if (!selected.value?.materialId)
-      return
-    remember(); selected.value.leafMode = selected.value.leafMode === 'without' ? 'with' : 'without'
   }
   function duplicateSelected(): number | null {
     if (!selected.value)
@@ -217,18 +208,18 @@ function artworkState() {
   function setVase(name: VaseName) {
     if (vase.value === name && !vaseMaterialId.value)
       return
-    remember(); vase.value = name; vaseMaterialId.value = undefined; vaseMaterialRevision.value = undefined
+    remember(); vase.value = name; vaseMaterialId.value = undefined
     stems.value.forEach((stem) => { stem.y = anchorY(name) })
   }
   function setBackground(value: Artwork['background']) {
     if (background.value === value && !backgroundMaterialId.value)
       return
-    remember(); background.value = value; backgroundMaterialId.value = undefined; backgroundMaterialRevision.value = undefined
+    remember(); background.value = value; backgroundMaterialId.value = undefined
   }
   function setBackgroundMaterial(material: CachedMaterial) {
-    if (material.category !== 'background' || (backgroundMaterialId.value === material.id && backgroundMaterialRevision.value === material.revision))
+    if (material.category !== 'background' || backgroundMaterialId.value === material.id)
       return
-    remember(); background.value = 'warm'; backgroundMaterialId.value = material.id; backgroundMaterialRevision.value = material.revision
+    remember(); background.value = 'warm'; backgroundMaterialId.value = material.id
   }
   function setLayer(direction: 'front' | 'back') {
     if (direction === 'front' ? !canMoveFront.value : !canMoveBack.value)
@@ -284,7 +275,7 @@ function artworkState() {
     }
     updateStem(stem.id, { x: stem.x, y: stem.y, angle: stem.angle, stemHeight: Math.max(bounds.heightMin, Math.min(bounds.heightMax, value)) })
   }
-  return { stems, vase, vaseMaterialId, vaseMaterialRevision, background, backgroundMaterialId, backgroundMaterialRevision, selectedId, selected, selectedControlBounds, canUndo, canRedo, canClear, canMoveBack, canMoveFront, initialize, select, snapshot, stemLandingBounds, replaceArtwork, addFlower, addMaterial, setVaseMaterial, adjustSelected, mirrorSelected, selectAdjacent, toggleLeaves, duplicateSelected, removeSelected, clearArtwork, setColor, setVase, setBackground, setBackgroundMaterial, setLayer, undo, redo, beginStemEdit, beginSelectedControl, updateStem, updateSelectedControl, endStemEdit }
+  return { stems, vase, vaseMaterialId, background, backgroundMaterialId, selectedId, selected, selectedControlBounds, canUndo, canRedo, canClear, canMoveBack, canMoveFront, initialize, select, snapshot, stemLandingBounds, replaceArtwork, addFlower, addMaterial, setVaseMaterial, adjustSelected, mirrorSelected, selectAdjacent, duplicateSelected, removeSelected, clearArtwork, setColor, setVase, setBackground, setBackgroundMaterial, setLayer, undo, redo, beginStemEdit, beginSelectedControl, updateStem, updateSelectedControl, endStemEdit }
 }
 export function createArtworkStore(id: string) { return defineStore(id, artworkState) }
 export const useArtworkStore = createArtworkStore('artwork')

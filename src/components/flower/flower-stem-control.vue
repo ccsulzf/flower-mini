@@ -6,7 +6,7 @@ import type { Stem } from '@/utils/flower/artwork'
 const props = defineProps<{ stem: Stem, anchor: number, selected: boolean }>()
 const emit = defineEmits<{ start: [event: { touches: { clientX: number, clientY: number }[] }], move: [event: { touches: { clientX: number, clientY: number }[] }], end: [cancelled: boolean] }>()
 const catalog = useFlowerCatalogStore()
-const material = computed(() => props.stem.materialId && props.stem.materialRevision ? catalog.get(props.stem.materialId, props.stem.materialRevision) : undefined)
+const material = computed(() => props.stem.materialId ? catalog.get(props.stem.materialId) : undefined)
 const isFoliage = computed(() => material.value ? material.value.group === 'foliage' : props.stem.kind === 'leaf')
 const touchAreaStyle = computed(() => isFoliage.value ? `height:${props.stem.stemHeight + 79}rpx;` : '')
 const stemControlStyle = computed(() => `left:${props.stem.x}rpx;top:${props.anchor}rpx;height:${props.stem.stemHeight + 55}rpx;transform:translate(-50%, -100%) rotate(${props.stem.angle}deg);`)

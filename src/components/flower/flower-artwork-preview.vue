@@ -32,11 +32,11 @@ async function prepare() {
     if (catalog.error)
       throw new Error(catalog.error)
     const refs = [
-      ...source.stems.filter(stem => stem.materialId).map(stem => [stem.materialId!, stem.materialRevision!] as const),
-      ...(source.vaseMaterialId ? [[source.vaseMaterialId, source.vaseMaterialRevision!] as const] : []),
-      ...(source.backgroundMaterialId ? [[source.backgroundMaterialId, source.backgroundMaterialRevision!] as const] : []),
+      ...source.stems.flatMap(stem => stem.materialId ? [stem.materialId] : []),
+      ...(source.vaseMaterialId ? [source.vaseMaterialId] : []),
+      ...(source.backgroundMaterialId ? [source.backgroundMaterialId] : []),
     ]
-    await Promise.all(refs.map(([id, revision]) => catalog.ensure(id, revision)))
+    await Promise.all(refs.map(id => catalog.ensure(id)))
     if (currentRequestId === requestId)
       artwork.value = source
   }
@@ -62,11 +62,9 @@ watch(() => [JSON.stringify(props.artwork), props.workId, props.dailyDate], () =
       :style="{ transform: `translate(-50%, -50%) scale(${scale})` }"
       :background="artwork.background"
       :background-material-id="artwork.backgroundMaterialId"
-      :background-material-revision="artwork.backgroundMaterialRevision"
       :stems="artwork.stems"
       :vase="artwork.vase"
       :vase-material-id="artwork.vaseMaterialId"
-      :vase-material-revision="artwork.vaseMaterialRevision"
     />
     <view v-else class="artwork-preview-state">
       <text>{{ loading ? '正在准备作品…' : error }}</text>

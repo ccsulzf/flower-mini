@@ -55,7 +55,7 @@
 
 **Files:** modify src/models/artwork.ts, stores/artworkStore.ts, components/flower/{flower-board,flower-stem,flower-vase}.vue, pages/flower-studio/flower-studio-page.vue and components/{studio-options,studio-flower-tools}.vue; utils/flower/{artwork,artwork-history}.ts and arrangement helpers as necessary; new runtime material geometry/render helpers; tests/flower-{store,history,rendering,json}.test.cjs.
 
-**Interfaces:** Stem optional materialId/materialRevision/leafMode; Artwork optional vaseMaterialId/vaseMaterialRevision; addMaterial(record: CachedMaterial), setVaseMaterial(record: CachedMaterial); geometry helpers map actual assets to board anchors. Legacy addFlower/setVase remain supported.
+**Interfaces:** Stem optional materialId/materialRevision; Artwork optional vaseMaterialId/vaseMaterialRevision; addMaterial(record: CachedMaterial), setVaseMaterial(record: CachedMaterial); geometry helpers map actual assets to board anchors. Legacy addFlower/setVase remain supported.
 
 - [ ] Failing tests: cloud choice unavailable until cache ready; arbitrary new ID renders downloaded source; color choices come from metadata; with/without leaf changes correct asset; clone/undo/redo preserve references; vase switch and undo restore geometry; JSON legacy examples still pass.
 - [ ] Run named tests and confirm new failures.

@@ -2,13 +2,10 @@
   "date": "2026-10-18",
   "description": "重阳登高，远望秋山暮色：三枝金丝菊点亮牡丹、康乃馨、朱顶红与大花蕙兰的暖粉花面；鸢尾和马蹄莲拉出清朗线条，松虫草、风铃草、银柳与南天竹层层相衬，寄去敬老思亲的心意，祝长辈安康、岁岁常欢。",
   "artwork": {
-    "version": 2,
     "vase": "陶瓶",
     "vaseMaterialId": "matte-ceramic-vase",
-    "vaseMaterialRevision": "0000000000000000",
     "background": "cocoa",
     "backgroundMaterialId": "scene-midnight-gallery",
-    "backgroundMaterialRevision": "0000000000000000",
     "stems": [
       {
         "id": 1,
@@ -19,9 +16,7 @@
         "flowerScale": 1.04,
         "stemHeight": 385,
         "color": "#d8b76c",
-        "materialId": "firework-chrysanthemum",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "firework-chrysanthemum"},
       {
         "id": 2,
         "kind": "poppy",
@@ -31,9 +26,7 @@
         "flowerScale": 1.1,
         "stemHeight": 430,
         "color": "#d38c9a",
-        "materialId": "peony",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "peony"},
       {
         "id": 3,
         "kind": "poppy",
@@ -43,9 +36,7 @@
         "flowerScale": 1.14,
         "stemHeight": 470,
         "color": "#d898a4",
-        "materialId": "carnation",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "carnation"},
       {
         "id": 4,
         "kind": "poppy",
@@ -55,9 +46,7 @@
         "flowerScale": 1.08,
         "stemHeight": 500,
         "color": "#d6a4af",
-        "materialId": "cymbidium",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "cymbidium"},
       {
         "id": 5,
         "kind": "poppy",
@@ -67,9 +56,7 @@
         "flowerScale": 1.04,
         "stemHeight": 445,
         "color": "#d8a2ae",
-        "materialId": "lotus",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "lotus"},
       {
         "id": 6,
         "kind": "poppy",
@@ -79,9 +66,7 @@
         "flowerScale": 1.1,
         "stemHeight": 410,
         "color": "#b6a9cc",
-        "materialId": "iris",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "iris"},
       {
         "id": 7,
         "kind": "poppy",
@@ -91,9 +76,7 @@
         "flowerScale": 1.14,
         "stemHeight": 375,
         "color": "#d6a0a5",
-        "materialId": "amaryllis",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "amaryllis"},
       {
         "id": 8,
         "kind": "poppy",
@@ -103,9 +86,7 @@
         "flowerScale": 1.08,
         "stemHeight": 445,
         "color": "#f0eadb",
-        "materialId": "gardenia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "gardenia"},
       {
         "id": 9,
         "kind": "poppy",
@@ -115,9 +96,7 @@
         "flowerScale": 1.04,
         "stemHeight": 520,
         "color": "#ddc59b",
-        "materialId": "calla-lily",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "calla-lily"},
       {
         "id": 10,
         "kind": "poppy",
@@ -127,9 +106,7 @@
         "flowerScale": 1.1,
         "stemHeight": 465,
         "color": "#b5a4c8",
-        "materialId": "hyacinth",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "hyacinth"},
       {
         "id": 11,
         "kind": "chrysanthemum",
@@ -139,9 +116,7 @@
         "flowerScale": 1.14,
         "stemHeight": 485,
         "color": "#d8b76c",
-        "materialId": "firework-chrysanthemum",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "firework-chrysanthemum"},
       {
         "id": 12,
         "kind": "poppy",
@@ -151,9 +126,7 @@
         "flowerScale": 1.08,
         "stemHeight": 405,
         "color": "#d38c9a",
-        "materialId": "peony",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "peony"},
       {
         "id": 13,
         "kind": "poppy",
@@ -163,9 +136,7 @@
         "flowerScale": 1.04,
         "stemHeight": 550,
         "color": "#d498a3",
-        "materialId": "gladiolus",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "gladiolus"},
       {
         "id": 14,
         "kind": "poppy",
@@ -175,9 +146,7 @@
         "flowerScale": 1.1,
         "stemHeight": 455,
         "color": "#d898a4",
-        "materialId": "carnation",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "carnation"},
       {
         "id": 15,
         "kind": "poppy",
@@ -187,9 +156,7 @@
         "flowerScale": 1.14,
         "stemHeight": 420,
         "color": "#d6a4af",
-        "materialId": "cymbidium",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "cymbidium"},
       {
         "id": 16,
         "kind": "chrysanthemum",
@@ -199,9 +166,7 @@
         "flowerScale": 1.08,
         "stemHeight": 480,
         "color": "#d8b76c",
-        "materialId": "firework-chrysanthemum",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "firework-chrysanthemum"},
       {
         "id": 17,
         "kind": "poppy",
@@ -211,9 +176,7 @@
         "flowerScale": 1.04,
         "stemHeight": 390,
         "color": "#d8a2ae",
-        "materialId": "lotus",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "lotus"},
       {
         "id": 18,
         "kind": "poppy",
@@ -223,9 +186,7 @@
         "flowerScale": 1.1,
         "stemHeight": 500,
         "color": "#b6a9cc",
-        "materialId": "iris",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "iris"},
       {
         "id": 19,
         "kind": "poppy",
@@ -235,9 +196,7 @@
         "flowerScale": 1.14,
         "stemHeight": 350,
         "color": "#d6a0a5",
-        "materialId": "amaryllis",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "amaryllis"},
       {
         "id": 20,
         "kind": "poppy",
@@ -247,9 +206,7 @@
         "flowerScale": 1.08,
         "stemHeight": 365,
         "color": "#d98f6c",
-        "materialId": "zinnia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "zinnia"},
       {
         "id": 21,
         "kind": "poppy",
@@ -259,9 +216,7 @@
         "flowerScale": 1.04,
         "stemHeight": 435,
         "color": "#ddc59b",
-        "materialId": "calla-lily",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "calla-lily"},
       {
         "id": 22,
         "kind": "daisy",
@@ -271,9 +226,7 @@
         "flowerScale": 0.78,
         "stemHeight": 330,
         "color": "#aea0bd",
-        "materialId": "scabiosa",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "scabiosa"},
       {
         "id": 23,
         "kind": "daisy",
@@ -283,9 +236,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 345,
         "color": "#eee5d9",
-        "materialId": "statice",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "statice"},
       {
         "id": 24,
         "kind": "daisy",
@@ -295,9 +246,7 @@
         "flowerScale": 0.86,
         "stemHeight": 390,
         "color": "#d8a9b5",
-        "materialId": "astilbe",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "astilbe"},
       {
         "id": 25,
         "kind": "daisy",
@@ -307,9 +256,7 @@
         "flowerScale": 0.78,
         "stemHeight": 420,
         "color": "#eee9de",
-        "materialId": "queen-annes-lace",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "queen-annes-lace"},
       {
         "id": 26,
         "kind": "daisy",
@@ -319,9 +266,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 300,
         "color": "#e9e5da",
-        "materialId": "snowberry",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "snowberry"},
       {
         "id": 27,
         "kind": "daisy",
@@ -331,9 +276,7 @@
         "flowerScale": 0.86,
         "stemHeight": 360,
         "color": "#dba9ba",
-        "materialId": "sweet-pea",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "sweet-pea"},
       {
         "id": 28,
         "kind": "daisy",
@@ -343,9 +286,7 @@
         "flowerScale": 0.78,
         "stemHeight": 455,
         "color": "#b5a7ca",
-        "materialId": "delphinium",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "delphinium"},
       {
         "id": 29,
         "kind": "daisy",
@@ -355,9 +296,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 435,
         "color": "#b0a1c6",
-        "materialId": "campanula",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "campanula"},
       {
         "id": 30,
         "kind": "daisy",
@@ -367,9 +306,7 @@
         "flowerScale": 0.86,
         "stemHeight": 370,
         "color": "#baa1c5",
-        "materialId": "dendrobium",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "dendrobium"},
       {
         "id": 31,
         "kind": "daisy",
@@ -379,9 +316,7 @@
         "flowerScale": 0.78,
         "stemHeight": 315,
         "color": "#f1ecde",
-        "materialId": "jasmine",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "jasmine"},
       {
         "id": 32,
         "kind": "daisy",
@@ -391,9 +326,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 295,
         "color": "#b16b97",
-        "materialId": "globe-amaranth",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "globe-amaranth"},
       {
         "id": 33,
         "kind": "daisy",
@@ -403,9 +336,7 @@
         "flowerScale": 0.86,
         "stemHeight": 335,
         "color": "#e4ca83",
-        "materialId": "freesia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "freesia"},
       {
         "id": 34,
         "kind": "daisy",
@@ -415,9 +346,7 @@
         "flowerScale": 0.78,
         "stemHeight": 405,
         "color": "#aea0bd",
-        "materialId": "scabiosa",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "scabiosa"},
       {
         "id": 35,
         "kind": "daisy",
@@ -427,9 +356,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 280,
         "color": "#d8a9b5",
-        "materialId": "astilbe",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "astilbe"},
       {
         "id": 36,
         "kind": "daisy",
@@ -439,9 +366,7 @@
         "flowerScale": 0.86,
         "stemHeight": 355,
         "color": "#e9e5da",
-        "materialId": "snowberry",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "snowberry"},
       {
         "id": 37,
         "kind": "daisy",
@@ -451,9 +376,7 @@
         "flowerScale": 0.78,
         "stemHeight": 385,
         "color": "#dba9ba",
-        "materialId": "sweet-pea",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "sweet-pea"},
       {
         "id": 38,
         "kind": "leaf",
@@ -463,9 +386,7 @@
         "flowerScale": 0.9,
         "stemHeight": 310,
         "color": "#a0b18a",
-        "materialId": "nandina",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "nandina"},
       {
         "id": 39,
         "kind": "leaf",
@@ -475,9 +396,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 350,
         "color": "#d8d5cc",
-        "materialId": "pussy-willow",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "pussy-willow"},
       {
         "id": 40,
         "kind": "leaf",
@@ -487,9 +406,7 @@
         "flowerScale": 0.9,
         "stemHeight": 300,
         "color": "#a8b39b",
-        "materialId": "olive-leaf",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "olive-leaf"},
       {
         "id": 41,
         "kind": "leaf",
@@ -499,9 +416,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 320,
         "color": "#9aab89",
-        "materialId": "camellia-leaf",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "camellia-leaf"},
       {
         "id": 42,
         "kind": "leaf",
@@ -511,9 +426,7 @@
         "flowerScale": 0.9,
         "stemHeight": 380,
         "color": "#c9aa8b",
-        "materialId": "photinia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "photinia"},
       {
         "id": 43,
         "kind": "leaf",
@@ -523,9 +436,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 295,
         "color": "#728d69",
-        "materialId": "ivy",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "ivy"},
       {
         "id": 44,
         "kind": "leaf",
@@ -535,9 +446,7 @@
         "flowerScale": 0.9,
         "stemHeight": 340,
         "color": "#94aa7a",
-        "materialId": "plumosa-pine",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "plumosa-pine"},
       {
         "id": 45,
         "kind": "leaf",
@@ -547,9 +456,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 275,
         "color": "#bac797",
-        "materialId": "bamboo-leaf",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "bamboo-leaf"},
       {
         "id": 46,
         "kind": "leaf",
@@ -559,9 +466,7 @@
         "flowerScale": 0.9,
         "stemHeight": 305,
         "color": "#8fa57b",
-        "materialId": "gardenia-leaf",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "gardenia-leaf"},
       {
         "id": 47,
         "kind": "leaf",
@@ -571,9 +476,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 285,
         "color": "#7e9875",
-        "materialId": "fatsia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "fatsia"},
       {
         "id": 48,
         "kind": "leaf",
@@ -583,9 +486,7 @@
         "flowerScale": 0.9,
         "stemHeight": 365,
         "color": "#d8d5cc",
-        "materialId": "pussy-willow",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "pussy-willow"},
       {
         "id": 49,
         "kind": "leaf",
@@ -595,9 +496,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 335,
         "color": "#b78f7e",
-        "materialId": "nandina",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "nandina"},
       {
         "id": 50,
         "kind": "leaf",
@@ -607,9 +506,7 @@
         "flowerScale": 0.9,
         "stemHeight": 260,
         "color": "#819779",
-        "materialId": "camellia-leaf",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "camellia-leaf"},
       {
         "id": 51,
         "kind": "leaf",
@@ -619,9 +516,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 270,
         "color": "#94a686",
-        "materialId": "olive-leaf",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "olive-leaf"},
       {
         "id": 52,
         "kind": "leaf",
@@ -631,9 +526,7 @@
         "flowerScale": 0.9,
         "stemHeight": 315,
         "color": "#8b9e75",
-        "materialId": "ivy",
-        "materialRevision": "0000000000000000"
-      }
+        "materialId": "ivy"}
     ]
   }
 }

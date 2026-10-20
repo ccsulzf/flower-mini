@@ -5,7 +5,7 @@ import { backgroundOffset, backgroundSceneSource } from './background-render'
 import { bouquetLayers, cloudPlantSvg, vasePlacement } from './material-render'
 import { plantSvgMarkup } from './svg-artwork'
 
-type MaterialResolver = (id: string, revision: string) => CachedMaterial | undefined
+type MaterialResolver = (id: string) => CachedMaterial | undefined
 
 function nested(source: string, x: number, y: number, width: number, height: number) {
   const root = source.match(/<svg\b[^>]*>/)?.[0]
@@ -60,20 +60,20 @@ function vaseSvg(material: CachedMaterial, layer: 'back' | 'front') {
 
 function plantSvg(stem: Stem, getMaterial: MaterialResolver) {
   if (stem.materialId) {
-    const material = getMaterial(stem.materialId, stem.materialRevision || '')
-    if (!material || material.revision !== stem.materialRevision)
+    const material = getMaterial(stem.materialId)
+    if (!material)
       throw new Error(`花材 ${stem.materialId} 的 SVG 尚未准备好`)
-    return cloudPlantSvg(material, { ...stem, leafMode: 'without' })
+    return cloudPlantSvg(material, stem)
   }
-  const svg = plantSvgMarkup(stem.kind, stem.color, stem.stemHeight, true)
+  const svg = plantSvgMarkup(stem.kind, stem.color, stem.stemHeight)
   if (!svg)
     throw new Error(`暂不支持“${stem.kind}”花材的 SVG`)
   return svg
 }
 
 export function renderArtworkSvg(artwork: Artwork, getMaterial: MaterialResolver) {
-  const vase = artwork.vaseMaterialId ? getMaterial(artwork.vaseMaterialId, artwork.vaseMaterialRevision || '') : undefined
-  const background = artwork.backgroundMaterialId ? getMaterial(artwork.backgroundMaterialId, artwork.backgroundMaterialRevision || '') : undefined
+  const vase = artwork.vaseMaterialId ? getMaterial(artwork.vaseMaterialId) : undefined
+  const background = artwork.backgroundMaterialId ? getMaterial(artwork.backgroundMaterialId) : undefined
   if (artwork.vaseMaterialId && !vase)
     throw new Error('花器 SVG 尚未准备好')
   if (artwork.backgroundMaterialId && !background)

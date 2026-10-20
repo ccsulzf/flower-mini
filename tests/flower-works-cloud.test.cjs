@@ -21,41 +21,38 @@ function fixture(options = {}) {
     const invoke = async (method, input) => { const ctx = { getUniIdToken() { }, ...object }; await object._before.call(ctx); return object[method].call(ctx, input); };
     return { rows, deleted, uploaded, invoke, user: value => { uid = value; } };
 }
-const artwork = { version: 2, vase: '陶瓶', background: 'warm', stems: [] };
+const artwork = { vase: '陶瓶', background: 'warm', stems: [] };
 const thumbnailBase64 = require('./helpers/png.cjs')().toString('base64');
 const input = { title: '测试', description: '一束春日的花', artwork, card: { blessing: '', signature: '' }, thumbnailBase64 };
-test('云端作品鉴权、账号隔离、同 ID 更新和修订冲突', async () => {
+test('云端作品鉴权、账号隔离并按 ID 直接更新', async () => {
     const f = fixture();
     f.user(null);
     await assert.rejects(f.invoke('list', {}));
     f.user('alice');
     const saved = await f.invoke('save', { ...input, uid: 'bob' });
     assert.equal(f.rows[0].user_id, 'alice');
-    assert.equal(saved.revision, 1);
     assert.equal(saved.description, '一束春日的花');
     f.user('bob');
     await assert.rejects(f.invoke('get', { id: saved.id }));
-    await assert.rejects(f.invoke('remove', { id: saved.id, expectedRevision: 1 }));
-    await assert.rejects(f.invoke('save', { ...input, id: saved.id, expectedRevision: 1 }));
+    await assert.rejects(f.invoke('remove', { id: saved.id }));
+    await assert.rejects(f.invoke('save', { ...input, id: saved.id }));
     assert.equal(f.rows.length, 1);
     f.user('alice');
-    const updated = await f.invoke('save', { ...input, id: saved.id, expectedRevision: 1, title: '新名称' });
+    const updated = await f.invoke('save', { ...input, id: saved.id, title: '新名称' });
     assert.equal(updated.id, saved.id);
-    assert.equal(updated.revision, 2);
     assert.equal(f.rows.length, 1);
-    await assert.rejects(f.invoke('save', { ...input, id: saved.id, expectedRevision: 1 }), error => error.errCode === 'WORK_CONFLICT');
     const list = await f.invoke('list', { page: 1, pageSize: 20 });
     assert.equal(list.items.length, 1);
     assert.equal(list.items[0].draft, undefined);
     assert.equal(list.items[0].artwork, undefined);
     assert.equal(list.items[0].id, saved.id);
-    await f.invoke('remove', { id: saved.id, expectedRevision: 2 });
+    await f.invoke('remove', { id: saved.id });
     assert.equal(f.rows.length, 0);
 });
 test('云端拒绝伪造图片和非法作品字段', async () => { const f = fixture(); await assert.rejects(f.invoke('save', { ...input, thumbnailBase64: 'bad' })); await assert.rejects(f.invoke('save', { ...input, artwork: { ...artwork, stems: [{ id: 1 }] } })); assert.equal(f.uploaded.length, 0); });
 test('云端作品校验允许超过48枝花材', async () => { const f = fixture(); const stems = Array.from({ length: 60 }, (_, index) => ({ id: index + 1, kind: 'rose', x: 350, y: 747, angle: 0, flowerScale: 1, stemHeight: 410, color: '#abcdef' })); const saved = await f.invoke('save', { ...input, artwork: { ...artwork, stems } }); assert.equal(saved.draft.artwork.stems.length, 60); });
-test('云端作品保存允许不生成缩略图，并可更新无缩略图新作和保留旧缩略图', async () => { const f = fixture(); const { thumbnailBase64: _thumbnail, ...withoutThumbnail } = input; const saved = await f.invoke('save', withoutThumbnail); assert.equal(f.uploaded.length, 0); assert.equal(saved.thumbnailFileId, undefined); const updatedNew = await f.invoke('save', { ...withoutThumbnail, id: saved.id, expectedRevision: saved.revision, title: '更新无缩略图作品' }); assert.equal(updatedNew.revision, 2); assert.equal(updatedNew.thumbnailFileId, undefined); const legacy = await f.invoke('save', input); const legacyThumbnail = legacy.thumbnailFileId; const updatedLegacy = await f.invoke('save', { ...withoutThumbnail, id: legacy.id, expectedRevision: legacy.revision, title: '仅更新文字' }); assert.equal(updatedLegacy.thumbnailFileId, legacyThumbnail); assert.equal(f.uploaded.length, 1); assert.deepEqual(f.deleted, []); });
-test('数据库失败和并发冲突只清理新缩略图，原记录保持完整', async () => { const options = {}, f = fixture(options); const saved = await f.invoke('save', input); const oldFile = f.rows[0].thumbnailFileId; options.dbFailure = true; await assert.rejects(f.invoke('save', { ...input, id: saved.id, expectedRevision: 1, title: '失败' })); assert.equal(f.rows[0].title, '测试'); assert.equal(f.rows[0].revision, 1); assert.equal(f.deleted.length, 1); assert.notEqual(f.deleted[0], oldFile); options.dbFailure = false; options.conflict = true; await assert.rejects(f.invoke('save', { ...input, id: saved.id, expectedRevision: 1 }), e => e.errCode === 'WORK_CONFLICT'); assert.equal(f.deleted.length, 2); assert.ok(!f.deleted.includes(oldFile)); });
+test('云端作品保存允许不生成缩略图，并可更新无缩略图新作和保留旧缩略图', async () => { const f = fixture(); const { thumbnailBase64: _thumbnail, ...withoutThumbnail } = input; const saved = await f.invoke('save', withoutThumbnail); assert.equal(f.uploaded.length, 0); assert.equal(saved.thumbnailFileId, undefined); const updatedNew = await f.invoke('save', { ...withoutThumbnail, id: saved.id, title: '更新无缩略图作品' }); assert.equal(updatedNew.thumbnailFileId, undefined); const legacy = await f.invoke('save', input); const legacyThumbnail = legacy.thumbnailFileId; const updatedLegacy = await f.invoke('save', { ...withoutThumbnail, id: legacy.id, title: '仅更新文字' }); assert.equal(updatedLegacy.thumbnailFileId, legacyThumbnail); assert.equal(f.uploaded.length, 1); assert.deepEqual(f.deleted, []); });
+test('数据库失败只清理新缩略图，原记录保持完整', async () => { const options = {}, f = fixture(options); const saved = await f.invoke('save', input); const oldFile = f.rows[0].thumbnailFileId; options.dbFailure = true; await assert.rejects(f.invoke('save', { ...input, id: saved.id, title: '失败' })); assert.equal(f.rows[0].title, '测试'); assert.equal(f.deleted.length, 1); assert.notEqual(f.deleted[0], oldFile); });
 test('缩略图上传失败不创建记录，分页和作品文字长度严格校验', async () => { const f = fixture({ uploadFailure: true }); await assert.rejects(f.invoke('save', input)); assert.equal(f.rows.length, 0); for (const bad of [{ page: 0 }, { page: 1, pageSize: 51 }])
     await assert.rejects(f.invoke('list', bad)); for (const bad of [{ ...input, title: '花'.repeat(41) }, { ...input, description: '花'.repeat(161) }, { ...input, card: { blessing: '花'.repeat(121), signature: '' } }])
     await assert.rejects(f.invoke('save', bad)); assert.equal(f.uploaded.length, 0); });

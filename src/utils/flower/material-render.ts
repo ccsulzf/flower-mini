@@ -13,7 +13,7 @@ function nested(source: string, x: number, y: number, width: number, height: num
     return `<svg x="${x}" y="${y}" width="${width}" height="${height}" viewBox="${viewBox}" preserveAspectRatio="none">`
   })
 }
-export function cloudPlantSvg(material: CachedMaterial, stem: Pick<Stem, 'color' | 'stemHeight' | 'leafMode'>) {
+export function cloudPlantSvg(material: CachedMaterial, stem: Pick<Stem, 'color' | 'stemHeight'>) {
   if (material.category !== 'flower' || !material.geometry) throw new Error('花材几何信息缺失')
   const total = stem.stemHeight + 55
   const safeColor = /^#[\da-f]{6}$/i.test(stem.color) ? stem.color : material.colors[0].value
@@ -21,14 +21,14 @@ export function cloudPlantSvg(material: CachedMaterial, stem: Pick<Stem, 'color'
   const geometry = material.geometry as FlowerGeometry
   const headHeight = geometry.flowerHeight * 110 / geometry.width
   const connection = geometry.connectionY * 110 / geometry.width
-  const stemSource = stem.leafMode === 'without' ? material.sources.stemWithoutLeaves : material.sources.stemWithLeaves
+  const stemSource = material.sources.stemWithoutLeaves
   if (!stemSource || !material.sources.flower) throw new Error('花材文件缺失')
   // 花心保持 y=55，花茎连接点由素材提供，花器盖住底端。
   const headTop = 55 - headHeight / 2
-  // 旧银莲花档案连接点落在透明留白里；兼容旧云版本并让茎顶藏进花瓣。
+  // 银莲花档案连接点落在透明留白里，让茎顶藏进花瓣。
   const overlap = stemSource.includes('<!-- continuous-stem-join -->') ? 0 : 8
   const join = Math.max(headTop, headTop + (material.id === 'anemone' ? Math.min(connection, 84) : connection) - overlap)
-  const shapedStem = smoothStemTip(stem.leafMode === 'without' ? naturalStemSource(stemSource, material.id) : stemSource)
+  const shapedStem = smoothStemTip(naturalStemSource(stemSource, material.id))
   const fittedStem = fitStemJoin(shapedStem, (total - join) / geometry.stemHeight / (110 / geometry.width))
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${nested(fittedStem, 0, join, 110, total - join)}${nested(colorizeMaterialSvg(material.sources.flower, safeColor), 0, headTop, 110, headHeight)}</svg>`
 }

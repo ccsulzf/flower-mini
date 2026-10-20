@@ -2,13 +2,10 @@
   "date": "2026-10-17",
   "description": "秋阳果园：向日葵、鹤望兰与帝王花撑起一轮金橘色弧面，洋牡丹、鸡冠花和百日菊在前后错落；金鱼草与尤加利果穿针引线，红叶、橄榄叶和喷泉草向外舒展，像一束带着风的秋收花礼。",
   "artwork": {
-    "version": 2,
     "vase": "陶瓶",
     "vaseMaterialId": "ceramic-vase",
-    "vaseMaterialRevision": "0000000000000000",
     "background": "warm",
     "backgroundMaterialId": "scene-window-table",
-    "backgroundMaterialRevision": "0000000000000000",
     "stems": [
       {
         "id": 1,
@@ -19,9 +16,7 @@
         "flowerScale": 1.04,
         "stemHeight": 385,
         "color": "#dfb64c",
-        "materialId": "sunflower",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "sunflower"},
       {
         "id": 2,
         "kind": "poppy",
@@ -31,9 +26,7 @@
         "flowerScale": 1.1,
         "stemHeight": 440,
         "color": "#dba05a",
-        "materialId": "bird-of-paradise",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "bird-of-paradise"},
       {
         "id": 3,
         "kind": "poppy",
@@ -43,9 +36,7 @@
         "flowerScale": 1.14,
         "stemHeight": 475,
         "color": "#c96d63",
-        "materialId": "anthurium",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "anthurium"},
       {
         "id": 4,
         "kind": "poppy",
@@ -55,9 +46,7 @@
         "flowerScale": 1.08,
         "stemHeight": 450,
         "color": "#d49a69",
-        "materialId": "ranunculus",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "ranunculus"},
       {
         "id": 5,
         "kind": "poppy",
@@ -67,9 +56,7 @@
         "flowerScale": 1.04,
         "stemHeight": 415,
         "color": "#d2b1b6",
-        "materialId": "king-protea",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "king-protea"},
       {
         "id": 6,
         "kind": "poppy",
@@ -79,9 +66,7 @@
         "flowerScale": 1.1,
         "stemHeight": 390,
         "color": "#d38c9a",
-        "materialId": "peony",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "peony"},
       {
         "id": 7,
         "kind": "poppy",
@@ -91,9 +76,7 @@
         "flowerScale": 1.14,
         "stemHeight": 355,
         "color": "#d6936c",
-        "materialId": "cockscomb",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "cockscomb"},
       {
         "id": 8,
         "kind": "poppy",
@@ -103,9 +86,7 @@
         "flowerScale": 1.08,
         "stemHeight": 405,
         "color": "#d98f6c",
-        "materialId": "zinnia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "zinnia"},
       {
         "id": 9,
         "kind": "poppy",
@@ -115,9 +96,7 @@
         "flowerScale": 1.04,
         "stemHeight": 535,
         "color": "#d8987b",
-        "materialId": "gladiolus",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "gladiolus"},
       {
         "id": 10,
         "kind": "poppy",
@@ -127,9 +106,7 @@
         "flowerScale": 1.1,
         "stemHeight": 485,
         "color": "#dfb64c",
-        "materialId": "sunflower",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "sunflower"},
       {
         "id": 11,
         "kind": "poppy",
@@ -139,9 +116,7 @@
         "flowerScale": 1.14,
         "stemHeight": 430,
         "color": "#dba05a",
-        "materialId": "bird-of-paradise",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "bird-of-paradise"},
       {
         "id": 12,
         "kind": "poppy",
@@ -151,9 +126,7 @@
         "flowerScale": 1.08,
         "stemHeight": 365,
         "color": "#c96d63",
-        "materialId": "anthurium",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "anthurium"},
       {
         "id": 13,
         "kind": "poppy",
@@ -163,9 +136,7 @@
         "flowerScale": 1.04,
         "stemHeight": 455,
         "color": "#d49a69",
-        "materialId": "ranunculus",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "ranunculus"},
       {
         "id": 14,
         "kind": "poppy",
@@ -175,9 +146,7 @@
         "flowerScale": 1.1,
         "stemHeight": 425,
         "color": "#d38c9a",
-        "materialId": "peony",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "peony"},
       {
         "id": 15,
         "kind": "poppy",
@@ -187,9 +156,7 @@
         "flowerScale": 1.14,
         "stemHeight": 380,
         "color": "#d6936c",
-        "materialId": "cockscomb",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "cockscomb"},
       {
         "id": 16,
         "kind": "poppy",
@@ -199,9 +166,7 @@
         "flowerScale": 1.08,
         "stemHeight": 470,
         "color": "#dfb64c",
-        "materialId": "sunflower",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "sunflower"},
       {
         "id": 17,
         "kind": "poppy",
@@ -211,9 +176,7 @@
         "flowerScale": 1.04,
         "stemHeight": 405,
         "color": "#d2b1b6",
-        "materialId": "king-protea",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "king-protea"},
       {
         "id": 18,
         "kind": "poppy",
@@ -223,9 +186,7 @@
         "flowerScale": 1.1,
         "stemHeight": 345,
         "color": "#d98f6c",
-        "materialId": "zinnia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "zinnia"},
       {
         "id": 19,
         "kind": "poppy",
@@ -235,9 +196,7 @@
         "flowerScale": 1.14,
         "stemHeight": 435,
         "color": "#c96d63",
-        "materialId": "anthurium",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "anthurium"},
       {
         "id": 20,
         "kind": "poppy",
@@ -247,9 +206,7 @@
         "flowerScale": 1.08,
         "stemHeight": 495,
         "color": "#dba05a",
-        "materialId": "bird-of-paradise",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "bird-of-paradise"},
       {
         "id": 21,
         "kind": "poppy",
@@ -259,9 +216,7 @@
         "flowerScale": 1.04,
         "stemHeight": 400,
         "color": "#d49a69",
-        "materialId": "ranunculus",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "ranunculus"},
       {
         "id": 22,
         "kind": "poppy",
@@ -271,9 +226,7 @@
         "flowerScale": 1.1,
         "stemHeight": 330,
         "color": "#dfb64c",
-        "materialId": "sunflower",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "sunflower"},
       {
         "id": 23,
         "kind": "daisy",
@@ -283,9 +236,7 @@
         "flowerScale": 0.78,
         "stemHeight": 330,
         "color": "#b77e68",
-        "materialId": "kangaroo-paw",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "kangaroo-paw"},
       {
         "id": 24,
         "kind": "daisy",
@@ -295,9 +246,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 350,
         "color": "#d9cdb1",
-        "materialId": "bunny-tail",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "bunny-tail"},
       {
         "id": 25,
         "kind": "daisy",
@@ -307,9 +256,7 @@
         "flowerScale": 0.86,
         "stemHeight": 385,
         "color": "#d8bd6b",
-        "materialId": "acacia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "acacia"},
       {
         "id": 26,
         "kind": "daisy",
@@ -319,9 +266,7 @@
         "flowerScale": 0.78,
         "stemHeight": 415,
         "color": "#a8997f",
-        "materialId": "eucalyptus-pods",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "eucalyptus-pods"},
       {
         "id": 27,
         "kind": "daisy",
@@ -331,9 +276,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 300,
         "color": "#d5a0b0",
-        "materialId": "waxflower",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "waxflower"},
       {
         "id": 28,
         "kind": "daisy",
@@ -343,9 +286,7 @@
         "flowerScale": 0.86,
         "stemHeight": 355,
         "color": "#dfa8b1",
-        "materialId": "snapdragon",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "snapdragon"},
       {
         "id": 29,
         "kind": "daisy",
@@ -355,9 +296,7 @@
         "flowerScale": 0.78,
         "stemHeight": 375,
         "color": "#dfaa91",
-        "materialId": "alstroemeria",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "alstroemeria"},
       {
         "id": 30,
         "kind": "daisy",
@@ -367,9 +306,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 405,
         "color": "#bb7b79",
-        "materialId": "hypericum",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "hypericum"},
       {
         "id": 31,
         "kind": "daisy",
@@ -379,9 +316,7 @@
         "flowerScale": 0.86,
         "stemHeight": 475,
         "color": "#d8bb6c",
-        "materialId": "oncidium",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "oncidium"},
       {
         "id": 32,
         "kind": "daisy",
@@ -391,9 +326,7 @@
         "flowerScale": 0.78,
         "stemHeight": 465,
         "color": "#e4ca83",
-        "materialId": "freesia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "freesia"},
       {
         "id": 33,
         "kind": "daisy",
@@ -403,9 +336,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 320,
         "color": "#d8b653",
-        "materialId": "solidago",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "solidago"},
       {
         "id": 34,
         "kind": "daisy",
@@ -415,9 +346,7 @@
         "flowerScale": 0.86,
         "stemHeight": 365,
         "color": "#eee9de",
-        "materialId": "queen-annes-lace",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "queen-annes-lace"},
       {
         "id": 35,
         "kind": "daisy",
@@ -427,9 +356,7 @@
         "flowerScale": 0.78,
         "stemHeight": 290,
         "color": "#d9cdb1",
-        "materialId": "bunny-tail",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "bunny-tail"},
       {
         "id": 36,
         "kind": "daisy",
@@ -439,9 +366,7 @@
         "flowerScale": 0.8200000000000001,
         "stemHeight": 345,
         "color": "#d5a0b0",
-        "materialId": "waxflower",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "waxflower"},
       {
         "id": 37,
         "kind": "daisy",
@@ -451,9 +376,7 @@
         "flowerScale": 0.86,
         "stemHeight": 410,
         "color": "#b77e68",
-        "materialId": "kangaroo-paw",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "kangaroo-paw"},
       {
         "id": 38,
         "kind": "daisy",
@@ -463,9 +386,7 @@
         "flowerScale": 0.78,
         "stemHeight": 380,
         "color": "#d8bd6b",
-        "materialId": "acacia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "acacia"},
       {
         "id": 39,
         "kind": "leaf",
@@ -475,9 +396,7 @@
         "flowerScale": 0.9,
         "stemHeight": 315,
         "color": "#be9182",
-        "materialId": "photinia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "photinia"},
       {
         "id": 40,
         "kind": "leaf",
@@ -487,9 +406,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 325,
         "color": "#94a686",
-        "materialId": "olive-leaf",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "olive-leaf"},
       {
         "id": 41,
         "kind": "leaf",
@@ -499,9 +416,7 @@
         "flowerScale": 0.9,
         "stemHeight": 390,
         "color": "#ae9987",
-        "materialId": "fountain-grass",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "fountain-grass"},
       {
         "id": 42,
         "kind": "leaf",
@@ -511,9 +426,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 370,
         "color": "#80956c",
-        "materialId": "asparagus-fern",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "asparagus-fern"},
       {
         "id": 43,
         "kind": "leaf",
@@ -523,9 +436,7 @@
         "flowerScale": 0.9,
         "stemHeight": 275,
         "color": "#a4b48c",
-        "materialId": "spirea",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "spirea"},
       {
         "id": 44,
         "kind": "leaf",
@@ -535,9 +446,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 285,
         "color": "#a7b49c",
-        "materialId": "eucalyptus",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "eucalyptus"},
       {
         "id": 45,
         "kind": "leaf",
@@ -547,9 +456,7 @@
         "flowerScale": 0.9,
         "stemHeight": 345,
         "color": "#b78f7e",
-        "materialId": "nandina",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "nandina"},
       {
         "id": 46,
         "kind": "leaf",
@@ -559,9 +466,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 355,
         "color": "#b0c28f",
-        "materialId": "plumosa-pine",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "plumosa-pine"},
       {
         "id": 47,
         "kind": "leaf",
@@ -571,9 +476,7 @@
         "flowerScale": 0.9,
         "stemHeight": 300,
         "color": "#a2ae88",
-        "materialId": "photinia",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "photinia"},
       {
         "id": 48,
         "kind": "leaf",
@@ -583,9 +486,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 310,
         "color": "#94a686",
-        "materialId": "olive-leaf",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "olive-leaf"},
       {
         "id": 49,
         "kind": "leaf",
@@ -595,9 +496,7 @@
         "flowerScale": 0.9,
         "stemHeight": 420,
         "color": "#a5af91",
-        "materialId": "fountain-grass",
-        "materialRevision": "0000000000000000"
-      },
+        "materialId": "fountain-grass"},
       {
         "id": 50,
         "kind": "leaf",
@@ -607,9 +506,7 @@
         "flowerScale": 0.9400000000000001,
         "stemHeight": 250,
         "color": "#8b9e7d",
-        "materialId": "spirea",
-        "materialRevision": "0000000000000000"
-      }
+        "materialId": "spirea"}
     ]
   }
 }

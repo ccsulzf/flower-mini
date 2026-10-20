@@ -9,7 +9,6 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
   const card = ref<FlowerCardText>({ blessing: '', signature: '' })
   const pendingDraft = ref<CreationDraft | null>(null)
   const workId = ref<string>()
-  const workRevision = ref<number>()
   const dirty = ref(false)
   const hasUnsavedChanges = ref(false)
   const storageError = ref('')
@@ -25,7 +24,7 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     timer = undefined
   }
   function snapshot(): CreationDraft {
-    return { version: 1, artwork: store.snapshot(), card: { ...card.value }, updatedAt: Date.now(), ...(workId.value ? { workId: workId.value, workRevision: workRevision.value } : {}) }
+    return { artwork: store.snapshot(), card: { ...card.value }, updatedAt: Date.now(), ...(workId.value ? { workId: workId.value } : {}) }
   }
   function refreshBaseline() {
     baselineSnapshot = JSON.stringify(snapshot())
@@ -38,7 +37,6 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     cancelTimer()
     card.value = { blessing: '', signature: '' }
     workId.value = undefined
-    workRevision.value = undefined
     view.value = 'edit'
     owner = uid
     initialized.value = true
@@ -73,7 +71,6 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     store.initialize(value.artwork)
     card.value = value.card
     workId.value = value.workId
-    workRevision.value = value.workRevision
     baselineSnapshot = JSON.stringify(snapshot())
     dirty.value = false
     hasUnsavedChanges.value = false
@@ -99,10 +96,9 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
         return false
       }
     }
-    store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
+    store.initialize({ vase: '陶瓶', background: 'warm', stems: [] })
     card.value = { blessing: '', signature: '' }
     workId.value = undefined
-    workRevision.value = undefined
     pendingDraft.value = null
     view.value = 'edit'
     baselineSnapshot = JSON.stringify(snapshot())
@@ -143,7 +139,7 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     dirty.value = false
     hasUnsavedChanges.value = false
     pendingDraft.value = null
-    apply({ ...work.draft, workId: work.id, workRevision: work.revision })
+    apply({ ...work.draft, workId: work.id })
     baselineSnapshot = JSON.stringify(snapshot())
     view.value = 'artwork'
   }
@@ -156,11 +152,10 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     card.value = validateCard(text)
     markEdited()
   }
-  function saved(work?: Pick<SavedFlowerWork, 'id' | 'revision'>) {
+  function saved(work?: Pick<SavedFlowerWork, 'id'>) {
     if (work) {
       cancelTimer()
       workId.value = work.id
-      workRevision.value = work.revision
       dirty.value = false
       hasUnsavedChanges.value = false
     }
@@ -179,5 +174,5 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     flushDraft()
     cancelTimer()
   }
-  return { view, card, pendingDraft, workId, workRevision, dirty, hasUnsavedChanges, storageError, readonly, initialized, draftReadFailed, retryDraft, initialize, continueDraft, restart, markEdited, flushDraft, openWork, editWork, commitCard, saved, snapshot, dispose }
+  return { view, card, pendingDraft, workId, dirty, hasUnsavedChanges, storageError, readonly, initialized, draftReadFailed, retryDraft, initialize, continueDraft, restart, markEdited, flushDraft, openWork, editWork, commitCard, saved, snapshot, dispose }
 }

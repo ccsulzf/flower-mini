@@ -8,11 +8,11 @@ import { svgImageSource } from '@/utils/flower/material-render'
 import FlowerInstance from './flower-stem.vue'
 import FlowerVase from './flower-vase.vue'
 
-const props = defineProps<{ background?: Artwork['background'], backgroundMaterialId?: string, backgroundMaterialRevision?: string, stems: Stem[], vase: VaseName, hideVase?: boolean, vaseMaterialId?: string, vaseMaterialRevision?: string }>()
+const props = defineProps<{ background?: Artwork['background'], backgroundMaterialId?: string, stems: Stem[], vase: VaseName, hideVase?: boolean, vaseMaterialId?: string }>()
 const catalog = useFlowerCatalogStore()
-const scene = computed(() => props.backgroundMaterialId && props.backgroundMaterialRevision ? catalog.get(props.backgroundMaterialId, props.backgroundMaterialRevision) : undefined)
+const scene = computed(() => props.backgroundMaterialId ? catalog.get(props.backgroundMaterialId) : undefined)
 const backgroundSource = computed(() => scene.value?.sources.background ? svgImageSource(backgroundSceneSource(scene.value)) : '')
-const arrangementOffset = computed(() => backgroundOffset(scene.value, props.vaseMaterialId && props.vaseMaterialRevision ? catalog.get(props.vaseMaterialId, props.vaseMaterialRevision) : undefined, props.vase))
+const arrangementOffset = computed(() => backgroundOffset(scene.value, props.vaseMaterialId ? catalog.get(props.vaseMaterialId) : undefined, props.vase))
 const boardColor = computed(() => artworkBackground(props.background || 'warm'))
 </script>
 
@@ -20,9 +20,9 @@ const boardColor = computed(() => artworkBackground(props.background || 'warm'))
   <view class="artwork-renderer" :style="{ backgroundColor: boardColor, width: `${studioMetrics.width}rpx`, height: `${studioMetrics.height}rpx` }">
     <image v-if="backgroundSource" class="board-background" :src="backgroundSource" mode="scaleToFill" />
     <view class="board-arrangement" :style="{ transform: `translateY(${arrangementOffset}rpx)` }">
-      <FlowerVase v-if="!hideVase" layer="back" :vase="vase" :material-id="vaseMaterialId" :revision="vaseMaterialRevision" />
+      <FlowerVase v-if="!hideVase" layer="back" :vase="vase" :material-id="vaseMaterialId" />
       <FlowerInstance v-for="stem in stems" :key="stem.id" :stem="stem" :anchor="anchorY(vase)" />
-      <FlowerVase v-if="!hideVase" :vase="vase" :material-id="vaseMaterialId" :revision="vaseMaterialRevision" />
+      <FlowerVase v-if="!hideVase" :vase="vase" :material-id="vaseMaterialId" />
     </view>
   </view>
 </template>

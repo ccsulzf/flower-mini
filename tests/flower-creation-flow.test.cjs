@@ -3,7 +3,7 @@ test('默认花器初始化不产生撤销历史，用户切换花器可以撤�
   const loader = createLoader()
   const store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
   const materials = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.filter(item => item.category === 'vase')
-  store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
+  store.initialize({ vase: '陶瓶', background: 'warm', stems: [] })
   store.setVaseMaterial(materials[0], false)
   assert.equal(store.canUndo, false)
   store.setVaseMaterial(materials[1])
@@ -39,7 +39,7 @@ test('新作点击完成作品后直接保存并进入详情；贺卡只在完�
     inputs.push(input)
     if (failSave)
       throw new Error('保存失败，请重试')
-    return { id: 'a'.repeat(32), revision: 1, ...input, draft: { ...input.draft, workId: 'a'.repeat(32), workRevision: 1 } }
+    return { id: 'a'.repeat(32), ...input, draft: { ...input.draft, workId: 'a'.repeat(32)} }
   }
   await page.finish()
   assert.equal(routes.length, 0)
@@ -51,13 +51,11 @@ test('新作点击完成作品后直接保存并进入详情；贺卡只在完�
   assert.match(inputs[0].title, /^花意 \d+月\d+日 \d{2}:\d{2}$/)
   assert.equal(inputs[0].description, '')
   assert.equal(inputs[0].workId, undefined)
-  assert.equal(inputs[0].expectedRevision, undefined)
   assert.equal(routes.length, 1)
   assert.equal(routes[0].url, `/pages/flower-detail/flower-detail-page?workId=${'a'.repeat(32)}`)
   assert.equal(stemsAtNavigation[0], 1)
   assert.equal(page.session.readonly.value, false)
   assert.equal(page.session.workId.value, undefined)
-  assert.equal(page.session.workRevision.value, undefined)
   assert.equal(page.stems.value.length, 0)
   assert.equal(page.session.card.value.blessing, '')
   assert.equal(records.size, 0)
@@ -119,12 +117,11 @@ test('完成编辑直接更新后台并进入详情，不经过完成作品页',
   page.store.setVaseMaterial(vase, false)
   page.session.openWork({
     id,
-    revision: 3,
-    title: '春日花意',
+        title: '春日花意',
     description: '一束花',
     createdAt: 1,
     updatedAt: 1,
-    draft: { version: 1, artwork: page.store.snapshot(), card: { blessing: '', signature: '' }, updatedAt: 1 },
+    draft: { artwork: page.store.snapshot(), card: { blessing: '', signature: '' }, updatedAt: 1 },
   })
   page.session.editWork()
   assert.equal(page.session.workId.value, id)
@@ -134,7 +131,7 @@ test('完成编辑直接更新后台并进入详情，不经过完成作品页',
   works.get = async () => ({ title: '春日花意', description: '一束花' })
   works.save = async input => {
     inputs.push(input)
-    return { id, revision: 4, ...input, draft: { ...input.draft, workId: id, workRevision: 4 } }
+    return { id, ...input, draft: { ...input.draft, workId: id} }
   }
 
   await page.finish()
@@ -142,12 +139,10 @@ test('完成编辑直接更新后台并进入详情，不经过完成作品页',
   assert.equal(inputs[0].title, '春日花意')
   assert.equal(inputs[0].description, '一束花')
   assert.equal(inputs[0].workId, id)
-  assert.equal(inputs[0].expectedRevision, 3)
   assert.equal(routes.length, 1)
   assert.equal(routes[0].url, `/pages/flower-detail/flower-detail-page?workId=${id}`)
   assert.equal(page.session.readonly.value, false)
   assert.equal(page.session.workId.value, undefined)
-  assert.equal(page.session.workRevision.value, undefined)
   assert.equal(page.stems.value.length, 0)
   page.session.dispose()
 })
@@ -175,7 +170,7 @@ test('主动离开有改动的作品时可保存后进入我的作品并清除�
   let savedInput
   page.works.save = async input => {
     savedInput = input
-    return { id: 'b'.repeat(32), revision: 1 }
+    return { id: 'b'.repeat(32)}
   }
 
   page.openWorks()
@@ -301,11 +296,11 @@ test('容器素材准备期间点击我的作品仍显示提示，放弃后阻�
   assert.equal(page.vaseMaterialId.value, undefined)
   page.session.dispose()
 })
-test('结束创作后迟到的花材下载不能插入新作品', async () => { const loader = createLoader({ uni: { getStorageSync: () => '', removeStorageSync() { }, setStorageSync() { } } }); const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue'); page.session.initialize('a'); page.pageReady.value = true; page.catalog.load = async () => { }; page.catalog.preload = async () => { }; const material = { id: 'test-flower', revision: 'a'.repeat(16), category: 'flower', name: '测试花', colors: [{ value: '#abcdef' }] }; page.catalog.materials = [material]; let release; page.catalog.ensure = () => new Promise(r => { release = r; }); const adding = page.addCloudMaterial(material.id); page.endCreation(); release(material); await adding; assert.equal(page.stems.value.length, 0); assert.equal(page.session.dirty.value, false); page.session.dispose(); });
+test('结束创作后迟到的花材下载不能插入新作品', async () => { const loader = createLoader({ uni: { getStorageSync: () => '', removeStorageSync() { }, setStorageSync() { } } }); const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue'); page.session.initialize('a'); page.pageReady.value = true; page.catalog.load = async () => { }; page.catalog.preload = async () => { }; const material = { id: 'test-flower', category: 'flower', name: '测试花', colors: [{ value: '#abcdef' }] }; page.catalog.materials = [material]; let release; page.catalog.ensure = () => new Promise(r => { release = r; }); const adding = page.addCloudMaterial(material.id); page.endCreation(); release(material); await adding; assert.equal(page.stems.value.length, 0); assert.equal(page.session.dirty.value, false); page.session.dispose(); });
 test('添加花材后选中新花材并提供短时添加反馈', async () => {
   const loader = createLoader({ uni: { getStorageSync: () => '', removeStorageSync() {}, setStorageSync() {} } })
   const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
-  const material = { id: 'feedback-flower', revision: 'b'.repeat(16), category: 'flower', group: 'main', name: '反馈花', colors: [{ value: '#abcdef' }] }
+  const material = { id: 'feedback-flower', category: 'flower', group: 'main', name: '反馈花', colors: [{ value: '#abcdef' }] }
   page.session.initialize('a'); page.pageReady.value = true; page.catalog.materials = [material]; page.catalog.ensure = async () => material
   await page.addCloudMaterial(material.id)
   assert.equal(page.store.selected.materialId, material.id)
@@ -345,7 +340,7 @@ test('工作室不显示无需用户处理的账号连接状态提示', () => {
   const source = fs.readFileSync('src/pages/flower-studio/flower-studio-page.vue', 'utf8')
   assert.doesNotMatch(source, /startup-note|正在连接账号与素材/)
 })
-test('实际页面等待登录后自动恢复本地作品，隐藏保存且返回不重复恢复', async () => { const lifecycle = { onLoad: [], onShow: [], onHide: [], onUnload: [] }, map = new Map(); const loader = createLoader({ lifecycle, uni: { getStorageSync: k => map.get(k), setStorageSync: (k, v) => map.set(k, v), removeStorageSync: k => map.delete(k) }, uniCloud: { getCurrentUserInfo: () => ({ uid: 'alice' }) } }); const vase = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(m => m.id === 'ceramic-vase'); const art = { version: 2, vase: '陶瓶', vaseMaterialId: vase.id, vaseMaterialRevision: vase.revision, background: 'sage', stems: [] }; loader.load('src/utils/flower/creation-storage.ts').writeDraft('alice', { version: 1, artwork: art, card: { blessing: '继续', signature: '' }, updatedAt: 1 }); const before = [...map.values()][0], page = loader.setup('src/pages/flower-studio/flower-studio-page.vue'); page.catalog.materials = [vase]; page.catalog.prepared[`${vase.id}:${vase.revision}`] = vase; page.catalog.load = async () => { }; page.catalog.preload = async () => { }; page.catalog.ensure = async () => vase; lifecycle.onLoad[0]({}); assert.equal(page.pageReady.value, false); assert.equal(page.vaseMaterialId.value, undefined); loader.load('src/utils/appAuth.ts').markAppAuthReady(); await page.bootstrap(); assert.equal(page.pendingDraft.value, null); assert.equal(page.vaseMaterialId.value, vase.id); assert.equal([...map.values()][0], before); assert.equal(page.background.value, 'sage'); assert.equal(page.session.card.value.blessing, '继续'); page.store.addFlower('rose'); assert.equal(page.session.dirty.value, true); lifecycle.onHide[0](); assert.equal(JSON.parse([...map.values()][0]).artwork.stems.length, 1); lifecycle.onShow[0](); await page.bootstrap(); assert.equal(page.pendingDraft.value, null); assert.equal(page.stems.value.length, 1); lifecycle.onUnload[0](); });
+test('实际页面等待登录后自动恢复本地作品，隐藏保存且返回不重复恢复', async () => { const lifecycle = { onLoad: [], onShow: [], onHide: [], onUnload: [] }, map = new Map(); const loader = createLoader({ lifecycle, uni: { getStorageSync: k => map.get(k), setStorageSync: (k, v) => map.set(k, v), removeStorageSync: k => map.delete(k) }, uniCloud: { getCurrentUserInfo: () => ({ uid: 'alice' }) } }); const vase = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(m => m.id === 'ceramic-vase'); const art = { vase: '陶瓶', vaseMaterialId: vase.id, background: 'sage', stems: [] }; loader.load('src/utils/flower/creation-storage.ts').writeDraft('alice', { artwork: art, card: { blessing: '继续', signature: '' }, updatedAt: 1 }); const before = [...map.values()][0], page = loader.setup('src/pages/flower-studio/flower-studio-page.vue'); page.catalog.materials = [vase]; page.catalog.prepared[vase.id] = vase; page.catalog.load = async () => { }; page.catalog.preload = async () => { }; page.catalog.ensure = async () => vase; lifecycle.onLoad[0]({}); assert.equal(page.pageReady.value, false); assert.equal(page.vaseMaterialId.value, undefined); loader.load('src/utils/appAuth.ts').markAppAuthReady(); await page.bootstrap(); assert.equal(page.pendingDraft.value, null); assert.equal(page.vaseMaterialId.value, vase.id); assert.equal([...map.values()][0], before); assert.equal(page.background.value, 'sage'); assert.equal(page.session.card.value.blessing, '继续'); page.store.addFlower('rose'); assert.equal(page.session.dirty.value, true); lifecycle.onHide[0](); assert.equal(JSON.parse([...map.values()][0]).artwork.stems.length, 1); lifecycle.onShow[0](); await page.bootstrap(); assert.equal(page.pendingDraft.value, null); assert.equal(page.stems.value.length, 1); lifecycle.onUnload[0](); });
 test('已加载目录时进入工作室不等待重复网络请求', async () => {
   const loader = createLoader({ uni: { getStorageSync: () => '' } })
   const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
@@ -446,7 +441,7 @@ test('进入作品详情不生成图片，进入贺卡时再按需生成', async
   const loader = createLoader({ lifecycle, uniCloud: { getCurrentUserInfo: () => ({ uid: 'alice' }) } })
   loader.load('src/utils/appAuth.ts').markAppAuthReady()
   const artworkStore = loader.load('src/stores/artworkStore.ts').useArtworkStore()
-  artworkStore.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
+  artworkStore.initialize({ vase: '陶瓶', background: 'warm', stems: [] })
   const artwork = artworkStore.snapshot()
   const id = 'a'.repeat(32)
   const works = loader.load('src/stores/flowerWorksStore.ts').useFlowerWorksStore()
@@ -454,10 +449,9 @@ test('进入作品详情不生成图片，进入贺卡时再按需生成', async
     id,
     title: '春日花意',
     description: '',
-    revision: 1,
-    createdAt: 1,
+        createdAt: 1,
     updatedAt: 1,
-    draft: { version: 1, artwork, card: { blessing: '', signature: '' }, updatedAt: 1, workId: id, workRevision: 1 },
+    draft: { artwork, card: { blessing: '', signature: '' }, updatedAt: 1, workId: id},
   })
   const catalog = loader.load('src/stores/flowerCatalogStore.ts').useFlowerCatalogStore()
   catalog.loaded = true
@@ -479,7 +473,7 @@ test('作品详情准备数据但不下载缩略图或生成展示图片', async
   })
   loader.load('src/utils/appAuth.ts').markAppAuthReady()
   const artworkStore = loader.load('src/stores/artworkStore.ts').useArtworkStore()
-  artworkStore.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
+  artworkStore.initialize({ vase: '陶瓶', background: 'warm', stems: [] })
   const artwork = artworkStore.snapshot()
   const id = 'a'.repeat(32)
   const works = loader.load('src/stores/flowerWorksStore.ts').useFlowerWorksStore()
@@ -487,10 +481,9 @@ test('作品详情准备数据但不下载缩略图或生成展示图片', async
     id,
     title: '春日花意',
     description: '',
-    revision: 1,
-    createdAt: 1,
+        createdAt: 1,
     updatedAt: 1,
-    draft: { version: 1, artwork, card: { blessing: '', signature: '' }, updatedAt: 1, workId: id, workRevision: 1 },
+    draft: { artwork, card: { blessing: '', signature: '' }, updatedAt: 1, workId: id},
   })
   const catalog = loader.load('src/stores/flowerCatalogStore.ts').useFlowerCatalogStore()
   catalog.loaded = true
@@ -504,11 +497,11 @@ test('作品详情准备数据但不下载缩略图或生成展示图片', async
   assert.equal(rerenders, 0)
 })
 
-test('详情信息保存会更新名字、介绍和作品版本', async () => {
+test('详情信息保存会更新名字和介绍', async () => {
   const loader = createLoader({ uniCloud: { getCurrentUserInfo: () => ({ uid: 'alice' }) } })
   const detail = loader.setup('src/pages/flower-detail/flower-detail-page.vue')
   const id = 'a'.repeat(32)
-  detail.draft.value = { version: 1, artwork: loader.load('src/stores/artworkStore.ts').useArtworkStore().snapshot(), card: { blessing: '', signature: '' }, updatedAt: 1, workId: id, workRevision: 2 }
+  detail.draft.value = { artwork: loader.load('src/stores/artworkStore.ts').useArtworkStore().snapshot(), card: { blessing: '', signature: '' }, updatedAt: 1, workId: id}
   detail.title.value = '旧名字'
   detail.description.value = '旧介绍'
   detail.images.exportImage = async () => { throw new Error('Metadata save must not render') }
@@ -516,7 +509,7 @@ test('详情信息保存会更新名字、介绍和作品版本', async () => {
   let input
   works.save = async value => {
     input = value
-    return { id, revision: 3, title: value.title, description: value.description, thumbnailUrl: '/new-thumb.png', draft: { ...value.draft, workId: id, workRevision: 3 } }
+    return { id, title: value.title, description: value.description, thumbnailUrl: '/new-thumb.png', draft: { ...value.draft, workId: id} }
   }
   detail.editMetadata()
   detail.editTitle.value = '新名字'
@@ -524,10 +517,8 @@ test('详情信息保存会更新名字、介绍和作品版本', async () => {
   await detail.saveMetadata()
   assert.equal(input.title, '新名字')
   assert.equal(input.description, '新介绍')
-  assert.equal(input.expectedRevision, 2)
   assert.equal(detail.title.value, '新名字')
   assert.equal(detail.description.value, '新介绍')
-  assert.equal(detail.draft.value.workRevision, 3)
   assert.equal(detail.images.imagePath.value, '')
   assert.equal(detail.showMetadataEditor.value, false)
 })
@@ -537,7 +528,7 @@ test('新创作与恢复的编辑草稿共用完成作品操作并保留各自�
   const page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
   page.session.initialize('alice')
   assert.equal(page.session.workId.value, undefined)
-  page.session.pendingDraft.value = { version: 1, artwork: page.store.snapshot(), card: { blessing: '', signature: '' }, updatedAt: 1, workId: 'a'.repeat(32), workRevision: 2 }
+  page.session.pendingDraft.value = { artwork: page.store.snapshot(), card: { blessing: '', signature: '' }, updatedAt: 1, workId: 'a'.repeat(32)}
   page.session.continueDraft()
   assert.equal(page.session.workId.value, 'a'.repeat(32))
   page.session.restart()

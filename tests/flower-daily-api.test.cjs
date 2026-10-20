@@ -3,7 +3,6 @@ const test = require('node:test')
 const { createLoader } = require('./helpers/load-ts.cjs')
 
 const artwork = {
-  version: 2,
   vase: '陶瓶',
   background: 'sage',
   stems: [{
@@ -68,7 +67,7 @@ test('拒绝日期不一致、非 HTTPS 图片和损坏 artwork', async () => {
   const insecure = fixture(() => ({ flower: record({ imageUrl: 'http://example.com/flower.png' }) }))
   await assert.rejects(insecure.api.getDailyFlowerByDate('2026-10-19'), /记录无效/)
 
-  const broken = fixture(() => ({ flower: record({ artwork: { version: 2, stems: [] } }) }))
+  const broken = fixture(() => ({ flower: record({ artwork: { stems: [] } }) }))
   await assert.rejects(broken.api.getDailyFlowerByDate('2026-10-19'))
 })
 

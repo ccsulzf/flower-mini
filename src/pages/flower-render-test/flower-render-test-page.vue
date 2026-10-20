@@ -25,19 +25,18 @@ const flowerMaterialCount = computed(() => new Set(artwork.value?.stems.map(stem
 const catalog = useFlowerCatalogStore()
 
 async function prepareCloudMaterials(value: Artwork) {
-  if (value.stems.some(stem => !stem.materialId || !stem.materialRevision))
+  if (value.stems.some(stem => !stem.materialId))
     throw new Error('请使用含云端素材 ID 的作品，或先载入云端素材示例')
   if (!catalog.loaded)
     await catalog.load()
   if (catalog.error)
     throw new Error(catalog.error)
-  const references = [...value.stems.filter(stem => stem.materialId).map(stem => [stem.materialId!, stem.materialRevision!] as const)]
-  if (value.vaseMaterialId && value.vaseMaterialRevision)
-    references.push([value.vaseMaterialId, value.vaseMaterialRevision])
-  if (value.backgroundMaterialId && value.backgroundMaterialRevision)
-    references.push([value.backgroundMaterialId, value.backgroundMaterialRevision])
-  await Promise.all([...new Map(references.map(([id, revision]) => [`${id}:${revision}`, [id, revision] as const])).values()]
-    .map(([id, revision]) => catalog.ensure(id, revision)))
+  const references = value.stems.flatMap(stem => stem.materialId ? [stem.materialId] : [])
+  if (value.vaseMaterialId)
+    references.push(value.vaseMaterialId)
+  if (value.backgroundMaterialId)
+    references.push(value.backgroundMaterialId)
+  await Promise.all([...new Set(references)].map(id => catalog.ensure(id)))
   if (catalog.error)
     throw new Error(catalog.error)
 }
@@ -137,7 +136,7 @@ onMounted(() => {
   <view class="render-test-page">
     <view class="intro">
       <text class="title">Vue 预览与云端 PNG</text>
-      <text class="description">左侧由 Vue 预览；右侧仅发送作品 JSON，由云端按素材 ID 和版本读取云存储 SVG、组装并栅格化。</text>
+      <text class="description">左侧由 Vue 预览；右侧仅发送作品 JSON，由云端按素材 ID 读取云存储 SVG、组装并栅格化。</text>
     </view>
     <view class="input-card">
       <text class="input-title">作品 JSON</text>
@@ -169,9 +168,8 @@ onMounted(() => {
         <view class="preview" :style="previewStyle">
           <FlowerArtworkRenderer
             v-if="artwork" :background="artwork.background" :stems="artwork.stems"
-            :background-material-id="artwork.backgroundMaterialId" :background-material-revision="artwork.backgroundMaterialRevision"
+            :background-material-id="artwork.backgroundMaterialId"
             :vase="artwork.vase" :vase-material-id="artwork.vaseMaterialId"
-            :vase-material-revision="artwork.vaseMaterialRevision"
           />
           <view v-else class="preview-empty">
             <text>粘贴云端作品 JSON，或载入素材示例</text>

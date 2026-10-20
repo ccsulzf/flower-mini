@@ -9,9 +9,8 @@ test('草稿按账号隔离，保留云花瓶落点，拒绝非法数据', () =>
     store.addFlower('rose');
     const artwork = store.snapshot();
     artwork.vaseMaterialId = 'ceramic-vase';
-    artwork.vaseMaterialRevision = '1234567890abcdef';
     artwork.stems[0].x = 300;
-    const draft = { version: 1, artwork, card: { blessing: '你好', signature: '' }, updatedAt: 123 };
+    const draft = { artwork, card: { blessing: '你好', signature: '' }, updatedAt: 123 };
     storage.writeDraft('a', draft);
     draft.artwork.stems[0].x = 400;
     assert.equal(storage.readDraft('a').artwork.stems[0].x, 300);

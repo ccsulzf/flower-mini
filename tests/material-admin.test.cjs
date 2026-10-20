@@ -57,7 +57,7 @@ test('独立档案自动识别三种 SVG、介绍、花语和颜色，不限原�
   assert.ok(item.introduction && item.flowerMeaning)
   assert.equal(Object.keys(item.sources).length, 3)
   const collect = loader.load('src/subpackages/material-admin/lib/local-materials.ts').collectLocalMaterials
-  const meta = { ...item, id: 'new-flower' }; delete meta.sources; delete meta.revision
+  const meta = { ...item, id: 'new-flower' }; delete meta.sources
   const files = { '../assets/new/material.json': JSON.stringify(meta) }
   for (const [key, svg] of Object.entries(item.sources)) files[`../assets/new/${key}.svg`] = svg
   assert.equal(collect(files).items[0].id, 'new-flower')
@@ -65,15 +65,13 @@ test('独立档案自动识别三种 SVG、介绍、花语和颜色，不限原�
   assert.equal(collect(files).items.length, 0)
   assert.equal(collect(files).errors.length, 1)
 })
-test('未检查不假装未上传；说明或 SVG 改动均显示有更新，预览不调用云端', () => {
+test('未检查不假装未上传，并按素材 ID 显示上传状态', () => {
   const loader = createLoader({ uniCloud: { importObject: () => { throw new Error('本地预览不调用云端') } } })
-  const { uploadStatus, revisionOf, localPreviewSource } = loader.load('src/subpackages/material-admin/lib/local-materials.ts')
+  const { uploadStatus, localPreviewSource } = loader.load('src/subpackages/material-admin/lib/local-materials.ts')
   const item = draft(loader)
   assert.equal(uploadStatus(item, null), '待检查')
   assert.equal(uploadStatus(item, []), '未上传')
   assert.equal(uploadStatus(item, [item]), '已上传')
-  assert.equal(uploadStatus({ ...item, revision: revisionOf({ ...item, introduction: '改过了' }) }, [item]), '有更新')
-  assert.notEqual(revisionOf(item.sources), revisionOf({ ...item.sources, flower: item.sources.flower + ' ' }))
   const source = Buffer.from(localPreviewSource(item.sources.flower, '#abcdef').split(',')[1], 'base64').toString('utf8')
   assert.ok(source.includes('#abcdef') && !source.includes('__COLOR__'))
   const page = loader.setup('src/subpackages/material-admin/material-admin-page.vue')
@@ -125,7 +123,7 @@ test('上传三个本地 SVG 后保存档案，失败不误标已上传', async 
   const store = loader.load('src/subpackages/material-admin/lib/store.ts').useMaterialAdminStore()
   const item = draft(loader); await store.upload(item)
   assert.equal(uploaded, 3); assert.equal(stored.id, item.id)
-  assert.equal(files.size, 0); assert.equal(store.remote[0].revision, item.revision)
+  assert.equal(files.size, 0); assert.equal(store.remote[0].id, item.id)
   const failed = createLoader({ uniCloud: { importObject: () => ({ list: async () => { throw { errMsg: '没有管理权限' } } }), uploadFile: () => { throw new Error('不应上传') } } })
   failed.load('src/utils/appAuth.ts').markAppAuthReady()
   const failedStore = failed.load('src/subpackages/material-admin/lib/store.ts').useMaterialAdminStore()
@@ -137,23 +135,4 @@ test('JSON 档案使用标准 JSON 导入，只有 SVG 使用 raw 导入', () =>
   const source = fs.readFileSync('src/subpackages/material-admin/lib/local-files.ts', 'utf8')
   assert.match(source, /glob\('\.\.\/assets\/\*\*\/material\.json',\s*\{\s*eager: true, import: 'default'\s*\}\)/)
   assert.match(source, /glob\('\.\.\/assets\/\*\*\/\*\.svg',\s*\{\s*eager: true, query: '\?raw', import: 'default'\s*\}\)/)
-})
-
-test('详情整枝预览拼接花朵与花茎，切换去叶与颜色，打开另一素材重置带叶', () => {
-  const loader = createLoader(), page = loader.setup('src/subpackages/material-admin/material-admin-page.vue')
-  const files = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items
-  const rose = files.find(item => item.id === 'rose')
-  page.open(rose)
-  const decode = () => Buffer.from(page.wholePreview.value.source.split(',')[1], 'base64').toString('utf8')
-  const withLeaves = decode()
-  page.leafMode.value = 'without'
-  const without = decode()
-  assert.notEqual(withLeaves, without)
-  assert.ok(without.includes(loader.load('src/utils/flower/stem-curves.ts').smoothStemTip(rose.sources.stemWithoutLeaves).split('>')[1].split('</svg')[0]))
-  page.color.value = '#abcdef'
-  assert.ok(decode().includes('#abcdef'))
-  page.open(files.find(item => item.id === 'peony'))
-  assert.equal(page.leafMode.value, 'with')
-  page.open(files.find(item => item.id === 'ceramic-vase'))
-  assert.equal(page.wholePreview.value, null)
 })

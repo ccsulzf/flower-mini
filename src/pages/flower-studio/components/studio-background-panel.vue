@@ -22,12 +22,12 @@ const { addingMaterial: adding } = storeToRefs(studio)
 const activeBackground = ref<'solid' | 'scene'>(backgroundMaterialId.value ? 'scene' : 'solid')
 const sceneBackgrounds = computed(() => catalog.materials.filter(item => item.category === 'background'))
 const thumbnailCache = new Map<string, string>()
-function thumbnail(id: string, revision: string) {
-  const key = `${id}:${revision}`
+function thumbnail(id: string) {
+  const key = id
   const cached = thumbnailCache.get(key)
   if (cached)
     return cached
-  const item = catalog.get(id, revision)
+  const item = catalog.get(id)
   if (!item || item.category !== 'background')
     return ''
   const source = backgroundSceneSource(item)
@@ -69,7 +69,7 @@ function thumbnail(id: string, revision: string) {
         <view class="material-grid">
           <button v-for="item in sceneBackgrounds" :key="item.id" class="material-card" hover-class="none" :class="{ 'choice-selected': backgroundMaterialId === item.id }" :aria-label="`选择${item.name}背景`" :aria-disabled="adding" @click="emit('cloud', item.id)">
             <view class="material-art">
-              <image v-if="thumbnail(item.id, item.revision)" :src="thumbnail(item.id, item.revision)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-image" />
+              <image v-if="thumbnail(item.id)" :src="thumbnail(item.id)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-image" />
             </view>
             <text class="material-name">
               {{ item.name }}

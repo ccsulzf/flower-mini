@@ -8,7 +8,6 @@ let wasmReady;
 
 const workIdPattern = /^[a-f\d]{32}$/;
 const materialIdPattern = /^[a-z][a-z0-9-]{0,63}$/;
-const revisionPattern = /^[a-f\d]{16}$/;
 const maxRenderSvgLength = 8 * 1024 * 1024;
 
 function colorizeMaterialSvg(svg, color) {
@@ -118,21 +117,20 @@ function builtInPlant(stem) {
         : stem.kind === 'daisy'
             ? `<g>${Array.from({ length: 8 }, (_, i) => `<ellipse cx="55" cy="32" rx="8" ry="20" fill="${color}" transform="rotate(${i * 45} 55 55)"/>`).join('')}<circle cx="55" cy="55" r="11" fill="#d9a83f"/></g>`
             : `<path d="M55 62C7 50 28 1 55 35C83 0 104 50 55 62Z" fill="${color}"/>`;
-    const leaf = stem.leafMode === 'with' ? '<path d="M55 185Q17 167 25 143Q45 145 55 185M55 225Q91 206 83 182Q64 184 55 225" fill="#849c81"/>' : '';
     const scaleX = stem.mirrored ? -stem.flowerScale : stem.flowerScale;
-    return `<g transform="translate(${stem.x} 747) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-(stem.stemHeight + 55)})"><path d="M55 55Q52 170 55 ${stem.stemHeight + 55}" fill="none" stroke="#73835c" stroke-width="4"/>${leaf}<g transform="translate(0 ${stem.stemHeight})">${bloom}</g></g>`;
+    return `<g transform="translate(${stem.x} 747) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-(stem.stemHeight + 55)})"><path d="M55 55Q52 170 55 ${stem.stemHeight + 55}" fill="none" stroke="#73835c" stroke-width="4"/><g transform="translate(0 ${stem.stemHeight})">${bloom}</g></g>`;
 }
 
-async function getMaterial(id, revision, cache) {
-    if (typeof id !== 'string' || !materialIdPattern.test(id) || typeof revision !== 'string' || !revisionPattern.test(revision))
+async function getMaterial(id, cache) {
+    if (typeof id !== 'string' || !materialIdPattern.test(id))
         throw new Error('作品中的云素材引用无效');
-    const key = `${id}:${revision}`;
+    const key = id;
     if (cache.has(key))
         return cache.get(key);
     const result = await uniCloud.database().collection('flower-material-assets').doc(id).get();
     const material = result.data?.[0];
-    if (!material || material.id !== id || material.revision !== revision)
-        throw new Error(`素材 ${id} 不存在或版本已变化`);
+    if (!material || material.id !== id)
+        throw new Error(`素材 ${id} 不存在`);
     cache.set(key, { ...material, sources: {} });
     return cache.get(key);
 }
@@ -153,8 +151,8 @@ async function materialSource(material, part) {
 async function buildArtworkSvg(artwork) {
     if (!artwork || typeof artwork !== 'object' || Array.isArray(artwork))
         throw new Error('作品缺少有效的 artwork 数据');
-    if (artwork.version !== 2 || !Array.isArray(artwork.stems))
-        throw new Error('作品格式版本无效或花材列表缺失');
+    if (!Array.isArray(artwork.stems))
+        throw new Error('作品格式无效或花材列表缺失');
     if (!['陶瓶', '玻璃瓶', '圆花器', '花束'].includes(artwork.vase))
         throw new Error('作品花器类型无效');
     if (!backgroundColor(artwork.background))
@@ -169,16 +167,16 @@ async function buildArtworkSvg(artwork) {
             || typeof stem.color !== 'string' || !/^#[\da-f]{6}$/i.test(stem.color))
             throw new Error('作品花材数据无效');
         if (stem.materialId) {
-            const material = await getMaterial(stem.materialId, stem.materialRevision, cache);
+            const material = await getMaterial(stem.materialId, cache);
             if (material.category !== 'flower')
                 throw new Error('作品引用的云端花材类型无效');
-            cloudMaterials.set(`${stem.materialId}:${stem.materialRevision}`, material);
+            cloudMaterials.set(stem.materialId, material);
         }
     }
     let background = '';
     let backgroundMaterial;
     if (artwork.backgroundMaterialId) {
-        backgroundMaterial = await getMaterial(artwork.backgroundMaterialId, artwork.backgroundMaterialRevision, cache);
+        backgroundMaterial = await getMaterial(artwork.backgroundMaterialId, cache);
         if (backgroundMaterial.category !== 'background')
             throw new Error('作品引用的云端背景类型无效');
         const source = await materialSource(backgroundMaterial, 'background');
@@ -186,7 +184,7 @@ async function buildArtworkSvg(artwork) {
     }
     let vaseMaterial;
     if (artwork.vaseMaterialId)
-        vaseMaterial = await getMaterial(artwork.vaseMaterialId, artwork.vaseMaterialRevision, cache);
+        vaseMaterial = await getMaterial(artwork.vaseMaterialId, cache);
     const anchorOffset = backgroundOffset(backgroundMaterial, vaseMaterial, artwork.vase);
     const anchorY = artwork.vase === '圆花器' ? 777 : 747;
     const stems = [];
@@ -195,7 +193,7 @@ async function buildArtworkSvg(artwork) {
             stems.push(builtInPlant(stem));
             continue;
         }
-        const material = cloudMaterials.get(`${stem.materialId}:${stem.materialRevision}`);
+        const material = cloudMaterials.get(stem.materialId);
         if (!material.geometry)
             throw new Error('云端花材几何信息缺失');
         const total = stem.stemHeight + 55;
@@ -206,8 +204,7 @@ async function buildArtworkSvg(artwork) {
             continue;
         }
         const flower = colorizeMaterialSvg(await materialSource(material, 'flower'), stem.color);
-        const stemPart = stem.leafMode === 'with' ? 'stemWithLeaves' : 'stemWithoutLeaves';
-        const stemSource = await materialSource(material, stemPart);
+        const stemSource = await materialSource(material, 'stemWithoutLeaves');
         const geometry = material.geometry;
         const headHeight = geometry.flowerHeight * 110 / geometry.width;
         const headTop = 55 - headHeight / 2;
@@ -299,21 +296,19 @@ module.exports = {
             result.newToken = this.auth.newToken;
         return result;
     },
-    async renderWork({ workId, expectedRevision } = {}) {
-        if (typeof workId !== 'string' || !workIdPattern.test(workId) || !Number.isSafeInteger(expectedRevision) || expectedRevision < 1)
-            throw new Error('作品编号或版本无效');
+    async renderWork({ workId } = {}) {
+        if (typeof workId !== 'string' || !workIdPattern.test(workId))
+            throw new Error('作品编号无效');
         const query = await uniCloud.database().collection('flower-works')
             .where({ _id: workId, user_id: this.auth.uid }).limit(1).get();
         const work = query.data?.[0];
         if (!work)
             throw { errCode: 'WORK_NOT_FOUND', errMsg: '作品不存在或已删除' };
-        if (work.revision !== expectedRevision)
-            throw { errCode: 'WORK_CONFLICT', errMsg: '作品已更新，请刷新后重新生成图片' };
         const svg = await buildArtworkSvg(work.artwork);
         const owner = createHash('sha256').update(this.auth.uid).digest('hex');
         const cloudPath = `flower-works/${owner}/${workId}/artwork.png`;
         const result = await renderSvg(svg, cloudPath);
-        return { ...result, workRevision: work.revision };
+        return result;
     },
     async renderDailyArtwork({ artwork, date } = {}) {
         const user = await uniCloud.database().collection('uni-id-users')

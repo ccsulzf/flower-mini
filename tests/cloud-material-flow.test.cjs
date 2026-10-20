@@ -12,7 +12,23 @@ test('旧玫瑰档案补几何；未知花材缺几何拒绝；花瓶瓶口不�
   const rose = normalizeMaterial(legacy())
   assert.equal(rose.category, 'flower'); assert.equal(rose.geometry.connectionY, 101)
   assert.throws(() => normalizeMaterial({ ...legacy(), id: 'new-flower' }), /几何/)
-  assert.throws(() => normalizeMaterial({ id: 'vase', category: 'vase', name: '瓶', introduction: '', version: 1, revision: 'a'.repeat(16), assets: { vase: { fileId: 'cloud:v', hash: 'a'.repeat(40) } }, geometry: { width: 140, height: 170, mouthX: 70, mouthY: 180, mouthWidth: 80 } }), /几何/)
+  assert.throws(() => normalizeMaterial({ id: 'vase', category: 'vase', name: '瓶', introduction: '', assets: { vase: { fileId: 'cloud:v', hash: 'a'.repeat(40) } }, geometry: { width: 140, height: 170, mouthX: 70, mouthY: 180, mouthWidth: 80 } }), /几何/)
+})
+test('普通花材只要求花头和无叶花茎即可渲染', () => {
+  const loader = createLoader()
+  const { materialParts } = loader.load('src/utils/flower/material-catalog.ts')
+  const { cloudPlantSvg } = loader.load('src/utils/flower/material-render.ts')
+  const material = {
+    id: 'test-flower', category: 'flower', group: 'main',
+    colors: [{ name: '测试色', value: '#abcdef' }],
+    geometry: { width: 110, flowerHeight: 110, stemHeight: 260, connectionY: 100 },
+    sources: {
+      flower: '<svg viewBox="0 0 110 110"><circle cx="55" cy="55" r="20" fill="__COLOR__"/></svg>',
+      stemWithoutLeaves: '<svg viewBox="0 0 110 260"><path d="M55 0V260" stroke="#73835c"/></svg>',
+    },
+  }
+  assert.equal(materialParts(material).join(','), 'flower,stemWithoutLeaves')
+  assert.match(cloudPlantSvg(material, { color: '#abcdef', stemHeight: 300 }), /#abcdef/)
 })
 test('首次下载、再次命中持久缓存，损坏文件重新下载', async () => {
   const crypto = require('node:crypto')
@@ -24,7 +40,7 @@ test('首次下载、再次命中持久缓存，损坏文件重新下载', async
     downloadFile: o => { downloads++; files.set('/temp', source); o.success({ statusCode: 200, tempFilePath: '/temp' }) }, saveFile: o => { files.set('/saved', files.get(o.tempFilePath)); o.success({ savedFilePath: '/saved' }) },
   } })
   const prepare = loader.load('src/utils/flower/material-cache.ts').prepareMaterial
-  const record = { id: 'rose', revision: 'a'.repeat(16), assets: { flower: { hash, fileId: 'cloud:flower', url: 'https://test/flower' } } }
+  const record = { id: 'rose', assets: { flower: { hash, fileId: 'cloud:flower', url: 'https://test/flower' } } }
   assert.equal((await prepare(record)).downloaded, 1)
   assert.equal((await prepare(record)).cached, 1); assert.equal(downloads, 1)
   files.delete('/saved'); assert.equal((await prepare(record)).downloaded, 1)
@@ -60,10 +76,9 @@ test('云素材及花瓶引用在复制、切换、撤销和重做中保留，�
   const loader = createLoader(), store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
   const normalize = loader.load('src/utils/flower/material-catalog.ts').normalizeMaterial
   const material = { ...normalize(legacy()), sources: createLoader().load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(row => row.id === 'rose').sources, paths: {} }
-  const id = store.addMaterial(material); store.select(id); store.toggleLeaves()
-  assert.equal(store.selected.leafMode, 'with')
-  const cloned = store.duplicateSelected(); assert.ok(cloned); assert.equal(store.stems.at(-1).materialRevision, material.revision)
-  const vase = { category: 'vase', id: 'vase', revision: 'b'.repeat(16), sources: { vase: '<svg />' }, geometry: { width: 140, height: 170, mouthX: 70, mouthY: 8, mouthWidth: 110 } }
+  const id = store.addMaterial(material); store.select(id)
+  const cloned = store.duplicateSelected(); assert.ok(cloned); assert.equal(store.stems.at(-1).materialId, material.id)
+  const vase = { category: 'vase', id: 'vase', sources: { vase: '<svg />' }, geometry: { width: 140, height: 170, mouthX: 70, mouthY: 8, mouthWidth: 110 } }
   store.setVaseMaterial(vase); assert.equal(store.snapshot().vaseMaterialId, 'vase')
   store.setVase('陶瓶'); assert.equal(store.snapshot().vaseMaterialId, undefined)
   store.undo(); assert.equal(store.snapshot().vaseMaterialId, 'vase')
@@ -72,7 +87,7 @@ test('云素材及花瓶引用在复制、切换、撤销和重做中保留，�
 test('连续添加99枝相同花材时默认姿态保持充分分散', () => {
   const loader = createLoader(), store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
   const material = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(row => row.id === 'rose')
-  store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
+  store.initialize({ vase: '陶瓶', background: 'warm', stems: [] })
   for (let index = 0; index < 99; index++)
     store.addMaterial(material)
   const poses = store.stems.map(stem => `${stem.x.toFixed(2)}:${stem.angle.toFixed(2)}:${stem.stemHeight.toFixed(2)}`)
@@ -91,7 +106,7 @@ test('下载的 SVG 按几何拼装；Canvas 直接绘制同一来源，未知�
   const { drawSvg } = loader.load('src/utils/flower/svg-canvas.ts')
   const methods = [], ctx = new Proxy({}, { get: (_, method) => (...args) => { methods.push([method, args]); if (method === 'createLinearGradient') return { addColorStop() {} } } })
   for (const draft of files) {
-    const source = draft.category !== 'flower' ? (draft.sources.vase || draft.sources.bouquet || draft.sources.background) : cloudPlantSvg({ ...draft, category: 'flower' }, { color: '#abcdef', stemHeight: 410, leafMode: 'without' })
+    const source = draft.category !== 'flower' ? (draft.sources.vase || draft.sources.bouquet || draft.sources.background) : cloudPlantSvg({ ...draft, category: 'flower' }, { color: '#abcdef', stemHeight: 410 })
     drawSvg(ctx, source, 110, 465)
   }
   assert.ok(methods.some(([method]) => method === 'bezierCurveTo'))
@@ -137,7 +152,7 @@ test('导出花材时按比例降低 SVG 描边不透明度', () => {
 test('切换窄瓶口只移动花枝底端，保留高度和角度；不支持的渐变明确拒绝', () => {
   const loader = createLoader(), store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
   store.stems[0].x = 362; store.stems[0].angle = -65; store.stems[0].stemHeight = 275
-  store.setVaseMaterial({ category: 'vase', id: 'narrow-vase', revision: 'a'.repeat(16), sources: { vase: '<svg />' }, geometry: { width: 140, height: 170, mouthX: 70, mouthY: 8, mouthWidth: 10 } })
+  store.setVaseMaterial({ category: 'vase', id: 'narrow-vase', sources: { vase: '<svg />' }, geometry: { width: 140, height: 170, mouthX: 70, mouthY: 8, mouthWidth: 10 } })
   assert.equal(store.stems[0].x, 351); assert.equal(store.stems[0].stemHeight, 275); assert.equal(store.stems[0].angle, -65)
   const drawSvg = loader.load('src/utils/flower/svg-canvas.ts').drawSvg
   const ctx = new Proxy({}, { get: () => () => {} })
@@ -160,8 +175,7 @@ test('扩充后的花材档案完整，主花 35 种，叶材颜色可用于工�
       assert.ok(source.includes('#abcdef'))
       assert.ok(!source.includes('__COLOR__'))
     } else {
-      assert.ok(item.sources.flower && item.sources.stemWithLeaves && item.sources.stemWithoutLeaves)
-      assert.notEqual(item.sources.stemWithLeaves, item.sources.stemWithoutLeaves)
+      assert.ok(item.sources.flower && item.sources.stemWithoutLeaves)
     }
   }
 })

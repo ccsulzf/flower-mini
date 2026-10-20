@@ -1,53 +1,39 @@
 <script setup lang="ts">
 import type { Artwork } from '@/models/artwork'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import FlowerArtworkRenderer from '@/components/flower/flower-artwork-renderer.vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { waitForAppAuthReady } from '@/utils/appAuth'
 import { artworkBackground } from '@/utils/flower/artwork'
 import { type DailyFlowerDraft, parseDailyFlower } from '@/utils/flower/daily-flower'
-import localDailyFlowerMaterialsJson from './assets/daily-flower-materials.json'
-import localDailyFlowerJson from './assets/daily-flower.json'
-import dailyFlower20261017 from '../../../docs/daily-flowers/2026-10-17.json'
-import dailyFlower20261018 from '../../../docs/daily-flowers/2026-10-18.json'
-import dailyFlower20261019 from '../../../docs/daily-flowers/2026-10-19.json'
-import { attachCloudMaterials, type DailyFlowerMaterialManifest } from './lib/daily-flower-preview'
+import { attachCloudMaterials } from './lib/daily-flower-preview'
 import { publishDailyFlower } from './lib/publish'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花维护' } })
 
-const localDrafts = [
-  localDailyFlowerJson,
-  dailyFlower20261017,
-  dailyFlower20261018,
-  dailyFlower20261019,
-].sort((left, right) => left.date.localeCompare(right.date))
-const localDraftDates = localDrafts.map(item => item.date)
-const draftSources = new Map(localDrafts.map(item => [item.date, JSON.stringify(item, null, 2)]))
-const selectedDate = ref(localDailyFlowerJson.date)
-const source = ref(JSON.stringify(localDailyFlowerJson, null, 2))
+const source = ref('')
 const draft = ref<DailyFlowerDraft | null>(null)
 const error = ref('')
 const message = ref('')
 const busy = ref(false)
 const previewing = ref(false)
-const selectedDraftIndex = computed(() => localDraftDates.indexOf(selectedDate.value))
 const previewStyle = computed(() => ({
   backgroundColor: draft.value ? artworkBackground(draft.value.artwork.background) : '#f6f3eb',
 }))
 const artwork = computed<Artwork | null>(() => draft.value?.artwork || null)
 const catalog = useFlowerCatalogStore()
+watch(source, () => { draft.value = null; message.value = '' })
 
 async function prepareArtworkMaterials(value: Artwork) {
-  const references = new Map<string, string>()
+  const references = new Set<string>()
   for (const stem of value.stems) {
-    if (stem.materialId && stem.materialRevision)
-      references.set(stem.materialId, stem.materialRevision)
+    if (stem.materialId)
+      references.add(stem.materialId)
   }
-  if (value.vaseMaterialId && value.vaseMaterialRevision)
-    references.set(value.vaseMaterialId, value.vaseMaterialRevision)
-  if (value.backgroundMaterialId && value.backgroundMaterialRevision)
-    references.set(value.backgroundMaterialId, value.backgroundMaterialRevision)
+  if (value.vaseMaterialId)
+    references.add(value.vaseMaterialId)
+  if (value.backgroundMaterialId)
+    references.add(value.backgroundMaterialId)
   if (!references.size)
     return
 
@@ -57,7 +43,7 @@ async function prepareArtworkMaterials(value: Artwork) {
     await catalog.load()
   if (catalog.error)
     throw new Error(catalog.error)
-  await Promise.all([...references].map(([id, revision]) => catalog.ensure(id, revision)))
+  await Promise.all([...references].map(id => catalog.ensure(id)))
 }
 
 async function preview() {
@@ -72,14 +58,10 @@ async function preview() {
     await catalog.load()
     if (catalog.error)
       throw new Error(catalog.error)
-    parsed.artwork = attachCloudMaterials(
-      parsed.artwork,
-      catalog.materials,
-      localDailyFlowerMaterialsJson satisfies DailyFlowerMaterialManifest,
-    )
+    parsed.artwork = attachCloudMaterials(parsed.artwork, catalog.materials)
     await prepareArtworkMaterials(parsed.artwork)
     draft.value = parsed
-    message.value = `已载入本地 ${draft.value.date} 花束预览`
+    message.value = `已载入 ${draft.value.date} 花束预览`
   }
   catch (cause) {
     draft.value = null
@@ -88,35 +70,6 @@ async function preview() {
   finally {
     previewing.value = false
   }
-}
-
-function selectDraft(event: { detail: { value: string } }) {
-  const nextDate = localDraftDates[Number(event.detail.value)]
-  if (!nextDate || nextDate === selectedDate.value || busy.value || previewing.value)
-    return
-
-  const nextSource = draftSources.get(nextDate)
-  if (nextSource === undefined) {
-    error.value = `找不到 ${nextDate} 的本地花束草稿`
-    return
-  }
-  draftSources.set(selectedDate.value, source.value)
-  selectedDate.value = nextDate
-  source.value = nextSource
-  error.value = ''
-  message.value = ''
-  void preview()
-}
-
-function resetLocalJson() {
-  const localDraft = localDrafts.find(item => item.date === selectedDate.value)
-  if (!localDraft) {
-    error.value = `找不到 ${selectedDate.value} 的本地花束草稿`
-    return
-  }
-  source.value = JSON.stringify(localDraft, null, 2)
-  draftSources.set(selectedDate.value, source.value)
-  void preview()
 }
 
 async function publish() {
@@ -157,7 +110,6 @@ async function publish() {
   }
 }
 
-onMounted(() => preview())
 </script>
 
 <template>
@@ -167,7 +119,7 @@ onMounted(() => preview())
         每日插花维护
       </view>
       <view class="hint">
-        读取本地花束与物料 JSON；按本地物料候选表匹配实时云端素材，只有确认云端存在的物料才会用于预览和发布。
+        粘贴花束 JSON，预览和发布前会验证其中引用的云端素材。
       </view>
     </view>
     <view class="input-card">
@@ -176,26 +128,11 @@ onMounted(() => preview())
           <text class="input-title">
             今日花束 JSON
           </text>
-          <text class="selected-date">
-            {{ selectedDate }}
-          </text>
         </view>
-        <picker
-          class="date-picker"
-          :range="localDraftDates"
-          :value="selectedDraftIndex"
-          :disabled="busy || previewing"
-          @change="selectDraft"
-        >
-          <view class="date-picker-label">
-            切换日期
-            <view class="i-carbon-chevron-down" />
-          </view>
-        </picker>
       </view>
       <textarea
-        v-model="source" class="json-input" :maxlength="70000"
-        placeholder="读取本地每日花束 JSON…"
+        v-model="source" class="json-input" :maxlength="70000" :disabled="busy || previewing"
+        placeholder="粘贴每日花束 JSON…"
         :auto-height="false" :adjust-position="true" :disable-default-padding="true"
       />
       <view class="hint">
@@ -209,9 +146,6 @@ onMounted(() => preview())
       </view>
       <button class="app-secondary-btn" :disabled="busy || previewing" @click="preview">
         {{ previewing ? '正在准备预览…' : '重新预览' }}
-      </button>
-      <button class="app-secondary-btn" :disabled="busy || previewing" @click="resetLocalJson">
-        重新读取本地 JSON
       </button>
     </view>
 
@@ -227,11 +161,9 @@ onMounted(() => preview())
           v-if="artwork"
           :background="artwork.background"
           :background-material-id="artwork.backgroundMaterialId"
-          :background-material-revision="artwork.backgroundMaterialRevision"
           :stems="artwork.stems"
           :vase="artwork.vase"
           :vase-material-id="artwork.vaseMaterialId"
-          :vase-material-revision="artwork.vaseMaterialRevision"
         />
       </view>
       <button class="app-primary-btn" :disabled="busy" @click="publish">

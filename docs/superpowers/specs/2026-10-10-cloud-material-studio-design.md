@@ -14,7 +14,7 @@
 
 - category：flower 或 vase，旧记录缺失时解释为 flower。
 - 公共字段：id、name、introduction、version、revision、assets、服务端时间。
-- 花材：flowerMeaning、group（main/filler/foliage）、colors；flower、stemWithLeaves、stemWithoutLeaves 或 foliage 四类文件；增加渲染尺寸与连接点说明。
+- 花材：flowerMeaning、group（main/filler/foliage）、colors；flower、stemWithoutLeaves 或 foliage 文件；增加渲染尺寸与连接点说明。
 - 花瓶：vase.svg；以 viewBox 为坐标系记录显示尺寸、瓶口中心、瓶口可插范围。无需花语或花色字段。
 - 已上传三种示例花材可按已知 ID 补默认连接几何；任意新品种必须明确几何，缺少时提示补齐，不用玫瑰造型替代。
 - 素材比较 revision 同时包含 metadata 与文件内容；新增类别和几何参与比较。
@@ -37,7 +37,7 @@ Pinia 共享 store 管理目录、加载、错误、缓存结果与按 ID 查找
 
 ## 工作台与作品
 
-选材面板显示云端花材与花瓶。花枝增加 materialId、素材 revision 和带叶/去叶选择；作品增加 vaseMaterialId 与 revision。保留原 kind/vase 字段兼容现有默认作品和 JSON 预览，但云素材渲染必须依据真实素材 ID。
+选材面板显示云端花材与花瓶。花枝增加 materialId 和素材 revision；作品增加 vaseMaterialId 与 revision。保留原 kind/vase 字段兼容现有默认作品和 JSON 预览，但云素材渲染必须依据真实素材 ID。
 
 花朵、茎叶和叶材使用缓存的 SVG，按照素材几何放置；颜色只替换约定占位。花瓶按照自己的瓶口几何定位，切换花瓶时约束花枝底端，不改变角度、高度等用户已做的编辑。撤销、重做、复制、删除保留新字段和素材引用。
 

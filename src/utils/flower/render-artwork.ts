@@ -176,14 +176,13 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
   const cloudAssets = new Map<string, Awaited<ReturnType<typeof catalog.ensure>>>()
   for (const stem of artwork.stems) {
     if (!stem.materialId) continue
-    if (!stem.materialRevision) throw new Error('作品缺少素材版本')
-    const key = `${stem.materialId}:${stem.materialRevision}`
-    if (!cloudAssets.has(key)) cloudAssets.set(key, await catalog.ensure(stem.materialId, stem.materialRevision))
+    const key = stem.materialId
+    if (!cloudAssets.has(key)) cloudAssets.set(key, await catalog.ensure(stem.materialId))
   }
-  const cloudVase = artwork.vaseMaterialId ? await catalog.ensure(artwork.vaseMaterialId, artwork.vaseMaterialRevision || '') : undefined
-  const cloudBackground = artwork.backgroundMaterialId ? await catalog.ensure(artwork.backgroundMaterialId, artwork.backgroundMaterialRevision || '') : undefined
+  const cloudVase = artwork.vaseMaterialId ? await catalog.ensure(artwork.vaseMaterialId) : undefined
+  const cloudBackground = artwork.backgroundMaterialId ? await catalog.ensure(artwork.backgroundMaterialId) : undefined
   if (cloudBackground && (cloudBackground.category !== 'background' || !cloudBackground.sources.background)) throw new Error('背景素材不可用')
-  const paths = [...new Set(artwork.stems.filter(stem => !stem.materialId && !plantSvgMarkup(stem.kind, stem.color, stem.stemHeight, true)).map(stem => curveFor(stem).image))]
+  const paths = [...new Set(artwork.stems.filter(stem => !stem.materialId && !plantSvgMarkup(stem.kind, stem.color, stem.stemHeight)).map(stem => curveFor(stem).image))]
   const loaded = await Promise.all(paths.map(src => new Promise<[string, string]>((resolve, reject) => {
     // getImageInfo 返回的包内路径可能丢失开头的 /，这里继续使用原始根路径。
     // 否则 Canvas 会错误地从当前页面目录中查找 static 素材。
@@ -206,13 +205,13 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
   }
   for (const stem of artwork.stems) {
     if (stem.materialId) {
-      const asset = cloudAssets.get(`${stem.materialId}:${stem.materialRevision}`)!
+      const asset = cloudAssets.get(stem.materialId)!
       ctx.save(); ctx.translate(stem.x, anchorY(artwork.vase)); ctx.rotate(stem.angle * Math.PI / 180)
       ctx.scale(stem.mirrored ? -stem.flowerScale : stem.flowerScale, stem.flowerScale); ctx.translate(-55, -stem.stemHeight - 55)
-      drawSvg(ctx, cloudPlantSvg(asset, { ...stem, leafMode: 'without' }), 110, stem.stemHeight + 55, flowerStrokeOpacityScale)
+      drawSvg(ctx, cloudPlantSvg(asset, stem), 110, stem.stemHeight + 55, flowerStrokeOpacityScale)
       ctx.restore(); continue
     }
-    const plant = plantSvgMarkup(stem.kind, stem.color, stem.stemHeight, true)
+    const plant = plantSvgMarkup(stem.kind, stem.color, stem.stemHeight)
     if (plant) {
       ctx.save()
       ctx.translate(stem.x, anchorY(artwork.vase))

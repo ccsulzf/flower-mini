@@ -39,7 +39,7 @@ test('金丝菊和虞美人的 PNG 花茎从花心开始并延伸至瓶口', () 
 
 test('选择目录花材只添加花枝，不自动打开浮动编辑工具栏', async () => {
   const page = setupComponent('flower-studio-page.vue')
-  const material = { id: 'test-flower', revision: 'a'.repeat(16), category: 'flower', name: '测试花', colors: [{ value: '#abcdef' }] }
+  const material = { id: 'test-flower', category: 'flower', name: '测试花', colors: [{ value: '#abcdef' }] }
   page.catalog.materials = [material]
   page.catalog.ensure = async () => material
   page.activeTab.value = 'flowers'
@@ -292,8 +292,8 @@ test('肾蕨等云端叶材点击区覆盖整枝，主花保持花头点击区',
   const catalog = loader.load('src/stores/flowerCatalogStore.ts').useFlowerCatalogStore()
   for (const id of ['boston-fern', 'eucalyptus', 'rose']) {
     const material = items.find(item => item.id === id)
-    catalog.prepared[`${material.id}:${material.revision}`] = material
-    const stem = { id: 1, kind: 'rose', materialId: material.id, materialRevision: material.revision, x: 350, angle: 12, stemHeight: 410, flowerScale: 1, color: '#849c81' }
+    catalog.prepared[material.id] = material
+    const stem = { id: 1, kind: 'rose', materialId: material.id, x: 350, angle: 12, stemHeight: 410, flowerScale: 1, color: '#849c81' }
     const state = loader.setup('src/components/flower/flower-stem-control.vue', { stem, anchor: 747, selected: true })
     assert.equal(state.isFoliage.value, material.group === 'foliage')
     assert.equal(state.touchAreaStyle.value, material.group === 'foliage' ? 'height:489rpx;' : '')
@@ -304,14 +304,14 @@ test('已有缓存花瓶立即使用，冷目录先准备花瓶再后台准备�
   const loader = createLoader(), page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
   const vase = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(item => item.category === 'vase')
   page.catalog.materials = [vase]
-  page.catalog.prepared[`${vase.id}:${vase.revision}`] = vase
+  page.catalog.prepared[vase.id] = vase
   let release
   page.catalog.load = () => new Promise(resolve => { release = resolve })
   page.catalog.preload = async () => {}
   const warm = page.loadMaterials()
   assert.equal(page.vaseMaterialId.value, vase.id)
   release(); await warm
-  page.store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
+  page.store.initialize({ vase: '陶瓶', background: 'warm', stems: [] })
   page.catalog.prepared = {}
   const order = []
   page.catalog.load = async () => { order.push('directory') }
@@ -325,7 +325,7 @@ test('拖到左侧时瓶口落点跟随到左侧，拖到右侧随到右侧，�
   const loader = createLoader(), page = loader.setup('src/pages/flower-studio/flower-studio-page.vue')
   const items = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items
   const vase = items.find(item => item.id === 'ceramic-vase')
-  page.catalog.prepared[`${vase.id}:${vase.revision}`] = vase
+  page.catalog.prepared[vase.id] = vase
   page.store.setVaseMaterial(vase)
   page.store.addFlower('rose')
   const stem = page.stems.value[0]

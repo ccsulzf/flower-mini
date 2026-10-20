@@ -16,7 +16,7 @@ function cloudObject(identity, options = {}) {
 test('云目录拒绝未登录；查询档案集合，返回文件下载地址且不污染原数据', async () => {
   await assert.rejects(cloudObject(null)._before(), error => error.errCode === 'AUTH_REQUIRED')
   const cloud = cloudObject({ errCode: 0, uid: 'server-user' }); await cloud._before()
-  const result = await cloud.list(); assert.equal(result.version, 2)
+  const result = await cloud.list()
   assert.equal(result.items[0].assets.flower.url, 'https://test/flower')
   result.items[0].name = 'changed'; assert.equal((await cloud.list()).items[0].name, '玫瑰')
 })
@@ -47,16 +47,16 @@ test('临时下载地址分批并行获取，避免累加网络延迟', async ()
 })
 test('客户端解析云目录，拒绝未知花材、重复数据和非法尺寸', () => {
   const parse = createLoader().load('src/utils/flower/catalog.ts').parseFlowerCatalog
-  assert.equal(parse({ version: 1, items: rows }).length, 6)
+  assert.equal(parse({ items: rows }).length, 6)
   for (const items of [[{ ...rows[0], kind: 'unknown' }], [rows[0], rows[0]], [{ ...rows[0], height: NaN }]]) {
-    assert.throws(() => parse({ version: 1, items }), /无效/)
+    assert.throws(() => parse({ items }), /无效/)
   }
 })
 test('store 等待登录，再调用鉴权云对象；重复点击不重复请求，失败可重试', async () => {
   let calls = 0, release, fail = false
   const loader = createLoader({ uniCloud: { importObject: (name, options) => {
     assert.equal(name, 'flower-catalog'); assert.equal(options.customUI, true)
-    return { list: async () => { calls++; if (fail) throw { errMsg: '云对象未部署' }; await new Promise(resolve => { release = resolve }); return { version: 1, items: rows } } }
+    return { list: async () => { calls++; if (fail) throw { errMsg: '云对象未部署' }; await new Promise(resolve => { release = resolve }); return { items: [] } } }
   } } })
   const auth = loader.load('src/utils/appAuth.ts')
   const store = loader.load('src/stores/flowerCatalogStore.ts').useFlowerCatalogStore()
@@ -67,9 +67,9 @@ test('store 等待登录，再调用鉴权云对象；重复点击不重复请�
   await new Promise(resolve => setImmediate(resolve))
   assert.equal(calls, 1)
   release(); await work
-  assert.equal(store.loaded, true); assert.equal(store.items.length, 6)
+  assert.equal(store.loaded, true); assert.equal(store.materials.length, 0)
   fail = true; await store.load()
-  assert.equal(store.loaded, true); assert.equal(store.items.length, 6)
+  assert.equal(store.loaded, true); assert.equal(store.materials.length, 0)
   assert.match(store.error, /未部署/)
   fail = false; const retry = store.load()
   await new Promise(resolve => setImmediate(resolve))
@@ -81,7 +81,7 @@ test('启动预加载合并请求，暂时失败自动重试，完成后不重�
   let calls = 0
   const loader = createLoader({ uniCloud: { importObject: () => ({ list: async () => {
     calls++; if (calls === 1) throw new Error('temporary failure')
-    return { version: 2, items: [] }
+    return { items: [] }
   } }) } })
   loader.load('src/utils/appAuth.ts').markAppAuthReady()
   const store = loader.load('src/stores/flowerCatalogStore.ts').useFlowerCatalogStore()

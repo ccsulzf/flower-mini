@@ -2,7 +2,7 @@ import { colorizeMaterialSvg } from '@/utils/flower/material-color'
 import { defaultFlowerGeometry, materialParts, normalizeMaterial } from '@/utils/flower/material-catalog'
 import type { MaterialDraft, MaterialMetadata, SvgPart, UploadedMaterial } from './types'
 export const svgParts: { key: SvgPart, name: string }[] = [
-  { key: 'flower', name: '花朵' }, { key: 'stemWithLeaves', name: '带叶花茎' },
+  { key: 'flower', name: '花朵' },
   { key: 'stemWithoutLeaves', name: '去叶花茎' }, { key: 'foliage', name: '叶枝' }, { key: 'vase', name: '花瓶' }, { key: 'bouquet', name: '花束包装' }, { key: 'background', name: '背景' },
 ]
 export function revisionOf(value: unknown): string {

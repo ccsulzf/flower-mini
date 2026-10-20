@@ -8,7 +8,6 @@ interface CloudImageResult {
 interface FlowerRenderCloud {
   renderWork(input: {
     workId: string
-    expectedRevision: number
   }): Promise<CloudImageResult>
 }
 
@@ -16,9 +15,9 @@ interface CloudFileUrlResult {
   fileList?: Array<{ fileID: string, tempFileURL?: string }>
 }
 
-export async function renderCloudImage(workId: string, expectedRevision: number) {
+export async function renderCloudImage(workId: string) {
   const cloud = uniCloud.importObject('flower-render', { customUI: true }) as FlowerRenderCloud
-  const result = await cloud.renderWork({ workId, expectedRevision })
+  const result = await cloud.renderWork({ workId })
   if (result.width !== 1396 || result.height !== 2000 || typeof result.fileID !== 'string'
     || !result.fileID.startsWith('cloud://') || typeof result.cloudPath !== 'string'
     || !result.cloudPath.endsWith(`/${workId}/artwork.png`))

@@ -2,7 +2,6 @@ import type { Artwork } from '@/utils/flower/artwork'
 
 // 后方高花先绘制，前方低花后绘制；瓶口坐标保持在现有导入范围内。
 const example: Artwork = {
-  version: 2,
   vase: '陶瓶',
   background: 'warm',
   stems: [

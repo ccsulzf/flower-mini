@@ -58,7 +58,7 @@ function remove(work: SavedFlowerWorkSummary) {
         return
       deletingId.value = work.id
       try {
-        await works.remove(work.id, work.revision)
+        await works.remove(work.id)
         uni.showToast({ title: '作品已删除', icon: 'none' })
       }
       catch (error) {

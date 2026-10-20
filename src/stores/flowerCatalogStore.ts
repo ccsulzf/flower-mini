@@ -17,7 +17,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
   let loadTask: Promise<void> | null = null
   const tasks = new Map<string, Promise<CachedMaterial>>()
   function failure(value: unknown) { return value instanceof Error ? value.message : typeof value === 'object' && value !== null && 'errMsg' in value ? String(value.errMsg) : '素材加载失败，请重试' }
-  function get(id: string, revision: string) { return prepared.value[`${id}:${revision}`] }
+  function get(id: string) { return prepared.value[id] }
   function load(): Promise<void> {
     if (loadTask) return loadTask
     loading.value = true; error.value = ''
@@ -26,29 +26,28 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
         await waitForAppAuthReady()
         const cloud = uniCloud.importObject('flower-catalog', { customUI: true })
         const result = await cloud.list()
-        if (result.version === 1) { items.value = parseFlowerCatalog(result); materials.value = [] }
-        else { materials.value = parseMaterialCatalog(result); items.value = [] }
+        materials.value = parseMaterialCatalog(result); items.value = []
         loaded.value = true
-        if (materials.value.some(item => !get(item.id, item.revision))) ready.value = false
+        if (materials.value.some(item => !get(item.id))) ready.value = false
       } catch (value) { error.value = failure(value) }
       finally { loading.value = false; loadTask = null }
     })()
     return loadTask
   }
-  function ensure(id: string, revision: string): Promise<CachedMaterial> {
-    const key = `${id}:${revision}`
+  function ensure(id: string): Promise<CachedMaterial> {
+    const key = id
     const running = tasks.get(key)
     if (running) return running
     downloading.value++; error.value = ''
     const task = (async () => {
       try {
         // 即使已在内存中，也检查持久文件，避免系统清理后的失效路径。
-        let record = materials.value.find(item => item.id === id && item.revision === revision)
+        let record = materials.value.find(item => item.id === id)
         if (!record) {
-          const stored = cachedRecord(id, revision)
+          const stored = cachedRecord(id)
           if (stored) record = normalizeMaterial(stored)
         }
-        if (!record) throw new Error('此版本素材不可用，请刷新目录')
+        if (!record) throw new Error('素材不可用，请刷新目录')
         const result = await prepareMaterial(record)
         prepared.value[key] = result.material
         downloads.value += result.downloaded; cacheHits.value += result.cached
@@ -67,13 +66,13 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
       for (let attempt = 0; attempt < 3; attempt++) {
         if (!loaded.value || error.value) await load()
         if (error.value) continue
-        const queue = materials.value.filter(row => !get(row.id, row.revision))
+        const queue = materials.value.filter(row => !get(row.id))
         const failures: string[] = []
         // Limit parallel downloads when the material library grows.
         await Promise.all(Array.from({ length: Math.min(3, queue.length) }, async () => {
           while (queue.length) {
             const row = queue.shift()!
-            try { await ensure(row.id, row.revision) }
+            try { await ensure(row.id) }
             catch (value) { failures.push(failure(value)) }
           }
         }))

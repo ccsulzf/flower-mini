@@ -8,7 +8,6 @@ const { createLoader } = require('./helpers/load-ts.cjs')
 
 function sampleArtwork() {
   return {
-    version: 2,
     vase: '陶瓶',
     background: 'warm',
     stems: [{
@@ -207,30 +206,29 @@ test('每日花束发布直接使用渲染云函数返回的云文件，不经�
 
 test('本地物料 JSON 仅将已存在于云端的候选物料关联到每日花束', () => {
   const attachCloudMaterials = createLoader().load('src/subpackages/daily-flower-admin/lib/daily-flower-preview.ts').attachCloudMaterials
-  const cloudMaterial = (id, category, revision) => ({
+  const cloudMaterial = (id, category) => ({
     id,
     category,
-    revision,
     colors: [{ name: '测试色', value: '#d85f70' }],
   })
   const materials = [
-    cloudMaterial('firework-chrysanthemum', 'flower', 'a'.repeat(16)),
-    cloudMaterial('rose', 'flower', 'b'.repeat(16)),
-    cloudMaterial('spray-rose', 'flower', '6'.repeat(16)),
-    cloudMaterial('dahlia', 'flower', 'c'.repeat(16)),
-    cloudMaterial('gerbera', 'flower', '7'.repeat(16)),
-    cloudMaterial('pincushion', 'flower', '8'.repeat(16)),
-    cloudMaterial('gypsophila', 'flower', '9'.repeat(16)),
-    cloudMaterial('chamomile', 'flower', 'a'.repeat(16)),
-    cloudMaterial('solidago', 'flower', 'f'.repeat(16)),
-    cloudMaterial('spirea', 'flower', '3'.repeat(16)),
-    cloudMaterial('eucalyptus', 'flower', '1'.repeat(16)),
-    cloudMaterial('dusty-miller', 'flower', 'b'.repeat(16)),
-    cloudMaterial('ceramic-vase', 'vase', 'd'.repeat(16)),
-    cloudMaterial('ribbed-ceramic-vase', 'vase', '4'.repeat(16)),
-    cloudMaterial('scene-window-table', 'background', '2'.repeat(16)),
-    cloudMaterial('scene-ivory-table', 'background', '5'.repeat(16)),
-    cloudMaterial('scene-sage-table', 'background', 'e'.repeat(16)),
+    cloudMaterial('firework-chrysanthemum', 'flower'),
+    cloudMaterial('rose', 'flower'),
+    cloudMaterial('spray-rose', 'flower'),
+    cloudMaterial('dahlia', 'flower'),
+    cloudMaterial('gerbera', 'flower'),
+    cloudMaterial('pincushion', 'flower'),
+    cloudMaterial('gypsophila', 'flower'),
+    cloudMaterial('chamomile', 'flower'),
+    cloudMaterial('solidago', 'flower'),
+    cloudMaterial('spirea', 'flower'),
+    cloudMaterial('eucalyptus', 'flower'),
+    cloudMaterial('dusty-miller', 'flower'),
+    cloudMaterial('ceramic-vase', 'vase'),
+    cloudMaterial('ribbed-ceramic-vase', 'vase'),
+    cloudMaterial('scene-window-table', 'background'),
+    cloudMaterial('scene-ivory-table', 'background'),
+    cloudMaterial('scene-sage-table', 'background'),
   ]
   const manifest = JSON.parse(fs.readFileSync('src/subpackages/daily-flower-admin/assets/daily-flower-materials.json', 'utf8'))
   for (const [kind, ids] of Object.entries(manifest.flowers)) {
@@ -269,7 +267,7 @@ test('本地物料 JSON 仅将已存在于云端的候选物料关联到每日�
   assert.ok(artwork.stems.some(stem => stem.color === '#a99db9'))
   assert.ok(artwork.stems.every(stem => !['#793b4b', '#c76d43', '#748ad6'].includes(stem.color)))
   assert.ok(new Set(artwork.stems.map(stem => stem.materialId)).size >= 8)
-  assert.ok(artwork.stems.every(stem => stem.materialId && stem.materialRevision))
+  assert.ok(artwork.stems.every(stem => stem.materialId))
   assert.equal(artwork.vaseMaterialId, 'ribbed-ceramic-vase')
   assert.equal(artwork.backgroundMaterialId, 'scene-sage-table')
   assert.equal(artwork.stems[0].materialId, 'eucalyptus')

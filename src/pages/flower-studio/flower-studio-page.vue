@@ -25,8 +25,8 @@ definePage({
   style: { navigationStyle: 'custom', navigationBarTitleText: '花瓶小作', navigationBarBackgroundColor: '#f6f3eb', disableScroll: true },
 })
 const store = useCreationArtworkStore()
-store.initialize({ version: 2, vase: '陶瓶', background: 'warm', stems: [] })
-const { stems, vase, vaseMaterialId, vaseMaterialRevision, background, backgroundMaterialId, backgroundMaterialRevision, selectedId, canClear } = storeToRefs(store)
+store.initialize({ vase: '陶瓶', background: 'warm', stems: [] })
+const { stems, vase, vaseMaterialId, background, backgroundMaterialId, selectedId, canClear } = storeToRefs(store)
 const catalog = useFlowerCatalogStore()
 const session = useFlowerCreationSession(store)
 const { pendingDraft, storageError, readonly, initialized, draftReadFailed } = session
@@ -70,8 +70,8 @@ watch(storageError, (value) => {
 })
 async function prepareArtwork() {
   const art = store.snapshot()
-  const references = [...art.stems.filter(row => row.materialId).map(row => [row.materialId!, row.materialRevision!]), ...(art.vaseMaterialId ? [[art.vaseMaterialId, art.vaseMaterialRevision!]] : []), ...(art.backgroundMaterialId ? [[art.backgroundMaterialId, art.backgroundMaterialRevision!]] : [])]
-  await Promise.all(references.map(([id, revision]) => catalog.ensure(id, revision)))
+  const references = [...art.stems.flatMap(row => row.materialId ? [row.materialId] : []), ...(art.vaseMaterialId ? [art.vaseMaterialId] : []), ...(art.backgroundMaterialId ? [art.backgroundMaterialId] : [])]
+  await Promise.all(references.map(id => catalog.ensure(id)))
   const bounds = store.stemLandingBounds()
   if (art.stems.some(stem => stem.x < bounds.left - 0.01 || stem.x > bounds.right + 0.01))
     throw new Error('作品落点超出当前容器，请返回编辑调整花材')
@@ -139,7 +139,7 @@ async function retryStartup() {
 async function loadMaterials() {
   // 返回工作室时先用已准备的花瓶，不等待目录网络刷新。
   const knownVase = catalog.materials.find(item => item.category === 'vase')
-  const cachedVase = knownVase ? catalog.get(knownVase.id, knownVase.revision) : undefined
+  const cachedVase = knownVase ? catalog.get(knownVase.id) : undefined
   if (!pendingDraft.value && !readonly.value && !vaseMaterialId.value && cachedVase) {
     applying = true
     store.setVaseMaterial(cachedVase, false)
@@ -151,7 +151,7 @@ async function loadMaterials() {
     const firstVase = catalog.materials.find(item => item.category === 'vase')
     if (firstVase) {
       try {
-        const material = await catalog.ensure(firstVase.id, firstVase.revision)
+        const material = await catalog.ensure(firstVase.id)
         // 用户可能已在等待期间主动选了另一个容器。
         if (alive && !pendingDraft.value && !readonly.value && !vaseMaterialId.value) {
           applying = true
@@ -270,7 +270,6 @@ async function saveCurrentWork() {
     title,
     description,
     workId: draft.workId,
-    expectedRevision: draft.workRevision,
   })
 }
 
@@ -430,7 +429,7 @@ async function addCloudMaterial(id: string) {
   addingMaterial.value = true
   const request = sessionVersion
   try {
-    const material = await catalog.ensure(row.id, row.revision)
+    const material = await catalog.ensure(row.id)
     if (!alive || request !== sessionVersion)
       return
     endDrag(true)
@@ -529,8 +528,8 @@ function removeSelected() {
     <view class="studio-stage" :style="{ bottom: `${stageBottom}px`, top: `${stageTop}px` }">
       <view class="studio-artwork" :style="artworkStyle">
         <FlowerBoard
-          :background="background" :background-material-id="backgroundMaterialId" :background-material-revision="backgroundMaterialRevision"
-          :stems="stems" :vase="vase" :vase-material-id="vaseMaterialId" :vase-material-revision="vaseMaterialRevision"
+          :background="background" :background-material-id="backgroundMaterialId"
+          :stems="stems" :vase="vase" :vase-material-id="vaseMaterialId"
           :selected-id="selectedId" @start="startDrag" @move="moveDrag" @end="endDrag" @clear="closeFlowerTools"
         />
       </view>

@@ -7,7 +7,7 @@ function createHistory() {
 }
 function artwork(count) {
   return {
-    version: 2, vase: '花束', background: 'warm',
+    vase: '花束', background: 'warm',
     stems: Array.from({ length: count }, (_, index) => ({ id: index + 1, kind: 'rose', x: 350, y: 747, angle: 0, flowerScale: 1.2, stemHeight: 350, color: '#b82b36' })),
   }
 }

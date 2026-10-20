@@ -52,7 +52,7 @@ test('银莲花连接点藏进花瓣后，茎顶切线平顺，茎底仍落在�
   const loader = createLoader()
   const item = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(item => item.id === 'anemone')
   const { cloudPlantSvg } = loader.load('src/utils/flower/material-render.ts')
-  const source = cloudPlantSvg({ ...item, sources: { ...item.sources, stemWithoutLeaves: old }, geometry: { ...item.geometry, connectionY: 104 } }, { color: '#abcdef', stemHeight: 410, leafMode: 'without' })
+  const source = cloudPlantSvg({ ...item, sources: { ...item.sources, stemWithoutLeaves: old }, geometry: { ...item.geometry, connectionY: 104 } }, { color: '#abcdef', stemHeight: 410 })
   const stem = source.match(/<svg x="0" y="([\d.]+)" width="110" height="([\d.]+)"[^>]*viewBox="0 0 110 260"[^>]*>/)
   assert.ok(stem)
   assert.ok(Number(stem[1]) <= 80)
@@ -80,7 +80,7 @@ test('明确绘制的花序接头按锚点拼接，调整高度不改变衔接�
   const sources = { ...rose.sources, stemWithoutLeaves: '<svg viewBox="0 0 110 260"><!-- continuous-stem-join --><path d="M55 0C59.9 28 80 92 79 145C78 198 65 236 55 260" fill="none"/></svg>' }
   const { cloudPlantSvg } = loader.load('src/utils/flower/material-render.ts')
   for (const height of [260, 510]) {
-    const svg = cloudPlantSvg({ ...rose, sources }, { color: '#abcdef', stemHeight: height, leafMode: 'without' })
+    const svg = cloudPlantSvg({ ...rose, sources }, { color: '#abcdef', stemHeight: height })
     const node = svg.match(/<svg x="0" y="([\d.]+)" width="110" height="([\d.]+)"[^>]*viewBox="0 0 110 260"/)
     assert.equal(Number(node[1]), rose.geometry.connectionY)
     const controls = svg.match(/M55 0C([\d.]+) 28/)

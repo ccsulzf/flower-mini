@@ -1,5 +1,5 @@
 export type MaterialGroup = 'main' | 'filler' | 'foliage'
-export type SvgPart = 'flower' | 'stemWithLeaves' | 'stemWithoutLeaves' | 'foliage' | 'vase' | 'bouquet' | 'background'
+export type SvgPart = 'flower' | 'stemWithoutLeaves' | 'foliage' | 'vase' | 'bouquet' | 'background'
 export interface FlowerGeometry { width: number, flowerHeight: number, stemHeight: number, connectionY: number }
 export interface VaseGeometry { width: number, height: number, mouthX: number, mouthY: number, mouthWidth: number }
 export interface BackgroundGeometry { width: number, height: number, surfaceY?: number }
@@ -11,12 +11,10 @@ export interface MaterialMetadata {
   flowerMeaning: string
   group: MaterialGroup
   colors: { name: string, value: string }[]
-  version: number
   geometry?: FlowerGeometry | VaseGeometry | BackgroundGeometry
 }
-export interface MaterialDraft extends MaterialMetadata { sources: Partial<Record<SvgPart, string>>, revision: string }
+export interface MaterialDraft extends MaterialMetadata { sources: Partial<Record<SvgPart, string>> }
 export interface UploadedMaterial extends MaterialMetadata {
-  revision: string
   assets: Partial<Record<SvgPart, { fileId: string, hash: string, url?: string }>>
   updatedAt: number
 }

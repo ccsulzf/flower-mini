@@ -62,7 +62,6 @@ async function saveMetadata() {
       title: editTitle.value,
       description: editDescription.value,
       workId: draft.value.workId,
-      expectedRevision: draft.value.workRevision,
     })
     draft.value = work.draft
     title.value = work.title

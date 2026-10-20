@@ -31,19 +31,16 @@ export function createComplexRenderTestArtwork(materials: UploadedMaterial[]): A
       stemHeight: height,
       color: palette[Math.floor((position + layer * 5) / 2) % palette.length].value,
       materialId: material.id,
-      materialRevision: material.revision,
-      leafMode: (index + layer) % 3 === 0 ? 'with' : 'without',
       ...(index % 4 === 1 || index % 4 === 2 ? { mirrored: true } : {}),
     }
   })
   const vase = materials.find(material => material.category === 'vase' || material.category === 'bouquet')
   const background = materials.find(material => material.category === 'background')
   return {
-    version: 2,
     vase: vase?.category === 'bouquet' ? '花束' : '陶瓶',
-    ...(vase ? { vaseMaterialId: vase.id, vaseMaterialRevision: vase.revision } : {}),
+    ...(vase ? { vaseMaterialId: vase.id } : {}),
     background: 'warm',
-    ...(background ? { backgroundMaterialId: background.id, backgroundMaterialRevision: background.revision } : {}),
+    ...(background ? { backgroundMaterialId: background.id } : {}),
     stems,
   }
 }

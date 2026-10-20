@@ -68,7 +68,6 @@ function sampleRecord(overrides = {}) {
     date: '2026-10-14',
     description: '秋日花束',
     artwork: {
-      version: 2,
       vase: '陶瓶',
       background: 'sage',
       stems: [{

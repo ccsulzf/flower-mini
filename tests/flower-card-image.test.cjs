@@ -12,12 +12,12 @@ test('新作或改动作品生成作品图，未改动时复用作品图并在�
     wx: { env: { USER_DATA_PATH: '/user' }, getFileSystemManager: () => ({ writeFile: args => args.success() }), canIUse: () => true, showShareImageMenu: args => shared.push(args.path) },
   })
   const store = loader.load('src/stores/artworkStore.ts').useArtworkStore()
-  const images = loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(store.snapshot, () => 'work:abcdef', () => ({ id: 'a'.repeat(32), revision: 2 }))
+  const images = loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(store.snapshot, () => 'work:abcdef', () => ({ id: 'a'.repeat(32)}))
   const greeting = { recipient: '朋友', blessing: '祝福', signature: '' }, compositions = []
   const first = images.exportCard(greeting, async (artworkPath, card) => { compositions.push({ artworkPath, card }); return '/user/card.png' })
   requests[0].resolve()
   assert.equal(await first, true)
-  assert.equal(JSON.stringify(requests[0].input), JSON.stringify({ workId: 'a'.repeat(32), expectedRevision: 2 }))
+  assert.equal(JSON.stringify(requests[0].input), JSON.stringify({ workId: 'a'.repeat(32) }))
   assert.equal(JSON.stringify(compositions), JSON.stringify([{ artworkPath: images.imagePath.value, card: greeting }]))
   assert.equal(await images.exportCard(greeting, async () => '/user/unexpected.png'), true)
   assert.equal(requests.length, 1)
@@ -44,7 +44,7 @@ test('新花卡文字取代正在本地合成的旧贺卡，不发布旧结果',
     uni: { downloadFile: args => args.success({ statusCode: 200, tempFilePath: args.filePath }) },
     wx: { env: { USER_DATA_PATH: '/user' }, getFileSystemManager: () => ({ writeFile: args => args.success(), unlink() {} }) },
   })
-  const images = loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(() => ({ version: 2, vase: '陶瓶', background: 'warm', stems: [] }), () => 'work:abcdef', () => ({ id: 'b'.repeat(32), revision: 1 }))
+  const images = loader.load('src/hooks/useArtworkImage.ts').useArtworkImage(() => ({ vase: '陶瓶', background: 'warm', stems: [] }), () => 'work:abcdef', () => ({ id: 'b'.repeat(32)}))
   const old = images.exportCard({ recipient: '', blessing: '旧祝福', signature: '' }, () => new Promise(resolve => compositions.push({ text: 'old', resolve })))
   requests[0].resolve({ width: 1396, height: 2000, fileID: 'cloud://test/artwork.png', cloudPath: `flower-works/${'b'.repeat(64)}/${'b'.repeat(32)}/artwork.png` })
   await new Promise(resolve => setImmediate(resolve))

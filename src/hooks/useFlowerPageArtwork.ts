@@ -34,8 +34,8 @@ export function useFlowerPageArtwork(options: {
     if (!draft.value)
       throw new Error('作品尚未准备好')
     return draft.value.artwork
-  }, () => workId ? `work:${workId}` : imageScope, () => workId && draft.value?.workRevision
-    ? { id: workId, revision: draft.value.workRevision }
+  }, () => workId ? `work:${workId}` : imageScope, () => workId
+    ? { id: workId }
     : undefined, () => existingArtworkImagePath)
   const userInfo = useUserInfoStore()
   function channel() {
@@ -87,8 +87,8 @@ export function useFlowerPageArtwork(options: {
       if (!catalog.loaded)
         await catalog.load()
       const art = draft.value.artwork
-      const refs = [...art.stems.filter(row => row.materialId).map(row => [row.materialId!, row.materialRevision!]), ...(art.vaseMaterialId ? [[art.vaseMaterialId, art.vaseMaterialRevision!]] : []), ...(art.backgroundMaterialId ? [[art.backgroundMaterialId, art.backgroundMaterialRevision!]] : [])]
-      await Promise.all(refs.map(([id, revision]) => catalog.ensure(id, revision)))
+      const refs = [...art.stems.flatMap(row => row.materialId ? [row.materialId] : []), ...(art.vaseMaterialId ? [art.vaseMaterialId] : []), ...(art.backgroundMaterialId ? [art.backgroundMaterialId] : [])]
+      await Promise.all(refs.map(id => catalog.ensure(id)))
     }
     catch (value) {
       if (alive)

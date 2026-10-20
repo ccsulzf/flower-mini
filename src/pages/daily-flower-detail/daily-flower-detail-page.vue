@@ -96,7 +96,6 @@ async function copyToStudio() {
   try {
     const work = await works.save({
       draft: {
-        version: 1,
         artwork: original.artwork,
         card: { blessing: '', signature: '' },
         updatedAt: Date.now(),

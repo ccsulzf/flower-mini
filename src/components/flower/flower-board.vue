@@ -8,11 +8,11 @@ import { backgroundOffset } from '@/utils/flower/background-render'
 import FlowerArtworkRenderer from './flower-artwork-renderer.vue'
 import FlowerStemControl from './flower-stem-control.vue'
 
-const props = defineProps<{ background?: Artwork['background'], backgroundMaterialId?: string, backgroundMaterialRevision?: string, stems: Stem[], vase: VaseName, selectedId: number | null, hideVase?: boolean, vaseMaterialId?: string, vaseMaterialRevision?: string }>()
+const props = defineProps<{ background?: Artwork['background'], backgroundMaterialId?: string, stems: Stem[], vase: VaseName, selectedId: number | null, hideVase?: boolean, vaseMaterialId?: string }>()
 const emit = defineEmits<{ start: [event: StudioTouchEvent, stem: Stem], move: [event: StudioTouchEvent], end: [cancelled: boolean], clear: [] }>()
 const catalog = useFlowerCatalogStore()
-const scene = computed(() => props.backgroundMaterialId && props.backgroundMaterialRevision ? catalog.get(props.backgroundMaterialId, props.backgroundMaterialRevision) : undefined)
-const arrangementOffset = computed(() => backgroundOffset(scene.value, props.vaseMaterialId && props.vaseMaterialRevision ? catalog.get(props.vaseMaterialId, props.vaseMaterialRevision) : undefined, props.vase))
+const scene = computed(() => props.backgroundMaterialId ? catalog.get(props.backgroundMaterialId) : undefined)
+const arrangementOffset = computed(() => backgroundOffset(scene.value, props.vaseMaterialId ? catalog.get(props.vaseMaterialId) : undefined, props.vase))
 </script>
 
 <template>
@@ -20,12 +20,10 @@ const arrangementOffset = computed(() => backgroundOffset(scene.value, props.vas
     <FlowerArtworkRenderer
       :background="background"
       :background-material-id="backgroundMaterialId"
-      :background-material-revision="backgroundMaterialRevision"
       :stems="stems"
       :vase="vase"
       :hide-vase="hideVase"
       :vase-material-id="vaseMaterialId"
-      :vase-material-revision="vaseMaterialRevision"
     />
     <view class="board-controls" :style="{ transform: `translateY(${arrangementOffset}rpx)` }">
       <FlowerStemControl

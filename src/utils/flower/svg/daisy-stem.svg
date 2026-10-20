@@ -1,8 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="260" viewBox="0 0 110 260">
   <path d="M55 0C76 75 36 194 55 260" fill="none" stroke="#7d915e" stroke-width="2"/>
-  <g fill="#8a9d71">
-    <path d="M60 129Q40 103 28 109Q36 130 60 129Z"/>
-    <path d="M54 167Q73 138 86 142Q80 165 54 167Z"/>
-    <path d="M49 205Q30 183 21 190Q30 209 49 205Z"/>
-  </g>
 </svg>

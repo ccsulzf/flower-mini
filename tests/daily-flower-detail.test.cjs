@@ -16,7 +16,6 @@ test('每日花束详情顶部提供贺卡、分享、复制操作', async () =>
   })
   const page = loader.setup('src/pages/daily-flower-detail/daily-flower-detail-page.vue')
   const artwork = {
-    version: 2,
     vase: '陶瓶',
     background: 'sage',
     stems: [{

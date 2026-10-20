@@ -41,23 +41,23 @@ function setup(options = {}) {
   return { loader, store, drafts, records, uploaded, saved, removed, temporary, reads: () => reads }
 }
 
-test('全部上传先检查权限，跳过相同版本，更新旧版本并上传缺失素材', async () => {
+test('全部上传先检查权限，跳过已存在素材并上传缺失素材', async () => {
   const s = setup(), [rose, tulip, daisy] = s.drafts
-  s.records.set(rose.id, rose); s.records.set(tulip.id, { ...tulip, revision: '0'.repeat(16) })
+  s.records.set(rose.id, rose); s.records.set(tulip.id, { ...tulip})
   await s.store.uploadAll(s.drafts)
-  assert.deepEqual(s.saved, ['tulip', 'daisy'])
+  assert.deepEqual(s.saved, ['daisy'])
   assert.equal(s.reads(), 1)
-  assert.equal(s.uploaded.length, 6)
+  assert.equal(s.uploaded.length, 3)
   assert.equal(s.temporary.size, 0)
-  assert.equal(s.store.remote.find(item => item.id === tulip.id).revision, tulip.revision)
-  assert.equal(s.store.remote.find(item => item.id === daisy.id).revision, daisy.revision)
-  assert.equal(s.store.batchProgress.completed, 2)
-  assert.equal(s.store.batchProgress.total, 2)
-  assert.equal(s.store.batchProgress.skipped, 1)
-  assert.equal(s.store.batchProgress.succeeded, 2)
+  assert.ok(s.store.remote.some(item => item.id === tulip.id))
+  assert.ok(s.store.remote.some(item => item.id === daisy.id))
+  assert.equal(s.store.batchProgress.completed, 1)
+  assert.equal(s.store.batchProgress.total, 1)
+  assert.equal(s.store.batchProgress.skipped, 2)
+  assert.equal(s.store.batchProgress.succeeded, 1)
   assert.equal(s.store.uploadFailures.length, 0)
   await s.store.uploadAll(s.drafts)
-  assert.equal(s.saved.length, 2)
+  assert.equal(s.saved.length, 1)
   assert.equal(s.store.batchProgress.total, 0)
   assert.equal(s.store.batchProgress.skipped, 3)
 })

@@ -101,21 +101,6 @@ test('位置和高度滑杆把连续拖动作为一次编辑发送', () => {
     ['controlStart'], ['control', 'position', 376], ['control', 'height', 412], ['controlEnd'],
   ]))
 })
-test('旧作品带叶设置在工作台强制去叶，镜像不改变花枝旋转', () => {
-  const { loader } = fixture()
-  const material = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(row => row.id === 'bird-of-paradise')
-  const catalog = loader.load('src/stores/flowerCatalogStore.ts').useFlowerCatalogStore()
-  catalog.prepared[`${material.id}:${material.revision}`] = material
-  const stem = { id: 1, kind: 'rose', x: 350, y: 747, angle: 12, stemHeight: 300, flowerScale: 1, color: '#abcdef', materialId: material.id, materialRevision: material.revision, leafMode: 'with', mirrored: true }
-  const state = loader.setup('src/components/flower/flower-stem.vue', { stem, anchor: 747, selected: true })
-  const decoded = Buffer.from(state.cloudSource.value.split(',')[1], 'base64').toString('utf8')
-  const leaf = material.sources.stemWithLeaves.match(/<path d="([^"]+)"[^>]*fill="(?!none")[^"]+"/)
-  assert.ok(leaf)
-  assert.ok(!decoded.includes(`d="${leaf[1]}"`))
-  assert.ok(state.flowerInstanceStyle.value.includes('scale(-1, 1)'))
-  assert.ok(state.studioStemStyle.value.includes('rotate(12deg)'))
-})
-
 test('后台下载不阻止选择已知花材，同一次等待不重复添加', async () => {
   const loader = createLoader(), page = loader.setup('src/pages/flower-studio/flower-studio-page.vue'); page.pageReady.value = true
   const material = loader.load('src/subpackages/material-admin/lib/local-files.ts').localCatalog.items.find(row => row.id === 'rose')
@@ -129,7 +114,6 @@ test('后台下载不阻止选择已知花材，同一次等待不重复添加',
   release(); await work
   assert.equal(page.stems.value.length, 1)
   assert.equal(page.activeTab.value, 'flowers')
-  assert.equal(page.stems.value[0].leafMode, 'without')
   assert.equal(page.addingMaterial.value, false)
 })
 

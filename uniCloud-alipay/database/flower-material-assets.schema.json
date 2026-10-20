@@ -4,8 +4,6 @@
     "id",
     "name",
     "group",
-    "version",
-    "revision",
     "colors",
     "assets"
   ],
@@ -31,14 +29,8 @@
     "flowerMeaning": {
       "bsonType": "string"
     },
-    "revision": {
-      "bsonType": "string"
-    },
     "updatedBy": {
       "bsonType": "string"
-    },
-    "version": {
-      "bsonType": "int"
     },
     "updatedAt": {
       "bsonType": "long"
@@ -61,17 +53,6 @@
       "bsonType": "object",
       "properties": {
         "flower": {
-          "bsonType": "object",
-          "properties": {
-            "fileId": {
-              "bsonType": "string"
-            },
-            "hash": {
-              "bsonType": "string"
-            }
-          }
-        },
-        "stemWithLeaves": {
           "bsonType": "object",
           "properties": {
             "fileId": {

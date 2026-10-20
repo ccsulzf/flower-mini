@@ -3,7 +3,7 @@ const test = require('node:test')
 const { createLoader } = require('./helpers/load-ts.cjs')
 const loader = createLoader()
 const { parseArtwork } = loader.load('src/utils/flower/artwork.ts')
-const artwork = { version: 2, vase: '陶瓶', background: 'warm', stems: [{ id: 1, kind: 'rose', x: 350, y: 747, angle: 0, flowerScale: 1.2, stemHeight: 350, color: '#b82b36' }] }
+const artwork = { vase: '陶瓶', background: 'warm', stems: [{ id: 1, kind: 'rose', x: 350, y: 747, angle: 0, flowerScale: 1.2, stemHeight: 350, color: '#b82b36' }] }
 
 test('普通 JSON 和转义 JSON 字符串生成相同的花束', () => {
   const raw = JSON.stringify(artwork)
@@ -122,7 +122,7 @@ test('内置 SVG 花材导出复用编辑器中的整枝素材，避免 Canvas �
 
   for (const [index, kind] of ['rose', 'daisy', 'tulip'].entries()) {
     const stem = { ...artwork.stems[0], id: index + 1, kind, color: '#b82b36' }
-    const expected = artworkModule.plantSvgMarkup(kind, stem.color, stem.stemHeight, true)
+    const expected = artworkModule.plantSvgMarkup(kind, stem.color, stem.stemHeight)
     await renderer.renderArtwork(ctx, { ...artwork, stems: [stem] })
     assert.ok(rendered.includes(expected))
   }

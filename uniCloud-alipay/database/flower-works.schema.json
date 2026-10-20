@@ -5,7 +5,6 @@
     "title",
     "artwork",
     "card",
-    "revision",
     "createdAt",
     "updatedAt"
   ],
@@ -35,10 +34,6 @@
     },
     "card": {
       "bsonType": "object"
-    },
-    "revision": {
-      "bsonType": "int",
-      "minimum": 1
     },
     "createdAt": {
       "bsonType": "long"

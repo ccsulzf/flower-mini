@@ -1,14 +1,13 @@
 const fail = message => { throw { errCode: 'INVALID_WORK', errMsg: message }; };
 const record = v => v && typeof v === 'object' && !Array.isArray(v);
 const finite = (v, min, max) => typeof v === 'number' && Number.isFinite(v) && v >= min && v <= max;
-const ref = (id, revision) => typeof id === 'string' && /^[a-z][a-z0-9-]{0,63}$/.test(id) && typeof revision === 'string' && /^[a-f\d]{16}$/.test(revision);
+const ref = id => typeof id === 'string' && /^[a-z][a-z0-9-]{0,63}$/.test(id);
 function reference(source, target, prefix) {
-    const id = prefix + 'Id', rev = prefix + 'Revision';
-    if (source[id] !== undefined || source[rev] !== undefined) {
-        if (!ref(source[id], source[rev]))
-            fail('素材版本引用无效');
+    const id = prefix + 'Id';
+    if (source[id] !== undefined) {
+        if (!ref(source[id]))
+            fail('素材引用无效');
         target[id] = source[id];
-        target[rev] = source[rev];
     }
 }
 function layout(v) {
@@ -17,20 +16,18 @@ function layout(v) {
     return { id: v.id, x: v.x, angle: v.angle, flowerScale: v.flowerScale, stemHeight: v.stemHeight };
 }
 function artwork(v) {
-    if (!record(v) || v.version !== 2 || !['陶瓶', '玻璃瓶', '圆花器', '花束'].includes(v.vase) || !['warm', 'sage', 'cocoa', 'mist', 'blush', 'sand'].includes(v.background) || !Array.isArray(v.stems))
+    if (!record(v) || !['陶瓶', '玻璃瓶', '圆花器', '花束'].includes(v.vase) || !['warm', 'sage', 'cocoa', 'mist', 'blush', 'sand'].includes(v.background) || !Array.isArray(v.stems))
         fail('作品格式无效');
-    const out = { version: 2, vase: v.vase, background: v.background, stems: [] }, ids = new Set();
+    const out = { vase: v.vase, background: v.background, stems: [] }, ids = new Set();
     reference(v, out, 'vaseMaterial');
     reference(v, out, 'backgroundMaterial');
     out.stems = v.stems.map(s => {
         const row = layout(s);
-        if (ids.has(s.id) || !finite(s.y, 0, 1000) || !['daisy', 'poppy', 'leaf', 'chrysanthemum', 'rose', 'tulip'].includes(s.kind) || typeof s.color !== 'string' || !/^#[a-f\d]{6}$/i.test(s.color) || s.mirrored !== undefined && typeof s.mirrored !== 'boolean' || s.leafMode !== undefined && !['with', 'without'].includes(s.leafMode))
+        if (ids.has(s.id) || !finite(s.y, 0, 1000) || !['daisy', 'poppy', 'leaf', 'chrysanthemum', 'rose', 'tulip'].includes(s.kind) || typeof s.color !== 'string' || !/^#[a-f\d]{6}$/i.test(s.color) || s.mirrored !== undefined && typeof s.mirrored !== 'boolean')
             fail('花材数据无效');
         ids.add(s.id);
         Object.assign(row, { kind: s.kind, y: s.y, color: s.color });
         reference(s, row, 'material');
-        if (s.materialId)
-            row.leafMode = s.leafMode || 'without';
         if (s.mirrored !== undefined)
             row.mirrored = s.mirrored;
         return row;
@@ -40,7 +37,7 @@ function artwork(v) {
             fail('容器布局无效');
         out.containerLayouts = {};
         for (const [key, rows] of Object.entries(v.containerLayouts)) {
-            if (!/^(?:[a-z][a-z0-9-]{0,63}:[a-f\d]{16}|builtin:(?:陶瓶|玻璃瓶|圆花器|花束))$/.test(key) || !Array.isArray(rows))
+            if (!/^(?:[a-z][a-z0-9-]{0,63}|builtin:(?:陶瓶|玻璃瓶|圆花器|花束))$/.test(key) || !Array.isArray(rows))
                 fail('容器布局无效');
             const seen = new Set();
             out.containerLayouts[key] = rows.map(v => { const row = layout(v); if (seen.has(row.id))
@@ -55,8 +52,6 @@ function card(v) { if (!record(v) || typeof v.blessing !== 'string' || typeof v.
     fail('花卡文字过长或格式无效'); return { blessing: v.blessing.trim(), signature: v.signature.trim() }; }
 function id(v) { if (typeof v !== 'string' || !/^[a-f\d]{32}$/.test(v))
     fail('作品编号无效'); return v; }
-function revision(v) { if (!Number.isSafeInteger(v) || v < 1)
-    fail('作品版本无效'); return v; }
 function crc32(buffer) { let crc = 0xffffffff; for (const byte of buffer) {
     crc ^= byte;
     for (let bit = 0; bit < 8; bit++)
@@ -131,4 +126,4 @@ function thumbnail(v) {
             fail('PNG 行过滤参数无效');
     return buffer;
 }
-module.exports = { artwork, card, id, revision, thumbnail, fail };
+module.exports = { artwork, card, id, thumbnail, fail };
