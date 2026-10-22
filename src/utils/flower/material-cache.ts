@@ -11,7 +11,23 @@ async function read(path: string, hash: string) {
   if (source.length > 65536 || !/^\s*<svg\b/.test(source) || !/<\/svg>\s*$/.test(source) || /<script|<foreignObject|\bon\w+\s*=|\bhref\s*=|<!DOCTYPE|<!ENTITY/i.test(source)) throw new Error('SVG 内容无效')
   return source
 }
-export async function prepareMaterial(record: UploadedMaterial) {
+export function hasMaterialFiles(record: UploadedMaterial) {
+  try {
+    for (const asset of Object.values(record.assets)) {
+      if (!asset)
+        continue
+      const path: unknown = uni.getStorageSync(`flower-material-file:${asset.hash}`)
+      if (typeof path !== 'string' || !path)
+        return false
+      fs().accessSync(path)
+    }
+    return true
+  }
+  catch {
+    return false
+  }
+}
+export async function prepareMaterial(record: UploadedMaterial, onAssetProcessed?: () => void) {
   const paths: CachedMaterial['paths'] = {}, sources: CachedMaterial['sources'] = {}
   let downloaded = 0, cached = 0
   for (const key of Object.keys(record.assets) as SvgPart[]) {
@@ -19,7 +35,7 @@ export async function prepareMaterial(record: UploadedMaterial) {
     const storageKey = `flower-material-file:${asset.hash}`
     const old: unknown = uni.getStorageSync(storageKey)
     if (typeof old === 'string') {
-      try { sources[key] = await read(old, asset.hash); paths[key] = old; cached++; continue }
+      try { sources[key] = await read(old, asset.hash); paths[key] = old; cached++; onAssetProcessed?.(); continue }
       catch { uni.removeStorageSync(storageKey) }
     }
     if (!asset.url || !/^https:\/\//.test(asset.url)) throw new Error('素材下载地址无效，请刷新目录')
@@ -28,7 +44,7 @@ export async function prepareMaterial(record: UploadedMaterial) {
     sources[key] = await read(result.tempFilePath, asset.hash)
     const saved = await new Promise<UniApp.SaveFileSuccess>((resolve, reject) => uni.saveFile({ tempFilePath: result.tempFilePath, success: resolve, fail: reject }))
     paths[key] = saved.savedFilePath
-    uni.setStorageSync(storageKey, saved.savedFilePath); downloaded++
+    uni.setStorageSync(storageKey, saved.savedFilePath); downloaded++; onAssetProcessed?.()
   }
   const material: CachedMaterial = { ...record, paths, sources }
   uni.setStorageSync(`flower-material-record:${record.id}`, record)
