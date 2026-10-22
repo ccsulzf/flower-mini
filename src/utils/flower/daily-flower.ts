@@ -54,7 +54,7 @@ export function parseDailyFlower(text: string): DailyFlowerDraft {
     throw new Error('JSON 中缺少有效的 artwork 花束数据')
 
   const artwork = parseArtwork(JSON.stringify(input.artwork))
-  if (!artwork.stems.length)
+  if (!artwork.materials.length)
     throw new Error('花束至少需要包含一枝花材')
 
   return {

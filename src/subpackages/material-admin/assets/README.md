@@ -100,7 +100,7 @@ material.json 示例：
 
 ## 花材精调与品种扩充（2026-10-11）
 
-工作台统一使用去叶花茎（独立叶材仍可添加），管理预览中不再提供带叶原始版本。新增花材默认有轻微角度；浮动工具栏支持每次 1 度的角度微调、4rpx 高度微调、2% 大小微调及左右镜像。镜像随作品 JSON、复制和撤销保留；图片导出使用同样的变换。上一枝／下一枝可遍历重叠花材；作品上限为 48 枝。
+工作台统一使用去叶花茎（独立叶材仍可添加），管理预览中不再提供带叶原始版本。新增花材默认有轻微角度；浮动工具栏支持角度、高度、大小和左右镜像调整。镜像随作品 JSON、复制和撤销保留；图片导出使用同样的变换。上一枝／下一枝可遍历重叠花材，花材数量不设上限。
 
 目录先显示，下载在后台继续进行；选择花材时只等待所选素材，避免后台下载阻塞整个面板。缩略图按 ID 与 revision 缓存编码结果，刷新目录可重新准备新增版本。此改动未经过实机网络测速。
 
@@ -118,7 +118,7 @@ material.json 示例：
 
 工作台背景分为纯色和场景。纯色内置暖白、浅绿、浅灰、淡粉、浅杏、可可棕；场景首批提供米白纸纹、浅灰麻纹、淡粉纸纹、暖白墙与木桌、浅绿墙与石台、窗边柔光。场景沿用素材管理的全部上传、单独上传、单个删除与版本缓存。
 
-背景档案使用 `category: "background"`，文件为 `background.svg`，geometry 为 width、height 与可选 surfaceY（背景坐标中的花瓶底部落点）。当前背景尺寸为 698 × 1000；桌面场景 surfaceY 为 910，纸纹无需设置。编辑与 Canvas 导出都先绘制背景，再按同一偏移绘制花瓶与花枝。作品 JSON 保存 backgroundMaterialId/backgroundMaterialRevision，切换纯色清除场景引用，支持撤销。
+背景档案使用 `category: "background"`，文件为 `background.svg`，geometry 为 width、height 与可选 surfaceY（背景坐标中的花瓶底部落点）。当前背景尺寸为 698 × 1000；桌面场景 surfaceY 为 910，纸纹无需设置。编辑与 Canvas 导出都先绘制背景，再按同一偏移绘制花瓶与花枝。作品 JSON 在 `background.materialId` 中保存当前背景素材，并支持撤销。
 
 启用前需部署 `flower-material-admin` 云对象及 `flower-material-assets.schema.json`，再通过开发版素材管理上传六种场景；正式客户端不包含管理素材原文件。场景预览：`docs/material-previews/background-materials.html`。
 

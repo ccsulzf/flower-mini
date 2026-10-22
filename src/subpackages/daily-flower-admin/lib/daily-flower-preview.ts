@@ -8,10 +8,9 @@ export function attachCloudMaterials(artwork: Artwork, materials: UploadedMateri
     if (!materials.some(item => item.id === id && categories.includes(item.category)))
       throw new Error(`云端找不到${label}素材 ${id}`)
   }
-  for (const stem of artwork.stems)
-    requireMaterial(stem.materialId, ['flower'], '花材')
-  requireMaterial(artwork.vaseMaterialId, ['vase', 'bouquet'], '花器')
-  if (artwork.backgroundMaterialId)
-    requireMaterial(artwork.backgroundMaterialId, ['background'], '背景')
+  for (const material of artwork.materials)
+    requireMaterial(material.materialId, ['flower'], '花材')
+  requireMaterial(artwork.container.materialId, [artwork.container.type], '花器')
+  requireMaterial(artwork.background.materialId, ['background'], '背景')
   return artwork
 }

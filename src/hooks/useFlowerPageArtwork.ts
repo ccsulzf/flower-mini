@@ -87,7 +87,11 @@ export function useFlowerPageArtwork(options: {
       if (!catalog.loaded)
         await catalog.load()
       const art = draft.value.artwork
-      const refs = [...art.stems.flatMap(row => row.materialId ? [row.materialId] : []), ...(art.vaseMaterialId ? [art.vaseMaterialId] : []), ...(art.backgroundMaterialId ? [art.backgroundMaterialId] : [])]
+      const refs = [
+        ...art.materials.map(row => row.materialId),
+        art.container.materialId,
+        art.background.materialId,
+      ]
       await Promise.all(refs.map(id => catalog.ensure(id)))
     }
     catch (value) {

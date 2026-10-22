@@ -96,7 +96,12 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
         return false
       }
     }
-    store.initialize({ vase: '陶瓶', background: 'warm', stems: [] })
+    store.initialize({
+      background: { materialId: '' },
+      container: { materialId: '', type: 'vase' },
+      materials: [],
+      containerLayouts: {},
+    })
     card.value = { blessing: '', signature: '' }
     workId.value = undefined
     pendingDraft.value = null

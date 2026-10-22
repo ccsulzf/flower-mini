@@ -4,7 +4,6 @@ import { computed, ref, watch } from 'vue'
 import FlowerArtworkRenderer from '@/components/flower/flower-artwork-renderer.vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { waitForAppAuthReady } from '@/utils/appAuth'
-import { artworkBackground } from '@/utils/flower/artwork'
 import { type DailyFlowerDraft, parseDailyFlower } from '@/utils/flower/daily-flower'
 import { attachCloudMaterials } from './lib/daily-flower-preview'
 import { publishDailyFlower } from './lib/publish'
@@ -17,23 +16,17 @@ const error = ref('')
 const message = ref('')
 const busy = ref(false)
 const previewing = ref(false)
-const previewStyle = computed(() => ({
-  backgroundColor: draft.value ? artworkBackground(draft.value.artwork.background) : '#f6f3eb',
-}))
+const previewStyle = computed(() => ({ backgroundColor: '#f6f3eb' }))
 const artwork = computed<Artwork | null>(() => draft.value?.artwork || null)
 const catalog = useFlowerCatalogStore()
 watch(source, () => { draft.value = null; message.value = '' })
 
 async function prepareArtworkMaterials(value: Artwork) {
   const references = new Set<string>()
-  for (const stem of value.stems) {
-    if (stem.materialId)
-      references.add(stem.materialId)
-  }
-  if (value.vaseMaterialId)
-    references.add(value.vaseMaterialId)
-  if (value.backgroundMaterialId)
-    references.add(value.backgroundMaterialId)
+  for (const material of value.materials)
+    references.add(material.materialId)
+  references.add(value.container.materialId)
+  references.add(value.background.materialId)
   if (!references.size)
     return
 
@@ -159,11 +152,8 @@ async function publish() {
       <view class="preview" :style="previewStyle">
         <FlowerArtworkRenderer
           v-if="artwork"
-          :background="artwork.background"
-          :background-material-id="artwork.backgroundMaterialId"
-          :stems="artwork.stems"
-          :vase="artwork.vase"
-          :vase-material-id="artwork.vaseMaterialId"
+          :artwork="artwork"
+          :prepared-materials="catalog.prepared"
         />
       </view>
       <button class="app-primary-btn" :disabled="busy" @click="publish">

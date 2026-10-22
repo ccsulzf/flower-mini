@@ -32,9 +32,9 @@ async function prepare() {
     if (catalog.error)
       throw new Error(catalog.error)
     const refs = [
-      ...source.stems.flatMap(stem => stem.materialId ? [stem.materialId] : []),
-      ...(source.vaseMaterialId ? [source.vaseMaterialId] : []),
-      ...(source.backgroundMaterialId ? [source.backgroundMaterialId] : []),
+      ...source.materials.map(material => material.materialId),
+      source.container.materialId,
+      source.background.materialId,
     ]
     await Promise.all(refs.map(id => catalog.ensure(id)))
     if (currentRequestId === requestId)
@@ -60,11 +60,8 @@ watch(() => [JSON.stringify(props.artwork), props.workId, props.dailyDate], () =
       v-if="!loading && !error && artwork"
       class="artwork-preview-board"
       :style="{ transform: `translate(-50%, -50%) scale(${scale})` }"
-      :background="artwork.background"
-      :background-material-id="artwork.backgroundMaterialId"
-      :stems="artwork.stems"
-      :vase="artwork.vase"
-      :vase-material-id="artwork.vaseMaterialId"
+      :artwork="artwork"
+      :prepared-materials="catalog.prepared"
     />
     <view v-else class="artwork-preview-state">
       <text>{{ loading ? '正在准备作品…' : error }}</text>

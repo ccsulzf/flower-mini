@@ -1,23 +1,28 @@
-import type { Artwork } from '@/utils/flower/artwork'
+import type { Artwork, MaterialGroup, MaterialInstance } from '@/utils/flower/artwork'
+
+function material(id: number, materialId: string, group: MaterialGroup, x: number, angle: number, scale: number, height: number, color: string): MaterialInstance {
+  return { id, materialId, group, color, transform: { anchor: { x, y: 747 }, angle, height, scale, mirrored: false } }
+}
 
 // 后方高花先绘制，前方低花后绘制；瓶口坐标保持在现有导入范围内。
 const example: Artwork = {
-  vase: '陶瓶',
-  background: 'warm',
-  stems: [
-    { id: 1, kind: 'daisy', x: 340, y: 747, angle: -13, flowerScale: 0.95, stemHeight: 445, color: '#f1e5bd' },
-    { id: 2, kind: 'tulip', x: 355, y: 747, angle: 8, flowerScale: 1.1, stemHeight: 450, color: '#f4f0e6' },
-    { id: 3, kind: 'daisy', x: 362, y: 747, angle: 26, flowerScale: 0.95, stemHeight: 405, color: '#f1e5bd' },
-    { id: 4, kind: 'tulip', x: 338, y: 747, angle: -35, flowerScale: 1.1, stemHeight: 365, color: '#f4f0e6' },
-    { id: 5, kind: 'rose', x: 340, y: 747, angle: -23, flowerScale: 1.2, stemHeight: 350, color: '#b82b36' },
-    { id: 6, kind: 'rose', x: 350, y: 747, angle: 0, flowerScale: 1.25, stemHeight: 380, color: '#d77b83' },
-    { id: 7, kind: 'rose', x: 360, y: 747, angle: 18, flowerScale: 1.2, stemHeight: 345, color: '#b82b36' },
-    { id: 8, kind: 'tulip', x: 362, y: 747, angle: 39, flowerScale: 1.1, stemHeight: 335, color: '#f4f0e6' },
-    { id: 9, kind: 'daisy', x: 338, y: 747, angle: -42, flowerScale: 1, stemHeight: 265, color: '#f1e5bd' },
-    { id: 10, kind: 'rose', x: 345, y: 747, angle: -15, flowerScale: 1.15, stemHeight: 255, color: '#d77b83' },
-    { id: 11, kind: 'tulip', x: 355, y: 747, angle: 10, flowerScale: 1.15, stemHeight: 245, color: '#f4f0e6' },
-    { id: 12, kind: 'daisy', x: 362, y: 747, angle: 36, flowerScale: 1, stemHeight: 260, color: '#f1e5bd' },
+  background: { materialId: 'paper-linen' },
+  container: { materialId: 'matte-ceramic-vase', type: 'vase' },
+  materials: [
+    material(1, 'daisy', 'filler', 340, -13, 0.95, 445, '#f1e5bd'),
+    material(2, 'tulip', 'main', 355, 8, 1.1, 450, '#f4f0e6'),
+    material(3, 'daisy', 'filler', 362, 26, 0.95, 405, '#f1e5bd'),
+    material(4, 'tulip', 'main', 338, -35, 1.1, 365, '#f4f0e6'),
+    material(5, 'rose', 'main', 340, -23, 1.2, 350, '#b82b36'),
+    material(6, 'rose', 'main', 350, 0, 1.25, 380, '#d77b83'),
+    material(7, 'rose', 'main', 360, 18, 1.2, 345, '#b82b36'),
+    material(8, 'tulip', 'main', 362, 39, 1.1, 335, '#f4f0e6'),
+    material(9, 'daisy', 'filler', 338, -42, 1, 265, '#f1e5bd'),
+    material(10, 'rose', 'main', 345, -15, 1.15, 255, '#d77b83'),
+    material(11, 'tulip', 'main', 355, 10, 1.15, 245, '#f4f0e6'),
+    material(12, 'daisy', 'filler', 362, 36, 1, 260, '#f1e5bd'),
   ],
+  containerLayouts: {},
 }
 
 export const exampleJson = JSON.stringify(example, null, 2)

@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from 'vue'
 import FlowerArtworkRenderer from '@/components/flower/flower-artwork-renderer.vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
-import { type Artwork, artworkBackground, parseArtwork } from '@/utils/flower/artwork'
+import { type Artwork, parseArtwork } from '@/utils/flower/artwork'
 import { createComplexRenderTestArtwork } from '@/utils/flower/render-test-svg'
 
 definePage({
@@ -20,22 +20,19 @@ const cloudPngBytes = ref(0)
 const cloudAssetCount = ref(0)
 const cloudLoading = ref(false)
 const cloudExampleLoading = ref(false)
-const previewStyle = computed(() => `background-color:${artwork.value ? artworkBackground(artwork.value.background) : '#f6f3eb'};`)
-const flowerMaterialCount = computed(() => new Set(artwork.value?.stems.map(stem => stem.materialId).filter(Boolean)).size)
+const previewStyle = computed(() => 'background-color:#f6f3eb;')
+const flowerMaterialCount = computed(() => new Set(artwork.value?.materials.map(material => material.materialId)).size)
 const catalog = useFlowerCatalogStore()
 
 async function prepareCloudMaterials(value: Artwork) {
-  if (value.stems.some(stem => !stem.materialId))
+  if (value.materials.some(material => !material.materialId))
     throw new Error('请使用含云端素材 ID 的作品，或先载入云端素材示例')
   if (!catalog.loaded)
     await catalog.load()
   if (catalog.error)
     throw new Error(catalog.error)
-  const references = value.stems.flatMap(stem => stem.materialId ? [stem.materialId] : [])
-  if (value.vaseMaterialId)
-    references.push(value.vaseMaterialId)
-  if (value.backgroundMaterialId)
-    references.push(value.backgroundMaterialId)
+  const references = value.materials.map(material => material.materialId)
+  references.push(value.container.materialId, value.background.materialId)
   await Promise.all([...new Set(references)].map(id => catalog.ensure(id)))
   if (catalog.error)
     throw new Error(catalog.error)
@@ -156,7 +153,7 @@ onMounted(() => {
     </view>
     <view class="comparison-heading">
       <text>并排对比</text>
-      <text v-if="artwork" class="stem-count">{{ artwork.stems.length }} 枝 · {{ flowerMaterialCount }} 种云端花材 · {{ artwork.vase }}</text>
+      <text v-if="artwork" class="stem-count">{{ artwork.materials.length }} 枝 · {{ flowerMaterialCount }} 种云端花材 · {{ artwork.container.type === 'bouquet' ? '花束' : '花瓶' }}</text>
     </view>
     <button class="cloud-button" :disabled="!artwork || cloudLoading" @click="renderCloud">
       {{ cloudLoading ? '云端生成中…' : '生成云端 PNG' }}
@@ -167,9 +164,7 @@ onMounted(() => {
         <text class="comparison-label">Vue 预览</text>
         <view class="preview" :style="previewStyle">
           <FlowerArtworkRenderer
-            v-if="artwork" :background="artwork.background" :stems="artwork.stems"
-            :background-material-id="artwork.backgroundMaterialId"
-            :vase="artwork.vase" :vase-material-id="artwork.vaseMaterialId"
+            v-if="artwork" :artwork="artwork" :prepared-materials="catalog.prepared"
           />
           <view v-else class="preview-empty">
             <text>粘贴云端作品 JSON，或载入素材示例</text>
