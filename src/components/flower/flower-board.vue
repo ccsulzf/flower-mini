@@ -1,54 +1,54 @@
 <script setup lang="ts">
-import type { StudioTouchEvent } from '@/models/artwork'
+import type { Artwork, MaterialInstance, StudioTouchEvent } from '@/models/artwork'
+import type { CachedMaterial } from '@/models/material'
 import { computed } from 'vue'
-import type { Artwork, Stem, VaseName } from '@/utils/flower/artwork'
-import { anchorY } from '@/utils/flower/artwork'
-import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
+import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 import { backgroundOffset } from '@/utils/flower/background-render'
 import FlowerArtworkRenderer from './flower-artwork-renderer.vue'
 import FlowerStemControl from './flower-stem-control.vue'
 
-const props = defineProps<{ background?: Artwork['background'], backgroundMaterialId?: string, stems: Stem[], vase: VaseName, selectedId: number | null, hideVase?: boolean, vaseMaterialId?: string }>()
-const emit = defineEmits<{ start: [event: StudioTouchEvent, stem: Stem], move: [event: StudioTouchEvent], end: [cancelled: boolean], clear: [] }>()
-const catalog = useFlowerCatalogStore()
-const scene = computed(() => props.backgroundMaterialId ? catalog.get(props.backgroundMaterialId) : undefined)
-const arrangementOffset = computed(() => backgroundOffset(scene.value, props.vaseMaterialId ? catalog.get(props.vaseMaterialId) : undefined, props.vase))
+const props = defineProps<{
+  artwork: Artwork
+  preparedMaterials: Record<string, CachedMaterial>
+  selectedId: number | null
+  hideContainer?: boolean
+}>()
+const emit = defineEmits<{
+  start: [event: StudioTouchEvent, instance: MaterialInstance]
+  move: [event: StudioTouchEvent]
+  end: [cancelled: boolean]
+  clear: []
+}>()
+const background = computed(() => props.preparedMaterials[props.artwork.background.materialId])
+const container = computed(() => props.preparedMaterials[props.artwork.container.materialId])
+const arrangementOffset = computed(() => backgroundOffset(background.value, container.value))
 </script>
 
 <template>
-  <view class="studio-board" @tap="emit('clear')">
-    <FlowerArtworkRenderer
-      :background="background"
-      :background-material-id="backgroundMaterialId"
-      :stems="stems"
-      :vase="vase"
-      :hide-vase="hideVase"
-      :vase-material-id="vaseMaterialId"
-    />
-    <view class="board-controls" :style="{ transform: `translateY(${arrangementOffset}rpx)` }">
+  <view class="studio-board" :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`" @tap="emit('clear')">
+    <FlowerArtworkRenderer :artwork="artwork" :prepared-materials="preparedMaterials" :hide-container="hideContainer" />
+    <view class="board-controls" :style="`transform:translateY(${arrangementOffset}px);`">
       <FlowerStemControl
-        v-for="stem in stems"
-        :key="stem.id"
-        :stem="stem"
-        :anchor="anchorY(vase)"
-        :selected="selectedId === stem.id"
-        @start="emit('start', $event, stem)"
+        v-for="instance in artwork.materials"
+        :key="instance.id"
+        :instance="instance"
+        :material="preparedMaterials[instance.materialId]"
+        :selected="selectedId === instance.id"
+        @start="emit('start', $event, instance)"
         @move="emit('move', $event)"
         @end="emit('end', $event)"
       />
     </view>
-    <view v-if="!stems.length" class="studio-empty">
-      <text>从一枝花开始</text><text class="empty-hint">
-        在下方选择喜欢的花材
-      </text>
+    <view v-if="!artwork.materials.length" class="studio-empty">
+      <text>从一枝花开始</text><text class="empty-hint">在下方选择喜欢的花材</text>
     </view>
   </view>
 </template>
 
 <style scoped lang="scss">
 @use '@/styles/flower-studio.scss' as *;
-.studio-board { position: relative; width: 698rpx; height: 1000rpx; overflow: hidden; }
+.studio-board { position: relative; overflow: hidden; }
 .board-controls { position: absolute; inset: 0; pointer-events: none; }
-.studio-empty { position: absolute; z-index: 1; top: 300rpx; width: 100%; text-align: center; color: $studio-muted; font-size: 30rpx; letter-spacing: 3rpx; pointer-events: none; }
-.empty-hint { display: block; margin-top: 20rpx; font-size: 22rpx; letter-spacing: 1rpx; }
+.studio-empty { position: absolute; z-index: 1; top: 300px; width: 100%; text-align: center; color: $studio-muted; font-size: 28px; letter-spacing: 2px; pointer-events: none; }
+.empty-hint { display: block; margin-top: 12px; font-size: 20px; letter-spacing: 1px; }
 </style>

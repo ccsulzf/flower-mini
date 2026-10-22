@@ -1,30 +1,23 @@
 <script setup lang="ts">
-import type { VaseName } from '@/utils/flower/artwork'
-import { computed, ref, watch } from 'vue'
-import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
+import type { CachedMaterial } from '@/models/material'
+import { computed } from 'vue'
 import { bouquetLayers, svgImageSource, vasePlacement } from '@/utils/flower/material-render'
 
-const props = defineProps<{ vase: VaseName, materialId?: string, layer?: 'back' | 'front' }>()
-const catalog = useFlowerCatalogStore()
-const material = computed(() => props.materialId ? catalog.get(props.materialId) : undefined)
-const imageFailed = ref(false)
-const source = computed(() => {
-  if (props.layer === 'back' && material.value?.category !== 'bouquet')
-    return ''
-  if (material.value?.category === 'bouquet')
-    return svgImageSource(bouquetLayers(material.value)[props.layer === 'back' ? 'back' : 'front'])
-  const svg = material.value?.sources.vase || material.value?.sources.bouquet
-  return svg ? svgImageSource(svg) : ''
-})
-watch(source, () => { imageFailed.value = false })
+const props = defineProps<{ material: CachedMaterial, hideContainer?: boolean }>()
+const placement = computed(() => vasePlacement(props.material))
 const imageStyle = computed(() => {
-  if (!material.value)
-    return ''
-  const p = vasePlacement(material.value)
-  return `position:absolute;left:${p.x}rpx;top:${p.y}rpx;width:${p.width}rpx;height:${p.height}rpx;pointer-events:none;`
+  const value = placement.value
+  return `position:absolute;left:${value.x}px;top:${value.y}px;width:${value.width}px;height:${value.height}px;pointer-events:none;`
 })
+const vaseSource = computed(() => props.material.sources.vase ? svgImageSource(props.material.sources.vase) : '')
+const bouquet = computed(() => props.material.category === 'bouquet' ? bouquetLayers(props.material) : null)
+const bouquetBack = computed(() => bouquet.value ? svgImageSource(bouquet.value.back) : '')
+const bouquetFront = computed(() => bouquet.value ? svgImageSource(bouquet.value.front) : '')
 </script>
 
 <template>
-  <image v-if="materialId && source && !imageFailed" :src="source" :style="imageStyle" mode="scaleToFill" @error="imageFailed = true" />
+  <image v-if="!hideContainer && bouquetBack" :src="bouquetBack" :style="imageStyle" mode="scaleToFill" />
+  <slot />
+  <image v-if="!hideContainer && bouquetFront" :src="bouquetFront" :style="imageStyle" mode="scaleToFill" />
+  <image v-else-if="!hideContainer && vaseSource" :src="vaseSource" :style="imageStyle" mode="scaleToFill" />
 </template>
