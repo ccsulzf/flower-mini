@@ -1,7 +1,6 @@
 const idPattern = /^[a-z][a-z0-9-]{0,63}$/
-const flowerKinds = new Set(['daisy', 'poppy', 'leaf', 'chrysanthemum', 'rose', 'tulip'])
-const vases = new Set(['陶瓶', '玻璃瓶', '圆花器', '花束'])
-const backgrounds = new Set(['warm', 'sage', 'cocoa', 'mist', 'blush', 'sand'])
+const groups = new Set(['main', 'filler', 'foliage'])
+const containerTypes = new Set(['vase', 'bouquet'])
 
 function invalid(message = '每日花束数据无效') {
   throw { errCode: 'INVALID_DAILY_FLOWER', errMsg: message }
@@ -15,11 +14,21 @@ function finite(value, min, max) {
   return typeof value === 'number' && Number.isFinite(value) && value >= min && value <= max
 }
 
-function validateReference(value, idKey) {
-  if (value[idKey] === undefined)
-    return
-  if (typeof value[idKey] !== 'string' || !idPattern.test(value[idKey]))
-    invalid('花束素材引用无效')
+function reference(value) {
+  return typeof value === 'string' && idPattern.test(value)
+}
+
+function point(value) {
+  if (!record(value) || !finite(value.x, 0, 698) || !finite(value.y, 0, 1000))
+    invalid('花材落点无效')
+  return { x: value.x, y: value.y }
+}
+
+function transform(value) {
+  if (!record(value) || !finite(value.angle, -65, 65) || !finite(value.height, 120, 620)
+    || !finite(value.scale, 0.65, 1.35) || typeof value.mirrored !== 'boolean')
+    invalid('花材变换无效')
+  return { anchor: point(value.anchor), angle: value.angle, height: value.height, scale: value.scale, mirrored: value.mirrored }
 }
 
 function validateArtwork(artwork) {
@@ -31,71 +40,40 @@ function validateArtwork(artwork) {
     invalid('花束 JSON 无效')
   }
   if (typeof serialized !== 'string' || !record(artwork) || serialized.length > 65536
-    || !vases.has(artwork.vase) || !backgrounds.has(artwork.background)
-    || !Array.isArray(artwork.stems) || artwork.stems.length < 1 || artwork.stems.length > 64)
-    invalid('花束格式无效，需包含 1 至 64 枝花材')
-
-  validateReference(artwork, 'vaseMaterialId')
-  validateReference(artwork, 'backgroundMaterialId')
+    || !record(artwork.background) || !reference(artwork.background.materialId)
+    || !record(artwork.container) || !reference(artwork.container.materialId) || !containerTypes.has(artwork.container.type)
+    || !Array.isArray(artwork.materials) || artwork.materials.length < 1 || !record(artwork.containerLayouts))
+    invalid('花束格式无效，需包含花材')
 
   const ids = new Set()
-  const stems = artwork.stems.map((stem) => {
-    if (!record(stem) || !Number.isSafeInteger(stem.id) || stem.id < 1 || ids.has(stem.id)
-      || !flowerKinds.has(stem.kind) || !finite(stem.x, 0, 698) || !finite(stem.y, 0, 1000)
-      || !finite(stem.angle, -65, 65) || !finite(stem.flowerScale, 0.65, 1.35)
-      || !finite(stem.stemHeight, 120, 620) || typeof stem.color !== 'string'
-      || !/^#[\da-f]{6}$/i.test(stem.color))
+  const materials = artwork.materials.map((material) => {
+    if (!record(material) || !Number.isSafeInteger(material.id) || material.id < 1 || ids.has(material.id)
+      || !reference(material.materialId) || !groups.has(material.group)
+      || typeof material.color !== 'string' || !/^#[\da-f]{6}$/i.test(material.color))
       invalid('花束花材数据无效')
-    validateReference(stem, 'materialId')
-    if (stem.mirrored !== undefined && typeof stem.mirrored !== 'boolean')
-      invalid('花材镜像设置无效')
-    if (!stem.materialId && stem.mirrored !== undefined)
-      invalid('内置花材不支持素材专属设置')
-    ids.add(stem.id)
-    return {
-      ...(stem.materialId ? { materialId: stem.materialId } : {}),
-      ...(stem.mirrored ? { mirrored: true } : {}),
-      id: stem.id,
-      kind: stem.kind,
-      x: stem.x,
-      y: stem.y,
-      angle: stem.angle,
-      flowerScale: stem.flowerScale,
-      stemHeight: stem.stemHeight,
-      color: stem.color,
-    }
+    ids.add(material.id)
+    return { id: material.id, materialId: material.materialId, group: material.group, color: material.color, transform: transform(material.transform) }
   })
 
   const result = {
-    vase: artwork.vase,
-    ...(artwork.vaseMaterialId ? {
-      vaseMaterialId: artwork.vaseMaterialId,
-    } : {}),
-    background: artwork.background,
-    ...(artwork.backgroundMaterialId ? {
-      backgroundMaterialId: artwork.backgroundMaterialId,
-    } : {}),
-    stems,
+    background: { materialId: artwork.background.materialId },
+    container: { materialId: artwork.container.materialId, type: artwork.container.type },
+    materials,
+    containerLayouts: {},
   }
 
-  if (artwork.containerLayouts !== undefined) {
-    if (!record(artwork.containerLayouts) || Object.keys(artwork.containerLayouts).length > 64)
+  for (const [key, layout] of Object.entries(artwork.containerLayouts)) {
+      if (!reference(key) || !Array.isArray(layout))
       invalid('容器布局记录无效')
-    result.containerLayouts = {}
-    for (const [key, layout] of Object.entries(artwork.containerLayouts)) {
-      if (!/^(?:[a-z][a-z0-9-]{0,63}|builtin:(?:陶瓶|玻璃瓶|圆花器|花束))$/.test(key)
-        || !Array.isArray(layout) || layout.length > 64)
-        invalid('容器布局记录无效')
       const layoutIds = new Set()
       result.containerLayouts[key] = layout.map((row) => {
-        if (!record(row) || !Number.isSafeInteger(row.id) || row.id < 1 || layoutIds.has(row.id)
-          || !finite(row.x, 0, 698) || !finite(row.angle, -65, 65)
-          || !finite(row.stemHeight, 120, 620) || !finite(row.flowerScale, 0.65, 1.35))
+        if (!record(row) || !Number.isSafeInteger(row.materialInstanceId) || !ids.has(row.materialInstanceId)
+          || layoutIds.has(row.materialInstanceId) || !finite(row.angle, -65, 65)
+          || !finite(row.height, 120, 620) || !finite(row.scale, 0.65, 1.35))
           invalid('容器布局记录无效')
-        layoutIds.add(row.id)
-        return { id: row.id, x: row.x, angle: row.angle, stemHeight: row.stemHeight, flowerScale: row.flowerScale }
+        layoutIds.add(row.materialInstanceId)
+        return { materialInstanceId: row.materialInstanceId, anchor: point(row.anchor), angle: row.angle, height: row.height, scale: row.scale }
       })
-    }
   }
   return result
 }

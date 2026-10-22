@@ -43,7 +43,7 @@ export function renderArtworkSvg(artwork: Artwork, getMaterial: MaterialResolver
     const source = cloudPlantSvg(material, instance).replace(/^<svg\b[^>]*>/, '').replace(/<\/svg>\s*$/, '')
     const { anchor, angle, height, scale, mirrored } = instance.transform
     const mirror = mirrored ? -scale : scale
-    return `<g transform="translate(${anchor.x} ${anchor.y + offset}) rotate(${angle}) scale(${mirror} ${scale}) translate(-55 ${-(height + 55)})">${source}</g>`
+    return `<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${mirror} ${scale}) translate(-55 ${-(height + 55)})">${source}</g>`
   }).join('')
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><rect width="698" height="1000" fill="#f6f3eb"/>${backgroundSvg}<g>${vaseBack}${materials}${vaseFront}</g></svg>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><rect width="698" height="1000" fill="#f6f3eb"/>${backgroundSvg}<g transform="translate(0 ${offset})">${vaseBack}${materials}${vaseFront}</g></svg>`
 }

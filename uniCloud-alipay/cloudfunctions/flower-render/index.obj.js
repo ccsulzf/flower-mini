@@ -36,24 +36,7 @@ function safeSvg(source, name) {
     return source;
 }
 
-function backgroundColor(name) {
-    return { warm: '#f4efe5', sage: '#e7eadf', cocoa: '#e8ded3', mist: '#edf0ed', blush: '#f2e4e3', sand: '#eee6d6' }[name];
-}
-
-function builtInVase(name) {
-    if (name === '花束')
-        return '<g><path d="M180 615H520L350 890Z" fill="#ded5c5"/><path d="M205 643H490L350 878Z" fill="#f1e9d9"/><path d="M235 650H475L350 885Z" fill="#e8decb"/><path d="M292 778H408V798H292Z" fill="#c98b94"/></g>';
-    const round = name === '圆花器';
-    const glass = name === '玻璃瓶';
-    const left = round ? 260 : 280;
-    const top = round ? 765 : 735;
-    const width = round ? 180 : 140;
-    const height = round ? 140 : 170;
-    const opacity = glass ? ' opacity=".72"' : '';
-    return `<g><ellipse cx="350" cy="910" rx="109" ry="15" fill="#000" opacity=".12"/><path d="M${left + width * .18} ${top} C${left} ${top} ${left} ${top + height * .15} ${left} ${top + height * .42} C${left} ${top + height} ${left + width * .18} ${top + height} ${left + width * .5} ${top + height} C${left + width * .82} ${top + height} ${left + width} ${top + height} ${left + width} ${top + height * .42} C${left + width} ${top + height * .15} ${left + width * .82} ${top} ${left + width * .82} ${top} Z" fill="url(#vase)"${opacity}/><ellipse cx="350" cy="${top + 2}" rx="${round ? 45 : 70}" ry="7.5" fill="${glass ? '#78958b' : '#667568'}"${glass ? ' opacity=".2"' : ''}/><ellipse cx="${left + 30}" cy="${top + 81}" rx="4" ry="49" fill="#fff" opacity=".2"/></g>`;
-}
-
-function bouquetLayers(source, material) {
+function bouquetLayers(source) {
     const back = source.match(/<!-- bouquet-back:start -->([\s\S]*?)<!-- bouquet-back:end -->/)?.[1];
     const front = source.match(/<!-- bouquet-front:start -->([\s\S]*?)<!-- bouquet-front:end -->/)?.[1];
     if (back && front) {
@@ -63,20 +46,7 @@ function bouquetLayers(source, material) {
         const defs = source.match(/<defs>[\s\S]*?<\/defs>/i)?.[0] || '';
         return { back: `${root}${defs}${back}</svg>`, front: `${root}${defs}${front}</svg>` };
     }
-    const colors = Array.from(source.matchAll(/stop-color="(#[\da-f]{6})"/gi), match => match[1]);
-    const light = colors[0] || '#eee8d9';
-    const shade = colors[1] || '#c7beab';
-    const { width, height } = material.geometry;
-    const frontLayer = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"><g transform="scale(${width / 350} ${height / 290})">
-      <path d="M35 38Q95 112 164 210L181 254L115 213Q65 132 35 38Z" fill="${light}" stroke="${shade}" stroke-width=".6"/>
-      <path d="M320 47Q265 132 185 207L169 254L229 210Q279 135 320 47Z" fill="${shade}" stroke="${light}" stroke-width=".6"/>
-      <path d="M52 58Q110 154 173 243M301 67Q255 158 181 243" fill="none" stroke="${light}" stroke-width="1"/>
-      <path d="M164 232Q177 218 190 232L185 252Q200 267 202 286Q176 292 152 286Q153 267 168 251Z" fill="${light}" stroke="${shade}" stroke-width=".5"/>
-      <path d="M176 249C153 230 139 245 158 253Q169 256 176 249C189 228 214 240 196 252Q186 257 176 249Z" fill="${shade}"/>
-      <path d="M173 252L161 280L169 275L174 281L179 253M181 252L195 275L187 272L185 279L176 254" fill="${shade}"/>
-      <ellipse cx="177" cy="251" rx="5" ry="4" fill="${shade}"/>
-    </g></svg>`;
-    return { back: source, front: frontLayer };
+    throw new Error('花束素材缺少前后分层标记');
 }
 
 function vasePlacement(material) {
@@ -86,39 +56,53 @@ function vasePlacement(material) {
     return { x: 350 - geometry.mouthX, y: 747 - mouthY, width: geometry.width, height: geometry.height };
 }
 
-function backgroundOffset(background, vase, vaseName) {
+function backgroundOffset(background, vase) {
     if (!background || background.category !== 'background' || background.geometry?.surfaceY === undefined)
         return 0;
-    const bottom = vase
-        ? (() => { const placement = vasePlacement(vase); return placement.y + placement.height; })()
-        : vaseName === '花束' ? 915 : 905;
-    const surfaceY = ['scene-ivory-table', 'scene-sage-table'].includes(background.id)
-        ? 820 : background.geometry.surfaceY;
-    return surfaceY * 1000 / background.geometry.height - bottom;
+    const placement = vasePlacement(vase);
+    const bottom = placement.y + placement.height;
+    return background.geometry.surfaceY * 1000 / background.geometry.height - bottom;
 }
 
-function sceneBackgroundSource(material, source) {
-    if (source.includes('studio-background:v2'))
-        return source;
-    const marker = '<!-- studio-background:v2 -->';
-    if (material.id === 'scene-ivory-table') {
-        const grain = Array.from({ length: 12 }, (_, i) => `<path d="M0 ${835 + i * 14} C150 ${825 + i * 14} 380 ${850 + i * 14} 698 ${832 + i * 14}" fill="none" stroke="#9e7957" stroke-width="2" opacity="0.35"/>`).join('');
-        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000">${marker}<rect width="698" height="1000" fill="#eee7db"/><path d="M0 0 H698 V820 H0Z" fill="#f4efe5"/><path d="M0 0 H130 V820 H0Z" fill="#dcd2c2" opacity="0.45"/><path d="M130 0 V820" stroke="#c5b7a2" stroke-width="3"/><path d="M140 0 V820" stroke="#fffaf0" stroke-width="3"/><path d="M698 160 L430 250 L540 820 H698Z" fill="#fffaf0" opacity="0.65"/><rect y="820" width="698" height="180" fill="#c4a27e"/><path d="M0 820 H698" stroke="#a68462" stroke-width="5"/>${grain}<path d="M0 890 H698 M248 820 L230 1000" fill="none" stroke="#8e6d50" stroke-width="2" opacity="0.38"/></svg>`;
-    }
-    if (material.id === 'scene-sage-table')
-        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000">${marker}<rect width="698" height="1000" fill="#d5dfcc"/><path d="M0 0 H160 V820 H0Z" fill="#b9c9af" opacity="0.65"/><path d="M160 0 V820 M170 0 V820" stroke="#9daf92" stroke-width="2" opacity="0.55"/><path d="M170 560 H698 M170 570 H698" stroke="#9daf92" stroke-width="2" opacity="0.35"/><path d="M530 0 H698 V820 H630Z" fill="#eef1e4" opacity="0.7"/><rect y="820" width="698" height="180" fill="#b9baad"/><path d="M0 820 H698" stroke="#898e7d" stroke-width="5"/><path d="M0 860 C150 895 200 820 365 872 S590 890 698 850 M0 955 C160 925 290 994 480 950 S620 926 698 950" fill="none" stroke="#e5e6da" stroke-width="4" opacity="0.6"/><path d="M0 935 C200 902 320 976 698 914" fill="none" stroke="#929787" stroke-width="2" opacity="0.5"/></svg>`;
-    return source;
+const softLeft = new Set(['tulip', 'calla-lily', 'ranunculus', 'freesia', 'campanula', 'scabiosa', 'phalaenopsis']);
+const softRight = new Set(['gerbera', 'feather-gerbera', 'lisianthus', 'single-lisianthus', 'oncidium', 'dendrobium', 'astilbe']);
+const sturdy = new Set(['king-protea', 'hydrangea', 'sunflower', 'lotus', 'cotton', 'pincushion']);
+function naturalStemSource(source, id) {
+    let changed = 0;
+    return source.replace(/(<path\b[^>]*\bd=")([^"]+)(")/g, (whole, prefix, path, suffix) => {
+        if (changed >= 2) return whole;
+        const numbers = path.match(/^M([\d.]+) ([\d.]+)C([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)$/);
+        if (!numbers) return whole;
+        const [startX, startY, firstX, , secondX, , endX, endY] = numbers.slice(1).map(Number);
+        if (firstX === startX || startY > 1 || endY !== 260 || Math.abs(firstX - startX) > 8 || Math.abs(secondX - endX) > 8) return whole;
+        const offset = startX < 54 && id !== 'bird-of-paradise' ? -.4 : changed === 1 ? -.4 : 0;
+        let control1, control2;
+        if (softLeft.has(id)) { control1 = 18; control2 = 12; }
+        else if (softRight.has(id)) { control1 = 92; control2 = 99; }
+        else if (sturdy.has(id)) { control1 = 37; control2 = 35; }
+        else {
+            const right = [...id].reduce((sum, char) => sum + char.charCodeAt(0), 0) % 2 === 0;
+            control1 = right ? 83 : 25;
+            control2 = right ? 67 : 40;
+        }
+        changed++;
+        return `${prefix}M${startX} ${startY}C${control1 + offset} 76 ${control2 + offset} 180 ${endX} ${endY}${suffix}`;
+    });
 }
-
-function builtInPlant(stem) {
-    const color = stem.color;
-    const bloom = stem.kind === 'tulip'
-        ? `<path d="M28 54Q26 17 43 27Q55 0 67 27Q84 17 82 54Q72 76 55 69Q38 76 28 54Z" fill="${color}"/>`
-        : stem.kind === 'daisy'
-            ? `<g>${Array.from({ length: 8 }, (_, i) => `<ellipse cx="55" cy="32" rx="8" ry="20" fill="${color}" transform="rotate(${i * 45} 55 55)"/>`).join('')}<circle cx="55" cy="55" r="11" fill="#d9a83f"/></g>`
-            : `<path d="M55 62C7 50 28 1 55 35C83 0 104 50 55 62Z" fill="${color}"/>`;
-    const scaleX = stem.mirrored ? -stem.flowerScale : stem.flowerScale;
-    return `<g transform="translate(${stem.x} 747) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-(stem.stemHeight + 55)})"><path d="M55 55Q52 170 55 ${stem.stemHeight + 55}" fill="none" stroke="#73835c" stroke-width="4"/><g transform="translate(0 ${stem.stemHeight})">${bloom}</g></g>`;
+function smoothStemTip(source) {
+    let matched = 0;
+    return source.replace(/(<path\b[^>]*\bd=")(M([\d.]+) ([\d.]+)C)([\d.]+)( [\d.]+ [\d.]+ [\d.]+ [\d.]+ 260")/g, (whole, prefix, start, x, y, _control, rest) => {
+        if (matched >= 2 || Number(y) > 1) return whole;
+        matched++;
+        return `${prefix}${start}${x}${rest}`;
+    });
+}
+function fitStemJoin(source, heightScale) {
+    if (!source.includes('<!-- continuous-stem-join -->')) return source;
+    return source.replace(/(<path\b[^>]*\bd="M)([\d.-]+) 0C([\d.-]+)( [\d.-]+)/g, (_whole, prefix, x, control, rest) => {
+        const fitted = Number((Number(x) + (Number(control) - Number(x)) * heightScale).toFixed(6));
+        return `${prefix}${x} 0C${fitted}${rest}`;
+    });
 }
 
 async function getMaterial(id, cache) {
@@ -149,87 +133,76 @@ async function materialSource(material, part) {
 }
 
 async function buildArtworkSvg(artwork) {
-    if (!artwork || typeof artwork !== 'object' || Array.isArray(artwork))
-        throw new Error('作品缺少有效的 artwork 数据');
-    if (!Array.isArray(artwork.stems))
-        throw new Error('作品格式无效或花材列表缺失');
-    if (!['陶瓶', '玻璃瓶', '圆花器', '花束'].includes(artwork.vase))
-        throw new Error('作品花器类型无效');
-    if (!backgroundColor(artwork.background))
-        throw new Error('作品背景类型无效');
+    if (!artwork || typeof artwork !== 'object' || Array.isArray(artwork)
+        || !Array.isArray(artwork.materials)
+        || !materialIdPattern.test(artwork.background?.materialId || '')
+        || !materialIdPattern.test(artwork.container?.materialId || '')
+        || !['vase', 'bouquet'].includes(artwork.container?.type))
+        throw new Error('作品格式无效');
     const cache = new Map();
     const cloudMaterials = new Map();
-    for (const stem of artwork.stems) {
-        if (!stem || !Number.isFinite(stem.x) || stem.x < 0 || stem.x > 698
-            || !Number.isFinite(stem.angle) || stem.angle < -65 || stem.angle > 65
-            || !Number.isFinite(stem.flowerScale) || stem.flowerScale < .65 || stem.flowerScale > 1.35
-            || !Number.isFinite(stem.stemHeight) || stem.stemHeight < 120 || stem.stemHeight > 620
-            || typeof stem.color !== 'string' || !/^#[\da-f]{6}$/i.test(stem.color))
+    for (const instance of artwork.materials) {
+        const transform = instance?.transform;
+        if (!transform || !Number.isFinite(transform.anchor?.x) || transform.anchor.x < 0 || transform.anchor.x > 698
+            || !Number.isFinite(transform.anchor?.y) || transform.anchor.y < 0 || transform.anchor.y > 1000
+            || !Number.isFinite(transform.angle) || transform.angle < -65 || transform.angle > 65
+            || !Number.isFinite(transform.scale) || transform.scale < .65 || transform.scale > 1.35
+            || !Number.isFinite(transform.height) || transform.height < 120 || transform.height > 620
+            || typeof transform.mirrored !== 'boolean' || typeof instance.color !== 'string' || !/^#[\da-f]{6}$/i.test(instance.color)
+            || !materialIdPattern.test(instance.materialId || ''))
             throw new Error('作品花材数据无效');
-        if (stem.materialId) {
-            const material = await getMaterial(stem.materialId, cache);
-            if (material.category !== 'flower')
-                throw new Error('作品引用的云端花材类型无效');
-            cloudMaterials.set(stem.materialId, material);
-        }
+        const material = await getMaterial(instance.materialId, cache);
+        if (material.category !== 'flower' || material.group !== instance.group)
+            throw new Error('作品引用的云端花材类型无效');
+        cloudMaterials.set(instance.materialId, material);
     }
-    let background = '';
-    let backgroundMaterial;
-    if (artwork.backgroundMaterialId) {
-        backgroundMaterial = await getMaterial(artwork.backgroundMaterialId, cache);
-        if (backgroundMaterial.category !== 'background')
-            throw new Error('作品引用的云端背景类型无效');
-        const source = await materialSource(backgroundMaterial, 'background');
-        background = nested(sceneBackgroundSource(backgroundMaterial, source), 0, 0, 698, 1000);
-    }
-    let vaseMaterial;
-    if (artwork.vaseMaterialId)
-        vaseMaterial = await getMaterial(artwork.vaseMaterialId, cache);
-    const anchorOffset = backgroundOffset(backgroundMaterial, vaseMaterial, artwork.vase);
-    const anchorY = artwork.vase === '圆花器' ? 777 : 747;
-    const stems = [];
-    for (const stem of artwork.stems) {
-        if (!stem.materialId) {
-            stems.push(builtInPlant(stem));
-            continue;
-        }
-        const material = cloudMaterials.get(stem.materialId);
+    const backgroundMaterial = await getMaterial(artwork.background.materialId, cache);
+    if (backgroundMaterial.category !== 'background')
+        throw new Error('作品引用的云端背景类型无效');
+    const background = nested(await materialSource(backgroundMaterial, 'background'), 0, 0, 698, 1000);
+    const vaseMaterial = await getMaterial(artwork.container.materialId, cache);
+    if (vaseMaterial.category !== artwork.container.type || !vaseMaterial.geometry)
+        throw new Error('作品引用的云端花器无效');
+    const anchorOffset = backgroundOffset(backgroundMaterial, vaseMaterial);
+    const renderedMaterials = [];
+    for (const instance of artwork.materials) {
+        const material = cloudMaterials.get(instance.materialId);
         if (!material.geometry)
             throw new Error('云端花材几何信息缺失');
-        const total = stem.stemHeight + 55;
+        const { anchor, angle, height, scale, mirrored } = instance.transform;
+        const total = height + 55;
+        const scaleX = mirrored ? -scale : scale;
         if (material.group === 'foliage') {
-            const source = (await materialSource(material, 'foliage')).replace(/__COLOR__/g, stem.color);
-            const scaleX = stem.mirrored ? -stem.flowerScale : stem.flowerScale;
-            stems.push(`<g transform="translate(${stem.x} ${anchorY}) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-total})">${nested(source, 0, 0, 110, total)}</g>`);
+            const source = (await materialSource(material, 'foliage')).replace(/__COLOR__/g, instance.color);
+            renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${nested(source, 0, 0, 110, total)}</g>`);
             continue;
         }
-        const flower = colorizeMaterialSvg(await materialSource(material, 'flower'), stem.color);
+        const flower = colorizeMaterialSvg(await materialSource(material, 'flower'), instance.color);
         const stemSource = await materialSource(material, 'stemWithoutLeaves');
         const geometry = material.geometry;
         const headHeight = geometry.flowerHeight * 110 / geometry.width;
+        const connection = geometry.connectionY * 110 / geometry.width;
         const headTop = 55 - headHeight / 2;
-        const join = Math.max(headTop, headTop + geometry.connectionY * 110 / geometry.width - 8);
-        const scaleX = stem.mirrored ? -stem.flowerScale : stem.flowerScale;
-        stems.push(`<g transform="translate(${stem.x} ${anchorY}) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-total})">${nested(stemSource, 0, join, 110, total - join)}${nested(flower, 0, headTop, 110, headHeight)}</g>`);
+        const overlap = stemSource.includes('<!-- continuous-stem-join -->') ? 0 : 8;
+        const join = Math.max(headTop, headTop + (material.id === 'anemone' ? Math.min(connection, 84) : connection) - overlap);
+        const shapedStem = smoothStemTip(naturalStemSource(stemSource, material.id));
+        const fittedStem = fitStemJoin(shapedStem, (total - join) / geometry.stemHeight / (110 / geometry.width));
+        renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${nested(fittedStem, 0, join, 110, total - join)}${nested(flower, 0, headTop, 110, headHeight)}</g>`);
     }
+    const part = vaseMaterial.category === 'bouquet' ? 'bouquet' : 'vase';
+    const source = await materialSource(vaseMaterial, part);
+    const placement = vasePlacement(vaseMaterial);
     let vaseBack = '';
-    let vaseFront = builtInVase(artwork.vase);
-    if (vaseMaterial) {
-        if (!['vase', 'bouquet'].includes(vaseMaterial.category) || !vaseMaterial.geometry)
-            throw new Error('作品引用的云端花器无效');
-        const part = vaseMaterial.category === 'bouquet' ? 'bouquet' : 'vase';
-        const source = await materialSource(vaseMaterial, part);
-        const placement = vasePlacement(vaseMaterial);
-        if (vaseMaterial.category === 'bouquet') {
-            const layers = bouquetLayers(source, vaseMaterial);
-            vaseBack = nested(layers.back, placement.x, placement.y, placement.width, placement.height);
-            vaseFront = nested(layers.front, placement.x, placement.y, placement.width, placement.height);
-        }
-        else {
-            vaseFront = nested(source, placement.x, placement.y, placement.width, placement.height);
-        }
+    let vaseFront;
+    if (vaseMaterial.category === 'bouquet') {
+        const layers = bouquetLayers(source);
+        vaseBack = nested(layers.back, placement.x, placement.y, placement.width, placement.height);
+        vaseFront = nested(layers.front, placement.x, placement.y, placement.width, placement.height);
     }
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><defs><linearGradient id="vase" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e6e2d7"/><stop offset=".58" stop-color="#dedacf"/><stop offset="1" stop-color="#cdc9bd"/></linearGradient></defs><rect width="698" height="1000" fill="${backgroundColor(artwork.background)}"/>${background}<g transform="translate(0 ${anchorOffset})">${vaseBack}${stems.join('')}${vaseFront}</g></svg>`;
+    else {
+        vaseFront = nested(source, placement.x, placement.y, placement.width, placement.height);
+    }
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><rect width="698" height="1000" fill="#f6f3eb"/>${background}<g transform="translate(0 ${anchorOffset})">${vaseBack}${renderedMaterials.join('')}${vaseFront}</g></svg>`;
 }
 
 async function renderSvg(svg, cloudPath) {

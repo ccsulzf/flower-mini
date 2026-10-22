@@ -30,7 +30,54 @@
       "maxLength": 160
     },
     "artwork": {
-      "bsonType": "object"
+      "bsonType": "object",
+      "required": ["background", "container", "materials", "containerLayouts"],
+      "properties": {
+        "background": {
+          "bsonType": "object",
+          "required": ["materialId"],
+          "properties": { "materialId": { "bsonType": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" } }
+        },
+        "container": {
+          "bsonType": "object",
+          "required": ["materialId", "type"],
+          "properties": {
+            "materialId": { "bsonType": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" },
+            "type": { "bsonType": "string", "enum": ["vase", "bouquet"] }
+          }
+        },
+        "materials": {
+          "bsonType": "array",
+          "items": {
+            "bsonType": "object",
+            "required": ["id", "materialId", "group", "color", "transform"],
+            "properties": {
+              "materialId": { "bsonType": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" },
+              "group": { "bsonType": "string", "enum": ["main", "filler", "foliage"] },
+              "color": { "bsonType": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+              "transform": {
+                "bsonType": "object",
+                "required": ["anchor", "angle", "height", "scale", "mirrored"],
+                "properties": {
+                  "anchor": { "bsonType": "object", "required": ["x", "y"] },
+                  "mirrored": { "bsonType": "bool" }
+                }
+              }
+            }
+          }
+        },
+        "containerLayouts": {
+          "bsonType": "object",
+          "additionalProperties": {
+            "bsonType": "array",
+            "items": {
+              "bsonType": "object",
+              "required": ["materialInstanceId", "anchor", "angle", "height", "scale"],
+              "properties": { "anchor": { "bsonType": "object", "required": ["x", "y"] } }
+            }
+          }
+        }
+      }
     },
     "card": {
       "bsonType": "object"
