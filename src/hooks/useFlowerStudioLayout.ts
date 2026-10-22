@@ -1,20 +1,61 @@
-import { computed } from 'vue'
-import { useFlowerStudioLayoutStore } from '@/stores/flowerStudioLayoutStore'
+import type { Point } from '@/models/artwork'
+import { studioMetrics } from '@/utils/flower/arrangement.cjs'
+
 export function useFlowerStudioLayout() {
-  const layout = useFlowerStudioLayoutStore()
+  const device = uni.getSystemInfoSync()
+  const unit = device.windowWidth / 750
+  const navigationStatusTop = device.statusBarHeight || 0
+  const capsule = uni.getMenuButtonBoundingClientRect?.() || { top: navigationStatusTop, height: 0 }
+  const navigationHeight = capsule.height && capsule.top >= navigationStatusTop
+    ? (capsule.top - navigationStatusTop) * 2 + capsule.height
+    : 44
+  const safeBottom = Math.max(0, device.screenHeight - (device.safeArea?.bottom ?? device.screenHeight))
+  const pageActionsTop = navigationStatusTop + navigationHeight + 16 * unit
+  const toolbarBottom = safeBottom + 16 * unit
+  const stageTop = pageActionsTop + (96 + 16) * unit
+  const stageBottom = toolbarBottom + (96 + 16) * unit
+  const stageWidth = device.windowWidth
+  const stageHeight = Math.max(0, device.windowHeight - stageTop - stageBottom)
+  const scale = Math.min(stageWidth / studioMetrics.width, stageHeight / studioMetrics.height)
+  const renderedWidth = studioMetrics.width * scale
+  const renderedHeight = studioMetrics.height * scale
+  const offsetX = (stageWidth - renderedWidth) / 2
+  const offsetY = stageTop + (stageHeight - renderedHeight) / 2
+  const workspaceStyle = `left:${offsetX}px;top:${offsetY - stageTop}px;transform:scale(${scale});`
+  const flowerToolsStyle = {
+    left: `${26 * unit}px`,
+    width: `${device.windowWidth - 52 * unit}px`,
+    bottom: `${stageBottom}px`,
+  }
+
+  function screenToWorkspace(point: Point): Point {
+    return { x: (point.x - offsetX) / scale, y: (point.y - offsetY) / scale }
+  }
+
+  function workspaceToScreen(point: Point): Point {
+    return { x: offsetX + point.x * scale, y: offsetY + point.y * scale }
+  }
+
   return {
-    device: layout.device,
-    unit: layout.unit,
-    navigationStatusTop: layout.navigationStatusTop,
-    navigationHeight: layout.navigationHeight,
-    safeBottom: layout.safeBottom,
-    pageActionsTop: layout.pageActionsTop,
-    toolbarBottom: layout.toolbarBottom,
-    stageTop: layout.stageTop,
-    stageBottom: layout.stageBottom,
-    boardScale: computed(() => layout.boardScale),
-    boardPosition: computed(() => layout.boardPosition),
-    artworkStyle: computed(() => layout.artworkStyle),
-    flowerToolsStyle: computed(() => layout.flowerToolsStyle),
+    device,
+    unit,
+    navigationStatusTop,
+    navigationHeight,
+    safeBottom,
+    pageActionsTop,
+    toolbarBottom,
+    stageTop,
+    stageBottom,
+    stageWidth,
+    stageHeight,
+    scale,
+    offsetX,
+    offsetY,
+    workspaceStyle,
+    flowerToolsStyle,
+    screenToWorkspace,
+    workspaceToScreen,
   }
 }
+
+export type FlowerStudioLayout = ReturnType<typeof useFlowerStudioLayout>
