@@ -1,0 +1,12 @@
+{
+  "id": "solid-cocoa",
+  "category": "background",
+  "backgroundKind": "solid",
+  "name": "可可棕",
+  "introduction": "沉静浓郁的可可棕纯色背景。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": { "width": 698, "height": 1000 }
+}

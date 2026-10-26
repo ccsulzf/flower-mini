@@ -1,0 +1,12 @@
+{
+  "id": "solid-sand",
+  "category": "background",
+  "backgroundKind": "solid",
+  "name": "浅杏",
+  "introduction": "温柔自然的浅杏纯色背景。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": { "width": 698, "height": 1000 }
+}

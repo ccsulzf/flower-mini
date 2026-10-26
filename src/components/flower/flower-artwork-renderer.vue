@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Artwork } from '@/models/artwork'
+import type { StudioSelectionFilter } from '@/models/flower-studio'
 import type { CachedMaterial } from '@/models/material'
 import { computed } from 'vue'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
@@ -12,23 +13,34 @@ const props = defineProps<{
   artwork: Artwork
   preparedMaterials: Record<string, CachedMaterial>
   hideContainer?: boolean
+  selectedId?: number | null
+  pickScope?: StudioSelectionFilter
+  pickMaterialId?: string | null
 }>()
 const background = computed(() => props.preparedMaterials[props.artwork.background.materialId])
 const container = computed(() => props.preparedMaterials[props.artwork.container.materialId])
 const backgroundSource = computed(() => background.value?.sources.background ? svgImageSource(backgroundSceneSource(background.value)) : '')
 const arrangementOffset = computed(() => backgroundOffset(background.value, container.value))
+function isDimmed(instance: Artwork['materials'][number]) {
+  if (props.selectedId !== null && props.selectedId !== undefined)
+    return instance.id !== props.selectedId
+  if (props.pickMaterialId)
+    return instance.materialId !== props.pickMaterialId
+  return false
+}
 </script>
 
 <template>
   <view class="artwork-renderer" :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`">
     <image v-if="backgroundSource" class="board-background" :src="backgroundSource" mode="scaleToFill" />
     <view class="board-arrangement" :style="`transform:translateY(${arrangementOffset}px);`">
-      <StudioContainer v-if="container" :material="container" :hide-container="hideContainer">
+      <StudioContainer v-if="container" class="board-container" :material="container" :hide-container="hideContainer">
         <FlowerInstance
           v-for="instance in artwork.materials"
           :key="instance.id"
           :instance="instance"
           :material="preparedMaterials[instance.materialId]"
+          :dimmed="isDimmed(instance)"
         />
       </StudioContainer>
     </view>
@@ -39,4 +51,5 @@ const arrangementOffset = computed(() => backgroundOffset(background.value, cont
 .artwork-renderer { position: relative; overflow: hidden; background: #f6f3eb; }
 .board-background { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .board-arrangement { position: absolute; inset: 0; }
+.board-container { position: absolute; inset: 0; width: 698px; height: 1000px; }
 </style>

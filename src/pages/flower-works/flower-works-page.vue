@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import type { SavedFlowerWorkSummary } from '@/models/flower-creation'
 import { onReachBottom, onShow } from '@dcloudio/uni-app'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
+import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '我的作品', navigationBarBackgroundColor: '#f6f3eb', backgroundColor: '#f6f3eb' } })
 const works = useFlowerWorksStore()
 const deletingId = ref('')
 const copyingId = ref('')
+const artworkScale = computed(() => {
+  const width = uni.getSystemInfoSync?.().windowWidth || 375
+  const rpx = width / 750
+  const cardWidth = (width - (52 + 22) * rpx) / 2 - 4 * rpx
+  return Math.max(0.1, Math.min(1, cardWidth / studioMetrics.width))
+})
 onShow(() => {
   void works.load(true)
 })
@@ -95,7 +102,7 @@ function remove(work: SavedFlowerWorkSummary) {
     <view class="works-grid">
       <view v-for="work in works.items" :key="work.id" class="work-card">
         <view class="work-cover">
-          <FlowerArtworkPreview :work-id="work.id" :scale="0.44" />
+          <FlowerArtworkPreview :work-id="work.id" :scale="artworkScale" />
           <view class="work-cover-hitarea" @tap="open(work)" />
         </view>
         <view class="work-title" @click="open(work)">

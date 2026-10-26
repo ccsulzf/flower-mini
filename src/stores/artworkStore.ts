@@ -195,13 +195,15 @@ function artworkState() {
 
   function moveMaterialLayer(id: number, direction: LayerDirection) {
     const index = materialIndex(id)
-    const target = direction === 'forward' ? index + 1 : index - 1
-    if (index < 0 || target < 0 || target >= artwork.value.materials.length)
+    const target = direction === 'forward' ? artwork.value.materials.length - 1 : 0
+    if (index < 0 || index === target)
       return false
     remember()
-    const current = artwork.value.materials[index]
-    artwork.value.materials[index] = artwork.value.materials[target]
-    artwork.value.materials[target] = current
+    const [current] = artwork.value.materials.splice(index, 1)
+    if (direction === 'forward')
+      artwork.value.materials.push(current)
+    else
+      artwork.value.materials.unshift(current)
     return true
   }
 

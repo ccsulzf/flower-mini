@@ -10,12 +10,17 @@ const ready = ref(false)
 const error = ref('')
 const materialAdminEnabled = __MATERIAL_ADMIN__
 const dailyFlowerAdminEnabled = __DAILY_FLOWER_ADMIN__
+const artworkOpsEnabled = __ARTWORK_OPS__
 function openMaterialAdmin() {
   if (__MATERIAL_ADMIN__) uni.navigateTo({ url: '/subpackages/material-admin/material-admin-page' })
 }
 
 function openDailyFlowerAdmin() {
   if (__DAILY_FLOWER_ADMIN__) uni.navigateTo({ url: '/subpackages/daily-flower-admin/daily-flower-admin-page' })
+}
+
+function openArtworkOps() {
+  if (__ARTWORK_OPS__) uni.navigateTo({ url: '/subpackages/artwork-ops/artwork-ops-page' })
 }
 
 function openFlowerStudio() {
@@ -111,6 +116,11 @@ onShow(() => checkAuth())
       <view class="app-section-title">每日插花维护</view>
       <view class="app-section-desc">导入本地花束 JSON，预览后发布当天花束</view>
       <button class="app-secondary-btn" @click="openDailyFlowerAdmin">维护每日插花</button>
+    </view>
+    <view v-if="artworkOpsEnabled" class="app-card section">
+      <view class="app-section-title">作品运维</view>
+      <view class="app-section-desc">批量清理当前账号的作品与已发布的今日花束</view>
+      <button class="app-secondary-btn" @click="openArtworkOps">打开作品运维</button>
     </view>
   </view>
 </template>

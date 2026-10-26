@@ -1,4 +1,5 @@
 export type MaterialGroup = 'main' | 'filler' | 'foliage'
+export type BackgroundKind = 'solid' | 'scene'
 export type SvgPart = 'flower' | 'stemWithoutLeaves' | 'foliage' | 'vase' | 'bouquet' | 'background'
 export interface FlowerGeometry { width: number, flowerHeight: number, stemHeight: number, connectionY: number }
 export interface VaseGeometry { width: number, height: number, mouthX: number, mouthY: number, mouthWidth: number }
@@ -6,6 +7,7 @@ export interface BackgroundGeometry { width: number, height: number, surfaceY?: 
 export interface MaterialMetadata {
   id: string
   category?: 'flower' | 'vase' | 'bouquet' | 'background'
+  backgroundKind?: BackgroundKind
   name: string
   introduction: string
   flowerMeaning: string

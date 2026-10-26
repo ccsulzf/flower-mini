@@ -33,6 +33,7 @@ export default defineConfig(({ command, mode }) => {
     define: {
       __MATERIAL_ADMIN__: JSON.stringify(includeMaterialAdmin),
       __DAILY_FLOWER_ADMIN__: JSON.stringify(includeMaterialAdmin),
+      __ARTWORK_OPS__: JSON.stringify(includeMaterialAdmin),
     },
     resolve: {
       alias: {
@@ -59,7 +60,7 @@ export default defineConfig(({ command, mode }) => {
       UniHelperPages({
         dir: 'src/pages', // 👈 明确主包
         subPackages: includeMaterialAdmin
-          ? ['src/subpackages/material-admin', 'src/subpackages/daily-flower-admin']
+          ? ['src/subpackages/material-admin', 'src/subpackages/daily-flower-admin', 'src/subpackages/artwork-ops']
           : [],
         mergePages: true,
         onBeforeWriteFile: includeMaterialAdmin ? undefined : excludeMaterialAdmin,

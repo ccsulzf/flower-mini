@@ -3,15 +3,21 @@ import { computed, ref } from 'vue'
 import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
 import { useFlowerPageArtwork } from '@/hooks/useFlowerPageArtwork'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
+import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 
 definePage({ style: { navigationBarTitleText: '作品详情', navigationBarBackgroundColor: '#f6f3eb', disableScroll: true } })
 const { draft, title, description, loading, error, images, retry } = useFlowerPageArtwork({ savedOnly: true })
 const { exportingImage, imageError } = images
 const artworkScale = computed(() => {
   const info = uni.getSystemInfoSync?.()
-  const width = info?.windowWidth ? info.windowWidth * 2 : 750
-  const height = info?.windowHeight ? info.windowHeight * 2 : 1334
-  return Math.max(0.1, Math.min(1, (width - 56) / 698, (height - 350) / 1000))
+  const width = info?.windowWidth || 375
+  const height = info?.windowHeight || 667
+  const rpx = width / 750
+  return Math.max(0.1, Math.min(
+    1,
+    (width - 56 * rpx) / studioMetrics.width,
+    (height - 350 * rpx) / studioMetrics.height,
+  ))
 })
 const showMetadataEditor = ref(false)
 const savingMetadata = ref(false)

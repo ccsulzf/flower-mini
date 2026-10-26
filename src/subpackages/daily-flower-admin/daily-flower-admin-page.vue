@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { Artwork } from '@/models/artwork'
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import FlowerArtworkRenderer from '@/components/flower/flower-artwork-renderer.vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { waitForAppAuthReady } from '@/utils/appAuth'
+import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 import { type DailyFlowerDraft, parseDailyFlower } from '@/utils/flower/daily-flower'
 import { attachCloudMaterials } from './lib/daily-flower-preview'
+import { localDailyFlowerDraft } from './lib/local-daily-flower-drafts'
 import { publishDailyFlower } from './lib/publish'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花维护' } })
@@ -17,6 +19,14 @@ const message = ref('')
 const busy = ref(false)
 const previewing = ref(false)
 const previewStyle = computed(() => ({ backgroundColor: '#f6f3eb' }))
+const previewScale = computed(() => {
+  const windowWidth = uni.getSystemInfoSync?.().windowWidth || 375
+  const previewWidth = windowWidth * 698 / 750
+  return Math.min(1, previewWidth / studioMetrics.width)
+})
+const previewBoardStyle = computed(() => ({
+  transform: `scale(${previewScale.value})`,
+}))
 const artwork = computed<Artwork | null>(() => draft.value?.artwork || null)
 const catalog = useFlowerCatalogStore()
 watch(source, () => { draft.value = null; message.value = '' })
@@ -64,6 +74,14 @@ async function preview() {
     previewing.value = false
   }
 }
+
+onMounted(async () => {
+  const localDraft = localDailyFlowerDraft()
+  if (!localDraft)
+    return
+  source.value = localDraft
+  await preview()
+})
 
 async function publish() {
   const item = draft.value
@@ -150,11 +168,12 @@ async function publish() {
         <text>{{ draft.description }}</text>
       </view>
       <view class="preview" :style="previewStyle">
-        <FlowerArtworkRenderer
-          v-if="artwork"
-          :artwork="artwork"
-          :prepared-materials="catalog.prepared"
-        />
+        <view v-if="artwork" class="preview-board" :style="previewBoardStyle">
+          <FlowerArtworkRenderer
+            :artwork="artwork"
+            :prepared-materials="catalog.prepared"
+          />
+        </view>
       </view>
       <button class="app-primary-btn" :disabled="busy" @click="publish">
         {{ busy ? '正在发布…' : '确认并发布到云端' }}
@@ -181,5 +200,6 @@ async function publish() {
 .preview-meta { display: flex; flex-direction: column; gap: 10rpx; margin: 0 24rpx 18rpx; padding-top: 24rpx; color: #777d70; font-size: 25rpx; line-height: 1.5; }
 .preview-date { color: #3f463d; font-size: 30rpx; font-weight: 600; }
 .preview { position: relative; width: 698rpx; height: 1000rpx; overflow: hidden; }
+.preview-board { position: absolute; top: 0; left: 0; width: 698px; height: 1000px; transform-origin: top left; }
 .preview-card > .app-primary-btn { margin: 20rpx 24rpx 0; }
 </style>

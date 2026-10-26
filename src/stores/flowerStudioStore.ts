@@ -1,4 +1,4 @@
-import type { StudioTab } from '@/models/flower-studio'
+import type { StudioSelectionFilter, StudioSelectionMenuLevel, StudioTab } from '@/models/flower-studio'
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
@@ -28,6 +28,9 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
   const pendingMaterialId = ref<string | null>(null)
   const lastAddedMaterialId = ref('')
   const selectedMaterialId = ref<number | null>(null)
+  const selectionFilter = ref<StudioSelectionFilter>('all')
+  const selectionMaterialId = ref<string | null>(null)
+  const selectionMenuLevel = ref<StudioSelectionMenuLevel>('closed')
   const activePanel = ref<StudioPanel>(null)
   const activeMaterialGroup = ref<MaterialPickerGroup>('main')
   const materialKeyword = ref('')
@@ -47,6 +50,9 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
     pendingMaterialId.value = null
     lastAddedMaterialId.value = ''
     selectedMaterialId.value = null
+    selectionFilter.value = 'all'
+    selectionMaterialId.value = null
+    selectionMenuLevel.value = 'closed'
     activePanel.value = null
     materialKeyword.value = ''
     colorsExpanded.value = false
@@ -59,7 +65,12 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
 
   function openTab(tab: StudioTab) {
     activePanel.value = tab
-    selectedMaterialId.value = null
+    if (tab !== 'selection') {
+      selectedMaterialId.value = null
+      selectionFilter.value = 'all'
+      selectionMaterialId.value = null
+      selectionMenuLevel.value = 'closed'
+    }
     colorsExpanded.value = false
   }
 
@@ -72,13 +83,86 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
 
   function selectMaterial(id: number | null) {
     selectedMaterialId.value = id
-    activePanel.value = id === null ? null : 'flower-tools'
+    activePanel.value = id === null ? null : 'selection'
     colorsExpanded.value = false
+  }
+
+  function focusSelectionMaterial(id: string, group: 'flowers' | 'foliage', expanded: boolean) {
+    const sameMaterial = selectionMaterialId.value === id
+    if (sameMaterial) {
+      clearSelectionFocus()
+      return
+    }
+    activateSelectionMaterial(id, group, expanded)
+  }
+
+  function activateSelectionMaterial(id: string, group: 'flowers' | 'foliage', expanded: boolean) {
+    selectionFilter.value = group
+    selectionMaterialId.value = id
+    selectedMaterialId.value = null
+    activePanel.value = 'selection'
+    selectionMenuLevel.value = expanded ? 'material' : 'closed'
+    colorsExpanded.value = false
+  }
+
+  function selectSelectionInstance(id: number) {
+    selectedMaterialId.value = id
+    activePanel.value = 'selection'
+    colorsExpanded.value = false
+  }
+
+  function clearSelection() {
+    selectedMaterialId.value = null
+    selectionFilter.value = 'all'
+    selectionMaterialId.value = null
+    selectionMenuLevel.value = 'closed'
+    activePanel.value = null
+    colorsExpanded.value = false
+  }
+
+  function clearSelectionFocus() {
+    selectedMaterialId.value = null
+    selectionFilter.value = 'all'
+    selectionMaterialId.value = null
+    selectionMenuLevel.value = 'closed'
+    activePanel.value = 'selection'
+    colorsExpanded.value = false
+  }
+
+  function setSelectionFilter(filter: StudioSelectionFilter) {
+    selectionFilter.value = filter
+    selectionMaterialId.value = null
+    selectionMenuLevel.value = filter === 'all' ? 'closed' : 'material'
+  }
+
+  function setSelectionMaterial(id: string) {
+    selectionMaterialId.value = id
+    selectionMenuLevel.value = 'closed'
+  }
+
+  function openSelectionCategories() {
+    selectionMenuLevel.value = 'category'
+  }
+
+  function openSelectionMaterials() {
+    if (selectionFilter.value === 'all') {
+      selectionMenuLevel.value = 'category'
+      return
+    }
+    selectedMaterialId.value = null
+    activePanel.value = null
+    colorsExpanded.value = false
+    selectionMaterialId.value = null
+    selectionMenuLevel.value = 'material'
+  }
+
+  function closeSelectionMenu() {
+    selectionMenuLevel.value = 'closed'
   }
 
   function clearSelectionIfMissing(ids: number[]) {
     if (selectedMaterialId.value !== null && !ids.includes(selectedMaterialId.value))
-      selectMaterial(null)
+      clearSelection()
   }
 
   function recordRecentMaterial(id: string) {
@@ -94,6 +178,9 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
     pendingMaterialId,
     lastAddedMaterialId,
     selectedMaterialId,
+    selectionFilter,
+    selectionMaterialId,
+    selectionMenuLevel,
     activePanel,
     activeTab,
     activeMaterialGroup,
@@ -107,6 +194,16 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
     openTab,
     toggleTab,
     selectMaterial,
+    focusSelectionMaterial,
+    activateSelectionMaterial,
+    selectSelectionInstance,
+    clearSelection,
+    clearSelectionFocus,
+    setSelectionFilter,
+    setSelectionMaterial,
+    openSelectionCategories,
+    openSelectionMaterials,
+    closeSelectionMenu,
     clearSelectionIfMissing,
     recordRecentMaterial,
   }

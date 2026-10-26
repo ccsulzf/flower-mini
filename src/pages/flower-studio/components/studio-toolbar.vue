@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import type { StudioTab } from '../studio-types'
+import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
+import { useCreationArtworkStore } from '@/stores/artworkStore'
 import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 
 const studio = useFlowerStudioStore()
+const artwork = useCreationArtworkStore()
 const { activeTab } = storeToRefs(studio)
+const { materials } = storeToRefs(artwork)
 const emit = defineEmits<{ select: [tab: StudioTab] }>()
-const tabs: { value: StudioTab, label: string, icon: string }[] = [
+const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?: boolean }[]>(() => [
   { value: 'flowers', label: '花材', icon: 'i-carbon-sprout' },
   { value: 'vases', label: '容器', icon: 'i-carbon-chemistry' },
   { value: 'backgrounds', label: '背景', icon: 'i-carbon-color-palette' },
-]
+  { value: 'selection', label: '选取', icon: 'i-carbon-cursor-1', disabled: !materials.value.length },
+])
 </script>
 
 <template>
@@ -18,7 +23,7 @@ const tabs: { value: StudioTab, label: string, icon: string }[] = [
     <view class="toolbar-materials">
       <button
         v-for="tab in tabs" :key="tab.value" class="tool-button"
-        :class="{ 'tool-active': activeTab === tab.value }" @click="emit('select', tab.value)"
+        :class="{ 'tool-active': activeTab === tab.value }" :disabled="tab.disabled" @click="emit('select', tab.value)"
       >
         <view class="tool-icon" :class="tab.icon" /><text>{{ tab.label }}</text>
       </button>
@@ -48,6 +53,10 @@ const tabs: { value: StudioTab, label: string, icon: string }[] = [
   background: $studio-accent;
   color: #3f463d;
   font-weight: 600;
+}
+
+.tool-button[disabled] {
+  opacity: 0.36;
 }
 
 .tool-icon {

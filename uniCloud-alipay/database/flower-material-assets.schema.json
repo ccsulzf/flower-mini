@@ -129,6 +129,13 @@
         "background"
       ]
     },
+    "backgroundKind": {
+      "bsonType": "string",
+      "enum": [
+        "solid",
+        "scene"
+      ]
+    },
     "geometry": {
       "bsonType": "object",
       "properties": {

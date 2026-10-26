@@ -49,6 +49,24 @@ function bouquetLayers(source) {
     throw new Error('花束素材缺少前后分层标记');
 }
 
+function clippedVaseSvg(source, id, geometry, y, height) {
+    const root = source.match(/<svg\b[^>]*>/i)?.[0];
+    if (!root)
+        throw new Error('花瓶 SVG 根节点缺失');
+    const content = source.slice(source.indexOf(root) + root.length).replace(/<\/svg>\s*$/i, '');
+    return `${root}<defs><clipPath id="${id}"><rect x="0" y="${y}" width="${geometry.width}" height="${height}" /></clipPath></defs><g clip-path="url(#${id})">${content}</g></svg>`;
+}
+
+function vaseLayers(source, material) {
+    const geometry = material.geometry;
+    const splitY = Math.max(0, Math.min(geometry.height, geometry.mouthY));
+    const id = material.id.replace(/[^a-z0-9_-]/gi, '-');
+    return {
+        back: clippedVaseSvg(source, `${id}-vase-back`, geometry, 0, splitY),
+        front: clippedVaseSvg(source, `${id}-vase-front`, geometry, splitY, geometry.height - splitY),
+    };
+}
+
 function vasePlacement(material) {
     const geometry = material.geometry;
     const mouthY = material.category === 'bouquet' && geometry.mouthY < geometry.height * .65
@@ -200,7 +218,9 @@ async function buildArtworkSvg(artwork) {
         vaseFront = nested(layers.front, placement.x, placement.y, placement.width, placement.height);
     }
     else {
-        vaseFront = nested(source, placement.x, placement.y, placement.width, placement.height);
+        const layers = vaseLayers(source, vaseMaterial);
+        vaseBack = nested(layers.back, placement.x, placement.y, placement.width, placement.height);
+        vaseFront = nested(layers.front, placement.x, placement.y, placement.width, placement.height);
     }
     return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><rect width="698" height="1000" fill="#f6f3eb"/>${background}<g transform="translate(0 ${anchorOffset})">${vaseBack}${renderedMaterials.join('')}${vaseFront}</g></svg>`;
 }

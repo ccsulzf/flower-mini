@@ -1,0 +1,12 @@
+{
+  "id": "solid-mist",
+  "category": "background",
+  "backgroundKind": "solid",
+  "name": "浅灰",
+  "introduction": "清淡中性的雾灰纯色背景。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": { "width": 698, "height": 1000 }
+}

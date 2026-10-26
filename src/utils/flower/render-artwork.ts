@@ -1,4 +1,5 @@
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
+import type { VaseGeometry } from '@/models/material'
 import { bouquetLayers, cloudPlantSvg, vasePlacement } from './material-render'
 import { backgroundOffset, backgroundSceneSource } from './background-render'
 import { drawSvg } from './svg-canvas'
@@ -29,11 +30,21 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
   ctx.save()
   ctx.translate(0, backgroundOffset(cloudBackground, cloudVase))
 
+  const placement = vasePlacement(cloudVase)
+  const vaseGeometry = cloudVase.geometry as VaseGeometry
   if (cloudVase.category === 'bouquet') {
-    const placement = vasePlacement(cloudVase)
     ctx.save()
     ctx.translate(placement.x, placement.y)
     drawSvg(ctx, bouquetLayers(cloudVase).back, placement.width, placement.height)
+    ctx.restore()
+  }
+  else {
+    ctx.save()
+    ctx.translate(placement.x, placement.y)
+    ctx.beginPath()
+    ctx.rect(0, 0, placement.width, vaseGeometry.mouthY)
+    ctx.clip()
+    drawSvg(ctx, cloudVase.sources.vase!, placement.width, placement.height)
     ctx.restore()
   }
 
@@ -49,12 +60,16 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
     ctx.restore()
   }
 
-  const placement = vasePlacement(cloudVase)
   ctx.save()
   ctx.translate(placement.x, placement.y)
   const source = cloudVase.category === 'bouquet' ? bouquetLayers(cloudVase).front : cloudVase.sources.vase
   if (!source)
     throw new Error('花器素材不可用')
+  if (cloudVase.category === 'vase') {
+    ctx.beginPath()
+    ctx.rect(0, vaseGeometry.mouthY, placement.width, placement.height - vaseGeometry.mouthY)
+    ctx.clip()
+  }
   drawSvg(ctx, source, placement.width, placement.height)
   ctx.restore()
   ctx.restore()

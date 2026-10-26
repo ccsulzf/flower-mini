@@ -46,6 +46,7 @@ module.exports = {
     if (!geometry || !positive(geometry.width)) invalid()
     let cleanGeometry
     if (category === 'background') {
+      if (data.backgroundKind !== undefined && !['solid', 'scene'].includes(data.backgroundKind)) invalid()
       if (!positive(geometry.height) || (geometry.surfaceY !== undefined && (typeof geometry.surfaceY !== 'number' || !Number.isFinite(geometry.surfaceY) || geometry.surfaceY < 0 || geometry.surfaceY > geometry.height))) invalid()
       cleanGeometry = { width: geometry.width, height: geometry.height, ...(geometry.surfaceY !== undefined ? { surfaceY: geometry.surfaceY } : {}) }
     } else if (category !== 'flower') {
@@ -63,7 +64,7 @@ module.exports = {
       if (!file || typeof file.fileId !== 'string' || !file.fileId || file.fileId.length > 1024 || typeof file.hash !== 'string' || !/^[a-f0-9]{40}$/.test(file.hash || '')) invalid()
       assets[key] = { fileId: file.fileId, hash: file.hash }
     }
-    const record = { id: data.id, name: data.name.trim(), category, geometry: cleanGeometry, group: category === 'flower' ? data.group : 'main', introduction: data.introduction, flowerMeaning: category === 'flower' ? data.flowerMeaning : '',
+    const record = { id: data.id, name: data.name.trim(), category, ...(category === 'background' ? { backgroundKind: data.backgroundKind === 'solid' ? 'solid' : 'scene' } : {}), geometry: cleanGeometry, group: category === 'flower' ? data.group : 'main', introduction: data.introduction, flowerMeaning: category === 'flower' ? data.flowerMeaning : '',
       colors: (category === 'flower' ? data.colors : []).map(color => ({ name: color.name, value: color.value })), assets,
       updatedBy: this.auth.uid, updatedAt: Date.now() }
     const collection = uniCloud.database().collection('flower-material-assets')

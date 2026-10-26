@@ -1,0 +1,12 @@
+{
+  "id": "solid-sage",
+  "category": "background",
+  "backgroundKind": "solid",
+  "name": "浅绿",
+  "introduction": "安静柔和的鼠尾草浅绿纯色背景。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": { "width": 698, "height": 1000 }
+}

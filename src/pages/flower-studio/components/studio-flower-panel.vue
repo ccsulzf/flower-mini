@@ -55,7 +55,7 @@ function selectGroup(group: MaterialPickerGroup) {
 <template>
   <view class="options-card" @touchmove.stop>
     <view class="options-title">
-      <view><text class="options-heading">今天，想选什么花？</text><text class="options-subtitle">从一枝开始，慢慢放进生活里。</text></view>
+      <view><text class="options-heading">今天，想选什么花？</text></view>
       <button class="close-option" aria-label="关闭面板" @click="emit('close')"><view class="i-carbon-close" /></button>
     </view>
     <input v-model="materialKeyword" class="material-search" placeholder="搜索花材名称" confirm-type="search">

@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { onReachBottom, onShow } from '@dcloudio/uni-app'
-import { getCurrentInstance, ref } from 'vue'
+import { computed, getCurrentInstance, ref } from 'vue'
 import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
+import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花', navigationBarBackgroundColor: '#f6f3eb', backgroundColor: '#f6f3eb' } })
 
 const dailyFlowers = useDailyFlowerStore()
+const artworkScale = computed(() => {
+  const width = uni.getSystemInfoSync?.().windowWidth || 375
+  const rpx = width / 750
+  const cardWidth = (width - (52 + 22) * rpx) / 2 - 4 * rpx
+  return Math.max(0.1, Math.min(1, cardWidth / studioMetrics.width))
+})
 const instance = getCurrentInstance()
 
 onShow(() => {
@@ -116,7 +123,7 @@ function openFlower(date: string) {
         class="history-card"
       >
         <view class="history-cover">
-          <FlowerArtworkPreview :daily-date="flower.date" :scale="0.44" />
+          <FlowerArtworkPreview :daily-date="flower.date" :scale="artworkScale" />
           <view class="history-cover-hitarea" @tap="openFlower(flower.date)" />
         </view>
         <view class="history-content" @click="openFlower(flower.date)">

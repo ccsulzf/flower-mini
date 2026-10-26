@@ -1,0 +1,66 @@
+<div id="flower-selection-wireframe">
+  <style>
+    #flower-selection-wireframe{--paper:light-dark(#f6f3eb,#262822);--panel:light-dark(#fffdf7,#36382f);--ink:light-dark(#3f463d,#f0eee6);--muted:light-dark(#7c8577,#adb5a5);--line:light-dark(#cfd4c9,#555b4e);--accent:light-dark(#dfe8d6,#56664c);--accent-ink:light-dark(#4f6047,#f1f5ec);--dim:.18;color:var(--ink);font-family:ui-sans-serif,system-ui,sans-serif}
+    #flower-selection-wireframe .state-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+    #flower-selection-wireframe .state-tab{min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--ink);font:inherit}
+    #flower-selection-wireframe .state-tab[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    #flower-selection-wireframe .mock{position:relative;box-sizing:border-box;width:100%;height:520px;overflow:hidden;border-radius:24px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+    #flower-selection-wireframe .topbar{position:absolute;z-index:5;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;color:var(--muted)}
+    #flower-selection-wireframe .canvas{position:absolute;inset:64px 0 235px;display:flex;align-items:center;justify-content:center}
+    #flower-selection-wireframe .bouquet{position:relative;width:250px;height:310px}
+    #flower-selection-wireframe .stem{position:absolute;left:121px;bottom:36px;width:3px;height:210px;background:var(--muted);transform-origin:bottom;transition:opacity .16s ease}
+    #flower-selection-wireframe .stem:before{content:"";position:absolute;top:-23px;left:-20px;width:42px;height:42px;border-radius:50%;background:var(--accent);box-shadow:inset 0 0 0 2px var(--muted)}
+    #flower-selection-wireframe .rose-a{transform:rotate(-23deg)}#flower-selection-wireframe .rose-b{transform:rotate(2deg);height:225px}#flower-selection-wireframe .rose-c{transform:rotate(22deg);height:195px}
+    #flower-selection-wireframe .leaf-a{transform:rotate(-40deg);height:176px}#flower-selection-wireframe .leaf-b{transform:rotate(41deg);height:170px}
+    #flower-selection-wireframe .leaf:before{width:28px;height:50px;border-radius:80% 10% 80% 10%;background:light-dark(#aab99b,#718268)}
+    #flower-selection-wireframe .vase{position:absolute;z-index:2;left:81px;bottom:0;width:88px;height:102px;border-radius:18px 18px 34px 34px;background:var(--panel);box-shadow:inset 0 0 0 2px var(--line)}
+    #flower-selection-wireframe .dim{opacity:var(--dim)}
+    #flower-selection-wireframe .chosen:after{content:"";position:absolute;top:-31px;left:-28px;width:56px;height:56px;border:2px solid var(--ink);border-radius:50%}
+    #flower-selection-wireframe .context{position:absolute;z-index:7;left:12px;right:12px;bottom:82px;height:146px;box-sizing:border-box;padding:8px 10px;border-top:1px solid var(--line);background:color-mix(in srgb,var(--panel) 54%,transparent)}
+    #flower-selection-wireframe .dock{display:flex;height:100%;align-items:center;justify-content:flex-end;gap:8px}
+    #flower-selection-wireframe .stack{display:flex;flex-direction:column;gap:8px}
+    #flower-selection-wireframe .tile{display:flex;min-width:94px;min-height:50px;box-sizing:border-box;align-items:center;justify-content:center;gap:6px;padding:8px 11px;border:1px solid var(--line);border-radius:15px;background:var(--panel);color:var(--ink);font:inherit}
+    #flower-selection-wireframe .tile.active{background:var(--accent);color:var(--accent-ink);border-color:var(--muted)}
+    #flower-selection-wireframe .tile.circle{min-width:64px;width:64px;height:64px;flex-direction:column;border-radius:50%;font-size:12px}
+    #flower-selection-wireframe .thumb{width:25px;height:25px;border-radius:50%;background:var(--accent);box-shadow:inset 0 0 0 1px var(--muted)}
+    #flower-selection-wireframe .count{color:var(--muted);font-size:12px}
+    #flower-selection-wireframe .instances{display:flex;gap:6px;padding:7px;border-radius:18px;background:var(--panel);box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
+    #flower-selection-wireframe .instance{min-width:50px;width:50px;height:58px;padding:5px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--ink);font:inherit;font-size:12px}
+    #flower-selection-wireframe .instance.active{background:var(--accent);border-color:var(--ink)}
+    #flower-selection-wireframe .editing-context{display:flex;width:100%;height:100%;flex-direction:column;align-items:flex-end;justify-content:center;gap:8px}.selection-row{display:flex;align-items:center;gap:8px}
+    #flower-selection-wireframe .tools{display:flex;gap:6px;padding:6px;border-radius:16px;background:var(--panel);box-shadow:0 8px 24px color-mix(in srgb,var(--ink) 14%,transparent)}
+    #flower-selection-wireframe .tool{min-width:52px;min-height:42px;padding:5px 8px;border:0;border-radius:11px;background:color-mix(in srgb,var(--accent) 60%,var(--panel));color:var(--ink);font:inherit;font-size:11px}.tool.danger{color:light-dark(#a84f5a,#ffabb3)}
+    #flower-selection-wireframe .bottom{position:absolute;z-index:8;left:18px;right:18px;bottom:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px;border-radius:20px;background:var(--panel);box-shadow:0 6px 22px color-mix(in srgb,var(--ink) 12%,transparent);color:var(--muted);font-size:12px}.bottom-item{min-height:46px;border:0;border-radius:13px;background:transparent;color:inherit;font:inherit}.bottom-item.active{background:var(--accent);color:var(--accent-ink)}
+    #flower-selection-wireframe .caption{margin-top:10px;color:var(--muted);font-size:13px;text-align:center}
+    @media(max-width:520px){#flower-selection-wireframe .mock{height:480px}#flower-selection-wireframe .canvas{transform:scale(.82)}#flower-selection-wireframe .tile{min-width:82px;padding:7px}#flower-selection-wireframe .tool{min-width:45px;padding:4px}}
+  </style>
+  <div class="state-tabs" role="tablist" aria-label="选取面板状态">
+    <button class="state-tab cursor-interaction" type="button" role="tab" aria-selected="true" data-state="idle">1 默认</button>
+    <button class="state-tab cursor-interaction" type="button" role="tab" aria-selected="false" data-state="types">2 素材列表</button>
+    <button class="state-tab cursor-interaction" type="button" role="tab" aria-selected="false" data-state="instances">3 多枝实例</button>
+    <button class="state-tab cursor-interaction" type="button" role="tab" aria-selected="false" data-state="editing">4 单枝编辑</button>
+  </div>
+  <div class="mock" aria-label="花束编辑器右侧统一选取和编辑面板线框图">
+    <div class="topbar"><span>作品</span><span>撤销　完成</span></div>
+    <div class="canvas">
+      <div class="bouquet">
+        <div class="stem rose rose-a" data-kind="rose" data-id="1"></div><div class="stem rose rose-b" data-kind="rose" data-id="2"></div><div class="stem rose rose-c" data-kind="rose" data-id="3"></div>
+        <div class="stem leaf leaf-a" data-kind="leaf"></div><div class="stem leaf leaf-b" data-kind="leaf"></div><div class="vase"></div>
+      </div>
+    </div>
+    <div class="context"><div class="dock" aria-live="polite"></div></div>
+    <div class="bottom"><button class="bottom-item" type="button">花材</button><button class="bottom-item" type="button">容器</button><button class="bottom-item" type="button">背景</button><button class="bottom-item" type="button">选取</button></div>
+  </div>
+  <div class="caption"></div>
+  <script>
+    (()=>{const root=document.getElementById('flower-selection-wireframe');const dock=root.querySelector('.dock');const caption=root.querySelector('.caption');const stems=[...root.querySelectorAll('.stem')];let state='idle';
+      const tile=(active=false)=>`<button class="tile ${active?'active':''}" type="button"><span class="thumb"></span><span>玫瑰</span><span class="count">3</span></button>`;
+      function render(){stems.forEach(s=>s.classList.remove('dim','chosen'));const bottom=[...root.querySelectorAll('.bottom-item')];bottom.forEach((b,i)=>b.classList.toggle('active',i===3&&state!=='idle'));if(state==='idle'){dock.innerHTML='';caption.textContent='默认：上下文区留空，选取是底部工具栏第四项。'}
+        if(state==='types'){stems.filter(s=>s.dataset.kind!=='rose').forEach(s=>s.classList.add('dim'));dock.innerHTML=`<button class="tile" type="button"><span class="thumb"></span><span>尤加利</span><span class="count">2</span></button>${tile(true)}`;caption.textContent='打开选取：素材卡片在上下文区横向排列；点击素材后，同类突出。'}
+        if(state==='instances'){stems.filter(s=>s.dataset.kind!=='rose').forEach(s=>s.classList.add('dim'));dock.innerHTML=`${tile(true)}<div class="instances"><button class="instance" type="button">01</button><button class="instance" type="button">02</button><button class="instance" type="button">03</button></div>`;caption.textContent='多枝素材：实例卡片在所选素材右侧展开；再次点击素材收起。'}
+        if(state==='editing'){stems.forEach(s=>s.classList.add('dim'));const chosen=stems.find(s=>s.dataset.id==='2');chosen.classList.remove('dim');chosen.classList.add('chosen');dock.innerHTML=`<div class="editing-context"><div class="selection-row">${tile(true)}<div class="instances"><button class="instance" type="button">01</button><button class="instance active" type="button">02</button><button class="instance" type="button">03</button></div></div><div class="tools"><button class="tool" type="button">颜色</button><button class="tool" type="button">镜像</button><button class="tool" type="button">后移</button><button class="tool" type="button">前移</button><button class="tool" type="button">复制</button><button class="tool danger" type="button">删除</button></div></div>`;caption.textContent='选中单枝：上排保留素材与实例，下排显示横向快捷工具栏。'}
+      }
+      root.querySelectorAll('.state-tab').forEach(b=>b.addEventListener('click',()=>{state=b.dataset.state;root.querySelectorAll('.state-tab').forEach(x=>x.setAttribute('aria-selected',String(x===b)));render()}));render();
+    })();
+  </script>
+</div>

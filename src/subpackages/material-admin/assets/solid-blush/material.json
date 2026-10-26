@@ -1,0 +1,12 @@
+{
+  "id": "solid-blush",
+  "category": "background",
+  "backgroundKind": "solid",
+  "name": "淡粉",
+  "introduction": "低饱和柔粉纯色背景。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": { "width": 698, "height": 1000 }
+}

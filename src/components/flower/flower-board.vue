@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Artwork, MaterialInstance, StudioTouchEvent } from '@/models/artwork'
+import type { StudioSelectionFilter } from '@/models/flower-studio'
 import type { CachedMaterial } from '@/models/material'
 import { computed } from 'vue'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
@@ -12,6 +13,8 @@ const props = defineProps<{
   preparedMaterials: Record<string, CachedMaterial>
   selectedId: number | null
   hideContainer?: boolean
+  pickScope?: StudioSelectionFilter
+  pickMaterialId?: string | null
 }>()
 const emit = defineEmits<{
   start: [event: StudioTouchEvent, instance: MaterialInstance]
@@ -26,7 +29,7 @@ const arrangementOffset = computed(() => backgroundOffset(background.value, cont
 
 <template>
   <view class="studio-board" :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`" @tap="emit('clear')">
-    <FlowerArtworkRenderer :artwork="artwork" :prepared-materials="preparedMaterials" :hide-container="hideContainer" />
+    <FlowerArtworkRenderer :artwork="artwork" :prepared-materials="preparedMaterials" :hide-container="hideContainer" :selected-id="selectedId" :pick-scope="pickScope" :pick-material-id="pickMaterialId" />
     <view class="board-controls" :style="`transform:translateY(${arrangementOffset}px);`">
       <FlowerStemControl
         v-for="instance in artwork.materials"
@@ -34,6 +37,7 @@ const arrangementOffset = computed(() => backgroundOffset(background.value, cont
         :instance="instance"
         :material="preparedMaterials[instance.materialId]"
         :selected="selectedId === instance.id"
+        :precision="Boolean(pickMaterialId) && instance.materialId === pickMaterialId"
         @start="emit('start', $event, instance)"
         @move="emit('move', $event)"
         @end="emit('end', $event)"

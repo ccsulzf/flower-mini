@@ -114,6 +114,32 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     storageError.value = ''
     return true
   }
+  function discard() {
+    cancelTimer()
+    // Leaving an existing work must not replace the live store with the
+    // intentionally incomplete restart placeholder. Page watchers and hide
+    // hooks may otherwise try to validate that placeholder as an artwork.
+    if (owner) {
+      try {
+        clearDraft(owner)
+      }
+      catch (error) {
+        storageError.value = (error as Error).message
+        return false
+      }
+    }
+    card.value = { blessing: '', signature: '' }
+    workId.value = undefined
+    pendingDraft.value = null
+    view.value = 'edit'
+    baselineSnapshot = JSON.stringify(snapshot())
+    dirty.value = false
+    hasUnsavedChanges.value = false
+    readonly.value = false
+    draftReadFailed.value = false
+    storageError.value = ''
+    return true
+  }
   function flushDraft() {
     cancelTimer()
     if (!owner || !dirty.value || readonly.value || pendingDraft.value || draftReadFailed.value)
@@ -164,7 +190,7 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
       dirty.value = false
       hasUnsavedChanges.value = false
     }
-    const cleared = restart()
+    const cleared = discard()
     if (!cleared && work) {
       try {
         writeDraft(owner, snapshot())
@@ -179,5 +205,5 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     flushDraft()
     cancelTimer()
   }
-  return { view, card, pendingDraft, workId, dirty, hasUnsavedChanges, storageError, readonly, initialized, draftReadFailed, retryDraft, initialize, continueDraft, restart, markEdited, flushDraft, openWork, editWork, commitCard, saved, snapshot, dispose }
+  return { view, card, pendingDraft, workId, dirty, hasUnsavedChanges, storageError, readonly, initialized, draftReadFailed, retryDraft, initialize, continueDraft, restart, discard, markEdited, flushDraft, openWork, editWork, commitCard, saved, snapshot, dispose }
 }

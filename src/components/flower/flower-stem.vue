@@ -4,7 +4,7 @@ import type { CachedMaterial } from '@/models/material'
 import { computed } from 'vue'
 import { cloudPlantSvg, svgImageSource } from '@/utils/flower/material-render'
 
-const props = defineProps<{ instance: MaterialInstance, material: CachedMaterial }>()
+const props = withDefaults(defineProps<{ instance: MaterialInstance, material: CachedMaterial, dimmed?: boolean }>(), { dimmed: false })
 const source = computed(() => svgImageSource(cloudPlantSvg(props.material, props.instance)))
 const height = computed(() => props.instance.transform.height + 55)
 const outerStyle = computed(() => {
@@ -18,7 +18,7 @@ const instanceStyle = computed(() => {
 </script>
 
 <template>
-  <view class="flower-material" :style="outerStyle">
+  <view class="flower-material" :class="{ 'flower-material-dimmed': dimmed }" :style="outerStyle">
     <view class="flower-material-instance" :style="instanceStyle">
       <image class="plant-image" :src="source" mode="scaleToFill" :style="`width:110px;height:${height}px;`" />
     </view>
@@ -26,7 +26,8 @@ const instanceStyle = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.flower-material { position: absolute; width: 110px; transform-origin: 50% 100%; pointer-events: none; }
+.flower-material { position: absolute; width: 110px; transform-origin: 50% 100%; pointer-events: none; transition: opacity .16s ease; }
+.flower-material-dimmed { opacity: .18; }
 .flower-material-instance { position: absolute; inset: 0; width: 110px; height: 100%; pointer-events: none; }
 .plant-image { position: absolute; left: 0; top: 0; pointer-events: none; }
 </style>

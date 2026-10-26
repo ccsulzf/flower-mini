@@ -9,8 +9,9 @@ uni-app / Vue 3 / TypeScript 开发模板，默认微信小程序客户端，后
 
 - 未经用户明确要求，不运行可能安装、更新、修复、清理依赖的包管理器命令。
 - 不直接修改 node_modules，不复制其他项目的 node_modules。
+- 后续生成或修改代码时，不创建测试文件；仅在用户明确要求时生成测试。
 - `pnpm type-check`、`pnpm lint` 或 corepack 命令可能触发依赖修复；执行前确认当前会话已有明确授权，否则先询问。
-- 优先只读验证；离线云对象测试可直接运行 `node --test tests/*.test.cjs`。
+- 优先只读验证。
 - 获得授权后，使用 `pnpm type-check` 和 `pnpm lint`；路由和构建配置改动还需 `pnpm build:mp-weixin`。
 - 不使用 `lint:fix` 对无关文件做广泛格式化。
 - 完成时说明实际运行的检查和未验证项，不把离线测试视为真实云端联调。

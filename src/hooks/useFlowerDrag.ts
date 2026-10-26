@@ -20,12 +20,17 @@ export function useFlowerDrag(
   layout: FlowerStudioLayout,
   resolveMaterial: MaterialResolver,
   resolveContainer: ContainerResolver,
+  selectedMaterialId: () => number | null,
   onTap: (id: number) => void,
-  onDragStart: () => void,
 ) {
   let drag: DragState | null = null
 
   function startDrag(event: StudioTouchEvent, material: MaterialInstance) {
+    if (selectedMaterialId() !== material.id) {
+      drag = null
+      onTap(material.id)
+      return
+    }
     const touch = event.touches[0]
     if (!touch)
       return
@@ -58,7 +63,6 @@ export function useFlowerDrag(
         return
       }
       drag.changed = true
-      onDragStart()
     }
     const current = layout.screenToWorkspace(screen)
     const originalHead = materialHeadPoint(drag.material.transform)

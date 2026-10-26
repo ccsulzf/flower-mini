@@ -1,7 +1,7 @@
 import type { CachedMaterial } from '@/models/material'
 import type { Artwork } from '@/models/artwork'
 import { backgroundOffset, backgroundSceneSource } from './background-render'
-import { bouquetLayers, cloudPlantSvg, vasePlacement } from './material-render'
+import { bouquetLayers, cloudPlantSvg, vaseLayers, vasePlacement } from './material-render'
 
 type MaterialResolver = (id: string) => CachedMaterial | undefined
 
@@ -23,9 +23,8 @@ function resolveMaterial(getMaterial: MaterialResolver, id: string, categories: 
 function vaseSvg(material: CachedMaterial, layer: 'back' | 'front') {
   const placement = vasePlacement(material)
   if (material.category !== 'bouquet') {
-    if (layer === 'back') return ''
-    if (!material.sources.vase) throw new Error('花器 SVG 素材缺失')
-    return nested(material.sources.vase, placement.x, placement.y, placement.width, placement.height)
+    const layers = vaseLayers(material)
+    return nested(layers[layer], placement.x, placement.y, placement.width, placement.height)
   }
   const layers = bouquetLayers(material)
   return nested(layers[layer], placement.x, placement.y, placement.width, placement.height)

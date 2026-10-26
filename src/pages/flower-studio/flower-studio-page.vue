@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { MaterialTransform } from '@/models/artwork'
 import type { StudioTab } from './studio-types'
 import { onHide, onLoad, onShow, onUnload } from '@dcloudio/uni-app'
 import { storeToRefs } from 'pinia'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import FlowerBoard from '@/components/flower/flower-board.vue'
 import { useArtworkImage } from '@/hooks/useArtworkImage'
 import { useFlowerCreationSession } from '@/hooks/useFlowerCreationSession'
@@ -16,7 +15,6 @@ import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
 import { createCatalogArtwork } from '@/utils/flower/artwork'
-import StudioFlowerToolbar from './components/studio-flower-toolbar.vue'
 import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioMaterialPrepareModal from './components/studio-material-prepare-modal.vue'
 import StudioTopToolbar from './components/studio-top-toolbar.vue'
@@ -33,7 +31,7 @@ const catalog = useFlowerCatalogStore()
 const { prepared: preparedMaterials, needsPreparation, preparePercent, prepareMessage, prepareError } = storeToRefs(catalog)
 const studio = useFlowerStudioStore()
 studio.reset()
-const { pageReady, finishing, startupError, pendingMaterialId, lastAddedMaterialId, selectedMaterialId, activeTab, colorsExpanded } = storeToRefs(studio)
+const { pageReady, finishing, startupError, pendingMaterialId, lastAddedMaterialId, selectedMaterialId, activeTab, colorsExpanded, selectionFilter, selectionMaterialId } = storeToRefs(studio)
 const session = useFlowerCreationSession(artworkStore)
 const { pendingDraft, storageError, readonly, initialized, draftReadFailed } = session
 const works = useFlowerWorksStore()
@@ -46,14 +44,13 @@ let alive = true
 let sessionVersion = 0
 let bootTask: Promise<void> | null = null
 let addedMaterialTimer: ReturnType<typeof setTimeout> | null = null
-
 const { startDrag, moveDrag, endDrag } = useFlowerDrag(
   artworkStore,
   layout,
   id => catalog.get(id),
   () => catalog.get(container.value.materialId),
+  () => selectedMaterialId.value,
   openFlowerTools,
-  studio.closePanel,
 )
 
 onLoad((query) => {
@@ -79,6 +76,13 @@ watch(() => JSON.stringify(artworkStore.snapshot()), () => {
     session.markEdited()
 }, { flush: 'sync' })
 watch(storageError, (value) => { if (value) notify(value) })
+watch(() => materials.value.map(item => item.materialId).join('|'), () => {
+  const materialId = selectionMaterialId.value
+  if (!materials.value.length)
+    studio.clearSelection()
+  else if (materialId && !materials.value.some(item => item.materialId === materialId))
+    studio.clearSelectionFocus()
+}, { flush: 'sync' })
 
 function notify(title: string) {
   uni.showToast({ title, icon: 'none' })
@@ -96,8 +100,8 @@ async function prepareArtwork() {
   }
 }
 
-async function initializeDefaultArtwork() {
-  if (container.value.materialId)
+async function initializeDefaultArtwork(force = false) {
+  if (!force && container.value.materialId)
     return
   const containerRecord = catalog.materials.find(item => item.category === 'vase' || item.category === 'bouquet')
   const backgroundRecord = catalog.materials.find(item => item.category === 'background')
@@ -176,13 +180,13 @@ async function retryStartup() {
 
 function closeFlowerTools() {
   artworkStore.endEdit()
-  studio.selectMaterial(null)
+  studio.clearSelection()
 }
 
 function closePanels() {
   artworkStore.endEdit()
   studio.closePanel()
-  studio.selectMaterial(null)
+  studio.clearSelection()
   images.invalidate()
 }
 
@@ -190,15 +194,24 @@ function toggleTab(tab: StudioTab) {
   if (!pageReady.value || pendingDraft.value)
     return
   endDrag(true)
-  studio.selectMaterial(null)
+  if (activeTab.value === tab) {
+    studio.clearSelection()
+    images.invalidate()
+    return
+  }
+  studio.clearSelection()
+  studio.openTab(tab)
   images.invalidate()
-  studio.toggleTab(tab)
 }
 
 function openFlowerTools(id: number) {
-  if (!artworkStore.getMaterial(id))
+  const instance = artworkStore.getMaterial(id)
+  if (!instance)
     return
-  studio.selectMaterial(id)
+  const group = instance.group === 'foliage' ? 'foliage' : 'flowers'
+  const count = materials.value.filter(item => item.materialId === instance.materialId).length
+  studio.activateSelectionMaterial(instance.materialId, group, count > 1)
+  studio.selectSelectionInstance(id)
   images.invalidate()
 }
 
@@ -221,7 +234,7 @@ async function selectCatalogMaterial(id: string) {
     else if (material.category === 'vase' || material.category === 'bouquet') {
       artworkStore.setContainer(material, materialId => catalog.get(materialId))
       studio.closePanel()
-      studio.selectMaterial(null)
+      studio.clearSelection()
     }
     else {
       const containerMaterial = catalog.get(container.value.materialId)
@@ -231,7 +244,6 @@ async function selectCatalogMaterial(id: string) {
       if (id === null)
         return
       studio.recordRecentMaterial(material.id)
-      studio.selectMaterial(id)
       lastAddedMaterialId.value = material.id
       if (addedMaterialTimer)
         clearTimeout(addedMaterialTimer)
@@ -258,24 +270,6 @@ function selectedContext() {
   return instance && source && containerMaterial ? { id, instance, source, containerMaterial } : null
 }
 
-function beginControl() {
-  const context = selectedContext()
-  if (context)
-    artworkStore.beginEdit(context.id)
-}
-
-function updateControl(field: 'angle' | 'height' | 'scale', value: number) {
-  const context = selectedContext()
-  if (!context || !Number.isFinite(value))
-    return
-  const transform: MaterialTransform = {
-    ...context.instance.transform,
-    anchor: { ...context.instance.transform.anchor },
-    [field]: value,
-  }
-  artworkStore.updateMaterialTransform(context.id, transform, context.source, context.containerMaterial)
-}
-
 function setColor(color: string) {
   if (selectedMaterialId.value !== null)
     artworkStore.setMaterialColor(selectedMaterialId.value, color)
@@ -298,8 +292,10 @@ function duplicateSelected() {
   if (!context)
     return
   const id = artworkStore.duplicateMaterial(context.id, context.source, context.containerMaterial)
-  if (id !== null)
-    studio.selectMaterial(id)
+  if (id !== null) {
+    studio.activateSelectionMaterial(context.instance.materialId, context.instance.group === 'foliage' ? 'foliage' : 'flowers', true)
+    studio.selectSelectionInstance(id)
+  }
 }
 
 function removeSelected() {
@@ -307,19 +303,32 @@ function removeSelected() {
   const id = selectedMaterialId.value
   if (id === null)
     return
-  const index = materials.value.findIndex(item => item.id === id)
+  const removed = artworkStore.getMaterial(id)
+  if (!removed)
+    return
+  const sameMaterialIndex = materials.value.filter(item => item.materialId === removed.materialId).findIndex(item => item.id === id)
   if (!artworkStore.removeMaterial(id))
     return
-  const adjacent = materials.value[Math.min(index, materials.value.length - 1)]
-  studio.selectMaterial(adjacent?.id ?? null)
+  const remaining = materials.value.filter(item => item.materialId === removed.materialId)
+  if (!remaining.length) {
+    studio.clearSelectionFocus()
+    return
+  }
+  const next = remaining[Math.min(sameMaterialIndex, remaining.length - 1)]
+  studio.activateSelectionMaterial(removed.materialId, removed.group === 'foliage' ? 'foliage' : 'flowers', remaining.length > 1)
+  studio.selectSelectionInstance(next.id)
 }
 
-function selectAdjacent(direction: 'previous' | 'next') {
-  if (!materials.value.length)
-    return
-  const index = materials.value.findIndex(item => item.id === selectedMaterialId.value)
-  const next = (index + (direction === 'next' ? 1 : -1) + materials.value.length) % materials.value.length
-  studio.selectMaterial(materials.value[next].id)
+function focusSelectionMaterial(materialId: string, group: 'flowers' | 'foliage', expanded: boolean) {
+  endDrag(true)
+  studio.focusSelectionMaterial(materialId, group, expanded)
+  images.invalidate()
+}
+
+function selectSelectionInstance(id: number) {
+  endDrag(true)
+  studio.selectSelectionInstance(id)
+  images.invalidate()
 }
 
 function undo() {
@@ -347,7 +356,7 @@ function clearMaterials() {
         return
       endDrag(true)
       artworkStore.clearMaterials()
-      studio.selectMaterial(null)
+      studio.clearSelection()
     },
   })
 }
@@ -377,7 +386,7 @@ async function finish() {
     return
   endDrag(true)
   studio.closePanel()
-  studio.selectMaterial(null)
+  studio.clearSelection()
   session.flushDraft()
   finishing.value = true
   try {
@@ -389,18 +398,18 @@ async function finish() {
       return
     applying = true
     const cleared = session.saved(work)
-    applying = false
     if (!cleared)
       notify(storageError.value || '作品已保存，但本地草稿清理失败')
     detailId.value = ''
     images.invalidate()
-    await initializeDefaultArtwork()
+    await initializeDefaultArtwork(true)
   }
   catch (error) {
     if (alive)
       notify(creationFailure(error))
   }
   finally {
+    applying = false
     finishing.value = false
   }
 }
@@ -421,7 +430,7 @@ function requestLeave(leave: () => void) {
       if (!result.confirm) {
         sessionVersion++
         pendingMaterialId.value = null
-        if (session.restart())
+        if (session.discard())
           leave()
         return
       }
@@ -489,7 +498,7 @@ async function endCreation() {
   sessionVersion++
   pendingMaterialId.value = null
   studio.closePanel()
-  studio.selectMaterial(null)
+  studio.clearSelection()
   startupError.value = ''
   detailId.value = ''
   await initializeDefaultArtwork()
@@ -502,11 +511,15 @@ function closeDetail() { uni.navigateBack() }
   <view class="flower-studio studio-light" :style="{ backgroundColor: '#f6f3eb', height: `${layout.device.windowHeight}px` }">
     <view class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
       <view class="studio-artwork" :style="layout.workspaceStyle">
-        <FlowerBoard :artwork="artwork" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" @start="startDrag" @move="moveDrag" @end="endDrag" @clear="closeFlowerTools" />
+        <FlowerBoard :artwork="artwork" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" @start="startDrag" @move="moveDrag" @end="endDrag" @clear="closeFlowerTools" />
       </view>
     </view>
-    <StudioMaterialDock :toolbar-bottom="layout.toolbarBottom" :stage-bottom="layout.stageBottom" @select="toggleTab" @close="studio.closePanel" @dismiss="closePanels" @material="selectCatalogMaterial" />
-    <StudioFlowerToolbar :panel-style="layout.flowerToolsStyle" @close="closeFlowerTools" @color="setColor" @toggle-colors="colorsExpanded = !colorsExpanded" @layer="setLayer" @duplicate="duplicateSelected" @remove="removeSelected" @mirror="mirrorSelected" @adjacent="selectAdjacent" @control-start="beginControl" @control="updateControl" @control-end="artworkStore.endEdit" />
+    <StudioMaterialDock
+      :toolbar-bottom="layout.toolbarBottom" :stage-bottom="layout.stageBottom" @select="toggleTab" @close="studio.closePanel"
+      @dismiss="closePanels" @material="selectCatalogMaterial" @focus="focusSelectionMaterial" @instance="selectSelectionInstance"
+      @color="setColor" @toggle-colors="colorsExpanded = !colorsExpanded" @layer="setLayer"
+      @duplicate="duplicateSelected" @remove="removeSelected" @mirror="mirrorSelected"
+    />
     <StudioTopToolbar :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
     <view v-if="storageError && !pendingDraft && !startupError" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }"><text>{{ storageError }}</text><text v-if="draftReadFailed" @click="retryLocalDraft">重新读取</text><text @click="endCreation">重新开始</text></view>
     <StudioMaterialPrepareModal v-if="needsPreparation" :percent="preparePercent" :message="prepareMessage" :error="prepareError" @retry="retryMaterialPreparation" />

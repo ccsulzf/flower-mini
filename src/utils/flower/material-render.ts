@@ -42,6 +42,24 @@ export function vasePlacement(material: CachedMaterial) {
   return { x: 350 - geometry.mouthX, y: 747 - mouthY, width: geometry.width, height: geometry.height, mouthLeft: 350 - mouthWidth / 2, mouthRight: 350 + mouthWidth / 2 }
 }
 
+function clippedSvg(source: string, id: string, x: number, y: number, width: number, height: number) {
+  const root = source.match(/<svg\b[^>]*>/)?.[0]
+  if (!root) throw new Error('花瓶 SVG 根节点缺失')
+  const content = source.slice(source.indexOf(root) + root.length).replace(/<\/svg>\s*$/, '')
+  return `${root}<defs><clipPath id="${id}"><rect x="${x}" y="${y}" width="${width}" height="${height}" /></clipPath></defs><g clip-path="url(#${id})">${content}</g></svg>`
+}
+
+export function vaseLayers(material: CachedMaterial) {
+  if (material.category !== 'vase' || !material.sources.vase || !material.geometry) throw new Error('花瓶素材不可用')
+  const geometry = material.geometry as VaseGeometry
+  const splitY = Math.max(0, Math.min(geometry.height, geometry.mouthY))
+  const clipId = material.id.replace(/[^a-z0-9_-]/gi, '-')
+  return {
+    back: clippedSvg(material.sources.vase, `${clipId}-vase-back`, 0, 0, geometry.width, splitY),
+    front: clippedSvg(material.sources.vase, `${clipId}-vase-front`, 0, splitY, geometry.width, geometry.height - splitY),
+  }
+}
+
 export function bouquetLayers(material: CachedMaterial) {
   if (material.category !== 'bouquet' || !material.sources.bouquet || !material.geometry) throw new Error('花束素材不可用')
   const source = material.sources.bouquet

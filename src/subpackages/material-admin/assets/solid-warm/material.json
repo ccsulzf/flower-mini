@@ -1,0 +1,12 @@
+{
+  "id": "solid-warm",
+  "category": "background",
+  "backgroundKind": "solid",
+  "name": "暖白",
+  "introduction": "柔和温暖的米白纯色背景。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "geometry": { "width": 698, "height": 1000 }
+}

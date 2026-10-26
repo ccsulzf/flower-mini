@@ -19,7 +19,7 @@ module.exports = {
       data.push(...page.data)
       if (page.data.length < 100) break
     }
-    const items = data.map(({ id, category, name, introduction, flowerMeaning, group, colors, geometry, assets, updatedAt }) => ({ id, category: category || 'flower', name, introduction, flowerMeaning, group, colors, geometry, assets, updatedAt }))
+    const items = data.map(({ id, category, backgroundKind, name, introduction, flowerMeaning, group, colors, geometry, assets, updatedAt }) => ({ id, category: category || 'flower', ...(category === 'background' ? { backgroundKind: backgroundKind === 'solid' ? 'solid' : 'scene' } : {}), name, introduction, flowerMeaning, group, colors, geometry, assets, updatedAt }))
     const ids = [...new Set(items.flatMap(row => Object.values(row.assets || {}).map(file => file.fileId)))]
     const byId = new Map()
     const batches = []

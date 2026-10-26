@@ -30,7 +30,7 @@ export function collectLocalMaterials(files: Record<string, string>): { items: M
         if (!svg || svg.length > 65536 || !/^\s*<svg\b/.test(svg) || !/<\/svg>\s*$/.test(svg) || /<script|<foreignObject|\bon\w+\s*=|\bhref\s*=|<!DOCTYPE|<!ENTITY/i.test(svg)) throw new Error(`${key}.svg 缺失或无效`)
         sources[key] = svg
       }
-      const normalized: MaterialMetadata = { id: normalizedMetadata.id, category, name: normalizedMetadata.name, introduction: normalizedMetadata.introduction, flowerMeaning: normalizedMetadata.flowerMeaning, group: normalizedMetadata.group, colors: normalizedMetadata.colors, version: normalizedMetadata.version, geometry }
+      const normalized: MaterialMetadata = { id: normalizedMetadata.id, category, ...(category === 'background' ? { backgroundKind: normalizedMetadata.backgroundKind } : {}), name: normalizedMetadata.name, introduction: normalizedMetadata.introduction, flowerMeaning: normalizedMetadata.flowerMeaning, group: normalizedMetadata.group, colors: normalizedMetadata.colors, version: normalizedMetadata.version, geometry }
       items.push({ ...normalized, sources, revision: revisionOf({ ...normalized, sources }) })
     } catch (error) { errors.push(`${path}：${error instanceof Error ? error.message : '档案无法读取'}`) }
   }
