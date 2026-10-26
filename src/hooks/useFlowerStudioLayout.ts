@@ -22,13 +22,6 @@ export function useFlowerStudioLayout() {
   const offsetX = (stageWidth - renderedWidth) / 2
   const offsetY = stageTop + (stageHeight - renderedHeight) / 2
   const workspaceStyle = `left:${offsetX}px;top:${offsetY - stageTop}px;transform:scale(${scale});`
-  const flowerToolsStyle = {
-    left: `${18 * unit}px`,
-    top: `${stageTop + stageHeight / 2}px`,
-    width: `${116 * unit}px`,
-    transform: 'translateY(-50%)',
-  }
-
   function screenToWorkspace(point: Point): Point {
     return { x: (point.x - offsetX) / scale, y: (point.y - offsetY) / scale }
   }
@@ -53,7 +46,6 @@ export function useFlowerStudioLayout() {
     offsetX,
     offsetY,
     workspaceStyle,
-    flowerToolsStyle,
     screenToWorkspace,
     workspaceToScreen,
   }

@@ -25,6 +25,18 @@ const emit = defineEmits<{
 const background = computed(() => props.preparedMaterials[props.artwork.background.materialId])
 const container = computed(() => props.preparedMaterials[props.artwork.container.materialId])
 const arrangementOffset = computed(() => backgroundOffset(background.value, container.value))
+
+function isInteractive(instance: MaterialInstance) {
+  if (props.selectedId !== null)
+    return props.selectedId === instance.id
+  if (props.pickMaterialId)
+    return props.pickMaterialId === instance.materialId
+  if (props.pickScope === 'flowers')
+    return instance.group !== 'foliage'
+  if (props.pickScope === 'foliage')
+    return instance.group === 'foliage'
+  return true
+}
 </script>
 
 <template>
@@ -37,6 +49,7 @@ const arrangementOffset = computed(() => backgroundOffset(background.value, cont
         :instance="instance"
         :material="preparedMaterials[instance.materialId]"
         :selected="selectedId === instance.id"
+        :interactive="isInteractive(instance)"
         :precision="Boolean(pickMaterialId) && instance.materialId === pickMaterialId"
         @start="emit('start', $event, instance)"
         @move="emit('move', $event)"

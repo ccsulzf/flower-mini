@@ -2,6 +2,7 @@
 import type { Artwork } from '@/models/artwork'
 import { computed, onMounted, ref, watch } from 'vue'
 import FlowerArtworkRenderer from '@/components/flower/flower-artwork-renderer.vue'
+import { useDevice } from '@/hooks/useDevice'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { waitForAppAuthReady } from '@/utils/appAuth'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
@@ -18,10 +19,10 @@ const error = ref('')
 const message = ref('')
 const busy = ref(false)
 const previewing = ref(false)
+const { deviceWidth } = useDevice()
 const previewStyle = computed(() => ({ backgroundColor: '#f6f3eb' }))
 const previewScale = computed(() => {
-  const windowWidth = uni.getSystemInfoSync?.().windowWidth || 375
-  const previewWidth = windowWidth * 698 / 750
+  const previewWidth = deviceWidth.value * 698 / 750
   return Math.min(1, previewWidth / studioMetrics.width)
 })
 const previewBoardStyle = computed(() => ({

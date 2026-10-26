@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
+import { useDevice } from '@/hooks/useDevice'
 import { useFlowerPageArtwork } from '@/hooks/useFlowerPageArtwork'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
@@ -8,10 +9,10 @@ import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 definePage({ style: { navigationBarTitleText: '作品详情', navigationBarBackgroundColor: '#f6f3eb', disableScroll: true } })
 const { draft, title, description, loading, error, images, retry } = useFlowerPageArtwork({ savedOnly: true })
 const { exportingImage, imageError } = images
+const { deviceWidth, deviceHeight } = useDevice()
 const artworkScale = computed(() => {
-  const info = uni.getSystemInfoSync?.()
-  const width = info?.windowWidth || 375
-  const height = info?.windowHeight || 667
+  const width = deviceWidth.value
+  const height = deviceHeight.value
   const rpx = width / 750
   return Math.max(0.1, Math.min(
     1,

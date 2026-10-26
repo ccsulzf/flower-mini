@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { useFlowerStudioStore, type MaterialPickerGroup } from '@/stores/flowerStudioStore'
-import { cloudPlantSvg, svgImageSource } from '@/utils/flower/material-render'
+import { materialThumbnailSource } from '@/utils/flower/material-thumbnail'
 
 const props = defineProps<{ usageCounts: Record<string, number> }>()
 const emit = defineEmits<{ add: [id: string], close: [] }>()
@@ -27,21 +27,8 @@ const visibleFlowers = computed(() => {
   }
   return flowers.value.filter(item => item.group === activeMaterialGroup.value)
 })
-const thumbnailCache = new Map<string, string>()
 function thumbnail(id: string) {
-  const cached = thumbnailCache.get(id)
-  if (cached)
-    return cached
-  const item = catalog.get(id)
-  if (!item || item.category !== 'flower')
-    return ''
-  const source = cloudPlantSvg(item, {
-    color: item.colors[0]?.value || '#f4f0e6',
-    transform: { anchor: { x: 55, y: 285 }, angle: 0, height: 230, scale: 1, mirrored: false },
-  })
-  const result = svgImageSource(source)
-  thumbnailCache.set(id, result)
-  return result
+  return materialThumbnailSource(catalog.get(id))
 }
 function selectGroup(group: MaterialPickerGroup) {
   if (group === 'recent' && !recentMaterialIds.value.some(id => flowers.value.some(item => item.id === id))) {

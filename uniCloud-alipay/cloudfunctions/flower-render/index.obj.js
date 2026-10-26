@@ -158,7 +158,10 @@ async function buildArtworkSvg(artwork) {
         || !['vase', 'bouquet'].includes(artwork.container?.type))
         throw new Error('作品格式无效');
     const cache = new Map();
-    const cloudMaterials = new Map();
+    const materialIds = new Set([
+        artwork.background.materialId,
+        artwork.container.materialId,
+    ]);
     for (const instance of artwork.materials) {
         const transform = instance?.transform;
         if (!transform || !Number.isFinite(transform.anchor?.x) || transform.anchor.x < 0 || transform.anchor.x > 698
@@ -169,34 +172,51 @@ async function buildArtworkSvg(artwork) {
             || typeof transform.mirrored !== 'boolean' || typeof instance.color !== 'string' || !/^#[\da-f]{6}$/i.test(instance.color)
             || !materialIdPattern.test(instance.materialId || ''))
             throw new Error('作品花材数据无效');
-        const material = await getMaterial(instance.materialId, cache);
+        materialIds.add(instance.materialId);
+    }
+    await Promise.all([...materialIds].map(id => getMaterial(id, cache)));
+    const cloudMaterials = new Map();
+    for (const instance of artwork.materials) {
+        const material = cache.get(instance.materialId);
         if (material.category !== 'flower' || material.group !== instance.group)
             throw new Error('作品引用的云端花材类型无效');
         cloudMaterials.set(instance.materialId, material);
     }
-    const backgroundMaterial = await getMaterial(artwork.background.materialId, cache);
+    const backgroundMaterial = cache.get(artwork.background.materialId);
     if (backgroundMaterial.category !== 'background')
         throw new Error('作品引用的云端背景类型无效');
-    const background = nested(await materialSource(backgroundMaterial, 'background'), 0, 0, 698, 1000);
-    const vaseMaterial = await getMaterial(artwork.container.materialId, cache);
+    const vaseMaterial = cache.get(artwork.container.materialId);
     if (vaseMaterial.category !== artwork.container.type || !vaseMaterial.geometry)
         throw new Error('作品引用的云端花器无效');
+    const vasePart = vaseMaterial.category === 'bouquet' ? 'bouquet' : 'vase';
+    const requiredSources = [
+        [backgroundMaterial, 'background'],
+        [vaseMaterial, vasePart],
+    ];
+    for (const material of cloudMaterials.values()) {
+        if (!material.geometry)
+            throw new Error('云端花材几何信息缺失');
+        if (material.group === 'foliage')
+            requiredSources.push([material, 'foliage']);
+        else
+            requiredSources.push([material, 'flower'], [material, 'stemWithoutLeaves']);
+    }
+    await Promise.all(requiredSources.map(([material, part]) => materialSource(material, part)));
+    const background = nested(backgroundMaterial.sources.background, 0, 0, 698, 1000);
     const anchorOffset = backgroundOffset(backgroundMaterial, vaseMaterial);
     const renderedMaterials = [];
     for (const instance of artwork.materials) {
         const material = cloudMaterials.get(instance.materialId);
-        if (!material.geometry)
-            throw new Error('云端花材几何信息缺失');
         const { anchor, angle, height, scale, mirrored } = instance.transform;
         const total = height + 55;
         const scaleX = mirrored ? -scale : scale;
         if (material.group === 'foliage') {
-            const source = (await materialSource(material, 'foliage')).replace(/__COLOR__/g, instance.color);
+            const source = material.sources.foliage.replace(/__COLOR__/g, instance.color);
             renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${nested(source, 0, 0, 110, total)}</g>`);
             continue;
         }
-        const flower = colorizeMaterialSvg(await materialSource(material, 'flower'), instance.color);
-        const stemSource = await materialSource(material, 'stemWithoutLeaves');
+        const flower = colorizeMaterialSvg(material.sources.flower, instance.color);
+        const stemSource = material.sources.stemWithoutLeaves;
         const geometry = material.geometry;
         const headHeight = geometry.flowerHeight * 110 / geometry.width;
         const connection = geometry.connectionY * 110 / geometry.width;
@@ -207,8 +227,7 @@ async function buildArtworkSvg(artwork) {
         const fittedStem = fitStemJoin(shapedStem, (total - join) / geometry.stemHeight / (110 / geometry.width));
         renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${nested(fittedStem, 0, join, 110, total - join)}${nested(flower, 0, headTop, 110, headHeight)}</g>`);
     }
-    const part = vaseMaterial.category === 'bouquet' ? 'bouquet' : 'vase';
-    const source = await materialSource(vaseMaterial, part);
+    const source = vaseMaterial.sources[vasePart];
     const placement = vasePlacement(vaseMaterial);
     let vaseBack = '';
     let vaseFront;
@@ -235,6 +254,7 @@ async function renderSvg(svg, cloudPath) {
         || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|\b(?:href|xlink:href)\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(svg)
         || width !== 698 || !Number.isInteger(height) || height < 1000 || height > 2000)
         throw new Error('作品 SVG 无效或尺寸不符合要求');
+    const wasmStartedAt = Date.now();
     if (!wasmReady) {
         const wasmPath = require.resolve('@resvg/resvg-wasm/index_bg.wasm');
         wasmReady = initWasm(fs.readFileSync(wasmPath)).catch((error) => {
@@ -245,6 +265,8 @@ async function renderSvg(svg, cloudPath) {
         });
     }
     await wasmReady;
+    const wasmInitMs = Date.now() - wasmStartedAt;
+    const rasterizeStartedAt = Date.now();
     const renderer = new Resvg(svg, {
         fitTo: { mode: 'width', value: 1396 },
         font: { loadSystemFonts: true },
@@ -263,15 +285,21 @@ async function renderSvg(svg, cloudPath) {
         image?.free();
         renderer.free();
     }
+    const rasterizeMs = Date.now() - rasterizeStartedAt;
+    const uploadStartedAt = Date.now();
     const uploaded = await uniCloud.uploadFile({ cloudPath, fileContent: Buffer.from(png) });
     if (!uploaded?.fileID)
         throw new Error('云端图片上传失败');
+    const uploadMs = Date.now() - uploadStartedAt;
     return {
         width: renderedWidth,
         height: renderedHeight,
         fileID: uploaded.fileID,
         cloudPath,
         renderMs: Date.now() - startedAt,
+        wasmInitMs,
+        rasterizeMs,
+        uploadMs,
     };
 }
 
@@ -290,6 +318,7 @@ module.exports = {
         return result;
     },
     async renderWork({ workId } = {}) {
+        const startedAt = Date.now();
         if (typeof workId !== 'string' || !workIdPattern.test(workId))
             throw new Error('作品编号无效');
         const query = await uniCloud.database().collection('flower-works')
@@ -297,13 +326,16 @@ module.exports = {
         const work = query.data?.[0];
         if (!work)
             throw { errCode: 'WORK_NOT_FOUND', errMsg: '作品不存在或已删除' };
+        const prepareStartedAt = Date.now();
         const svg = await buildArtworkSvg(work.artwork);
+        const prepareMs = Date.now() - prepareStartedAt;
         const owner = createHash('sha256').update(this.auth.uid).digest('hex');
         const cloudPath = `flower-works/${owner}/${workId}/artwork.png`;
         const result = await renderSvg(svg, cloudPath);
-        return result;
+        return { ...result, prepareMs, totalMs: Date.now() - startedAt };
     },
     async renderDailyArtwork({ artwork, date } = {}) {
+        const startedAt = Date.now();
         const user = await uniCloud.database().collection('uni-id-users')
             .doc(this.auth.uid).field({ role: true }).get();
         const roles = user.data?.[0]?.role;
@@ -311,8 +343,11 @@ module.exports = {
             throw { errCode: 'ADMIN_REQUIRED', errMsg: '此账号没有每日插花维护权限' };
         const validDate = dailyFlower.validateDate(date);
         const validArtwork = dailyFlower.validateArtwork(artwork);
+        const prepareStartedAt = Date.now();
         const svg = await buildArtworkSvg(validArtwork);
+        const prepareMs = Date.now() - prepareStartedAt;
         const cloudPath = `daily-flower/${validDate}/render-${randomBytes(16).toString('hex')}.png`;
-        return renderSvg(svg, cloudPath);
+        const result = await renderSvg(svg, cloudPath);
+        return { ...result, prepareMs, totalMs: Date.now() - startedAt };
     },
 };

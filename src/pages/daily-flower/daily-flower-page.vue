@@ -2,14 +2,16 @@
 import { onReachBottom, onShow } from '@dcloudio/uni-app'
 import { computed, getCurrentInstance, ref } from 'vue'
 import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
+import { useDevice } from '@/hooks/useDevice'
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花', navigationBarBackgroundColor: '#f6f3eb', backgroundColor: '#f6f3eb' } })
 
 const dailyFlowers = useDailyFlowerStore()
+const { deviceWidth } = useDevice()
 const artworkScale = computed(() => {
-  const width = uni.getSystemInfoSync?.().windowWidth || 375
+  const width = deviceWidth.value
   const rpx = width / 750
   const cardWidth = (width - (52 + 22) * rpx) / 2 - 4 * rpx
   return Math.max(0.1, Math.min(1, cardWidth / studioMetrics.width))

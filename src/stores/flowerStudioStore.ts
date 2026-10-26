@@ -1,10 +1,9 @@
-import type { StudioSelectionFilter, StudioSelectionMenuLevel, StudioTab } from '@/models/flower-studio'
+import type { StudioSelectionState, StudioTab } from '@/models/flower-studio'
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 
 export type MaterialPickerGroup = 'recent' | 'main' | 'filler' | 'foliage'
-export type StudioPanel = StudioTab | 'flower-tools' | null
 
 const recentStorageKey = 'flower-studio-recent-materials'
 
@@ -27,21 +26,21 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
   const startupError = ref('')
   const pendingMaterialId = ref<string | null>(null)
   const lastAddedMaterialId = ref('')
-  const selectedMaterialId = ref<number | null>(null)
-  const selectionFilter = ref<StudioSelectionFilter>('all')
-  const selectionMaterialId = ref<string | null>(null)
-  const selectionMenuLevel = ref<StudioSelectionMenuLevel>('closed')
-  const activePanel = ref<StudioPanel>(null)
+  const selection = ref<StudioSelectionState>({ mode: 'closed' })
+  const activePanel = ref<StudioTab | null>(null)
   const activeMaterialGroup = ref<MaterialPickerGroup>('main')
   const materialKeyword = ref('')
   const colorsExpanded = ref(false)
   const recentMaterialIds = ref<string[]>(readRecentMaterials())
   const materialsLoading = computed(() => catalog.loading || catalog.preparing || catalog.downloading > 0)
+  const selectedMaterialId = computed(() => selection.value.mode === 'instance' ? selection.value.instanceId : null)
+  const selectionFilter = computed(() => selection.value.mode === 'closed' ? 'all' : selection.value.filter)
+  const selectionMaterialId = computed(() => selection.value.mode === 'material' || selection.value.mode === 'instance' ? selection.value.materialId : null)
+  const selectionMenuLevel = computed(() => selection.value.mode === 'material' || selection.value.mode === 'instance' ? selection.value.menuLevel : 'closed')
   const activeTab = computed<StudioTab | null>({
-    get: () => activePanel.value && activePanel.value !== 'flower-tools' ? activePanel.value : null,
+    get: () => activePanel.value,
     set: (tab) => tab ? openTab(tab) : closePanel(),
   })
-  const showFlowerTools = computed(() => activePanel.value === 'flower-tools')
 
   function reset() {
     pageReady.value = false
@@ -49,10 +48,7 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
     startupError.value = ''
     pendingMaterialId.value = null
     lastAddedMaterialId.value = ''
-    selectedMaterialId.value = null
-    selectionFilter.value = 'all'
-    selectionMaterialId.value = null
-    selectionMenuLevel.value = 'closed'
+    selection.value = { mode: 'closed' }
     activePanel.value = null
     materialKeyword.value = ''
     colorsExpanded.value = false
@@ -60,30 +56,17 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
 
   function closePanel() {
     activePanel.value = null
+    selection.value = { mode: 'closed' }
     colorsExpanded.value = false
   }
 
   function openTab(tab: StudioTab) {
     activePanel.value = tab
     if (tab !== 'selection') {
-      selectedMaterialId.value = null
-      selectionFilter.value = 'all'
-      selectionMaterialId.value = null
-      selectionMenuLevel.value = 'closed'
+      selection.value = { mode: 'closed' }
     }
-    colorsExpanded.value = false
-  }
-
-  function toggleTab(tab: StudioTab) {
-    if (activePanel.value === tab)
-      closePanel()
-    else
-      openTab(tab)
-  }
-
-  function selectMaterial(id: number | null) {
-    selectedMaterialId.value = id
-    activePanel.value = id === null ? null : 'selection'
+    else if (selection.value.mode === 'closed')
+      selection.value = { mode: 'browse', filter: 'all' }
     colorsExpanded.value = false
   }
 
@@ -97,67 +80,30 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
   }
 
   function activateSelectionMaterial(id: string, group: 'flowers' | 'foliage', expanded: boolean) {
-    selectionFilter.value = group
-    selectionMaterialId.value = id
-    selectedMaterialId.value = null
+    selection.value = { mode: 'material', filter: group, materialId: id, menuLevel: expanded ? 'material' : 'closed' }
     activePanel.value = 'selection'
-    selectionMenuLevel.value = expanded ? 'material' : 'closed'
     colorsExpanded.value = false
   }
 
   function selectSelectionInstance(id: number) {
-    selectedMaterialId.value = id
+    const current = selection.value
+    if (current.mode !== 'material' && current.mode !== 'instance')
+      return
+    selection.value = { ...current, mode: 'instance', instanceId: id }
     activePanel.value = 'selection'
     colorsExpanded.value = false
   }
 
   function clearSelection() {
-    selectedMaterialId.value = null
-    selectionFilter.value = 'all'
-    selectionMaterialId.value = null
-    selectionMenuLevel.value = 'closed'
+    selection.value = { mode: 'closed' }
     activePanel.value = null
     colorsExpanded.value = false
   }
 
   function clearSelectionFocus() {
-    selectedMaterialId.value = null
-    selectionFilter.value = 'all'
-    selectionMaterialId.value = null
-    selectionMenuLevel.value = 'closed'
+    selection.value = { mode: 'browse', filter: 'all' }
     activePanel.value = 'selection'
     colorsExpanded.value = false
-  }
-
-  function setSelectionFilter(filter: StudioSelectionFilter) {
-    selectionFilter.value = filter
-    selectionMaterialId.value = null
-    selectionMenuLevel.value = filter === 'all' ? 'closed' : 'material'
-  }
-
-  function setSelectionMaterial(id: string) {
-    selectionMaterialId.value = id
-    selectionMenuLevel.value = 'closed'
-  }
-
-  function openSelectionCategories() {
-    selectionMenuLevel.value = 'category'
-  }
-
-  function openSelectionMaterials() {
-    if (selectionFilter.value === 'all') {
-      selectionMenuLevel.value = 'category'
-      return
-    }
-    selectedMaterialId.value = null
-    activePanel.value = null
-    colorsExpanded.value = false
-    selectionMaterialId.value = null
-    selectionMenuLevel.value = 'material'
-  }
-
-  function closeSelectionMenu() {
-    selectionMenuLevel.value = 'closed'
   }
 
   function clearSelectionIfMissing(ids: number[]) {
@@ -181,29 +127,20 @@ export const useFlowerStudioStore = defineStore('flowerStudio', () => {
     selectionFilter,
     selectionMaterialId,
     selectionMenuLevel,
-    activePanel,
     activeTab,
     activeMaterialGroup,
     materialKeyword,
     colorsExpanded,
     recentMaterialIds,
     materialsLoading,
-    showFlowerTools,
     reset,
     closePanel,
     openTab,
-    toggleTab,
-    selectMaterial,
     focusSelectionMaterial,
     activateSelectionMaterial,
     selectSelectionInstance,
     clearSelection,
     clearSelectionFocus,
-    setSelectionFilter,
-    setSelectionMaterial,
-    openSelectionCategories,
-    openSelectionMaterials,
-    closeSelectionMenu,
     clearSelectionIfMissing,
     recordRecentMaterial,
   }

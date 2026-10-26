@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia'
 import { useCreationArtworkStore } from '@/stores/artworkStore'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
-import { cloudPlantSvg, svgImageSource } from '@/utils/flower/material-render'
+import { materialThumbnailSource } from '@/utils/flower/material-thumbnail'
 import StudioFlowerTools from './studio-flower-tools.vue'
 
 const emit = defineEmits<{
@@ -25,21 +25,11 @@ const catalog = useFlowerCatalogStore()
 const { selectionMaterialId, selectionMenuLevel, selectedMaterialId, colorsExpanded } = storeToRefs(studio)
 const { materials } = storeToRefs(artwork)
 
-const thumbnailCache = new Map<string, string>()
 function thumbnail(instance: MaterialInstance) {
-  const key = `${instance.materialId}:${instance.color}:${instance.transform.mirrored ? 'mirrored' : 'normal'}`
-  const cached = thumbnailCache.get(key)
-  if (cached)
-    return cached
-  const item = catalog.get(instance.materialId)
-  if (!item || item.category !== 'flower')
-    return ''
-  const result = svgImageSource(cloudPlantSvg(item, {
-    color: instance.color || item.colors[0]?.value || '#f4f0e6',
-    transform: { anchor: { x: 55, y: 285 }, angle: 0, height: 230, scale: 1, mirrored: instance.transform.mirrored },
-  }))
-  thumbnailCache.set(key, result)
-  return result
+  return materialThumbnailSource(catalog.get(instance.materialId), {
+    color: instance.color,
+    mirrored: instance.transform.mirrored,
+  })
 }
 
 const materialOptions = computed(() => {

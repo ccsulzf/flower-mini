@@ -3,15 +3,17 @@ import type { SavedFlowerWorkSummary } from '@/models/flower-creation'
 import { onReachBottom, onShow } from '@dcloudio/uni-app'
 import { computed, ref } from 'vue'
 import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
+import { useDevice } from '@/hooks/useDevice'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '我的作品', navigationBarBackgroundColor: '#f6f3eb', backgroundColor: '#f6f3eb' } })
 const works = useFlowerWorksStore()
+const { deviceWidth } = useDevice()
 const deletingId = ref('')
 const copyingId = ref('')
 const artworkScale = computed(() => {
-  const width = uni.getSystemInfoSync?.().windowWidth || 375
+  const width = deviceWidth.value
   const rpx = width / 750
   const cardWidth = (width - (52 + 22) * rpx) / 2 - 4 * rpx
   return Math.max(0.1, Math.min(1, cardWidth / studioMetrics.width))

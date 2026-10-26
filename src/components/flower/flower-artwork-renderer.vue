@@ -26,6 +26,10 @@ function isDimmed(instance: Artwork['materials'][number]) {
     return instance.id !== props.selectedId
   if (props.pickMaterialId)
     return instance.materialId !== props.pickMaterialId
+  if (props.pickScope === 'flowers')
+    return instance.group === 'foliage'
+  if (props.pickScope === 'foliage')
+    return instance.group !== 'foliage'
   return false
 }
 </script>

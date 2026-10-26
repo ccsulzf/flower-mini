@@ -15,6 +15,7 @@ import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
 import { createCatalogArtwork } from '@/utils/flower/artwork'
+import { useStudioSelectionActions } from './composables/useStudioSelectionActions'
 import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioMaterialPrepareModal from './components/studio-material-prepare-modal.vue'
 import StudioTopToolbar from './components/studio-top-toolbar.vue'
@@ -38,6 +39,21 @@ const works = useFlowerWorksStore()
 const userInfo = useUserInfoStore()
 const layout = useFlowerStudioLayout()
 const images = useArtworkImage(artworkStore.snapshot)
+let cancelDrag = () => {}
+const selectionActions = useStudioSelectionActions(() => cancelDrag(), images.invalidate)
+const {
+  closeFlowerTools,
+  openFlowerTools,
+  setColor,
+  setLayer,
+  mirrorSelected,
+  duplicateSelected,
+  removeSelected,
+  focusSelectionMaterial,
+  selectSelectionInstance,
+  undo,
+  redo,
+} = selectionActions
 const detailId = ref('')
 let applying = false
 let alive = true
@@ -52,6 +68,7 @@ const { startDrag, moveDrag, endDrag } = useFlowerDrag(
   () => selectedMaterialId.value,
   openFlowerTools,
 )
+cancelDrag = () => endDrag(true)
 
 onLoad((query) => {
   detailId.value = String(query?.workId || '')
@@ -76,13 +93,6 @@ watch(() => JSON.stringify(artworkStore.snapshot()), () => {
     session.markEdited()
 }, { flush: 'sync' })
 watch(storageError, (value) => { if (value) notify(value) })
-watch(() => materials.value.map(item => item.materialId).join('|'), () => {
-  const materialId = selectionMaterialId.value
-  if (!materials.value.length)
-    studio.clearSelection()
-  else if (materialId && !materials.value.some(item => item.materialId === materialId))
-    studio.clearSelectionFocus()
-}, { flush: 'sync' })
 
 function notify(title: string) {
   uni.showToast({ title, icon: 'none' })
@@ -178,11 +188,6 @@ async function retryStartup() {
   }
 }
 
-function closeFlowerTools() {
-  artworkStore.endEdit()
-  studio.clearSelection()
-}
-
 function closePanels() {
   artworkStore.endEdit()
   studio.closePanel()
@@ -201,17 +206,6 @@ function toggleTab(tab: StudioTab) {
   }
   studio.clearSelection()
   studio.openTab(tab)
-  images.invalidate()
-}
-
-function openFlowerTools(id: number) {
-  const instance = artworkStore.getMaterial(id)
-  if (!instance)
-    return
-  const group = instance.group === 'foliage' ? 'foliage' : 'flowers'
-  const count = materials.value.filter(item => item.materialId === instance.materialId).length
-  studio.activateSelectionMaterial(instance.materialId, group, count > 1)
-  studio.selectSelectionInstance(id)
   images.invalidate()
 }
 
@@ -258,89 +252,6 @@ async function selectCatalogMaterial(id: string) {
     if (request === sessionVersion)
       pendingMaterialId.value = null
   }
-}
-
-function selectedContext() {
-  const id = selectedMaterialId.value
-  if (id === null)
-    return null
-  const instance = artworkStore.getMaterial(id)
-  const source = instance ? catalog.get(instance.materialId) : undefined
-  const containerMaterial = catalog.get(container.value.materialId)
-  return instance && source && containerMaterial ? { id, instance, source, containerMaterial } : null
-}
-
-function setColor(color: string) {
-  if (selectedMaterialId.value !== null)
-    artworkStore.setMaterialColor(selectedMaterialId.value, color)
-}
-
-function setLayer(direction: 'forward' | 'backward') {
-  colorsExpanded.value = false
-  if (selectedMaterialId.value !== null)
-    artworkStore.moveMaterialLayer(selectedMaterialId.value, direction)
-}
-
-function mirrorSelected() {
-  if (selectedMaterialId.value !== null)
-    artworkStore.setMaterialMirror(selectedMaterialId.value)
-}
-
-function duplicateSelected() {
-  endDrag(true)
-  const context = selectedContext()
-  if (!context)
-    return
-  const id = artworkStore.duplicateMaterial(context.id, context.source, context.containerMaterial)
-  if (id !== null) {
-    studio.activateSelectionMaterial(context.instance.materialId, context.instance.group === 'foliage' ? 'foliage' : 'flowers', true)
-    studio.selectSelectionInstance(id)
-  }
-}
-
-function removeSelected() {
-  endDrag(true)
-  const id = selectedMaterialId.value
-  if (id === null)
-    return
-  const removed = artworkStore.getMaterial(id)
-  if (!removed)
-    return
-  const sameMaterialIndex = materials.value.filter(item => item.materialId === removed.materialId).findIndex(item => item.id === id)
-  if (!artworkStore.removeMaterial(id))
-    return
-  const remaining = materials.value.filter(item => item.materialId === removed.materialId)
-  if (!remaining.length) {
-    studio.clearSelectionFocus()
-    return
-  }
-  const next = remaining[Math.min(sameMaterialIndex, remaining.length - 1)]
-  studio.activateSelectionMaterial(removed.materialId, removed.group === 'foliage' ? 'foliage' : 'flowers', remaining.length > 1)
-  studio.selectSelectionInstance(next.id)
-}
-
-function focusSelectionMaterial(materialId: string, group: 'flowers' | 'foliage', expanded: boolean) {
-  endDrag(true)
-  studio.focusSelectionMaterial(materialId, group, expanded)
-  images.invalidate()
-}
-
-function selectSelectionInstance(id: number) {
-  endDrag(true)
-  studio.selectSelectionInstance(id)
-  images.invalidate()
-}
-
-function undo() {
-  endDrag(true)
-  artworkStore.undo()
-  studio.clearSelectionIfMissing(materials.value.map(item => item.id))
-}
-
-function redo() {
-  endDrag(true)
-  artworkStore.redo()
-  studio.clearSelectionIfMissing(materials.value.map(item => item.id))
 }
 
 function clearMaterials() {

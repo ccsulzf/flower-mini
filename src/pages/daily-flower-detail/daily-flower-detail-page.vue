@@ -169,7 +169,6 @@ async function copyToStudio() {
   flex-direction: column;
   box-sizing: border-box;
   padding: 26rpx 26rpx calc(32rpx + env(safe-area-inset-bottom));
-  background: #f6f3eb;
   color: #3f463d;
   justify-content: space-between;
 }
