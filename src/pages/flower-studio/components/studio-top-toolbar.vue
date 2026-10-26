@@ -10,12 +10,18 @@ const { pageReady } = storeToRefs(useFlowerStudioStore())
 
 <template>
   <view class="studio-navigation" :style="{ top: `${navigationTop}px`, height: `${navigationHeight}px` }">
-    <button class="studio-works-link" :disabled="!pageReady" @click="emit('works')"><view class="studio-works-icon i-carbon-folder-open" /><text>我的作品</text></button>
-    <button class="studio-today-badge" :disabled="!pageReady" @click="emit('today')"><view class="studio-today-icon i-carbon-calendar" /><text>今日花束</text></button>
+    <button class="studio-nav-note studio-works-link" :disabled="!pageReady" @click="emit('works')">
+      <view class="studio-nav-icon i-carbon-image" />
+      <text>我的作品</text>
+    </button>
+    <button class="studio-nav-note studio-today-badge" :disabled="!pageReady" @click="emit('today')">
+      <view class="studio-nav-icon i-carbon-sprout" />
+      <text>今日花束</text>
+    </button>
   </view>
   <view class="studio-page-actions-position" :style="{ top: `${actionsTop}px` }"><StudioHeader @undo="emit('undo')" @redo="emit('redo')" @reset="emit('reset')" @finish="emit('finish')" /></view>
 </template>
 
 <style scoped lang="scss">
-.studio-navigation{position:absolute;z-index:9;left:26rpx;right:26rpx;height:44px;display:flex;align-items:center;gap:20rpx}.studio-works-link,.studio-today-badge{position:relative;z-index:1;display:flex;align-items:center;gap:8rpx;height:54rpx;margin:0;padding:0 15rpx;border-radius:999rpx;font-size:22rpx;font-weight:500;line-height:1}.studio-works-link{border:1rpx solid rgba(116,128,107,.24);background:rgba(255,253,247,.9);color:#5c6b53}.studio-today-badge{border:1rpx solid rgba(188,145,88,.3);background:rgba(255,248,232,.94);color:#92703e}.studio-works-link::after,.studio-today-badge::after{border:none}.studio-works-link[disabled],.studio-today-badge[disabled]{opacity:.45}.studio-works-icon,.studio-today-icon{width:26rpx;height:26rpx}.studio-page-actions-position{position:absolute;z-index:7;left:26rpx;right:26rpx}
+.studio-navigation{position:absolute;z-index:9;left:26rpx;right:230rpx;height:44px;display:flex;align-items:center;justify-content:flex-start;gap:14rpx}.studio-nav-note{position:relative;display:flex;align-items:center;justify-content:center;gap:8rpx;height:58rpx;margin:0;padding:0 15rpx;border:1rpx solid rgba(105,87,67,.24);border-radius:9rpx 14rpx 8rpx 12rpx;background:rgba(255,253,247,.72);box-shadow:2rpx 3rpx 0 rgba(105,87,67,.07);color:#62594d;font-size:21rpx;font-weight:500;line-height:1;white-space:nowrap}.studio-nav-note::before{position:absolute;right:12rpx;bottom:5rpx;left:12rpx;height:2rpx;border-radius:50%;background:rgba(127,146,116,.34);content:''}.studio-nav-note::after{border:none}.studio-nav-icon{width:24rpx;height:24rpx;flex-shrink:0;color:#75836d;transform:rotate(-3deg)}.studio-today-badge{border-radius:13rpx 8rpx 14rpx 9rpx;background:rgba(244,238,226,.8);color:#75634f}.studio-today-badge .studio-nav-icon{color:#b17d78;transform:rotate(4deg)}.studio-nav-note:active{transform:translateY(2rpx);box-shadow:1rpx 1rpx 0 rgba(105,87,67,.06)}.studio-nav-note[disabled]{opacity:.42}.studio-page-actions-position{position:absolute;z-index:7;left:26rpx;right:26rpx}
 </style>

@@ -116,10 +116,10 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
   flex-direction: column;
   gap: 10rpx;
   padding: 10rpx;
-  border: 2rpx solid $studio-border;
-  border-radius: 22rpx;
-  background: rgba(255, 253, 247, .97);
-  box-shadow: 0 10rpx 30rpx rgba(63, 70, 61, .15)
+  border: 1rpx solid rgba(112, 91, 68, .2);
+  border-radius: 28rpx 28rpx 0 0;
+  background: rgba(255, 253, 247, .98);
+  box-shadow: 0 -10rpx 30rpx rgba(88, 74, 55, .075)
 }
 
 .selection-scroll {
@@ -143,8 +143,8 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
   align-items: center;
   justify-content: center;
   margin: 0;
-  border: 2rpx solid rgba(116, 128, 107, .26);
-  background: $studio-secondary;
+  border: 1rpx solid rgba(112, 91, 68, .17);
+  background: rgba(248, 243, 233, .5);
   color: $studio-ink;
   box-shadow: none
 }
@@ -161,16 +161,17 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
   flex-shrink: 0;
   gap: 8rpx;
   padding: 10rpx 14rpx 12rpx;
-  border-radius: 20rpx;
+  border-radius: 12rpx;
   font-size: 23rpx;
   line-height: 1;
 }
 
 .material-card.active,
 .instance-card.active {
-  border-color: #829477;
+  border-color: #7f9274;
   background: $studio-accent;
-  color: #3f463d
+  color: #3f463d;
+  box-shadow: inset 0 -4rpx 0 rgba(126, 145, 113, .1)
 }
 
 .material-thumbnail {
@@ -206,8 +207,8 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
   align-items: center;
   justify-content: center;
   padding: 0 8rpx;
-  border-radius: 16rpx;
-  background: #829477;
+  border-radius: 10rpx;
+  background: #7f9274;
   color: #fff;
   font-size: 18rpx;
   line-height: 1
@@ -228,7 +229,7 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
   flex-direction: column;
   gap: 3rpx;
   padding: 5rpx;
-  border-radius: 19rpx;
+  border-radius: 12rpx;
   font-size: 21rpx;
   line-height: 1
 }

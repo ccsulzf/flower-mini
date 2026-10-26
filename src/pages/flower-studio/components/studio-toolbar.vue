@@ -19,7 +19,7 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 </script>
 
 <template>
-  <view class="studio-toolbar">
+  <view class="studio-toolbar" :class="{ 'toolbar-open': activeTab }">
     <view class="toolbar-materials">
       <button
         v-for="tab in tabs" :key="tab.value" class="tool-button"
@@ -36,7 +36,13 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 
 .studio-toolbar {
   @include studio-toolbar-shell;
+  position: relative;
+  border: 1rpx solid rgba(112, 91, 68, .18);
+  border-radius: 10rpx 14rpx 0 0;
+  background: rgba(255, 253, 247, .97);
+  box-shadow: 0 -5rpx 16rpx rgba(88, 74, 55, .045);
 }
+.studio-toolbar.toolbar-open { border-top-color:transparent; border-radius:0; box-shadow:none; }
 
 .toolbar-materials {
   display: flex;
@@ -47,13 +53,16 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 
 .tool-button {
   @include studio-toolbar-button;
+  position: relative;
 }
 
 .tool-active {
-  background: $studio-accent;
-  color: #3f463d;
+  background: transparent;
+  color: #4f5b49;
   font-weight: 600;
+  box-shadow: none;
 }
+.tool-active::after { position:absolute; right:28rpx; bottom:2rpx; left:28rpx; height:4rpx; border:0; border-radius:50%; background:rgba(127,146,116,.62); content:''; }
 
 .tool-button[disabled] {
   opacity: 0.36;

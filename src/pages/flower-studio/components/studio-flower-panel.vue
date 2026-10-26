@@ -70,7 +70,7 @@ function selectGroup(group: MaterialPickerGroup) {
 
 <style scoped lang="scss">
 @use '@/styles/flower-material-panel.scss';
-.material-search { box-sizing: border-box; width: 100%; height: 68rpx; margin-bottom: 14rpx; padding: 0 22rpx; border: 1rpx solid rgba(116,128,107,.22); border-radius: 14rpx; background: #fffdf7; font-size: 25rpx; }
-.material-art { position: relative; }
-.added-badge { position: absolute; right: 4rpx; bottom: 4rpx; padding: 5rpx 9rpx; border-radius: 999rpx; background: rgba(104,122,98,.9); color: #fff; font-size: 18rpx; }
+.material-search { box-sizing:border-box; width:100%; height:68rpx; margin-bottom:14rpx; padding:0 22rpx; border:1rpx solid rgba(112,91,68,.25); border-radius:14rpx; background:rgba(255,253,247,.78); font-size:25rpx; }
+.material-art { position:relative; }
+.added-badge { position:absolute; right:4rpx; bottom:4rpx; padding:5rpx 9rpx; border-radius:10rpx; background:rgba(127,146,116,.92); color:#fff; font-size:18rpx; }
 </style>

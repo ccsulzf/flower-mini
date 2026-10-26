@@ -419,7 +419,7 @@ function closeDetail() { uni.navigateBack() }
 </script>
 
 <template>
-  <view class="flower-studio studio-light" :style="{ backgroundColor: '#f6f3eb', height: `${layout.device.windowHeight}px` }">
+  <view class="flower-studio studio-light" :style="{ height: `${layout.device.windowHeight}px` }">
     <view class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
       <view class="studio-artwork" :style="layout.workspaceStyle">
         <FlowerBoard :artwork="artwork" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" @start="startDrag" @move="moveDrag" @end="endDrag" @clear="closeFlowerTools" />
@@ -441,5 +441,5 @@ function closeDetail() { uni.navigateBack() }
 <style scoped lang="scss">
 @use '@/styles/flower-studio.scss' as *;
 @use '@/styles/flower-creation.scss';
-.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;color:$studio-ink}.studio-stage{position:absolute;left:0;right:0;z-index:5;overflow:hidden}.studio-artwork{position:absolute;transform-origin:0 0}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(17,20,15,.25);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;font-size:22rpx;color:#995c50;display:flex;gap:20rpx}
+.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:$studio-paper;color:$studio-ink}.studio-stage{position:absolute;left:24rpx;right:24rpx;z-index:5;overflow:hidden}.studio-artwork{position:absolute;z-index:1;overflow:hidden;transform-origin:0 0;outline:1rpx solid rgba(112,91,68,.22);border-radius:3rpx 7rpx 4rpx 6rpx;box-shadow:0 10rpx 24rpx rgba(88,74,55,.065)}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(53,46,38,.3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(153,92,80,.22);border-radius:14rpx;background:rgba(245,234,215,.96);box-shadow:0 6rpx 16rpx rgba(88,74,55,.055);color:#995c50;font-size:22rpx}
 </style>

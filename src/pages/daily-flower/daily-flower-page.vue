@@ -6,14 +6,14 @@ import { useDevice } from '@/hooks/useDevice'
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 
-definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花', navigationBarBackgroundColor: '#f6f3eb', backgroundColor: '#f6f3eb' } })
+definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花', navigationBarBackgroundColor: '#f8f3e9', backgroundColor: '#f8f3e9' } })
 
 const dailyFlowers = useDailyFlowerStore()
 const { deviceWidth } = useDevice()
 const artworkScale = computed(() => {
   const width = deviceWidth.value
   const rpx = width / 750
-  const cardWidth = (width - (52 + 22) * rpx) / 2 - 4 * rpx
+  const cardWidth = (width - (56 + 8 + 22) * rpx) / 2 - (4 + 24 + 2) * rpx
   return Math.max(0.1, Math.min(1, cardWidth / studioMetrics.width))
 })
 const instance = getCurrentInstance()
@@ -73,38 +73,50 @@ function openFlower(date: string) {
 <template>
   <view class="daily-page">
     <view class="daily-heading">
-      <view>
-        <text class="daily-title">
-          每日花束
+      <view class="history-filter">
+        <picker
+          mode="date"
+          :value="dailyFlowers.historyDateFilter || today"
+          :end="today"
+          :disabled="dailyFlowers.historyLoading"
+          @change="filterByDate"
+        >
+          <view class="filter-picker">
+            <view class="filter-tape" aria-hidden="true" />
+            <view class="i-carbon-calendar" />
+            <text>{{ dailyFlowers.historyDateFilter ? displayDate(dailyFlowers.historyDateFilter) : '选择日期' }}</text>
+            <view class="i-carbon-chevron-down" />
+          </view>
+        </picker>
+        <button
+          v-if="dailyFlowers.historyDateFilter"
+          class="clear-filter"
+          :disabled="dailyFlowers.historyLoading"
+          @click="clearDateFilter"
+        >
+          重置
+        </button>
+      </view>
+      <view class="heading-copy">
+        <text class="daily-kicker">
+          FLOWER JOURNAL
         </text>
         <text class="daily-subtitle">
           留住每一份花意
         </text>
       </view>
-    </view>
-
-    <view class="history-filter">
-      <picker
-        mode="date"
-        :value="dailyFlowers.historyDateFilter || today"
-        :end="today"
-        :disabled="dailyFlowers.historyLoading"
-        @change="filterByDate"
-      >
-        <view class="filter-picker">
-          <view class="i-carbon-calendar" />
-          <text>{{ dailyFlowers.historyDateFilter ? displayDate(dailyFlowers.historyDateFilter) : '选择日期' }}</text>
-          <view class="i-carbon-chevron-down" />
+      <view class="heading-doodle" aria-hidden="true">
+        <view class="heading-flower">
+          <view class="heading-petal petal-a" />
+          <view class="heading-petal petal-b" />
+          <view class="heading-petal petal-c" />
+          <view class="heading-petal petal-d" />
+          <view class="heading-flower-center" />
         </view>
-      </picker>
-      <button
-        v-if="dailyFlowers.historyDateFilter"
-        class="clear-filter"
-        :disabled="dailyFlowers.historyLoading"
-        @click="clearDateFilter"
-      >
-        清除筛选
-      </button>
+        <view class="heading-stem" />
+        <view class="heading-leaf heading-leaf-left" />
+        <view class="heading-leaf heading-leaf-right" />
+      </view>
     </view>
 
     <view v-if="dailyFlowers.historyError" class="history-error">
@@ -120,10 +132,12 @@ function openFlower(date: string) {
 
     <view class="history-list">
       <view
-        v-for="flower in dailyFlowers.historyItems"
+        v-for="(flower, index) in dailyFlowers.historyItems"
         :key="flower.date"
         class="history-card"
+        :class="index % 2 ? 'history-card-even' : 'history-card-odd'"
       >
+        <view class="card-tape" aria-hidden="true" />
         <view class="history-cover">
           <FlowerArtworkPreview :daily-date="flower.date" :scale="artworkScale" />
           <view class="history-cover-hitarea" @tap="openFlower(flower.date)" />
@@ -132,6 +146,7 @@ function openFlower(date: string) {
           <text class="history-date">
             {{ displayDate(flower.date) }}
           </text>
+          <view class="history-date-line" aria-hidden="true" />
           <text class="history-description">
             {{ flower.description }}
           </text>
@@ -157,35 +172,117 @@ function openFlower(date: string) {
 
 <style scoped lang="scss">
 .daily-page {
+  position: relative;
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 30rpx 26rpx calc(36rpx + env(safe-area-inset-bottom));
-  background: #f6f3eb;
-  color: #3f463d;
+  padding: 34rpx 28rpx calc(42rpx + env(safe-area-inset-bottom));
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(193, 171, 139, .07) 0 2rpx, transparent 3rpx),
+    radial-gradient(circle at 72% 28%, rgba(193, 171, 139, .05) 0 2rpx, transparent 3rpx),
+    #f8f3e9;
+  background-size: 34rpx 34rpx, 46rpx 46rpx, auto;
+  color: #514a40;
 }
 
 .daily-heading {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 18rpx;
-  margin-bottom: 28rpx;
+  gap: 16rpx;
+  min-height: 82rpx;
+  margin-bottom: 24rpx;
+  padding: 10rpx 8rpx 12rpx 4rpx;
 }
 
-.daily-title,
+.daily-heading::after {
+  position: absolute;
+  right: 76rpx;
+  bottom: 0;
+  left: 6rpx;
+  height: 14rpx;
+  transform: rotate(-1deg);
+  border-top: 2rpx solid rgba(112, 91, 68, .52);
+  border-radius: 50%;
+  content: '';
+}
+
+.heading-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.daily-kicker,
 .daily-subtitle {
   display: block;
 }
 
-.daily-title {
-  font-size: 34rpx;
-  font-weight: 600;
+.daily-kicker {
+  overflow: hidden;
+  margin-bottom: 3rpx;
+  color: #a28b71;
+  font-family: Georgia, serif;
+  font-size: 15rpx;
+  letter-spacing: 2rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .daily-subtitle {
-  margin-top: 8rpx;
-  color: #7c8474;
-  font-size: 22rpx;
+  overflow: hidden;
+  color: #817667;
+  font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
+  font-size: 19rpx;
+  letter-spacing: 1rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.heading-doodle {
+  position: relative;
+  width: 62rpx;
+  height: 76rpx;
+  flex: 0 0 auto;
+  transform: rotate(7deg);
+}
+
+.heading-flower {
+  position: absolute;
+  top: 0;
+  left: 11rpx;
+  width: 42rpx;
+  height: 42rpx;
+}
+
+.heading-petal,
+.heading-flower-center {
+  position: absolute;
+  border-radius: 60% 40% 60% 40%;
+}
+
+.heading-petal {
+  width: 17rpx;
+  height: 22rpx;
+  background: rgba(213, 154, 153, .84);
+}
+
+.petal-a { top: 0; left: 13rpx; }
+.petal-b { top: 10rpx; right: 0; transform: rotate(90deg); }
+.petal-c { bottom: 0; left: 13rpx; transform: rotate(180deg); }
+.petal-d { top: 10rpx; left: 0; transform: rotate(-90deg); }
+.heading-flower-center { top: 15rpx; left: 16rpx; width: 10rpx; height: 10rpx; background: #d6ad58; }
+.heading-stem { position: absolute; top: 36rpx; left: 32rpx; width: 2rpx; height: 39rpx; transform: rotate(9deg); background: #829178; }
+.heading-leaf { position: absolute; width: 20rpx; height: 10rpx; border-radius: 100% 0 100% 0; background: rgba(137, 156, 125, .9); }
+.heading-leaf-left { top: 50rpx; left: 14rpx; transform: rotate(28deg); }
+.heading-leaf-right { top: 59rpx; right: 8rpx; transform: rotate(-28deg) scaleX(-1); }
+
+.history-filter picker {
+  transform: rotate(-.8deg);
 }
 
 .load-more {
@@ -198,37 +295,55 @@ function openFlower(date: string) {
 
 .history-filter {
   display: flex;
+  min-width: 0;
+  flex: 0 1 auto;
   align-items: center;
-  gap: 20rpx;
-  margin-bottom: 22rpx;
+  gap: 8rpx;
 }
 
 .filter-picker {
+  position: relative;
   display: flex;
-  height: 60rpx;
+  height: 58rpx;
   align-items: center;
   gap: 10rpx;
-  padding: 0 18rpx;
-  border: 1rpx solid #e4e8dd;
-  border-radius: 999rpx;
-  background: #fffdf7;
-  color: #64715b;
-  font-size: 22rpx;
+  padding: 0 17rpx;
+  border: 2rpx solid rgba(105, 88, 68, .42);
+  border-radius: 18rpx 12rpx 20rpx 14rpx;
+  background: #f3ead8;
+  box-shadow: 5rpx 6rpx 0 rgba(105, 88, 68, .07);
+  clip-path: polygon(1% 7%, 98% 1%, 100% 91%, 96% 99%, 3% 96%, 0 12%);
+  color: #625648;
+  font-size: 20rpx;
+}
+
+.filter-tape {
+  position: absolute;
+  top: -14rpx;
+  left: 50%;
+  width: 52rpx;
+  height: 18rpx;
+  transform: translateX(-50%) rotate(3deg);
+  background: rgba(203, 210, 175, .72);
 }
 
 .filter-picker .i-carbon-calendar,
 .filter-picker .i-carbon-chevron-down {
-  color: #84927b;
-  font-size: 24rpx;
+  color: #78866f;
+  font-size: 22rpx;
 }
 
 .clear-filter {
   margin: 0;
-  padding: 0 8rpx;
+  padding: 0 2rpx;
   background: transparent;
-  color: #7c8474;
-  font-size: 22rpx;
-  line-height: 60rpx;
+  color: #7d6e5d;
+  font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
+  font-size: 19rpx;
+  line-height: 54rpx;
+  text-decoration: underline;
+  text-decoration-color: rgba(125, 110, 93, .44);
+  text-underline-offset: 7rpx;
 }
 
 .clear-filter::after {
@@ -238,21 +353,52 @@ function openFlower(date: string) {
 .history-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 22rpx;
+  gap: 28rpx 22rpx;
+  padding: 8rpx 4rpx 14rpx;
 }
 
 .history-card {
+  position: relative;
   overflow: hidden;
-  border: 2rpx solid #e4e8dd;
-  border-radius: 22rpx;
-  background: #fffdf7;
-  &:active { opacity: .85; }
+  border: 2rpx solid rgba(113, 94, 70, .38);
+  border-radius: 15rpx 23rpx 18rpx 27rpx;
+  background: rgba(255, 253, 246, .94);
+  box-shadow: 7rpx 10rpx 0 rgba(101, 83, 61, .06), 0 15rpx 28rpx rgba(88, 74, 55, .07);
+  clip-path: polygon(.7% 1.5%, 98.8% .3%, 100% 97.5%, 96.8% 100%, 1.2% 98.7%, 0 3%);
+  transition: opacity .15s ease, transform .15s ease;
+  &:active { opacity: .78; }
+}
+
+.history-card-odd { transform: rotate(-.65deg); }
+.history-card-even { transform: translateY(10rpx) rotate(.7deg); }
+.history-card-odd:active { transform: translate(2rpx, 4rpx) rotate(-.2deg); }
+.history-card-even:active { transform: translate(2rpx, 14rpx) rotate(.2deg); }
+
+.card-tape {
+  position: absolute;
+  z-index: 4;
+  top: -7rpx;
+  left: 50%;
+  width: 76rpx;
+  height: 27rpx;
+  transform: translateX(-50%) rotate(-4deg);
+  background: rgba(228, 207, 175, .76);
+  pointer-events: none;
+}
+
+.history-card-even .card-tape {
+  transform: translateX(-50%) rotate(5deg);
+  background: rgba(203, 210, 175, .76);
 }
 
 .history-cover {
   position: relative;
   height: 420rpx;
-  background: #eeeee5;
+  margin: 12rpx 12rpx 0;
+  overflow: hidden;
+  border: 1rpx solid rgba(153, 138, 113, .17);
+  border-radius: 10rpx 16rpx 12rpx 19rpx;
+  background: #f2f0e7;
 }
 
 .history-cover-hitarea {
@@ -266,22 +412,34 @@ function openFlower(date: string) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 18rpx 16rpx 16rpx;
+  padding: 18rpx 18rpx 20rpx;
 }
 
 .history-date {
-  font-size: 28rpx;
-  font-weight: 600;
+  color: #5f5345;
+  font-family: Georgia, 'Songti SC', 'STSong', serif;
+  font-size: 25rpx;
+  font-weight: 500;
+}
+
+.history-date-line {
+  width: 78%;
+  height: 9rpx;
+  margin: 7rpx 0 1rpx;
+  transform: rotate(-1deg);
+  border-top: 2rpx solid rgba(111, 91, 70, .42);
+  border-radius: 50%;
 }
 
 .history-description {
   display: -webkit-box;
   overflow: hidden;
   min-height: 60rpx;
-  margin-top: 8rpx;
-  color: #7c8474;
+  margin-top: 5rpx;
+  color: #75695b;
+  font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
   font-size: 22rpx;
-  line-height: 1.5;
+  line-height: 1.55;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
@@ -293,15 +451,22 @@ function openFlower(date: string) {
 .history-state,
 .history-empty,
 .history-error {
-  padding: 38rpx 22rpx;
-  color: #7c8474;
+  width: 82%;
+  box-sizing: border-box;
+  margin: 22rpx auto;
+  padding: 30rpx 24rpx;
+  transform: rotate(-.45deg);
+  background: rgba(245, 234, 215, .72);
+  box-shadow: 0 8rpx 20rpx rgba(92, 74, 51, .05);
+  color: #7b6f60;
+  font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
   font-size: 24rpx;
   text-align: center;
 }
 
 .history-empty {
   display: flex;
-  min-height: 300rpx;
+  min-height: 260rpx;
   align-items: center;
   justify-content: center;
   gap: 16rpx;
@@ -309,7 +474,7 @@ function openFlower(date: string) {
 }
 
 .history-empty .i-carbon-calendar {
-  color: #9aa58e;
+  color: #91a186;
   font-size: 48rpx;
 }
 
@@ -321,16 +486,23 @@ function openFlower(date: string) {
   display: block;
   margin: 18rpx auto 0;
   padding: 0 24rpx;
-  background: transparent;
-  color: #758c70;
+  border: 2rpx solid rgba(105, 88, 68, .42);
+  border-radius: 16rpx 11rpx 18rpx 13rpx;
+  background: #e3e9d7;
+  color: #625648;
   font-size: 23rpx;
 }
 
 .load-more {
   display: block;
-  margin: 24rpx auto 0;
+  margin: 30rpx auto 0;
   padding: 0 30rpx;
-  background: #fffdf7;
-  color: #64715b;
+  transform: rotate(.5deg);
+  border: 2rpx solid rgba(105, 88, 68, .42);
+  border-radius: 18rpx 12rpx 20rpx 14rpx;
+  background: #e3e9d7;
+  box-shadow: 5rpx 6rpx 0 rgba(105, 88, 68, .07);
+  color: #625648;
+  font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
 }
 </style>
