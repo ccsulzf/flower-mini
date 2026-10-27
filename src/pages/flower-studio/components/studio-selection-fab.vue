@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { MaterialInstance } from '@/models/artwork'
-import { computed } from 'vue'
+import type { MaterialGroup, MaterialInstance } from '@/models/artwork'
 import { storeToRefs } from 'pinia'
+import { computed, ref } from 'vue'
 import { useCreationArtworkStore } from '@/stores/artworkStore'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
@@ -24,6 +24,14 @@ const artwork = useCreationArtworkStore()
 const catalog = useFlowerCatalogStore()
 const { selectionMaterialId, selectedMaterialId, colorsExpanded } = storeToRefs(studio)
 const { materials } = storeToRefs(artwork)
+type SelectionGroup = 'all' | MaterialGroup
+const groups: { value: SelectionGroup, name: string }[] = [
+  { value: 'all', name: '全部' },
+  { value: 'main', name: '主花' },
+  { value: 'filler', name: '配花' },
+  { value: 'foliage', name: '叶材' },
+]
+const activeGroup = ref<SelectionGroup>('all')
 
 function thumbnail(instance: MaterialInstance) {
   return materialThumbnailSource(catalog.get(instance.materialId), {
@@ -51,9 +59,12 @@ const materialOptions = computed(() => {
   return [...grouped.values()]
 })
 const visibleMaterialOptions = computed(() => {
+  const filtered = activeGroup.value === 'all'
+    ? materialOptions.value
+    : materialOptions.value.filter(option => option.instances[0]?.group === activeGroup.value)
   if (!selectionMaterialId.value)
-    return materialOptions.value
-  return materialOptions.value.filter(option => option.id === selectionMaterialId.value)
+    return filtered
+  return filtered.filter(option => option.id === selectionMaterialId.value)
 })
 
 const selected = computed(() => selectedMaterialId.value === null ? undefined : artwork.getMaterial(selectedMaterialId.value))
@@ -72,15 +83,33 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
   if (!exiting && option.instances.length === 1)
     emit('instance', option.instances[0].id)
 }
+
+function selectGroup(group: SelectionGroup) {
+  activeGroup.value = group
+  const focused = materialOptions.value.find(option => option.id === selectionMaterialId.value)
+  if (focused && group !== 'all' && focused.instances[0]?.group !== group)
+    studio.clearSelectionFocus()
+}
 </script>
 
 <template>
   <view class="selection-panel" @tap.stop @touchmove.stop>
+    <view class="material-filters" role="tablist" aria-label="已选花材分类">
+      <button
+        v-for="group in groups" :key="group.value" class="material-filter"
+        :class="{ active: activeGroup === group.value }" role="tab"
+        :aria-selected="activeGroup === group.value" @click="selectGroup(group.value)"
+      >
+        {{ group.name }}
+      </button>
+    </view>
     <scroll-view scroll-x enable-flex class="selection-scroll" :show-scrollbar="false">
       <view class="selection-list">
         <template v-for="option in visibleMaterialOptions" :key="option.id">
-          <button class="material-card" :class="{ active: selectionMaterialId === option.id }"
-            @click="chooseMaterial(option)">
+          <button
+            class="material-card" :class="{ active: selectionMaterialId === option.id }"
+            @click="chooseMaterial(option)"
+          >
             <image v-if="materialThumbnail(option)" class="material-thumbnail" :src="materialThumbnail(option)" mode="aspectFit" />
             <view v-else class="material-thumbnail-fallback i-carbon-sprout" />
             <text class="material-name">{{ option.name }}</text>
@@ -88,9 +117,12 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
           </button>
           <view
             v-if="selectionMaterialId === option.id && option.instances.length > 1"
-            class="instance-list">
-            <button v-for="(instance, index) in option.instances" :key="instance.id" class="instance-card"
-              :class="{ active: selectedMaterialId === instance.id }" @click="emit('instance', instance.id)">
+            class="instance-list"
+          >
+            <button
+              v-for="(instance, index) in option.instances" :key="instance.id" class="instance-card"
+              :class="{ active: selectedMaterialId === instance.id }" @click="emit('instance', instance.id)"
+            >
               <image v-if="thumbnail(instance)" class="instance-thumbnail" :src="thumbnail(instance)" mode="aspectFit" />
               <text>{{ index + 1 }}</text>
             </button>
@@ -99,10 +131,12 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
       </view>
     </scroll-view>
 
-    <StudioFlowerTools v-if="selected && selectedSource" :instance="selected" :material="selectedSource"
+    <StudioFlowerTools
+      v-if="selected && selectedSource" :instance="selected" :material="selectedSource"
       :colors-open="colorsExpanded" :can-move-backward="canMoveBackward" :can-move-forward="canMoveForward"
       @color="emit('color', $event)" @toggle-colors="emit('toggleColors')" @layer="emit('layer', $event)"
-      @duplicate="emit('duplicate')" @remove="emit('remove')" @mirror="emit('mirror')" />
+      @duplicate="emit('duplicate')" @remove="emit('remove')" @mirror="emit('mirror')"
+    />
   </view>
 </template>
 
@@ -126,6 +160,49 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
 .selection-scroll {
   width: 100%;
   white-space: nowrap
+}
+
+.material-filters {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 2rpx 4rpx 4rpx;
+  border-bottom: 1rpx solid rgba(112, 91, 68, .12)
+}
+
+.material-filter {
+  position: relative;
+  min-width: 94rpx;
+  height: 52rpx;
+  margin: 0;
+  padding: 0 18rpx;
+  border: 0;
+  border-radius: 10rpx 14rpx 9rpx 13rpx;
+  background: transparent;
+  color: rgba(72, 63, 53, .72);
+  font-size: 23rpx;
+  line-height: 52rpx
+}
+
+.material-filter::after {
+  border: 0
+}
+
+.material-filter.active {
+  background: rgba(226, 231, 217, .78);
+  color: #465044;
+  font-weight: 600
+}
+
+.material-filter.active::before {
+  position: absolute;
+  right: 12rpx;
+  bottom: 5rpx;
+  left: 12rpx;
+  height: 2rpx;
+  background: rgba(112, 132, 101, .62);
+  content: '';
+  transform: rotate(-1deg)
 }
 
 .selection-list {
