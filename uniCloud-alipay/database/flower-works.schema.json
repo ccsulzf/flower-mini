@@ -88,6 +88,10 @@
     "updatedAt": {
       "bsonType": "long"
     },
+    "artworkRevision": { "bsonType": "string" },
+    "imageRevision": { "bsonType": "string" },
+    "imageFileId": { "bsonType": "string" },
+    "imagePath": { "bsonType": "string" },
     "thumbnailFileId": {
       "bsonType": "string"
     },

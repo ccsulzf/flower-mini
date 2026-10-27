@@ -3,6 +3,7 @@ interface CloudImageResult {
   height: number
   fileID: string
   cloudPath: string
+  cached?: boolean
 }
 
 interface FlowerRenderCloud {
@@ -20,7 +21,8 @@ export async function renderCloudImage(workId: string) {
   const result = await cloud.renderWork({ workId })
   if (result.width !== 1396 || result.height !== 2000 || typeof result.fileID !== 'string'
     || !result.fileID.startsWith('cloud://') || typeof result.cloudPath !== 'string'
-    || !result.cloudPath.endsWith(`/${workId}/artwork.png`))
+    || !result.cloudPath.startsWith('flower-works/') || !result.cloudPath.includes(`/${workId}/artwork-`)
+    || !result.cloudPath.endsWith('.png'))
     throw new Error('云端返回的图片无效')
   if (typeof wx === 'undefined' || !wx.getFileSystemManager || !wx.env?.USER_DATA_PATH)
     throw new Error('当前平台不支持保存云端生成的图片')

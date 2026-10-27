@@ -1,0 +1,688 @@
+{
+  "date": "2026-10-29",
+  "description": "豆沙云丘：柔粉牡丹与雾紫风信子压低成丰盈花面，荷花和奶白康乃馨在前景层层叠叠；海棠、樱花、金鱼草与红豆果填入细节，银叶菊和栀子叶托住轮廓，常春藤从一侧缓缓垂下，像晚霞落进柔软云层。",
+  "artwork": {
+    "background": {
+      "materialId": "scene-cat-peek"
+    },
+    "container": {
+      "materialId": "ribbed-ceramic-vase",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 330,
+            "y": 747
+          },
+          "angle": -46,
+          "height": 300,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 337,
+            "y": 747
+          },
+          "angle": -32,
+          "height": 343,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 344,
+            "y": 747
+          },
+          "angle": -26,
+          "height": 386,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 351,
+            "y": 747
+          },
+          "angle": -13,
+          "height": 309,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "gardenia-leaf",
+        "group": "foliage",
+        "color": "#87977d",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -7,
+          "height": 352,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "gardenia-leaf",
+        "group": "foliage",
+        "color": "#87977d",
+        "transform": {
+          "anchor": {
+            "x": 365,
+            "y": 747
+          },
+          "angle": 7,
+          "height": 395,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "gardenia-leaf",
+        "group": "foliage",
+        "color": "#87977d",
+        "transform": {
+          "anchor": {
+            "x": 372,
+            "y": 747
+          },
+          "angle": 13,
+          "height": 318,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 334,
+            "y": 747
+          },
+          "angle": 26,
+          "height": 361,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 341,
+            "y": 747
+          },
+          "angle": 32,
+          "height": 404,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 46,
+          "height": 327,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "crabapple-blossom",
+        "group": "filler",
+        "color": "#e6c2c7",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -46,
+          "height": 285,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "crabapple-blossom",
+        "group": "filler",
+        "color": "#e6c2c7",
+        "transform": {
+          "anchor": {
+            "x": 362,
+            "y": 747
+          },
+          "angle": -35,
+          "height": 322,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "crabapple-blossom",
+        "group": "filler",
+        "color": "#e6c2c7",
+        "transform": {
+          "anchor": {
+            "x": 369,
+            "y": 747
+          },
+          "angle": -32,
+          "height": 359,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "crabapple-blossom",
+        "group": "filler",
+        "color": "#e6c2c7",
+        "transform": {
+          "anchor": {
+            "x": 331,
+            "y": 747
+          },
+          "angle": -22,
+          "height": 396,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "cherry-blossom",
+        "group": "filler",
+        "color": "#eee5dc",
+        "transform": {
+          "anchor": {
+            "x": 338,
+            "y": 747
+          },
+          "angle": -19,
+          "height": 298,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "cherry-blossom",
+        "group": "filler",
+        "color": "#eee5dc",
+        "transform": {
+          "anchor": {
+            "x": 345,
+            "y": 747
+          },
+          "angle": -8,
+          "height": 335,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "cherry-blossom",
+        "group": "filler",
+        "color": "#eee5dc",
+        "transform": {
+          "anchor": {
+            "x": 352,
+            "y": 747
+          },
+          "angle": -5,
+          "height": 372,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "snapdragon",
+        "group": "filler",
+        "color": "#dfa8b1",
+        "transform": {
+          "anchor": {
+            "x": 359,
+            "y": 747
+          },
+          "angle": 5,
+          "height": 409,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "snapdragon",
+        "group": "filler",
+        "color": "#dfa8b1",
+        "transform": {
+          "anchor": {
+            "x": 366,
+            "y": 747
+          },
+          "angle": 8,
+          "height": 311,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "snapdragon",
+        "group": "filler",
+        "color": "#dfa8b1",
+        "transform": {
+          "anchor": {
+            "x": 373,
+            "y": 747
+          },
+          "angle": 19,
+          "height": 348,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "snapdragon",
+        "group": "filler",
+        "color": "#dfa8b1",
+        "transform": {
+          "anchor": {
+            "x": 335,
+            "y": 747
+          },
+          "angle": 22,
+          "height": 385,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "hypericum",
+        "group": "filler",
+        "color": "#cfa0a4",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 32,
+          "height": 287,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "hypericum",
+        "group": "filler",
+        "color": "#cfa0a4",
+        "transform": {
+          "anchor": {
+            "x": 349,
+            "y": 747
+          },
+          "angle": 35,
+          "height": 324,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "hypericum",
+        "group": "filler",
+        "color": "#cfa0a4",
+        "transform": {
+          "anchor": {
+            "x": 356,
+            "y": 747
+          },
+          "angle": 46,
+          "height": 361,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 363,
+            "y": 747
+          },
+          "angle": -46,
+          "height": 245,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 370,
+            "y": 747
+          },
+          "angle": -37,
+          "height": 276,
+          "scale": 1.09,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 332,
+            "y": 747
+          },
+          "angle": -36,
+          "height": 307,
+          "scale": 1.14,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -26,
+          "height": 338,
+          "scale": 1.19,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -25,
+          "height": 369,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "hyacinth",
+        "group": "main",
+        "color": "#b5a4c8",
+        "transform": {
+          "anchor": {
+            "x": 353,
+            "y": 747
+          },
+          "angle": -16,
+          "height": 265,
+          "scale": 1.09,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "hyacinth",
+        "group": "main",
+        "color": "#b5a4c8",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -15,
+          "height": 296,
+          "scale": 1.14,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "hyacinth",
+        "group": "main",
+        "color": "#b5a4c8",
+        "transform": {
+          "anchor": {
+            "x": 367,
+            "y": 747
+          },
+          "angle": -6,
+          "height": 327,
+          "scale": 1.19,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "hyacinth",
+        "group": "main",
+        "color": "#b5a4c8",
+        "transform": {
+          "anchor": {
+            "x": 374,
+            "y": 747
+          },
+          "angle": -5,
+          "height": 358,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "hyacinth",
+        "group": "main",
+        "color": "#b5a4c8",
+        "transform": {
+          "anchor": {
+            "x": 336,
+            "y": 747
+          },
+          "angle": 5,
+          "height": 254,
+          "scale": 1.09,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "lotus",
+        "group": "main",
+        "color": "#ece3d8",
+        "transform": {
+          "anchor": {
+            "x": 343,
+            "y": 747
+          },
+          "angle": 6,
+          "height": 285,
+          "scale": 1.14,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "lotus",
+        "group": "main",
+        "color": "#ece3d8",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 15,
+          "height": 316,
+          "scale": 1.19,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "lotus",
+        "group": "main",
+        "color": "#ece3d8",
+        "transform": {
+          "anchor": {
+            "x": 357,
+            "y": 747
+          },
+          "angle": 16,
+          "height": 347,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "lotus",
+        "group": "main",
+        "color": "#ece3d8",
+        "transform": {
+          "anchor": {
+            "x": 364,
+            "y": 747
+          },
+          "angle": 25,
+          "height": 378,
+          "scale": 1.09,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "carnation",
+        "group": "main",
+        "color": "#eee5d7",
+        "transform": {
+          "anchor": {
+            "x": 371,
+            "y": 747
+          },
+          "angle": 26,
+          "height": 274,
+          "scale": 1.14,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "carnation",
+        "group": "main",
+        "color": "#eee5d7",
+        "transform": {
+          "anchor": {
+            "x": 333,
+            "y": 747
+          },
+          "angle": 36,
+          "height": 305,
+          "scale": 1.19,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "carnation",
+        "group": "main",
+        "color": "#eee5d7",
+        "transform": {
+          "anchor": {
+            "x": 340,
+            "y": 747
+          },
+          "angle": 37,
+          "height": 336,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "carnation",
+        "group": "main",
+        "color": "#eee5d7",
+        "transform": {
+          "anchor": {
+            "x": 347,
+            "y": 747
+          },
+          "angle": 46,
+          "height": 367,
+          "scale": 1.09,
+          "mirrored": true
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}

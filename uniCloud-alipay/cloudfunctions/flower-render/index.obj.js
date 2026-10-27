@@ -326,13 +326,30 @@ module.exports = {
         const work = query.data?.[0];
         if (!work)
             throw { errCode: 'WORK_NOT_FOUND', errMsg: '作品不存在或已删除' };
+        if (work.imageRevision === work.artworkRevision && typeof work.imageFileId === 'string'
+            && work.imageFileId.startsWith('cloud://') && typeof work.imagePath === 'string') {
+            return { width: 1396, height: 2000, fileID: work.imageFileId, cloudPath: work.imagePath,
+                cached: true, prepareMs: 0, renderMs: 0, wasmInitMs: 0, rasterizeMs: 0, uploadMs: 0,
+                totalMs: Date.now() - startedAt };
+        }
         const prepareStartedAt = Date.now();
         const svg = await buildArtworkSvg(work.artwork);
         const prepareMs = Date.now() - prepareStartedAt;
         const owner = createHash('sha256').update(this.auth.uid).digest('hex');
-        const cloudPath = `flower-works/${owner}/${workId}/artwork.png`;
+        const revision = work.artworkRevision || createHash('sha256').update(JSON.stringify(work.artwork)).digest('hex');
+        const cloudPath = `flower-works/${owner}/${workId}/artwork-${revision}.png`;
         const result = await renderSvg(svg, cloudPath);
-        return { ...result, prepareMs, totalMs: Date.now() - startedAt };
+        const updated = await uniCloud.database().collection('flower-works').where({
+            _id: workId, user_id: this.auth.uid, updatedAt: work.updatedAt,
+        }).update({ artworkRevision: revision, imageFileId: result.fileID, imagePath: result.cloudPath, imageRevision: revision });
+        if (updated.updated !== 1) {
+            await uniCloud.deleteFile({ fileList: [result.fileID] }).catch(() => {});
+            throw { errCode: 'WORK_CHANGED', errMsg: '作品已更新，请重新生成图片' };
+        }
+        if (work.imageFileId && work.imageFileId !== result.fileID
+            && work.imagePath?.startsWith(`flower-works/${owner}/${workId}/`))
+            await uniCloud.deleteFile({ fileList: [work.imageFileId] }).catch(() => {});
+        return { ...result, cached: false, prepareMs, totalMs: Date.now() - startedAt };
     },
     async renderDailyArtwork({ artwork, date } = {}) {
         const startedAt = Date.now();

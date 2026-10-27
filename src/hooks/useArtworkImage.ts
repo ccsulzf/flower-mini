@@ -47,13 +47,15 @@ export function useArtworkImage(
     cardImagePath.value = ''
     cardImageError.value = ''
   }
-  function workIdentity() {
+  function workIdentity(overrideId?: string) {
+    if (overrideId && /^[a-f\d]{32}$/.test(overrideId))
+      return { id: overrideId }
     const identity = getWorkIdentity()
     if (!identity || !/^[a-f\d]{32}$/.test(identity.id))
       throw new Error('请先保存作品，再生成图片')
     return identity
   }
-  async function exportImage(): Promise<boolean> {
+  async function exportImage(workId?: string): Promise<boolean> {
     if (exportingImage.value)
       return false
     const epoch = generation
@@ -83,7 +85,7 @@ export function useArtworkImage(
     imagePath.value = ''
     imageError.value = ''
     try {
-      const identity = workIdentity()
+      const identity = workIdentity(workId)
       const path = await renderCloudImage(identity.id)
       if (!current()) {
         removeCachedImage(path)

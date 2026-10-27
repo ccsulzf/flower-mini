@@ -1,0 +1,688 @@
+{
+  "date": "2026-11-01",
+  "description": "初冬晨光：浅绿大花蕙兰与奶白棉花在中央铺出柔软体量，香槟风信子和洋桔梗沿两侧渐次打开；铃兰、蓝星花、黄莺草与尤加利果闪着细小亮点，富贵竹、春羽和文竹托起清新轮廓，像十一月第一束温柔晨光。",
+  "artwork": {
+    "background": {
+      "materialId": "scene-ivory-table"
+    },
+    "container": {
+      "materialId": "matte-ceramic-vase",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "lucky-bamboo",
+        "group": "foliage",
+        "color": "#b9c990",
+        "transform": {
+          "anchor": {
+            "x": 330,
+            "y": 747
+          },
+          "angle": -40,
+          "height": 345,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "lucky-bamboo",
+        "group": "foliage",
+        "color": "#b9c990",
+        "transform": {
+          "anchor": {
+            "x": 337,
+            "y": 747
+          },
+          "angle": -32,
+          "height": 385,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "lucky-bamboo",
+        "group": "foliage",
+        "color": "#b9c990",
+        "transform": {
+          "anchor": {
+            "x": 344,
+            "y": 747
+          },
+          "angle": -24,
+          "height": 390,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "lucky-bamboo",
+        "group": "foliage",
+        "color": "#b9c990",
+        "transform": {
+          "anchor": {
+            "x": 351,
+            "y": 747
+          },
+          "angle": -16,
+          "height": 430,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "philodendron",
+        "group": "foliage",
+        "color": "#91a67b",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -8,
+          "height": 435,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "philodendron",
+        "group": "foliage",
+        "color": "#91a67b",
+        "transform": {
+          "anchor": {
+            "x": 365,
+            "y": 747
+          },
+          "angle": 0,
+          "height": 475,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "philodendron",
+        "group": "foliage",
+        "color": "#91a67b",
+        "transform": {
+          "anchor": {
+            "x": 372,
+            "y": 747
+          },
+          "angle": 8,
+          "height": 438,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "asparagus-fern",
+        "group": "foliage",
+        "color": "#9daa7c",
+        "transform": {
+          "anchor": {
+            "x": 334,
+            "y": 747
+          },
+          "angle": 16,
+          "height": 436,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "asparagus-fern",
+        "group": "foliage",
+        "color": "#9daa7c",
+        "transform": {
+          "anchor": {
+            "x": 341,
+            "y": 747
+          },
+          "angle": 24,
+          "height": 399,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "asparagus-fern",
+        "group": "foliage",
+        "color": "#9daa7c",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 32,
+          "height": 397,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "asparagus-fern",
+        "group": "foliage",
+        "color": "#9daa7c",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 40,
+          "height": 360,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "lily-of-the-valley",
+        "group": "filler",
+        "color": "#f1ecdf",
+        "transform": {
+          "anchor": {
+            "x": 362,
+            "y": 747
+          },
+          "angle": -40,
+          "height": 325,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "lily-of-the-valley",
+        "group": "filler",
+        "color": "#f1ecdf",
+        "transform": {
+          "anchor": {
+            "x": 369,
+            "y": 747
+          },
+          "angle": -34,
+          "height": 360,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "lily-of-the-valley",
+        "group": "filler",
+        "color": "#f1ecdf",
+        "transform": {
+          "anchor": {
+            "x": 331,
+            "y": 747
+          },
+          "angle": -28,
+          "height": 360,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "lily-of-the-valley",
+        "group": "filler",
+        "color": "#f1ecdf",
+        "transform": {
+          "anchor": {
+            "x": 338,
+            "y": 747
+          },
+          "angle": -22,
+          "height": 395,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "blue-star",
+        "group": "filler",
+        "color": "#b7cdd6",
+        "transform": {
+          "anchor": {
+            "x": 345,
+            "y": 747
+          },
+          "angle": -15,
+          "height": 396,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "blue-star",
+        "group": "filler",
+        "color": "#b7cdd6",
+        "transform": {
+          "anchor": {
+            "x": 352,
+            "y": 747
+          },
+          "angle": -9,
+          "height": 431,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "blue-star",
+        "group": "filler",
+        "color": "#b7cdd6",
+        "transform": {
+          "anchor": {
+            "x": 359,
+            "y": 747
+          },
+          "angle": -3,
+          "height": 431,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#e5cd7a",
+        "transform": {
+          "anchor": {
+            "x": 366,
+            "y": 747
+          },
+          "angle": 3,
+          "height": 450,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#e5cd7a",
+        "transform": {
+          "anchor": {
+            "x": 373,
+            "y": 747
+          },
+          "angle": 9,
+          "height": 418,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#e5cd7a",
+        "transform": {
+          "anchor": {
+            "x": 335,
+            "y": 747
+          },
+          "angle": 15,
+          "height": 421,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "eucalyptus-pods",
+        "group": "filler",
+        "color": "#b7b8a9",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 22,
+          "height": 388,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "eucalyptus-pods",
+        "group": "filler",
+        "color": "#b7b8a9",
+        "transform": {
+          "anchor": {
+            "x": 349,
+            "y": 747
+          },
+          "angle": 28,
+          "height": 391,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "eucalyptus-pods",
+        "group": "filler",
+        "color": "#b7b8a9",
+        "transform": {
+          "anchor": {
+            "x": 356,
+            "y": 747
+          },
+          "angle": 34,
+          "height": 359,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "eucalyptus-pods",
+        "group": "filler",
+        "color": "#b7b8a9",
+        "transform": {
+          "anchor": {
+            "x": 363,
+            "y": 747
+          },
+          "angle": 40,
+          "height": 327,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 370,
+            "y": 747
+          },
+          "angle": -40,
+          "height": 285,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 332,
+            "y": 747
+          },
+          "angle": -35,
+          "height": 317,
+          "scale": 1.09,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -30,
+          "height": 314,
+          "scale": 1.14,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -25,
+          "height": 346,
+          "scale": 1.19,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 353,
+            "y": 747
+          },
+          "angle": -20,
+          "height": 344,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "cotton",
+        "group": "main",
+        "color": "#f0e9da",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -15,
+          "height": 376,
+          "scale": 1.09,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "cotton",
+        "group": "main",
+        "color": "#f0e9da",
+        "transform": {
+          "anchor": {
+            "x": 367,
+            "y": 747
+          },
+          "angle": -10,
+          "height": 373,
+          "scale": 1.14,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "cotton",
+        "group": "main",
+        "color": "#f0e9da",
+        "transform": {
+          "anchor": {
+            "x": 374,
+            "y": 747
+          },
+          "angle": -5,
+          "height": 405,
+          "scale": 1.19,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "cotton",
+        "group": "main",
+        "color": "#f0e9da",
+        "transform": {
+          "anchor": {
+            "x": 336,
+            "y": 747
+          },
+          "angle": 0,
+          "height": 402,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "hyacinth",
+        "group": "main",
+        "color": "#eee8da",
+        "transform": {
+          "anchor": {
+            "x": 343,
+            "y": 747
+          },
+          "angle": 5,
+          "height": 408,
+          "scale": 1.09,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "hyacinth",
+        "group": "main",
+        "color": "#eee8da",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 10,
+          "height": 379,
+          "scale": 1.14,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "hyacinth",
+        "group": "main",
+        "color": "#eee8da",
+        "transform": {
+          "anchor": {
+            "x": 357,
+            "y": 747
+          },
+          "angle": 15,
+          "height": 385,
+          "scale": 1.19,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "hyacinth",
+        "group": "main",
+        "color": "#eee8da",
+        "transform": {
+          "anchor": {
+            "x": 364,
+            "y": 747
+          },
+          "angle": 20,
+          "height": 356,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#efe8da",
+        "transform": {
+          "anchor": {
+            "x": 371,
+            "y": 747
+          },
+          "angle": 25,
+          "height": 326,
+          "scale": 1.09,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#efe8da",
+        "transform": {
+          "anchor": {
+            "x": 333,
+            "y": 747
+          },
+          "angle": 30,
+          "height": 332,
+          "scale": 1.14,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#efe8da",
+        "transform": {
+          "anchor": {
+            "x": 340,
+            "y": 747
+          },
+          "angle": 35,
+          "height": 303,
+          "scale": 1.19,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#efe8da",
+        "transform": {
+          "anchor": {
+            "x": 347,
+            "y": 747
+          },
+          "angle": 40,
+          "height": 309,
+          "scale": 1.04,
+          "mirrored": false
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}

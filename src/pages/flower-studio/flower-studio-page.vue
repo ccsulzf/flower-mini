@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { SavedFlowerWork } from '@/models/flower-creation'
 import type { StudioTab } from './studio-types'
 import { onHide, onLoad, onShow, onUnload } from '@dcloudio/uni-app'
 import { storeToRefs } from 'pinia'
@@ -55,6 +56,8 @@ const {
   redo,
 } = selectionActions
 const detailId = ref('')
+const completionState = ref<'idle' | 'saving' | 'generating' | 'ready' | 'failed'>('idle')
+const completedWork = ref<SavedFlowerWork>()
 let applying = false
 let alive = true
 let sessionVersion = 0
@@ -293,36 +296,84 @@ async function saveCurrentWork() {
 }
 
 async function finish() {
-  if (finishing.value || pendingMaterialId.value || needsPreparation.value)
+  if (finishing.value || completionState.value !== 'idle' || pendingMaterialId.value || needsPreparation.value)
     return
   endDrag(true)
   studio.closePanel()
   studio.clearSelection()
   session.flushDraft()
   finishing.value = true
+  completionState.value = 'saving'
   try {
     const work = await saveCurrentWork()
     if (!work || !alive)
       return
-    await new Promise<void>((resolve, reject) => uni.navigateTo({ url: `/pages/flower-detail/flower-detail-page?workId=${work.id}`, success: () => resolve(), fail: reject }))
-    if (!alive)
-      return
-    applying = true
-    const cleared = session.saved(work)
-    if (!cleared)
-      notify(storageError.value || '作品已保存，但本地草稿清理失败')
-    detailId.value = ''
-    images.invalidate()
-    await initializeDefaultArtwork(true)
+    completedWork.value = work
+    completionState.value = 'generating'
+    if (await images.exportImage(work.id))
+      completionState.value = 'ready'
+    else
+      completionState.value = 'failed'
   }
   catch (error) {
-    if (alive)
+    if (alive) {
+      completionState.value = 'idle'
       notify(creationFailure(error))
+    }
   }
   finally {
     applying = false
     finishing.value = false
   }
+}
+
+async function retryCompletedImage() {
+  if (!completedWork.value || finishing.value)
+    return
+  finishing.value = true
+  completionState.value = 'generating'
+  try {
+    completionState.value = await images.exportImage(completedWork.value.id) ? 'ready' : 'failed'
+  }
+  finally {
+    finishing.value = false
+  }
+}
+
+async function resetAfterCompletion() {
+  const work = completedWork.value
+  if (!work)
+    return
+  applying = true
+  try {
+    if (!session.saved(work))
+      notify(storageError.value || '作品已保存，但本地草稿清理失败')
+    detailId.value = ''
+    completedWork.value = undefined
+    completionState.value = 'idle'
+    images.invalidate()
+    await initializeDefaultArtwork(true)
+  }
+  finally {
+    applying = false
+  }
+}
+
+async function closeCompletion() {
+  await resetAfterCompletion()
+}
+
+async function shareCompleted() {
+  images.shareImage()
+  await resetAfterCompletion()
+}
+
+async function makeCompletedCard() {
+  const workId = completedWork.value?.id
+  if (!workId)
+    return
+  await resetAfterCompletion()
+  uni.navigateTo({ url: `/pages/flower-card/flower-card-page?workId=${workId}` })
 }
 
 async function resetWorkspaceAfterLeave() {
@@ -342,7 +393,8 @@ function requestLeave(leave: () => void) {
   if (finishing.value)
     return
   endDrag(true)
-  const meaningful = Boolean(pendingMaterialId.value || session.hasUnsavedChanges.value || materials.value.length || session.card.value.blessing || session.card.value.signature || session.workId.value)
+  const isNewWorkWithContent = !session.workId.value && Boolean(materials.value.length || session.card.value.blessing || session.card.value.signature)
+  const meaningful = Boolean(pendingMaterialId.value || session.hasUnsavedChanges.value || isNewWorkWithContent)
   if (!meaningful) {
     session.flushDraft()
     leave()
@@ -455,6 +507,37 @@ function closeDetail() { uni.navigateBack() }
     <StudioTopToolbar :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
     <view v-if="storageError && !pendingDraft && !startupError" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }"><text>{{ storageError }}</text><text v-if="draftReadFailed" @click="retryLocalDraft">重新读取</text><text @click="endCreation">重新开始</text></view>
     <StudioMaterialPrepareModal v-if="needsPreparation" :percent="preparePercent" :message="prepareMessage" :error="prepareError" @retry="retryMaterialPreparation" />
+    <view v-if="completionState !== 'idle'" class="creation-overlay completion-overlay" @click="completionState === 'ready' && closeCompletion()" @touchmove.stop.prevent>
+      <view class="completion-sheet" @click.stop>
+        <template v-if="completionState === 'saving' || completionState === 'generating'">
+          <view class="completion-bloom" aria-hidden="true">✿</view>
+          <text class="completion-title">{{ completionState === 'saving' ? '正在收好这束花…' : '正在制作作品图片…' }}</text>
+          <text class="completion-note">{{ completionState === 'saving' ? '正在保存作品' : '作品已保存，请稍候' }}</text>
+        </template>
+        <template v-else-if="completionState === 'failed'">
+          <view class="completion-bloom completion-bloom-still" aria-hidden="true">✿</view>
+          <text class="completion-title">图片还没有准备好</text>
+          <text class="completion-note">{{ images.imageError.value || '作品已保存，请重试生成图片' }}</text>
+          <view class="completion-actions">
+            <button class="completion-primary" @click="retryCompletedImage">重新生成</button>
+          </view>
+        </template>
+        <template v-else>
+          <button class="completion-close" aria-label="关闭完成作品弹窗" @click="closeCompletion">×</button>
+          <view class="completion-kicker">MY FLOWER</view>
+          <text class="completion-title">这束花已经完成</text>
+          <text class="completion-note">可以分享作品，也可以把它做成贺卡</text>
+          <image
+            v-if="images.imagePath.value" class="completion-image" :src="images.imagePath.value"
+            mode="aspectFit" @click="images.previewImage()"
+          />
+          <view class="completion-actions">
+            <button class="completion-secondary" @click="shareCompleted"><view class="i-carbon-share" />分享图片</button>
+            <button class="completion-primary" @click="makeCompletedCard"><view class="i-carbon-image" />制作贺卡</button>
+          </view>
+        </template>
+      </view>
+    </view>
     <view v-if="startupError" class="creation-overlay" @touchmove.stop.prevent><view class="creation-modal"><view class="creation-sheet"><view class="creation-title">暂时无法打开</view><view class="creation-error">{{ startupError }}</view><view class="creation-actions"><button v-if="detailId" class="creation-button" @click="closeDetail">返回作品列表</button><button v-else-if="initialized" class="creation-button" @click="endCreation">重新开始</button><button class="creation-button creation-primary" @click="retryStartup">重试</button></view></view></view></view>
   </view>
 </template>
@@ -463,4 +546,5 @@ function closeDetail() { uni.navigateBack() }
 @use '@/styles/flower-studio.scss' as *;
 @use '@/styles/flower-creation.scss';
 .flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:radial-gradient(circle at 13% 18%,rgba(139,121,94,.045) 0 2rpx,transparent 3rpx),radial-gradient(circle at 81% 70%,rgba(139,121,94,.035) 0 2rpx,transparent 3rpx),$studio-paper;background-size:42rpx 42rpx,54rpx 54rpx,auto;color:$studio-ink}.studio-stage{position:absolute;left:38rpx;right:38rpx;z-index:5;overflow:visible}.studio-artwork{position:absolute;z-index:1;overflow:hidden;transform-origin:0 0;outline:1rpx solid rgba(102,84,63,.2);border-radius:2rpx 5rpx 3rpx 4rpx;background:#f7f4ec;box-shadow:5rpx 7rpx 0 rgba(195,177,148,.2),0 14rpx 28rpx rgba(88,74,55,.075)}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(53,46,38,.3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(153,92,80,.22);border-radius:14rpx;background:rgba(245,234,215,.96);box-shadow:0 6rpx 16rpx rgba(88,74,55,.055);color:#995c50;font-size:22rpx}
+.completion-overlay{z-index:30;padding:40rpx;background:rgba(35,41,34,.58)}.completion-sheet{position:relative;display:flex;width:100%;max-width:660rpx;max-height:94vh;overflow:auto;box-sizing:border-box;flex-direction:column;align-items:center;padding:34rpx 28rpx 28rpx;border:1rpx solid #e7e2d5;border-radius:30rpx;background:#fffdf7;box-shadow:0 20rpx 80rpx rgba(30,38,29,.2);text-align:center}.completion-bloom{color:#8b9b78;font-size:72rpx;line-height:1;animation:completion-bloom 1.6s ease-in-out infinite}.completion-bloom-still{animation:none}.completion-kicker{color:#849c81;font-size:19rpx;letter-spacing:5rpx}.completion-title{margin-top:8rpx;color:#3f463d;font-family:STKaiti,KaiTi,serif;font-size:36rpx;font-weight:650}.completion-note{margin-top:8rpx;color:#818779;font-size:23rpx;line-height:1.6}.completion-image{display:block;width:100%;height:620rpx;margin-top:18rpx;border-radius:18rpx;background:#f2f0e9}.completion-actions{display:flex;width:100%;gap:16rpx;margin-top:20rpx}.completion-actions button{display:flex;flex:1;align-items:center;justify-content:center;gap:10rpx;margin:0;height:84rpx;border-radius:44rpx;font-size:25rpx}.completion-actions button::after,.completion-close::after{border:0}.completion-primary{background:#758c70;color:#fffdf7}.completion-secondary{border:1rpx solid #dcded3;background:#fffdf7;color:#58624f}.completion-close{position:absolute;top:14rpx;right:16rpx;width:56rpx;height:56rpx;margin:0;padding:0;border:0;border-radius:50%;background:#f1f0e9;color:#6f7964;font-size:42rpx;line-height:52rpx}.completion-close::after{border:0}@keyframes completion-bloom{0%,100%{transform:scale(.92) rotate(-5deg);opacity:.72}50%{transform:scale(1.08) rotate(5deg);opacity:1}}
 </style>

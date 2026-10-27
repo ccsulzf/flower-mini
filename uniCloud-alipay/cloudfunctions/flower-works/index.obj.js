@@ -40,6 +40,7 @@ module.exports = {
                 throw { errCode: 'WORK_NOT_FOUND', errMsg: '作品不存在或已删除' };
         }
         const now = Date.now(), owner = createHash('sha256').update(this.auth.uid).digest('hex');
+        const artworkRevision = createHash('sha256').update(JSON.stringify(artwork)).digest('hex');
         let upload;
         let cloudPath;
         if (buffer) {
@@ -48,7 +49,7 @@ module.exports = {
             if (!upload.fileID)
                 throw { errCode: 'THUMBNAIL_FAILED', errMsg: '缩略图上传失败，作品尚未保存' };
         }
-        const row = { _id: id, user_id: this.auth.uid, title, description, artwork, card, ...(upload?.fileID ? { thumbnailFileId: upload.fileID, thumbnailPath: cloudPath } : old?.thumbnailFileId ? { thumbnailFileId: old.thumbnailFileId, thumbnailPath: old.thumbnailPath } : {}), createdAt: old?.createdAt || now, updatedAt: now };
+        const row = { _id: id, user_id: this.auth.uid, title, description, artwork, card, artworkRevision, ...(old?.imageFileId ? { imageFileId: old.imageFileId, imagePath: old.imagePath, imageRevision: old.imageRevision } : {}), ...(upload?.fileID ? { thumbnailFileId: upload.fileID, thumbnailPath: cloudPath } : old?.thumbnailFileId ? { thumbnailFileId: old.thumbnailFileId, thumbnailPath: old.thumbnailPath } : {}), createdAt: old?.createdAt || now, updatedAt: now };
         try {
             if (old) {
                 const { _id, user_id, createdAt, ...changes } = row;
@@ -70,5 +71,5 @@ module.exports = {
     async remove({ id } = {}) { validate.id(id); const result = await collection().where({ _id: id, user_id: this.auth.uid }).limit(1).get(); const old = result.data[0]; if (!old)
         throw { errCode: 'WORK_NOT_FOUND', errMsg: '作品不存在或已删除' }; const removed = await collection().where({ _id: id, user_id: this.auth.uid }).remove(); if (removed.deleted !== 1)
         throw { errCode: 'WORK_NOT_FOUND', errMsg: '作品不存在或已删除' }; const owner = createHash('sha256').update(this.auth.uid).digest('hex'); if (old.thumbnailPath?.startsWith(`flower-works/${owner}/${id}/`))
-        await cleanup(old.thumbnailFileId); return { success: true }; }
+        await cleanup(old.thumbnailFileId); if (old.imagePath?.startsWith(`flower-works/${owner}/${id}/`)) await cleanup(old.imageFileId); return { success: true }; }
 };
