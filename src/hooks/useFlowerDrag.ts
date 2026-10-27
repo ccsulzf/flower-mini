@@ -26,14 +26,11 @@ export function useFlowerDrag(
   let drag: DragState | null = null
 
   function startDrag(event: StudioTouchEvent, material: MaterialInstance) {
-    if (selectedMaterialId() !== material.id) {
-      drag = null
-      onTap(material.id)
-      return
-    }
     const touch = event.touches[0]
     if (!touch)
       return
+    if (selectedMaterialId() !== material.id)
+      onTap(material.id)
     const startScreen = { x: touch.clientX, y: touch.clientY }
     drag = {
       material: { ...material, transform: { ...material.transform, anchor: { ...material.transform.anchor } } },

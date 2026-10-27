@@ -325,6 +325,19 @@ async function finish() {
   }
 }
 
+async function resetWorkspaceAfterLeave() {
+  applying = true
+  try {
+    closePanels()
+    detailId.value = ''
+    images.invalidate()
+    await initializeDefaultArtwork(true)
+  }
+  finally {
+    applying = false
+  }
+}
+
 function requestLeave(leave: () => void) {
   if (finishing.value)
     return
@@ -341,8 +354,13 @@ function requestLeave(leave: () => void) {
       if (!result.confirm) {
         sessionVersion++
         pendingMaterialId.value = null
-        if (session.discard())
+        if (!session.discard())
+          return
+        try {
+          await resetWorkspaceAfterLeave()
           leave()
+        }
+        catch (error) { if (alive) notify(creationFailure(error)) }
         return
       }
       if (pendingMaterialId.value)
@@ -351,8 +369,11 @@ function requestLeave(leave: () => void) {
       try {
         const work = await saveCurrentWork()
         if (work && alive) {
-          if (!session.saved(work))
+          if (!session.saved(work)) {
             notify(storageError.value || '作品已保存，但本地草稿清理失败')
+            return
+          }
+          await resetWorkspaceAfterLeave()
           leave()
         }
       }
@@ -441,5 +462,5 @@ function closeDetail() { uni.navigateBack() }
 <style scoped lang="scss">
 @use '@/styles/flower-studio.scss' as *;
 @use '@/styles/flower-creation.scss';
-.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:$studio-paper;color:$studio-ink}.studio-stage{position:absolute;left:24rpx;right:24rpx;z-index:5;overflow:hidden}.studio-artwork{position:absolute;z-index:1;overflow:hidden;transform-origin:0 0;outline:1rpx solid rgba(112,91,68,.22);border-radius:3rpx 7rpx 4rpx 6rpx;box-shadow:0 10rpx 24rpx rgba(88,74,55,.065)}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(53,46,38,.3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(153,92,80,.22);border-radius:14rpx;background:rgba(245,234,215,.96);box-shadow:0 6rpx 16rpx rgba(88,74,55,.055);color:#995c50;font-size:22rpx}
+.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:radial-gradient(circle at 13% 18%,rgba(139,121,94,.045) 0 2rpx,transparent 3rpx),radial-gradient(circle at 81% 70%,rgba(139,121,94,.035) 0 2rpx,transparent 3rpx),$studio-paper;background-size:42rpx 42rpx,54rpx 54rpx,auto;color:$studio-ink}.studio-stage{position:absolute;left:38rpx;right:38rpx;z-index:5;overflow:visible}.studio-artwork{position:absolute;z-index:1;overflow:hidden;transform-origin:0 0;outline:1rpx solid rgba(102,84,63,.2);border-radius:2rpx 5rpx 3rpx 4rpx;background:#f7f4ec;box-shadow:5rpx 7rpx 0 rgba(195,177,148,.2),0 14rpx 28rpx rgba(88,74,55,.075)}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(53,46,38,.3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(153,92,80,.22);border-radius:14rpx;background:rgba(245,234,215,.96);box-shadow:0 6rpx 16rpx rgba(88,74,55,.055);color:#995c50;font-size:22rpx}
 </style>

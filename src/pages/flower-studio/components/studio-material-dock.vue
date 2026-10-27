@@ -37,8 +37,7 @@ function forwardFocus(materialId: string, group: 'flowers' | 'foliage', expanded
 
 <template>
   <view v-if="activeTab" class="panel-backdrop" @click="emit('dismiss')" @touchmove.stop.prevent />
-  <view v-if="activeTab" class="drawer-bridge" :style="{ bottom: `${toolbarBottom}px`, height: `${stageBottom - toolbarBottom}px` }" />
-  <view v-if="activeTab" class="studio-options-position" :style="{ bottom: `${stageBottom}px` }">
+  <view v-if="activeTab" class="studio-options-position" :style="{ bottom: `calc(${toolbarBottom}px + 88rpx)` }">
     <StudioFlowerPanel v-if="activeTab === 'flowers'" :usage-counts="usageCounts" @close="emit('close')" @add="emit('material', $event)" />
     <StudioContainerPanel v-else-if="activeTab === 'vases'" :selected-id="container.materialId" :selected-type="container.type" :pending-id="pendingMaterialId" @close="emit('close')" @select="emit('material', $event)" />
     <StudioBackgroundPanel v-else-if="activeTab === 'backgrounds'" :selected-id="background.materialId" :pending-id="pendingMaterialId" @close="emit('close')" @select="emit('material', $event)" />
@@ -52,5 +51,5 @@ function forwardFocus(materialId: string, group: 'flowers' | 'foliage', expanded
 </template>
 
 <style scoped lang="scss">
-.panel-backdrop{position:absolute;z-index:4;top:0;right:0;bottom:0;left:0;background:rgba(75,65,52,.025)}.drawer-bridge{position:absolute;z-index:5;right:24rpx;left:24rpx;border-right:1rpx solid rgba(112,91,68,.2);border-left:1rpx solid rgba(112,91,68,.2);background:#fffdf7;pointer-events:none}.studio-options-position{position:absolute;z-index:6;left:24rpx;right:24rpx}.studio-toolbar-position{position:absolute;z-index:7;left:24rpx;right:24rpx}
+.panel-backdrop{position:absolute;z-index:4;top:0;right:0;bottom:0;left:0;background:rgba(75,65,52,.025)}.studio-options-position{position:absolute;z-index:6;right:38rpx;left:38rpx}.studio-toolbar-position{position:absolute;z-index:7;right:38rpx;left:38rpx}
 </style>

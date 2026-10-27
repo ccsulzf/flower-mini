@@ -13,6 +13,14 @@ interface MaterialPrepareProgress {
   processed: number
 }
 
+const catalogCacheKey = 'flower-material-catalog-cache'
+const catalogCheckInterval = 24 * 60 * 60 * 1000
+
+interface CatalogCache {
+  checkedAt: number
+  catalog: unknown
+}
+
 export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
   const materials = ref<UploadedMaterial[]>([])
   const prepared = ref<Record<string, CachedMaterial>>({})
@@ -53,6 +61,33 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     return prepared.value[id]
   }
 
+  function restoreFreshCatalog() {
+    try {
+      const value: unknown = uni.getStorageSync(catalogCacheKey)
+      if (!value || typeof value !== 'object')
+        return false
+      const cache = value as CatalogCache
+      if (!Number.isFinite(cache.checkedAt) || Date.now() - cache.checkedAt < 0 || Date.now() - cache.checkedAt >= catalogCheckInterval)
+        return false
+      const cachedMaterials = parseMaterialCatalog(cache.catalog)
+      if (!cachedMaterials.length || cachedMaterials.some(item => !hasMaterialFiles(item)))
+        return false
+      materials.value = cachedMaterials
+      loaded.value = true
+      return true
+    }
+    catch {
+      return false
+    }
+  }
+
+  function cacheCheckedCatalog() {
+    uni.setStorageSync(catalogCacheKey, {
+      checkedAt: Date.now(),
+      catalog: { items: materials.value },
+    } satisfies CatalogCache)
+  }
+
   function load(): Promise<void> {
     if (loadTask)
       return loadTask
@@ -78,7 +113,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     return loadTask
   }
 
-  function ensure(id: string, onAssetProcessed?: () => void): Promise<CachedMaterial> {
+  function ensure(id: string, onAssetProcessed?: () => void, verifyCachedHash = true): Promise<CachedMaterial> {
     const running = tasks.get(id)
     if (running)
       return running
@@ -94,7 +129,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
         }
         if (!record)
           throw new Error('素材不可用，请刷新目录')
-        const result = await prepareMaterial(record, onAssetProcessed)
+        const result = await prepareMaterial(record, onAssetProcessed, verifyCachedHash)
         prepared.value[id] = result.material
         downloads.value += result.downloaded
         cacheHits.value += result.cached
@@ -114,7 +149,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     return task
   }
 
-  function prepareAll(): Promise<void> {
+  function prepareAll(verifyCachedHash = true): Promise<void> {
     if (prepareTask)
       return prepareTask
     const invalid = loaded.value ? materials.value.filter(item => !get(item.id) || !hasMaterialFiles(item)) : []
@@ -139,7 +174,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
       await Promise.all(Array.from({ length: Math.min(3, queue.length) }, async () => {
         while (queue.length) {
           const item = queue.shift()!
-          try { await ensure(item.id, advance) }
+          try { await ensure(item.id, advance, verifyCachedHash) }
           catch (value) { failures.push(failure(value)) }
         }
       }))
@@ -148,6 +183,8 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
       ready.value = true
       error.value = ''
       progress.value = { ...progress.value, phase: 'complete', processed: progress.value.total }
+      if (verifyCachedHash)
+        cacheCheckedCatalog()
     })().catch((value) => {
       ready.value = false
       progress.value = { ...progress.value, phase: 'error' }
@@ -164,6 +201,11 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     prepareError.value = ''
     error.value = ''
     return prepareAll()
+  }
+
+  function preload() {
+    const restored = restoreFreshCatalog()
+    return prepareAll(!restored)
   }
 
   return {
@@ -184,7 +226,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     load,
     ensure,
     prepareAll,
-    preload: prepareAll,
+    preload,
     retryPreparation,
     get,
   }

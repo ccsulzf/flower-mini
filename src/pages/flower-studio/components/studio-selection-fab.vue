@@ -22,7 +22,7 @@ const emit = defineEmits<{
 const studio = useFlowerStudioStore()
 const artwork = useCreationArtworkStore()
 const catalog = useFlowerCatalogStore()
-const { selectionMaterialId, selectionMenuLevel, selectedMaterialId, colorsExpanded } = storeToRefs(studio)
+const { selectionMaterialId, selectedMaterialId, colorsExpanded } = storeToRefs(studio)
 const { materials } = storeToRefs(artwork)
 
 function thumbnail(instance: MaterialInstance) {
@@ -87,7 +87,7 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
             <text class="material-count">{{ option.instances.length }}</text>
           </button>
           <view
-            v-if="selectionMaterialId === option.id && selectionMenuLevel === 'material' && option.instances.length > 1"
+            v-if="selectionMaterialId === option.id && option.instances.length > 1"
             class="instance-list">
             <button v-for="(instance, index) in option.instances" :key="instance.id" class="instance-card"
               :class="{ active: selectedMaterialId === instance.id }" @click="emit('instance', instance.id)">
@@ -117,6 +117,7 @@ function chooseMaterial(option: typeof materialOptions.value[number]) {
   gap: 10rpx;
   padding: 10rpx;
   border: 1rpx solid rgba(112, 91, 68, .2);
+  border-bottom: 0;
   border-radius: 28rpx 28rpx 0 0;
   background: rgba(255, 253, 247, .98);
   box-shadow: 0 -10rpx 30rpx rgba(88, 74, 55, .075)

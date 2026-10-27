@@ -37,12 +37,16 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 .studio-toolbar {
   @include studio-toolbar-shell;
   position: relative;
-  border: 1rpx solid rgba(112, 91, 68, .18);
-  border-radius: 10rpx 14rpx 0 0;
-  background: rgba(255, 253, 247, .97);
-  box-shadow: 0 -5rpx 16rpx rgba(88, 74, 55, .045);
+  height: 88rpx;
+  padding: 10rpx 16rpx 12rpx;
+  border: 1rpx solid rgba(112, 91, 68, .19);
+  border-radius: 24rpx 19rpx 14rpx 20rpx;
+  background: rgba(255, 253, 247, .96);
+  box-shadow: 3rpx 4rpx 0 rgba(105, 88, 68, .05), 0 -4rpx 14rpx rgba(88, 74, 55, .035);
 }
-.studio-toolbar.toolbar-open { border-top-color:transparent; border-radius:0; box-shadow:none; }
+.studio-toolbar::before { position:absolute; top:5rpx; right:20rpx; left:18rpx; height:1rpx; background:rgba(112,91,68,.1); content:''; transform:rotate(-.12deg); }
+.studio-toolbar.toolbar-open { border-top-color:transparent; border-radius:0 0 14rpx 20rpx; box-shadow:3rpx 4rpx 0 rgba(105,88,68,.045); }
+.studio-toolbar.toolbar-open::before { display:none; }
 
 .toolbar-materials {
   display: flex;
@@ -54,15 +58,17 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 .tool-button {
   @include studio-toolbar-button;
   position: relative;
+  height: 60rpx;
+  border-radius: 13rpx 10rpx 14rpx 11rpx;
 }
 
 .tool-active {
-  background: transparent;
+  background: rgba(226, 233, 216, .54);
   color: #4f5b49;
   font-weight: 600;
-  box-shadow: none;
+  box-shadow: 2rpx 3rpx 0 rgba(105, 88, 68, .045);
 }
-.tool-active::after { position:absolute; right:28rpx; bottom:2rpx; left:28rpx; height:4rpx; border:0; border-radius:50%; background:rgba(127,146,116,.62); content:''; }
+.tool-active::after { position:absolute; right:24rpx; bottom:3rpx; left:27rpx; height:3rpx; border:0; border-radius:50%; background:rgba(105,126,94,.54); content:''; transform:rotate(-1.4deg); }
 
 .tool-button[disabled] {
   opacity: 0.36;
@@ -70,5 +76,9 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 
 .tool-icon {
   @include studio-toolbar-icon;
+  color: #756b5d;
+  transform: rotate(-2deg);
 }
+.tool-button:nth-child(even) .tool-icon { transform:rotate(2deg); }
+.tool-active .tool-icon { color:#63725b; }
 </style>
