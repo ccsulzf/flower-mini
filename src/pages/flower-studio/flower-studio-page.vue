@@ -524,7 +524,7 @@ function closeDetail() { uni.navigateBack() }
         </template>
         <template v-else>
           <button class="completion-close" aria-label="关闭完成作品弹窗" @click="closeCompletion">×</button>
-          <view class="completion-kicker">MY FLOWER</view>
+          <view class="completion-kicker">我的花作</view>
           <text class="completion-title">这束花已经完成</text>
           <text class="completion-note">可以分享作品，也可以把它做成贺卡</text>
           <image

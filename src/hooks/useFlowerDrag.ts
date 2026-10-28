@@ -15,6 +15,11 @@ interface DragState {
   changed: boolean
 }
 
+function snap(value: number, targets: number[], threshold: number) {
+  const target = targets.find(target => Math.abs(target - value) <= threshold)
+  return target ?? value
+}
+
 export function useFlowerDrag(
   store: ReturnType<typeof useArtworkStore>,
   layout: FlowerStudioLayout,
@@ -75,11 +80,14 @@ export function useFlowerDrag(
     const anchor = { x: anchorX, y: 747 }
     const headX = targetHead.x - anchor.x
     const headY = anchor.y - targetHead.y
+    const foliage = drag.material.group === 'foliage'
+    const angle = Math.atan2(headX, headY) * 180 / Math.PI
+    const height = Math.hypot(headX, headY)
     store.updateMaterialTransform(drag.material.id, {
       ...drag.material.transform,
       anchor,
-      angle: Math.atan2(headX, headY) * 180 / Math.PI,
-      height: Math.hypot(headX, headY),
+      angle: foliage ? snap(angle, [-45, -30, 0, 30, 45], 2.5) : angle,
+      height: foliage ? snap(height, [250, 370, 450], 7) : height,
     }, sourceMaterial, containerMaterial)
   }
 

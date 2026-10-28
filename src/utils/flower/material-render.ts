@@ -13,11 +13,25 @@ function nested(source: string, x: number, y: number, width: number, height: num
     return `<svg x="${x}" y="${y}" width="${width}" height="${height}" viewBox="${viewBox}" preserveAspectRatio="none">`
   })
 }
+
+function foliageSvg(source: string, total: number, color: string) {
+  const viewBox = source.match(/<svg\b[^>]*\bviewBox\s*=\s*["']([^"']+)["']/)?.[1]
+  const box = viewBox?.trim().split(/[\s,]+/).map(Number)
+  if (!box || box.length !== 4 || box.some(value => !Number.isFinite(value)) || box[2] <= 0 || box[3] <= 0)
+    throw new Error('叶材素材 viewBox 无效')
+  const naturalHeight = box[3] * 110 / box[2]
+  const extension = total > naturalHeight
+    ? `<path d="M55 ${naturalHeight}L55 ${total}" fill="none" stroke="${color}" stroke-width="1.6" stroke-linecap="round" opacity=".82"/>`
+    : ''
+  // 叶冠保持素材的天然尺寸：变短时从瓶口端裁去，变长时只延长底部枝条。
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${extension}${nested(source, 0, 0, 110, naturalHeight)}</svg>`
+}
+
 export function cloudPlantSvg(material: CachedMaterial, instance: Pick<MaterialInstance, 'color' | 'transform'>) {
   if (material.category !== 'flower' || !material.geometry) throw new Error('花材几何信息缺失')
   const total = instance.transform.height + 55
   const safeColor = /^#[\da-f]{6}$/i.test(instance.color) ? instance.color : material.colors[0].value
-  if (material.group === 'foliage') return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${nested(material.sources.foliage!.replace(/__COLOR__/g, safeColor), 0, 0, 110, total)}</svg>`
+  if (material.group === 'foliage') return foliageSvg(material.sources.foliage!.replace(/__COLOR__/g, safeColor), total, safeColor)
   const geometry = material.geometry as FlowerGeometry
   const headHeight = geometry.flowerHeight * 110 / geometry.width
   const connection = geometry.connectionY * 110 / geometry.width

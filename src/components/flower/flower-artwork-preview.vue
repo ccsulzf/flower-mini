@@ -6,7 +6,13 @@ import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import FlowerArtworkRenderer from './flower-artwork-renderer.vue'
 
-const props = defineProps<{ artwork?: Artwork, workId?: string, dailyDate?: string, scale: number }>()
+const props = defineProps<{
+  artwork?: Artwork
+  workId?: string
+  dailyDate?: string
+  scale: number
+  hideBackground?: boolean
+}>()
 const catalog = useFlowerCatalogStore()
 const dailyFlowers = useDailyFlowerStore()
 const works = useFlowerWorksStore()
@@ -62,6 +68,7 @@ watch(() => [JSON.stringify(props.artwork), props.workId, props.dailyDate], () =
       :style="{ transform: `translate(-50%, -50%) scale(${scale})` }"
       :artwork="artwork"
       :prepared-materials="catalog.prepared"
+      :hide-background="hideBackground"
     />
     <view v-else class="artwork-preview-state">
       <text>{{ loading ? '正在准备作品…' : error }}</text>

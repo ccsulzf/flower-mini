@@ -212,7 +212,17 @@ async function buildArtworkSvg(artwork) {
         const scaleX = mirrored ? -scale : scale;
         if (material.group === 'foliage') {
             const source = material.sources.foliage.replace(/__COLOR__/g, instance.color);
-            renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${nested(source, 0, 0, 110, total)}</g>`);
+            const viewBox = source.match(/<svg\b[^>]*\bviewBox\s*=\s*["']([^"']+)["']/)?.[1];
+            const box = viewBox?.trim().split(/[\s,]+/).map(Number);
+            if (!box || box.length !== 4 || box.some(value => !Number.isFinite(value)) || box[2] <= 0 || box[3] <= 0)
+                throw new Error('叶材素材 viewBox 无效');
+            const naturalHeight = box[3] * 110 / box[2];
+            const extension = total > naturalHeight
+                ? `<path d="M55 ${naturalHeight}L55 ${total}" fill="none" stroke="${instance.color}" stroke-width="1.6" stroke-linecap="round" opacity=".82"/>`
+                : '';
+            const foliage = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${extension}${nested(source, 0, 0, 110, naturalHeight)}</svg>`;
+            const content = foliage.replace(/^<svg\b[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+            renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${content}</g>`);
             continue;
         }
         const flower = colorizeMaterialSvg(material.sources.flower, instance.color);

@@ -85,7 +85,7 @@ function remove(work: SavedFlowerWorkSummary) {
   <view class="works-page">
     <view class="works-heading">
       <view class="works-heading-copy">
-        <text class="works-kicker">MY FLOWER JOURNAL</text>
+        <text class="works-kicker">我的花作手记</text>
         <text class="works-subtitle">留住每一份花意</text>
       </view>
       <view class="heading-sprig" aria-hidden="true">

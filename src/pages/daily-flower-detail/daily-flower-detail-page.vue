@@ -52,11 +52,6 @@ async function loadFlower(refresh = false) {
   }
 }
 
-function displayDate(value: string) {
-  const [year, month, day] = value.split('-')
-  return `${year}年${Number(month)}月${Number(day)}日`
-}
-
 function makeCard() {
   if (!flower.value)
     return
@@ -133,21 +128,6 @@ async function copyToStudio() {
       </button>
     </view>
     <template v-else-if="flower">
-      <view class="journal-date-row">
-        <view class="journal-date-note">
-          <text>{{ displayDate(flower.date) }}</text>
-          <view class="journal-date-line" />
-        </view>
-        <view class="journal-flower-doodle" aria-hidden="true">
-          <view class="doodle-petal petal-top" />
-          <view class="doodle-petal petal-right" />
-          <view class="doodle-petal petal-bottom" />
-          <view class="doodle-petal petal-left" />
-          <view class="doodle-center" />
-          <view class="doodle-stem" />
-        </view>
-      </view>
-
       <view class="artwork-paper">
         <view class="paper-tape paper-tape-left" />
         <view class="paper-tape paper-tape-right" />
@@ -234,74 +214,6 @@ async function copyToStudio() {
   background-size: 34rpx 34rpx, 46rpx 46rpx, auto;
   color: #514a40;
 }
-
-.journal-date-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 22rpx;
-  min-height: 116rpx;
-  padding: 0 24rpx 12rpx;
-}
-
-.journal-date-note {
-  position: relative;
-  min-width: 270rpx;
-  box-sizing: border-box;
-  padding: 24rpx 28rpx 20rpx;
-  transform: rotate(-1.6deg);
-  background: #f2e8d5;
-  box-shadow: 0 8rpx 18rpx rgba(100, 83, 62, .08);
-  color: #625648;
-  font-family: Georgia, 'Songti SC', 'STSong', serif;
-  font-size: 25rpx;
-  text-align: center;
-}
-
-.journal-date-note::before {
-  position: absolute;
-  top: -12rpx;
-  left: 40rpx;
-  width: 92rpx;
-  height: 28rpx;
-  transform: rotate(-5deg);
-  background: rgba(215, 194, 158, .58);
-  content: '';
-}
-
-.journal-date-line {
-  width: 84%;
-  height: 2rpx;
-  margin: 12rpx auto 0;
-  transform: rotate(-1deg);
-  background: rgba(98, 86, 72, .66);
-}
-
-.journal-flower-doodle {
-  position: relative;
-  width: 58rpx;
-  height: 78rpx;
-  transform: rotate(8deg);
-}
-
-.doodle-petal,
-.doodle-center {
-  position: absolute;
-  border-radius: 60% 40% 60% 40%;
-}
-
-.doodle-petal {
-  width: 20rpx;
-  height: 25rpx;
-  background: #d59a99;
-}
-
-.petal-top { top: 2rpx; left: 20rpx; }
-.petal-right { top: 20rpx; right: 3rpx; transform: rotate(90deg); }
-.petal-bottom { top: 35rpx; left: 20rpx; transform: rotate(180deg); }
-.petal-left { top: 20rpx; left: 3rpx; transform: rotate(-90deg); }
-.doodle-center { top: 24rpx; left: 24rpx; width: 12rpx; height: 12rpx; background: #d6ad58; }
-.doodle-stem { position: absolute; top: 48rpx; left: 29rpx; width: 2rpx; height: 30rpx; transform: rotate(10deg); background: #829178; }
 
 .artwork-paper {
   position: relative;

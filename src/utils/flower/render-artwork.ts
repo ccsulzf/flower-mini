@@ -8,7 +8,18 @@ import type { Artwork } from './artwork'
 
 const flowerStrokeOpacityScale = 0.25
 
-export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork) {
+interface RenderArtworkOptions {
+  drawBackground?: boolean
+  drawCaption?: boolean
+  flush?: boolean
+}
+
+export async function renderArtwork(
+  ctx: UniApp.CanvasContext,
+  artwork: Artwork,
+  options: RenderArtworkOptions = {},
+) {
+  const { drawBackground = true, drawCaption = true, flush = true } = options
   const catalog = useFlowerCatalogStore()
   const cloudAssets = new Map<string, Awaited<ReturnType<typeof catalog.ensure>>>()
   for (const instance of artwork.materials) {
@@ -24,9 +35,11 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
   if (cloudBackground.category !== 'background' || !cloudBackground.sources.background)
     throw new Error('背景素材不可用')
 
-  ctx.setFillStyle('#f6f3eb')
-  ctx.fillRect(0, 0, studioMetrics.width, studioMetrics.height)
-  drawSvg(ctx, backgroundSceneSource(cloudBackground), studioMetrics.width, studioMetrics.height)
+  if (drawBackground) {
+    ctx.setFillStyle('#f6f3eb')
+    ctx.fillRect(0, 0, studioMetrics.width, studioMetrics.height)
+    drawSvg(ctx, backgroundSceneSource(cloudBackground), studioMetrics.width, studioMetrics.height)
+  }
   ctx.save()
   ctx.translate(0, backgroundOffset(cloudBackground, cloudVase))
 
@@ -74,9 +87,12 @@ export async function renderArtwork(ctx: UniApp.CanvasContext, artwork: Artwork)
   ctx.restore()
   ctx.restore()
 
-  ctx.setFillStyle('#898e79')
-  ctx.setFontSize(18)
-  ctx.setTextAlign('center')
-  ctx.fillText('一枝花，一点日常', 349, 960)
-  await new Promise<void>(resolve => ctx.draw(false, () => resolve()))
+  if (drawCaption) {
+    ctx.setFillStyle('#898e79')
+    ctx.setFontSize(18)
+    ctx.setTextAlign('center')
+    ctx.fillText('一枝花，一点日常', 349, 960)
+  }
+  if (flush)
+    await new Promise<void>(resolve => ctx.draw(false, () => resolve()))
 }

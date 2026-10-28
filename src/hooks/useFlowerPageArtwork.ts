@@ -9,7 +9,8 @@ import { useArtworkImage } from './useArtworkImage'
 
 export interface FlowerPageDailyInput {
   draft: CreationDraft
-  imagePath: string
+  imagePath?: string
+  resolveImagePath?: () => Promise<string>
   title: string
   description: string
 }
@@ -29,14 +30,20 @@ export function useFlowerPageArtwork(options: {
   let workId = ''
   let dailyFlowerDate = ''
   let existingArtworkImagePath = ''
+  let existingArtworkImageResolver: (() => Promise<string>) | undefined
   let imageScope = ''
+  async function resolveExistingArtworkImage() {
+    if (!existingArtworkImagePath && existingArtworkImageResolver)
+      existingArtworkImagePath = await existingArtworkImageResolver()
+    return existingArtworkImagePath
+  }
   const images = useArtworkImage(() => {
     if (!draft.value)
       throw new Error('作品尚未准备好')
     return draft.value.artwork
   }, () => workId ? `work:${workId}` : imageScope, () => workId
     ? { id: workId }
-    : undefined, () => existingArtworkImagePath)
+    : undefined, resolveExistingArtworkImage)
   const userInfo = useUserInfoStore()
   function channel() {
     return (instance?.proxy as unknown as { getOpenerEventChannel?: () => UniApp.EventChannel })?.getOpenerEventChannel?.()
@@ -54,7 +61,8 @@ export function useFlowerPageArtwork(options: {
       draft.value = validateDraft(value.draft)
       title.value = value.title
       description.value = value.description
-      existingArtworkImagePath = value.imagePath
+      existingArtworkImagePath = value.imagePath || ''
+      existingArtworkImageResolver = value.resolveImagePath
       imageScope = `daily:${date}`
     }
     catch (value) {

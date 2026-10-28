@@ -12,6 +12,7 @@ import StudioContainer from './flower-vase.vue'
 const props = defineProps<{
   artwork: Artwork
   preparedMaterials: Record<string, CachedMaterial>
+  hideBackground?: boolean
   hideContainer?: boolean
   selectedId?: number | null
   pickScope?: StudioSelectionFilter
@@ -35,8 +36,11 @@ function isDimmed(instance: Artwork['materials'][number]) {
 </script>
 
 <template>
-  <view class="artwork-renderer" :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`">
-    <image v-if="backgroundSource" class="board-background" :src="backgroundSource" mode="scaleToFill" />
+  <view
+    class="artwork-renderer" :class="{ 'artwork-renderer-transparent': hideBackground }"
+    :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`"
+  >
+    <image v-if="backgroundSource && !hideBackground" class="board-background" :src="backgroundSource" mode="scaleToFill" />
     <view class="board-arrangement" :style="`transform:translateY(${arrangementOffset}px);`">
       <StudioContainer v-if="container" class="board-container" :material="container" :hide-container="hideContainer">
         <FlowerInstance
@@ -53,6 +57,7 @@ function isDimmed(instance: Artwork['materials'][number]) {
 
 <style scoped lang="scss">
 .artwork-renderer { position: relative; overflow: hidden; background: #f6f3eb; }
+.artwork-renderer-transparent { background: transparent; }
 .board-background { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .board-arrangement { position: absolute; inset: 0; }
 .board-container { position: absolute; inset: 0; width: 698px; height: 1000px; }

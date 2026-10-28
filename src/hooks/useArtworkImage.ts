@@ -5,13 +5,14 @@ import { renderCloudImage } from '@/utils/flower/cloud-image-renderer'
 import { readImageCache, removeCachedImage, writeImageCache } from '@/utils/flower/image-cache'
 
 type ImageKind = 'artwork' | 'card'
+const cardRenderVersion = 'editorial-bouquet-v1'
 
 // Ignore stale cloud render results after a page closes or a newer request replaces them.
 export function useArtworkImage(
   createSnapshot: () => Artwork,
   cacheScope: () => string = () => '',
   getWorkIdentity: () => { id: string } | undefined = () => undefined,
-  getExistingImagePath: () => string = () => '',
+  getExistingImagePath: () => string | Promise<string> = () => '',
 ) {
   const exportingImage = ref(false)
   const imagePath = ref('')
@@ -60,6 +61,7 @@ export function useArtworkImage(
       return false
     const epoch = generation
     const request = ++artworkRequest
+    const current = () => epoch === generation && request === artworkRequest
     const artwork = createSnapshot()
     const signature = JSON.stringify(artwork)
     const scope = cacheScope()
@@ -72,7 +74,9 @@ export function useArtworkImage(
       imageError.value = ''
       return true
     }
-    const existingPath = getExistingImagePath()
+    const existingPath = await getExistingImagePath()
+    if (!current())
+      return false
     if (existingPath) {
       artworkRequest++
       imagePath.value = existingPath
@@ -80,7 +84,6 @@ export function useArtworkImage(
       imageError.value = ''
       return true
     }
-    const current = () => epoch === generation && request === artworkRequest
     exportingImage.value = true
     imagePath.value = ''
     imageError.value = ''
@@ -112,7 +115,7 @@ export function useArtworkImage(
     const signature = JSON.stringify(createSnapshot())
     const card = { ...text }
     const scope = cacheScope()
-    const cacheKey = `${scope ? `${scope}:` : ''}card:${JSON.stringify([signature, card])}`
+    const cacheKey = `${scope ? `${scope}:` : ''}card:${JSON.stringify([cardRenderVersion, signature, card])}`
     const cached = readImageCache(cacheKey)
     if (cached) {
       cardRequest++

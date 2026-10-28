@@ -22,7 +22,7 @@ const artworkScale = computed(() => {
 })
 const showMetadataEditor = ref(false)
 const savingMetadata = ref(false)
-const imageAction = ref<'share' | 'save' | 'card' | ''>('')
+const imageAction = ref<'share' | 'save' | ''>('')
 const editTitle = ref('')
 const editDescription = ref('')
 const metadataInputStyles = {
@@ -48,17 +48,10 @@ async function shareArtwork() {
     imageAction.value = ''
   }
 }
-async function makeCard() {
+function makeCard() {
   if (!draft.value?.workId)
     return
-  imageAction.value = 'card'
-  try {
-    if (await images.exportImage())
-      uni.navigateTo({ url: `/pages/flower-card/flower-card-page?workId=${draft.value.workId}` })
-  }
-  finally {
-    imageAction.value = ''
-  }
+  uni.navigateTo({ url: `/pages/flower-card/flower-card-page?workId=${draft.value.workId}` })
 }
 function editMetadata() {
   if (loading.value || savingMetadata.value)
@@ -126,7 +119,7 @@ async function saveMetadata() {
       <text v-if="imageError" class="image-export-error">{{ imageError }}</text>
     </view>
     <view class="detail-info">
-      <text class="detail-kicker">FLOWER NOTE</text>
+      <text class="detail-kicker">花作小记</text>
       <view class="detail-heading" @click="editMetadata">
         <text>{{ title }}</text>
         <view class="i-carbon-edit detail-heading-edit" />
@@ -182,7 +175,7 @@ async function saveMetadata() {
       <view class="image-preparing-sheet">
         <view class="image-preparing-bloom" aria-hidden="true">✿</view>
         <text>正在生成作品图片…</text>
-        <text class="image-preparing-note">{{ imageAction === 'card' ? '图片准备好后将自动进入贺卡' : '图片准备好后将自动继续' }}</text>
+        <text class="image-preparing-note">图片准备好后将自动继续</text>
       </view>
     </view>
   </view>
