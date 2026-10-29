@@ -5,7 +5,7 @@ import { renderCloudImage } from '@/utils/flower/cloud-image-renderer'
 import { readImageCache, removeCachedImage, writeImageCache } from '@/utils/flower/image-cache'
 
 type ImageKind = 'artwork' | 'card'
-const cardRenderVersion = 'editorial-bouquet-v1'
+const cardRenderVersion = 'editorial-bouquet-v2'
 
 // Ignore stale cloud render results after a page closes or a newer request replaces them.
 export function useArtworkImage(
@@ -205,5 +205,25 @@ export function useArtworkImage(
     if (path)
       uni.previewImage({ urls: [path], current: path })
   }
-  return { exportingImage, imagePath, imageError, exportingCard, cardImagePath, cardImageError, exportImage, exportCard, invalidate, saveImage, shareImage, previewImage }
+  function setCardImagePath(path: string) {
+    cardRequest++
+    exportingCard.value = false
+    cardImagePath.value = path
+    cardImageError.value = ''
+  }
+  return {
+    exportingImage,
+    imagePath,
+    imageError,
+    exportingCard,
+    cardImagePath,
+    cardImageError,
+    exportImage,
+    exportCard,
+    invalidate,
+    saveImage,
+    shareImage,
+    previewImage,
+    setCardImagePath,
+  }
 }

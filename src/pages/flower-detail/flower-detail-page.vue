@@ -25,11 +25,6 @@ const savingMetadata = ref(false)
 const imageAction = ref<'share' | 'save' | ''>('')
 const editTitle = ref('')
 const editDescription = ref('')
-const metadataInputStyles = {
-  color: '#3f463d',
-  backgroundColor: '#fffdf7',
-  borderColor: '#e0e3d7',
-}
 function edit() {
   if (draft.value?.workId)
     uni.navigateTo({ url: `/pages/flower-studio/flower-studio-page?workId=${draft.value.workId}&edit=1` })
@@ -130,43 +125,54 @@ async function saveMetadata() {
     </view>
     <view v-if="showMetadataEditor" class="metadata-overlay" @click="!savingMetadata && (showMetadataEditor = false)">
       <view class="metadata-sheet" @click.stop>
-        <text class="metadata-title">
-          修改作品信息
-        </text>
+        <view class="metadata-tape" aria-hidden="true" />
+        <view class="metadata-heading">
+          <view>
+            <text class="metadata-kicker">FLOWER NOTE</text>
+            <text class="metadata-title">修改作品信息</text>
+          </view>
+          <button class="metadata-close" aria-label="关闭" :disabled="savingMetadata" @click="showMetadataEditor = false">
+            <view class="i-carbon-close" />
+          </button>
+        </view>
         <uni-forms class="metadata-form" label-position="top">
           <uni-forms-item name="title" label="名字">
-            <uni-easyinput
-              v-model="editTitle"
-              :maxlength="40"
-              :disabled="savingMetadata"
-              :clearable="false"
-              :input-border="true"
-              :styles="metadataInputStyles"
-              placeholder="给作品取个名字"
-            />
+            <view class="metadata-field metadata-name-field">
+              <input
+                v-model="editTitle" class="metadata-input" :maxlength="40" :disabled="savingMetadata"
+                placeholder="给作品取个名字"
+              >
+            </view>
           </uni-forms-item>
           <uni-forms-item name="description" label="介绍">
-            <uni-easyinput
-              v-model="editDescription"
-              type="textarea"
-              :maxlength="160"
-              :disabled="savingMetadata"
-              :clearable="false"
-              :input-border="true"
-              :styles="metadataInputStyles"
-              placeholder="写一段作品介绍"
-            />
+            <view class="metadata-field metadata-description-field">
+              <view class="metadata-rule metadata-rule-one" aria-hidden="true" />
+              <view class="metadata-rule metadata-rule-two" aria-hidden="true" />
+              <view class="metadata-rule metadata-rule-three" aria-hidden="true" />
+              <textarea
+                v-model="editDescription" class="metadata-textarea" :maxlength="160" :disabled="savingMetadata"
+                placeholder="写一段作品介绍"
+              />
+            </view>
+            <view class="metadata-field-footer">
+              <text>写下花材、心情或创作灵感</text>
+              <text>{{ editDescription.length }}/160</text>
+            </view>
           </uni-forms-item>
         </uni-forms>
         <view class="detail-actions">
           <button :disabled="savingMetadata" @click="showMetadataEditor = false">
-            <view class="i-carbon-close" />
-            取消
+            <view class="detail-action-content">
+              <view class="i-carbon-close" />
+              <text>取消</text>
+            </view>
           </button>
           <button class="primary" :disabled="savingMetadata || editTitle.length > 40 || editDescription.length > 160"
             @click="saveMetadata">
-            <view class="i-carbon-checkmark" />
-            {{ savingMetadata ? '正在保存…' : '保存修改' }}
+            <view class="detail-action-content">
+              <view class="i-carbon-checkmark" />
+              <text>{{ savingMetadata ? '正在保存…' : '保存修改' }}</text>
+            </view>
           </button>
         </view>
       </view>
@@ -378,31 +384,68 @@ button::after {
 }
 
 .detail-actions button {
+  position: relative;
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: center;
-  gap: 10rpx;
   margin: 0;
-  padding: 10rpx 8rpx;
-  background: transparent;
-  color: #75806c;
+  padding: 0;
+  height: 78rpx;
+  border: 2rpx solid rgba(105, 88, 68, .48);
+  border-radius: 9rpx 14rpx 8rpx 12rpx;
+  background: #f5e7dc;
+  box-shadow: 3rpx 4rpx 0 rgba(91, 75, 57, .06);
+  color: #665c50;
   font-size: 24rpx;
-  border-radius: 12rpx;
-  line-height: 48rpx;
+  line-height: 1;
   white-space: nowrap;
+  transform: rotate(-.25deg);
+}
+
+.detail-actions button::before {
+  position: absolute;
+  top: -5rpx;
+  right: 3rpx;
+  bottom: 4rpx;
+  left: -4rpx;
+  border: 2rpx solid rgba(105, 88, 68, .28);
+  border-radius: 13rpx 8rpx 15rpx 7rpx;
+  content: '';
+  pointer-events: none;
+}
+
+.detail-action-content {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
 }
 
 .detail-actions .primary {
-  background: transparent;
+  border-color: rgba(99, 108, 87, .58);
+  border-radius: 13rpx 8rpx 14rpx 9rpx;
+  background: #e4eadc;
   color: #515c49;
-  font-weight: 500;
+  font-weight: 600;
+  transform: rotate(.25deg);
 }
 
-.detail-actions button:not([disabled]):active,
+.detail-actions .primary::before {
+  top: -4rpx;
+  right: -4rpx;
+  bottom: 3rpx;
+  left: 4rpx;
+  border-color: rgba(99, 108, 87, .34);
+  border-radius: 8rpx 15rpx 9rpx 13rpx;
+}
+
+.detail-actions button:not([disabled]):active .detail-action-content,
 .detail-top-actions button:not([disabled]):active {
   transform: translate(2rpx, 3rpx);
-  background: #e9ecdf;
 }
 
 .detail-actions button[disabled],
@@ -416,41 +459,92 @@ button::after {
 
 .metadata-overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 10;
   display: flex;
   align-items: center;
   padding: 32rpx;
   box-sizing: border-box;
-  background: rgba(30, 35, 25, .25);
+  background: rgba(55, 50, 42, .34);
 }
 
 .metadata-sheet {
+  position: relative;
   width: 100%;
-  padding: 32rpx;
+  overflow: visible;
+  padding: 40rpx 34rpx 36rpx;
   box-sizing: border-box;
   border: 2rpx solid rgba(112, 91, 68, .3);
   border-radius: 22rpx 30rpx 20rpx 28rpx;
-  background: #fffdf7;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(174, 147, 111, .08) 0 1rpx, transparent 2rpx),
+    radial-gradient(circle at 76% 34%, rgba(174, 147, 111, .06) 0 1rpx, transparent 2rpx),
+    #fffaf0;
+  background-size: 32rpx 32rpx, 46rpx 46rpx, auto;
   box-shadow: 8rpx 12rpx 0 rgba(101, 83, 61, .07), 0 24rpx 46rpx rgba(54, 46, 37, .12);
+}
+
+.metadata-tape {
+  position: absolute;
+  top: -14rpx;
+  left: 50%;
+  width: 106rpx;
+  height: 28rpx;
+  background: rgba(218, 180, 173, .62);
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.metadata-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.metadata-kicker {
+  display: block;
+  margin-bottom: 5rpx;
+  color: #a08a70;
+  font-family: Georgia, serif;
+  font-size: 15rpx;
+  letter-spacing: 2rpx;
 }
 
 .metadata-title {
   display: block;
-  margin-bottom: 28rpx;
+  color: #4d5148;
   font-size: 32rpx;
   font-weight: 600;
   font-family: Georgia, 'Songti SC', 'STSong', serif;
 }
 
+.metadata-close {
+  display: flex;
+  width: 60rpx;
+  height: 60rpx;
+  align-items: center;
+  justify-content: center;
+  margin: -6rpx -8rpx 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #7c796d;
+  font-size: 30rpx;
+  line-height: 1;
+  transform: rotate(3deg);
+}
+
 .metadata-form :deep(.uni-forms-item) {
-  margin-bottom: 18rpx;
+  margin-bottom: 22rpx;
 }
 
 .metadata-form :deep(.uni-forms-item__label) {
   height: auto;
-  padding: 0 0 10rpx;
-  color: #67705f;
+  padding: 0 0 11rpx;
+  color: #67695f;
   font-size: 26rpx;
 }
 
@@ -458,20 +552,69 @@ button::after {
   width: 100%;
 }
 
-.metadata-form :deep(.uni-easyinput__content) {
-  min-height: 76rpx;
-  border-radius: 16rpx;
+.metadata-field {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 2rpx solid rgba(124, 113, 92, .24);
+  border-radius: 9rpx 13rpx 8rpx 11rpx;
+  background: rgba(255, 253, 247, .78);
+  box-shadow: inset 0 -2rpx 0 rgba(167, 153, 125, .06);
 }
 
-.metadata-form :deep(.uni-easyinput__content-textarea) {
+.metadata-name-field {
+  height: 78rpx;
+}
+
+.metadata-input {
+  width: 100%;
+  height: 100%;
   box-sizing: border-box;
-  height: 180rpx;
-  min-height: 180rpx;
-  margin: 14rpx 18rpx;
+  padding: 0 22rpx;
+  color: #4d5148;
+  font-size: 27rpx;
+}
+
+.metadata-description-field {
+  height: 190rpx;
+}
+
+.metadata-textarea {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 17rpx 22rpx;
+  color: #55584f;
+  font-size: 25rpx;
+  line-height: 46rpx;
+}
+
+.metadata-rule {
+  position: absolute;
+  right: 18rpx;
+  left: 18rpx;
+  height: 1rpx;
+  background: rgba(140, 153, 129, .17);
+}
+
+.metadata-rule-one { top: 60rpx; }
+.metadata-rule-two { top: 106rpx; }
+.metadata-rule-three { top: 152rpx; }
+
+.metadata-field-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 18rpx;
+  padding: 10rpx 5rpx 0;
+  color: #9a8f7f;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+  font-size: 20rpx;
 }
 
 .metadata-sheet .detail-actions {
-  margin-top: 26rpx;
+  margin-top: 28rpx;
 }
 
 </style>

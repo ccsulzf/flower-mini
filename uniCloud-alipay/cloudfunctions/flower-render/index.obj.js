@@ -1,4 +1,5 @@
 const fs = require('node:fs');
+const path = require('node:path');
 const resolveAuth = require('auth');
 const dailyFlower = require('daily-flower');
 const { createHash, randomBytes } = require('node:crypto');
@@ -9,6 +10,9 @@ let wasmReady;
 const workIdPattern = /^[a-f\d]{32}$/;
 const materialIdPattern = /^[a-z][a-z0-9-]{0,63}$/;
 const maxRenderSvgLength = 8 * 1024 * 1024;
+const cardFontFamily = 'Ma Shan Zheng';
+const cardFontBuffer = new Uint8Array(fs.readFileSync(path.join(__dirname, 'fonts/MaShanZheng-Regular.ttf')));
+const cardRenderVersion = 'ma-shan-zheng-card-v1';
 
 function colorizeMaterialSvg(svg, color) {
   const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd';
@@ -150,7 +154,7 @@ async function materialSource(material, part) {
     return material.sources[part];
 }
 
-async function buildArtworkSvg(artwork) {
+async function buildArtworkSvg(artwork, { drawBackground = true } = {}) {
     if (!artwork || typeof artwork !== 'object' || Array.isArray(artwork)
         || !Array.isArray(artwork.materials)
         || !materialIdPattern.test(artwork.background?.materialId || '')
@@ -202,7 +206,7 @@ async function buildArtworkSvg(artwork) {
             requiredSources.push([material, 'flower'], [material, 'stemWithoutLeaves']);
     }
     await Promise.all(requiredSources.map(([material, part]) => materialSource(material, part)));
-    const background = nested(backgroundMaterial.sources.background, 0, 0, 698, 1000);
+    const background = drawBackground ? nested(backgroundMaterial.sources.background, 0, 0, 698, 1000) : '';
     const anchorOffset = backgroundOffset(backgroundMaterial, vaseMaterial);
     const renderedMaterials = [];
     for (const instance of artwork.materials) {
@@ -251,10 +255,67 @@ async function buildArtworkSvg(artwork) {
         vaseBack = nested(layers.back, placement.x, placement.y, placement.width, placement.height);
         vaseFront = nested(layers.front, placement.x, placement.y, placement.width, placement.height);
     }
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><rect width="698" height="1000" fill="#f6f3eb"/>${background}<g transform="translate(0 ${anchorOffset})">${vaseBack}${renderedMaterials.join('')}${vaseFront}</g></svg>`;
+    const paper = drawBackground ? '<rect width="698" height="1000" fill="#f6f3eb"/>' : '';
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000">${paper}${background}<g transform="translate(0 ${anchorOffset})">${vaseBack}${renderedMaterials.join('')}${vaseFront}</g></svg>`;
 }
 
-async function renderSvg(svg, cloudPath) {
+function escapeSvgText(value) {
+    return value.replace(/[&<>"']/g, character => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;',
+    })[character]);
+}
+
+function validateCardText(text) {
+    if (!text || typeof text !== 'object' || Array.isArray(text))
+        throw new Error('贺卡文字无效');
+    const recipient = typeof text.recipient === 'string' ? text.recipient.trim() : '';
+    const blessing = typeof text.blessing === 'string' ? text.blessing.trim() : '';
+    const signature = typeof text.signature === 'string' ? text.signature.trim() : '';
+    if (recipient.length > 24 || blessing.length > 120 || signature.length > 24)
+        throw new Error('贺卡文字超出长度限制');
+    return { recipient, blessing, signature };
+}
+
+function cardLines(blessing) {
+    const lines = [];
+    for (const paragraph of blessing.split('\n')) {
+        const characters = Array.from(paragraph);
+        if (!characters.length) {
+            lines.push('');
+            continue;
+        }
+        for (let offset = 0; offset < characters.length; offset += 20)
+            lines.push(characters.slice(offset, offset + 20).join(''));
+    }
+    return lines.slice(0, 6);
+}
+
+async function buildCardSvg(artwork, text) {
+    const bouquet = await buildArtworkSvg(artwork, { drawBackground: false });
+    const recipient = text.recipient
+        ? `<text x="69" y="128" font-family="${cardFontFamily}" font-size="26" fill="#565247">送给 ${escapeSvgText(text.recipient)}</text>` : '';
+    const lines = cardLines(text.blessing);
+    const blessing = lines.map((line, index) =>
+        `<tspan x="80" y="${1026 + index * 34}">${escapeSvgText(line)}</tspan>`).join('');
+    const signatureY = Math.max(1128, Math.min(1226, 1026 + lines.length * 34 + 34));
+    const signature = text.signature
+        ? `<text x="646" y="${signatureY}" text-anchor="end" font-family="${cardFontFamily}" font-size="25" fill="#625d50">—— ${escapeSvgText(text.signature)}</text>` : '';
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1260" viewBox="0 0 698 1260">
+      <rect width="698" height="1260" fill="#f8f2e6"/>
+      <rect x="16" y="17" width="663" height="1225" fill="none" stroke="#d5c5a6"/>
+      <rect x="26" y="27" width="645" height="1206" fill="none" stroke="#dfd1b8"/>
+      <rect x="284" y="48" width="130" height="36" fill="#e4e7da"/>
+      <text x="349" y="74" text-anchor="middle" font-family="${cardFontFamily}" font-size="23" fill="#64705b">花间寄语</text>
+      ${recipient}
+      ${nested(bouquet, 77, 140, 544, 780)}
+      <path d="M69 970H629" stroke="#cdbb95"/>
+      <circle cx="349" cy="970" r="3.5" fill="#b99f71"/>
+      <text font-family="${cardFontFamily}" font-size="28" fill="#3f463d">${blessing}</text>
+      ${signature}
+    </svg>`;
+}
+
+async function renderSvg(svg, cloudPath, fontBuffers) {
     const startedAt = Date.now();
     const root = typeof svg === 'string' ? svg.match(/^\s*(<svg\b[^>]*>)/i)?.[1] : undefined;
     const width = root && Number(root.match(/\bwidth=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
@@ -279,7 +340,9 @@ async function renderSvg(svg, cloudPath) {
     const rasterizeStartedAt = Date.now();
     const renderer = new Resvg(svg, {
         fitTo: { mode: 'width', value: 1396 },
-        font: { loadSystemFonts: true },
+        font: fontBuffers
+            ? { fontBuffers, loadSystemFonts: false, defaultFontFamily: cardFontFamily }
+            : { loadSystemFonts: true },
     });
     let image;
     let png;
@@ -360,6 +423,22 @@ module.exports = {
             && work.imagePath?.startsWith(`flower-works/${owner}/${workId}/`))
             await uniCloud.deleteFile({ fileList: [work.imageFileId] }).catch(() => {});
         return { ...result, cached: false, prepareMs, totalMs: Date.now() - startedAt };
+    },
+    async renderCard({ artwork, text } = {}) {
+        const startedAt = Date.now();
+        const validArtwork = dailyFlower.validateArtwork(artwork);
+        const validText = validateCardText(text);
+        const prepareStartedAt = Date.now();
+        const svg = await buildCardSvg(validArtwork, validText);
+        const prepareMs = Date.now() - prepareStartedAt;
+        const owner = createHash('sha256').update(this.auth.uid).digest('hex');
+        const revision = createHash('sha256')
+            .update(cardRenderVersion)
+            .update(JSON.stringify([validArtwork, validText]))
+            .digest('hex');
+        const cloudPath = `flower-cards/${owner}/card-${revision}.png`;
+        const result = await renderSvg(svg, cloudPath, [cardFontBuffer]);
+        return { ...result, prepareMs, totalMs: Date.now() - startedAt };
     },
     async renderDailyArtwork({ artwork, date } = {}) {
         const startedAt = Date.now();

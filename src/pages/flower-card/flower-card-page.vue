@@ -6,6 +6,7 @@ import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue
 import { useDevice } from '@/hooks/useDevice'
 import { useFlowerPageArtwork } from '@/hooks/useFlowerPageArtwork'
 import { validateCard } from '@/utils/flower/creation-storage'
+import { renderCloudCard } from '@/utils/flower/cloud-card-renderer'
 import { resolveDailyFlowerImage } from '@/utils/flower/daily-flower-image-cache'
 import { greetingLines, renderFlowerCard } from '@/utils/flower/render-flower-card'
 
@@ -32,6 +33,11 @@ const { deviceWidth, deviceHeight } = useDevice()
 const text = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })
 const appliedText = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })
 const showEditor = ref(false)
+const cloudCardPath = ref('')
+const cloudRendering = ref(false)
+const cloudRenderError = ref('')
+let cloudRequest = 0
+let cloudRenderedKey = ''
 const cardScale = computed(() => {
   const rpx = deviceWidth.value / 750
   return Math.max(0.1, Math.min(
@@ -43,7 +49,9 @@ const cardScale = computed(() => {
 const cardStageStyle = computed(() => `width:${698 * cardScale.value}px;height:${1260 * cardScale.value}px;`)
 const cardPreviewStyle = computed(() => `transform:scale(${cardScale.value});`)
 const previewBlessingLines = computed(() => greetingLines(appliedText.value.blessing))
-const canShare = computed(() => !loading.value && !error.value && Boolean(draft.value) && !exportingCard.value)
+const canShare = computed(() => !loading.value && !error.value && Boolean(draft.value)
+  && !exportingCard.value && !cloudRendering.value)
+const visibleCardError = computed(() => cloudRenderError.value || cardImageError.value)
 const blessingCount = computed(() => text.value.blessing.length)
 let initialized = false
 watch(draft, (value) => {
@@ -54,10 +62,55 @@ watch(draft, (value) => {
     initialized = true
   }
 }, { immediate: true })
+function appliedGreeting() {
+  return { ...validateCard(appliedText.value), recipient: appliedText.value.recipient.trim() }
+}
+function cloudCardKey() {
+  return JSON.stringify([draft.value?.artwork, appliedGreeting()])
+}
+function errorMessage(value: unknown) {
+  return value instanceof Error ? value.message : '云端贺卡生成失败'
+}
+async function refreshCloudCard() {
+  if (!draft.value || cloudRendering.value)
+    return false
+  const request = ++cloudRequest
+  const key = cloudCardKey()
+  cloudRendering.value = true
+  cloudRenderError.value = ''
+  cloudCardPath.value = ''
+  cloudRenderedKey = ''
+  try {
+    const path = await renderCloudCard(draft.value.artwork, appliedGreeting())
+    if (request !== cloudRequest || key !== cloudCardKey())
+      return false
+    cloudCardPath.value = path
+    cloudRenderedKey = key
+    images.setCardImagePath(path)
+    return true
+  }
+  catch (value) {
+    if (request === cloudRequest)
+      cloudRenderError.value = `云端贺卡生成失败：${errorMessage(value)}`
+    return false
+  }
+  finally {
+    if (request === cloudRequest)
+      cloudRendering.value = false
+  }
+}
 async function share() {
   if (!canShare.value)
     return
-  const greeting = { ...validateCard(appliedText.value), recipient: appliedText.value.recipient.trim() }
+  if (cloudRenderedKey === cloudCardKey() && cloudCardPath.value) {
+    images.shareImage('card')
+    return
+  }
+  if (await refreshCloudCard()) {
+    images.shareImage('card')
+    return
+  }
+  const greeting = appliedGreeting()
   if (await images.exportCard(greeting, (artworkPath, card) => renderFlowerCard(artworkPath, card, draft.value?.artwork)))
     images.shareImage('card')
 }
@@ -72,10 +125,16 @@ function cancelEditor() {
   showEditor.value = false
 }
 function applyEditor() {
-  if (exportingCard.value)
+  if (exportingCard.value || cloudRendering.value)
     return
   appliedText.value = { ...validateCard(text.value), recipient: text.value.recipient.trim() }
   showEditor.value = false
+  if (cloudRenderedKey !== cloudCardKey()) {
+    cloudRequest++
+    cloudCardPath.value = ''
+    cloudRenderedKey = ''
+    cloudRenderError.value = ''
+  }
 }
 </script>
 
@@ -110,7 +169,7 @@ function applyEditor() {
         </view>
       </view>
       <view class="greeting-actions">
-        <button class="greeting-edit" :disabled="exportingCard" @click="openEditor">
+        <button class="greeting-edit" :disabled="exportingCard || cloudRendering" @click="openEditor">
           <view class="greeting-action-content">
             <view class="i-carbon-edit greeting-action-icon" />
             <text>填写内容</text>
@@ -120,14 +179,14 @@ function applyEditor() {
           <view class="greeting-action-content">
             <view
               class="greeting-action-icon"
-              :class="exportingCard ? 'i-carbon-circle-dash' : 'i-carbon-share'"
+              :class="exportingCard || cloudRendering ? 'i-carbon-circle-dash' : 'i-carbon-share'"
             />
-            <text>{{ exportingCard ? '正在准备…' : '分享贺卡' }}</text>
+            <text>{{ exportingCard || cloudRendering ? '正在准备…' : '分享贺卡' }}</text>
           </view>
         </button>
       </view>
-      <view v-if="cardImageError" class="greeting-error">
-        {{ cardImageError }}
+      <view v-if="visibleCardError" class="greeting-error">
+        {{ visibleCardError }}
       </view>
       <view v-if="showEditor" class="editor-backdrop" @click="cancelEditor">
         <view class="editor-sheet" @click.stop>
@@ -198,12 +257,25 @@ function applyEditor() {
               </view>
             </uni-forms-item>
           </uni-forms>
-          <button class="greeting-primary editor-done" :disabled="exportingCard" @click="applyEditor">
+          <button class="greeting-primary editor-done" :disabled="exportingCard || cloudRendering" @click="applyEditor">
             <text>写好了</text>
           </button>
         </view>
       </view>
     </template>
+    <view v-if="cloudRendering" class="render-backdrop" aria-live="polite">
+      <view class="render-dialog">
+        <view class="render-flower" aria-hidden="true">
+          <view class="i-carbon-sprout" />
+        </view>
+        <text class="render-title">正在生成贺卡</text>
+        <view class="render-dots" aria-hidden="true">
+          <view />
+          <view />
+          <view />
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -292,7 +364,7 @@ function applyEditor() {
   color: #64705b;
   background: #e4e7da;
   font-family: sans-serif;
-  font-size: 20px;
+  font-size: 23px;
   line-height: 25px;
   text-align: center;
   transform: rotate(-.6deg);
@@ -309,7 +381,7 @@ function applyEditor() {
   background: transparent;
   box-shadow: none;
   font-family: sans-serif;
-  font-size: 23px;
+  font-size: 26px;
   line-height: 28px;
 }
 
@@ -356,7 +428,7 @@ function applyEditor() {
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
-  font-size: 25px;
+  font-size: 28px;
   line-height: 34px;
 }
 
@@ -365,12 +437,122 @@ function applyEditor() {
 .live-card-signature {
   position: absolute;
   right: 52px;
-  bottom: 18px;
+  bottom: 56px;
   color: #625d50;
   font-family: sans-serif;
-  font-size: 22px;
+  font-size: 25px;
   line-height: 26px;
   text-align: right;
+}
+
+.render-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+  box-sizing: border-box;
+  background: rgba(61, 53, 43, .32);
+  animation: render-backdrop-in .2s ease-out both;
+}
+
+.render-dialog {
+  position: relative;
+  display: flex;
+  width: 430rpx;
+  min-height: 300rpx;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 46rpx 42rpx 40rpx;
+  border: 2rpx solid rgba(139, 119, 91, .34);
+  border-radius: 20rpx 28rpx 18rpx 25rpx;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(168, 143, 105, .08) 0 1rpx, transparent 2rpx),
+    #fffaf0;
+  background-size: 30rpx 30rpx, auto;
+  box-shadow: 8rpx 11rpx 0 rgba(76, 64, 48, .09), 0 24rpx 60rpx rgba(48, 41, 33, .15);
+  animation: render-dialog-in .32s cubic-bezier(.2, .8, .25, 1.1) both;
+}
+
+.render-dialog::before {
+  position: absolute;
+  top: -13rpx;
+  left: 50%;
+  width: 112rpx;
+  height: 27rpx;
+  background: rgba(216, 207, 174, .78);
+  content: '';
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.render-flower {
+  display: flex;
+  width: 78rpx;
+  height: 78rpx;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22rpx;
+  color: #7d8973;
+  font-size: 62rpx;
+  animation: render-flower-turn 2.2s ease-in-out infinite;
+}
+
+.render-title {
+  color: #514a3f;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+  font-size: 31rpx;
+  line-height: 1.4;
+}
+
+.render-note {
+  margin-top: 11rpx;
+  color: #8b8375;
+  font-size: 22rpx;
+  line-height: 1.5;
+}
+
+.render-dots {
+  display: flex;
+  gap: 13rpx;
+  margin-top: 25rpx;
+}
+
+.render-dots view {
+  width: 9rpx;
+  height: 9rpx;
+  border-radius: 50%;
+  background: #b69f78;
+  animation: render-dot-bounce .9s ease-in-out infinite;
+}
+
+.render-dots view:nth-child(2) { animation-delay: .15s; }
+.render-dots view:nth-child(3) { animation-delay: .3s; }
+
+@keyframes render-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes render-dialog-in {
+  from { opacity: 0; transform: translateY(24rpx) scale(.96) rotate(-.5deg); }
+  to { opacity: 1; transform: translateY(0) scale(1) rotate(.2deg); }
+}
+
+@keyframes render-flower-turn {
+  0%, 100% { transform: rotate(-7deg) scale(.96); }
+  50% { transform: rotate(9deg) scale(1.04); }
+}
+
+@keyframes render-dot-bounce {
+  0%, 60%, 100% { opacity: .35; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-7rpx); }
 }
 
 .preview-tape {

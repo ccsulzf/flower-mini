@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { SavedFlowerWork } from '@/models/flower-creation'
 import type { StudioTab } from './studio-types'
-import { onHide, onLoad, onShow, onUnload } from '@dcloudio/uni-app'
+import { onHide, onLoad, onShareAppMessage, onShareTimeline, onShow, onUnload } from '@dcloudio/uni-app'
 import { storeToRefs } from 'pinia'
 import { computed, ref, watch } from 'vue'
 import FlowerBoard from '@/components/flower/flower-board.vue'
@@ -21,10 +21,19 @@ import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioMaterialPrepareModal from './components/studio-material-prepare-modal.vue'
 import StudioTopToolbar from './components/studio-top-toolbar.vue'
 
+const SHARE_TITLE = '花瓶小作｜亲手插一束花'
+const SHARE_PATH = '/pages/flower-studio/flower-studio-page'
+
 definePage({
   type: 'home',
   layout: 'default',
-  style: { navigationStyle: 'custom', navigationBarTitleText: '花瓶小作', navigationBarBackgroundColor: '#f6f3eb', disableScroll: true },
+  style: {
+    navigationStyle: 'custom',
+    navigationBarTitleText: '花瓶小作',
+    navigationBarBackgroundColor: '#f6f3eb',
+    disableScroll: true,
+    enableShareAppMessage: true,
+  },
 })
 
 const artworkStore = useCreationArtworkStore()
@@ -74,12 +83,21 @@ const { startDrag, moveDrag, endDrag } = useFlowerDrag(
 cancelDrag = () => endDrag(true)
 
 onLoad((query) => {
+  // #ifdef MP-WEIXIN
+  uni.showShareMenu({
+    withShareTicket: true,
+    menus: ['shareAppMessage', 'shareTimeline'],
+  })
+  // #endif
+
   detailId.value = String(query?.workId || '')
   void bootstrap()
 })
 onShow(() => { if (!bootTask && alive && !pageReady.value) void bootstrap() })
 onHide(() => { endDrag(true); session.flushDraft() })
 onUnload(() => {
+  if (detailId.value && !session.hasUnsavedChanges.value)
+    void resetWorkspaceAfterLeave()
   alive = false
   if (addedMaterialTimer)
     clearTimeout(addedMaterialTimer)
@@ -90,6 +108,15 @@ onUnload(() => {
   studio.reset()
   artworkStore.$dispose()
 })
+
+onShareAppMessage(() => ({
+  title: SHARE_TITLE,
+  path: SHARE_PATH,
+}))
+
+onShareTimeline(() => ({
+  title: SHARE_TITLE,
+}))
 
 watch(() => JSON.stringify(artworkStore.snapshot()), () => {
   if (pageReady.value && !applying)
@@ -397,6 +424,12 @@ function requestLeave(leave: () => void) {
   const meaningful = Boolean(pendingMaterialId.value || session.hasUnsavedChanges.value || isNewWorkWithContent)
   if (!meaningful) {
     session.flushDraft()
+    if (detailId.value) {
+      void resetWorkspaceAfterLeave()
+        .then(leave)
+        .catch(error => notify(creationFailure(error)))
+      return
+    }
     leave()
     return
   }

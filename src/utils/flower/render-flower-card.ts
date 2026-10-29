@@ -34,12 +34,12 @@ export async function renderFlowerCard(
   context.fillRect(284, 48, 130, 36)
   context.setFillStyle('#64705b')
   context.setTextAlign('center')
-  context.setFontSize(20)
-  context.fillText('花间寄语', 349, 73)
+  context.setFontSize(23)
+  context.fillText('花间寄语', 349, 74)
 
   context.setFillStyle('#565247')
   context.setTextAlign('left')
-  context.setFontSize(23)
+  context.setFontSize(26)
   if (text.recipient)
     context.fillText(`送给 ${text.recipient}`, 69, 128)
 
@@ -66,14 +66,16 @@ export async function renderFlowerCard(
 
   context.setFillStyle('#3f463d')
   context.setTextAlign('left')
-  context.setFontSize(25)
-  greetingLines(text.blessing).forEach((line, index) => {
+  context.setFontSize(28)
+  const lines = greetingLines(text.blessing)
+  lines.forEach((line, index) => {
     context.fillText(line, 80, 1026 + index * 34)
   })
   if (text.signature) {
-    context.setFontSize(22)
+    const signatureY = Math.max(1128, Math.min(1226, 1026 + lines.length * 34 + 34))
+    context.setFontSize(25)
     context.setTextAlign('right')
-    context.fillText(`—— ${text.signature}`, 646, 1232)
+    context.fillText(`—— ${text.signature}`, 646, signatureY)
   }
   await new Promise<void>(resolve => context.draw(false, () => resolve()))
   return new Promise((resolve, reject) => {
