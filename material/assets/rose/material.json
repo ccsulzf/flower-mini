@@ -1,0 +1,21 @@
+{
+  "id": "rose",
+  "category": "flower",
+  "name": "玫瑰",
+  "group": "main",
+  "introduction": "层叠花瓣与柔和明暗构成的复古手绘玫瑰，保留自然花萼色与枝叶色。",
+  "flowerMeaning": "热烈、爱意",
+  "version": 1,
+  "colors": [
+    { "name": "复古玫红", "value": "#b85f68" },
+    { "name": "豆沙粉", "value": "#c98587" },
+    { "name": "奶油杏", "value": "#d9a16f" },
+    { "name": "雾紫", "value": "#9d8294" }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 72,
+    "stemHeight": 260,
+    "stemAnchor": { "x": 55, "y": 72 }
+  }
+}

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>复古植物素材预览</title>
+  <style>
+    :root { color-scheme: light; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #514b43; background: #f4efe4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; background: radial-gradient(circle at 20% 0%, #fffaf0, transparent 42%), #f4efe4; }
+    header { max-width: 1100px; margin: 0 auto; padding: 32px 24px 18px; }
+    h1 { margin: 0 0 8px; font: 700 28px/1.2 Georgia, serif; color: #51483d; }
+    header p { margin: 0; color: #82796d; }
+    main { max-width: 1100px; margin: 0 auto; padding: 0 24px 48px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .card { background: rgba(255,252,244,.84); border: 1px solid #ded4c3; padding: 18px; box-shadow: 3px 4px 0 rgba(128,108,82,.08); }
+    .card h2 { margin: 0 0 3px; font: 700 21px/1.3 Georgia, serif; }
+    .intro { margin: 0 0 14px; color: #83786b; font-size: 13px; }
+    .stage { min-height: 440px; display: grid; place-items: center; overflow: hidden; border: 1px solid #e4dac8; background-color: #fffdf7; background-image: linear-gradient(45deg,#eee8dc 25%,transparent 25%),linear-gradient(-45deg,#eee8dc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#eee8dc 75%),linear-gradient(-45deg,transparent 75%,#eee8dc 75%); background-size: 18px 18px; background-position: 0 0,0 9px,9px -9px,-9px 0; }
+    .stage.dark { background: #4d5148; background-image: none; }
+    .plant { position: relative; width: 220px; height: 410px; }
+    .stem { position: absolute; z-index: 1; left: 55px; top: 118px; width: 110px; height: 260px; transform-origin: 55px 0; transform: scaleY(var(--stem-scale, 1)); }
+    .flower { position: absolute; z-index: 2; left: 0; top: 0; width: 220px; height: 140px; transform-origin: 110px 72px; }
+    .flower svg { display: block; width: 100%; height: 100%; overflow: visible; }
+    .controls { display: grid; gap: 10px; margin-top: 15px; }
+    .control { display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 10px; font-size: 13px; }
+    input[type="range"] { width: 100%; accent-color: #9b6d63; }
+    select, button { border: 1px solid #cfc2af; background: #fffaf0; color: #514b43; padding: 6px 9px; font: inherit; }
+    .swatches { display: flex; gap: 7px; flex-wrap: wrap; }
+    .swatch { width: 24px; height: 24px; border: 2px solid #fffaf0; outline: 1px solid #cfc2af; cursor: pointer; }
+    .swatch.active { outline: 2px solid #72564e; }
+    .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .links a { color: #765d54; font-size: 12px; }
+    .status { margin-top: 20px; color: #8b7564; font-size: 13px; }
+    @media (max-width: 600px) { header, main { padding-left: 14px; padding-right: 14px; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header><h1>复古植物素材预览</h1><p>独立花头 + 无叶花茎 · 原生 HTML / CSS / JavaScript</p></header>
+  <main><div id="grid" class="grid"></div><p id="status" class="status">正在读取素材目录…</p></main>
+  <script>
+    const grid = document.querySelector('#grid');
+    const status = document.querySelector('#status');
+    const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const colorMap = (svg, color) => {
+      const hex = color.replace('#','');
+      const rgb = hex.match(/.{2}/g).map(v => parseInt(v,16));
+      return svg.replace(/fill="(#[0-9a-fA-F]{3,8})"/g, (_, old) => {
+        const value = old.slice(1).padEnd(6, '0').slice(0, 6);
+        const o = value.match(/.{2}/g).map(v => parseInt(v,16));
+        const max = Math.max(...o), min = Math.min(...o);
+        // 保留花萼/茎叶固有色：玫瑰使用的是低饱和橄榄绿，不能只用“纯绿色”判断。
+        const greenStructure = o[1] >= o[0] * 1.05 && o[1] >= o[2] * 1.03 && (o[1] - o[0]) >= 7;
+        const oliveStructure = o[0] >= 65 && o[1] >= 75 && o[1] > o[2] * 1.04 && (o[1] - o[0]) <= 45;
+        if (max < 95 || greenStructure || oliveStructure) return `fill="${old}"`;
+        const factor = max ? max / 255 : 1;
+        const mixed = rgb.map((v,i) => Math.max(0, Math.min(255, Math.round(v * (o[i] / Math.max(1, max)) + v * .16 * (1 - o[i] / Math.max(1,max))))));
+        return `fill="#${mixed.map(v => v.toString(16).padStart(2,'0')).join('')}"`;
+      });
+    };
+    async function loadText(url) { const r = await fetch(url); if (!r.ok) throw new Error(url); return r.text(); }
+    function card(meta, flower, stem, id) {
+      const colors = meta.colors || [];
+      const card = document.createElement('article'); card.className = 'card';
+      card.innerHTML = `<h2>${esc(meta.name)}</h2><p class="intro">${esc(meta.introduction || '')}</p>
+        <div class="stage"><div class="plant"><div class="flower"></div><div class="stem"></div></div></div>
+        <div class="controls"><label class="control"><span>花茎长度</span><input class="length" type="range" min="70" max="140" value="100"><output>100%</output></label>
+        <div class="control"><span>花色</span><div class="swatches">${colors.map((c,i)=>`<button class="swatch ${i===0?'active':''}" title="${esc(c.name)}" data-color="${c.value}" style="background:${c.value}"></button>`).join('')}</div><span></span></div>
+        <label class="control"><span>背景</span><select class="background"><option value="light">浅色</option><option value="dark">深色</option><option value="grid">棋盘格</option></select><span></span></label></div>
+        <div class="links"><a href="${id}/source.png" target="_blank">查看位图</a><a href="${id}/traced-detail.svg" target="_blank">查看 VTracer SVG</a><a href="${id}/flower.svg" target="_blank">查看最终花头</a><a href="${id}/stem.svg" target="_blank">查看花茎</a></div>`;
+      const plant = card.querySelector('.plant'), flowerEl = card.querySelector('.flower'), stemEl = card.querySelector('.stem');
+      flowerEl.innerHTML = flower; stemEl.innerHTML = stem;
+      const recolor = color => { flowerEl.innerHTML = colorMap(flower, color); };
+      card.querySelector('.length').oninput = e => { plant.style.setProperty('--stem-scale', e.target.value / 100); e.target.nextElementSibling.value = `${e.target.value}%`; };
+      card.querySelectorAll('.swatch').forEach(b => b.onclick = () => { card.querySelectorAll('.swatch').forEach(x=>x.classList.remove('active')); b.classList.add('active'); recolor(b.dataset.color); });
+      card.querySelector('.background').onchange = e => { const stage=card.querySelector('.stage'); stage.classList.toggle('dark', e.target.value==='dark'); stage.style.backgroundColor = e.target.value==='light' ? '#fffdf7' : ''; };
+      recolor(colors[0]?.value || '#b85f68'); return card;
+    }
+    (async () => { try { const ids = await fetch('assets/catalog.json').then(r=>r.json()); for (const id of ids) { const base=`assets/${id}/`; const [meta,flower,stem] = await Promise.all([loadText(base+'material.json').then(JSON.parse),loadText(base+'flower.svg'),loadText(base+'stem.svg')]); grid.append(card(meta,flower,stem,base)); } status.textContent = `已加载 ${ids.length} 个品种`; } catch (e) { status.textContent = '素材读取失败：请通过本地静态服务器打开 material/index.html。'; console.error(e); } })();
+  </script>
+</body>
+</html>
