@@ -1,0 +1,720 @@
+{
+  "date": "2026-11-05",
+  "description": "莓紫慢调：紫粉重瓣菊与豆沙大丽花构成低饱和花心，粉康乃馨和淡紫银莲花向两侧铺展；补血草、千日红与雪果点缀其间，宽浅花碗由银叶菊和南天竹托住。",
+  "artwork": {
+    "background": {
+      "materialId": "solid-sage"
+    },
+    "container": {
+      "materialId": "long-neck-vase",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#9ead9b",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -46.1,
+          "height": 369.4,
+          "scale": 0.74,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "nandina",
+        "group": "foliage",
+        "color": "#b78f7e",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -40.6,
+          "height": 304.0,
+          "scale": 0.78,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#c9aa8b",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -35.0,
+          "height": 308.2,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -21.0,
+          "height": 313.6,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#9ead9b",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -21.6,
+          "height": 288.4,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "nandina",
+        "group": "foliage",
+        "color": "#b78f7e",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -9.4,
+          "height": 312.7,
+          "scale": 0.74,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#c9aa8b",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -6.3,
+          "height": 300.9,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 4.9,
+          "height": 328.3,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#9ead9b",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": 6.9,
+          "height": 328.8,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "nandina",
+        "group": "foliage",
+        "color": "#b78f7e",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 21.5,
+          "height": 293.5,
+          "scale": 0.88,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#c9aa8b",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 25.7,
+          "height": 296.1,
+          "scale": 0.74,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 34.7,
+          "height": 338.7,
+          "scale": 0.78,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#9ead9b",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 41.4,
+          "height": 300.8,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "nandina",
+        "group": "foliage",
+        "color": "#b78f7e",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 46.8,
+          "height": 348.3,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "statice",
+        "group": "filler",
+        "color": "#af91c2",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -41.1,
+          "height": 361.7,
+          "scale": 0.8,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "globe-amaranth",
+        "group": "filler",
+        "color": "#d59aaf",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -35.2,
+          "height": 302.0,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#d9b3ba",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -30.4,
+          "height": 311.2,
+          "scale": 0.87,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "waxflower",
+        "group": "filler",
+        "color": "#d5a0b0",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -17.5,
+          "height": 323.7,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "statice",
+        "group": "filler",
+        "color": "#af91c2",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -18.6,
+          "height": 299.8,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "globe-amaranth",
+        "group": "filler",
+        "color": "#d59aaf",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -7.9,
+          "height": 327.5,
+          "scale": 0.8,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#d9b3ba",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -5.6,
+          "height": 316.6,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "waxflower",
+        "group": "filler",
+        "color": "#d5a0b0",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 4.3,
+          "height": 344.1,
+          "scale": 0.87,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "statice",
+        "group": "filler",
+        "color": "#af91c2",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": 5.5,
+          "height": 344.0,
+          "scale": 0.91,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "globe-amaranth",
+        "group": "filler",
+        "color": "#d59aaf",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 18.5,
+          "height": 304.8,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#d9b3ba",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 21.9,
+          "height": 304.6,
+          "scale": 0.8,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "waxflower",
+        "group": "filler",
+        "color": "#d5a0b0",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 30.5,
+          "height": 341.7,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "statice",
+        "group": "filler",
+        "color": "#af91c2",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 35.9,
+          "height": 298.5,
+          "scale": 0.87,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "globe-amaranth",
+        "group": "filler",
+        "color": "#d59aaf",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 41.6,
+          "height": 340.2,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "peony-chrysanthemum",
+        "group": "main",
+        "color": "#bc8ba7",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -34.8,
+          "height": 354.7,
+          "scale": 0.9,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#c98c9a",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -29.2,
+          "height": 302.4,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "carnation",
+        "group": "main",
+        "color": "#d898a4",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -26.3,
+          "height": 316.7,
+          "scale": 0.95,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "anemone",
+        "group": "main",
+        "color": "#c87592",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -15.5,
+          "height": 334.8,
+          "scale": 0.98,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "peony-chrysanthemum",
+        "group": "main",
+        "color": "#bc8ba7",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -18.1,
+          "height": 312.1,
+          "scale": 1.0,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#c98c9a",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -9.4,
+          "height": 340.6,
+          "scale": 0.9,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "carnation",
+        "group": "main",
+        "color": "#d898a4",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -8.9,
+          "height": 330.5,
+          "scale": 0.93,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 43,
+        "materialId": "anemone",
+        "group": "main",
+        "color": "#c87592",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": -0.5,
+          "height": 363.7,
+          "scale": 0.95,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "peony-chrysanthemum",
+        "group": "main",
+        "color": "#bc8ba7",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -0.9,
+          "height": 373.7,
+          "scale": 0.98,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#c98c9a",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 8.6,
+          "height": 327.3,
+          "scale": 1.0,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "carnation",
+        "group": "main",
+        "color": "#d898a4",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 10.0,
+          "height": 325.0,
+          "scale": 0.9,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 44,
+        "materialId": "anemone",
+        "group": "main",
+        "color": "#c87592",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 17.7,
+          "height": 351.4,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "peony-chrysanthemum",
+        "group": "main",
+        "color": "#bc8ba7",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 19.3,
+          "height": 301.5,
+          "scale": 0.95,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#c98c9a",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 25.2,
+          "height": 331.5,
+          "scale": 0.98,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "peony-chrysanthemum",
+        "group": "main",
+        "color": "#bc8ba7",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": 28.6,
+          "height": 304.1,
+          "scale": 1.0,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#c98c9a",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 34.5,
+          "height": 341.4,
+          "scale": 0.9,
+          "mirrored": true
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}

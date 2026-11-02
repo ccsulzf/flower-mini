@@ -23,6 +23,9 @@
     "group": {
       "bsonType": "string"
     },
+    "sortOrder": {
+      "bsonType": "double"
+    },
     "introduction": {
       "bsonType": "string"
     },

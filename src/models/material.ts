@@ -12,6 +12,7 @@ export interface MaterialMetadata {
   introduction: string
   flowerMeaning: string
   group: MaterialGroup
+  sortOrder?: number
   colors: { name: string, value: string }[]
   geometry?: FlowerGeometry | VaseGeometry | BackgroundGeometry
 }

@@ -13,7 +13,7 @@ interface MaterialPrepareProgress {
   processed: number
 }
 
-const catalogCacheKey = 'flower-material-catalog-cache'
+const catalogCacheKey = 'flower-material-catalog-cache-sort-order-v1'
 const catalogCheckInterval = 24 * 60 * 60 * 1000
 
 interface CatalogCache {

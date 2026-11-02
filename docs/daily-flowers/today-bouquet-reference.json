@@ -1,0 +1,1802 @@
+{
+  "purpose": "今日花束创作的本地素材参考索引",
+  "source": "src/subpackages/material-admin/assets 下具有完整素材文件的 material.json 档案",
+  "counts": {
+    "mainFlowers": 35,
+    "fillerFlowers": 33,
+    "foliage": 25,
+    "vases": 9,
+    "backgrounds": 20
+  },
+  "materials": {
+    "mainFlowers": [
+      {
+        "id": "amaryllis",
+        "name": "朱顶红",
+        "group": "main",
+        "colors": [
+          {
+            "name": "红色",
+            "value": "#cc736e"
+          },
+          {
+            "name": "粉色",
+            "value": "#d6a0a5"
+          },
+          {
+            "name": "白色",
+            "value": "#eee7da"
+          }
+        ]
+      },
+      {
+        "id": "anemone",
+        "name": "银莲花",
+        "group": "main",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#e9e3d8"
+          },
+          {
+            "name": "淡紫",
+            "value": "#b8a4c9"
+          },
+          {
+            "name": "玫红",
+            "value": "#c87592"
+          }
+        ]
+      },
+      {
+        "id": "anthurium",
+        "name": "红掌",
+        "group": "main",
+        "colors": [
+          {
+            "name": "朱红",
+            "value": "#c96d63"
+          },
+          {
+            "name": "柔粉",
+            "value": "#ce9ca7"
+          },
+          {
+            "name": "奶白",
+            "value": "#e5e2d1"
+          },
+          {
+            "name": "青绿",
+            "value": "#a4b792"
+          }
+        ]
+      },
+      {
+        "id": "bird-of-paradise",
+        "name": "鹤望兰",
+        "group": "main",
+        "colors": [
+          {
+            "name": "暖橙",
+            "value": "#dba05a"
+          },
+          {
+            "name": "浅金",
+            "value": "#e1bc77"
+          },
+          {
+            "name": "珊瑚",
+            "value": "#d28e72"
+          }
+        ]
+      },
+      {
+        "id": "calla-lily",
+        "name": "马蹄莲",
+        "group": "main",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#eee8db"
+          },
+          {
+            "name": "淡粉",
+            "value": "#d9a4ad"
+          },
+          {
+            "name": "香槟",
+            "value": "#ddc59b"
+          }
+        ]
+      },
+      {
+        "id": "carnation",
+        "name": "康乃馨",
+        "group": "main",
+        "colors": [
+          {
+            "name": "粉色",
+            "value": "#d898a4"
+          },
+          {
+            "name": "红色",
+            "value": "#b94b55"
+          },
+          {
+            "name": "奶白",
+            "value": "#eee5d7"
+          }
+        ]
+      },
+      {
+        "id": "clematis",
+        "name": "铁线莲",
+        "group": "main",
+        "colors": [
+          {
+            "name": "淡紫",
+            "value": "#a296c3"
+          },
+          {
+            "name": "蓝紫",
+            "value": "#7f87b7"
+          },
+          {
+            "name": "奶白",
+            "value": "#e8e3d8"
+          }
+        ]
+      },
+      {
+        "id": "cockscomb",
+        "name": "鸡冠花",
+        "group": "main",
+        "colors": [
+          {
+            "name": "红色",
+            "value": "#c16b7f"
+          },
+          {
+            "name": "橘色",
+            "value": "#d6936c"
+          },
+          {
+            "name": "黄色",
+            "value": "#d9be78"
+          }
+        ]
+      },
+      {
+        "id": "cotton",
+        "name": "棉花",
+        "group": "main",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#f0e9da"
+          },
+          {
+            "name": "浅米",
+            "value": "#e4d9c3"
+          },
+          {
+            "name": "灰白",
+            "value": "#deded3"
+          }
+        ]
+      },
+      {
+        "id": "cymbidium",
+        "name": "大花蕙兰",
+        "group": "main",
+        "colors": [
+          {
+            "name": "浅绿",
+            "value": "#b9c498"
+          },
+          {
+            "name": "粉色",
+            "value": "#d6a4af"
+          },
+          {
+            "name": "奶黄",
+            "value": "#e2cc96"
+          }
+        ]
+      },
+      {
+        "id": "dahlia",
+        "name": "大丽花",
+        "group": "main",
+        "colors": [
+          {
+            "name": "酒红",
+            "value": "#a95868"
+          },
+          {
+            "name": "豆沙",
+            "value": "#c98c9a"
+          },
+          {
+            "name": "杏色",
+            "value": "#ddb38e"
+          }
+        ]
+      },
+      {
+        "id": "feather-gerbera",
+        "name": "拉丝非洲菊",
+        "group": "main",
+        "colors": [
+          {
+            "name": "柔粉",
+            "value": "#d28da6"
+          },
+          {
+            "name": "杏橙",
+            "value": "#dfad79"
+          },
+          {
+            "name": "奶白",
+            "value": "#eee4d3"
+          }
+        ]
+      },
+      {
+        "id": "firework-chrysanthemum",
+        "name": "金丝菊",
+        "group": "main",
+        "colors": [
+          {
+            "name": "琥珀",
+            "value": "#bd8b43"
+          },
+          {
+            "name": "浅金",
+            "value": "#d8b76c"
+          },
+          {
+            "name": "铜橘",
+            "value": "#b7744b"
+          }
+        ]
+      },
+      {
+        "id": "gardenia",
+        "name": "栀子花",
+        "group": "main",
+        "colors": [
+          {
+            "name": "白色",
+            "value": "#f0eadb"
+          },
+          {
+            "name": "奶黄",
+            "value": "#e9dfbc"
+          }
+        ]
+      },
+      {
+        "id": "gerbera",
+        "name": "非洲菊",
+        "group": "main",
+        "colors": [
+          {
+            "name": "橘色",
+            "value": "#dc9360"
+          },
+          {
+            "name": "粉色",
+            "value": "#d7889b"
+          },
+          {
+            "name": "黄色",
+            "value": "#e1bf62"
+          }
+        ]
+      },
+      {
+        "id": "gladiolus",
+        "name": "剑兰",
+        "group": "main",
+        "colors": [
+          {
+            "name": "粉色",
+            "value": "#d498a3"
+          },
+          {
+            "name": "白色",
+            "value": "#eee6d6"
+          },
+          {
+            "name": "橘色",
+            "value": "#d8987b"
+          }
+        ]
+      },
+      {
+        "id": "herbaceous-peony",
+        "name": "芍药",
+        "group": "main",
+        "colors": [
+          {
+            "name": "浅粉",
+            "value": "#e2a2ac"
+          },
+          {
+            "name": "珊瑚",
+            "value": "#dc8a7c"
+          },
+          {
+            "name": "奶白",
+            "value": "#f3e9de"
+          }
+        ]
+      },
+      {
+        "id": "hyacinth",
+        "name": "风信子",
+        "group": "main",
+        "colors": [
+          {
+            "name": "淡紫",
+            "value": "#b5a4c8"
+          },
+          {
+            "name": "粉色",
+            "value": "#d7a4b3"
+          },
+          {
+            "name": "白色",
+            "value": "#eee8da"
+          }
+        ]
+      },
+      {
+        "id": "hydrangea",
+        "name": "绣球花",
+        "group": "main",
+        "colors": [
+          {
+            "name": "淡蓝",
+            "value": "#9eafc9"
+          },
+          {
+            "name": "淡紫",
+            "value": "#b1a0c3"
+          },
+          {
+            "name": "柔粉",
+            "value": "#cca0b2"
+          },
+          {
+            "name": "浅绿",
+            "value": "#b9c29c"
+          }
+        ]
+      },
+      {
+        "id": "iris",
+        "name": "鸢尾",
+        "group": "main",
+        "colors": [
+          {
+            "name": "蓝紫",
+            "value": "#9a9bc9"
+          },
+          {
+            "name": "浅紫",
+            "value": "#b6a9cc"
+          },
+          {
+            "name": "奶白",
+            "value": "#e6e1d7"
+          }
+        ]
+      },
+      {
+        "id": "king-protea",
+        "name": "帝王花",
+        "group": "main",
+        "colors": [
+          {
+            "name": "烟粉",
+            "value": "#bc9098"
+          },
+          {
+            "name": "浅粉",
+            "value": "#d2b1b6"
+          },
+          {
+            "name": "奶白",
+            "value": "#e3ddcb"
+          }
+        ]
+      },
+      {
+        "id": "lily",
+        "name": "百合",
+        "group": "main",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#f2eddf"
+          },
+          {
+            "name": "浅粉",
+            "value": "#dfb0b8"
+          },
+          {
+            "name": "杏色",
+            "value": "#e4b38f"
+          }
+        ]
+      },
+      {
+        "id": "lisianthus",
+        "name": "洋桔梗",
+        "group": "main",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#efe8da"
+          },
+          {
+            "name": "淡紫",
+            "value": "#b5a2cb"
+          },
+          {
+            "name": "浅粉",
+            "value": "#ddb0b8"
+          }
+        ]
+      },
+      {
+        "id": "lotus",
+        "name": "荷花",
+        "group": "main",
+        "colors": [
+          {
+            "name": "浅粉",
+            "value": "#d8a2ae"
+          },
+          {
+            "name": "奶白",
+            "value": "#ece3d8"
+          },
+          {
+            "name": "玫粉",
+            "value": "#c982a0"
+          }
+        ]
+      },
+      {
+        "id": "peony",
+        "name": "牡丹",
+        "group": "main",
+        "colors": [
+          {
+            "name": "豆沙粉",
+            "value": "#d38c9a"
+          },
+          {
+            "name": "奶白",
+            "value": "#f2e8db"
+          },
+          {
+            "name": "深红",
+            "value": "#b83b50"
+          }
+        ]
+      },
+      {
+        "id": "peony-chrysanthemum",
+        "name": "重瓣菊",
+        "group": "main",
+        "colors": [
+          {
+            "name": "紫粉",
+            "value": "#bc8ba7"
+          },
+          {
+            "name": "柔粉",
+            "value": "#d3a4b5"
+          },
+          {
+            "name": "奶白",
+            "value": "#e9e4d7"
+          }
+        ]
+      },
+      {
+        "id": "phalaenopsis",
+        "name": "蝴蝶兰",
+        "group": "main",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#eae6dd"
+          },
+          {
+            "name": "浅粉",
+            "value": "#d6a7bf"
+          },
+          {
+            "name": "浅紫",
+            "value": "#bba6c9"
+          }
+        ]
+      },
+      {
+        "id": "pincushion",
+        "name": "针垫花",
+        "group": "main",
+        "colors": [
+          {
+            "name": "暖橘",
+            "value": "#d39555"
+          },
+          {
+            "name": "金黄",
+            "value": "#d9b561"
+          },
+          {
+            "name": "珊瑚",
+            "value": "#c87e67"
+          }
+        ]
+      },
+      {
+        "id": "ping-pong-chrysanthemum",
+        "name": "乒乓菊",
+        "group": "main",
+        "colors": [
+          {
+            "name": "浅绿",
+            "value": "#b4c091"
+          },
+          {
+            "name": "金黄",
+            "value": "#d9bd6f"
+          },
+          {
+            "name": "奶白",
+            "value": "#eae4d5"
+          }
+        ]
+      },
+      {
+        "id": "ranunculus",
+        "name": "洋牡丹",
+        "group": "main",
+        "colors": [
+          {
+            "name": "杏粉",
+            "value": "#d9a397"
+          },
+          {
+            "name": "奶白",
+            "value": "#ece5d7"
+          },
+          {
+            "name": "暖橘",
+            "value": "#d49a69"
+          }
+        ]
+      },
+      {
+        "id": "rose",
+        "name": "玫瑰",
+        "group": "main",
+        "colors": [
+          {
+            "name": "珊瑚红",
+            "value": "#ed6965"
+          },
+          {
+            "name": "深红",
+            "value": "#b82b36"
+          },
+          {
+            "name": "粉色",
+            "value": "#ce7e8b"
+          },
+          {
+            "name": "奶白",
+            "value": "#f4f0e6"
+          }
+        ]
+      },
+      {
+        "id": "single-lisianthus",
+        "name": "单瓣洋桔梗",
+        "group": "main",
+        "colors": [
+          {
+            "name": "淡紫",
+            "value": "#b1a0c9"
+          },
+          {
+            "name": "奶白",
+            "value": "#eee9dc"
+          },
+          {
+            "name": "浅粉",
+            "value": "#d5a4b6"
+          }
+        ]
+      },
+      {
+        "id": "sunflower",
+        "name": "向日葵",
+        "group": "main",
+        "colors": [
+          {
+            "name": "金黄",
+            "value": "#dfb64c"
+          },
+          {
+            "name": "浅黄",
+            "value": "#e8d082"
+          },
+          {
+            "name": "暖橘",
+            "value": "#d79a53"
+          }
+        ]
+      },
+      {
+        "id": "tulip",
+        "name": "郁金香",
+        "group": "main",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#f4f0e6"
+          },
+          {
+            "name": "粉色",
+            "value": "#d78979"
+          },
+          {
+            "name": "紫色",
+            "value": "#b394db"
+          }
+        ]
+      },
+      {
+        "id": "zinnia",
+        "name": "百日菊",
+        "group": "main",
+        "colors": [
+          {
+            "name": "橘色",
+            "value": "#d98f6c"
+          },
+          {
+            "name": "粉色",
+            "value": "#cf8e9a"
+          },
+          {
+            "name": "黄色",
+            "value": "#dfc47c"
+          }
+        ]
+      }
+    ],
+    "fillerFlowers": [
+      {
+        "id": "acacia",
+        "name": "金合欢",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "金黄",
+            "value": "#d8bd6b"
+          },
+          {
+            "name": "浅黄",
+            "value": "#e2cf8d"
+          }
+        ]
+      },
+      {
+        "id": "alstroemeria",
+        "name": "六出花（水仙百合）",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "蜜桃",
+            "value": "#dfaa91"
+          },
+          {
+            "name": "粉色",
+            "value": "#d4a0b0"
+          },
+          {
+            "name": "淡黄",
+            "value": "#ddcc9a"
+          }
+        ]
+      },
+      {
+        "id": "astilbe",
+        "name": "落新妇",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "浅粉",
+            "value": "#d8a9b5"
+          },
+          {
+            "name": "奶白",
+            "value": "#e5ded1"
+          },
+          {
+            "name": "玫红",
+            "value": "#b77591"
+          }
+        ]
+      },
+      {
+        "id": "blue-star",
+        "name": "蓝星花",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "雾蓝",
+            "value": "#9ab8c8"
+          },
+          {
+            "name": "浅蓝",
+            "value": "#b7cdd6"
+          },
+          {
+            "name": "奶白",
+            "value": "#ece8dd"
+          }
+        ]
+      },
+      {
+        "id": "bunny-tail",
+        "name": "兔尾草",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "麦白",
+            "value": "#d9cdb1"
+          },
+          {
+            "name": "浅棕",
+            "value": "#bba788"
+          },
+          {
+            "name": "浅粉",
+            "value": "#ceb1b2"
+          }
+        ]
+      },
+      {
+        "id": "campanula",
+        "name": "风铃草",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "浅紫",
+            "value": "#b0a1c6"
+          },
+          {
+            "name": "粉色",
+            "value": "#d6a5b9"
+          },
+          {
+            "name": "奶白",
+            "value": "#eae5dd"
+          }
+        ]
+      },
+      {
+        "id": "chamomile",
+        "name": "洋甘菊",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#f0e9da"
+          },
+          {
+            "name": "浅黄",
+            "value": "#e8dbac"
+          }
+        ]
+      },
+      {
+        "id": "cherry-blossom",
+        "name": "樱花",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "浅粉",
+            "value": "#e6bcc4"
+          },
+          {
+            "name": "白色",
+            "value": "#eee5dc"
+          }
+        ]
+      },
+      {
+        "id": "crabapple-blossom",
+        "name": "海棠花",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "粉色",
+            "value": "#d49aa7"
+          },
+          {
+            "name": "浅粉",
+            "value": "#e6c2c7"
+          },
+          {
+            "name": "白色",
+            "value": "#eee7dc"
+          }
+        ]
+      },
+      {
+        "id": "daisy",
+        "name": "小雏菊",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "奶黄",
+            "value": "#f1e5bd"
+          },
+          {
+            "name": "白色",
+            "value": "#f4f0e6"
+          },
+          {
+            "name": "金黄",
+            "value": "#e1b94f"
+          }
+        ]
+      },
+      {
+        "id": "delphinium",
+        "name": "飞燕草",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "蓝色",
+            "value": "#88a8cc"
+          },
+          {
+            "name": "淡紫",
+            "value": "#b5a7ca"
+          },
+          {
+            "name": "奶白",
+            "value": "#e8e4dc"
+          }
+        ]
+      },
+      {
+        "id": "dendrobium",
+        "name": "石斛兰",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "浅紫",
+            "value": "#baa1c5"
+          },
+          {
+            "name": "粉色",
+            "value": "#d0a1b5"
+          },
+          {
+            "name": "奶白",
+            "value": "#e8e2d8"
+          }
+        ]
+      },
+      {
+        "id": "eucalyptus-pods",
+        "name": "尤加利果",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "灰绿",
+            "value": "#a3ad96"
+          },
+          {
+            "name": "银灰",
+            "value": "#b7b8a9"
+          },
+          {
+            "name": "棕绿",
+            "value": "#a8997f"
+          }
+        ]
+      },
+      {
+        "id": "freesia",
+        "name": "小苍兰",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "浅黄",
+            "value": "#e4ca83"
+          },
+          {
+            "name": "奶白",
+            "value": "#f1e8d8"
+          },
+          {
+            "name": "淡紫",
+            "value": "#b5a0c8"
+          }
+        ]
+      },
+      {
+        "id": "globe-amaranth",
+        "name": "千日红",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "玫紫",
+            "value": "#b16b97"
+          },
+          {
+            "name": "粉色",
+            "value": "#d59aaf"
+          },
+          {
+            "name": "奶白",
+            "value": "#ece2d8"
+          }
+        ]
+      },
+      {
+        "id": "gypsophila",
+        "name": "满天星",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#f1eade"
+          },
+          {
+            "name": "浅粉",
+            "value": "#e2b6bf"
+          }
+        ]
+      },
+      {
+        "id": "hypericum",
+        "name": "红豆果",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "红色",
+            "value": "#bb7b79"
+          },
+          {
+            "name": "粉色",
+            "value": "#cfa0a4"
+          },
+          {
+            "name": "浅绿",
+            "value": "#a5b58b"
+          }
+        ]
+      },
+      {
+        "id": "jasmine",
+        "name": "茉莉花",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "白色",
+            "value": "#f1ecde"
+          },
+          {
+            "name": "奶黄",
+            "value": "#e8dfbf"
+          }
+        ]
+      },
+      {
+        "id": "kangaroo-paw",
+        "name": "袋鼠爪",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "砖红",
+            "value": "#b77e68"
+          },
+          {
+            "name": "暖黄",
+            "value": "#cbb56e"
+          },
+          {
+            "name": "浅绿",
+            "value": "#a1af7c"
+          }
+        ]
+      },
+      {
+        "id": "lily-of-the-valley",
+        "name": "铃兰",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "白色",
+            "value": "#f1ecdf"
+          },
+          {
+            "name": "淡粉",
+            "value": "#e5cbd0"
+          }
+        ]
+      },
+      {
+        "id": "oncidium",
+        "name": "文心兰",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "金黄",
+            "value": "#d8bb6c"
+          },
+          {
+            "name": "浅黄",
+            "value": "#e0ce96"
+          },
+          {
+            "name": "铜橙",
+            "value": "#cda077"
+          }
+        ]
+      },
+      {
+        "id": "peach-blossom",
+        "name": "桃花",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "粉色",
+            "value": "#dca6b1"
+          },
+          {
+            "name": "浅粉",
+            "value": "#ebc8cc"
+          }
+        ]
+      },
+      {
+        "id": "queen-annes-lace",
+        "name": "蕾丝花",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#eee9de"
+          },
+          {
+            "name": "浅绿",
+            "value": "#d6ddba"
+          }
+        ]
+      },
+      {
+        "id": "scabiosa",
+        "name": "松虫草",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "灰紫",
+            "value": "#aea0bd"
+          },
+          {
+            "name": "酒红",
+            "value": "#98596b"
+          },
+          {
+            "name": "奶白",
+            "value": "#e7e0d6"
+          }
+        ]
+      },
+      {
+        "id": "snapdragon",
+        "name": "金鱼草",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "浅粉",
+            "value": "#dfa8b1"
+          },
+          {
+            "name": "杏色",
+            "value": "#dfb690"
+          },
+          {
+            "name": "奶白",
+            "value": "#eee5d7"
+          }
+        ]
+      },
+      {
+        "id": "snowberry",
+        "name": "雪果",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "奶白",
+            "value": "#e9e5da"
+          },
+          {
+            "name": "浅粉",
+            "value": "#d9b3ba"
+          },
+          {
+            "name": "浅绿",
+            "value": "#b8c5a0"
+          }
+        ]
+      },
+      {
+        "id": "solidago",
+        "name": "黄莺草",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "金黄",
+            "value": "#d8b653"
+          },
+          {
+            "name": "浅黄",
+            "value": "#e5cd7a"
+          }
+        ]
+      },
+      {
+        "id": "spray-rose",
+        "name": "多头玫瑰",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "浅粉",
+            "value": "#d2a0ac"
+          },
+          {
+            "name": "奶白",
+            "value": "#e8decf"
+          },
+          {
+            "name": "蜜桃",
+            "value": "#d6aa90"
+          }
+        ]
+      },
+      {
+        "id": "statice",
+        "name": "勿忘我（补血草）",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "淡紫",
+            "value": "#af91c2"
+          },
+          {
+            "name": "浅粉",
+            "value": "#d29bad"
+          },
+          {
+            "name": "奶白",
+            "value": "#eee5d9"
+          }
+        ]
+      },
+      {
+        "id": "stock",
+        "name": "紫罗兰",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "淡紫",
+            "value": "#b3a1c3"
+          },
+          {
+            "name": "粉色",
+            "value": "#daa9bd"
+          },
+          {
+            "name": "奶白",
+            "value": "#ece6dd"
+          }
+        ]
+      },
+      {
+        "id": "sweet-pea",
+        "name": "香豌豆",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "浅粉",
+            "value": "#dba9ba"
+          },
+          {
+            "name": "淡紫",
+            "value": "#b8a2c8"
+          },
+          {
+            "name": "奶白",
+            "value": "#ede6db"
+          }
+        ]
+      },
+      {
+        "id": "waxflower",
+        "name": "澳洲蜡梅",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "浅粉",
+            "value": "#d5a0b0"
+          },
+          {
+            "name": "奶白",
+            "value": "#eee7db"
+          },
+          {
+            "name": "玫粉",
+            "value": "#bd809e"
+          }
+        ]
+      },
+      {
+        "id": "wintersweet",
+        "name": "腊梅",
+        "group": "filler",
+        "colors": [
+          {
+            "name": "黄色",
+            "value": "#ddc57e"
+          },
+          {
+            "name": "浅黄",
+            "value": "#e8d8a8"
+          }
+        ]
+      }
+    ],
+    "foliage": [
+      {
+        "id": "areca-palm",
+        "name": "散尾葵",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "草绿",
+            "value": "#839c70"
+          },
+          {
+            "name": "深绿",
+            "value": "#6e8864"
+          }
+        ]
+      },
+      {
+        "id": "asparagus-fern",
+        "name": "文竹",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "浅绿",
+            "value": "#9daa7c"
+          },
+          {
+            "name": "草绿",
+            "value": "#80956c"
+          }
+        ]
+      },
+      {
+        "id": "asparagus-sprengeri",
+        "name": "天门冬",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#91a67c"
+          },
+          {
+            "name": "深绿",
+            "value": "#738e66"
+          }
+        ]
+      },
+      {
+        "id": "bamboo-leaf",
+        "name": "竹叶",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#a0b383"
+          },
+          {
+            "name": "浅绿",
+            "value": "#bac797"
+          }
+        ]
+      },
+      {
+        "id": "banana-leaf",
+        "name": "芭蕉叶",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#91a578"
+          },
+          {
+            "name": "深绿",
+            "value": "#718d68"
+          }
+        ]
+      },
+      {
+        "id": "boston-fern",
+        "name": "肾蕨",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "草绿",
+            "value": "#8ca078"
+          },
+          {
+            "name": "深绿",
+            "value": "#718f72"
+          }
+        ]
+      },
+      {
+        "id": "camellia-leaf",
+        "name": "山茶叶",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "深绿",
+            "value": "#819779"
+          },
+          {
+            "name": "绿色",
+            "value": "#9aab89"
+          }
+        ]
+      },
+      {
+        "id": "dusty-miller",
+        "name": "银叶菊",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "银灰绿",
+            "value": "#b4c0b1"
+          },
+          {
+            "name": "灰绿",
+            "value": "#9ead9b"
+          }
+        ]
+      },
+      {
+        "id": "eucalyptus",
+        "name": "尤加利",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "灰绿",
+            "value": "#91a795"
+          },
+          {
+            "name": "鼠尾草",
+            "value": "#a7b49c"
+          }
+        ]
+      },
+      {
+        "id": "fatsia",
+        "name": "八角金盘",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#91a87e"
+          },
+          {
+            "name": "深绿",
+            "value": "#7e9875"
+          }
+        ]
+      },
+      {
+        "id": "fountain-grass",
+        "name": "喷泉草",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "麦色",
+            "value": "#c3b290"
+          },
+          {
+            "name": "灰绿",
+            "value": "#a5af91"
+          },
+          {
+            "name": "浅褐",
+            "value": "#ae9987"
+          }
+        ]
+      },
+      {
+        "id": "gardenia-leaf",
+        "name": "栀子叶",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#8fa57b"
+          },
+          {
+            "name": "浅绿",
+            "value": "#adbc91"
+          }
+        ]
+      },
+      {
+        "id": "ivy",
+        "name": "常春藤",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "草绿",
+            "value": "#8b9e75"
+          },
+          {
+            "name": "深绿",
+            "value": "#728d69"
+          }
+        ]
+      },
+      {
+        "id": "lucky-bamboo",
+        "name": "富贵竹",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#9fb77f"
+          },
+          {
+            "name": "浅绿",
+            "value": "#b9c990"
+          }
+        ]
+      },
+      {
+        "id": "milan-leaf",
+        "name": "米兰叶",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#9aad7e"
+          },
+          {
+            "name": "浅绿",
+            "value": "#b4c595"
+          }
+        ]
+      },
+      {
+        "id": "monstera",
+        "name": "龟背竹",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "墨绿",
+            "value": "#68856b"
+          },
+          {
+            "name": "草绿",
+            "value": "#829c73"
+          }
+        ]
+      },
+      {
+        "id": "nandina",
+        "name": "南天竹",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#a0b18a"
+          },
+          {
+            "name": "红褐色",
+            "value": "#b78f7e"
+          }
+        ]
+      },
+      {
+        "id": "olive-leaf",
+        "name": "橄榄叶",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "灰绿",
+            "value": "#a8b39b"
+          },
+          {
+            "name": "绿色",
+            "value": "#94a686"
+          }
+        ]
+      },
+      {
+        "id": "philodendron",
+        "name": "春羽",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#91a67b"
+          },
+          {
+            "name": "深绿",
+            "value": "#7d9572"
+          }
+        ]
+      },
+      {
+        "id": "photinia",
+        "name": "红叶石楠",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "红褐色",
+            "value": "#be9182"
+          },
+          {
+            "name": "浅褐色",
+            "value": "#c9aa8b"
+          },
+          {
+            "name": "绿色",
+            "value": "#a2ae88"
+          }
+        ]
+      },
+      {
+        "id": "pieris",
+        "name": "马醉木",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#9eb08b"
+          },
+          {
+            "name": "浅绿",
+            "value": "#b6c39a"
+          }
+        ]
+      },
+      {
+        "id": "plumosa-pine",
+        "name": "蓬莱松",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "绿色",
+            "value": "#94aa7a"
+          },
+          {
+            "name": "浅绿",
+            "value": "#b0c28f"
+          }
+        ]
+      },
+      {
+        "id": "pussy-willow",
+        "name": "银柳",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "银灰",
+            "value": "#d8d5cc"
+          },
+          {
+            "name": "暖白",
+            "value": "#e5dfd3"
+          }
+        ]
+      },
+      {
+        "id": "spirea",
+        "name": "雪柳",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "嫩绿",
+            "value": "#a4b48c"
+          },
+          {
+            "name": "灰绿",
+            "value": "#8b9e7d"
+          }
+        ]
+      },
+      {
+        "id": "sword-leaf",
+        "name": "剑叶",
+        "group": "foliage",
+        "colors": [
+          {
+            "name": "草绿",
+            "value": "#899d70"
+          },
+          {
+            "name": "深绿",
+            "value": "#728762"
+          }
+        ]
+      }
+    ],
+    "vases": [
+      {
+        "id": "ceramic-vase",
+        "name": "暖白陶瓷花瓶"
+      },
+      {
+        "id": "glass-bud-vase",
+        "name": "细口玻璃瓶"
+      },
+      {
+        "id": "glass-cylinder",
+        "name": "透明直筒瓶"
+      },
+      {
+        "id": "long-neck-vase",
+        "name": "长颈陶瓷花瓶"
+      },
+      {
+        "id": "low-round-bowl",
+        "name": "矮圆花瓶"
+      },
+      {
+        "id": "matte-ceramic-vase",
+        "name": "磨砂陶瓷花瓶"
+      },
+      {
+        "id": "ribbed-ceramic-vase",
+        "name": "竖纹陶瓷花瓶"
+      },
+      {
+        "id": "round-ceramic-vase",
+        "name": "圆肚陶瓷花瓶"
+      },
+      {
+        "id": "square-vase",
+        "name": "方形花瓶"
+      }
+    ],
+    "backgrounds": [
+      {
+        "id": "paper-blush",
+        "name": "赤陶拱廊",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "paper-ivory",
+        "name": "奶油无缝棚",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "paper-linen",
+        "name": "燕麦亚麻",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-cat-florist",
+        "name": "小猫花店",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-cat-peek",
+        "name": "猫咪偷看",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-corgi-peek",
+        "name": "柯基探头",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-ivory-table",
+        "name": "猫咪晒太阳",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-midnight-gallery",
+        "name": "午夜画廊",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-puppy-nap",
+        "name": "小狗午睡",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-rainy-cat",
+        "name": "雨天小窗",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-rainy-puppy",
+        "name": "雨天等你",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-sage-table",
+        "name": "雾蓝展台",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-shiba-flower",
+        "name": "柴犬等花",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "scene-window-table",
+        "name": "日光石台",
+        "backgroundKind": "scene"
+      },
+      {
+        "id": "solid-blush",
+        "name": "淡粉",
+        "backgroundKind": "solid"
+      },
+      {
+        "id": "solid-cocoa",
+        "name": "可可棕",
+        "backgroundKind": "solid"
+      },
+      {
+        "id": "solid-mist",
+        "name": "浅灰",
+        "backgroundKind": "solid"
+      },
+      {
+        "id": "solid-sage",
+        "name": "浅绿",
+        "backgroundKind": "solid"
+      },
+      {
+        "id": "solid-sand",
+        "name": "浅杏",
+        "backgroundKind": "solid"
+      },
+      {
+        "id": "solid-warm",
+        "name": "暖白",
+        "backgroundKind": "solid"
+      }
+    ]
+  }
+}

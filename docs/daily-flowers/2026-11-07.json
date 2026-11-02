@@ -1,0 +1,720 @@
+{
+  "date": "2026-11-07",
+  "description": "金穗晚风：金黄向日葵与暖橘针垫花聚成明亮花心，非洲菊和鹤望兰把暖色推向右上；黄莺草、金合欢与袋鼠爪串起节奏，阔叶和麦色喷泉草在左侧留白。",
+  "artwork": {
+    "background": {
+      "materialId": "solid-cocoa"
+    },
+    "container": {
+      "materialId": "square-vase",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "areca-palm",
+        "group": "foliage",
+        "color": "#839c70",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -44.9,
+          "height": 310.9,
+          "scale": 0.74,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "banana-leaf",
+        "group": "foliage",
+        "color": "#91a578",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -37.6,
+          "height": 254.7,
+          "scale": 0.78,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "fatsia",
+        "group": "foliage",
+        "color": "#91a87e",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -29.4,
+          "height": 281.7,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -14.4,
+          "height": 314.7,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "areca-palm",
+        "group": "foliage",
+        "color": "#839c70",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -15.1,
+          "height": 293.1,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "banana-leaf",
+        "group": "foliage",
+        "color": "#91a578",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -4.6,
+          "height": 312.9,
+          "scale": 0.74,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "fatsia",
+        "group": "foliage",
+        "color": "#91a87e",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -2.2,
+          "height": 294.0,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 7.7,
+          "height": 343.3,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "areca-palm",
+        "group": "foliage",
+        "color": "#839c70",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": 7.9,
+          "height": 388.5,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "banana-leaf",
+        "group": "foliage",
+        "color": "#91a578",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 17.2,
+          "height": 397.3,
+          "scale": 0.88,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "fatsia",
+        "group": "foliage",
+        "color": "#91a87e",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 18.3,
+          "height": 428.7,
+          "scale": 0.74,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 24.0,
+          "height": 477.6,
+          "scale": 0.78,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "areca-palm",
+        "group": "foliage",
+        "color": "#839c70",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 26.2,
+          "height": 444.1,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "banana-leaf",
+        "group": "foliage",
+        "color": "#91a578",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 29.3,
+          "height": 505.1,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#d8b653",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -39.5,
+          "height": 305.9,
+          "scale": 0.8,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "acacia",
+        "group": "filler",
+        "color": "#d8bd6b",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -31.6,
+          "height": 255.8,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "kangaroo-paw",
+        "group": "filler",
+        "color": "#cbb56e",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -24.8,
+          "height": 288.0,
+          "scale": 0.87,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "bunny-tail",
+        "group": "filler",
+        "color": "#bba788",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -11.4,
+          "height": 327.3,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#d8b653",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -12.5,
+          "height": 306.3,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "acacia",
+        "group": "filler",
+        "color": "#d8bd6b",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -3.4,
+          "height": 328.5,
+          "scale": 0.8,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "kangaroo-paw",
+        "group": "filler",
+        "color": "#cbb56e",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -1.7,
+          "height": 310.0,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "bunny-tail",
+        "group": "filler",
+        "color": "#bba788",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 7.1,
+          "height": 358.9,
+          "scale": 0.87,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#d8b653",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": 6.7,
+          "height": 403.6,
+          "scale": 0.91,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "acacia",
+        "group": "filler",
+        "color": "#d8bd6b",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 15.2,
+          "height": 410.0,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "kangaroo-paw",
+        "group": "filler",
+        "color": "#cbb56e",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 15.9,
+          "height": 440.0,
+          "scale": 0.8,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "bunny-tail",
+        "group": "filler",
+        "color": "#bba788",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 21.4,
+          "height": 485.7,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#d8b653",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 22.9,
+          "height": 449.9,
+          "scale": 0.87,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "acacia",
+        "group": "filler",
+        "color": "#d8bd6b",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 26.0,
+          "height": 507.7,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "sunflower",
+        "group": "main",
+        "color": "#dfb64c",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -32.5,
+          "height": 302.8,
+          "scale": 0.9,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "pincushion",
+        "group": "main",
+        "color": "#d39555",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -25.5,
+          "height": 257.1,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "gerbera",
+        "group": "main",
+        "color": "#dc9360",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -21.4,
+          "height": 289.4,
+          "scale": 0.95,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "bird-of-paradise",
+        "group": "main",
+        "color": "#dba05a",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -10.0,
+          "height": 332.8,
+          "scale": 0.98,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "sunflower",
+        "group": "main",
+        "color": "#dfb64c",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -12.2,
+          "height": 319.6,
+          "scale": 1.0,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "pincushion",
+        "group": "main",
+        "color": "#d39555",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -4.7,
+          "height": 349.5,
+          "scale": 0.9,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "gerbera",
+        "group": "main",
+        "color": "#dc9360",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -4.7,
+          "height": 328.7,
+          "scale": 0.93,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 43,
+        "materialId": "bird-of-paradise",
+        "group": "main",
+        "color": "#dba05a",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 2.9,
+          "height": 358.9,
+          "scale": 0.95,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "sunflower",
+        "group": "main",
+        "color": "#dfb64c",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": 1.9,
+          "height": 384.7,
+          "scale": 0.98,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "pincushion",
+        "group": "main",
+        "color": "#d39555",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 9.9,
+          "height": 378.3,
+          "scale": 1.0,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "gerbera",
+        "group": "main",
+        "color": "#dc9360",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 9.6,
+          "height": 418.4,
+          "scale": 0.9,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 44,
+        "materialId": "bird-of-paradise",
+        "group": "main",
+        "color": "#dba05a",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 14.3,
+          "height": 477.3,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "sunflower",
+        "group": "main",
+        "color": "#dfb64c",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 13.9,
+          "height": 447.2,
+          "scale": 0.95,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "pincushion",
+        "group": "main",
+        "color": "#d39555",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 17.6,
+          "height": 484.5,
+          "scale": 0.98,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "sunflower",
+        "group": "main",
+        "color": "#dfb64c",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": 18.5,
+          "height": 467.8,
+          "scale": 1.0,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "pincushion",
+        "group": "main",
+        "color": "#d39555",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 21.7,
+          "height": 523.0,
+          "scale": 0.9,
+          "mirrored": true
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}

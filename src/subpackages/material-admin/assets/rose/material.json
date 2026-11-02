@@ -28,5 +28,6 @@
     "flowerHeight": 110,
     "stemHeight": 260,
     "connectionY": 90
-  }
+  },
+  "sortOrder": 10
 }

@@ -8,11 +8,12 @@ import { useMaterialAdminStore } from './lib/store'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '素材管理' } })
 const store = useMaterialAdminStore()
-const groups = [{ key: 'all', name: '全部' }, { key: 'main', name: '主花' }, { key: 'filler', name: '配花' }, { key: 'foliage', name: '叶材' }, { key: 'vase', name: '花瓶' }, { key: 'bouquet', name: '花束包装' }, { key: 'background', name: '背景' }] as const
-const group = ref<MaterialGroup | 'all' | 'vase' | 'bouquet' | 'background'>('all')
+const groups = [{ key: 'all', name: '全部' }, { key: 'main', name: '主花' }, { key: 'filler', name: '配花' }, { key: 'foliage', name: '叶材' }, { key: 'vase', name: '花瓶' }, { key: 'background', name: '背景' }] as const
+const group = ref<MaterialGroup | 'all' | 'vase' | 'background'>('all')
 const materials = computed(() => localCatalog.items.filter(item => group.value === 'all' || (group.value === 'vase' || group.value === 'bouquet' || group.value === 'background' ? item.category === group.value : item.category === 'flower' && item.group === group.value)))
 const selected = ref<MaterialDraft | null>(null)
 const canDelete = computed(() => !!selected.value && !!store.remote?.some(item => item.id === selected.value!.id))
+const remoteBouquetCount = computed(() => store.remote?.filter(item => item.category === 'bouquet').length ?? 0)
 const failedMaterials = computed(() => localCatalog.items.filter(item => store.uploadFailures.some(failure => failure.id === item.id)))
 const color = ref('')
 const wholePreview = computed(() => {
@@ -55,6 +56,32 @@ async function removeSelected() {
   }
   catch { store.error = '无法打开删除确认，请重试' }
 }
+async function removeCloudBouquets() {
+  if (store.busy)
+    return
+  if (store.remote === null)
+    await store.refresh()
+  if (store.error || store.remote === null)
+    return
+  const count = remoteBouquetCount.value
+  if (!count) {
+    store.message = '云端没有花束包装素材'
+    return
+  }
+  try {
+    const result = await new Promise<UniApp.ShowModalRes>((resolve, reject) => uni.showModal({
+      title: '删除云端花束包装',
+      content: `将删除云端 ${count} 项花束包装记录及其素材文件。此操作不可撤销，已有作品可能无法再加载这些包装。`,
+      confirmText: '删除包装',
+      confirmColor: '#b82b36',
+      success: resolve,
+      fail: reject,
+    }))
+    if (result.confirm)
+      await store.removeAllBouquets()
+  }
+  catch { store.error = '无法打开删除确认，请重试' }
+}
 </script>
 
 <template>
@@ -62,9 +89,11 @@ async function removeSelected() {
     <view class="heading">
       <view class="app-section-title">
         本地素材
-      </view><button class="refresh app-secondary-btn" :disabled="store.busy" @click="store.refresh">
+      </view><view class="heading-actions"><button class="refresh app-secondary-btn" :disabled="store.busy" @click="store.refresh">
         检查上传状态
-      </button>
+      </button><button class="refresh app-secondary-btn" :disabled="store.busy" @click="removeCloudBouquets">
+        删除云端花束（{{ store.remote === null ? '检查' : remoteBouquetCount }}）
+      </button></view>
     </view>
     <button class="upload-all app-primary-btn" :disabled="store.busy || !localCatalog.items.length" @click="store.uploadAll(localCatalog.items)">
       全部上传
@@ -209,6 +238,7 @@ async function removeSelected() {
 .delete-action { margin-top: 12rpx; color: #b82b36; background: #f7e9e7; font-size: 25rpx; }
 .delete-action[disabled] { color: #a49a95; }
 .heading { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; }
+.heading-actions { display: flex; align-items: center; gap: 8rpx; }
 .refresh, .close { font-size: 24rpx; margin: 0; padding: 0 18rpx; }
 .hint { font-size: 23rpx; color: #7b8276; line-height: 1.6; margin: 12rpx 0; }
 .catalog { display: flex; margin-top: 24rpx; min-height: 70vh; background: #fff; border-radius: 20rpx; overflow: hidden; }

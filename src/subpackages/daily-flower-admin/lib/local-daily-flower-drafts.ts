@@ -22,8 +22,13 @@ export function localDailyFlowerDraft(date = new Date()) {
   return entry ? JSON.stringify(entry[1], null, 2) : ''
 }
 
-export function localDailyFlowerDrafts(): LocalDailyFlowerDraftSource[] {
+export function localDailyFlowerDrafts(startDate?: string, endDate?: string): LocalDailyFlowerDraftSource[] {
   return Object.entries(localDrafts)
+    .filter(([path]) => {
+      const filename = path.split('/').pop() || ''
+      const date = filename.slice(0, 10)
+      return (!startDate || date >= startDate) && (!endDate || date <= endDate)
+    })
     .map(([path, value]) => ({
       path,
       filename: path.split('/').pop() || path,

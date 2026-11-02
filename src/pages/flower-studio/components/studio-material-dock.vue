@@ -39,7 +39,7 @@ function forwardFocus(materialId: string, group: 'flowers' | 'foliage', expanded
   <view v-if="activeTab" class="panel-backdrop" @click="emit('dismiss')" @touchmove.stop.prevent />
   <view v-if="activeTab" class="studio-options-position" :style="{ bottom: `calc(${toolbarBottom}px + 88rpx)` }">
     <StudioFlowerPanel v-if="activeTab === 'flowers'" :usage-counts="usageCounts" @close="emit('close')" @add="emit('material', $event)" />
-    <StudioContainerPanel v-else-if="activeTab === 'vases'" :selected-id="container.materialId" :selected-type="container.type" :pending-id="pendingMaterialId" @close="emit('close')" @select="emit('material', $event)" />
+    <StudioContainerPanel v-else-if="activeTab === 'vases'" :selected-id="container.materialId" :pending-id="pendingMaterialId" @close="emit('close')" @select="emit('material', $event)" />
     <StudioBackgroundPanel v-else-if="activeTab === 'backgrounds'" :selected-id="background.materialId" :pending-id="pendingMaterialId" @close="emit('close')" @select="emit('material', $event)" />
     <StudioSelectionFab
       v-else-if="activeTab === 'selection'" @focus="forwardFocus" @instance="emit('instance', $event)"

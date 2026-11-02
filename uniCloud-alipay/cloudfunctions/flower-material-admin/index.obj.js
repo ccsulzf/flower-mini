@@ -31,12 +31,49 @@ module.exports = {
     await uniCloud.database().collection('flower-material-assets').doc(data.id).remove()
     return { ok: true }
   },
+  async removeAllBouquets() {
+    const collection = uniCloud.database().collection('flower-material-assets')
+    const result = await collection.where({ category: 'bouquet' }).get()
+    const rows = result.data || []
+    const fileIds = [...new Set(rows.flatMap(row => Object.values(row.assets || {})
+      .map(file => file && file.fileId)
+      .filter(fileId => typeof fileId === 'string' && fileId.startsWith('cloud://'))))]
+    for (const row of rows) {
+      await collection.doc(row._id || row.id).remove()
+    }
+    const referencedFiles = new Set()
+    for (let skip = 0; ; skip += 100) {
+      const remaining = await collection.orderBy('id', 'asc').skip(skip).limit(100).get()
+      for (const row of remaining.data) {
+        for (const file of Object.values(row.assets || {})) {
+          if (file && typeof file.fileId === 'string') referencedFiles.add(file.fileId)
+        }
+      }
+      if (remaining.data.length < 100) break
+    }
+    const orphanedFiles = fileIds.filter(fileId => !referencedFiles.has(fileId))
+    const failures = []
+    let filesDeleted = 0
+    for (let index = 0; index < orphanedFiles.length; index += 50) {
+      const batch = orphanedFiles.slice(index, index + 50)
+      try {
+        await uniCloud.deleteFile({ fileList: batch })
+        filesDeleted += batch.length
+      }
+      catch (error) {
+        failures.push(error.errMsg || error.message || String(error))
+      }
+    }
+    return { removed: rows.length, filesDeleted, failures }
+  },
   async save(data) {
     const invalid = () => { throw { errCode: 'INVALID_MATERIAL', errMsg: '花材档案无效' } }
     if (!data || typeof data.id !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(data.id || '') || typeof data.name !== 'string' || !data.name.trim() || data.name.length > 40
       || typeof data.introduction !== 'string' || data.introduction.length > 2000) invalid()
     const category = data.category || 'flower'
     if (!['flower', 'vase', 'bouquet', 'background'].includes(category)) invalid()
+    const sortOrder = data.sortOrder === undefined ? 1000 : data.sortOrder
+    if (!Number.isSafeInteger(sortOrder) || sortOrder < 0 || sortOrder > 100000) invalid()
     if (category === 'flower' && (!['main', 'filler', 'foliage'].includes(data.group) || typeof data.flowerMeaning !== 'string' || data.flowerMeaning.length > 500
       || !Array.isArray(data.colors) || !data.colors.length || data.colors.length > 20
       || data.colors.some(color => !color || typeof color.name !== 'string' || !color.name.trim() || color.name.length > 20 || typeof color.value !== 'string' || !/^#[\da-f]{6}$/i.test(color.value)))) invalid()
@@ -64,7 +101,7 @@ module.exports = {
       if (!file || typeof file.fileId !== 'string' || !file.fileId || file.fileId.length > 1024 || typeof file.hash !== 'string' || !/^[a-f0-9]{40}$/.test(file.hash || '')) invalid()
       assets[key] = { fileId: file.fileId, hash: file.hash }
     }
-    const record = { id: data.id, name: data.name.trim(), category, ...(category === 'background' ? { backgroundKind: data.backgroundKind === 'solid' ? 'solid' : 'scene' } : {}), geometry: cleanGeometry, group: category === 'flower' ? data.group : 'main', introduction: data.introduction, flowerMeaning: category === 'flower' ? data.flowerMeaning : '',
+    const record = { id: data.id, name: data.name.trim(), category, ...(category === 'background' ? { backgroundKind: data.backgroundKind === 'solid' ? 'solid' : 'scene' } : {}), geometry: cleanGeometry, group: category === 'flower' ? data.group : 'main', sortOrder, introduction: data.introduction, flowerMeaning: category === 'flower' ? data.flowerMeaning : '',
       colors: (category === 'flower' ? data.colors : []).map(color => ({ name: color.name, value: color.value })), assets,
       updatedBy: this.auth.uid, updatedAt: Date.now() }
     const collection = uniCloud.database().collection('flower-material-assets')

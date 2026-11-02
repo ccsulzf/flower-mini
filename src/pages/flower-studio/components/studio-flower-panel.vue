@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
-import { useFlowerStudioStore, type MaterialPickerGroup } from '@/stores/flowerStudioStore'
+import { type MaterialPickerGroup, useFlowerStudioStore } from '@/stores/flowerStudioStore'
 import { materialThumbnailSource } from '@/utils/flower/material-thumbnail'
 
 const props = defineProps<{ usageCounts: Record<string, number> }>()
@@ -17,15 +17,20 @@ const groups: { value: MaterialPickerGroup, name: string }[] = [
   { value: 'foliage', name: '叶材' },
 ]
 const flowers = computed(() => catalog.materials.filter(item => item.category === 'flower'))
+function sortMaterials(items: typeof flowers.value) {
+  return [...items].sort((a, b) => (a.sortOrder ?? 1000) - (b.sortOrder ?? 1000) || a.name.localeCompare(b.name, 'zh-CN'))
+}
 const visibleFlowers = computed(() => {
   const keyword = materialKeyword.value.trim().toLocaleLowerCase()
-  if (keyword)
-    return flowers.value.filter(item => item.name.toLocaleLowerCase().includes(keyword))
+  if (keyword) {
+    const matches = flowers.value.filter(item => item.name.toLocaleLowerCase().includes(keyword))
+    return sortMaterials(matches)
+  }
   if (activeMaterialGroup.value === 'recent') {
     const byId = new Map(flowers.value.map(item => [item.id, item]))
     return recentMaterialIds.value.flatMap(id => byId.get(id) ? [byId.get(id)!] : [])
   }
-  return flowers.value.filter(item => item.group === activeMaterialGroup.value)
+  return sortMaterials(flowers.value.filter(item => item.group === activeMaterialGroup.value))
 })
 function thumbnail(id: string) {
   return materialThumbnailSource(catalog.get(id))
@@ -42,8 +47,14 @@ function selectGroup(group: MaterialPickerGroup) {
 <template>
   <view class="options-card" @touchmove.stop>
     <view class="options-title">
-      <view><text class="options-heading">今天，想选什么花？</text></view>
-      <button class="close-option" aria-label="关闭面板" @click="emit('close')"><view class="i-carbon-close" /></button>
+      <view>
+        <text class="options-heading">
+          今天，想选什么花？
+        </text>
+      </view>
+      <button class="close-option" aria-label="关闭面板" @click="emit('close')">
+        <view class="i-carbon-close" />
+      </button>
     </view>
     <input v-model="materialKeyword" class="material-search" placeholder="搜索花材名称" confirm-type="search">
     <view class="flowers-panel">
@@ -57,12 +68,20 @@ function selectGroup(group: MaterialPickerGroup) {
           <button v-for="flower in visibleFlowers" :key="flower.id" class="material-card" hover-class="material-card-pressed" :disabled="pendingMaterialId === flower.id" :aria-label="`添加${flower.name}`" @click="emit('add', flower.id)">
             <view class="material-art">
               <image v-if="thumbnail(flower.id)" :src="thumbnail(flower.id)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-sprout" />
-              <text v-if="lastAddedMaterialId === flower.id" class="added-badge">已加入</text>
+              <text v-if="lastAddedMaterialId === flower.id" class="added-badge">
+                已加入
+              </text>
             </view>
-            <text class="material-name">{{ flower.name }}<text v-if="usageCounts[flower.id]"> × {{ usageCounts[flower.id] }}</text></text>
+            <text class="material-name">
+              {{ flower.name }}<text v-if="usageCounts[flower.id]">
+                × {{ usageCounts[flower.id] }}
+              </text>
+            </text>
           </button>
         </view>
-        <text v-if="!visibleFlowers.length" class="material-note">{{ activeMaterialGroup === 'recent' && !materialKeyword.trim() ? '还没有最近使用的花材' : '没有找到花材' }}</text>
+        <text v-if="!visibleFlowers.length" class="material-note">
+          {{ activeMaterialGroup === 'recent' && !materialKeyword.trim() ? '还没有最近使用的花材' : '没有找到花材' }}
+        </text>
       </scroll-view>
     </view>
   </view>
