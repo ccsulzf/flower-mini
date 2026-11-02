@@ -17,13 +17,12 @@ export function useFlowerStudioLayout() {
   const stageInset = 38 * unit
   const stageWidth = Math.max(0, device.windowWidth - stageInset * 2)
   const stageHeight = Math.max(0, device.windowHeight - stageTop - stageBottom)
-  // Keep the artwork as wide as the stage allows. On portrait phones, fitting
-  // both dimensions into the visible stage makes the canvas unnecessarily small.
-  const scale = stageWidth / studioMetrics.width
+  // Fit the artwork into the available stage so it stays clear of both toolbars.
+  const scale = Math.min(stageWidth / studioMetrics.width, stageHeight / studioMetrics.height)
   const renderedWidth = studioMetrics.width * scale
   const renderedHeight = studioMetrics.height * scale
   const workspaceLeft = (stageWidth - renderedWidth) / 2
-  const workspaceTop = Math.max(0, (stageHeight - Math.min(renderedHeight, stageHeight)) / 2 - 10 * unit)
+  const workspaceTop = Math.max(0, (stageHeight - renderedHeight) / 2)
   const offsetX = stageInset + workspaceLeft
   const offsetY = stageTop + workspaceTop
   const workspaceStyle = `left:${workspaceLeft}px;top:${workspaceTop}px;transform:scale(${scale});`

@@ -13,6 +13,7 @@ const maxRenderSvgLength = 8 * 1024 * 1024;
 const cardFontFamily = 'Ma Shan Zheng';
 const cardFontBuffer = new Uint8Array(fs.readFileSync(path.join(__dirname, 'fonts/MaShanZheng-Regular.ttf')));
 const cardRenderVersion = 'ma-shan-zheng-card-v1';
+const materialListRenderVersion = 'flower-material-list-v5';
 
 function colorizeMaterialSvg(svg, color) {
   const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd';
@@ -315,6 +316,59 @@ async function buildCardSvg(artwork, text) {
     </svg>`;
 }
 
+async function buildMaterialListSvg(artwork) {
+    const validArtwork = dailyFlower.validateArtwork(artwork);
+    const bouquet = await buildArtworkSvg(validArtwork, { drawBackground: false });
+    const groups = [
+        { id: 'main', name: '主花', items: [] },
+        { id: 'filler', name: '配花', items: [] },
+        { id: 'foliage', name: '叶材', items: [] },
+    ];
+    const materialCache = new Map();
+    const counts = new Map();
+    for (const instance of validArtwork.materials) {
+        const key = instance.materialId;
+        const row = counts.get(key);
+        if (row) row.count++;
+        else counts.set(key, { id: key, group: instance.group, count: 1 });
+    }
+    for (const row of counts.values()) {
+        const material = await getMaterial(row.id, materialCache);
+        const group = groups.find(item => item.id === row.group);
+        if (!group) throw new Error('花材分类无效');
+        const thumbnailPart = row.group === 'foliage' ? 'foliage' : 'flower';
+        const thumbnailSource = await materialSource(material, thumbnailPart);
+        const thumbnail = row.group === 'foliage'
+            ? thumbnailSource.replace(/__COLOR__/g, validArtwork.materials.find(item => item.materialId === row.id).color)
+            : colorizeMaterialSvg(thumbnailSource, validArtwork.materials.find(item => item.materialId === row.id).color);
+        group.items.push({
+            name: typeof material.name === 'string' ? Array.from(material.name).slice(0, 9).join('') : '未命名花材',
+            count: row.count,
+            thumbnail,
+        });
+    }
+    const maxRows = Math.max(...groups.map(group => group.items.length));
+    const height = Math.max(1150, 1060 + maxRows * 38);
+    if (height > 2000) throw new Error('花材种类较多，暂时无法生成分享图');
+    const columns = groups.map((group, index) => {
+        const x = 48 + index * 212;
+        const heading = `<text x="${x}" y="990" font-family="${cardFontFamily}" font-size="22" fill="#728066">${group.name}</text>`;
+        const rows = group.items.map((item, rowIndex) => {
+            const rowY = 1030 + rowIndex * 38;
+            const thumbnail = nested(item.thumbnail, x, rowY - 25, 30, 30);
+            return `${thumbnail}<text x="${x + 36}" y="${rowY}" font-family="${cardFontFamily}" font-size="18" fill="#514a40">${escapeSvgText(item.name)}</text><text x="${x + 178}" y="${rowY}" text-anchor="end" font-family="${cardFontFamily}" font-size="18" fill="#817665">× ${item.count}</text>`;
+        }).join('');
+        return `${heading}${rows}`;
+    }).join('');
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="${height}" viewBox="0 0 698 ${height}">
+      <rect width="698" height="${height}" fill="#f8f2e6"/><rect x="16" y="17" width="663" height="${height - 34}" fill="none" stroke="#d5c5a6"/>
+      <rect x="278" y="30" width="142" height="38" fill="#e4e7da"/><text x="349" y="57" text-anchor="middle" font-family="${cardFontFamily}" font-size="23" fill="#64705b">花材清单</text>
+      ${nested(bouquet, 77, 78, 544, 780)}
+      <path d="M48 890H650" stroke="#cdbb95"/><text x="48" y="918" font-family="${cardFontFamily}" font-size="19" fill="#817665">共 ${validArtwork.materials.length} 枝</text>
+      ${columns}
+    </svg>`;
+}
+
 async function renderSvg(svg, cloudPath, fontBuffers) {
     const startedAt = Date.now();
     const root = typeof svg === 'string' ? svg.match(/^\s*(<svg\b[^>]*>)/i)?.[1] : undefined;
@@ -437,6 +491,18 @@ module.exports = {
             .update(JSON.stringify([validArtwork, validText]))
             .digest('hex');
         const cloudPath = `flower-cards/${owner}/card-${revision}.png`;
+        const result = await renderSvg(svg, cloudPath, [cardFontBuffer]);
+        return { ...result, prepareMs, totalMs: Date.now() - startedAt };
+    },
+    async renderMaterialList({ artwork } = {}) {
+        const startedAt = Date.now();
+        const validArtwork = dailyFlower.validateArtwork(artwork);
+        const prepareStartedAt = Date.now();
+        const svg = await buildMaterialListSvg(validArtwork);
+        const prepareMs = Date.now() - prepareStartedAt;
+        const owner = createHash('sha256').update(this.auth.uid).digest('hex');
+        const revision = createHash('sha256').update(materialListRenderVersion).update(JSON.stringify(validArtwork)).digest('hex');
+        const cloudPath = `flower-material-lists/${owner}/list-${revision}.png`;
         const result = await renderSvg(svg, cloudPath, [cardFontBuffer]);
         return { ...result, prepareMs, totalMs: Date.now() - startedAt };
     },

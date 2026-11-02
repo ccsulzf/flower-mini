@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onLoad, onUnload } from '@dcloudio/uni-app'
 import { getCurrentInstance, ref } from 'vue'
+import type { Artwork } from '@/models/artwork'
+import FlowerMaterialListModal from '@/components/flower/flower-material-list-modal.vue'
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 
@@ -14,6 +16,10 @@ const loading = ref(true)
 const error = ref('')
 const copying = ref(false)
 const sharing = ref(false)
+const showMaterials = ref(false)
+const materialArtwork = ref<Artwork>()
+const materialsLoading = ref(false)
+const materialsError = ref('')
 const instance = getCurrentInstance()
 let alive = true
 
@@ -58,6 +64,27 @@ function makeCard() {
   uni.navigateTo({
     url: `/pages/flower-card/flower-card-page?dailyFlowerDate=${flower.value.date}`,
   })
+}
+
+async function openMaterials() {
+  if (!flower.value || materialsLoading.value)
+    return
+  showMaterials.value = true
+  if (materialArtwork.value)
+    return
+  materialsLoading.value = true
+  materialsError.value = ''
+  try {
+    materialArtwork.value = await dailyFlowers.getArtwork(flower.value.date) || undefined
+    if (!materialArtwork.value)
+      materialsError.value = '花材信息暂不可用'
+  }
+  catch (value) {
+    materialsError.value = creationFailure(value)
+  }
+  finally {
+    materialsLoading.value = false
+  }
 }
 
 function shareFlower() {
@@ -154,6 +181,13 @@ async function copyToStudio() {
       </view>
 
       <view class="detail-actions">
+        <view class="sketch-action sketch-materials">
+          <view class="sketch-outline sketch-outline-back" />
+          <view class="sketch-outline sketch-outline-front" />
+          <button class="paper-action" hover-class="paper-action-pressed" :disabled="copying || sharing" @click="openMaterials">
+            <view class="i-carbon-list" /><text>花材</text>
+          </button>
+        </view>
         <view class="sketch-action sketch-card">
           <view class="sketch-outline sketch-outline-back" />
           <view class="sketch-outline sketch-outline-front" />
@@ -194,6 +228,7 @@ async function copyToStudio() {
           </button>
         </view>
       </view>
+      <FlowerMaterialListModal :visible="showMaterials" :artwork="materialArtwork" :loading="materialsLoading" :error="materialsError" @close="showMaterials = false" />
     </template>
   </view>
 </template>
@@ -357,8 +392,8 @@ async function copyToStudio() {
 .detail-actions {
   display: grid;
   flex-shrink: 0;
-  grid-template-columns: 1fr .8fr 1.15fr;
-  gap: 14rpx;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10rpx;
   padding: 4rpx 2rpx 8rpx;
 }
 

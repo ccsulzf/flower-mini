@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import FlowerArtworkPreview from '@/components/flower/flower-artwork-preview.vue'
+import FlowerMaterialListModal from '@/components/flower/flower-material-list-modal.vue'
 import { useDevice } from '@/hooks/useDevice'
 import { useFlowerPageArtwork } from '@/hooks/useFlowerPageArtwork'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
@@ -21,6 +22,7 @@ const artworkScale = computed(() => {
   ))
 })
 const showMetadataEditor = ref(false)
+const showMaterials = ref(false)
 const savingMetadata = ref(false)
 const imageAction = ref<'share' | 'save' | ''>('')
 const editTitle = ref('')
@@ -91,6 +93,7 @@ async function saveMetadata() {
         </button>
       </view>
       <view class="detail-action-group">
+        <button :disabled="loading || !draft" @click="showMaterials = true"><view class="i-carbon-list" />花材</button>
         <button :disabled="loading || exportingImage || !draft" @click="shareArtwork">
           <view class="i-carbon-share" />
           分享
@@ -101,6 +104,7 @@ async function saveMetadata() {
         </button>
       </view>
     </view>
+    <FlowerMaterialListModal :visible="showMaterials" :artwork="draft?.artwork" @close="showMaterials = false" />
     <view class="detail-artwork">
       <view class="detail-tape detail-tape-left" aria-hidden="true" />
       <view class="detail-tape detail-tape-right" aria-hidden="true" />
