@@ -1,49 +1,99 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370" stroke-linecap="round" stroke-linejoin="round">
   <defs>
-  <linearGradient id="ivy-shade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="40" y2="0">
-  <stop offset="0" stop-color="__COLOR__"/>
-  <stop offset="1" stop-color="#50694c"/>
-  </linearGradient>
+    <!-- 常春藤革质叶片通透微光（纯净无灰脏杂质） -->
+    <linearGradient id="ivy-gloss" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <!-- 叶缘立体光感 -->
+    <linearGradient id="ivy-rim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.4"/>
+    </linearGradient>
+
+    <!-- 单片真实掌状 3-5 浅裂常春藤叶模型 (原点 0,0 为心形叶基着生点) -->
+    <g id="ivy-leaf">
+      <!-- 叶片主轮廓 (心形基部，中央主裂片尖锐，两侧侧裂片舒展) -->
+      <path d="M0 0
+               C-5 2 -11 -2 -14 -7
+               C-18 -13 -14 -19 -22 -26
+               C-24 -28 -23 -31 -20 -31
+               C-14 -30 -10 -24 -7 -22
+               C-6 -26 -2 -42 0 -48
+               C0.5 -49 1.5 -49 2 -48
+               C4 -42 8 -26 9 -22
+               C12 -24 16 -30 22 -31
+               C25 -31 26 -28 24 -26
+               C16 -19 20 -13 16 -7
+               C13 -2 7 2 0 0 Z"
+            fill="__COLOR__" stroke="#4a633e" stroke-width="0.38"/>
+
+      <!-- 通透蜡质反光层 -->
+      <path d="M0 0 C-5 2 -11 -2 -14 -7 C-18 -13 -14 -19 -22 -26 C-24 -28 -23 -31 -20 -31 C-14 -30 -10 -24 -7 -22 C-6 -26 -2 -42 0 -48 C0.5 -49 1.5 -49 2 -48 C4 -42 8 -26 9 -22 C12 -24 16 -30 22 -31 C25 -31 26 -28 24 -26 C16 -19 20 -13 16 -7 C13 -2 7 2 0 0 Z"
+            fill="url(#ivy-gloss)"/>
+      <path d="M0 0 C-5 2 -11 -2 -14 -7 C-18 -13 -14 -19 -22 -26 C-24 -28 -23 -31 -20 -31 C-14 -30 -10 -24 -7 -22 C-6 -26 -2 -42 0 -48 C0.5 -49 1.5 -49 2 -48 C4 -42 8 -26 9 -22 C12 -24 16 -30 22 -31 C25 -31 26 -28 24 -26 C16 -19 20 -13 16 -7 C13 -2 7 2 0 0 Z"
+            fill="url(#ivy-rim)"/>
+
+      <!-- 常春藤标志性的浅乳白掌状星状放射叶脉 (Palmate Veins) -->
+      <!-- 顶中主脉 -->
+      <path d="M0 -1 L0 -45" fill="none" stroke="#e3ecce" stroke-width="0.6" stroke-linecap="round" opacity="0.85"/>
+      <!-- 左上侧主脉 -->
+      <path d="M0 -1 C-5 -9 -12 -18 -20 -28" fill="none" stroke="#e3ecce" stroke-width="0.5" stroke-linecap="round" opacity="0.8"/>
+      <!-- 右上侧主脉 -->
+      <path d="M0 -1 C5 -9 12 -18 20 -28" fill="none" stroke="#e3ecce" stroke-width="0.5" stroke-linecap="round" opacity="0.8"/>
+      <!-- 左基侧脉 -->
+      <path d="M0 -1 C-4 -4 -9 -7 -13 -10" fill="none" stroke="#e3ecce" stroke-width="0.4" stroke-linecap="round" opacity="0.75"/>
+      <!-- 右基侧脉 -->
+      <path d="M0 -1 C4 -4 9 -7 13 -10" fill="none" stroke="#e3ecce" stroke-width="0.4" stroke-linecap="round" opacity="0.75"/>
+    </g>
   </defs>
-  <path d="M55 370C24 310 83 267 52 209C26 158 79 113 53 17" fill="none" stroke="__COLOR__" stroke-width="1.5" />
+
+  <!-- ================= 1. 攀援主藤茎（完全保留原版 S 形蜿蜒轨迹） ================= -->
+  <path d="M55 370 C24 310 83 267 52 209 C26 158 79 113 53 17" fill="none" stroke="__COLOR__" stroke-width="1.6"/>
+  <!-- 藤茎柔和受光亮线 -->
+  <path d="M54.5 370 C23.5 310 82.5 267 51.5 209 C25.5 158 78.5 113 52.5 17" fill="none" stroke="#ffffff" stroke-width="0.4" opacity="0.45"/>
+
+  <!-- ================= 2. 严格对应原版全部 8 个位置与旋转角度的叶片群 ================= -->
+  <!-- 节点 1：顶叶 (53.0, 50, 59°) -->
   <g transform="translate(53.0 50) rotate(59.0) scale(0.68)">
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
-  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+    <use href="#ivy-leaf"/>
   </g>
+
+  <!-- 节点 2：(57.7, 88, -57°) -->
   <g transform="translate(57.7 88) rotate(-57.0) scale(0.78)">
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
-  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+    <use href="#ivy-leaf"/>
   </g>
+
+  <!-- 节点 3：(58.8, 126, 64.5°) -->
   <g transform="translate(58.8 126) rotate(64.5) scale(0.85)">
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
-  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+    <use href="#ivy-leaf"/>
   </g>
+
+  <!-- 节点 4：(55.6, 164, -61.2°) -->
   <g transform="translate(55.6 164) rotate(-61.2) scale(0.90)">
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
-  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+    <use href="#ivy-leaf"/>
   </g>
+
+  <!-- 节点 5：(50.3, 202, 54.5°) -->
   <g transform="translate(50.3 202) rotate(54.5) scale(0.92)">
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
-  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+    <use href="#ivy-leaf"/>
   </g>
+
+  <!-- 节点 6：(47.1, 240, -67.8°) -->
   <g transform="translate(47.1 240) rotate(-67.8) scale(0.90)">
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
-  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+    <use href="#ivy-leaf"/>
   </g>
+
+  <!-- 节点 7：(48.4, 278, 57.3°) -->
   <g transform="translate(48.4 278) rotate(57.3) scale(0.85)">
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
-  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+    <use href="#ivy-leaf"/>
   </g>
+
+  <!-- 节点 8：基部叶 (53.1, 316, -58.1°) -->
   <g transform="translate(53.1 316) rotate(-58.1) scale(0.78)">
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="__COLOR__" stroke="#667f59" stroke-width=".5"/>
-  <path d="M0 0C-10 -3 -17 -10 -18 -15L-11 -19L-24 -34Q-11 -32 -7 -28L0 -48L8 -28L24 -34L13 -19L20 -12Q13 -3 0 0Z" fill="url(#ivy-shade)" opacity=".23"/>
-  <path d="M0 -2L0 -40M0 -13L-17 -29M0 -13L17 -29M0 -11L-13 -12M0 -11L13 -12" fill="none" stroke="#c1cca1" stroke-width="0.65" />
+    <use href="#ivy-leaf"/>
   </g>
 </svg>

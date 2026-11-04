@@ -1,3 +1,108 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="iris-petal-0" gradientUnits="userSpaceOnUse" x1="-40" y1="-40" x2="19" y2="19"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="iris-petal-1" gradientUnits="userSpaceOnUse" x1="-20" y1="-20" x2="48" y2="48"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient></defs><g transform="rotate(-7 55 104)">
-<g transform="translate(55 48) rotate(0)"><path d="M0 10C-16 -2 -19 -33 0 -40C19 -33 14 -2 0 10Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c86a6" stroke-width="0.5" /><path d="M0 10C-16 -2 -19 -33 0 -40C19 -33 14 -2 0 10Z" fill="url(#iris-petal-0)" opacity=".14"/><path d="M0 8Q-5 -12 0 -34M-2 0Q-10 -12 -9 -22" fill="none" stroke="#e4d7df" stroke-width="0.5" opacity=".65"/></g><g transform="translate(47 45) rotate(-28)"><path d="M0 10C-16 -2 -19 -33 0 -40C19 -33 14 -2 0 10Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c86a6" stroke-width="0.5" /><path d="M0 10C-16 -2 -19 -33 0 -40C19 -33 14 -2 0 10Z" fill="url(#iris-petal-0)" opacity=".14"/><path d="M0 8Q-5 -12 0 -34M-2 0Q-10 -12 -9 -22" fill="none" stroke="#e4d7df" stroke-width="0.5" opacity=".65"/></g><g transform="translate(65 44) rotate(27)"><path d="M0 10C-16 -2 -19 -33 0 -40C19 -33 14 -2 0 10Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c86a6" stroke-width="0.5" /><path d="M0 10C-16 -2 -19 -33 0 -40C19 -33 14 -2 0 10Z" fill="url(#iris-petal-0)" opacity=".14"/><path d="M0 8Q-5 -12 0 -34M-2 0Q-10 -12 -9 -22" fill="none" stroke="#e4d7df" stroke-width="0.5" opacity=".65"/></g><g transform="translate(37 50) rotate(-40)"><path d="M0 -2C-14 6 -20 25 -11 35Q1 48 14 34C20 20 9 4 0 -2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c86a6" stroke-width="0.5" /><path d="M0 -2C-14 6 -20 25 -11 35Q1 48 14 34C20 20 9 4 0 -2Z" fill="url(#iris-petal-1)" opacity=".14"/><path d="M0 2Q-3 17 -3 29" fill="none" stroke="#d9c38b" stroke-width="3" /><path d="M-6 6Q-10 21 -8 32M5 7Q13 23 10 31" fill="none" stroke="#ebe0e0" stroke-width="0.6" /></g><g transform="translate(73 50) rotate(40)"><path d="M0 -2C-14 6 -20 25 -11 35Q1 48 14 34C20 20 9 4 0 -2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c86a6" stroke-width="0.5" /><path d="M0 -2C-14 6 -20 25 -11 35Q1 48 14 34C20 20 9 4 0 -2Z" fill="url(#iris-petal-1)" opacity=".14"/><path d="M0 2Q-3 17 -3 29" fill="none" stroke="#d9c38b" stroke-width="3" /><path d="M-6 6Q-10 21 -8 32M5 7Q13 23 10 31" fill="none" stroke="#ebe0e0" stroke-width="0.6" /></g><g transform="translate(55 50) rotate(0)"><path d="M0 -2C-14 6 -20 25 -11 35Q1 48 14 34C20 20 9 4 0 -2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c86a6" stroke-width="0.5" /><path d="M0 -2C-14 6 -20 25 -11 35Q1 48 14 34C20 20 9 4 0 -2Z" fill="url(#iris-petal-1)" opacity=".14"/><path d="M0 2Q-3 17 -3 29" fill="none" stroke="#d9c38b" stroke-width="3" /><path d="M-6 6Q-10 21 -8 32M5 7Q13 23 10 31" fill="none" stroke="#ebe0e0" stroke-width="0.6" /></g><path d="M55 104L55 89" fill="none" stroke="#819272" stroke-width="1" />
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- 鸢尾丝缎微光渐变（通透纯净，杜绝发灰发脏） -->
+    <linearGradient id="iris-glow" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- 边缘立体反光 -->
+    <linearGradient id="iris-rim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <!-- 1. 直立旗瓣模型 (上部3瓣：拱立皇冠状，长约 48px) -->
+    <g id="iris-standard">
+      <path d="M0 8
+               C-8 2 -18 -12 -16 -28
+               C-14 -38 -4 -42 0 -42
+               C4 -42 14 -38 16 -28
+               C18 -12 8 2 0 8 Z"
+            fill="__COLOR__"/>
+      <path d="M0 8 C-8 2 -18 -12 -16 -28 C-14 -38 -4 -42 0 -42 C4 -42 14 -38 16 -28 C18 -12 8 2 0 8 Z"
+            fill="url(#iris-glow)"/>
+      <path d="M0 8 C-8 2 -18 -12 -16 -28 C-14 -38 -4 -42 0 -42 C4 -42 14 -38 16 -28 C18 -12 8 2 0 8 Z"
+            fill="url(#iris-rim)"/>
+      <path d="M0 6 L0 -39" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.7"/>
+      <path d="M-10 -28 C-5 -38 5 -38 10 -28" fill="none" stroke="#ffffff" stroke-width="0.35" opacity="0.5"/>
+    </g>
+
+    <!-- 2. 分散两翼的优雅下垂垂瓣 (向侧外方瀑布般披展，留空中央花茎) -->
+    <g id="iris-wing-fall">
+      <!-- 匙状垂瓣外形 -->
+      <path d="M0 0
+               C-8 4 -20 12 -17 26
+               C-14 36 -2 40 0 40
+               C2 40 14 36 17 26
+               C20 12 8 4 0 0 Z"
+            fill="__COLOR__"/>
+      <path d="M0 0 C-8 4 -20 12 -17 26 C-14 36 -2 40 0 40 C2 40 14 36 17 26 C20 12 8 4 0 0 Z"
+            fill="url(#iris-glow)"/>
+      <path d="M0 0 C-8 4 -20 12 -17 26 C-14 36 -2 40 0 40 C2 40 14 36 17 26 C20 12 8 4 0 0 Z"
+            fill="url(#iris-rim)"/>
+      <!-- 白色瀑布花脉纹 -->
+      <path d="M-4 6 C-12 16 -11 25 -7 34" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.6"/>
+      <path d="M4 6 C12 16 11 25 7 34" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.6"/>
+      <!-- 鸢尾核心金黄须斑 (Beard) -->
+      <path d="M0 4 L0 23" fill="none" stroke="#ffca28" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M0 4 L0 23" fill="none" stroke="#fff9c4" stroke-width="0.75" stroke-linecap="round"/>
+    </g>
+  </defs>
+
+  <g transform="rotate(-7 55 104)">
+    <!-- ================= 1. 干净利落的花茎与绿色花托（中路无遮挡，完全展现） ================= -->
+    <path d="M55 104 L55 58" fill="none" stroke="#71855b" stroke-width="1.4"/>
+    <path d="M54.4 104 L54.4 58" fill="none" stroke="#9bb37d" stroke-width="0.45" opacity="0.6"/>
+
+    <!-- 紧托花底的绿色佛焰苞片 -->
+    <g fill="#61744d" stroke="#4a5a3a" stroke-width="0.35">
+      <path d="M51 68 C50 60 53 54 55 50 C57 54 60 60 59 68 Z"/>
+      <path d="M55 66 L55 51" fill="none" stroke="#8fa870" stroke-width="0.4"/>
+    </g>
+
+    <!-- ================= 2. 上层 3 枚直立旗瓣（向内拱立成冠） ================= -->
+    <!-- 左斜旗瓣 (47, 45, -28°) -->
+    <g transform="translate(47 45) rotate(-28)">
+      <use href="#iris-standard" transform="scale(0.96)"/>
+    </g>
+
+    <!-- 右斜旗瓣 (63, 45, 28°) -->
+    <g transform="translate(63 45) rotate(28)">
+      <use href="#iris-standard" transform="scale(0.96)"/>
+    </g>
+
+    <!-- 中央挺拔主旗瓣 (55, 47, 直立高耸) -->
+    <g transform="translate(55 47)">
+      <use href="#iris-standard" transform="scale(1.02)"/>
+    </g>
+
+    <!-- ================= 3. 下层垂瓣：完全分散到左右两边（让出中央主茎） ================= -->
+    <!-- 左翼主垂瓣 (位置 42, 53，角度 -56°，向左下舒展披垂) -->
+    <g transform="translate(42 53) rotate(-56)">
+      <use href="#iris-wing-fall" transform="scale(1.02)"/>
+    </g>
+
+    <!-- 右翼主垂瓣 (位置 68, 53，角度 56°，向右下舒展披垂) -->
+    <g transform="translate(68 53) rotate(56)">
+      <use href="#iris-wing-fall" transform="scale(1.02)"/>
+    </g>
+
+    <!-- 后侧衬底次垂瓣（微露于两翼深处，丰富层次） -->
+    <g transform="translate(36 49) rotate(-35)" opacity="0.85">
+      <use href="#iris-wing-fall" transform="scale(0.78)"/>
+    </g>
+    <g transform="translate(74 49) rotate(35)" opacity="0.85">
+      <use href="#iris-wing-fall" transform="scale(0.78)"/>
+    </g>
+
+    <!-- ================= 4. 花心花柱小冠（在中央花托与旗瓣交界处点睛） ================= -->
+    <g transform="translate(55 49)">
+      <path d="M-5 -2 C-3 -9 0 -11 0 -11 C0 -11 3 -9 5 -2 Z" fill="__COLOR__"/>
+      <path d="M-5 -2 C-3 -9 0 -11 0 -11 C0 -11 3 -9 5 -2 Z" fill="#ffffff" opacity="0.35"/>
+      <path d="M-3 -4 L0 -9 L3 -4" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.8"/>
+    </g>
+  </g>
+</svg>

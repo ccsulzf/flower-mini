@@ -1,3 +1,101 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><g transform="rotate(5 55 104)">
-<path d="M55 104C55 75.3333 52 46 56 16" fill="none" stroke="#819272" stroke-width="1.1" /><path d="M55 102Q33 64 33 29" fill="none" stroke="#819272" stroke-width="0.8" /><ellipse cx="33.00" cy="29.00" rx="8" ry="8" fill="__COLOR__" stroke="#9c8372" stroke-width=".35"/><ellipse cx="35.00" cy="31.00" rx="5.6" ry="5.6" fill="#826559" opacity=".15"/><ellipse cx="31.00" cy="26.00" rx="2.0" ry="1.44" fill="#f1dfd0" opacity=".55"/><path d="M30 23l3 -2l3 2M33 23l0 3" fill="none" stroke="#9f9b76" stroke-width="0.6" /><path d="M55 102Q57 64 57 21" fill="none" stroke="#819272" stroke-width="0.8" /><ellipse cx="57.00" cy="21.00" rx="8" ry="8" fill="__COLOR__" stroke="#9c8372" stroke-width=".35"/><ellipse cx="59.00" cy="23.00" rx="5.6" ry="5.6" fill="#826559" opacity=".15"/><ellipse cx="55.00" cy="18.00" rx="2.0" ry="1.44" fill="#f1dfd0" opacity=".55"/><path d="M54 15l3 -2l3 2M57 15l0 3" fill="none" stroke="#9f9b76" stroke-width="0.6" /><path d="M55 102Q79 64 79 36" fill="none" stroke="#819272" stroke-width="0.8" /><ellipse cx="79.00" cy="36.00" rx="9" ry="9" fill="__COLOR__" stroke="#9c8372" stroke-width=".35"/><ellipse cx="81.00" cy="38.00" rx="6.3" ry="6.3" fill="#826559" opacity=".15"/><ellipse cx="77.00" cy="33.00" rx="2.25" ry="1.6199999999999999" fill="#f1dfd0" opacity=".55"/><path d="M76 29l3 -2l3 2M79 29l0 3" fill="none" stroke="#9f9b76" stroke-width="0.6" /><path d="M55 102Q42 64 42 55" fill="none" stroke="#819272" stroke-width="0.8" /><ellipse cx="42.00" cy="55.00" rx="9" ry="9" fill="__COLOR__" stroke="#9c8372" stroke-width=".35"/><ellipse cx="44.00" cy="57.00" rx="6.3" ry="6.3" fill="#826559" opacity=".15"/><ellipse cx="40.00" cy="52.00" rx="2.25" ry="1.6199999999999999" fill="#f1dfd0" opacity=".55"/><path d="M39 48l3 -2l3 2M42 48l0 3" fill="none" stroke="#9f9b76" stroke-width="0.6" /><path d="M55 102Q69 64 69 61" fill="none" stroke="#819272" stroke-width="0.8" /><ellipse cx="69.00" cy="61.00" rx="10" ry="10" fill="__COLOR__" stroke="#9c8372" stroke-width=".35"/><ellipse cx="71.00" cy="63.00" rx="7.0" ry="7.0" fill="#826559" opacity=".15"/><ellipse cx="67.00" cy="58.00" rx="2.5" ry="1.7999999999999998" fill="#f1dfd0" opacity=".55"/><path d="M66 53l3 -2l3 2M69 53l0 3" fill="none" stroke="#9f9b76" stroke-width="0.6" /><path d="M55 102Q29 64 29 77" fill="none" stroke="#819272" stroke-width="0.8" /><ellipse cx="29.00" cy="77.00" rx="7" ry="7" fill="__COLOR__" stroke="#9c8372" stroke-width=".35"/><ellipse cx="31.00" cy="79.00" rx="4.8999999999999995" ry="4.8999999999999995" fill="#826559" opacity=".15"/><ellipse cx="27.00" cy="74.00" rx="1.75" ry="1.26" fill="#f1dfd0" opacity=".55"/><path d="M26 72l3 -2l3 2M29 72l0 3" fill="none" stroke="#9f9b76" stroke-width="0.6" /><path d="M55 102Q53 64 53 83" fill="none" stroke="#819272" stroke-width="0.8" /><ellipse cx="53.00" cy="83.00" rx="8" ry="8" fill="__COLOR__" stroke="#9c8372" stroke-width=".35"/><ellipse cx="55.00" cy="85.00" rx="5.6" ry="5.6" fill="#826559" opacity=".15"/><ellipse cx="51.00" cy="80.00" rx="2.0" ry="1.44" fill="#f1dfd0" opacity=".55"/><path d="M50 77l3 -2l3 2M53 77l0 3" fill="none" stroke="#9f9b76" stroke-width="0.6" />
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- 浆果通透水润球形高光（纯净微光，杜绝发脏发暗） -->
+    <radialGradient id="berry-glow" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="40%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="85%" stop-color="#000000" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.18"/>
+    </radialGradient>
+
+    <!-- 顶端圆润高光小月牙 -->
+    <ellipse id="berry-highlight" cx="-1.8" cy="-2.2" rx="1.8" ry="1.2" transform="rotate(-30)" fill="#ffffff" opacity="0.65"/>
+  </defs>
+
+  <g transform="rotate(5 55 104)">
+    <!-- ================= 1. 纤细自然的枝条系统（保留原版全部路径） ================= -->
+    <path d="M55 104 C55 75.3 52 46 56 16" fill="none" stroke="#798b64" stroke-width="1.1"/>
+    <path d="M55 102 Q33 64 33 29" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 102 Q57 64 57 21" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 102 Q79 64 79 36" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 102 Q42 64 42 55" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 102 Q69 64 69 61" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 102 Q29 64 29 77" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 102 Q53 64 53 83" fill="none" stroke="#798b64" stroke-width="0.8"/>
+
+    <!-- ================= 2. 7 颗圆润晶莹红豆果（严格保留原版坐标与半径） ================= -->
+
+    <!-- 第 1 颗：左上果 (33, 29, r=8) -->
+    <g transform="translate(33, 29)">
+      <!-- 果实基部微萼片托 -->
+      <path d="M-2.5 7 C-1 8.5 1 8.5 2.5 7" fill="none" stroke="#687b55" stroke-width="0.6"/>
+      <!-- 饱满浆果球体 -->
+      <circle cx="0" cy="0" r="8" fill="__COLOR__"/>
+      <circle cx="0" cy="0" r="8" fill="url(#berry-glow)"/>
+      <use href="#berry-highlight" transform="scale(1)"/>
+      <!-- 真实红豆果顶端宿存花柱小黑尖 (Beak) -->
+      <path d="M0 -7.2 L0 -9.2" fill="none" stroke="#4a3728" stroke-width="0.6"/>
+      <circle cx="0" cy="-7.2" r="0.6" fill="#3a2518"/>
+    </g>
+
+    <!-- 第 2 颗：顶中高果 (57, 21, r=8) -->
+    <g transform="translate(57, 21)">
+      <path d="M-2.5 7 C-1 8.5 1 8.5 2.5 7" fill="none" stroke="#687b55" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="8" fill="__COLOR__"/>
+      <circle cx="0" cy="0" r="8" fill="url(#berry-glow)"/>
+      <use href="#berry-highlight" transform="scale(1)"/>
+      <path d="M0 -7.2 L0 -9.2" fill="none" stroke="#4a3728" stroke-width="0.6"/>
+      <circle cx="0" cy="-7.2" r="0.6" fill="#3a2518"/>
+    </g>
+
+    <!-- 第 3 颗：右上饱满果 (79, 36, r=9) -->
+    <g transform="translate(79, 36)">
+      <path d="M-3 8 C-1 9.5 1 9.5 3 8" fill="none" stroke="#687b55" stroke-width="0.65"/>
+      <circle cx="0" cy="0" r="9" fill="__COLOR__"/>
+      <circle cx="0" cy="0" r="9" fill="url(#berry-glow)"/>
+      <use href="#berry-highlight" transform="scale(1.1)"/>
+      <path d="M0 -8.2 L0 -10.4" fill="none" stroke="#4a3728" stroke-width="0.65"/>
+      <circle cx="0" cy="-8.2" r="0.65" fill="#3a2518"/>
+    </g>
+
+    <!-- 第 4 颗：中左果 (42, 55, r=9) -->
+    <g transform="translate(42, 55)">
+      <path d="M-3 8 C-1 9.5 1 9.5 3 8" fill="none" stroke="#687b55" stroke-width="0.65"/>
+      <circle cx="0" cy="0" r="9" fill="__COLOR__"/>
+      <circle cx="0" cy="0" r="9" fill="url(#berry-glow)"/>
+      <use href="#berry-highlight" transform="scale(1.1)"/>
+      <path d="M0 -8.2 L0 -10.4" fill="none" stroke="#4a3728" stroke-width="0.65"/>
+      <circle cx="0" cy="-8.2" r="0.65" fill="#3a2518"/>
+    </g>
+
+    <!-- 第 5 颗：中部大果 (69, 61, r=10) -->
+    <g transform="translate(69, 61)">
+      <path d="M-3.5 9 C-1 10.5 1 10.5 3.5 9" fill="none" stroke="#687b55" stroke-width="0.7"/>
+      <circle cx="0" cy="0" r="10" fill="__COLOR__"/>
+      <circle cx="0" cy="0" r="10" fill="url(#berry-glow)"/>
+      <use href="#berry-highlight" transform="scale(1.2)"/>
+      <path d="M0 -9.2 L0 -11.6" fill="none" stroke="#4a3728" stroke-width="0.7"/>
+      <circle cx="0" cy="-9.2" r="0.7" fill="#3a2518"/>
+    </g>
+
+    <!-- 第 6 颗：左下小果 (29, 77, r=7) -->
+    <g transform="translate(29, 77)">
+      <path d="M-2 6 C-1 7.2 1 7.2 2 6" fill="none" stroke="#687b55" stroke-width="0.55"/>
+      <circle cx="0" cy="0" r="7" fill="__COLOR__"/>
+      <circle cx="0" cy="0" r="7" fill="url(#berry-glow)"/>
+      <use href="#berry-highlight" transform="scale(0.9)"/>
+      <path d="M0 -6.2 L0 -8.2" fill="none" stroke="#4a3728" stroke-width="0.55"/>
+      <circle cx="0" cy="-6.2" r="0.55" fill="#3a2518"/>
+    </g>
+
+    <!-- 第 7 颗：右下贴茎果 (53, 83, r=8) -->
+    <g transform="translate(53, 83)">
+      <path d="M-2.5 7 C-1 8.5 1 8.5 2.5 7" fill="none" stroke="#687b55" stroke-width="0.6"/>
+      <circle cx="0" cy="0" r="8" fill="__COLOR__"/>
+      <circle cx="0" cy="0" r="8" fill="url(#berry-glow)"/>
+      <use href="#berry-highlight" transform="scale(1)"/>
+      <path d="M0 -7.2 L0 -9.2" fill="none" stroke="#4a3728" stroke-width="0.6"/>
+      <circle cx="0" cy="-7.2" r="0.6" fill="#3a2518"/>
+    </g>
+  </g>
+</svg>

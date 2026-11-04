@@ -1,1 +1,157 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="protea-bract" gradientUnits="userSpaceOnUse" x1="22" y1="30" x2="77" y2="94"><stop offset="0" stop-color="#f6e3d6"/><stop offset=".4" stop-color="__COLOR__"/><stop offset="1" stop-color="#7b7064"/></linearGradient><linearGradient id="protea-cushion" gradientUnits="userSpaceOnUse" x1="44" y1="30" x2="65" y2="82"><stop offset="0" stop-color="#eee6d1"/><stop offset="1" stop-color="#b9a995"/></linearGradient></defs><g transform="rotate(-3 55 94)"><path d="M43 84C27 72 24 45 29 24C40 35 45 59 47 79Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M43 84C27 72 24 45 29 24C40 35 45 59 47 79Z" fill="url(#protea-bract)" opacity="0.22"/><path d="M49 81C38 59 39 33 44 17C53 35 53 60 53 80Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M49 81C38 59 39 33 44 17C53 35 53 60 53 80Z" fill="url(#protea-bract)" opacity="0.22"/><path d="M55 80C50 57 52 28 58 16C64 35 64 58 61 81Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M55 80C50 57 52 28 58 16C64 35 64 58 61 81Z" fill="url(#protea-bract)" opacity="0.22"/><path d="M62 83C62 57 67 32 75 24C78 44 75 65 68 84Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M62 83C62 57 67 32 75 24C78 44 75 65 68 84Z" fill="url(#protea-bract)" opacity="0.22"/><path d="M38 84C21 71 14 48 16 35C29 44 37 66 43 84Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M38 84C21 71 14 48 16 35C29 44 37 66 43 84Z" fill="url(#protea-bract)" opacity="0.22"/><path d="M70 85C77 64 84 44 94 37C96 55 85 77 74 88Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M70 85C77 64 84 44 94 37C96 55 85 77 74 88Z" fill="url(#protea-bract)" opacity="0.22"/><path d="M28 64C26 49 37 32 53 31C71 29 84 44 83 61C82 74 70 83 56 83C42 83 31 77 28 64Z" fill="url(#protea-cushion)"/><path d="M41.0 39.8Q41.0 36.0 40.5 34.0" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M44.1 41.5Q45.1 36.0 43.6 34.0" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M47.2 39.4Q48.3 36.0 46.7 34.0" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M50.3 38.2Q50.5 36.0 49.8 34.0" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M53.4 40.6Q52.5 36.0 52.9 34.0" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M56.5 41.2Q55.3 36.0 56.0 34.0" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M59.6 38.6Q59.3 36.0 59.1 34.0" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M62.7 38.7Q63.5 36.0 62.2 34.0" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M65.8 41.3Q67.0 36.0 65.3 34.0" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M68.9 40.5Q69.4 36.0 68.4 34.0" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M38.1 46.3Q39.0 41.1 37.6 39.1" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M41.2 45.6Q41.0 41.1 40.7 39.1" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M44.3 43.3Q43.2 41.1 43.8 39.1" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M47.4 44.6Q46.4 41.1 46.9 39.1" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M50.5 46.6Q50.5 41.1 50.0 39.1" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M53.6 44.8Q54.6 41.1 53.1 39.1" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M56.7 43.2Q57.8 41.1 56.2 39.1" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M59.8 45.5Q60.0 41.1 59.3 39.1" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M62.9 46.4Q62.0 41.1 62.4 39.1" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M66.0 44.0Q64.9 41.1 65.5 39.1" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M69.1 43.6Q68.8 41.1 68.6 39.1" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M72.2 46.2Q73.0 41.1 71.7 39.1" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M34.4 51.5Q33.2 46.2 33.9 44.2" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M37.5 49.1Q36.7 46.2 37.0 44.2" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M40.6 48.7Q40.9 46.2 40.1 44.2" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M43.7 51.2Q44.8 46.2 43.2 44.2" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M46.8 51.0Q47.6 46.2 46.3 44.2" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M49.9 48.5Q49.7 46.2 49.4 44.2" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M53.0 49.4Q51.9 46.2 52.5 44.2" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M56.1 51.7Q55.1 46.2 55.6 44.2" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M59.2 50.2Q59.2 46.2 58.7 44.2" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M62.3 48.3Q63.3 46.2 61.8 44.2" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M65.4 50.3Q66.4 46.2 64.9 44.2" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M68.5 51.6Q68.6 46.2 68.0 44.2" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M71.6 49.3Q70.6 46.2 71.1 44.2" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M74.7 48.5Q73.5 46.2 74.2 44.2" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M34.0 55.3Q34.7 51.3 33.5 49.3" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M37.1 53.4Q38.3 51.3 36.6 49.3" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M40.2 55.3Q40.8 51.3 39.7 49.3" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M43.3 56.7Q42.8 51.3 42.8 49.3" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M46.4 54.5Q45.2 51.3 45.9 49.3" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M49.5 53.6Q48.8 51.3 49.0 49.3" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M52.6 56.1Q53.0 51.3 52.1 49.3" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M55.7 56.3Q56.9 51.3 55.2 49.3" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M58.8 53.8Q59.7 51.3 58.3 49.3" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M61.9 54.2Q61.7 51.3 61.4 49.3" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M65.0 56.7Q63.9 51.3 64.5 49.3" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M68.1 55.6Q67.1 51.3 67.6 49.3" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M71.2 53.4Q71.3 51.3 70.7 49.3" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M74.3 55.0Q75.4 51.3 73.8 49.3" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M32.1 58.9Q32.4 56.4 31.6 54.4" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M35.2 59.3Q34.4 56.4 34.7 54.4" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M38.3 61.7Q37.1 56.4 37.8 54.4" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M41.4 60.7Q41.0 56.4 40.9 54.4" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M44.5 58.5Q45.2 56.4 44.0 54.4" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M47.6 60.1Q48.8 56.4 47.1 54.4" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M50.7 61.9Q51.3 56.4 50.2 54.4" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M53.8 59.9Q53.2 56.4 53.3 54.4" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M56.9 58.6Q55.7 56.4 56.4 54.4" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M60.0 60.9Q59.3 56.4 59.5 54.4" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M63.1 61.6Q63.5 56.4 62.6 54.4" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M66.2 59.1Q67.4 56.4 65.7 54.4" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M69.3 59.1Q70.1 56.4 68.8 54.4" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M72.4 61.6Q72.1 56.4 71.9 54.4" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M75.5 61.0Q74.4 56.4 75.0 54.4" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M33.3 63.7Q32.2 61.5 32.8 59.5" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M36.4 66.0Q36.3 61.5 35.9 59.5" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M39.5 66.8Q40.5 61.5 39.0 59.5" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M42.6 64.2Q43.7 61.5 42.1 59.5" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M45.7 64.1Q45.9 61.5 45.2 59.5" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M48.8 66.7Q47.9 61.5 48.3 59.5" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M51.9 66.1Q50.7 61.5 51.4 59.5" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M55.0 63.7Q54.6 61.5 54.5 59.5" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M58.1 64.9Q58.8 61.5 57.6 59.5" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M61.2 67.0Q62.4 61.5 60.7 59.5" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M64.3 65.3Q64.9 61.5 63.8 59.5" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M67.4 63.6Q66.8 61.5 66.9 59.5" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M70.5 65.7Q69.3 61.5 70.0 59.5" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M73.6 66.9Q72.9 61.5 73.1 59.5" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M76.7 64.4Q77.1 61.5 76.2 59.5" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M32.8 69.9Q33.9 66.6 32.3 64.6" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M35.9 72.1Q36.8 66.6 35.4 64.6" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M39.0 70.4Q38.9 66.6 38.5 64.6" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M42.1 68.7Q41.0 66.6 41.6 64.6" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M45.2 70.8Q44.2 66.6 44.7 64.6" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M48.3 72.0Q48.2 66.6 47.8 64.6" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M51.4 69.6Q52.4 66.6 50.9 64.6" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M54.5 69.0Q55.6 66.6 54.0 64.6" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M57.6 71.6Q57.8 66.6 57.1 64.6" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M60.7 71.5Q59.8 66.6 60.2 64.6" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M63.8 69.0Q62.6 66.6 63.3 64.6" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M66.9 69.7Q66.5 66.6 66.4 64.6" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M70.0 72.0Q70.7 66.6 69.5 64.6" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M73.1 70.7Q74.3 66.6 72.6 64.6" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M76.2 68.7Q76.8 66.6 75.7 64.6" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M35.5 76.6Q35.1 71.7 35.0 69.7" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M38.6 76.6Q37.4 71.7 38.1 69.7" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M41.7 74.1Q40.9 71.7 41.2 69.7" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M44.8 74.7Q45.1 71.7 44.3 69.7" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M47.9 77.1Q49.1 71.7 47.4 69.7" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M51.0 75.9Q52.0 71.7 50.5 69.7" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M54.1 73.8Q54.0 71.7 53.6 69.7" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M57.2 75.6Q56.1 71.7 56.7 69.7" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M60.3 77.2Q59.3 71.7 59.8 69.7" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M63.4 75.0Q63.4 71.7 62.9 69.7" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M66.5 74.0Q67.5 71.7 66.0 69.7" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M69.6 76.4Q70.7 71.7 69.1 69.7" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M72.7 76.8Q72.9 71.7 72.2 69.7" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M36.8 82.3Q36.3 76.8 36.3 74.8" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M39.9 80.1Q40.6 76.8 39.4 74.8" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M43.0 79.0Q44.2 76.8 42.5 74.8" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M46.1 81.5Q46.8 76.8 45.6 74.8" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M49.2 81.9Q48.8 76.8 48.7 74.8" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M52.3 79.4Q51.2 76.8 51.8 74.8" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M55.4 79.6Q54.6 76.8 54.9 74.8" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M58.5 82.1Q58.9 76.8 58.0 74.8" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M61.6 81.2Q62.8 76.8 61.1 74.8" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M64.7 79.0Q65.7 76.8 64.2 74.8" fill="none" stroke="#ab9687" stroke-width=".65" stroke-linecap="round"/><path d="M67.8 80.4Q67.7 76.8 67.3 74.8" fill="none" stroke="#f4eddc" stroke-width=".65" stroke-linecap="round"/><path d="M70.9 82.3Q69.9 76.8 70.4 74.8" fill="none" stroke="#ded0bd" stroke-width=".65" stroke-linecap="round"/><path d="M43 91C27 89 19 72 18 54C30 63 33 77 46 88Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M43 91C27 89 19 72 18 54C30 63 33 77 46 88Z" fill="url(#protea-bract)" opacity="0.28"/><path d="M67 91C82 84 89 68 90 53C77 63 75 79 64 88Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M67 91C82 84 89 68 90 53C77 63 75 79 64 88Z" fill="url(#protea-bract)" opacity="0.28"/><path d="M48 93C35 89 29 79 28 64C39 69 43 83 53 90Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M48 93C35 89 29 79 28 64C39 69 43 83 53 90Z" fill="url(#protea-bract)" opacity="0.28"/><path d="M61 93C74 89 81 77 82 64C70 70 68 82 57 91Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M61 93C74 89 81 77 82 64C70 70 68 82 57 91Z" fill="url(#protea-bract)" opacity="0.28"/><path d="M54 94C42 90 39 81 39 73C48 76 51 85 57 90C62 84 65 77 71 73C70 86 63 94 54 94Z" fill="__COLOR__" stroke="#9b7d7b" stroke-opacity=".5" stroke-width=".45"/><path d="M54 94C42 90 39 81 39 73C48 76 51 85 57 90C62 84 65 77 71 73C70 86 63 94 54 94Z" fill="url(#protea-bract)" opacity="0.28"/><path d="M27 68Q32 81 43 87M82 65Q77 79 69 85M45 80Q49 87 55 90" fill="none" stroke="#f2dacf" stroke-opacity=".55" stroke-width=".7" stroke-linecap="round"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- 帝王花苞片丝质通透微光（纯净无灰脏杂质） -->
+    <linearGradient id="protea-glow" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.75"/>
+    </linearGradient>
+
+    <!-- 苞片边缘立体反光 -->
+    <linearGradient id="protea-rim" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <!-- 中心针垫花盘毛茸基底渐变（温润奶白至浅香槟金） -->
+    <radialGradient id="protea-cushion-core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#fdf6e6"/>
+      <stop offset="85%" stop-color="#f2e2ca"/>
+      <stop offset="100%" stop-color="#dfcaa9"/>
+    </radialGradient>
+  </defs>
+
+  <g transform="rotate(-3 55 94)">
+    <!-- ================= 1. 后排高耸的披针形外层总苞片（如皇冠齿刃，完全保留原版轨迹） ================= -->
+    <!-- 苞片 1 (左后侧) -->
+    <path d="M43 84 C27 72 24 45 29 24 C40 35 45 59 47 79 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M43 84 C27 72 24 45 29 24 C40 35 45 59 47 79 Z" fill="url(#protea-glow)"/>
+    <path d="M29 24 C37 36 43 55 45 76" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.65"/>
+
+    <!-- 苞片 2 (中左后) -->
+    <path d="M49 81 C38 59 39 33 44 17 C53 35 53 60 53 80 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M49 81 C38 59 39 33 44 17 C53 35 53 60 53 80 Z" fill="url(#protea-glow)"/>
+    <path d="M44 17 C48 35 50 56 50 78" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.65"/>
+
+    <!-- 苞片 3 (正中最高主尖) -->
+    <path d="M55 80 C50 57 52 28 58 16 C64 35 64 58 61 81 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M55 80 C50 57 52 28 58 16 C64 35 64 58 61 81 Z" fill="url(#protea-glow)"/>
+    <path d="M58 16 C60 36 60 56 58 78" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.65"/>
+
+    <!-- 苞片 4 (中右后) -->
+    <path d="M62 83 C62 57 67 32 75 24 C78 44 75 65 68 84 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M62 83 C62 57 67 32 75 24 C78 44 75 65 68 84 Z" fill="url(#protea-glow)"/>
+    <path d="M75 24 C74 44 71 63 65 81" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.65"/>
+
+    <!-- 苞片 5 (左极侧展翼) -->
+    <path d="M38 84 C21 71 14 48 16 35 C29 44 37 66 43 84 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M38 84 C21 71 14 48 16 35 C29 44 37 66 43 84 Z" fill="url(#protea-glow)"/>
+
+    <!-- 苞片 6 (右极侧展翼) -->
+    <path d="M70 85 C77 64 84 44 94 37 C96 55 85 77 74 88 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M70 85 C77 64 84 44 94 37 C96 55 85 77 74 88 Z" fill="url(#protea-glow)"/>
+
+    <!-- ================= 2. 中心宽阔的花垫花盘 (Central Cushion) ================= -->
+    <path d="M28 64 C26 49 37 32 53 31 C71 29 84 44 83 61 C82 74 70 83 56 83 C42 83 31 77 28 64 Z"
+          fill="url(#protea-cushion-core)" stroke="#ffffff" stroke-width="0.4" stroke-opacity="0.6"/>
+
+    <!-- ================= 3. 真实帝王花“密集天鹅绒针垫花蕊群”（细致朝向、纯净透亮） ================= -->
+    <!-- 顶部中心向心汇聚的绒毛小花柱 -->
+    <g fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.85">
+      <path d="M41 39 Q41 36 40.5 34"/>
+      <path d="M44 41 Q45 36 43.6 34"/>
+      <path d="M47 39 Q48 36 46.7 34"/>
+      <path d="M50 38 Q50.5 36 49.8 34"/>
+      <path d="M53 40 Q52.5 36 52.9 34"/>
+      <path d="M56 41 Q55 36 56 34"/>
+      <path d="M59 38 Q59 36 59.1 34"/>
+      <path d="M62 38 Q63 36 62.2 34"/>
+      <path d="M65 41 Q67 36 65.3 34"/>
+      <path d="M68 40 Q69 36 68.4 34"/>
+    </g>
+
+    <!-- 中部针垫密集细蕊群 (微金与纯白相间，层次通透) -->
+    <g fill="none" stroke-width="0.55">
+      <!-- 暖白亮线 -->
+      <path d="M38 46 Q39 41 37.6 39
+               M44 43 Q43 41 43.8 39
+               M50 46 Q50 41 50 39
+               M56 43 Q57 41 56.2 39
+               M62 46 Q62 41 62.4 39
+               M68 43 Q68 41 68.6 39
+               M37 49 Q36 46 37 44
+               M46 51 Q47 46 46.3 44
+               M56 51 Q55 46 55.6 44
+               M65 50 Q66 46 64.9 44
+               M74 48 Q73 46 74.2 44" stroke="#ffffff" opacity="0.9"/>
+
+      <!-- 柔金暖线（形成前后深浅层次） -->
+      <path d="M41 45 Q41 41 40.7 39
+               M47 44 Q46 41 46.9 39
+               M53 44 Q54 41 53.1 39
+               M59 45 Q60 41 59.3 39
+               M66 44 Q65 41 65.5 39
+               M72 46 Q73 41 71.7 39
+               M40 48 Q41 46 40.1 44
+               M49 48 Q49 46 49.4 44
+               M59 50 Q59 46 58.7 44
+               M68 51 Q68 46 68 44" stroke="#d5bfa1" opacity="0.75"/>
+    </g>
+
+    <!-- 下层针状花序丛 (自然整齐、呈现球冠表面微弧) -->
+    <g fill="none" stroke-width="0.5">
+      <path d="M34 55 Q35 51 33.5 49
+               M40 55 Q41 51 39.7 49
+               M46 54 Q45 51 45.9 49
+               M52 56 Q53 51 52.1 49
+               M58 53 Q59 51 58.3 49
+               M65 56 Q64 51 64.5 49
+               M71 53 Q71 51 70.7 49
+               M35 59 Q34 56 34.7 54
+               M44 58 Q45 56 44 54
+               M53 59 Q53 56 53.3 54
+               M63 61 Q63 56 62.6 54
+               M72 61 Q72 56 71.9 54" stroke="#ffffff" opacity="0.85"/>
+
+      <path d="M36 66 Q36 61 35.9 59
+               M45 64 Q45 61 45.2 59
+               M55 63 Q54 61 54.5 59
+               M64 65 Q65 61 63.8 59
+               M73 66 Q73 61 73.1 59
+               M39 70 Q39 66 38.5 64
+               M48 72 Q48 66 47.8 64
+               M57 71 Q58 66 57.1 64
+               M66 69 Q66 66 66.4 64
+               M76 68 Q77 66 75.7 64" stroke="#d5bfa1" opacity="0.65"/>
+    </g>
+
+    <!-- ================= 4. 前排重叠瓦合的下层苞片（托起花盘，完全保留原版轨迹） ================= -->
+    <!-- 前下左侧外展苞片 -->
+    <path d="M43 91 C27 89 19 72 18 54 C30 63 33 77 46 88 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M43 91 C27 89 19 72 18 54 C30 63 33 77 46 88 Z" fill="url(#protea-glow)"/>
+
+    <!-- 前下右侧外展苞片 -->
+    <path d="M67 91 C82 84 89 68 90 53 C77 63 75 79 64 88 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M67 91 C82 84 89 68 90 53 C77 63 75 79 64 88 Z" fill="url(#protea-glow)"/>
+
+    <!-- 前中左叠抱苞片 -->
+    <path d="M48 93 C35 89 29 79 28 64 C39 69 43 83 53 90 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M48 93 C35 89 29 79 28 64 C39 69 43 83 53 90 Z" fill="url(#protea-glow)"/>
+
+    <!-- 前中右叠抱苞片 -->
+    <path d="M61 93 C74 89 81 77 82 64 C70 70 68 82 57 91 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M61 93 C74 89 81 77 82 64 C70 70 68 82 57 91 Z" fill="url(#protea-glow)"/>
+
+    <!-- 正前方中央紧密托底主苞片 -->
+    <path d="M54 94 C42 90 39 81 39 73 C48 76 51 85 57 90 C62 84 65 77 71 73 C70 86 63 94 54 94 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.35" stroke-opacity="0.6"/>
+    <path d="M54 94 C42 90 39 81 39 73 C48 76 51 85 57 90 C62 84 65 77 71 73 C70 86 63 94 54 94 Z" fill="url(#protea-glow)"/>
+
+    <!-- 苞片前沿优美翻卷微光线 (完全保留原版精髓) -->
+    <path d="M27 68 Q32 81 43 87
+             M82 65 Q77 79 69 85
+             M45 80 Q49 87 55 90"
+          fill="none" stroke="#ffffff" stroke-width="0.65" opacity="0.75"/>
+  </g>
+</svg>
