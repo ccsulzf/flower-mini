@@ -1,19 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
   <defs>
-  <linearGradient id="bird-of-paradise-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
-  <stop offset="0" stop-color="__COLOR__"/>
-  <stop offset="1" stop-color="#ad7644"/>
-  </linearGradient>
-  </defs><g transform="rotate(-4 29 96)">
-  <path d="M19 91L27 85L34 65L83 68L105 61Q84 82 45 88L30 97Z" fill="#6f8b69" stroke="#637756" stroke-width=".6"/>
-  <path d="M41 71Q28 36 29 11Q45 35 47 69Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M41 71Q28 36 29 11Q45 35 47 69Z" fill="url(#bird-of-paradise-fold)" opacity="0.13"/>
-  <path d="M49 70Q49 25 58 5Q62 35 56 72Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M49 70Q49 25 58 5Q62 35 56 72Z" fill="url(#bird-of-paradise-fold)" opacity="0.13"/>
-  <path d="M55 71Q70 27 83 15Q78 47 63 76Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M55 71Q70 27 83 15Q78 47 63 76Z" fill="url(#bird-of-paradise-fold)" opacity="0.13"/>
-  <path d="M46 76Q64 37 80 35L66 76Z" fill="#747ba0" stroke="#656887" stroke-width=".5"/>
-  <path d="M50 77Q60 48 64 39L58 80Z" fill="#9498b3" />
-  <path d="M37 75Q60 74 92 66" fill="none" stroke="#b7c8a1" stroke-width="0.8" />
-  <path d="M26 86L29 81L43 77L39 85Z" fill="#b27868" />
-</g></svg>
+    <!-- 保持原有的鹤望兰萼片阴影渐变定义 (__COLOR__ 动态控制) -->
+    <linearGradient id="bird-of-paradise-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
+      <stop offset="0" stop-color="__COLOR__"/>
+      <stop offset="1" stop-color="#ad7644"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="rotate(-4 29 96)">
+    <!-- ====== 1. 花茎与舟形佛焰苞（鹤喙基座） ====== -->
+    <!-- 坚挺微弯的肉质花茎 (从底部延伸至佛焰苞弯折处) -->
+    <path d="M16 106 Q17 100 18 96" fill="none" stroke="#6f8b69" stroke-width="2.2"/>
+
+    <!-- 佛焰苞主体 (优雅饱满如硬弓的舟形鸟喙，末端尖锐如芒) -->
+    <path d="M18 96
+             C24 93 30 84 37 70
+             C52 71 78 70 106 61
+             C86 78 58 87 35 94
+             C27 96 21 97 18 96 Z"
+          fill="#6f8b69" stroke="#5a7254" stroke-width="0.55" stroke-linejoin="round"/>
+
+    <!-- 佛焰苞基部与上唇边缘的天然胭脂紫红晕彩 (#b27868 自然晕开) -->
+    <path d="M22 95 C28 86 34 78 44 71 C36 78 30 87 24 95 Z" fill="#b27868" opacity="0.8"/>
+    <path d="M37 70 C55 72 78 71 106 61 C88 64 66 67 44 71 Z" fill="#b27868" opacity="0.6"/>
+
+    <!-- 鸟喙上边缘淡黄绿色亮棱线 (体现硬质革质反光) -->
+    <path d="M36 71 C55 72 78 71 102 62" fill="none" stroke="#b7c8a1" stroke-width="0.75" opacity="0.85"/>
+
+    <!-- ====== 2. 鹤望兰标志性的深蓝紫“长戟箭头”花瓣群 ====== -->
+    <!-- 底层深钴蓝阴影瓣 -->
+    <path d="M43 75 Q60 52 77 37 L65 74 Z" fill="#505b82" stroke="#464f70" stroke-width="0.4"/>
+    <!-- 主戟形花瓣 (如锐利的长矛箭头向前穿刺) -->
+    <path d="M44 73 C53 62 64 48 78 36 C80 34 81 35 79 38 C72 52 64 66 58 75 Z"
+          fill="#747ba0" stroke="#5a6080" stroke-width="0.45" stroke-linejoin="round"/>
+    <!-- 箭头亮部凸脊 (浅紫蓝 #9498b3) -->
+    <path d="M49 73 C57 60 67 47 78 36 L72 49 C65 60 58 68 54 75 Z" fill="#9498b3" opacity="0.9"/>
+    <!-- 箭尖微露的白色花柱微芒 -->
+    <path d="M78 36 L81 33.5" fill="none" stroke="#fff5df" stroke-width="0.7"/>
+
+    <!-- ====== 3. 三枚飞扬挺拔的仙鹤冠羽（花萼 __COLOR__） ====== -->
+
+    <!-- 【后仰冠瓣】（向后上方飘逸展翅，极其秀拔） -->
+    <path d="M41 71 C34 50 25 28 27 10 C33 22 42 45 46 68 Z"
+          fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45" stroke-linejoin="round"/>
+    <path d="M41 71 C34 50 25 28 27 10 C33 22 42 45 46 68 Z"
+          fill="url(#bird-of-paradise-fold)" opacity="0.14"/>
+    <!-- 后瓣主脊高光 -->
+    <path d="M42 68 Q33 40 27 12" fill="none" stroke="#fff5df" stroke-width="0.38" opacity="0.35"/>
+
+    <!-- 【天冠主瓣】（直插天际，傲然挺立） -->
+    <path d="M48 71 C48 42 53 20 57 5 C61 22 61 48 56 71 Z"
+          fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45" stroke-linejoin="round"/>
+    <path d="M48 71 C48 42 53 20 57 5 C61 22 61 48 56 71 Z"
+          fill="url(#bird-of-paradise-fold)" opacity="0.14"/>
+    <!-- 主瓣坚挺龙骨反光 -->
+    <path d="M50 68 Q53 38 57 7" fill="none" stroke="#fff5df" stroke-width="0.4" opacity="0.4"/>
+
+    <!-- 【前掠冠瓣】（向前斜飞，与深蓝长戟形成充满张力的呼应） -->
+    <path d="M54 71 C65 48 74 28 85 14 C82 32 75 55 64 74 Z"
+          fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45" stroke-linejoin="round"/>
+    <path d="M54 71 C65 48 74 28 85 14 C82 32 75 55 64 74 Z"
+          fill="url(#bird-of-paradise-fold)" opacity="0.14"/>
+    <!-- 前瓣侧缘微光 -->
+    <path d="M56 68 Q70 42 83 16" fill="none" stroke="#fff5df" stroke-width="0.38" opacity="0.35"/>
+
+    <!-- 佛焰苞弯折处的立体阴影收口 -->
+    <path d="M18 96 Q24 88 32 82" fill="none" stroke="#485c42" stroke-width="0.6" opacity="0.5"/>
+  </g>
+</svg>

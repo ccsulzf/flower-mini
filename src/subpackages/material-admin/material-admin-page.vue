@@ -22,7 +22,7 @@ const wholePreview = computed(() => {
     return null
   try {
     const source = cloudPlantSvg({ ...item, category: 'flower', updatedAt: 0, assets: {}, paths: {} }, {
-      stemHeight: 320,
+      transform: { height: 320 },
       color: color.value,
     })
     return { source: localPreviewSource(source, color.value), error: '' }

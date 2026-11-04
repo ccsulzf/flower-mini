@@ -1,3 +1,149 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="anemone-petal-0" gradientUnits="userSpaceOnUse" x1="-44" y1="-44" x2="28" y2="28"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient></defs><g transform="rotate(-7 55 84)">
-<g transform="translate(55 50) rotate(0.0)"><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="url(#anemone-petal-0)" opacity=".14"/><path d="M0 0Q-4.55 -17.5 0 -28.7" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(55 50) rotate(45.0)"><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="url(#anemone-petal-0)" opacity=".14"/><path d="M0 0Q-4.55 -17.5 0 -28.7" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(55 50) rotate(90.0)"><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="url(#anemone-petal-0)" opacity=".14"/><path d="M0 0Q-4.55 -17.5 0 -28.7" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(55 50) rotate(135.0)"><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="url(#anemone-petal-0)" opacity=".14"/><path d="M0 0Q-4.55 -17.5 0 -28.7" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(55 50) rotate(180.0)"><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="url(#anemone-petal-0)" opacity=".14"/><path d="M0 0Q-4.55 -17.5 0 -28.7" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(55 50) rotate(225.0)"><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="url(#anemone-petal-0)" opacity=".14"/><path d="M0 0Q-4.55 -17.5 0 -28.7" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(55 50) rotate(270.0)"><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="url(#anemone-petal-0)" opacity=".14"/><path d="M0 0Q-4.55 -17.5 0 -28.7" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(55 50) rotate(315.0)"><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-28.0 -7.0 -24.5 -43.75 0 -35C28.0 -43.75 28.0 -5.25 0 1Z" fill="url(#anemone-petal-0)" opacity=".14"/><path d="M0 0Q-4.55 -17.5 0 -28.7" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><ellipse cx="55.00" cy="50.00" rx="7.7" ry="7.7" fill="#c3b579" /><ellipse cx="55.00" cy="50.00" rx="14" ry="13" fill="#665d70" /><path d="M55 50L73.00 50.00" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="73.00" cy="50.00" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L72.65 53.32" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="72.65" cy="53.32" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L71.63 56.51" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="71.63" cy="56.51" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L69.97 59.44" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="69.97" cy="59.44" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L67.73 62.02" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="67.73" cy="62.02" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L65.00 64.13" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="65.00" cy="64.13" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L61.89 65.71" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="61.89" cy="65.71" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L58.51 66.67" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="58.51" cy="66.67" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L55.00 67.00" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="55.00" cy="67.00" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L51.49 66.67" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="51.49" cy="66.67" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L48.11 65.71" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="48.11" cy="65.71" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L45.00 64.13" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="45.00" cy="64.13" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L42.27 62.02" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="42.27" cy="62.02" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L40.03 59.44" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="40.03" cy="59.44" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L38.37 56.51" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="38.37" cy="56.51" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L37.35 53.32" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="37.35" cy="53.32" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L37.00 50.00" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="37.00" cy="50.00" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L37.35 46.68" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="37.35" cy="46.68" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L38.37 43.49" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="38.37" cy="43.49" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L40.03 40.56" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="40.03" cy="40.56" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L42.27 37.98" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="42.27" cy="37.98" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L45.00 35.87" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="45.00" cy="35.87" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L48.11 34.29" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="48.11" cy="34.29" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L51.49 33.33" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="51.49" cy="33.33" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L55.00 33.00" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="55.00" cy="33.00" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L58.51 33.33" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="58.51" cy="33.33" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L61.89 34.29" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="61.89" cy="34.29" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L65.00 35.87" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="65.00" cy="35.87" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L67.73 37.98" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="67.73" cy="37.98" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L69.97 40.56" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="69.97" cy="40.56" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L71.63 43.49" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="71.63" cy="43.49" rx="1.1" ry="1.3" fill="#665770" /><path d="M55 50L72.65 46.68" fill="none" stroke="#75677e" stroke-width="0.55" /><ellipse cx="72.65" cy="46.68" rx="1.1" ry="1.3" fill="#665770" /><ellipse cx="55.00" cy="50.00" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="54.62" cy="50.32" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="55.09" cy="49.06" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="55.95" cy="51.12" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="52.95" cy="49.67" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="57.19" cy="48.74" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="54.19" cy="52.72" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="53.32" cy="47.08" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="58.91" cy="51.29" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="50.67" cy="51.61" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="57.21" cy="45.74" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="56.71" cy="54.93" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="49.60" cy="47.17" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="61.60" cy="48.69" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="50.81" cy="55.38" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="54.00" cy="43.01" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="61.36" cy="54.85" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="46.17" cy="50.33" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="61.64" cy="44.04" rx="0.7" ry="0.7" fill="#ad9ba7" /><ellipse cx="54.54" cy="58.92" rx="0.7" ry="0.7" fill="#ad9ba7" />
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <defs>
+    <!-- 保持原有的银莲花渐变定义（基部暖白环 halo + __COLOR__ 主色 + 尖部草本微绿） -->
+    <linearGradient id="anemone-petal-0" gradientUnits="userSpaceOnUse" x1="-30" y1="-30" x2="22" y2="22">
+      <stop offset="0" stop-color="#fff8e7"/>
+      <stop offset=".48" stop-color="__COLOR__"/>
+      <stop offset="1" stop-color="#68765b"/>
+    </linearGradient>
+
+    <!-- ====== 外层舒展花瓣组件 (Outer Petal) ====== -->
+    <g id="anemone-petal-outer">
+      <!-- 银莲花标志性丝绒宽瓣（基部收拢，两侧圆润微波浪，顶端微凹） -->
+      <path d="M0 1.5 C-5 -1 -12 -6.5 -15.5 -14 C-18.5 -21 -15.5 -31 -7.5 -35 C-3.5 -37 -0.5 -35.5 0 -35 C0.5 -35.5 3.5 -37 7.5 -35 C15.5 -31 18.5 -21 15.5 -14 C12 -6.5 5 -1 0 1.5 Z"
+            fill="__COLOR__" stroke="#8e827f" stroke-opacity=".62" stroke-width="0.25" stroke-linejoin="round"/>
+      <path d="M0 1.5 C-5 -1 -12 -6.5 -15.5 -14 C-18.5 -21 -15.5 -31 -7.5 -35 C-3.5 -37 -0.5 -35.5 0 -35 C0.5 -35.5 3.5 -37 7.5 -35 C15.5 -31 18.5 -21 15.5 -14 C12 -6.5 5 -1 0 1.5 Z"
+            fill="url(#anemone-petal-0)" opacity=".16"/>
+      <!-- 花瓣主脉与半透明微羽侧脉 -->
+      <path d="M0 0 Q-0.8 -15 0 -29" fill="none" stroke="#fff4dd" stroke-width="0.48" stroke-opacity=".48"/>
+      <path d="M0 -3 Q-5 -12 -9 -22 M0 -3 Q5 -12 9 -22" fill="none" stroke="#fff4dd" stroke-width="0.3" stroke-opacity=".28"/>
+    </g>
+
+    <!-- ====== 内层微卷花瓣组件 (Inner Petal) ====== -->
+    <g id="anemone-petal-inner">
+      <path d="M0 1.5 C-4.5 -1 -10.5 -6 -14 -13.5 C-17 -20 -14 -29 -6.5 -33.5 C-2.8 -35.5 -0.5 -34 0 -33.8 C0.5 -34 2.8 -35.5 6.5 -33.5 C14 -29 17 -20 14 -13.5 C10.5 -6 4.5 -1 0 1.5 Z"
+            fill="__COLOR__" stroke="#8e827f" stroke-opacity=".62" stroke-width="0.25" stroke-linejoin="round"/>
+      <path d="M0 1.5 C-4.5 -1 -10.5 -6 -14 -13.5 C-17 -20 -14 -29 -6.5 -33.5 C-2.8 -35.5 -0.5 -34 0 -33.8 C0.5 -34 2.8 -35.5 6.5 -33.5 C14 -29 17 -20 14 -13.5 C10.5 -6 4.5 -1 0 1.5 Z"
+            fill="url(#anemone-petal-0)" opacity=".16"/>
+      <path d="M0 0 Q-0.6 -14 0 -27.5" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/>
+    </g>
+  </defs>
+
+  <!-- 保持原有的全图微倾斜基准 -->
+  <g transform="rotate(-7 55 84)">
+    <!-- ====== 1. 八片自然错落、层叠交错的花瓣（中心位于 55, 50） ====== -->
+    <g transform="translate(55 50)">
+      <!-- 底层/外轮 4 大花瓣 -->
+      <use href="#anemone-petal-outer" transform="rotate(-3)" />
+      <use href="#anemone-petal-outer" transform="rotate(87)" />
+      <use href="#anemone-petal-outer" transform="rotate(178)" />
+      <use href="#anemone-petal-outer" transform="rotate(-92)" />
+
+      <!-- 表层/内轮 4 稍小掩映花瓣（带有更自然的重叠交错角） -->
+      <use href="#anemone-petal-inner" transform="scale(0.97) rotate(42)" />
+      <use href="#anemone-petal-inner" transform="scale(0.96) rotate(133)" />
+      <use href="#anemone-petal-inner" transform="scale(0.97) rotate(224)" />
+      <use href="#anemone-petal-inner" transform="scale(0.96) rotate(316)" />
+
+      <!-- ====== 2. 银莲花标志性深黑天鹅绒“暗夜之眼”花心群 ====== -->
+      <!-- 基底幽深暗影与深紫灰花心底座 -->
+      <circle cx="0" cy="0" r="14.8" fill="#4d4454" opacity="0.4" />
+      <circle cx="0" cy="0" r="13" fill="#665d70" />
+
+      <!-- 外轮深邃绒毛花丝与小花药（长短错落，呈现真实毛茸质感） -->
+      <g stroke="#75677e" stroke-width="0.45" fill="#665770">
+        <!-- 0° - 90° -->
+        <path d="M0 0 Q6 0.8 15.5 0 M0 0 Q6 2.5 14.8 4.2 M0 0 Q5.8 4.5 13.8 8.2 M0 0 Q5 6 11.8 11.2 M0 0 Q3.8 6.5 8.2 13.5 M0 0 Q2 6.8 4.5 15 M0 0 Q0.5 7 0.2 15.8"/>
+        <ellipse cx="15.5" cy="0" rx="1.0" ry="1.2" transform="rotate(90 15.5 0)"/>
+        <ellipse cx="14.8" cy="4.2" rx="1.0" ry="1.2" transform="rotate(75 14.8 4.2)"/>
+        <ellipse cx="13.8" cy="8.2" rx="1.0" ry="1.2" transform="rotate(60 13.8 8.2)"/>
+        <ellipse cx="11.8" cy="11.2" rx="1.0" ry="1.2" transform="rotate(45 11.8 11.2)"/>
+        <ellipse cx="8.2" cy="13.5" rx="1.0" ry="1.2" transform="rotate(30 8.2 13.5)"/>
+        <ellipse cx="4.5" cy="15" rx="1.0" ry="1.2" transform="rotate(15 4.5 15)"/>
+        <ellipse cx="0.2" cy="15.8" rx="1.0" ry="1.2"/>
+
+        <!-- 90° - 180° -->
+        <path d="M0 0 Q-2 6.8 -4.5 15 M0 0 Q-3.8 6.5 -8.2 13.5 M0 0 Q-5 6 -11.8 11.2 M0 0 Q-5.8 4.5 -13.8 8.2 M0 0 Q-6 2.5 -14.8 4.2 M0 0 Q-6 0.8 -15.5 0"/>
+        <ellipse cx="-4.5" cy="15" rx="1.0" ry="1.2" transform="rotate(-15 -4.5 15)"/>
+        <ellipse cx="-8.2" cy="13.5" rx="1.0" ry="1.2" transform="rotate(-30 -8.2 13.5)"/>
+        <ellipse cx="-11.8" cy="11.2" rx="1.0" ry="1.2" transform="rotate(-45 -11.8 11.2)"/>
+        <ellipse cx="-13.8" cy="8.2" rx="1.0" ry="1.2" transform="rotate(-60 -13.8 8.2)"/>
+        <ellipse cx="-14.8" cy="4.2" rx="1.0" ry="1.2" transform="rotate(-75 -14.8 4.2)"/>
+        <ellipse cx="-15.5" cy="0" rx="1.0" ry="1.2" transform="rotate(90 -15.5 0)"/>
+
+        <!-- 180° - 270° -->
+        <path d="M0 0 Q-6 -2.5 -14.8 -4.2 M0 0 Q-5.8 -4.5 -13.8 -8.2 M0 0 Q-5 -6 -11.8 -11.2 M0 0 Q-3.8 -6.5 -8.2 -13.5 M0 0 Q-2 -6.8 -4.5 -15 M0 0 Q-0.5 -7 -0.2 -15.8"/>
+        <ellipse cx="-14.8" cy="-4.2" rx="1.0" ry="1.2" transform="rotate(75 -14.8 -4.2)"/>
+        <ellipse cx="-13.8" cy="-8.2" rx="1.0" ry="1.2" transform="rotate(60 -13.8 -8.2)"/>
+        <ellipse cx="-11.8" cy="-11.2" rx="1.0" ry="1.2" transform="rotate(45 -11.8 -11.2)"/>
+        <ellipse cx="-8.2" cy="-13.5" rx="1.0" ry="1.2" transform="rotate(30 -8.2 -13.5)"/>
+        <ellipse cx="-4.5" cy="-15" rx="1.0" ry="1.2" transform="rotate(15 -4.5 -15)"/>
+        <ellipse cx="-0.2" cy="-15.8" rx="1.0" ry="1.2"/>
+
+        <!-- 270° - 360° -->
+        <path d="M0 0 Q2 -6.8 4.5 -15 M0 0 Q3.8 -6.5 8.2 -13.5 M0 0 Q5 -6 11.8 -11.2 M0 0 Q5.8 -4.5 13.8 -8.2 M0 0 Q6 -2.5 14.8 -4.2"/>
+        <ellipse cx="4.5" cy="-15" rx="1.0" ry="1.2" transform="rotate(-15 4.5 -15)"/>
+        <ellipse cx="8.2" cy="-13.5" rx="1.0" ry="1.2" transform="rotate(-30 8.2 -13.5)"/>
+        <ellipse cx="11.8" cy="-11.2" rx="1.0" ry="1.2" transform="rotate(-45 11.8 -11.2)"/>
+        <ellipse cx="13.8" cy="-8.2" rx="1.0" ry="1.2" transform="rotate(-60 13.8 -8.2)"/>
+        <ellipse cx="14.8" cy="-4.2" rx="1.0" ry="1.2" transform="rotate(-75 14.8 -4.2)"/>
+      </g>
+
+      <!-- 内轮稍短的细密绒丝（形成深邃厚重的绒球边缘） -->
+      <g stroke="#53465b" stroke-width="0.38" fill="#52435b">
+        <circle cx="10.8" cy="2.5" r="0.8"/>
+        <circle cx="8.5" cy="7.2" r="0.8"/>
+        <circle cx="5.2" cy="10.2" r="0.8"/>
+        <circle cx="0.5" cy="11.5" r="0.8"/>
+        <circle cx="-4.8" cy="10.5" r="0.8"/>
+        <circle cx="-8.8" cy="7.0" r="0.8"/>
+        <circle cx="-11.0" cy="2.2" r="0.8"/>
+        <circle cx="-10.5" cy="-3.5" r="0.8"/>
+        <circle cx="-7.8" cy="-8.0" r="0.8"/>
+        <circle cx="-3.2" cy="-11.0" r="0.8"/>
+        <circle cx="2.5" cy="-11.2" r="0.8"/>
+        <circle cx="7.5" cy="-8.2" r="0.8"/>
+        <circle cx="10.2" cy="-3.8" r="0.8"/>
+      </g>
+
+      <!-- ====== 3. 中心圆隆起凸出的雌蕊台（Pistil Dome） ====== -->
+      <circle cx="0" cy="0" r="7.4" fill="#c3b579" />
+      <circle cx="0" cy="0" r="6.8" fill="#504657" />
+
+      <!-- 螺旋密集分布的银白雌蕊柱头点（遵循自然植物斐波那契发散） -->
+      <g fill="#ad9ba7">
+        <circle cx="0" cy="0" r="0.75" fill="#c8b8c3"/>
+        <!-- 内圈 -->
+        <circle cx="1.6" cy="0.8" r="0.7"/>
+        <circle cx="0.2" cy="1.8" r="0.7"/>
+        <circle cx="-1.5" cy="1.1" r="0.7"/>
+        <circle cx="-1.6" cy="-0.7" r="0.7"/>
+        <circle cx="-0.2" cy="-1.8" r="0.7"/>
+        <circle cx="1.4" cy="-1.0" r="0.7"/>
+        <!-- 中圈 -->
+        <circle cx="3.2" cy="0.5" r="0.68"/>
+        <circle cx="2.5" cy="2.2" r="0.68"/>
+        <circle cx="0.8" cy="3.3" r="0.68"/>
+        <circle cx="-1.2" cy="3.2" r="0.68"/>
+        <circle cx="-2.8" cy="1.9" r="0.68"/>
+        <circle cx="-3.4" cy="0.1" r="0.68"/>
+        <circle cx="-2.6" cy="-2.0" r="0.68"/>
+        <circle cx="-0.9" cy="-3.3" r="0.68"/>
+        <circle cx="1.1" cy="-3.2" r="0.68"/>
+        <circle cx="2.7" cy="-1.8" r="0.68"/>
+        <!-- 外圈边缘紧扣花心台 -->
+        <circle cx="4.8" cy="1.2" r="0.65"/>
+        <circle cx="3.6" cy="3.4" r="0.65"/>
+        <circle cx="1.4" cy="4.8" r="0.65"/>
+        <circle cx="-1.4" cy="4.8" r="0.65"/>
+        <circle cx="-3.8" cy="3.2" r="0.65"/>
+        <circle cx="-5.0" cy="0.8" r="0.65"/>
+        <circle cx="-4.6" cy="-1.8" r="0.65"/>
+        <circle cx="-2.8" cy="-4.1" r="0.65"/>
+        <circle cx="0" cy="-5.0" r="0.65"/>
+        <circle cx="2.8" cy="-4.1" r="0.65"/>
+        <circle cx="4.7" cy="-1.8" r="0.65"/>
+      </g>
+    </g>
+  </g>
+</svg>

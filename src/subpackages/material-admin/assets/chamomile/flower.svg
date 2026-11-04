@@ -1,263 +1,110 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="chamomile-petal-0" gradientUnits="userSpaceOnUse" x1="24" y1="24" x2="40" y2="40"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="chamomile-petal-1" gradientUnits="userSpaceOnUse" x1="15" y1="15" x2="66" y2="66"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="chamomile-petal-2" gradientUnits="userSpaceOnUse" x1="48" y1="48" x2="87" y2="87"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="chamomile-petal-3" gradientUnits="userSpaceOnUse" x1="42" y1="42" x2="70" y2="70"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient></defs><g transform="rotate(-4 55 104)">
-  <path d="M55 104C55 72.6667 42.4 52.6667 28 44" fill="none" stroke="#8c9b71" stroke-width="0.85" />
-  <g transform="rotate(0.00 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- 保持原有的色彩过渡渐变 (__COLOR__ 动态自适应) -->
+    <linearGradient id="chamomile-petal-0" gradientUnits="userSpaceOnUse" x1="20" y1="20" x2="45" y2="45">
+      <stop offset="0" stop-color="#fff8e7"/>
+      <stop offset=".48" stop-color="__COLOR__"/>
+      <stop offset="1" stop-color="#68765b"/>
+    </linearGradient>
+
+    <!-- ====== 1. 真实洋甘菊单片舌状花瓣 (带特征性 2~3 枚先端细微浅圆齿裂) ====== -->
+    <g id="chamomile-petal">
+      <!-- 狭长长圆形舌状花瓣 (指向 12 点方向) -->
+      <path d="M-0.8 0
+               C-1.8 -4 -2.2 -9 -2.0 -13.5
+               C-2.0 -15.5 -1.0 -16.5 -0.6 -15.8
+               C-0.3 -16.8 0.3 -16.8 0.6 -15.8
+               C1.0 -16.5 2.0 -15.5 2.0 -13.5
+               C2.2 -9 1.8 -4 0.8 0 Z"
+            fill="__COLOR__" stroke="#c5bfaa" stroke-width="0.22" stroke-opacity=".7" stroke-linejoin="round"/>
+      <path d="M-0.8 0 C-1.8 -4 -2.2 -9 -2.0 -13.5 C-2.0 -15.5 -1.0 -16.5 -0.6 -15.8 C-0.3 -16.8 0.3 -16.8 0.6 -15.8 C1.0 -16.5 2.0 -15.5 2.0 -13.5 C2.2 -9 1.8 -4 0.8 0 Z"
+            fill="url(#chamomile-petal-0)" opacity=".14"/>
+      <!-- 花瓣中肋受光细微亮线 -->
+      <path d="M0 -1 L0 -14.5" fill="none" stroke="#fff5df" stroke-width="0.32" stroke-opacity="0.6"/>
+    </g>
+
+    <!-- ====== 2. 真实洋甘菊高高隆起的“半球形/圆锥形小金丘花盘” ====== -->
+    <g id="chamomile-disk">
+      <!-- 花盘底圈阴影基座 -->
+      <ellipse cx="0" cy="0" rx="3.6" ry="3.2" fill="#917332"/>
+      <!-- 高高隆起的圆锥形金黄花心主体 -->
+      <ellipse cx="0" cy="-0.6" rx="3.3" ry="2.9" fill="#dfb135"/>
+      <!-- 花盘顶端受光小亮包 (呈现半球体立体凸出感) -->
+      <ellipse cx="0.3" cy="-1.0" rx="2.2" ry="1.8" fill="#f5ce47"/>
+
+      <!-- 致密的微型管状花小孔点 (Phyllotaxis 蜂巢肌理) -->
+      <g fill="#917332" opacity="0.65">
+        <circle cx="-1.2" cy="0.4" r="0.28"/>
+        <circle cx="1.2" cy="0.4" r="0.28"/>
+        <circle cx="-1.8" cy="-0.5" r="0.28"/>
+        <circle cx="1.8" cy="-0.5" r="0.28"/>
+        <circle cx="0" cy="1.2" r="0.28"/>
+      </g>
+      <g fill="#fff5df" opacity="0.8">
+        <circle cx="-0.6" cy="-1.2" r="0.3"/>
+        <circle cx="0.6" cy="-1.2" r="0.3"/>
+        <circle cx="0" cy="-0.6" r="0.32"/>
+        <circle cx="-0.8" cy="-0.2" r="0.3"/>
+        <circle cx="0.8" cy="-0.2" r="0.3"/>
+      </g>
+    </g>
+
+    <!-- ====== 3. 完整绽放的洋甘菊小花朵组件 ====== -->
+    <g id="chamomile-flower">
+      <!-- 13 片飘逸舌瓣环抱，长短微带自然起伏 -->
+      <use href="#chamomile-petal" transform="rotate(0.0)"/>
+      <use href="#chamomile-petal" transform="rotate(27.7) scale(0.98)"/>
+      <use href="#chamomile-petal" transform="rotate(55.4) scale(1.02)"/>
+      <use href="#chamomile-petal" transform="rotate(83.1)"/>
+      <use href="#chamomile-petal" transform="rotate(110.8) scale(0.97)"/>
+      <use href="#chamomile-petal" transform="rotate(138.5) scale(1.02)"/>
+      <use href="#chamomile-petal" transform="rotate(166.2)"/>
+      <use href="#chamomile-petal" transform="rotate(193.8) scale(0.98)"/>
+      <use href="#chamomile-petal" transform="rotate(221.5) scale(1.01)"/>
+      <use href="#chamomile-petal" transform="rotate(249.2)"/>
+      <use href="#chamomile-petal" transform="rotate(276.9) scale(0.98)"/>
+      <use href="#chamomile-petal" transform="rotate(304.6) scale(1.02)"/>
+      <use href="#chamomile-petal" transform="rotate(332.3)"/>
+      <!-- 居中的圆锥金包花盘 -->
+      <use href="#chamomile-disk"/>
+    </g>
+  </defs>
+
+  <g transform="rotate(-4 55 104)">
+    <!-- ====== 1. 柔韧的草本主茎系统与丝状羽裂小叶 (#8c9b71) ====== -->
+    <!-- 四支花梗自然延伸 -->
+    <path d="M55 104 C55 72.6 42.4 52.6 28 40" fill="none" stroke="#8c9b71" stroke-width="0.85"/>
+    <path d="M55 104 Q56.4 45 62 25" fill="none" stroke="#8c9b71" stroke-width="0.85"/>
+    <path d="M55 104 Q60.6 74 83 57" fill="none" stroke="#8c9b71" stroke-width="0.85"/>
+    <path d="M55 104 Q53.2 87 46 70" fill="none" stroke="#8c9b71" stroke-width="0.85"/>
+
+    <!-- 真实洋甘菊标志性的丝状细碎羽裂小叶 (彻底取代原版生硬的鸡爪断线) -->
+    <g fill="none" stroke="#8c9b71" stroke-width="0.45" stroke-linecap="round">
+      <!-- 下部左侧丝裂叶 -->
+      <path d="M54 88 Q45 84 38 78"/>
+      <path d="M46 83 Q40 76 36 73"/>
+      <path d="M48 85 Q43 90 38 92"/>
+      <!-- 下部右侧丝裂叶 -->
+      <path d="M55 92 Q64 88 72 82"/>
+      <path d="M63 87 Q69 80 73 76"/>
+      <path d="M65 89 Q70 94 75 96"/>
+      <!-- 中部微细小裂羽 -->
+      <path d="M52 64 Q46 60 41 57"/>
+      <path d="M58 56 Q66 52 71 49"/>
+    </g>
+
+    <!-- ====== 2. 四朵高低错落、清新雅致的真品洋甘菊 ====== -->
+
+    <!-- 【顶端主放花】 (62, 25) - 迎阳盛展，全幅核心高景 -->
+    <use href="#chamomile-flower" transform="translate(62, 25) scale(1.05)"/>
+
+    <!-- 【左上微倾花】 (28, 40) - 3/4俯角倾展，展现圆凸金心 -->
+    <use href="#chamomile-flower" transform="translate(28, 40) rotate(-15) scale(0.98)"/>
+
+    <!-- 【右中舒展花】 (83, 57) - 欢快朝向右侧 -->
+    <use href="#chamomile-flower" transform="translate(83, 57) rotate(22) scale(0.94)"/>
+
+    <!-- 【左下娇嫩小花】 (46, 70) - 纯真初开，形成完美的田园层次 -->
+    <use href="#chamomile-flower" transform="translate(46, 70) rotate(-8) scale(0.82)"/>
   </g>
-  <g transform="rotate(30.22 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(58.11 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(83.50 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(108.50 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(135.58 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(165.32 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(195.82 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(224.51 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(250.47 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(275.29 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(301.62 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <g transform="rotate(330.70 28 40)">
-  <path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M27 40C24 36 25 29 28 29Q32 30 30 38Z" fill="url(#chamomile-petal-0)" opacity=".14"/>
-  </g>
-  <circle cx="28.00" cy="40.00" r="3.85" fill="#ac9551" />
-  <circle cx="28.00" cy="40.00" r="3.16" fill="#b7a461" />
-  <circle cx="28.50" cy="40.00" r="0.40" fill="#e7d391" />
-  <circle cx="27.36" cy="40.58" r="0.40" fill="#8c753b" />
-  <circle cx="28.10" cy="38.89" r="0.40" fill="#c7ad60" />
-  <circle cx="28.80" cy="41.05" r="0.40" fill="#e7d391" />
-  <circle cx="26.52" cy="39.74" r="0.40" fill="#8c753b" />
-  <circle cx="29.40" cy="39.11" r="0.40" fill="#c7ad60" />
-  <circle cx="27.53" cy="41.74" r="0.40" fill="#e7d391" />
-  <circle cx="27.11" cy="38.28" r="0.40" fill="#8c753b" />
-  <circle cx="29.93" cy="40.71" r="0.40" fill="#c7ad60" />
-  <circle cx="25.99" cy="40.83" r="0.40" fill="#e7d391" />
-  <circle cx="28.97" cy="37.93" r="0.40" fill="#8c753b" />
-  <circle cx="28.72" cy="42.29" r="0.40" fill="#c7ad60" />
-  <circle cx="25.84" cy="38.75" r="0.40" fill="#e7d391" />
-  <circle cx="30.54" cy="39.44" r="0.40" fill="#8c753b" />
-  <circle cx="26.45" cy="42.20" r="0.40" fill="#c7ad60" />
-  <circle cx="27.64" cy="37.24" r="0.40" fill="#e7d391" />
-  <circle cx="30.19" cy="41.85" r="0.40" fill="#8c753b" />
-  <circle cx="25.05" cy="40.12" r="0.40" fill="#c7ad60" />
-  <circle cx="30.15" cy="37.86" r="0.40" fill="#e7d391" />
-  <circle cx="27.86" cy="43.12" r="0.40" fill="#8c753b" />
-  <circle cx="25.95" cy="37.54" r="0.40" fill="#c7ad60" />
-  <circle cx="31.25" cy="40.44" r="0.40" fill="#e7d391" />
-  <circle cx="25.25" cy="41.91" r="0.40" fill="#8c753b" />
-  <path d="M55 104Q56.4 42 62 29" fill="none" stroke="#8c9b71" stroke-width="0.85" />
-  <g transform="rotate(0.00 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(30.22 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(58.11 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(83.50 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(108.50 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(135.58 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(165.32 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(195.82 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(224.51 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(250.47 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(275.29 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(301.62 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <g transform="rotate(330.70 62 25)">
-  <path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M61 25C58 21 59 15 62 15Q66 16 64 23Z" fill="url(#chamomile-petal-1)" opacity=".14"/>
-  </g>
-  <circle cx="62.00" cy="25.00" r="3.50" fill="#ac9551" />
-  <circle cx="62.00" cy="25.00" r="2.87" fill="#b7a461" />
-  <circle cx="62.45" cy="25.00" r="0.40" fill="#e7d391" />
-  <circle cx="61.42" cy="25.53" r="0.40" fill="#8c753b" />
-  <circle cx="62.09" cy="23.99" r="0.40" fill="#c7ad60" />
-  <circle cx="62.73" cy="25.95" r="0.40" fill="#e7d391" />
-  <circle cx="60.66" cy="24.76" r="0.40" fill="#8c753b" />
-  <circle cx="63.27" cy="24.19" r="0.40" fill="#c7ad60" />
-  <circle cx="61.57" cy="26.58" r="0.40" fill="#e7d391" />
-  <circle cx="61.19" cy="23.44" r="0.40" fill="#8c753b" />
-  <circle cx="63.76" cy="25.64" r="0.40" fill="#c7ad60" />
-  <circle cx="60.17" cy="25.76" r="0.40" fill="#e7d391" />
-  <circle cx="62.88" cy="23.12" r="0.40" fill="#8c753b" />
-  <circle cx="62.65" cy="27.08" r="0.40" fill="#c7ad60" />
-  <circle cx="60.04" cy="23.86" r="0.40" fill="#e7d391" />
-  <circle cx="64.30" cy="24.49" r="0.40" fill="#8c753b" />
-  <circle cx="60.59" cy="27.00" r="0.40" fill="#c7ad60" />
-  <circle cx="61.67" cy="22.49" r="0.40" fill="#e7d391" />
-  <circle cx="63.99" cy="26.68" r="0.40" fill="#8c753b" />
-  <circle cx="59.32" cy="25.11" r="0.40" fill="#c7ad60" />
-  <circle cx="63.96" cy="23.05" r="0.40" fill="#e7d391" />
-  <circle cx="61.87" cy="27.83" r="0.40" fill="#8c753b" />
-  <circle cx="60.14" cy="22.77" r="0.40" fill="#c7ad60" />
-  <circle cx="64.95" cy="25.40" r="0.40" fill="#e7d391" />
-  <circle cx="59.50" cy="26.74" r="0.40" fill="#8c753b" />
-  <path d="M55 104Q60.6 74 83 61" fill="none" stroke="#8c9b71" stroke-width="0.85" />
-  <g transform="rotate(0.00 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(30.22 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(58.11 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(83.50 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(108.50 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(135.58 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(165.32 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(195.82 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(224.51 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(250.47 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(275.29 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(301.62 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <g transform="rotate(330.70 83 57)">
-  <path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M82 57C79 53 80 48 83 48Q87 49 85 55Z" fill="url(#chamomile-petal-2)" opacity=".14"/>
-  </g>
-  <circle cx="83.00" cy="57.00" r="3.15" fill="#ac9551" />
-  <circle cx="83.00" cy="57.00" r="2.58" fill="#b7a461" />
-  <circle cx="83.41" cy="57.00" r="0.40" fill="#e7d391" />
-  <circle cx="82.48" cy="57.48" r="0.40" fill="#8c753b" />
-  <circle cx="83.08" cy="56.09" r="0.40" fill="#c7ad60" />
-  <circle cx="83.66" cy="57.86" r="0.40" fill="#e7d391" />
-  <circle cx="81.79" cy="56.79" r="0.40" fill="#8c753b" />
-  <circle cx="84.14" cy="56.27" r="0.40" fill="#c7ad60" />
-  <circle cx="82.62" cy="58.42" r="0.40" fill="#e7d391" />
-  <circle cx="82.27" cy="55.60" r="0.40" fill="#8c753b" />
-  <circle cx="84.58" cy="57.58" r="0.40" fill="#c7ad60" />
-  <circle cx="81.35" cy="57.68" r="0.40" fill="#e7d391" />
-  <circle cx="83.79" cy="55.30" r="0.40" fill="#8c753b" />
-  <circle cx="83.59" cy="58.87" r="0.40" fill="#c7ad60" />
-  <circle cx="81.23" cy="55.98" r="0.40" fill="#e7d391" />
-  <circle cx="85.07" cy="56.54" r="0.40" fill="#8c753b" />
-  <circle cx="81.73" cy="58.80" r="0.40" fill="#c7ad60" />
-  <circle cx="82.71" cy="54.74" r="0.40" fill="#e7d391" />
-  <circle cx="84.80" cy="58.51" r="0.40" fill="#8c753b" />
-  <circle cx="80.58" cy="57.10" r="0.40" fill="#c7ad60" />
-  <circle cx="84.76" cy="55.25" r="0.40" fill="#e7d391" />
-  <circle cx="82.88" cy="59.55" r="0.40" fill="#8c753b" />
-  <circle cx="81.32" cy="54.99" r="0.40" fill="#c7ad60" />
-  <circle cx="85.66" cy="57.36" r="0.40" fill="#e7d391" />
-  <circle cx="80.75" cy="58.57" r="0.40" fill="#8c753b" />
-  <path d="M55 104Q53.2 87 46 74" fill="none" stroke="#8c9b71" stroke-width="0.85" />
-  <g transform="rotate(0.00 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(30.22 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(58.11 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(83.50 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(108.50 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(135.58 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(165.32 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(195.82 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(224.51 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(250.47 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(275.29 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(301.62 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <g transform="rotate(330.70 46 70)">
-  <path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="__COLOR__" stroke-opacity=".62" stroke="#c5bfaa" stroke-width=".2"/><path d="M45 70C42 66 43 62 46 62Q50 63 48 68Z" fill="url(#chamomile-petal-3)" opacity=".14"/>
-  </g>
-  <circle cx="46.00" cy="70.00" r="2.80" fill="#ac9551" />
-  <circle cx="46.00" cy="70.00" r="2.30" fill="#b7a461" />
-  <circle cx="46.36" cy="70.00" r="0.40" fill="#e7d391" />
-  <circle cx="45.54" cy="70.43" r="0.40" fill="#8c753b" />
-  <circle cx="46.07" cy="69.19" r="0.40" fill="#c7ad60" />
-  <circle cx="46.58" cy="70.76" r="0.40" fill="#e7d391" />
-  <circle cx="44.93" cy="69.81" r="0.40" fill="#8c753b" />
-  <circle cx="47.02" cy="69.35" r="0.40" fill="#c7ad60" />
-  <circle cx="45.66" cy="71.26" r="0.40" fill="#e7d391" />
-  <circle cx="45.35" cy="68.75" r="0.40" fill="#8c753b" />
-  <circle cx="47.41" cy="70.51" r="0.40" fill="#c7ad60" />
-  <circle cx="44.54" cy="70.60" r="0.40" fill="#e7d391" />
-  <circle cx="46.71" cy="68.49" r="0.40" fill="#8c753b" />
-  <circle cx="46.52" cy="71.66" r="0.40" fill="#c7ad60" />
-  <circle cx="44.43" cy="69.09" r="0.40" fill="#e7d391" />
-  <circle cx="47.84" cy="69.59" r="0.40" fill="#8c753b" />
-  <circle cx="44.87" cy="71.60" r="0.40" fill="#c7ad60" />
-  <circle cx="45.74" cy="67.99" r="0.40" fill="#e7d391" />
-  <circle cx="47.60" cy="71.34" r="0.40" fill="#8c753b" />
-  <circle cx="43.85" cy="70.09" r="0.40" fill="#c7ad60" />
-  <circle cx="47.57" cy="68.44" r="0.40" fill="#e7d391" />
-  <circle cx="45.90" cy="72.27" r="0.40" fill="#8c753b" />
-  <circle cx="44.51" cy="68.21" r="0.40" fill="#c7ad60" />
-  <circle cx="48.36" cy="70.32" r="0.40" fill="#e7d391" />
-  <circle cx="44.00" cy="71.39" r="0.40" fill="#8c753b" />
-  <path d="M54 85L43 79M46 82L40 74M54 93L70 84M65 87L69 78" fill="none" stroke="#8c9b71" stroke-width="0.6" />
-</g></svg>
+</svg>

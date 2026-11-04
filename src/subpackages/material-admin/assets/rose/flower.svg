@@ -1,17 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><!-- adaptive-petal-outline -->
   <g transform="rotate(-10 55 90)">
-    <path d="M55 91C46 89 40 85 34 78Q47 80 55 86Q65 79 78 77Q69 86 55 91Z" fill="#9eaf7c"/>
-    <path d="M55 90Q45 90 39 94Q43 87 50 86M56 89Q65 88 72 92Q66 85 60 85Z" fill="#b7c790"/>
-    <path d="M26 60C16 54 17 42 25 37C21 25 34 18 44 23C50 14 67 17 73 26C85 21 96 32 90 44C99 55 87 69 79 73C72 86 49 87 36 77C28 74 24 67 26 60Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M34 34C34 23 47 22 54 28C62 21 75 27 79 36C66 38 59 44 53 48C47 39 41 36 34 34Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M34 34C34 23 47 22 54 28C62 21 75 27 79 36C66 38 59 44 53 48C47 39 41 36 34 34Z" fill="#fff1e0" opacity=".045"/>
-    <path d="M24 40C30 34 39 37 44 45C47 56 55 61 62 64C53 71 40 71 30 63C23 59 20 48 24 40Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M24 40C30 34 39 37 44 45C47 56 55 61 62 64C53 71 40 71 30 63C23 59 20 48 24 40Z" fill="#fff1e0" opacity=".045"/>
-    <path d="M76 32C89 33 93 43 87 51C91 62 78 72 66 71C69 62 66 55 61 49C67 42 74 39 76 32Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M38 40C36 30 49 26 58 33C66 27 78 37 73 45C70 50 63 57 57 59C51 52 43 49 38 40Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M29 57C40 60 47 68 58 69C70 70 79 63 86 56C85 71 75 80 62 83C46 84 34 75 29 57Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M47 40C47 33 57 31 62 36C68 33 75 39 70 45C65 51 56 54 51 48C57 49 64 45 63 41C59 37 53 39 52 44Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M28 43C25 46 25 52 28 55C30 52 29 47 28 43Z" fill="#fff1df" opacity=".35"/>
-    <path d="M68 75Q73 74 77 69Q77 75 71 78Q67 79 68 75Z" fill="#fff1df" opacity=".28"/>
+    <!-- ====== 1. 花萼基底（保持 #9eaf7c 与 #b7c790，修整为优雅舒展的萼片形态） ====== -->
+    <path d="M55 91 C46 89 38 84 31 77 C43 80 50 84 55 87 C60 84 67 80 79 77 C72 84 64 89 55 91 Z" fill="#9eaf7c"/>
+    <path d="M55 90 C46 90 38 93 33 97 C39 90 46 87 52 86 M55 90 C64 90 72 93 77 97 C71 90 64 87 58 86 Z" fill="#b7c790"/>
+
+    <!-- ====== 2. 最底层/外围花瓣轮廓基底 ====== -->
+    <path d="M26 58 C17 50 17 38 26 33 C33 28 42 28 46 22 C52 14 62 14 68 21 C73 26 80 26 85 32 C93 39 93 51 84 61 C77 69 72 76 61 80 C48 83 37 80 29 72 C25 67 24 63 26 58 Z"
+          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
+    <!-- 背部微透柔光面 -->
+    <path d="M46 22 C52 14 62 14 68 21 C73 26 80 26 85 32 C78 30 68 34 58 34 C48 34 39 30 36 33 C42 28 43 24 46 22 Z" fill="#fff1e0" opacity=".045"/>
+
+    <!-- ====== 3. 外层左侧舒展主瓣 ====== -->
+    <path d="M24 40 C31 33 40 35 45 43 C48 53 54 59 61 63 C52 70 39 70 30 62 C23 57 20 47 24 40 Z"
+          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
+    <path d="M24 40 C31 33 40 35 45 43 C48 53 54 59 61 63 C52 70 39 70 30 62 C23 57 20 47 24 40 Z" fill="#fff1e0" opacity=".045"/>
+
+    <!-- ====== 4. 外层右侧舒展主瓣 ====== -->
+    <path d="M75 32 C87 33 91 43 85 52 C89 62 77 71 66 70 C69 61 66 54 61 48 C67 41 73 38 75 32 Z"
+          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
+    <path d="M75 32 C87 33 91 43 85 52 C89 62 77 71 66 70 C69 61 66 54 61 48 C67 41 73 38 75 32 Z" fill="#fff1e0" opacity=".045"/>
+
+    <!-- ====== 5. 外层下方承托大瓣 ====== -->
+    <path d="M28 56 C39 60 47 67 58 68 C69 69 78 63 85 56 C84 70 74 79 62 82 C46 83 34 74 28 56 Z"
+          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
+
+    <!-- ====== 6. 中层包拢花瓣（花杯两翼） ====== -->
+    <!-- 后上方内瓣 -->
+    <path d="M35 34 C35 23 47 22 54 28 C62 21 74 26 78 35 C66 37 59 43 53 47 C47 38 41 36 35 34 Z"
+          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
+    <path d="M35 34 C35 23 47 22 54 28 C62 21 74 26 78 35 C66 37 59 43 53 47 C47 38 41 36 35 34 Z" fill="#fff1e0" opacity=".045"/>
+
+    <!-- 前中弧抱花瓣 -->
+    <path d="M37 40 C35 31 48 26 57 32 C65 26 77 35 72 44 C69 49 62 56 56 58 C50 51 42 48 37 40 Z"
+          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
+
+    <!-- ====== 7. 内层花心螺旋结构（精致递进旋瓣） ====== -->
+    <!-- 外心环抱瓣 -->
+    <path d="M44 41 C44 33 54 31 60 35 C66 32 73 37 69 44 C64 50 55 53 50 47 C56 48 63 44 62 40 C58 36 53 37 51 43 Z"
+          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
+
+    <!-- 核心紧致小螺旋旋心 -->
+    <path d="M48 38 C49 33 56 31 60 34 C63 37 61 42 56 43 C52 44 49 42 48 38 C52 38 56 37 57 35 C55 33 51 34 50 37 Z"
+          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
+
+    <!-- ====== 8. 花瓣翻卷微光切片（统一使用 #fff1df 搭配原版透明度） ====== -->
+    <!-- 左花瓣翻边高光 -->
+    <path d="M27 42 C24 45 24 51 27 55 C29 52 28 47 27 42 Z" fill="#fff1df" opacity=".35"/>
+    <!-- 右花瓣边缘微光 -->
+    <path d="M85 40 C88 44 87 50 83 55 C84 50 86 45 85 40 Z" fill="#fff1df" opacity=".28"/>
+    <!-- 底瓣下缘翻卷唇光 -->
+    <path d="M66 75 Q72 74 76 69 Q76 75 70 78 Q66 79 66 75 Z" fill="#fff1df" opacity=".28"/>
+    <!-- 花心小瓣尖微光 -->
+    <path d="M54 33 Q58 32 60 35 Q57 35 54 33 Z" fill="#fff1df" opacity=".32"/>
   </g>
 </svg>

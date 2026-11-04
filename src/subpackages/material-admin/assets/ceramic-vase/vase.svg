@@ -1,1 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="140" height="170" viewBox="0 0 140 170"><!-- vase-refinement:2026-10-15 --><defs><linearGradient id="ivory" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0"><stop offset="0" stop-color="#b6b2a2"/><stop offset="0.13" stop-color="#dfdacb"/><stop offset="0.35" stop-color="#f1ebdc"/><stop offset="0.56" stop-color="#e9e1d1"/><stop offset="0.83" stop-color="#c9c2b0"/><stop offset="1" stop-color="#afa996"/></linearGradient></defs><g stroke-linecap="round" stroke-linejoin="round"><path d="M15 8C16 28 26 46 29 69C31 91 24 120 25 143Q26 162 44 166Q70 171 96 166Q114 162 115 143C116 120 109 91 111 69C114 46 124 28 125 8Z" fill="url(#ivory)" stroke="#b3ad9b" stroke-width="0.65" /><path d="M27 24C29 38 36 51 38 69C40 97 33 125 35 146Q36 151 39 153C38 124 46 96 43 68Q40 38 33 24Z" fill="#fff9eb" stroke="none" stroke-width="0.6" opacity=".38"/><path d="M37 164Q70 169 103 164L100 167Q70 173 40 167Z" fill="#ada794" stroke="none" stroke-width="0.6" opacity=".45"/><ellipse cx="70" cy="8" rx="55" ry="6.8" fill="#f2ead8" stroke="#a7a28f" stroke-width="0.55" /><ellipse cx="70" cy="7.8" rx="51.8" ry="5.449999999999999" fill="#667568" stroke="none" stroke-width="0.6" /><path d="M18.2 7.8C18.2 2.2 121.8 2.2 121.8 7.8Q70 3.3000000000000003 18.2 7.8Z" fill="#696b5b" stroke="none" stroke-width="0.6" opacity=".64"/><path d="M16 8.5Q70 20.92 124 8.5" fill="none" stroke="#f2ead8" stroke-width="1.6" /><path d="M20.2 9Q70 17.86 119.8 9" fill="none" stroke="#f5efe0" stroke-width="0.65" stroke-opacity=".7"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="170" viewBox="0 0 140 170" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- 真实温润白瓷圆柱体釉面渐变 (包含高光带、漫反射与背光微弱环境反光) -->
+    <linearGradient id="ivory-ceramic" gradientUnits="userSpaceOnUse" x1="15" y1="0" x2="125" y2="0">
+      <stop offset="0%" stop-color="#aba492"/>
+      <stop offset="12%" stop-color="#d6cfbe"/>
+      <stop offset="28%" stop-color="#fdfaf2"/>
+      <stop offset="48%" stop-color="#f0e9dc"/>
+      <stop offset="72%" stop-color="#ded6c5"/>
+      <stop offset="88%" stop-color="#b8b09e"/>
+      <stop offset="100%" stop-color="#c9c1b0"/>
+    </linearGradient>
+
+    <!-- 瓶口内部深邃暗腔渐变 (供插花花茎深嵌插放) -->
+    <linearGradient id="cavity-depth" gradientUnits="userSpaceOnUse" x1="70" y1="3" x2="70" y2="13">
+      <stop offset="0%" stop-color="#2d352e"/>
+      <stop offset="100%" stop-color="#556356"/>
+    </linearGradient>
+  </defs>
+
+  <g>
+    <!-- ====== 1. 瓶底落地接触微阴影 (Grounding Shadow：赋予真实重力与桌面感) ====== -->
+    <ellipse cx="70" cy="167" rx="33" ry="2.2" fill="#8c8574" opacity="0.38"/>
+
+    <!-- ====== 2. 瓶身主体 (优美连续的双曲面流线型陶瓷瓶身) ====== -->
+    <path d="M15 8
+             C17 28 27 48 30 68
+             C33 90 24 118 25 142
+             C26 156 32 165 42 166
+             C58 168.5 82 168.5 98 166
+             C108 165 114 156 115 142
+             C116 118 107 90 110 68
+             C113 48 123 28 125 8 Z"
+          fill="url(#ivory-ceramic)" stroke="#b3ad9b" stroke-width="0.65" stroke-linejoin="round"/>
+
+    <!-- ====== 3. 陶瓷标志性的釉面垂直流光条 (Vitreous Gloss Strip) ====== -->
+    <!-- 顺应器型腰线的高亮釉面反光 -->
+    <path d="M26 18
+             C28 36 36 50 38 68
+             C41 95 33 124 35 146
+             C35.5 152 38 154 40 152
+             C38 126 47 96 44 68
+             C41 42 33 24 30 18 Z"
+          fill="#ffffff" opacity="0.28"/>
+    <!-- 高光核心亮丝 -->
+    <path d="M33 30 C36 48 40 68 40 85 C40 108 36 128 37 142"
+          fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.45"/>
+
+    <!-- ====== 4. 瓶底圆润折角阴影 (体现手工拉胚厚实底足) ====== -->
+    <path d="M38 164 Q70 168.5 102 164 Q70 171 38 164 Z" fill="#9e9783" opacity="0.4"/>
+
+    <!-- ====== 5. 瓶口结构 (深邃内腔 + 圆润陶瓷卷唇) ====== -->
+    <!-- 瓶口外轮廓椭圆基底 -->
+    <ellipse cx="70" cy="8" rx="55" ry="6.5" fill="#f2ead8" stroke="#a7a28f" stroke-width="0.55"/>
+
+    <!-- 深邃花室内部椭圆内腔 (可自然容纳并掩映插在瓶内的花枝茎干) -->
+    <ellipse cx="70" cy="7.8" rx="51.5" ry="4.8" fill="url(#cavity-depth)"/>
+
+    <!-- 花室深处幽暗背景阴影 (增强俯视纵深) -->
+    <path d="M18.5 7.8 C18.5 3.5 121.5 3.5 121.5 7.8 Q70 4.2 18.5 7.8 Z" fill="#1e241f" opacity="0.55"/>
+
+    <!-- ====== 6. 瓶口卷唇高光 (严格沿椭圆几何弧度自然贴合，杜绝下垂变形) ====== -->
+    <!-- 卷沿正面主亮线 (白玉反光) -->
+    <path d="M15 8 C15 14.5 125 14.5 125 8" fill="none" stroke="#f6efe1" stroke-width="1.3" opacity="0.95"/>
+    <!-- 卷沿内侧微光边缘 -->
+    <path d="M18.5 8 C18.5 12.8 121.5 12.8 121.5 8" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.6"/>
+  </g>
+</svg>

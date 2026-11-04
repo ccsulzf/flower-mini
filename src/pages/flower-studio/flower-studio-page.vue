@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { SavedFlowerWork } from '@/models/flower-creation'
 import type { StudioTab } from './studio-types'
+import type { SavedFlowerWork } from '@/models/flower-creation'
 import { onHide, onLoad, onShareAppMessage, onShareTimeline, onShow, onUnload } from '@dcloudio/uni-app'
 import { storeToRefs } from 'pinia'
 import { computed, ref, watch } from 'vue'
@@ -16,12 +16,12 @@ import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
 import { createCatalogArtwork } from '@/utils/flower/artwork'
-import { useStudioSelectionActions } from './composables/useStudioSelectionActions'
 import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioMaterialPrepareModal from './components/studio-material-prepare-modal.vue'
 import StudioTopToolbar from './components/studio-top-toolbar.vue'
+import { useStudioSelectionActions } from './composables/useStudioSelectionActions'
 
-const SHARE_TITLE = '花瓶小作｜亲手插一束花'
+const SHARE_TITLE = '选花材，搭配出属于自己的花束'
 const SHARE_PATH = '/pages/flower-studio/flower-studio-page'
 
 definePage({
@@ -93,7 +93,10 @@ onLoad((query) => {
   detailId.value = String(query?.workId || '')
   void bootstrap()
 })
-onShow(() => { if (!bootTask && alive && !pageReady.value) void bootstrap() })
+onShow(() => {
+  if (!bootTask && alive && !pageReady.value)
+    void bootstrap()
+})
 onHide(() => { endDrag(true); session.flushDraft() })
 onUnload(() => {
   if (detailId.value && !session.hasUnsavedChanges.value)
@@ -122,7 +125,10 @@ watch(() => JSON.stringify(artworkStore.snapshot()), () => {
   if (pageReady.value && !applying)
     session.markEdited()
 }, { flush: 'sync' })
-watch(storageError, (value) => { if (value) notify(value) })
+watch(storageError, (value) => {
+  if (value)
+    notify(value)
+})
 
 function notify(title: string) {
   uni.showToast({ title, icon: 'none' })
@@ -436,7 +442,10 @@ function requestLeave(leave: () => void) {
     return
   }
   uni.showModal({
-    title: '作品尚未保存', content: '保存作品后再离开吗？', confirmText: '保存作品', cancelText: '放弃离开',
+    title: '作品尚未保存',
+    content: '保存作品后再离开吗？',
+    confirmText: '保存作品',
+    cancelText: '放弃离开',
     success: async (result) => {
       if (!result.confirm) {
         sessionVersion++
@@ -447,7 +456,10 @@ function requestLeave(leave: () => void) {
           await resetWorkspaceAfterLeave()
           leave()
         }
-        catch (error) { if (alive) notify(creationFailure(error)) }
+        catch (error) {
+          if (alive)
+            notify(creationFailure(error))
+        }
         return
       }
       if (pendingMaterialId.value)
@@ -464,7 +476,10 @@ function requestLeave(leave: () => void) {
           leave()
         }
       }
-      catch (error) { if (alive) notify(creationFailure(error)) }
+      catch (error) {
+        if (alive)
+          notify(creationFailure(error))
+      }
       finally { finishing.value = false }
     },
     fail: error => notify(creationFailure(error)),
@@ -505,7 +520,10 @@ async function continueDraft() {
   catch (error) { startupError.value = creationFailure(error) }
   finally { applying = false; pageReady.value = true }
 }
-async function retryLocalDraft() { if (session.retryDraft() && pendingDraft.value) await continueDraft() }
+async function retryLocalDraft() {
+  if (session.retryDraft() && pendingDraft.value)
+    await continueDraft()
+}
 async function endCreation() {
   if (readonly.value)
     return
@@ -540,40 +558,90 @@ function closeDetail() { uni.navigateBack() }
       @duplicate="duplicateSelected" @remove="removeSelected" @mirror="mirrorSelected"
     />
     <StudioTopToolbar :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
-    <view v-if="storageError && !pendingDraft && !startupError" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }"><text>{{ storageError }}</text><text v-if="draftReadFailed" @click="retryLocalDraft">重新读取</text><text @click="endCreation">重新开始</text></view>
+    <view v-if="storageError && !pendingDraft && !startupError" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }">
+      <text>{{ storageError }}</text><text v-if="draftReadFailed" @click="retryLocalDraft">
+        重新读取
+      </text><text @click="endCreation">
+        重新开始
+      </text>
+    </view>
     <StudioMaterialPrepareModal v-if="needsPreparation" :percent="preparePercent" :message="prepareMessage" :error="prepareError" @retry="retryMaterialPreparation" />
     <view v-if="completionState !== 'idle'" class="creation-overlay completion-overlay" @click="completionState === 'ready' && closeCompletion()" @touchmove.stop.prevent>
       <view class="completion-sheet" @click.stop>
         <template v-if="completionState === 'saving' || completionState === 'generating'">
-          <view class="completion-bloom" aria-hidden="true">✿</view>
-          <text class="completion-title">{{ completionState === 'saving' ? '正在收好这束花…' : '正在制作作品图片…' }}</text>
-          <text class="completion-note">{{ completionState === 'saving' ? '正在保存作品' : '作品已保存，请稍候' }}</text>
+          <view class="completion-bloom" aria-hidden="true">
+            ✿
+          </view>
+          <text class="completion-title">
+            {{ completionState === 'saving' ? '正在收好这束花…' : '正在制作作品图片…' }}
+          </text>
+          <text class="completion-note">
+            {{ completionState === 'saving' ? '正在保存作品' : '作品已保存，请稍候' }}
+          </text>
         </template>
         <template v-else-if="completionState === 'failed'">
-          <view class="completion-bloom completion-bloom-still" aria-hidden="true">✿</view>
-          <text class="completion-title">图片还没有准备好</text>
-          <text class="completion-note">{{ images.imageError.value || '作品已保存，请重试生成图片' }}</text>
+          <view class="completion-bloom completion-bloom-still" aria-hidden="true">
+            ✿
+          </view>
+          <text class="completion-title">
+            图片还没有准备好
+          </text>
+          <text class="completion-note">
+            {{ images.imageError.value || '作品已保存，请重试生成图片' }}
+          </text>
           <view class="completion-actions">
-            <button class="completion-primary" @click="retryCompletedImage">重新生成</button>
+            <button class="completion-primary" @click="retryCompletedImage">
+              重新生成
+            </button>
           </view>
         </template>
         <template v-else>
-          <button class="completion-close" aria-label="关闭完成作品弹窗" @click="closeCompletion">×</button>
-          <view class="completion-kicker">我的花作</view>
-          <text class="completion-title">这束花已经完成</text>
-          <text class="completion-note">可以分享作品，也可以把它做成贺卡</text>
+          <button class="completion-close" aria-label="关闭完成作品弹窗" @click="closeCompletion">
+            ×
+          </button>
+          <view class="completion-kicker">
+            我的花作
+          </view>
+          <text class="completion-title">
+            这束花已经完成
+          </text>
+          <text class="completion-note">
+            可以分享作品，也可以把它做成贺卡
+          </text>
           <image
             v-if="images.imagePath.value" class="completion-image" :src="images.imagePath.value"
             mode="aspectFit" @click="images.previewImage()"
           />
           <view class="completion-actions">
-            <button class="completion-secondary" @click="shareCompleted"><view class="i-carbon-share" />分享图片</button>
-            <button class="completion-primary" @click="makeCompletedCard"><view class="i-carbon-image" />制作贺卡</button>
+            <button class="completion-secondary" @click="shareCompleted">
+              <view class="i-carbon-share" />分享图片
+            </button>
+            <button class="completion-primary" @click="makeCompletedCard">
+              <view class="i-carbon-image" />制作贺卡
+            </button>
           </view>
         </template>
       </view>
     </view>
-    <view v-if="startupError" class="creation-overlay" @touchmove.stop.prevent><view class="creation-modal"><view class="creation-sheet"><view class="creation-title">暂时无法打开</view><view class="creation-error">{{ startupError }}</view><view class="creation-actions"><button v-if="detailId" class="creation-button" @click="closeDetail">返回作品列表</button><button v-else-if="initialized" class="creation-button" @click="endCreation">重新开始</button><button class="creation-button creation-primary" @click="retryStartup">重试</button></view></view></view></view>
+    <view v-if="startupError" class="creation-overlay" @touchmove.stop.prevent>
+      <view class="creation-modal">
+        <view class="creation-sheet">
+          <view class="creation-title">
+            暂时无法打开
+          </view><view class="creation-error">
+            {{ startupError }}
+          </view><view class="creation-actions">
+            <button v-if="detailId" class="creation-button" @click="closeDetail">
+              返回作品列表
+            </button><button v-else-if="initialized" class="creation-button" @click="endCreation">
+              重新开始
+            </button><button class="creation-button creation-primary" @click="retryStartup">
+              重试
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 

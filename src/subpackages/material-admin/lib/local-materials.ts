@@ -27,7 +27,9 @@ export function collectLocalMaterials(files: Record<string, string>): { items: M
       const sources: Partial<Record<SvgPart, string>> = {}
       for (const key of keys) {
         const svg = files[`${directory}${key}.svg`]
-        if (!svg || svg.length > 65536 || !/^\s*<svg\b/.test(svg) || !/<\/svg>\s*$/.test(svg) || /<script|<foreignObject|\bon\w+\s*=|\bhref\s*=|<!DOCTYPE|<!ENTITY/i.test(svg)) throw new Error(`${key}.svg 缺失或无效`)
+        const hasUnsafeReference = !!svg && [...svg.matchAll(/\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi)]
+          .some(([, doubleQuoted, singleQuoted, unquoted]) => !(doubleQuoted ?? singleQuoted ?? unquoted).startsWith('#'))
+        if (!svg || svg.length > 65536 || !/^\s*<svg\b/.test(svg) || !/<\/svg>\s*$/.test(svg) || /<script|<foreignObject|\bon\w+\s*=|<!DOCTYPE|<!ENTITY/i.test(svg) || hasUnsafeReference) throw new Error(`${key}.svg 缺失或无效`)
         sources[key] = svg
       }
       const normalized: MaterialMetadata = { id: normalizedMetadata.id, category, ...(category === 'background' ? { backgroundKind: normalizedMetadata.backgroundKind } : {}), name: normalizedMetadata.name, introduction: normalizedMetadata.introduction, flowerMeaning: normalizedMetadata.flowerMeaning, group: normalizedMetadata.group, sortOrder: normalizedMetadata.sortOrder, colors: normalizedMetadata.colors, version: normalizedMetadata.version, geometry }
