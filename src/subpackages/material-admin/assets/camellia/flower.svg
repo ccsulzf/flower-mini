@@ -1,127 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
-  <defs>
-    <!-- 保持原有的山茶花渐变定义 (__COLOR__ 动态自适应) -->
-    <linearGradient id="camellia-fold" gradientUnits="userSpaceOnUse" x1="15" y1="15" x2="95" y2="95">
-      <stop offset="0" stop-color="__COLOR__"/>
-      <stop offset="1" stop-color="#85856d"/>
-    </linearGradient>
-
-    <!-- ====== 真实山茶花瓣组件：阔倒卵形、先端微凹浅心形 (指向 12 点方向) ====== -->
-    <g id="camellia-petal">
-      <!-- 边缘带微波浪、先端呈标志性微凹小浅裂的山茶真身花瓣 -->
-      <path d="M0 0
-               C-5 -2 -14 -12 -15 -20
-               C-16 -27 -11 -34 -4 -35.5
-               C-1.5 -36 0 -33 0 -33
-               C0 -33 1.5 -36 4 -35.5
-               C11 -34 16 -27 15 -20
-               C14 -12 5 -2 0 0 Z"
-            fill="__COLOR__" stroke="#8e7175" stroke-width="0.45" stroke-opacity=".4" stroke-linejoin="round"/>
-      <!-- 柔和阴影渐变叠层 -->
-      <path d="M0 0 C-5 -2 -14 -12 -15 -20 C-16 -27 -11 -34 -4 -35.5 C-1.5 -36 0 -33 0 -33 C0 -33 1.5 -36 4 -35.5 C11 -34 16 -27 15 -20 C14 -12 5 -2 0 0 Z"
-            fill="url(#camellia-fold)" opacity=".12"/>
-      <!-- 花瓣中央向内微凹的受光反光脊 -->
-      <path d="M0 -1 Q-0.6 -18 0 -32" fill="none" stroke="#fff5e4" stroke-width="0.55" stroke-opacity=".55"/>
-      <!-- 花瓣顶部心形微凹处受光柔亮微弧 -->
-      <path d="M-4 -33 Q0 -31 4 -33" fill="none" stroke="#fff5e4" stroke-width="0.4" stroke-opacity=".45"/>
-    </g>
-
-    <!-- 紧凑卷抱的内层小花瓣 (护蕊内瓣) -->
-    <g id="camellia-petal-inner">
-      <path d="M0 0
-               C-4 -2 -11 -9 -11.5 -16
-               C-12 -21 -8 -26 -3 -27
-               C-1 -27.5 0 -25.5 0 -25.5
-               C0 -25.5 1 -27.5 3 -27
-               C8 -26 12 -21 11.5 -16
-               C11 -9 4 -2 0 0 Z"
-            fill="__COLOR__" stroke="#8e7175" stroke-width="0.4" stroke-opacity=".4" stroke-linejoin="round"/>
-      <path d="M0 0 C-4 -2 -11 -9 -11.5 -16 C-12 -21 -8 -26 -3 -27 C-1 -27.5 0 -25.5 0 -25.5 C0 -25.5 1 -27.5 3 -27 C8 -26 12 -21 11.5 -16 C11 -9 4 -2 0 0 Z"
-            fill="url(#camellia-fold)" opacity=".14"/>
-      <path d="M0 -1 Q-0.4 -14 0 -25" fill="none" stroke="#fff5e4" stroke-width="0.5" stroke-opacity=".5"/>
-    </g>
-  </defs>
-
-  <g transform="rotate(-4 55 94)">
-    <!-- ====== 1. 基部覆瓦状圆润花萼与苞片 (#80916b) ====== -->
-    <!-- 真实山茶具宿存杯状小苞萼，圆润如小贝壳 -->
-    <path d="M55 92 C48 90 42 85 40 79 C46 81 51 83 55 86 C59 83 64 81 70 79 C68 85 62 90 55 92 Z" fill="#697a55"/>
-    <path d="M55 89 C49 87 45 83 44 78 C49 80 52 82 55 84 C58 82 61 80 66 78 C65 83 61 87 55 89 Z" fill="#80916b"/>
-
-    <!-- ====== 2. 【外轮舒展大花瓣群】 (阔大圆满、自然覆瓦状交错) ====== -->
-    <g transform="translate(55, 55)">
-      <!-- 5 枚自然错落大花瓣，打破 8 齿轮对称 -->
-      <use href="#camellia-petal" transform="rotate(-6) scale(1.06)"/>
-      <use href="#camellia-petal" transform="rotate(66) scale(1.03)"/>
-      <use href="#camellia-petal" transform="rotate(138) scale(1.05)"/>
-      <use href="#camellia-petal" transform="rotate(212) scale(1.02)"/>
-      <use href="#camellia-petal" transform="rotate(286) scale(1.04)"/>
-    </g>
-
-    <!-- ====== 3. 【中层微抱过渡花瓣群】 (自然嵌合于外瓣间隙) ====== -->
-    <g transform="translate(55, 55)">
-      <use href="#camellia-petal" transform="rotate(30) scale(0.92)"/>
-      <use href="#camellia-petal" transform="rotate(102) scale(0.90)"/>
-      <use href="#camellia-petal" transform="rotate(175) scale(0.93)"/>
-      <use href="#camellia-petal" transform="rotate(248) scale(0.91)"/>
-      <use href="#camellia-petal" transform="rotate(322) scale(0.92)"/>
-    </g>
-
-    <!-- ====== 4. 【内层紧密护蕊小瓣群】 (温婉护蕊、向心包裹) ====== -->
-    <g transform="translate(55, 55)">
-      <use href="#camellia-petal-inner" transform="rotate(0) scale(0.85)"/>
-      <use href="#camellia-petal-inner" transform="rotate(90) scale(0.82)"/>
-      <use href="#camellia-petal-inner" transform="rotate(180) scale(0.85)"/>
-      <use href="#camellia-petal-inner" transform="rotate(270) scale(0.83)"/>
-    </g>
-
-    <!-- ====== 5. 山茶花标志性华贵核心：繁茂璀璨的金色雄蕊群 (Stamen Sunburst) ====== -->
-    <g transform="translate(55, 55)">
-      <!-- 肉质合生花丝筒基底圆台 -->
-      <circle cx="0" cy="0" r="4.6" fill="#e5c783" stroke="#9d8b68" stroke-width="0.35"/>
-      <!-- 中心翠绿雌蕊柱头点 -->
-      <circle cx="0" cy="0" r="1.4" fill="#7a8c66" opacity="0.85"/>
-
-      <!-- 数十枚放射状金黄花丝细丝 (告别5根火柴棒，呈现饱满花柱丛) -->
-      <g stroke="#b19458" stroke-width="0.42" fill="none">
-        <!-- 向上放射 -->
-        <path d="M0 -3 L-0.5 -8.5 M-2 -2.5 L-4.5 -8 M2 -2.5 L4.5 -8 M-3 -1 L-7.5 -5 M3 -1 L7.5 -5"/>
-        <!-- 向右放射 -->
-        <path d="M3 1 L8.5 0.5 M2.5 2 L8 4.5 M1 3 L5 7.5"/>
-        <!-- 向下放射 -->
-        <path d="M0 3 L0.5 8.5 M-2 2.5 L-4.5 8 M2 2.5 L4.5 8 M-1 3 L-5 7.5"/>
-        <!-- 向左放射 -->
-        <path d="M-3 1 L-8.5 0.5 M-2.5 2 L-8 4.5 M-2.5 -2 L-8 -4.5"/>
-      </g>
-
-      <!-- 密密匝匝如金珀珍珠般的小花药群 (Anthers) -->
-      <g fill="#f3cb62" stroke="#b19458" stroke-width="0.15">
-        <!-- 上轮花药 -->
-        <circle cx="-0.5" cy="-8.5" r="0.95"/>
-        <circle cx="-4.5" cy="-8" r="0.9"/>
-        <circle cx="4.5" cy="-8" r="0.9"/>
-        <circle cx="-7.5" cy="-5" r="0.85"/>
-        <circle cx="7.5" cy="-5" r="0.85"/>
-        <!-- 右轮花药 -->
-        <circle cx="8.5" cy="0.5" r="0.9"/>
-        <circle cx="8" cy="4.5" r="0.85"/>
-        <circle cx="5" cy="7.5" r="0.85"/>
-        <!-- 下轮花药 -->
-        <circle cx="0.5" cy="8.5" r="0.95"/>
-        <circle cx="-4.5" cy="8" r="0.85"/>
-        <circle cx="4.5" cy="8" r="0.85"/>
-        <circle cx="-5" cy="7.5" r="0.85"/>
-        <!-- 左轮花药 -->
-        <circle cx="-8.5" cy="0.5" r="0.9"/>
-        <circle cx="-8" cy="4.5" r="0.85"/>
-        <circle cx="-8" cy="-4.5" r="0.85"/>
-        <!-- 内部紧凑副花药 -->
-        <circle cx="-2" cy="-4.5" r="0.75" fill="#ffd978"/>
-        <circle cx="2" cy="-4.5" r="0.75" fill="#ffd978"/>
-        <circle cx="4.5" cy="1" r="0.75" fill="#ffd978"/>
-        <circle cx="-4.5" cy="1" r="0.75" fill="#ffd978"/>
-        <circle cx="0" cy="4.5" r="0.75" fill="#ffd978"/>
-      </g>
-    </g>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><!-- adaptive-petal-outline -->
+<defs><linearGradient id="camellia-plane" x1="0" y1="0" x2=".25" y2="1"><stop stop-color="#fff5e5" stop-opacity=".2"/><stop offset=".55" stop-color="#fff5e5" stop-opacity="0"/><stop offset="1" stop-color="#75454c" stop-opacity=".13"/></linearGradient></defs>
+<!-- Fixed stem join; the short neck bends toward the tilted flower cup. -->
+<path d="M54.3 89C54.5 84 51 80 48 77L57 76C56 81 55.9 85 55.7 89Z" fill="#718366"/>
+<path d="M55 88C55 84 53 80 52 78" fill="none" stroke="#c4cba9" stroke-width=".5"/>
+<g transform="rotate(-9 55 77)">
+<path d="M52 82C42 81 36 75 33 68L48 74L53 69L59 73L74 66C70 77 63 82 52 82Z" fill="#8d9d78"/>
+<path d="M52 81C44 78 41 78 36 79C40 74 46 73 52 76L61 74L66 78Z" fill="#acb990"/>
+<g><path d="M47 56C33 51 29 39 34 30C38 23 46 23 50 27C55 22 65 25 68 33C71 44 58 53 47 56Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".55"/><path d="M47 56C33 51 29 39 34 30C38 23 46 23 50 27C55 22 65 25 68 33C71 44 58 53 47 56Z" fill="url(#camellia-plane)"/><path d="M47 56C33 51 29 39 34 30C38 23 46 23 50 27C55 22 65 25 68 33C71 44 58 53 47 56Z" fill="#fff5e5" opacity="0.15"/></g>
+<g><path d="M58 57C57 43 66 28 77 29C83 29 86 34 85 38C93 40 94 49 88 55C81 63 68 63 58 57Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".55"/><path d="M58 57C57 43 66 28 77 29C83 29 86 34 85 38C93 40 94 49 88 55C81 63 68 63 58 57Z" fill="url(#camellia-plane)"/><path d="M58 57C57 43 66 28 77 29C83 29 86 34 85 38C93 40 94 49 88 55C81 63 68 63 58 57Z" fill="#fff5e5" opacity="0.08"/></g>
+<g><path d="M45 61C33 64 21 58 19 48C17 42 21 36 26 37C29 31 38 32 43 39C48 45 49 54 45 61Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".55"/><path d="M45 61C33 64 21 58 19 48C17 42 21 36 26 37C29 31 38 32 43 39C48 45 49 54 45 61Z" fill="url(#camellia-plane)"/><path d="M45 61C33 64 21 58 19 48C17 42 21 36 26 37C29 31 38 32 43 39C48 45 49 54 45 61Z" fill="#fff5e5" opacity="0.11"/></g>
+<g><path d="M55 65C42 62 38 52 42 44C45 39 50 37 54 40C59 35 66 37 68 43C71 53 62 61 55 65Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".55"/><path d="M55 65C42 62 38 52 42 44C45 39 50 37 54 40C59 35 66 37 68 43C71 53 62 61 55 65Z" fill="url(#camellia-plane)"/><path d="M55 65C42 62 38 52 42 44C45 39 50 37 54 40C59 35 66 37 68 43C71 53 62 61 55 65Z" fill="#fff5e5" opacity="0.2"/></g>
+<g><path d="M62 68C67 55 79 48 87 53C94 57 93 65 88 69C83 80 69 79 62 68Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".55"/><path d="M62 68C67 55 79 48 87 53C94 57 93 65 88 69C83 80 69 79 62 68Z" fill="url(#camellia-plane)"/><path d="M62 68C67 55 79 48 87 53C94 57 93 65 88 69C83 80 69 79 62 68Z" fill="#fff5e5" opacity="0.03"/></g>
+<g><path d="M46 71C33 75 23 68 23 60C23 54 29 49 34 52C43 51 50 60 46 71Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".55"/><path d="M46 71C33 75 23 68 23 60C23 54 29 49 34 52C43 51 50 60 46 71Z" fill="url(#camellia-plane)"/><path d="M46 71C33 75 23 68 23 60C23 54 29 49 34 52C43 51 50 60 46 71Z" fill="#fff5e5" opacity="0.06"/></g>
+<g><path d="M45 69C42 61 45 53 51 52C56 51 58 56 57 61C63 54 70 56 72 61C75 67 69 74 59 76C53 76 49 74 45 69Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".55"/><path d="M45 69C42 61 45 53 51 52C56 51 58 56 57 61C63 54 70 56 72 61C75 67 69 74 59 76C53 76 49 74 45 69Z" fill="url(#camellia-plane)"/><path d="M45 69C42 61 45 53 51 52C56 51 58 56 57 61C63 54 70 56 72 61C75 67 69 74 59 76C53 76 49 74 45 69Z" fill="#fff5e5" opacity="0.12"/></g>
+<ellipse cx="56" cy="55" rx="8" ry="4.8" fill="#b8904d" opacity=".65"/>
+<path d="M56 62Q57.46 57 57.46 52.00" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="57.46" cy="52.00" rx="1.1" ry=".85" fill="#e8c36a"/>
+<path d="M56 62Q54.14 57 54.14 52.95" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="54.14" cy="52.95" rx="1.1" ry=".85" fill="#f4d990"/>
+<path d="M56 62Q56.29 57 56.29 50.19" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="56.29" cy="50.19" rx="1.1" ry=".85" fill="#d7ae54"/>
+<path d="M56 62Q58.35 57 58.35 53.70" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="58.35" cy="53.70" rx="1.1" ry=".85" fill="#e8c36a"/>
+<path d="M56 62Q51.69 57 51.69 51.58" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="51.69" cy="51.58" rx="1.1" ry=".85" fill="#f4d990"/>
+<path d="M56 62Q60.09 57 60.09 50.56" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="60.09" cy="50.56" rx="1.1" ry=".85" fill="#d7ae54"/>
+<path d="M56 62Q54.63 57 54.63 54.82" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="54.63" cy="54.82" rx="1.1" ry=".85" fill="#e8c36a"/>
+<path d="M56 62Q53.39 57 53.39 49.21" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="53.39" cy="49.21" rx="1.1" ry=".85" fill="#f4d990"/>
+<path d="M56 62Q61.65 57 61.65 53.15" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="61.65" cy="53.15" rx="1.1" ry=".85" fill="#d7ae54"/>
+<path d="M56 62Q50.12 57 50.12 53.35" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="50.12" cy="53.35" rx="1.1" ry=".85" fill="#e8c36a"/>
+<path d="M56 62Q58.84 57 58.84 48.63" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="58.84" cy="48.63" rx="1.1" ry=".85" fill="#f4d990"/>
+<path d="M56 62Q58.10 57 58.10 55.71" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="58.10" cy="55.71" rx="1.1" ry=".85" fill="#d7ae54"/>
+<path d="M56 62Q49.68 57 49.68 49.97" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="49.68" cy="49.97" rx="1.1" ry=".85" fill="#e8c36a"/>
+<path d="M56 62Q63.41 57 63.41 51.09" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="63.41" cy="51.09" rx="1.1" ry=".85" fill="#f4d990"/>
+<path d="M56 62Q51.48 57 51.48 55.57" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="51.48" cy="55.57" rx="1.1" ry=".85" fill="#d7ae54"/>
+<path d="M56 62Q54.95 57 54.95 47.52" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="54.95" cy="47.52" rx="1.1" ry=".85" fill="#e8c36a"/>
+<path d="M56 62Q62.41 57 62.41 55.00" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="62.41" cy="55.00" rx="1.1" ry=".85" fill="#f4d990"/>
+<path d="M56 62Q47.37 57 47.37 52.20" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="47.37" cy="52.20" rx="1.1" ry=".85" fill="#d7ae54"/>
+<path d="M56 62Q62.29 57 62.29 48.52" fill="none" stroke="#ebd698" stroke-width=".65"/><ellipse cx="62.29" cy="48.52" rx="1.1" ry=".85" fill="#e8c36a"/>
+<g><path d="M27 64C32 60 39 63 44 68C49 73 54 76 61 76C55 82 46 83 38 79C32 77 28 71 27 64Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".55"/><path d="M27 64C32 60 39 63 44 68C49 73 54 76 61 76C55 82 46 83 38 79C32 77 28 71 27 64Z" fill="url(#camellia-plane)"/><path d="M27 64C32 60 39 63 44 68C49 73 54 76 61 76C55 82 46 83 38 79C32 77 28 71 27 64Z" fill="#fff5e5" opacity="0.08"/></g>
+<g><path d="M45 70C50 65 56 67 60 69C68 70 77 65 82 61C83 68 77 76 69 79C59 83 50 79 45 70Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".55"/><path d="M45 70C50 65 56 67 60 69C68 70 77 65 82 61C83 68 77 76 69 79C59 83 50 79 45 70Z" fill="url(#camellia-plane)"/><path d="M45 70C50 65 56 67 60 69C68 70 77 65 82 61C83 68 77 76 69 79C59 83 50 79 45 70Z" fill="#fff5e5" opacity="0.13"/></g>
+<path d="M34 31Q41 25 48 29M67 33Q74 29 80 33M25 40Q22 47 27 52M49 70Q56 68 60 71Q71 72 78 66" fill="none" stroke="#fff3e2" stroke-opacity=".3" stroke-width=".8"/>
+</g></svg>

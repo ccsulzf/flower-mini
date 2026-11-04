@@ -1,140 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
-  <defs>
-    <!-- 纯净通透的高光渐变（完全剔除原本发脏发灰的 #85856d） -->
-    <linearGradient id="peony-clean-glow" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.12"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.45"/>
-    </linearGradient>
-  </defs>
-
-  <g transform="rotate(6 55 94)">
-    <!-- 基部花萼（保留原版坐标与角度） -->
-    <path d="M55 94 Q41 91 34 80 Q48 86 55 89 Q64 81 77 80 Q70 92 55 94 Z" fill="#788b64" stroke="#5b6c4b" stroke-width="0.35"/>
-
-    <!-- ================= 1. 外层大瓣（严格继承原版 9 个精确角度） ================= -->
-    <g transform="rotate(0.00 55 55)">
-      <path d="M49 63 C26.00 45 31.00 17.00 44.20 15.00 Q55 7.00 64.60 14.00 C79.00 9.00 86.00 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C26.00 45 31.00 17.00 44.20 15.00 Q55 7.00 64.60 14.00 C79.00 9.00 86.00 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M39.40 21.00 Q55 15.00 70.60 22.00" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(42.90 55 55)">
-      <path d="M49 63 C24.21 45 29.21 18.73 43.39 16.73 Q55 8.73 65.32 15.73 C80.79 10.73 87.79 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C24.21 45 29.21 18.73 43.39 16.73 Q55 8.73 65.32 15.73 C80.79 10.73 87.79 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M38.24 22.73 Q55 16.73 71.76 23.73" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(78.51 55 55)">
-      <path d="M49 63 C24.70 45 29.70 15.26 43.62 13.26 Q55 5.26 65.12 12.26 C80.30 7.26 87.30 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C24.70 45 29.70 15.26 43.62 13.26 Q55 5.26 65.12 12.26 C80.30 7.26 87.30 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M38.56 19.26 Q55 13.26 71.44 20.26" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(117.86 55 55)">
-      <path d="M49 63 C26.85 45 31.85 17.03 44.58 15.03 Q55 7.03 64.26 14.03 C78.15 9.03 85.15 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C26.85 45 31.85 17.03 44.58 15.03 Q55 7.03 64.26 14.03 C78.15 9.03 85.15 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M39.95 21.03 Q55 15.03 70.05 22.03" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(162.58 55 55)">
-      <path d="M49 63 C27.91 45 32.91 18.71 45.06 16.71 Q55 8.71 63.83 15.71 C77.09 10.71 84.09 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C27.91 45 32.91 18.71 45.06 16.71 Q55 8.71 63.83 15.71 C77.09 10.71 84.09 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M40.64 22.71 Q55 16.71 69.36 23.71" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(200.81 55 55)">
-      <path d="M49 63 C26.54 45 31.54 15.24 44.44 13.24 Q55 5.24 64.39 12.24 C78.46 7.24 85.46 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C26.54 45 31.54 15.24 44.44 13.24 Q55 5.24 64.39 12.24 C78.46 7.24 85.46 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M39.75 19.24 Q55 13.24 70.25 20.24" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(237.00 55 55)">
-      <path d="M49 63 C24.48 45 29.48 17.07 43.51 15.07 Q55 7.07 65.21 14.07 C80.52 9.07 87.52 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C24.48 45 29.48 17.07 43.51 15.07 Q55 7.07 65.21 14.07 C80.52 9.07 87.52 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M38.41 21.07 Q55 15.07 71.59 22.07" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(280.72 55 55)">
-      <path d="M49 63 C24.36 45 29.36 18.69 43.46 16.69 Q55 8.69 65.26 15.69 C80.64 10.69 87.64 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C24.36 45 29.36 18.69 43.46 16.69 Q55 8.69 65.26 15.69 C80.64 10.69 87.64 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M38.33 22.69 Q55 16.69 71.67 23.69" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(322.63 55 55)">
-      <path d="M49 63 C26.33 45 31.33 15.22 44.35 13.22 Q55 5.22 64.47 12.22 C78.67 7.22 85.67 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C26.33 45 31.33 15.22 44.35 13.22 Q55 5.22 64.47 12.22 C78.67 7.22 85.67 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M39.62 19.22 Q55 13.22 70.38 20.22" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-
-    <!-- ================= 2. 中层过渡瓣（严格继承原版 8 个精确角度） ================= -->
-    <g transform="rotate(19.00 55 55)">
-      <path d="M49 63 C29.00 45 34.00 30.00 45.55 28.00 Q55 20.00 63.40 27.00 C76.00 22.00 83.00 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C29.00 45 34.00 30.00 45.55 28.00 Q55 20.00 63.40 27.00 C76.00 22.00 83.00 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M41.35 34.00 Q55 28.00 68.65 35.00" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(66.90 55 55)">
-      <path d="M49 63 C27.43 45 32.43 31.73 44.85 29.73 Q55 21.73 64.03 28.73 C77.57 23.73 84.57 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C27.43 45 32.43 31.73 44.85 29.73 Q55 21.73 64.03 28.73 C77.57 23.73 84.57 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M40.33 35.73 Q55 29.73 69.67 36.73" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(107.51 55 55)">
-      <path d="M49 63 C27.87 45 32.87 28.26 45.04 26.26 Q55 18.26 63.85 25.26 C77.13 20.26 84.13 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C27.87 45 32.87 28.26 45.04 26.26 Q55 18.26 63.85 25.26 C77.13 20.26 84.13 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M40.61 32.26 Q55 26.26 69.39 33.26" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(151.86 55 55)">
-      <path d="M49 63 C29.74 45 34.74 30.03 45.88 28.03 Q55 20.03 63.10 27.03 C75.26 22.03 82.26 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C29.74 45 34.74 30.03 45.88 28.03 Q55 20.03 63.10 27.03 C75.26 22.03 82.26 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M41.83 34.03 Q55 28.03 68.17 35.03" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(201.58 55 55)">
-      <path d="M49 63 C30.67 45 35.67 31.71 46.30 29.71 Q55 21.71 62.73 28.71 C74.33 23.71 81.33 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C30.67 45 35.67 31.71 46.30 29.71 Q55 21.71 62.73 28.71 C74.33 23.71 81.33 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M42.44 35.71 Q55 29.71 67.56 36.71" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(244.81 55 55)">
-      <path d="M49 63 C29.47 45 34.47 28.24 45.76 26.24 Q55 18.24 63.21 25.24 C75.53 20.24 82.53 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C29.47 45 34.47 28.24 45.76 26.24 Q55 18.24 63.21 25.24 C75.53 20.24 82.53 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M41.66 32.24 Q55 26.24 68.34 33.24" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(286.00 55 55)">
-      <path d="M49 63 C27.67 45 32.67 30.07 44.95 28.07 Q55 20.07 63.93 27.07 C77.33 22.07 84.33 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C27.67 45 32.67 30.07 44.95 28.07 Q55 20.07 63.93 27.07 C77.33 22.07 84.33 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M40.48 34.07 Q55 28.07 69.52 35.07" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-    <g transform="rotate(334.72 55 55)">
-      <path d="M49 63 C27.56 45 32.56 31.69 44.90 29.69 Q55 21.69 63.97 28.69 C77.44 23.69 84.44 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C27.56 45 32.56 31.69 44.90 29.69 Q55 21.69 63.97 28.69 C77.44 23.69 84.44 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M40.42 35.69 Q55 29.69 69.58 36.69" fill="none" stroke="#fff6e9" stroke-width="0.65" stroke-opacity="0.75"/>
-    </g>
-
-    <!-- ================= 3. 内层抱心小瓣（严格继承原版 6 个精确角度） ================= -->
-    <g transform="rotate(38.00 55 55)">
-      <path d="M49 63 C35.00 45 40.00 41.00 48.25 39.00 Q55 31.00 61.00 38.00 C70.00 33.00 77.00 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C35.00 45 40.00 41.00 48.25 39.00 Q55 31.00 61.00 38.00 C70.00 33.00 77.00 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M45.25 45.00 Q55 39.00 64.75 46.00" fill="none" stroke="#fff6e9" stroke-width="0.6" stroke-opacity="0.8"/>
-    </g>
-    <g transform="rotate(100.90 55 55)">
-      <path d="M49 63 C33.88 45 38.88 42.73 47.75 40.73 Q55 32.73 61.45 39.73 C71.12 34.73 78.12 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C33.88 45 38.88 42.73 47.75 40.73 Q55 32.73 61.45 39.73 C71.12 34.73 78.12 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M44.52 46.73 Q55 40.73 65.48 47.73" fill="none" stroke="#fff6e9" stroke-width="0.6" stroke-opacity="0.8"/>
-    </g>
-    <g transform="rotate(156.51 55 55)">
-      <path d="M49 63 C34.19 45 39.19 39.26 47.89 37.26 Q55 29.26 61.32 36.26 C70.81 31.26 77.81 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C34.19 45 39.19 39.26 47.89 37.26 Q55 29.26 61.32 36.26 C70.81 31.26 77.81 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M44.72 43.26 Q55 37.26 65.28 44.26" fill="none" stroke="#fff6e9" stroke-width="0.6" stroke-opacity="0.8"/>
-    </g>
-    <g transform="rotate(215.86 55 55)">
-      <path d="M49 63 C35.53 45 40.53 41.03 48.49 39.03 Q55 31.03 60.79 38.03 C69.47 33.03 76.47 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C35.53 45 40.53 41.03 48.49 39.03 Q55 31.03 60.79 38.03 C69.47 33.03 76.47 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M45.60 45.03 Q55 39.03 64.40 46.03" fill="none" stroke="#fff6e9" stroke-width="0.6" stroke-opacity="0.8"/>
-    </g>
-    <g transform="rotate(280.58 55 55)">
-      <path d="M49 63 C36.20 45 41.20 42.71 48.79 40.71 Q55 32.71 60.52 39.71 C68.80 34.71 75.80 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C36.20 45 41.20 42.71 48.79 40.71 Q55 32.71 60.52 39.71 C68.80 34.71 75.80 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M46.03 46.71 Q55 40.71 63.97 47.71" fill="none" stroke="#fff6e9" stroke-width="0.6" stroke-opacity="0.8"/>
-    </g>
-    <g transform="rotate(338.81 55 55)">
-      <path d="M49 63 C35.34 45 40.34 39.24 48.40 37.24 Q55 29.24 60.87 36.24 C69.66 31.24 76.66 46 61 63 Z" fill="__COLOR__" stroke="#ffffff" stroke-width="0.3" stroke-opacity="0.45"/>
-      <path d="M49 63 C35.34 45 40.34 39.24 48.40 37.24 Q55 29.24 60.87 36.24 C69.66 31.24 76.66 46 61 63 Z" fill="url(#peony-clean-glow)"/>
-      <path d="M45.47 43.24 Q55 37.24 64.53 44.24" fill="none" stroke="#fff6e9" stroke-width="0.6" stroke-opacity="0.8"/>
-    </g>
-
-    <!-- ================= 4. 中心圆心核（严格保留原版坐标与尺寸 55,55 r=2.2） ================= -->
-    <circle cx="55.00" cy="55.00" r="2.20" fill="__COLOR__"/>
-    <circle cx="55.00" cy="55.00" r="1.50" fill="#ffffff" opacity="0.4"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><!-- adaptive-petal-outline -->
+<defs><linearGradient id="herbaceous-peony-plane" x1=".15" y1="0" x2=".5" y2="1"><stop stop-color="#fff6e9" stop-opacity=".27"/><stop offset=".5" stop-color="#fff6e9" stop-opacity=".03"/><stop offset="1" stop-color="#854958" stop-opacity=".14"/></linearGradient></defs>
+<!-- Quiet calyx and neck preserve the existing common stem join. -->
+<path d="M54 94C54.5 89 51 85 46 81L64 80C59 85 55.8 89 56 94Z" fill="#7e906d"/>
+<path d="M54.7 93C55 88 54 85 53 83" fill="none" stroke="#c2caa5" stroke-width=".6"/>
+<path d="M54 87C45 87 37 82 32 75L47 80L53 76L61 80L77 73C72 83 64 87 54 87Z" fill="#92a078"/>
+<path d="M55 84C34 87 20 72 20 54C16 39 30 24 44 23C57 17 75 23 83 34C96 42 96 60 86 72C79 84 64 88 55 84Z" fill="__COLOR__"/>
+<g transform="translate(34 48) rotate(-48) scale(1.03 0.97)"><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="url(#herbaceous-peony-plane)"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="#fff6e9" opacity="0.05"/><path d="M-16-17Q-15-23-10-22Q-6-26 0-23M4-24Q11-26 14-21" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(48 42) rotate(-20) scale(1.12 1.03)"><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="url(#herbaceous-peony-plane)"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="#fff6e9" opacity="0.12"/><path d="M-16-17Q-15-23-10-22Q-6-26 0-23M4-24Q11-26 14-21" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(64 43) rotate(16) scale(1.12 1.05)"><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="url(#herbaceous-peony-plane)"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="#fff6e9" opacity="0.02"/><path d="M-16-17Q-15-23-10-22Q-6-26 0-23M4-24Q11-26 14-21" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(78 52) rotate(45) scale(0.95 1.0)"><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="url(#herbaceous-peony-plane)"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="#fff6e9" opacity="0.15"/><path d="M-16-17Q-15-23-10-22Q-6-26 0-23M4-24Q11-26 14-21" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(28 64) rotate(-66) scale(0.96 0.89)"><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="url(#herbaceous-peony-plane)"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="#fff6e9" opacity="0.08"/><path d="M-16-17Q-15-23-10-22Q-6-26 0-23M4-24Q11-26 14-21" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(82 67) rotate(68) scale(0.91 0.92)"><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="url(#herbaceous-peony-plane)"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="#fff6e9" opacity="0.03"/><path d="M-16-17Q-15-23-10-22Q-6-26 0-23M4-24Q11-26 14-21" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(38 53) rotate(-36) scale(0.7 0.83)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.05"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(52 48) rotate(-12) scale(0.73 0.82)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.12"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(65 50) rotate(24) scale(0.72 0.78)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.02"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(73 60) rotate(55) scale(0.65 0.76)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.15"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(36 65) rotate(-58) scale(0.68 0.77)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.08"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(47 62) rotate(-27) scale(0.73 0.81)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.03"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(62 63) rotate(17) scale(0.73 0.78)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.05"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(68 72) rotate(43) scale(0.68 0.65)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.12"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(48 74) rotate(-18) scale(0.73 0.69)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.02"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(57 75) rotate(8) scale(0.75 0.72)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.15"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(48 53) rotate(-29) scale(0.46 0.57)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.08"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(57 51) rotate(12) scale(0.47 0.59)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.03"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(62 57) rotate(47) scale(0.42 0.55)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.05"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(51 61) rotate(-12) scale(0.5 0.57)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.12"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(60 65) rotate(29) scale(0.43 0.52)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.02"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(53 67) rotate(-28) scale(0.42 0.46)"><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="url(#herbaceous-peony-plane)"/><path d="M-2 9C-8 6-15-2-15-10C-18-14-15-18-11-18C-12-23-6-24-3-21C-1-25 4-25 6-21C10-24 15-20 13-17C18-16 18-11 14-8C12-1 6 6 2 9Z" fill="#fff6e9" opacity="0.15"/><path d="M-11-18Q-11-22-6-21M-3-21Q0-24 4-22M6-21Q11-23 13-18" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(39 78) rotate(-39) scale(1.05 0.9)"><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="url(#herbaceous-peony-plane)"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="#fff6e9" opacity="0.05"/><path d="M-16-17Q-15-23-10-22Q-6-26 0-23M4-24Q11-26 14-21" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(70 79) rotate(38) scale(1.12 0.88)"><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="url(#herbaceous-peony-plane)"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="#fff6e9" opacity="0.12"/><path d="M-16-17Q-15-23-10-22Q-6-26 0-23M4-24Q11-26 14-21" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
+<g transform="translate(55 83) rotate(-3) scale(1.19 0.91)"><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".44"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="url(#herbaceous-peony-plane)"/><path d="M-3 10C-12 7-19-2-19-12C-20-18-15-24-10-23C-8-27-2-28 2-24C7-28 14-25 15-21C21-21 23-15 20-10C19-1 10 7 3 10Z" fill="#fff6e9" opacity="0.02"/><path d="M-16-17Q-15-23-10-22Q-6-26 0-23M4-24Q11-26 14-21" fill="none" stroke="#fff5e8" stroke-opacity=".32" stroke-width=".7"/><path d="M-1 6Q-7 0-8-9" fill="none" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".32"/></g>
 </svg>

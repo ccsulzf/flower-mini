@@ -239,8 +239,9 @@ async function copyToStudio() {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  justify-content: space-between;
   box-sizing: border-box;
-  padding: 24rpx 30rpx calc(30rpx + env(safe-area-inset-bottom));
+  padding: 24rpx 30rpx calc(0rpx + env(safe-area-inset-bottom));
   overflow: hidden;
   background:
     radial-gradient(circle at 18% 8%, rgba(193, 171, 139, .07) 0 2rpx, transparent 3rpx),

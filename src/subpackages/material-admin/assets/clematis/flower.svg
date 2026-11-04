@@ -73,28 +73,17 @@
     </g>
   </defs>
 
-  <g transform="rotate(4 55 104)">
-    <!-- ====== 1. 纤细刚劲的铁线藤花茎与对生小苞叶 (#76876b) ====== -->
-    <!-- 刚韧挺拔的花梗主线 (直抵花心背面) -->
-    <path d="M55 105 C54.5 90 54.5 72 55 51" fill="none" stroke="#76876b" stroke-width="1.25"/>
-
-    <!-- 铁线莲节间标志性的对生微型小披针苞叶 (取代原本难看的粗暴锯齿块) -->
-    <path d="M54.5 86 Q46 83 41 87 C46 89 50 88 54.5 86 Z" fill="#76876b" opacity="0.8"/>
-    <path d="M55.2 86 Q64 83 69 87 C64 89 60 88 55.2 86 Z" fill="#76876b" opacity="0.8"/>
-    <path d="M55 86 L55 81" fill="none" stroke="#76876b" stroke-width="0.7"/>
-
-    <!-- ====== 2. 六片平展大方的真品铁线莲大萼瓣 (中心位于 55, 51) ====== -->
-    <g transform="translate(55, 51)">
-      <!-- 6 瓣呈黄金夹角优雅舒展，长短微带自然起伏 -->
-      <use href="#clematis-petal" transform="rotate(0.0) scale(1.0)"/>
-      <use href="#clematis-petal" transform="rotate(60.0) scale(0.98)"/>
-      <use href="#clematis-petal" transform="rotate(120.0) scale(1.02)"/>
-      <use href="#clematis-petal" transform="rotate(180.0) scale(0.99)"/>
-      <use href="#clematis-petal" transform="rotate(240.0) scale(1.01)"/>
-      <use href="#clematis-petal" transform="rotate(300.0) scale(0.98)"/>
-
-      <!-- ====== 3. 核心海葵状放射雄蕊皇冠 ====== -->
-      <use href="#clematis-stamens"/>
-    </g>
+  <!-- A short, quiet neck continues the common stem behind the lower petals. -->
+  <path d="M55 104C55.5 96 56 87 54 76C53 66 50 58 48 53" fill="none" stroke="#76876b" stroke-width="1.35"/>
+  <path d="M55.35 103C55.8 96 56.3 87 54.3 76" fill="none" stroke="#c4cba9" stroke-width=".32"/>
+  <!-- Unequal foreshortening and overlap keep the six-part star open. -->
+  <g transform="translate(55 53) rotate(-7) skewX(-9) scale(.91 .79)">
+    <use href="#clematis-petal" transform="rotate(-8) scale(.85 .78)"/>
+    <use href="#clematis-petal" transform="rotate(54) scale(.89 .84)"/>
+    <use href="#clematis-petal" transform="rotate(298) scale(.97 .94)"/>
+    <use href="#clematis-petal" transform="rotate(119) scale(.98 1.02)"/>
+    <use href="#clematis-petal" transform="rotate(238) scale(1.02 1.04)"/>
+    <use href="#clematis-petal" transform="rotate(181) scale(.94 1.08)"/>
+    <use href="#clematis-stamens" transform="scale(.92 .85)"/>
   </g>
 </svg>

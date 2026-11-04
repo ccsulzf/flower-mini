@@ -1,56 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><!-- adaptive-petal-outline -->
-  <g transform="rotate(-10 55 90)">
-    <!-- ====== 1. 花萼基底（保持 #9eaf7c 与 #b7c790，修整为优雅舒展的萼片形态） ====== -->
-    <path d="M55 91 C46 89 38 84 31 77 C43 80 50 84 55 87 C60 84 67 80 79 77 C72 84 64 89 55 91 Z" fill="#9eaf7c"/>
-    <path d="M55 90 C46 90 38 93 33 97 C39 90 46 87 52 86 M55 90 C64 90 72 93 77 97 C71 90 64 87 58 86 Z" fill="#b7c790"/>
-
-    <!-- ====== 2. 最底层/外围花瓣轮廓基底 ====== -->
-    <path d="M26 58 C17 50 17 38 26 33 C33 28 42 28 46 22 C52 14 62 14 68 21 C73 26 80 26 85 32 C93 39 93 51 84 61 C77 69 72 76 61 80 C48 83 37 80 29 72 C25 67 24 63 26 58 Z"
-          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <!-- 背部微透柔光面 -->
-    <path d="M46 22 C52 14 62 14 68 21 C73 26 80 26 85 32 C78 30 68 34 58 34 C48 34 39 30 36 33 C42 28 43 24 46 22 Z" fill="#fff1e0" opacity=".045"/>
-
-    <!-- ====== 3. 外层左侧舒展主瓣 ====== -->
-    <path d="M24 40 C31 33 40 35 45 43 C48 53 54 59 61 63 C52 70 39 70 30 62 C23 57 20 47 24 40 Z"
-          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M24 40 C31 33 40 35 45 43 C48 53 54 59 61 63 C52 70 39 70 30 62 C23 57 20 47 24 40 Z" fill="#fff1e0" opacity=".045"/>
-
-    <!-- ====== 4. 外层右侧舒展主瓣 ====== -->
-    <path d="M75 32 C87 33 91 43 85 52 C89 62 77 71 66 70 C69 61 66 54 61 48 C67 41 73 38 75 32 Z"
-          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M75 32 C87 33 91 43 85 52 C89 62 77 71 66 70 C69 61 66 54 61 48 C67 41 73 38 75 32 Z" fill="#fff1e0" opacity=".045"/>
-
-    <!-- ====== 5. 外层下方承托大瓣 ====== -->
-    <path d="M28 56 C39 60 47 67 58 68 C69 69 78 63 85 56 C84 70 74 79 62 82 C46 83 34 74 28 56 Z"
-          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-
-    <!-- ====== 6. 中层包拢花瓣（花杯两翼） ====== -->
-    <!-- 后上方内瓣 -->
-    <path d="M35 34 C35 23 47 22 54 28 C62 21 74 26 78 35 C66 37 59 43 53 47 C47 38 41 36 35 34 Z"
-          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-    <path d="M35 34 C35 23 47 22 54 28 C62 21 74 26 78 35 C66 37 59 43 53 47 C47 38 41 36 35 34 Z" fill="#fff1e0" opacity=".045"/>
-
-    <!-- 前中弧抱花瓣 -->
-    <path d="M37 40 C35 31 48 26 57 32 C65 26 77 35 72 44 C69 49 62 56 56 58 C50 51 42 48 37 40 Z"
-          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-
-    <!-- ====== 7. 内层花心螺旋结构（精致递进旋瓣） ====== -->
-    <!-- 外心环抱瓣 -->
-    <path d="M44 41 C44 33 54 31 60 35 C66 32 73 37 69 44 C64 50 55 53 50 47 C56 48 63 44 62 40 C58 36 53 37 51 43 Z"
-          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-
-    <!-- 核心紧致小螺旋旋心 -->
-    <path d="M48 38 C49 33 56 31 60 34 C63 37 61 42 56 43 C52 44 49 42 48 38 C52 38 56 37 57 35 C55 33 51 34 50 37 Z"
-          fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".85" stroke-linejoin="round"/>
-
-    <!-- ====== 8. 花瓣翻卷微光切片（统一使用 #fff1df 搭配原版透明度） ====== -->
-    <!-- 左花瓣翻边高光 -->
-    <path d="M27 42 C24 45 24 51 27 55 C29 52 28 47 27 42 Z" fill="#fff1df" opacity=".35"/>
-    <!-- 右花瓣边缘微光 -->
-    <path d="M85 40 C88 44 87 50 83 55 C84 50 86 45 85 40 Z" fill="#fff1df" opacity=".28"/>
-    <!-- 底瓣下缘翻卷唇光 -->
-    <path d="M66 75 Q72 74 76 69 Q76 75 70 78 Q66 79 66 75 Z" fill="#fff1df" opacity=".28"/>
-    <!-- 花心小瓣尖微光 -->
-    <path d="M54 33 Q58 32 60 35 Q57 35 54 33 Z" fill="#fff1df" opacity=".32"/>
+  <defs>
+    <linearGradient id="rose-petal-light" x1="0" y1="0" x2=".3" y2="1">
+      <stop stop-color="#fff6e9" stop-opacity=".28"/>
+      <stop offset=".55" stop-color="#fff6e9" stop-opacity=".04"/>
+      <stop offset="1" stop-color="#75434b" stop-opacity=".13"/>
+    </linearGradient>
+  </defs>
+  <!-- The calyx and short neck meet the unchanged stem at (55, 90). -->
+  <path d="M53.8 90C54 85 51 82 48 78L59 77C56 83 56.1 87 56.2 90Z" fill="#748668"/>
+  <path d="M54.7 89C54.9 85 54.4 82 53 80" fill="none" stroke="#bdc5a0" stroke-width=".65"/>
+  <path d="M54 84C44 83 36 77 31 69C41 74 48 75 55 77C65 74 73 70 80 63C76 75 67 83 54 84Z" fill="#899b73"/>
+  <path d="M53 82C47 81 40 82 35 85C40 79 45 77 49 77M56 81C65 81 72 77 77 74C73 81 66 85 57 85Z" fill="#a6b68b"/>
+  <!-- Broad, uneven rear petals establish a shallow three-quarter cup. -->
+  <g fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".7" stroke-linejoin="round">
+    <path d="M24 52C17 44 18 31 27 28C33 26 36 27 40 23C47 16 56 16 61 21C69 17 78 21 81 28C91 29 95 38 90 47C94 57 84 68 73 73L40 76C29 73 21 64 24 52Z"/>
+    <path d="M24 52C17 44 18 31 27 28C33 26 36 27 40 23C47 16 56 16 61 21C69 17 78 21 81 28C91 29 95 38 90 47C94 57 84 68 73 73L40 76C29 73 21 64 24 52Z" fill="url(#rose-petal-light)" stroke="none"/>
+    <path d="M31 32C37 27 44 28 49 32C53 25 63 23 69 27C76 27 81 33 79 39C67 39 60 45 54 53C44 48 36 42 31 32Z"/>
+    <path d="M31 32C37 27 44 28 49 32C53 25 63 23 69 27C76 27 81 33 79 39C67 39 60 45 54 53C44 48 36 42 31 32Z" fill="#fff6e9" opacity=".13" stroke="none"/>
+    <!-- Inner petals overlap around an offset, compact centre. -->
+    <path d="M38 39C37 32 44 28 51 31C58 26 68 30 69 36C76 39 75 46 69 50C59 54 46 48 38 39Z"/>
+    <path d="M42 37C48 31 57 33 60 38C66 34 72 38 70 43C67 49 59 52 53 50C52 44 48 40 42 37Z"/>
+    <path d="M47 39C47 34 54 33 58 36C64 34 68 38 65 42C61 47 54 48 50 44C55 45 61 42 61 39C57 37 54 38 53 41Z"/>
+    <path d="M53 37C56 35 61 36 61 39C59 41 57 42 55 41C58 40 58 38 56 38Z"/>
+    <!-- Side petals wrap below the centre rather than forming rings. -->
+    <path d="M25 37C32 35 39 41 44 48C49 55 58 59 65 60C57 68 43 71 33 64C26 59 22 46 25 37Z"/>
+    <path d="M79 34C87 36 90 43 87 50C85 60 75 68 63 69C67 61 65 54 61 49C67 42 74 38 79 34Z"/>
+    <path d="M34 45C42 43 48 49 54 53C61 55 69 51 75 46C75 56 68 64 58 66C48 65 40 57 34 45Z"/>
+    <path d="M34 45C42 43 48 49 54 53C61 55 69 51 75 46C75 56 68 64 58 66C48 65 40 57 34 45Z" fill="url(#rose-petal-light)" stroke="none"/>
+    <!-- The front apron hides petal bases and finishes the flower cup. -->
+    <path d="M26 56C35 61 41 69 54 70C66 71 77 64 84 56C83 66 76 77 65 80C52 85 36 77 31 68C28 64 27 60 26 56Z"/>
+    <path d="M26 56C35 61 41 69 54 70C66 71 77 64 84 56C83 66 76 77 65 80C52 85 36 77 31 68C28 64 27 60 26 56Z" fill="url(#rose-petal-light)" stroke="none"/>
+  </g>
+  <!-- Broad petal planes keep dark colors readable at whole-stem scale. -->
+  <g fill="#fff6e9">
+    <path d="M25 37C32 35 39 41 44 48C49 55 58 59 65 60C57 68 43 71 33 64C26 59 22 46 25 37Z" opacity=".12"/>
+    <path d="M42 37C48 31 57 33 60 38C66 34 72 38 70 43C67 49 59 52 53 50C52 44 48 40 42 37Z" opacity=".14"/>
+    <path d="M34 45C42 43 48 49 54 53C61 55 69 51 75 46C75 56 68 64 58 66C48 65 40 57 34 45Z" opacity=".09"/>
+    <path d="M26 56C35 61 41 69 54 70C66 71 77 64 84 56C83 66 76 77 65 80C52 85 36 77 31 68C28 64 27 60 26 56Z" opacity=".06"/>
+  </g>
+  <!-- Small folded edges, with no white outlines around whole petals. -->
+  <g fill="#fff6e9">
+    <path d="M24 38C29 36 34 39 38 43C32 40 28 40 25 42Z" opacity=".3"/>
+    <path d="M42 37C47 33 54 34 58 37C51 36 47 36 44 39Z" opacity=".24"/>
+    <path d="M64 49C69 44 74 40 80 39C76 42 70 45 66 51Z" opacity=".23"/>
+    <path d="M35 46C43 46 47 51 54 54C48 54 42 50 38 49Z" opacity=".3"/>
+    <path d="M29 59C38 64 43 69 54 71C46 72 36 67 32 64Z" opacity=".26"/>
+    <path d="M57 79C66 78 73 74 78 67C75 75 68 80 61 81Z" opacity=".17"/>
   </g>
 </svg>

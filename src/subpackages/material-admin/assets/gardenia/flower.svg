@@ -1,94 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
-  <defs>
-    <!-- 花瓣柔和通透的肉质微光（纯净玉润，杜绝黑灰色） -->
-    <radialGradient id="g-petal-light" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65"/>
-      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="85%" stop-color="#ffffff" stop-opacity="0.05"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.06"/>
-    </radialGradient>
-
-    <!-- 花瓣边缘外卷立体亮边 -->
-    <linearGradient id="g-rim" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75"/>
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.4"/>
-    </linearGradient>
-
-    <!-- 1. 外层长花瓣模型 (约长 40) -->
-    <g id="petal-tier-1">
-      <path d="M-4 8 C-16 -1 -21 -25 -11 -39 C-6 -45 4 -42 7 -37 C13 -30 15 -14 5 6 C1 9 -2 9 -4 8 Z" fill="__COLOR__"/>
-      <path d="M-4 8 C-16 -1 -21 -25 -11 -39 C-6 -45 4 -42 7 -37 C13 -30 15 -14 5 6 C1 9 -2 9 -4 8 Z" fill="url(#g-petal-light)"/>
-      <path d="M-4 8 C-16 -1 -21 -25 -11 -39 C-6 -45 4 -42 7 -37 C13 -30 15 -14 5 6 C1 9 -2 9 -4 8 Z" fill="url(#g-rim)"/>
-      <!-- 外翻微卷高光线与花瓣主脊 -->
-      <path d="M-10 -36 C-5 -41 3 -39 5 -34" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.75"/>
-      <path d="M0 6 C-3 -10 -5 -24 -2 -37" fill="none" stroke="#ffffff" stroke-width="0.35" opacity="0.45"/>
-    </g>
-
-    <!-- 2. 中层微卷花瓣模型 (约长 28) -->
-    <g id="petal-tier-2">
-      <path d="M-3.5 7 C-13 0 -17 -18 -9 -28 C-5 -33 3 -31 5 -27 C10 -21 12 -10 4 5 C1 7 -1.5 8 -3.5 7 Z" fill="__COLOR__"/>
-      <path d="M-3.5 7 C-13 0 -17 -18 -9 -28 C-5 -33 3 -31 5 -27 C10 -21 12 -10 4 5 C1 7 -1.5 8 -3.5 7 Z" fill="url(#g-petal-light)"/>
-      <path d="M-3.5 7 C-13 0 -17 -18 -9 -28 C-5 -33 3 -31 5 -27 C10 -21 12 -10 4 5 C1 7 -1.5 8 -3.5 7 Z" fill="url(#g-rim)"/>
-      <path d="M-8 -26 C-4 -30 2 -29 4 -25" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.75"/>
-      <path d="M0 5 C-2 -7 -3 -17 -1 -26" fill="none" stroke="#ffffff" stroke-width="0.32" opacity="0.45"/>
-    </g>
-
-    <!-- 3. 内层短瓣模型 (约长 17) -->
-    <g id="petal-tier-3">
-      <path d="M-3 6 C-9 0 -12 -11 -6 -18 C-3 -21 2 -20 4 -17 C8 -13 9 -6 3 4 C1 5 -1 6 -3 6 Z" fill="__COLOR__"/>
-      <path d="M-3 6 C-9 0 -12 -11 -6 -18 C-3 -21 2 -20 4 -17 C8 -13 9 -6 3 4 C1 5 -1 6 -3 6 Z" fill="url(#g-petal-light)"/>
-      <path d="M-3 6 C-9 0 -12 -11 -6 -18 C-3 -21 2 -20 4 -17 C8 -13 9 -6 3 4 C1 5 -1 6 -3 6 Z" fill="url(#g-rim)"/>
-      <path d="M-5 -16 C-2 -19 2 -18 3 -15" fill="none" stroke="#ffffff" stroke-width="0.4" opacity="0.8"/>
-    </g>
-  </defs>
-
-  <g transform="rotate(-5.0 55 94)">
-    <!-- ================= 1. 宿存细长齿花萼（优化质感与立体度） ================= -->
-    <path d="M55 96 C45 92 41 82 43 80 L53 87 L56 75 L60 87 L67 80 C69 82 65 92 55 96 Z" fill="#697f5a" stroke="#4f6342" stroke-width="0.45"/>
-    <path d="M55 95 L56 77" fill="none" stroke="#8cb077" stroke-width="0.5" opacity="0.6"/>
-
-    <!-- ================= 2. 外层 8 枚饱满大花瓣（严格对应原版旋转角度与中心） ================= -->
-    <g transform="translate(55 51)">
-      <use href="#petal-tier-1" transform="rotate(0.000)"/>
-      <use href="#petal-tier-1" transform="rotate(49.207)"/>
-      <use href="#petal-tier-1" transform="rotate(94.546)"/>
-      <use href="#petal-tier-1" transform="rotate(135.706)"/>
-      <use href="#petal-tier-1" transform="rotate(176.216)"/>
-      <use href="#petal-tier-1" transform="rotate(220.205)"/>
-      <use href="#petal-tier-1" transform="rotate(268.603)"/>
-      <use href="#petal-tier-1" transform="rotate(318.285)"/>
-    </g>
-
-    <!-- ================= 3. 中层 7 枚过渡包拢花瓣（严格对应原版旋转角度） ================= -->
-    <g transform="translate(55 51)">
-      <use href="#petal-tier-2" transform="rotate(24.000)"/>
-      <use href="#petal-tier-2" transform="rotate(79.636)"/>
-      <use href="#petal-tier-2" transform="rotate(131.404)"/>
-      <use href="#petal-tier-2" transform="rotate(178.991)"/>
-      <use href="#petal-tier-2" transform="rotate(225.930)"/>
-      <use href="#petal-tier-2" transform="rotate(276.348)"/>
-      <use href="#petal-tier-2" transform="rotate(331.174)"/>
-    </g>
-
-    <!-- ================= 4. 内层 6 枚贴心紧抱瓣（严格对应原版旋转角度） ================= -->
-    <g transform="translate(55 51)">
-      <use href="#petal-tier-3" transform="rotate(48.000)"/>
-      <use href="#petal-tier-3" transform="rotate(112.207)"/>
-      <use href="#petal-tier-3" transform="rotate(172.546)"/>
-      <use href="#petal-tier-3" transform="rotate(228.706)"/>
-      <use href="#petal-tier-3" transform="rotate(284.216)"/>
-      <use href="#petal-tier-3" transform="rotate(343.205)"/>
-    </g>
-
-    <!-- ================= 5. 正中心：含蓄紧凑的“玫瑰状螺旋心”（彻底清除原版脏暗斑） ================= -->
-    <g transform="translate(55 51)">
-      <!-- 柔润心底 -->
-      <path d="M-6 5 C-12 -5 -2 -16 8 -9 C14 -2 7 8 -6 5 Z" fill="__COLOR__"/>
-      <path d="M-6 5 C-12 -5 -2 -16 8 -9 C14 -2 7 8 -6 5 Z" fill="url(#g-petal-light)"/>
-      <path d="M-6 5 C-12 -5 -2 -16 8 -9 C14 -2 7 8 -6 5 Z" fill="url(#g-rim)"/>
-      <!-- 精致玉白螺旋旋心卷纹 -->
-      <path d="M-5 3 C-9 -4 0 -10 6 -6 C10 -2 6 5 0 4 C-3 3 -4 0 -1 -2" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-linecap="round"/>
-    </g>
-  </g>
-</svg>
+<defs><linearGradient id="gardenia-wax-plane" x1=".2" y1="0" x2=".6" y2="1"><stop stop-color="#fffdf5" stop-opacity=".55"/><stop offset=".45" stop-color="#fffdf5" stop-opacity=".12"/><stop offset="1" stop-color="#8d896d" stop-opacity=".2"/></linearGradient></defs>
+<!-- A narrow calyx keeps the pale flower distinct from the common stem. -->
+<path d="M54.4 94C54.5 90 53 87 50 83L59 82C56 87 55.6 90 55.6 94Z" fill="#819272"/>
+<path d="M54 88C45 87 38 82 34 76L49 81L54 77L60 81L76 75C71 84 63 88 54 88Z" fill="#95a37d"/>
+<path d="M53 86L49 81L54 83L62 80L58 87Z" fill="#b3be98"/>
+<g transform="rotate(-5 55 83)">
+<g><path d="M43 57C31 49 29 33 38 25C44 20 51 24 55 28C61 21 71 24 74 31C77 41 63 53 54 58Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M43 57C31 49 29 33 38 25C44 20 51 24 55 28C61 21 71 24 74 31C77 41 63 53 54 58Z" fill="url(#gardenia-wax-plane)"/><path d="M43 57C31 49 29 33 38 25C44 20 51 24 55 28C61 21 71 24 74 31C77 41 63 53 54 58Z" fill="#fffdf5" opacity="0.04"/></g>
+<g><path d="M59 55C61 40 75 28 84 33C90 36 88 43 87 47C94 55 83 67 69 68Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M59 55C61 40 75 28 84 33C90 36 88 43 87 47C94 55 83 67 69 68Z" fill="url(#gardenia-wax-plane)"/><path d="M59 55C61 40 75 28 84 33C90 36 88 43 87 47C94 55 83 67 69 68Z" fill="#fffdf5" opacity="0.02"/></g>
+<g><path d="M44 64C32 68 19 61 19 51C18 45 23 41 29 40C29 31 39 32 44 40C49 48 51 57 44 64Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M44 64C32 68 19 61 19 51C18 45 23 41 29 40C29 31 39 32 44 40C49 48 51 57 44 64Z" fill="url(#gardenia-wax-plane)"/><path d="M44 64C32 68 19 61 19 51C18 45 23 41 29 40C29 31 39 32 44 40C49 48 51 57 44 64Z" fill="#fffdf5" opacity="0.08"/></g>
+<g><path d="M37 60C28 63 26 73 35 79C44 86 53 83 60 76L58 62Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M37 60C28 63 26 73 35 79C44 86 53 83 60 76L58 62Z" fill="url(#gardenia-wax-plane)"/><path d="M37 60C28 63 26 73 35 79C44 86 53 83 60 76L58 62Z" fill="#fffdf5" opacity="0.02"/></g>
+<g><path d="M64 62C77 57 89 62 87 71C85 82 70 84 59 77Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M64 62C77 57 89 62 87 71C85 82 70 84 59 77Z" fill="url(#gardenia-wax-plane)"/><path d="M64 62C77 57 89 62 87 71C85 82 70 84 59 77Z" fill="#fffdf5" opacity="0.06"/></g>
+<g><path d="M45 55C38 47 39 35 46 32C54 28 61 34 61 40C70 35 77 42 74 49C70 57 56 60 45 55Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M45 55C38 47 39 35 46 32C54 28 61 34 61 40C70 35 77 42 74 49C70 57 56 60 45 55Z" fill="url(#gardenia-wax-plane)"/><path d="M45 55C38 47 39 35 46 32C54 28 61 34 61 40C70 35 77 42 74 49C70 57 56 60 45 55Z" fill="#fffdf5" opacity="0.1"/></g>
+<g><path d="M42 57C34 49 28 45 26 49C23 57 32 66 43 68C50 70 59 66 62 60C54 62 49 60 42 57Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M42 57C34 49 28 45 26 49C23 57 32 66 43 68C50 70 59 66 62 60C54 62 49 60 42 57Z" fill="url(#gardenia-wax-plane)"/><path d="M42 57C34 49 28 45 26 49C23 57 32 66 43 68C50 70 59 66 62 60C54 62 49 60 42 57Z" fill="#fffdf5" opacity="0.08"/></g>
+<g><path d="M65 48C73 44 82 47 82 54C81 62 70 69 58 67C62 60 61 54 65 48Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M65 48C73 44 82 47 82 54C81 62 70 69 58 67C62 60 61 54 65 48Z" fill="url(#gardenia-wax-plane)"/><path d="M65 48C73 44 82 47 82 54C81 62 70 69 58 67C62 60 61 54 65 48Z" fill="#fffdf5" opacity="0.01"/></g>
+<g><path d="M46 47C45 39 53 35 59 39C63 36 69 40 68 45C67 52 58 57 51 55Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M46 47C45 39 53 35 59 39C63 36 69 40 68 45C67 52 58 57 51 55Z" fill="url(#gardenia-wax-plane)"/><path d="M46 47C45 39 53 35 59 39C63 36 69 40 68 45C67 52 58 57 51 55Z" fill="#fffdf5" opacity="0.06"/></g>
+<g><path d="M52 45C54 40 62 40 63 45C63 49 58 51 55 50C60 49 60 44 57 44C55 44 54 46 54 48Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M52 45C54 40 62 40 63 45C63 49 58 51 55 50C60 49 60 44 57 44C55 44 54 46 54 48Z" fill="url(#gardenia-wax-plane)"/><path d="M52 45C54 40 62 40 63 45C63 49 58 51 55 50C60 49 60 44 57 44C55 44 54 46 54 48Z" fill="#fffdf5" opacity="0.0"/></g>
+<g><path d="M40 54C43 50 49 51 52 55C58 59 65 56 69 51C70 59 64 66 57 67C48 66 42 61 40 54Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M40 54C43 50 49 51 52 55C58 59 65 56 69 51C70 59 64 66 57 67C48 66 42 61 40 54Z" fill="url(#gardenia-wax-plane)"/><path d="M40 54C43 50 49 51 52 55C58 59 65 56 69 51C70 59 64 66 57 67C48 66 42 61 40 54Z" fill="#fffdf5" opacity="0.12"/></g>
+<g><path d="M29 66C39 68 43 77 55 77C64 78 73 74 80 68C78 79 66 86 55 85C43 85 33 78 29 66Z" fill="__COLOR__" stroke="#a49a82" stroke-opacity=".65" stroke-width=".48"/><path d="M29 66C39 68 43 77 55 77C64 78 73 74 80 68C78 79 66 86 55 85C43 85 33 78 29 66Z" fill="url(#gardenia-wax-plane)"/><path d="M29 66C39 68 43 77 55 77C64 78 73 74 80 68C78 79 66 86 55 85C43 85 33 78 29 66Z" fill="#fffdf5" opacity="0.07"/></g>
+<g fill="none" stroke="#fffdf6" stroke-opacity=".75" stroke-width=".8">
+<path d="M38 28C43 24 49 27 52 30M76 35C82 33 86 37 84 41M23 49C22 55 28 60 33 61M47 37C52 32 58 36 60 40M43 54C48 52 51 58 57 59C61 59 64 57 67 54M34 70C41 72 45 77 54 79"/>
+</g><path d="M53 45Q58 43 60 46Q60 49 56 50" fill="none" stroke="#aaa080" stroke-opacity=".6" stroke-width=".65"/>
+</g></svg>

@@ -33,10 +33,16 @@ function nested(source, x, y, width, height) {
     return source.replace(root, `<svg x="${x}" y="${y}" width="${width}" height="${height}" viewBox="${viewBox}" preserveAspectRatio="none">`);
 }
 
+function hasUnsafeSvgReference(source) {
+    return [...source.matchAll(/\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi)]
+        .some(([, doubleQuoted, singleQuoted, unquoted]) => !(doubleQuoted ?? singleQuoted ?? unquoted).startsWith('#'));
+}
+
 function safeSvg(source, name) {
     if (typeof source !== 'string' || source.length > 512 * 1024
         || !/^\s*<svg\b/i.test(source) || !/<\/svg>\s*$/i.test(source)
-        || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|\b(?:href|xlink:href)\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(source))
+        || hasUnsafeSvgReference(source)
+        || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(source))
         throw new Error(`${name}的云端 SVG 无效`);
     return source;
 }
@@ -376,7 +382,8 @@ async function renderSvg(svg, cloudPath, fontBuffers) {
     const height = root && Number(root.match(/\bheight=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
     if (typeof svg !== 'string' || svg.length > maxRenderSvgLength
         || !root || !/<\/svg>\s*$/i.test(svg)
-        || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|\b(?:href|xlink:href)\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(svg)
+        || hasUnsafeSvgReference(svg)
+        || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(svg)
         || width !== 698 || !Number.isInteger(height) || height < 1000 || height > 2000)
         throw new Error('作品 SVG 无效或尺寸不符合要求');
     const wasmStartedAt = Date.now();
