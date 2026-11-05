@@ -1,0 +1,17 @@
+{
+  "id": "light-window-diagonal",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "斜窗晨光",
+  "introduction": "奶油墙面上落下斜向格窗光影，中央明亮留白，适合温暖轻盈的花艺。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 10,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 855
+  }
+}

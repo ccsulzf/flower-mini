@@ -1,0 +1,17 @@
+{
+  "id": "season-winter",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "冬窗静候",
+  "introduction": "结霜的边窗与浅色木台形成清冷冬景，角落针织布带来少量温暖。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 100,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 850
+  }
+}

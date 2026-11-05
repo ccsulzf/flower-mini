@@ -14,7 +14,7 @@
                C28 -7 21 -1 16 3
                C13 6 17 8 24 13
                C15 14 8 18 0 27 Z"
-            fill="#8c7253" stroke="#715f46" stroke-width="0.55" stroke-linejoin="round"/>
+            fill="#8c7253" stroke="#9c8667" stroke-width="0.55" stroke-linejoin="round"/>
       <!-- 棉壳表面纵向干枯木纹微棱 -->
       <path d="M0 -7 L0 -24 M-7 -4 L-24 -9 M7 -4 L24 -9 M-5 8 L-18 12 M5 8 L18 12"
             fill="none" stroke="#5a4630" stroke-width="0.35" opacity="0.6"/>
@@ -29,7 +29,7 @@
                  C1 -6 0 -2 -1 -1 Z"
               fill="__COLOR__" stroke="#c7bfac" stroke-width="0.5" stroke-linejoin="round"/>
         <!-- 棉丝纤维柔和反光弧线 -->
-        <path d="M-20 0 C-26 -10 -16 -18 -12 -16" fill="none" stroke="#fffaf0" stroke-width="0.75" stroke-opacity=".75"/>
+        <path d="M-20 0 C-26 -10 -16 -18 -12 -16" fill="none" stroke="#fffaf0" stroke-width="0.75" stroke-opacity=".38"/>
         <path d="M-13 -3 Q-17 -9 -10 -11" fill="none" stroke="#fffaf0" stroke-width="0.4" stroke-opacity=".5"/>
       </g>
 
@@ -41,7 +41,7 @@
                  C13 -25 4 -20 0 -11
                  C-1 -6 0 -2 1 -1 Z"
               fill="__COLOR__" stroke="#c7bfac" stroke-width="0.5" stroke-linejoin="round"/>
-        <path d="M20 0 C26 -10 16 -18 12 -16" fill="none" stroke="#fffaf0" stroke-width="0.75" stroke-opacity=".75"/>
+        <path d="M20 0 C26 -10 16 -18 12 -16" fill="none" stroke="#fffaf0" stroke-width="0.75" stroke-opacity=".38"/>
         <path d="M13 -3 Q17 -9 10 -11" fill="none" stroke="#fffaf0" stroke-width="0.4" stroke-opacity=".5"/>
       </g>
 
@@ -54,12 +54,12 @@
                  C5 2 -5 2 -9 4 Z"
               fill="__COLOR__" stroke="#c7bfac" stroke-width="0.5" stroke-linejoin="round"/>
         <!-- 下棉瓣大弧度高光面 -->
-        <path d="M-9 20 C-14 10 -3 2 0 4 C3 2 14 10 9 20" fill="none" stroke="#fffaf0" stroke-width="0.75" stroke-opacity=".75"/>
-        <path d="M-6 24 Q0 27 6 24" fill="none" stroke="#fffaf0" stroke-width="0.5" stroke-opacity=".6"/>
+        <path d="M-9 20 C-14 10 -3 2 0 4 C3 2 14 10 9 20" fill="none" stroke="#fffaf0" stroke-width="0.75" stroke-opacity=".38"/>
+        <path d="M-6 24 Q0 27 6 24" fill="none" stroke="#fffaf0" stroke-width="0.5" stroke-opacity=".32"/>
       </g>
 
       <!-- 三瓣交汇中央的柔软微凹阴影窝 (赋予真实景深) -->
-      <circle cx="0" cy="2" r="2.2" fill="#715f46" opacity="0.18"/>
+      <circle cx="0" cy="2" r="2.2" fill="#9c8667" opacity="0.18"/>
     </g>
   </defs>
 
@@ -73,8 +73,8 @@
     <path d="M55 92 Q70 91 81 87" fill="none" stroke="#8d8160" stroke-width="1.0"/>
 
     <!-- 分枝木质膨大果柄节疤 -->
-    <ellipse cx="55" cy="89" rx="1.5" ry="0.9" fill="#695b3f"/>
-    <ellipse cx="55" cy="58" rx="1.6" ry="1.0" fill="#695b3f"/>
+    <ellipse cx="55" cy="89" rx="1.5" ry="0.9" fill="#8d7d60"/>
+    <ellipse cx="55" cy="58" rx="1.6" ry="1.0" fill="#8d7d60"/>
 
     <!-- ====== 2. 三朵完全对应原版位置与尺度的真品三瓣棉花 ====== -->
 

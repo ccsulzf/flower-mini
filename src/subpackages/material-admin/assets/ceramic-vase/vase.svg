@@ -1,68 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="140" height="170" viewBox="0 0 140 170" stroke-linecap="round" stroke-linejoin="round">
-  <defs>
-    <!-- 真实温润白瓷圆柱体釉面渐变 (包含高光带、漫反射与背光微弱环境反光) -->
-    <linearGradient id="ivory-ceramic" gradientUnits="userSpaceOnUse" x1="15" y1="0" x2="125" y2="0">
-      <stop offset="0%" stop-color="#aba492"/>
-      <stop offset="12%" stop-color="#d6cfbe"/>
-      <stop offset="28%" stop-color="#fdfaf2"/>
-      <stop offset="48%" stop-color="#f0e9dc"/>
-      <stop offset="72%" stop-color="#ded6c5"/>
-      <stop offset="88%" stop-color="#b8b09e"/>
-      <stop offset="100%" stop-color="#c9c1b0"/>
-    </linearGradient>
-
-    <!-- 瓶口内部深邃暗腔渐变 (供插花花茎深嵌插放) -->
-    <linearGradient id="cavity-depth" gradientUnits="userSpaceOnUse" x1="70" y1="3" x2="70" y2="13">
-      <stop offset="0%" stop-color="#2d352e"/>
-      <stop offset="100%" stop-color="#556356"/>
-    </linearGradient>
-  </defs>
-
-  <g>
-    <!-- ====== 1. 瓶底落地接触微阴影 (Grounding Shadow：赋予真实重力与桌面感) ====== -->
-    <ellipse cx="70" cy="167" rx="33" ry="2.2" fill="#8c8574" opacity="0.38"/>
-
-    <!-- ====== 2. 瓶身主体 (优美连续的双曲面流线型陶瓷瓶身) ====== -->
-    <path d="M15 8
-             C17 28 27 48 30 68
-             C33 90 24 118 25 142
-             C26 156 32 165 42 166
-             C58 168.5 82 168.5 98 166
-             C108 165 114 156 115 142
-             C116 118 107 90 110 68
-             C113 48 123 28 125 8 Z"
-          fill="url(#ivory-ceramic)" stroke="#b3ad9b" stroke-width="0.65" stroke-linejoin="round"/>
-
-    <!-- ====== 3. 陶瓷标志性的釉面垂直流光条 (Vitreous Gloss Strip) ====== -->
-    <!-- 顺应器型腰线的高亮釉面反光 -->
-    <path d="M26 18
-             C28 36 36 50 38 68
-             C41 95 33 124 35 146
-             C35.5 152 38 154 40 152
-             C38 126 47 96 44 68
-             C41 42 33 24 30 18 Z"
-          fill="#ffffff" opacity="0.28"/>
-    <!-- 高光核心亮丝 -->
-    <path d="M33 30 C36 48 40 68 40 85 C40 108 36 128 37 142"
-          fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.45"/>
-
-    <!-- ====== 4. 瓶底圆润折角阴影 (体现手工拉胚厚实底足) ====== -->
-    <path d="M38 164 Q70 168.5 102 164 Q70 171 38 164 Z" fill="#9e9783" opacity="0.4"/>
-
-    <!-- ====== 5. 瓶口结构 (深邃内腔 + 圆润陶瓷卷唇) ====== -->
-    <!-- 瓶口外轮廓椭圆基底 -->
-    <ellipse cx="70" cy="8" rx="55" ry="6.5" fill="#f2ead8" stroke="#a7a28f" stroke-width="0.55"/>
-
-    <!-- 深邃花室内部椭圆内腔 (可自然容纳并掩映插在瓶内的花枝茎干) -->
-    <ellipse cx="70" cy="7.8" rx="51.5" ry="4.8" fill="url(#cavity-depth)"/>
-
-    <!-- 花室深处幽暗背景阴影 (增强俯视纵深) -->
-    <path d="M18.5 7.8 C18.5 3.5 121.5 3.5 121.5 7.8 Q70 4.2 18.5 7.8 Z" fill="#1e241f" opacity="0.55"/>
-
-    <!-- ====== 6. 瓶口卷唇高光 (严格沿椭圆几何弧度自然贴合，杜绝下垂变形) ====== -->
-    <!-- 卷沿正面主亮线 (白玉反光) -->
-    <path d="M15 8 C15 14.5 125 14.5 125 8" fill="none" stroke="#f6efe1" stroke-width="1.3" opacity="0.95"/>
-    <!-- 卷沿内侧微光边缘 -->
-    <path d="M18.5 8 C18.5 12.8 121.5 12.8 121.5 8" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.6"/>
-  </g>
+<defs><linearGradient id="ceramic-vase-body" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0"><stop offset="0" stop-color="#c5baa6"/><stop offset=".23" stop-color="#e7ddca"/><stop offset=".43" stop-color="#f4ecdd"/><stop offset=".73" stop-color="#e4d8c3"/><stop offset="1" stop-color="#c4b59c"/></linearGradient><clipPath id="ceramic-vase-silhouette"><path d="M15 8 C17 28 27 48 30 68 C33 90 24 118 25 142 C26 156 32 165 42 166 C58 168.5 82 168.5 98 166 C108 165 114 156 115 142 C116 118 107 90 110 68 C113 48 123 28 125 8 Z"/></clipPath><linearGradient id="ceramic-vase-cavity" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#6e7567"/><stop offset="1" stop-color="#96917b"/></linearGradient></defs>
+<path d="M15 8 C17 28 27 48 30 68 C33 90 24 118 25 142 C26 156 32 165 42 166 C58 168.5 82 168.5 98 166 C108 165 114 156 115 142 C116 118 107 90 110 68 C113 48 123 28 125 8 Z" fill="url(#ceramic-vase-body)" stroke="#b3a58c" stroke-width=".7"/>
+<g clip-path="url(#ceramic-vase-silhouette)">
+<path d="M25 22C29 46 40 60 39 83C38 105 33 127 35 147" fill="none" stroke="#fff8e9" stroke-width="4" stroke-opacity=".28"/>
+<path d="M28 136Q70 141 112 136M27 140Q70 145 113 140M29 153Q70 157 111 153" fill="none" stroke="#b6a78d" stroke-opacity=".25" stroke-width=".6"/>
+<circle cx="8.00" cy="22.00" r="0.18" fill="#8d7f65" opacity=".12"/><circle cx="45.79" cy="45.41" r="0.25" fill="#8d7f65" opacity=".12"/><circle cx="83.58" cy="68.82" r="0.32" fill="#8d7f65" opacity=".12"/><circle cx="121.37" cy="92.23" r="0.39" fill="#8d7f65" opacity=".12"/><circle cx="35.16" cy="115.64" r="0.46" fill="#8d7f65" opacity=".12"/><circle cx="72.95" cy="139.05" r="0.18" fill="#8d7f65" opacity=".12"/><circle cx="110.74" cy="27.46" r="0.25" fill="#8d7f65" opacity=".12"/><circle cx="24.53" cy="50.87" r="0.32" fill="#8d7f65" opacity=".12"/><circle cx="62.32" cy="74.28" r="0.39" fill="#8d7f65" opacity=".12"/><circle cx="100.11" cy="97.69" r="0.46" fill="#8d7f65" opacity=".12"/><circle cx="13.90" cy="121.10" r="0.18" fill="#8d7f65" opacity=".12"/><circle cx="51.69" cy="144.51" r="0.25" fill="#8d7f65" opacity=".12"/><circle cx="89.48" cy="32.92" r="0.32" fill="#8d7f65" opacity=".12"/><circle cx="127.27" cy="56.33" r="0.39" fill="#8d7f65" opacity=".12"/><circle cx="41.06" cy="79.74" r="0.46" fill="#8d7f65" opacity=".12"/><circle cx="78.85" cy="103.15" r="0.18" fill="#8d7f65" opacity=".12"/><circle cx="116.64" cy="126.56" r="0.25" fill="#8d7f65" opacity=".12"/><circle cx="30.43" cy="149.97" r="0.32" fill="#8d7f65" opacity=".12"/><circle cx="68.22" cy="38.38" r="0.39" fill="#8d7f65" opacity=".12"/><circle cx="106.01" cy="61.79" r="0.46" fill="#8d7f65" opacity=".12"/><circle cx="19.80" cy="85.20" r="0.18" fill="#8d7f65" opacity=".12"/><circle cx="57.59" cy="108.61" r="0.25" fill="#8d7f65" opacity=".12"/><circle cx="95.38" cy="132.02" r="0.32" fill="#8d7f65" opacity=".12"/><circle cx="9.17" cy="155.43" r="0.39" fill="#8d7f65" opacity=".12"/>
+</g>
+<ellipse cx="70" cy="8" rx="55.0" ry="5.76" fill="#f0e6d4" stroke="#b3a58c" stroke-width=".65"/>
+<ellipse cx="70" cy="7.6" rx="52.0" ry="3.96" fill="url(#ceramic-vase-cavity)"/>
+<path d="M15.0 8C15.0 15.6608 125.0 15.6608 125.0 8" fill="none" stroke="#f0e6d4" stroke-width="2.1"/>
+<path d="M18.0 9C18.0 13.990400000000001 122.0 13.990400000000001 122.0 9" fill="none" stroke="#fff7e7" stroke-opacity=".65" stroke-width=".55"/>
 </svg>

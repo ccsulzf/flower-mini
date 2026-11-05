@@ -48,6 +48,7 @@ async function shareListImage() {
   if (!props.artwork || sharing.value || props.loading || catalogLoading.value || props.error)
     return
   sharing.value = true
+  emit('close')
   try {
     const file = await renderCloudMaterialList(props.artwork)
     // #ifdef MP-WEIXIN
@@ -81,7 +82,7 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
 </script>
 
 <template>
-  <view v-if="visible" class="material-list-overlay" @click="emit('close')">
+  <view v-if="visible" class="material-list-overlay" @click="!sharing && emit('close')">
     <view class="material-list-sheet" @click.stop>
       <view class="list-tape" aria-hidden="true" />
       <view class="list-heading">
@@ -107,8 +108,21 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
       </scroll-view>
       <button class="list-share" :disabled="sharing || loading || catalogLoading || !artwork || !!error || !stemCount"
         @click="shareListImage">
-        <view class="i-carbon-share" />{{ sharing ? '正在生成图片…' : '生成图片并分享' }}
+        <view class="i-carbon-share" />生成图片并分享
       </button>
+    </view>
+  </view>
+  <view v-if="sharing" class="render-backdrop" aria-live="polite" @click.stop>
+    <view class="render-dialog">
+      <view class="render-flower" aria-hidden="true">
+        <view class="i-carbon-sprout" />
+      </view>
+      <text class="render-title">正在生成花材清单</text>
+      <view class="render-dots" aria-hidden="true">
+        <view />
+        <view />
+        <view />
+      </view>
     </view>
   </view>
 </template>
@@ -287,6 +301,116 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
 
 .list-share[disabled] {
   opacity: .5
+}
+
+.render-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 41;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+  box-sizing: border-box;
+  background: rgba(61, 53, 43, .32);
+  animation: render-backdrop-in .2s ease-out both;
+}
+
+.render-dialog {
+  position: relative;
+  display: flex;
+  width: 430rpx;
+  min-height: 300rpx;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 46rpx 42rpx 40rpx;
+  border: 2rpx solid rgba(139, 119, 91, .34);
+  border-radius: 20rpx 28rpx 18rpx 25rpx;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(168, 143, 105, .08) 0 1rpx, transparent 2rpx),
+    #fffaf0;
+  background-size: 30rpx 30rpx, auto;
+  box-shadow: 8rpx 11rpx 0 rgba(76, 64, 48, .09), 0 24rpx 60rpx rgba(48, 41, 33, .15);
+  animation: render-dialog-in .32s cubic-bezier(.2, .8, .25, 1.1) both;
+}
+
+.render-dialog::before {
+  position: absolute;
+  top: -13rpx;
+  left: 50%;
+  width: 112rpx;
+  height: 27rpx;
+  background: rgba(216, 207, 174, .78);
+  content: '';
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.render-flower {
+  display: flex;
+  width: 78rpx;
+  height: 78rpx;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22rpx;
+  color: #7d8973;
+  font-size: 62rpx;
+  animation: render-flower-turn 2.2s ease-in-out infinite;
+}
+
+.render-title {
+  color: #514a3f;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+  font-size: 31rpx;
+  line-height: 1.4;
+}
+
+.render-note {
+  margin-top: 11rpx;
+  color: #8b8375;
+  font-size: 22rpx;
+  line-height: 1.5;
+}
+
+.render-dots {
+  display: flex;
+  gap: 13rpx;
+  margin-top: 25rpx;
+}
+
+.render-dots view {
+  width: 9rpx;
+  height: 9rpx;
+  border-radius: 50%;
+  background: #b69f78;
+  animation: render-dot-bounce .9s ease-in-out infinite;
+}
+
+.render-dots view:nth-child(2) { animation-delay: .15s; }
+.render-dots view:nth-child(3) { animation-delay: .3s; }
+
+@keyframes render-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes render-dialog-in {
+  from { opacity: 0; transform: translateY(24rpx) scale(.96) rotate(-.5deg); }
+  to { opacity: 1; transform: translateY(0) scale(1) rotate(.2deg); }
+}
+
+@keyframes render-flower-turn {
+  0%, 100% { transform: rotate(-7deg) scale(.96); }
+  50% { transform: rotate(9deg) scale(1.04); }
+}
+
+@keyframes render-dot-bounce {
+  0%, 60%, 100% { opacity: .35; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-7rpx); }
 }
 
 </style>

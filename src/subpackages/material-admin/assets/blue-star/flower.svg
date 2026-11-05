@@ -3,13 +3,13 @@
     <!-- ====== 真实蓝星花核心：对称丝绒单瓣组件 (指向 12 点方向) ====== -->
     <g id="tweedia-petal">
       <!-- 饱满对称、端庄柔润的狭长椭圆厚花瓣 -->
-      <path d="M0 -2.5 C-3 -3.5 -6.5 -9 -6 -16 C-5.5 -20.5 -2.5 -22.5 0 -23 C2.5 -22.5 5.5 -20.5 6 -16 C6.5 -9 3 -3.5 0 -2.5 Z"
+      <path d="M-1 0 C-4 -3 -7 -8 -7 -14 C-7 -19 -3 -22 0 -23 C4 -22 7 -19 6 -15 C5 -10 1 -6 1 0 Z"
             fill="__COLOR__" stroke="#78585b" stroke-width="0.38" stroke-opacity=".32" stroke-linejoin="round"/>
       <!-- 单侧天鹅绒受光微光面 (体现花瓣微弓的立体厚实感) -->
       <path d="M0 -2.5 C-3 -3.5 -6.5 -9 -6 -16 C-5.5 -20.5 -2.5 -22.5 0 -23 Q-0.8 -12 0 -2.5 Z"
             fill="#fff5df" opacity="0.14"/>
       <!-- 花瓣中轴柔光脊线 -->
-      <path d="M0 -3 Q-0.5 -13 0 -21.5" fill="none" stroke="#fff5df" stroke-width="0.45" opacity="0.6"/>
+      <path d="M0 -3 Q-0.5 -13 0 -21.5" fill="none" stroke="#fff5df" stroke-width="0.45" opacity="0.25"/>
     </g>
 
     <!-- ====== 蓝星花标志性花心：5裂星状副花冠与合蕊柱 ====== -->
@@ -53,7 +53,7 @@
       <path d="M0 3 C-4 1 -4 -6 0 -9 C4 -6 4 1 0 3 Z"
             fill="__COLOR__" stroke="#78585b" stroke-width="0.35" stroke-opacity=".3"/>
       <!-- 花蕾螺旋折线与微光 -->
-      <path d="M-1.5 2 Q0 -3 0 -8.5" fill="none" stroke="#fff5df" stroke-width="0.38" opacity="0.6"/>
+      <path d="M-1.5 2 Q0 -3 0 -8.5" fill="none" stroke="#fff5df" stroke-width="0.38" opacity="0.25"/>
     </g>
   </defs>
 

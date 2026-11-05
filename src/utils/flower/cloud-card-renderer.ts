@@ -2,7 +2,7 @@ import type { Artwork } from '@/models/artwork'
 import type { FlowerGreetingText } from '@/models/flower-creation'
 import { readImageCache, writeImageCache } from './image-cache'
 
-const cloudCardRenderVersion = 'ma-shan-zheng-card-v1'
+const cloudCardRenderVersion = 'ma-shan-zheng-card-v2'
 
 interface CloudCardResult {
   width: number

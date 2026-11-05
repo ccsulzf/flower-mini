@@ -1,0 +1,17 @@
+{
+  "id": "setting-writing-desk",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "木色书桌",
+  "introduction": "温暖书桌上的书本、空白便笺和笔筒退到角落，留出中央花艺位置。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 50,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 825
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "season-spring",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "春日轻风",
+  "introduction": "嫩绿晨光与边缘小花枝表达春意，零星花瓣落在台角，中央保持留白。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 70,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 850
+  }
+}

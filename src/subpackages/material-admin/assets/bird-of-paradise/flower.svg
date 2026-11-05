@@ -7,10 +7,10 @@
     </linearGradient>
   </defs>
 
-  <g transform="rotate(-4 29 96)">
+  <path d="M55 96C51 92 45 89 39 86" fill="none" stroke="#788c6b" stroke-width="2.4"/><g transform="rotate(-4 29 96)">
     <!-- ====== 1. 花茎与舟形佛焰苞（鹤喙基座） ====== -->
     <!-- 坚挺微弯的肉质花茎 (从底部延伸至佛焰苞弯折处) -->
-    <path d="M16 106 Q17 100 18 96" fill="none" stroke="#6f8b69" stroke-width="2.2"/>
+
 
     <!-- 佛焰苞主体 (优雅饱满如硬弓的舟形鸟喙，末端尖锐如芒) -->
     <path d="M18 96

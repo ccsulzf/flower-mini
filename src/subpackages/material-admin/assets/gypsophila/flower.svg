@@ -8,7 +8,7 @@
     </linearGradient>
 
     <!-- 真实满天星小花单瓣原型 (匙形、顶端微凹缺) -->
-    <path id="gyp-single-petal" d="M0 0 C-0.9 -0.6 -1.6 -1.8 -1.4 -3.1 C-1.2 -4.0 -0.4 -4.3 0 -3.8 C0.4 -4.3 1.2 -4.0 1.4 -3.1 C1.6 -1.8 0.9 -0.6 0 0 Z" fill="__COLOR__"/>
+    <path id="gyp-single-petal" d="M0 0 C-0.9 -0.6 -1.6 -1.8 -1.4 -3.1 C-1.2 -4.0 -0.4 -4.3 0 -3.8 C0.4 -4.3 1.2 -4.0 1.4 -3.1 C1.6 -1.8 0.9 -0.6 0 0 Z" fill="__COLOR__" stroke="#9b9980" stroke-width=".28" stroke-opacity=".5"/>
 
     <!-- 单朵完整的满天星小花（由5枚微凹花瓣与柔黄花蕊组成） -->
     <g id="gyp-floret">
@@ -21,15 +21,16 @@
         <use href="#gyp-single-petal" transform="rotate(288)"/>
       </g>
       <!-- 通透柔光遮罩 -->
-      <circle cx="0" cy="0" r="4.2" fill="url(#gyp-soft)"/>
+      <circle cx="0" cy="0" r="4.2" fill="url(#gyp-soft)" opacity=".22"/>
       <!-- 花瓣纤细中肋反光线 -->
-      <path d="M0 0 L0 -3 M0 0 L2.8 -0.9 M0 0 L1.8 2.4 M0 0 L-1.8 2.4 M0 0 L-2.8 -0.9" fill="none" stroke="#ffffff" stroke-width="0.25" opacity="0.6"/>
+      <path d="M0 0 L0 -3 M0 0 L2.8 -0.9 M0 0 L1.8 2.4 M0 0 L-1.8 2.4 M0 0 L-2.8 -0.9" fill="none" stroke="#fff7e8" stroke-width="0.2" opacity="0.25"/>
       <!-- 鹅黄嫩绿小花心与纤细蕊点 -->
       <circle cx="0" cy="0" r="0.75" fill="#cad598"/>
       <circle cx="0" cy="0" r="0.45" fill="#e2c866"/>
       <circle cx="0" cy="0" r="0.2" fill="#ffffff"/>
     </g>
   </defs>
+  <g transform="translate(55 104) scale(.93) translate(-55 -104)">
 
   <g transform="rotate(-8 55 104)">
     <!-- ================= 1. 二歧聚伞花序纤细分枝系统（完全保留原版路径） ================= -->
@@ -106,5 +107,6 @@
 
     <!-- 20. 中心位饱满花 -->
     <use href="#gyp-floret" transform="translate(49 44) rotate(229) scale(0.92)"/>
+  </g>
   </g>
 </svg>

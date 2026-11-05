@@ -1,0 +1,17 @@
+{
+  "id": "setting-window-sill",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "窗台一角",
+  "introduction": "厚实木窗台与侧边纱帘构成安静角落，晨光透过小窗照亮花瓶。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 40,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 830
+  }
+}

@@ -150,8 +150,8 @@ async function initializeDefaultArtwork(force = false) {
   if (!force && container.value.materialId)
     return
   const containerRecord = catalog.materials.find(item => item.category === 'vase')
-  // Start with the soft, neutral studio backdrop instead of the terracotta arch.
-  const backgroundRecord = catalog.materials.find(item => item.id === 'paper-ivory')
+  // 默认使用斜窗晨光背景。
+  const backgroundRecord = catalog.materials.find(item => item.id === 'light-window-diagonal')
     || catalog.materials.find(item => item.category === 'background')
   if (!containerRecord || !backgroundRecord)
     throw new Error('创作素材尚未准备完整')

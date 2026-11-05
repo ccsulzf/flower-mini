@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
+import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 
 const dailyFlower = useDailyFlowerStore()
+const catalog = useFlowerCatalogStore()
 const flower = computed(() => dailyFlower.todayFlower)
 
 function share() {
@@ -35,14 +37,11 @@ function makeCard() {
 </script>
 
 <template>
-  <view v-if="dailyFlower.visible && flower" class="daily-flower-mask" @click="dailyFlower.dismissToday">
+  <view v-if="!catalog.needsPreparation && dailyFlower.visible && flower" class="daily-flower-mask" @click="dailyFlower.dismissToday">
     <view class="daily-flower-dialog" @click.stop>
       <button class="daily-flower-close" aria-label="关闭今日花束" @click="dailyFlower.dismissToday">
         ×
       </button>
-      <view class="daily-flower-kicker">
-        DAILY FLOWER
-      </view>
       <view class="daily-flower-title">
         今日花束
       </view>

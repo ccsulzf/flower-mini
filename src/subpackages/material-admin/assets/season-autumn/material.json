@@ -1,0 +1,17 @@
+{
+  "id": "season-autumn",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "秋光微暖",
+  "introduction": "琥珀色侧光、浅木台与边缘枯黄叶枝，营造温暖而克制的秋日氛围。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 90,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 850
+  }
+}

@@ -2,8 +2,8 @@
   "id": "square-vase",
   "category": "vase",
   "name": "方形花瓶",
-  "introduction": "浅灰绿色方口花瓶，瓶身平直，适合简洁、利落的桌面插花。",
-  "version": 5,
+  "introduction": "浅灰绿色釉面方瓶，浅浮雕拱线与露胎底部增加层次，适合简洁的桌面插花。",
+  "version": 6,
   "geometry": {
     "width": 160,
     "height": 180,

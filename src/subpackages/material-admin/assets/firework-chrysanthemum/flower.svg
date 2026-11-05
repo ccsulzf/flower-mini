@@ -2,24 +2,24 @@
   <defs>
     <!-- 金丝瓣丝绸柔光（洁净明朗，无任何黑灰杂质） -->
     <linearGradient id="silk-shine" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.072"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.288"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.024"/>
     </linearGradient>
 
     <!-- 花瓣由基部向尖端的透光渐变 -->
     <linearGradient id="silk-tip" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
-      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.048"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.120"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.360"/>
     </linearGradient>
 
     <!-- 精致小花心立体暖金渐变 -->
     <radialGradient id="mum-gold-eye" cx="46%" cy="44%" r="56%">
-      <stop offset="0%" stop-color="#fff677"/>
-      <stop offset="40%" stop-color="#f8be12"/>
-      <stop offset="80%" stop-color="#d67b02"/>
-      <stop offset="100%" stop-color="#7a3d02"/>
+      <stop offset="0%" stop-color="#ebd38b"/>
+      <stop offset="40%" stop-color="#d6b36a"/>
+      <stop offset="80%" stop-color="#b18b49"/>
+      <stop offset="100%" stop-color="#917242"/>
     </radialGradient>
 
     <!-- 1. 外层飘逸长丝瓣（如行云流水般优美的微弧长丝） -->
@@ -33,7 +33,7 @@
             fill="url(#silk-tip)"/>
       <path d="M54.4 55 C53 38 48 20 52 7 C53 4 54.8 4 55.5 6.5 C56.2 12 55.5 28 55.6 55 Z"
             fill="url(#silk-shine)"/>
-      <path d="M54.8 52 C53.5 35 50.5 18 53 7" fill="none" stroke="#ffffff" stroke-width="0.38" stroke-linecap="round" opacity="0.65"/>
+      <path d="M54.8 52 C53.5 35 50.5 18 53 7" fill="none" stroke="#ffffff" stroke-width="0.38" stroke-linecap="round" opacity="0.390"/>
     </g>
 
     <!-- 2. 中层微翘主丝瓣（富有张力的优美弧线） -->
@@ -47,7 +47,7 @@
             fill="url(#silk-tip)"/>
       <path d="M54.5 55 C53.5 42 50.5 26 55 14 C56 11.5 57.5 12 57 14.5 C55.5 22 55.8 38 55.5 55 Z"
             fill="url(#silk-shine)"/>
-      <path d="M54.9 52 C53.8 38 52 24 55.6 14.5" fill="none" stroke="#ffffff" stroke-width="0.32" stroke-linecap="round" opacity="0.65"/>
+      <path d="M54.9 52 C53.8 38 52 24 55.6 14.5" fill="none" stroke="#ffffff" stroke-width="0.32" stroke-linecap="round" opacity="0.390"/>
     </g>
 
     <!-- 3. 内层合抱心丝（轻巧微卷、拢抱花芯） -->

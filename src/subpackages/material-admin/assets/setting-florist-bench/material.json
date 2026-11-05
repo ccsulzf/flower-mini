@@ -1,0 +1,17 @@
+{
+  "id": "setting-florist-bench",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "花店工作台",
+  "introduction": "浅绿工作间与原木台面，牛皮纸卷、细绳和花剪放在两侧，中央留给作品。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 60,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 825
+  }
+}

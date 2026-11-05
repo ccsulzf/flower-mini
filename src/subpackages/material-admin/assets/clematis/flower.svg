@@ -13,12 +13,12 @@
             fill="__COLOR__" stroke="#78585b" stroke-width="0.38" stroke-opacity=".35" stroke-linejoin="round"/>
 
       <!-- 铁线莲标志性的中央三纵脉微折受光区 (展现花瓣微凹拱起的立体感) -->
-      <path d="M0 -1 Q-5 -22 0 -43 Q5 -22 0 -1 Z" fill="#fff5df" opacity="0.14"/>
+      <path d="M0 -1 Q-5 -22 0 -43 Q5 -22 0 -1 Z" fill="#fff5df" opacity="0.09"/>
       <!-- 中脉下陷主光线 -->
-      <path d="M0 -1 Q-0.4 -22 0 -44" fill="none" stroke="#fff5df" stroke-width="0.5" opacity="0.7"/>
+      <path d="M0 -1 Q-0.4 -22 0 -44" fill="none" stroke="#fff5df" stroke-width="0.5" opacity="0.4"/>
       <!-- 两侧微细副侧纵脉 -->
       <path d="M-2 -3 Q-8 -20 -9 -36 M2 -3 Q8 -20 9 -36"
-            fill="none" stroke="#fff5df" stroke-width="0.3" opacity="0.45"/>
+            fill="none" stroke="#fff5df" stroke-width="0.3" opacity="0.28"/>
     </g>
 
     <!-- ====== 2. 铁线莲视觉灵魂：如海葵般绚丽分层的放射状雄蕊皇冠 ====== -->

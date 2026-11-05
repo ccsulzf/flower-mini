@@ -2,40 +2,40 @@
   <defs>
     <!-- 茉莉花白玉质感通透微光渐变（纯净无灰脏杂质） -->
     <linearGradient id="jasmine-glow" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="0%" stop-color="#8c8d73" stop-opacity="0.14"/>
       <stop offset="50%" stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="85%" stop-color="#ffffff" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="85%" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.24"/>
     </linearGradient>
 
     <!-- 花瓣翻卷微光边缘 -->
     <linearGradient id="jasmine-rim" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.65"/>
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
       <stop offset="50%" stop-color="#ffffff" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.12"/>
     </linearGradient>
 
     <!-- 1. 外层展开长花瓣模型 (长约 22px，圆润微凹匙形) -->
     <g id="jas-petal-outer">
       <path d="M-2 3 C-8 -1 -11 -15 -3 -21 C5 -23 10 -7 2 3 Z" fill="__COLOR__"/>
       <path d="M-2 3 C-8 -1 -11 -15 -3 -21 C5 -23 10 -7 2 3 Z" fill="url(#jasmine-glow)"/>
-      <path d="M-2 3 C-8 -1 -11 -15 -3 -21 C5 -23 10 -7 2 3 Z" fill="url(#jasmine-rim)"/>
-      <path d="M0 2 C-2 -6 -2 -14 -1 -18" fill="none" stroke="#ffffff" stroke-width="0.38" opacity="0.65"/>
+      <path d="M-2 3 C-8 -1 -11 -15 -3 -21 C5 -23 10 -7 2 3 Z" fill="url(#jasmine-rim)" stroke="#97937b" stroke-width=".44" stroke-opacity=".4"/>
+      <path d="M0 2 C-2 -6 -2 -14 -1 -18" fill="none" stroke="#a5a28a" stroke-width="0.38" opacity="0.32"/>
     </g>
 
     <!-- 2. 中层微卷花瓣模型 (长约 16px) -->
     <g id="jas-petal-mid">
       <path d="M-2 3 C-7 -1 -9 -11 -3 -15 C4 -17 8 -6 2 3 Z" fill="__COLOR__"/>
       <path d="M-2 3 C-7 -1 -9 -11 -3 -15 C4 -17 8 -6 2 3 Z" fill="url(#jasmine-glow)"/>
-      <path d="M-2 3 C-7 -1 -9 -11 -3 -15 C4 -17 8 -6 2 3 Z" fill="url(#jasmine-rim)"/>
-      <path d="M0 2 C-1.5 -4 -1.5 -10 -1 -13" fill="none" stroke="#ffffff" stroke-width="0.35" opacity="0.65"/>
+      <path d="M-2 3 C-7 -1 -9 -11 -3 -15 C4 -17 8 -6 2 3 Z" fill="url(#jasmine-rim)" stroke="#97937b" stroke-width=".44" stroke-opacity=".4"/>
+      <path d="M0 2 C-1.5 -4 -1.5 -10 -1 -13" fill="none" stroke="#a5a28a" stroke-width="0.35" opacity="0.32"/>
     </g>
 
     <!-- 3. 内层抱心小花瓣模型 (长约 11px) -->
     <g id="jas-petal-inner">
       <path d="M-1.8 2.5 C-5 -1 -7 -8 -2 -11 C3 -13 6 -4 1.8 2.5 Z" fill="__COLOR__"/>
       <path d="M-1.8 2.5 C-5 -1 -7 -8 -2 -11 C3 -13 6 -4 1.8 2.5 Z" fill="url(#jasmine-glow)"/>
-      <path d="M-1.8 2.5 C-5 -1 -7 -8 -2 -11 C3 -13 6 -4 1.8 2.5 Z" fill="url(#jasmine-rim)"/>
+      <path d="M-1.8 2.5 C-5 -1 -7 -8 -2 -11 C3 -13 6 -4 1.8 2.5 Z" fill="url(#jasmine-rim)" stroke="#97937b" stroke-width=".44" stroke-opacity=".4"/>
     </g>
 
     <!-- 单朵完整真实的重瓣茉莉花模型（严格保持原版的 3 层旋转角度） -->
@@ -109,8 +109,8 @@
       <!-- 紧实含苞玉瓣 -->
       <path d="M0 5 C-7 1 -8 -13 -1 -15 C6 -13 7 0 0 5 Z" fill="__COLOR__"/>
       <path d="M0 5 C-7 1 -8 -13 -1 -15 C6 -13 7 0 0 5 Z" fill="url(#jasmine-glow)"/>
-      <path d="M0 5 C-7 1 -8 -13 -1 -15 C6 -13 7 0 0 5 Z" fill="url(#jasmine-rim)"/>
-      <path d="M0 4 C-2 -4 -1 -10 0 -13" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.75"/>
+      <path d="M0 5 C-7 1 -8 -13 -1 -15 C6 -13 7 0 0 5 Z" fill="url(#jasmine-rim)" stroke="#97937b" stroke-width=".44" stroke-opacity=".4"/>
+      <path d="M0 4 C-2 -4 -1 -10 0 -13" fill="none" stroke="#a5a28a" stroke-width="0.45" opacity="0.75"/>
       <!-- 苞底宿存长细花萼裂齿 -->
       <path d="M-2 5 L-5 2 M0 5 L0 1 M2 5 L5 2" fill="none" stroke="#687d55" stroke-width="0.55"/>
     </g>

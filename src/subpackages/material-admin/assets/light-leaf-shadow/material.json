@@ -1,0 +1,17 @@
+{
+  "id": "light-leaf-shadow",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "叶影午后",
+  "introduction": "暖白粉墙上有疏落枝叶投影，影子集中在边缘，花束仍是画面中心。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 20,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 855
+  }
+}

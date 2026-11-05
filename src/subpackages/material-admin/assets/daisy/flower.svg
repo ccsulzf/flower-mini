@@ -1,138 +1,132 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
-  <defs>
-    <!-- 纯净透亮的花瓣立体高光（白色柔光，绝不带黑灰色） -->
-    <linearGradient id="petal-shine" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.35"/>
-      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-
-    <!-- 底层花瓣透光渐变 -->
-    <linearGradient id="petal-back-tint" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#cbe68e" stop-opacity="0.5"/>
-      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-
-    <!-- 表层花瓣透光渐变 -->
-    <linearGradient id="petal-front-tint" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#d6ed85" stop-opacity="0.6"/>
-      <stop offset="25%" stop-color="#ffffff" stop-opacity="0.4"/>
-      <stop offset="70%" stop-color="#ffffff" stop-opacity="0.1"/>
-      <stop offset="100%" stop-color="#ffb8c6" stop-opacity="0.25"/>
-    </linearGradient>
-
-    <!-- 花心饱满鲜艳的金黄渐变（去除发黑杂质） -->
-    <radialGradient id="sun-disk" cx="46%" cy="44%" r="54%">
-      <stop offset="0%" stop-color="#fff152"/>
-      <stop offset="45%" stop-color="#f8be00"/>
-      <stop offset="80%" stop-color="#db8600"/>
-      <stop offset="100%" stop-color="#a65500"/>
-    </radialGradient>
-
-    <!-- 主花瓣模型 A -->
-    <g id="petal-a">
-      <!-- 纯净底色，直接应用 __COLOR__ -->
-      <path d="M53.5 54 C50 42 47.8 23 51.5 10.2 C52.5 6.7 54.2 6.2 55 6.2 C55.8 6.2 57.5 6.7 58.5 10.2 C62.2 23 60 42 56.5 54 Z" fill="__COLOR__"/>
-      <!-- 透光与高光层 -->
-      <path d="M53.5 54 C50 42 47.8 23 51.5 10.2 C52.5 6.7 54.2 6.2 55 6.2 C55.8 6.2 57.5 6.7 58.5 10.2 C62.2 23 60 42 56.5 54 Z" fill="url(#petal-front-tint)"/>
-      <path d="M53.5 54 C50 42 47.8 23 51.5 10.2 C52.5 6.7 54.2 6.2 55 6.2 C55.8 6.2 57.5 6.7 58.5 10.2 C62.2 23 60 42 56.5 54 Z" fill="url(#petal-shine)"/>
-      <!-- 白色纯净花脉 -->
-      <path d="M55 45 C54.8 32 54.6 20 55 9.5" fill="none" stroke="#ffffff" stroke-width="0.45" stroke-linecap="round" opacity="0.6"/>
-    </g>
-
-    <!-- 副花瓣模型 B（略细微长） -->
-    <g id="petal-b">
-      <path d="M53.8 54 C50.8 41 48.2 20 52.8 8.0 C53.6 5.8 55.2 5.5 56.0 6.5 C57.0 7.8 61.2 22 56.2 54 Z" fill="__COLOR__"/>
-      <path d="M53.8 54 C50.8 41 48.2 20 52.8 8.0 C53.6 5.8 55.2 5.5 56.0 6.5 C57.0 7.8 61.2 22 56.2 54 Z" fill="url(#petal-front-tint)"/>
-      <path d="M53.8 54 C50.8 41 48.2 20 52.8 8.0 C53.6 5.8 55.2 5.5 56.0 6.5 C57.0 7.8 61.2 22 56.2 54 Z" fill="url(#petal-shine)"/>
-      <path d="M55 46 C54.5 33 54.5 18 55.3 8.5" fill="none" stroke="#ffffff" stroke-width="0.4" stroke-linecap="round" opacity="0.5"/>
-    </g>
-  </defs>
-
-  <!-- ================= 1. 底层花瓣（通过透明度拉开景深，绝不发灰） ================= -->
-  <g opacity="0.88">
-    <use href="#petal-a" transform="rotate(11 55 55) scale(0.96)"/>
-    <use href="#petal-a" transform="rotate(33 55 55) scale(1.02)"/>
-    <use href="#petal-b" transform="rotate(55 55 55) scale(0.95)"/>
-    <use href="#petal-a" transform="rotate(77 55 55) scale(0.98)"/>
-    <use href="#petal-a" transform="rotate(99 55 55) scale(1.01)"/>
-    <use href="#petal-b" transform="rotate(122 55 55) scale(0.95)"/>
-    <use href="#petal-a" transform="rotate(144 55 55) scale(0.99)"/>
-    <use href="#petal-a" transform="rotate(166 55 55) scale(1.03)"/>
-    <use href="#petal-b" transform="rotate(188 55 55) scale(0.95)"/>
-    <use href="#petal-a" transform="rotate(210 55 55) scale(1.01)"/>
-    <use href="#petal-a" transform="rotate(232 55 55) scale(0.97)"/>
-    <use href="#petal-b" transform="rotate(254 55 55) scale(1.02)"/>
-    <use href="#petal-a" transform="rotate(276 55 55) scale(0.95)"/>
-    <use href="#petal-a" transform="rotate(298 55 55) scale(1.02)"/>
-    <use href="#petal-b" transform="rotate(320 55 55) scale(0.96)"/>
-    <use href="#petal-a" transform="rotate(342 55 55) scale(1.00)"/>
-  </g>
-
-  <!-- ================= 2. 表层主花瓣（通透洁净） ================= -->
-  <g>
-    <use href="#petal-a" transform="rotate(0 55 55)"/>
-    <use href="#petal-b" transform="rotate(22 55 55) scale(0.99)"/>
-    <use href="#petal-a" transform="rotate(44 55 55) scale(1.01)"/>
-    <use href="#petal-a" transform="rotate(66 55 55) scale(0.98)"/>
-    <use href="#petal-b" transform="rotate(88 55 55) scale(1.02)"/>
-    <use href="#petal-a" transform="rotate(110 55 55) scale(0.97)"/>
-    <use href="#petal-a" transform="rotate(132 55 55) scale(1.01)"/>
-    <use href="#petal-b" transform="rotate(154 55 55) scale(1.00)"/>
-    <use href="#petal-a" transform="rotate(176 55 55) scale(0.98)"/>
-    <use href="#petal-b" transform="rotate(198 55 55) scale(1.02)"/>
-    <use href="#petal-a" transform="rotate(220 55 55) scale(0.97)"/>
-    <use href="#petal-a" transform="rotate(242 55 55) scale(1.01)"/>
-    <use href="#petal-b" transform="rotate(264 55 55) scale(0.99)"/>
-    <use href="#petal-a" transform="rotate(286 55 55) scale(0.98)"/>
-    <use href="#petal-a" transform="rotate(308 55 55) scale(1.02)"/>
-    <use href="#petal-b" transform="rotate(330 55 55) scale(0.97)"/>
-  </g>
-
-  <!-- ================= 3. 花蕊底盘（明快温暖的金橙色） ================= -->
-  <!-- 花蕊根部暖橙微晕，取代脏灰投影 -->
-  <circle cx="55" cy="55" r="10.8" fill="#bc6c00" opacity="0.35"/>
-  <circle cx="55" cy="55" r="10.2" fill="url(#sun-disk)"/>
-
-  <!-- ================= 4. 鲜亮的花蕊管状花星点 ================= -->
-  <!-- 外圈暖赭橙点 -->
-  <g fill="#bf6700" stroke="#f09600" stroke-width="0.3">
-    <circle cx="45.5" cy="53.8" r="0.7"/><circle cx="46.0" cy="57.2" r="0.7"/><circle cx="47.2" cy="60.5" r="0.7"/>
-    <circle cx="49.3" cy="62.8" r="0.7"/><circle cx="52.2" cy="64.5" r="0.7"/><circle cx="55.5" cy="64.8" r="0.7"/>
-    <circle cx="58.6" cy="64.2" r="0.7"/><circle cx="61.5" cy="62.4" r="0.7"/><circle cx="63.6" cy="59.8" r="0.7"/>
-    <circle cx="64.7" cy="56.7" r="0.7"/><circle cx="64.5" cy="53.4" r="0.7"/><circle cx="63.3" cy="50.3" r="0.7"/>
-    <circle cx="61.2" cy="47.6" r="0.7"/><circle cx="58.2" cy="45.9" r="0.7"/><circle cx="55.0" cy="45.4" r="0.7"/>
-    <circle cx="51.8" cy="46.0" r="0.7"/><circle cx="48.9" cy="47.7" r="0.7"/><circle cx="46.8" cy="50.5" r="0.7"/>
-  </g>
-
-  <!-- 中圈金黄花粉 -->
-  <g fill="#e39500" stroke="#ffd943" stroke-width="0.35">
-    <circle cx="47.5" cy="53.1" r="0.75"/><circle cx="47.8" cy="56.3" r="0.75"/><circle cx="49.0" cy="59.2" r="0.75"/>
-    <circle cx="51.0" cy="61.4" r="0.75"/><circle cx="53.8" cy="62.6" r="0.75"/><circle cx="56.8" cy="62.5" r="0.75"/>
-    <circle cx="59.5" cy="61.2" r="0.75"/><circle cx="61.6" cy="58.9" r="0.75"/><circle cx="62.6" cy="56.0" r="0.75"/>
-    <circle cx="62.3" cy="53.0" r="0.75"/><circle cx="61.0" cy="50.2" r="0.75"/><circle cx="58.8" cy="48.0" r="0.75"/>
-    <circle cx="56.0" cy="47.3" r="0.75"/><circle cx="53.1" cy="47.7" r="0.75"/><circle cx="50.5" cy="49.2" r="0.75"/>
-    <circle cx="48.6" cy="51.2" r="0.75"/>
-  </g>
-
-  <!-- 内圈明黄星点 -->
-  <g fill="#fec418">
-    <circle cx="49.2" cy="54.6" r="0.7"/><circle cx="50.2" cy="57.3" r="0.7"/><circle cx="52.2" cy="59.3" r="0.7"/>
-    <circle cx="54.8" cy="60.2" r="0.7"/><circle cx="57.5" cy="59.8" r="0.7"/><circle cx="59.8" cy="58.0" r="0.7"/>
-    <circle cx="60.8" cy="55.2" r="0.7"/><circle cx="60.4" cy="52.5" r="0.7"/><circle cx="58.8" cy="50.2" r="0.7"/>
-    <circle cx="56.4" cy="49.2" r="0.7"/><circle cx="53.8" cy="49.5" r="0.7"/><circle cx="51.4" cy="50.8" r="0.7"/>
-    <circle cx="50.0" cy="52.8" r="0.7"/>
-  </g>
-
-  <!-- 中心高光嫩黄色小绒球 -->
-  <g fill="#fff67d">
-    <circle cx="51.8" cy="54.3" r="0.6"/><circle cx="52.6" cy="56.2" r="0.6"/><circle cx="54.4" cy="57.4" r="0.6"/>
-    <circle cx="56.5" cy="57.0" r="0.6"/><circle cx="57.8" cy="55.5" r="0.6"/><circle cx="58.0" cy="53.6" r="0.6"/>
-    <circle cx="57.0" cy="51.8" r="0.6"/><circle cx="55.1" cy="51.4" r="0.6"/><circle cx="53.1" cy="51.8" r="0.6"/>
-    <circle cx="53.6" cy="54.0" r="0.5"/><circle cx="54.8" cy="55.3" r="0.5"/><circle cx="56.0" cy="54.5" r="0.5"/>
-    <circle cx="55.7" cy="53.2" r="0.5"/><circle cx="54.4" cy="52.8" r="0.5"/>
-    <circle cx="55.0" cy="54.2" r="0.45" fill="#ffffff"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+<path d="M54.45 94C54.7 86 53 76 52.5 68L54 68C55.1 77 55.8 87 55.55 94Z" fill="#7e906d"/>
+<path d="M53 80C49 78 48 75 47 73L52 74L56 72L60 73C58 77 56 79 53 80Z" fill="#a1ad84"/>
+<g transform="translate(53 57) rotate(-14)">
+<g transform="scale(1 .6)">
+<g transform="rotate(0.00)"><path d="M-1 -6C-2.97 -15 -2.97 -28.00 -2.38 -33.00Q-1.78 -36.00 0.00 -34.50Q1.78 -36.00 2.38 -33.00C2.97 -27.00 2.97 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+<path d="M0 -9Q0.00 -22 0.00 -30.00" fill="none" stroke="#aa9b76" stroke-opacity=".18" stroke-width=".4"/>
+</g>
+<g transform="rotate(19.16)"><path d="M-1 -6C-2.47 -15 -1.51 -29.70 -1.01 -34.70Q-0.52 -37.70 0.96 -36.20Q2.44 -37.70 2.94 -34.70C3.43 -28.70 2.47 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(31.91)"><path d="M-1 -6C-2.83 -15 -2.31 -26.90 -1.75 -31.90Q-1.18 -34.90 0.52 -33.40Q2.21 -34.90 2.78 -31.90C3.34 -25.90 2.83 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(52.21)"><path d="M-1 -6C-2.71 -15 -3.40 -27.01 -2.86 -32.01Q-2.32 -35.01 -0.69 -33.51Q0.94 -35.01 1.48 -32.01C2.03 -26.01 2.71 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(70.03)"><path d="M-1 -6C-2.55 -15 -3.43 -29.74 -2.92 -34.74Q-2.41 -37.74 -0.88 -36.24Q0.65 -37.74 1.16 -34.74C1.67 -28.74 2.55 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+<path d="M0 -9Q-0.88 -22 -0.88 -31.74" fill="none" stroke="#aa9b76" stroke-opacity=".18" stroke-width=".4"/>
+</g>
+<g transform="rotate(83.21)"><path d="M-1 -6C-2.95 -15 -2.73 -27.86 -2.14 -32.86Q-1.55 -35.86 0.22 -34.36Q1.98 -35.86 2.57 -32.86C3.16 -26.86 2.95 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(104.34)"><path d="M-1 -6C-2.43 -15 -1.43 -26.35 -0.95 -31.35Q-0.46 -34.35 1.00 -32.85Q2.46 -34.35 2.94 -31.35C3.43 -25.35 2.43 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(120.76)"><path d="M-1 -6C-2.92 -15 -2.60 -29.21 -2.01 -34.21Q-1.43 -37.21 0.32 -35.71Q2.07 -37.21 2.65 -34.21C3.23 -28.21 2.92 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(134.77)"><path d="M-1 -6C-2.60 -15 -3.43 -28.88 -2.91 -33.88Q-2.39 -36.88 -0.83 -35.38Q0.73 -36.88 1.25 -33.88C1.77 -27.88 2.60 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+<path d="M0 -9Q-0.83 -22 -0.83 -30.88" fill="none" stroke="#aa9b76" stroke-opacity=".18" stroke-width=".4"/>
+</g>
+<g transform="rotate(156.32)"><path d="M-1 -6C-2.66 -15 -3.42 -26.23 -2.89 -31.23Q-2.36 -34.23 -0.76 -32.73Q0.83 -34.23 1.36 -31.23C1.89 -25.23 2.66 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(171.41)"><path d="M-1 -6C-2.87 -15 -2.45 -28.27 -1.88 -33.27Q-1.30 -36.27 0.42 -34.77Q2.14 -36.27 2.72 -33.27C3.29 -27.27 2.87 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(186.56)"><path d="M-1 -6C-2.44 -15 -1.46 -29.60 -0.97 -34.60Q-0.48 -37.60 0.99 -36.10Q2.45 -37.60 2.94 -34.60C3.43 -28.60 2.44 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(208.10)"><path d="M-1 -6C-2.96 -15 -2.86 -26.70 -2.26 -31.70Q-1.67 -34.70 0.11 -33.20Q1.89 -34.70 2.48 -31.70C3.07 -25.70 2.96 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+<path d="M0 -9Q0.11 -22 0.11 -28.70" fill="none" stroke="#aa9b76" stroke-opacity=".18" stroke-width=".4"/>
+</g>
+<g transform="rotate(222.06)"><path d="M-1 -6C-2.50 -15 -3.43 -27.25 -2.93 -32.25Q-2.43 -35.25 -0.93 -33.75Q0.57 -35.25 1.07 -32.25C1.57 -26.25 2.50 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(238.56)"><path d="M-1 -6C-2.77 -15 -3.38 -29.79 -2.82 -34.79Q-2.27 -37.79 -0.60 -36.29Q1.06 -37.79 1.61 -34.79C2.17 -28.79 2.77 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(259.64)"><path d="M-1 -6C-2.77 -15 -2.17 -27.60 -1.61 -32.60Q-1.06 -35.60 0.61 -34.10Q2.27 -35.60 2.82 -32.60C3.38 -26.60 2.77 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(272.79)"><path d="M-1 -6C-2.50 -15 -1.58 -26.47 -1.07 -31.47Q-0.57 -34.47 0.93 -32.97Q2.43 -34.47 2.93 -31.47C3.43 -25.47 2.50 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+<path d="M0 -9Q0.93 -22 0.93 -28.47" fill="none" stroke="#aa9b76" stroke-opacity=".18" stroke-width=".4"/>
+</g>
+<g transform="rotate(290.69)"><path d="M-1 -6C-2.96 -15 -3.07 -29.39 -2.48 -34.39Q-1.89 -37.39 -0.11 -35.89Q1.67 -37.39 2.26 -34.39C2.85 -28.39 2.96 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(310.94)"><path d="M-1 -6C-2.44 -15 -3.43 -28.63 -2.94 -33.63Q-2.45 -36.63 -0.99 -35.13Q0.48 -36.63 0.97 -33.63C1.46 -27.63 2.44 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(323.67)"><path d="M-1 -6C-2.88 -15 -3.29 -26.20 -2.72 -31.20Q-2.14 -34.20 -0.42 -32.70Q1.31 -34.20 1.88 -31.20C2.46 -25.20 2.88 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(342.90)"><path d="M-1 -6C-2.66 -15 -1.89 -28.53 -1.36 -33.53Q-0.83 -36.53 0.76 -35.03Q2.36 -36.53 2.89 -33.53C3.42 -27.53 2.66 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+<path d="M0 -9Q0.76 -22 0.76 -30.53" fill="none" stroke="#aa9b76" stroke-opacity=".18" stroke-width=".4"/>
+</g>
+<g transform="rotate(14.00)"><path d="M-1 -6C-2.53 -15 -2.53 -22.51 -2.02 -27.51Q-1.52 -30.51 0.00 -29.01Q1.52 -30.51 2.02 -27.51C2.53 -21.51 2.53 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+<path d="M0 -9Q0.00 -22 0.00 -24.51" fill="none" stroke="#aa9b76" stroke-opacity=".18" stroke-width=".4"/>
+</g>
+<g transform="rotate(67.45)"><path d="M-1 -6C-2.10 -15 -1.14 -21.43 -0.72 -26.43Q-0.30 -29.43 0.96 -27.93Q2.23 -29.43 2.65 -26.43C3.07 -20.43 2.10 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(114.48)"><path d="M-1 -6C-2.41 -15 -1.89 -19.21 -1.41 -24.21Q-0.93 -27.21 0.52 -25.71Q1.96 -27.21 2.44 -24.21C2.92 -18.21 2.41 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(169.06)"><path d="M-1 -6C-2.31 -15 -3.00 -21.73 -2.54 -26.73Q-2.08 -29.73 -0.69 -28.23Q0.70 -29.73 1.16 -26.73C1.62 -20.73 2.31 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(221.18)"><path d="M-1 -6C-2.17 -15 -3.05 -22.32 -2.62 -27.32Q-2.19 -30.32 -0.88 -28.82Q0.42 -30.32 0.85 -27.32C1.29 -21.32 2.17 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+<path d="M0 -9Q-0.88 -22 -0.88 -24.32" fill="none" stroke="#aa9b76" stroke-opacity=".18" stroke-width=".4"/>
+</g>
+<g transform="rotate(268.64)"><path d="M-1 -6C-2.51 -15 -2.29 -19.42 -1.79 -24.42Q-1.29 -27.42 0.22 -25.92Q1.72 -27.42 2.22 -24.42C2.72 -18.42 2.51 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+<g transform="rotate(324.05)"><path d="M-1 -6C-2.07 -15 -1.07 -20.70 -0.66 -25.70Q-0.24 -28.70 1.00 -27.20Q2.24 -28.70 2.66 -25.70C3.07 -19.70 2.07 -15 1 -6Z" fill="__COLOR__" stroke="#b9ad91" stroke-opacity=".52" stroke-width=".4"/>
+</g>
+</g><ellipse cx="0" cy="0" rx="8" ry="5.7" fill="#c9a650"/>
+<path d="M-7 2Q0 8 7 2Q4 6 0 6Q-4 6-7 2Z" fill="#ae8b43" opacity=".35"/>
+<ellipse cx="0.67" cy="-0.40" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-0.85" cy="0.11" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="0.13" cy="-1.38" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="1.07" cy="0.52" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-1.97" cy="-0.63" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="1.86" cy="-1.18" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-0.62" cy="1.13" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-1.19" cy="-1.91" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="2.58" cy="0.22" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-2.68" cy="0.33" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="1.29" cy="-2.22" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="0.96" cy="1.61" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-2.88" cy="-1.50" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="3.38" cy="-0.89" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="-2.06" cy="1.53" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-0.48" cy="-2.82" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="2.93" cy="1.22" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="-3.94" cy="-0.29" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="2.87" cy="-2.28" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-0.19" cy="2.33" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="-2.73" cy="-2.55" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="4.33" cy="-0.02" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-3.67" cy="1.28" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="1.00" cy="-3.33" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="2.32" cy="2.26" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-4.53" cy="-1.35" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="4.40" cy="-1.74" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-1.91" cy="2.60" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-1.70" cy="-3.51" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="4.53" cy="1.17" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-5.03" cy="0.47" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="2.86" cy="-3.33" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="0.91" cy="3.08" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-4.31" cy="-2.60" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="5.52" cy="-0.70" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="-3.81" cy="2.31" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="0.03" cy="-4.14" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="3.88" cy="2.41" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="-5.82" cy="-0.75" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="4.72" cy="-2.75" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-1.07" cy="3.48" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="-3.23" cy="-3.78" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="5.93" cy="0.67" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-5.53" cy="1.47" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="2.18" cy="-4.28" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="2.40" cy="3.47" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-5.81" cy="-2.21" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="6.21" cy="-1.66" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-3.32" cy="3.32" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="-1.39" cy="-4.66" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="5.46" cy="2.15" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-6.71" cy="0.15" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="4.43" cy="-3.82" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="0.25" cy="4.13" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="-4.88" cy="-3.66" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="7.01" cy="-0.17" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="-5.46" cy="2.57" rx=".38" ry=".30" fill="#d9b65e"/>
+<ellipse cx="0.99" cy="-5.05" rx=".38" ry=".30" fill="#e4c572"/>
+<ellipse cx="4.09" cy="3.50" rx=".38" ry=".30" fill="#b59447"/>
+<ellipse cx="-7.08" cy="-1.47" rx=".38" ry=".30" fill="#d9b65e"/>
+</g></svg>

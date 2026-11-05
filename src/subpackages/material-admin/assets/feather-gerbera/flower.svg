@@ -2,18 +2,18 @@
   <defs>
     <!-- 丝状花瓣通透微光渐变（无脏灰发暗） -->
     <linearGradient id="spider-light" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.1"/>
-      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.25"/>
-      <stop offset="90%" stop-color="#ffffff" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.048"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.120"/>
+      <stop offset="90%" stop-color="#ffffff" stop-opacity="0.264"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.384"/>
     </linearGradient>
 
     <!-- 花心球形立体凹凸感 -->
     <radialGradient id="gerbera-core" cx="46%" cy="44%" r="55%">
-      <stop offset="0%" stop-color="#422208"/>
-      <stop offset="50%" stop-color="#5a310c"/>
-      <stop offset="78%" stop-color="#8a5314"/>
-      <stop offset="100%" stop-color="#2a1403"/>
+      <stop offset="0%" stop-color="#5b4c37"/>
+      <stop offset="50%" stop-color="#6e583b"/>
+      <stop offset="78%" stop-color="#987b4d"/>
+      <stop offset="100%" stop-color="#514634"/>
     </radialGradient>
 
     <!-- 外层长针丝花瓣模型 (末端轻微外翻卷丝与细微双裂尖) -->
@@ -26,7 +26,7 @@
       <path d="M54.2 55 C52.8 42 51.5 24 53.6 8.5 C54.2 4.2 55.8 4.2 56.4 8.5 C58.5 24 57.2 42 55.8 55 Z"
             fill="url(#spider-light)"/>
       <!-- 拉丝中央高光细丝线 -->
-      <path d="M55 52 C54.5 35 54.2 20 55 6" fill="none" stroke="#ffffff" stroke-width="0.38" stroke-linecap="round" opacity="0.6"/>
+      <path d="M55 52 C54.5 35 54.2 20 55 6" fill="none" stroke="#ffffff" stroke-width="0.38" stroke-linecap="round" opacity="0.360"/>
     </g>
 
     <!-- 内层短细丝花瓣模型 (紧凑环绕、弧度稍挺) -->
@@ -38,7 +38,7 @@
             fill="__COLOR__"/>
       <path d="M54.5 55 C53.2 45 52.8 30 54.3 17.5 C54.7 14 55.3 14 55.7 17.5 C57.2 30 56.8 45 55.5 55 Z"
             fill="url(#spider-light)"/>
-      <path d="M55 52 C54.6 40 54.4 28 55 16" fill="none" stroke="#ffffff" stroke-width="0.32" stroke-linecap="round" opacity="0.65"/>
+      <path d="M55 52 C54.6 40 54.4 28 55 16" fill="none" stroke="#ffffff" stroke-width="0.32" stroke-linecap="round" opacity="0.390"/>
     </g>
   </defs>
 

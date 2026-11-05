@@ -64,11 +64,11 @@
 
     <!-- 顶缘翻卷唇部高光脊线 (如行云流水般的 S 形外卷亮线) -->
     <path d="M32 30 C34 20 44 14 55 14 C59 14 62 12 64 10 C66 8 67 12 66 16 C60 28 54 44 49 62"
-          fill="none" stroke="#fff4df" stroke-width="0.85" opacity="0.9"/>
+          fill="none" stroke="#fff4df" stroke-width="0.85" opacity="0.32"/>
 
     <!-- 右外展翼唇外翻光线 -->
     <path d="M64 10 C68 14 74 16 80 18 C86 20 86 32 82 48"
-          fill="none" stroke="#fff4df" stroke-width="0.65" opacity="0.75"/>
+          fill="none" stroke="#fff4df" stroke-width="0.65" opacity="0.3"/>
 
     <!-- 前襟搭接缝隙处的立体微投影线 (增强前后叠衣般的层叠感) -->
     <path d="M64 10 C62 24 55 42 50 62 C47 74 51 88 54 103"

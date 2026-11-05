@@ -1,79 +1,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" shape-rendering="geometricPrecision" stroke-linecap="round" stroke-linejoin="round">
   <defs>
     <!-- 基础光影渐变 -->
-    <linearGradient id="dahlia-fold" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="110">
-      <stop offset="0" stop-color="__COLOR__"/>
-      <stop offset="1" stop-color="#85856d"/>
+    <linearGradient id="dahlia-fold" x1="0" y1="0" x2="1" y2=".7">
+      <stop offset="0" stop-color="#fff2dc" stop-opacity=".7"/>
+      <stop offset=".42" stop-color="__COLOR__" stop-opacity="0"/><stop offset="1" stop-color="#6d4556" stop-opacity=".8"/>
     </linearGradient>
 
     <!-- ====== 第 1 轮（外轮长瓣，折光透明度 0.10）====== -->
     <!-- 1-A 标准尖 -->
     <g id="l1-a">
       <path d="M51 60C47 42 51 19 55 12C63 22 63 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C47 42 51 19 55 12C63 22 63 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.1"/>
+      <path d="M51 60C47 42 51 19 55 12C63 22 63 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.32"/>
       <path d="M55 55Q53 29 55 16" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
     <!-- 1-B 微缩圆尖 -->
     <g id="l1-b">
       <path d="M51 60C46.4 42 50.7 20.73 55 13.73C63.6 23.73 63.6 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C46.4 42 50.7 20.73 55 13.73C63.6 23.73 63.6 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.1"/>
+      <path d="M51 60C46.4 42 50.7 20.73 55 13.73C63.6 23.73 63.6 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.32"/>
       <path d="M55 55Q53 30.73 55 17.73" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
     <!-- 1-C 舒展长尖 -->
     <g id="l1-c">
       <path d="M51 60C46.57 42 50.78 17.26 55 10.26C63.43 20.26 63.43 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C46.57 42 50.78 17.26 55 10.26C63.43 20.26 63.43 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.1"/>
+      <path d="M51 60C46.57 42 50.78 17.26 55 10.26C63.43 20.26 63.43 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.32"/>
       <path d="M55 55Q53 27.26 55 14.26" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
 
     <!-- ====== 第 2 轮（次外轮，折光透明度 0.135）====== -->
     <g id="l2-a">
       <path d="M51 60C47 42 51 30 55 23C63 33 63 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C47 42 51 30 55 23C63 33 63 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.135"/>
+      <path d="M51 60C47 42 51 30 55 23C63 33 63 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.36"/>
       <path d="M55 55Q53 40 55 27" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
     <g id="l2-b">
       <path d="M51 60C46.4 42 50.7 31.73 55 24.73C63.6 34.73 63.6 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C46.4 42 50.7 31.73 55 24.73C63.6 34.73 63.6 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.135"/>
+      <path d="M51 60C46.4 42 50.7 31.73 55 24.73C63.6 34.73 63.6 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.36"/>
       <path d="M55 55Q53 41.73 55 28.73" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
     <g id="l2-c">
       <path d="M51 60C46.57 42 50.78 28.26 55 21.26C63.43 31.26 63.43 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C46.57 42 50.78 28.26 55 21.26C63.43 31.26 63.43 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.135"/>
+      <path d="M51 60C46.57 42 50.78 28.26 55 21.26C63.43 31.26 63.43 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.36"/>
       <path d="M55 55Q53 38.26 55 25.26" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
 
     <!-- ====== 第 3 轮（内轮，折光透明度 0.17）====== -->
     <g id="l3-a">
       <path d="M51 60C48 42 51.5 40 55 33C62 43 62 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C48 42 51.5 40 55 33C62 43 62 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.17"/>
+      <path d="M51 60C48 42 51.5 40 55 33C62 43 62 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.4"/>
       <path d="M55 55Q53 50 55 37" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
     <g id="l3-b">
       <path d="M51 60C47.48 42 51.24 41.73 55 34.73C62.52 44.73 62.52 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C47.48 42 51.24 41.73 55 34.73C62.52 44.73 62.52 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.17"/>
+      <path d="M51 60C47.48 42 51.24 41.73 55 34.73C62.52 44.73 62.52 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.4"/>
       <path d="M55 55Q53 51.73 55 38.73" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
     <g id="l3-c">
       <path d="M51 60C47.62 42 51.31 38.26 55 31.26C62.38 41.26 62.38 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C47.62 42 51.31 38.26 55 31.26C62.38 41.26 62.38 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.17"/>
+      <path d="M51 60C47.62 42 51.31 38.26 55 31.26C62.38 41.26 62.38 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.4"/>
       <path d="M55 55Q53 48.26 55 35.26" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
 
     <!-- ====== 第 4 轮（核心花心层，折光透明度 0.205）====== -->
     <g id="l4-a">
       <path d="M51 60C50 42 52.5 50 55 43C60 53 60 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C50 42 52.5 50 55 43C60 53 60 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.205"/>
+      <path d="M51 60C50 42 52.5 50 55 43C60 53 60 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.44"/>
       <path d="M55 55Q53 60 55 47" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
     <g id="l4-b">
       <path d="M51 60C49.63 42 52.31 51.73 55 44.73C60.37 54.73 60.37 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C49.63 42 52.31 51.73 55 44.73C60.37 54.73 60.37 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.205"/>
+      <path d="M51 60C49.63 42 52.31 51.73 55 44.73C60.37 54.73 60.37 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.44"/>
       <path d="M55 55Q53 61.73 55 48.73" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
     <g id="l4-c">
       <path d="M51 60C49.73 42 52.36 48.26 55 41.26C60.27 51.26 60.27 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C49.73 42 52.36 48.26 55 41.26C60.27 51.26 60.27 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.205"/>
+      <path d="M51 60C49.73 42 52.36 48.26 55 41.26C60.27 51.26 60.27 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.44"/>
       <path d="M55 55Q53 58.26 55 45.26" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
   </defs>

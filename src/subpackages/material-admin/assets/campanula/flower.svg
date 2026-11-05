@@ -34,7 +34,7 @@
       <path d="M0 8 Q-1.5 12 -2.5 14 M0 8 Q1.5 12 2.5 14" stroke="#f2e7df" stroke-width="0.4"/>
 
       <!-- 4. 纵向微棱光泽线 (展现风铃草如薄瓷般的微凹脊肋) -->
-      <g fill="none" stroke="#f2e7df" stroke-width="0.45" stroke-opacity="0.6">
+      <g fill="none" stroke="#f2e7df" stroke-width="0.4" stroke-opacity="0.26">
         <path d="M-2 -7 Q-6 4 -8 15"/>
         <path d="M-0.5 -7 Q-2 5 -2 16.5"/>
         <path d="M1.5 -7 Q4 5 4 16.5"/>
@@ -52,7 +52,7 @@
       <!-- 含苞待放的螺旋小圆锥花苞 -->
       <path d="M-1.5 -6 C-3 -2 -3 4 0 7 C3 4 3 -2 1.5 -6 Z"
             fill="__COLOR__" stroke="#9587a3" stroke-width="0.38" stroke-opacity=".6"/>
-      <path d="M0 -5 Q-1 0 0 6.5" fill="none" stroke="#f2e7df" stroke-width="0.35" opacity="0.6"/>
+      <path d="M0 -5 Q-1 0 0 6.5" fill="none" stroke="#f2e7df" stroke-width="0.35" opacity="0.26"/>
     </g>
   </defs>
 

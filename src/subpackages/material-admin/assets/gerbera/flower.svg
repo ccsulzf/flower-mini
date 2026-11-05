@@ -2,24 +2,24 @@
   <defs>
     <!-- 花瓣丝绒反光渐变（通透亮丽，杜绝灰脏） -->
     <linearGradient id="gerbera-sheen" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
-      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.072"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.216"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.024"/>
     </linearGradient>
 
     <!-- 花瓣尖端微光与通透度 -->
     <linearGradient id="gerbera-tip" x1="0" y1="1" x2="0" y2="0">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.000"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.072"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.288"/>
     </linearGradient>
 
     <!-- 花心深邃立体球形渐变 -->
     <radialGradient id="gerbera-disk-glow" cx="46%" cy="44%" r="56%">
-      <stop offset="0%" stop-color="#f5ca38"/>
-      <stop offset="50%" stop-color="#d48a12"/>
-      <stop offset="85%" stop-color="#8f5005"/>
-      <stop offset="100%" stop-color="#4a2202"/>
+      <stop offset="0%" stop-color="#c6a15a"/>
+      <stop offset="50%" stop-color="#aa8045"/>
+      <stop offset="85%" stop-color="#80633e"/>
+      <stop offset="100%" stop-color="#62513a"/>
     </radialGradient>
 
     <!-- 1. 外层长花瓣模型 (伸展舒展、端部微凹切痕) -->
@@ -28,7 +28,7 @@
       <path d="M52.5 53 C49.5 39 50.8 12.0 53.8 8.0 C55.5 6.0 57.5 6.2 59.2 8.5 C61.2 12.5 60.5 39 57.5 53 Z" fill="url(#gerbera-tip)"/>
       <path d="M52.5 53 C49.5 39 50.8 12.0 53.8 8.0 C55.5 6.0 57.5 6.2 59.2 8.5 C61.2 12.5 60.5 39 57.5 53 Z" fill="url(#gerbera-sheen)"/>
       <!-- 中央微纵脉 -->
-      <path d="M55.0 50 C54.5 32 54.5 18 55.5 10" fill="none" stroke="#ffffff" stroke-width="0.38" opacity="0.6"/>
+      <path d="M55.0 50 C54.5 32 54.5 18 55.5 10" fill="none" stroke="#ffffff" stroke-width="0.38" opacity="0.360"/>
     </g>
 
     <!-- 2. 内层短花瓣模型 (挺拔护心、尺寸约缩短 10px) -->
@@ -36,7 +36,7 @@
       <path d="M53.0 53 C50.5 41 51.5 21.0 54.0 17.5 C55.4 15.8 57.2 16.0 58.6 18.0 C60.2 21.5 59.5 41 57.0 53 Z" fill="__COLOR__"/>
       <path d="M53.0 53 C50.5 41 51.5 21.0 54.0 17.5 C55.4 15.8 57.2 16.0 58.6 18.0 C60.2 21.5 59.5 41 57.0 53 Z" fill="url(#gerbera-tip)"/>
       <path d="M53.0 53 C50.5 41 51.5 21.0 54.0 17.5 C55.4 15.8 57.2 16.0 58.6 18.0 C60.2 21.5 59.5 41 57.0 53 Z" fill="url(#gerbera-sheen)"/>
-      <path d="M55.0 50 C54.5 36 54.5 26 55.5 19" fill="none" stroke="#ffffff" stroke-width="0.32" opacity="0.6"/>
+      <path d="M55.0 50 C54.5 36 54.5 26 55.5 19" fill="none" stroke="#ffffff" stroke-width="0.32" opacity="0.360"/>
     </g>
   </defs>
 

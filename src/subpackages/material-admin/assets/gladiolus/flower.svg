@@ -68,6 +68,7 @@
       <ellipse cx="4.6" cy="-4.216" rx="1.9" ry="0.75" transform="rotate(-25 4.6 -4.216)" fill="#e5b84c" stroke="#fff" stroke-width="0.15"/>
     </g>
   </defs>
+  <g transform="translate(55 104) scale(.93) translate(-55 -104)">
 
   <g transform="rotate(-3.0 55 104)">
     <!-- ================= 1. 主花序茎与分支小花梗（保留原版流畅走势） ================= -->
@@ -117,5 +118,6 @@
       <path d="M0 6 Q-7 -3 0 -11 Q5 -5 0 6 Z" fill="url(#glad-sheen)"/>
       <path d="M0 6 Q-6 1 -4 -3 L1 3 L5 -4 Q5 4 0 6 Z" fill="#6d805f" stroke="#526447" stroke-width="0.35"/>
     </g>
+  </g>
   </g>
 </svg>

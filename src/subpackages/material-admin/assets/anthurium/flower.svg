@@ -5,7 +5,7 @@
       <stop offset="0" stop-color="__COLOR__"/>
       <stop offset="1" stop-color="#824c4d"/>
     </linearGradient>
-  </defs>
+  <linearGradient id="anthurium-plane" x1=".15" y1="0" x2=".6" y2="1"><stop stop-color="#fff5e5" stop-opacity=".23"/><stop offset=".48" stop-color="#fff5e5" stop-opacity=".03"/><stop offset="1" stop-color="#76515c" stop-opacity=".18"/></linearGradient></defs>
 
   <g transform="rotate(7 55 98)">
     <!-- ====== 1. 佛焰苞心形主瓣（革质起伏、饱满肩弧与微翘叶尖） ====== -->
@@ -13,7 +13,7 @@
           fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45" stroke-linejoin="round"/>
     <!-- 保持原有的暗调折痕渐变叠加 -->
     <path d="M55 98 C47 89 22 72 18 48 C15 25 36 14 55 29 C74 14 95 25 92 48 C88 72 63 89 55 98 Z"
-          fill="url(#anthurium-fold)" opacity="0.32"/>
+          fill="url(#anthurium-plane)"/>
 
     <!-- 红掌标志性的两肩蜡质反光（微弱高光层，赋予塑料/皮革般通透光泽） -->
     <path d="M30 30 C34 20 44 20 50 28 C42 28 35 32 30 30 Z" fill="#fff5df" opacity="0.14"/>
@@ -21,13 +21,13 @@
 
     <!-- ====== 2. 细腻起伏的掌状主侧叶脉群 (#eac6b1 体系) ====== -->
     <!-- 中央主脉凹陷深折 -->
-    <path d="M55 98 C54 84 50 62 55 29" fill="none" stroke="#eac6b1" stroke-width="0.75" stroke-opacity=".45"/>
+    <path d="M55 98 C54 84 50 62 55 29" fill="none" stroke="#eac6b1" stroke-width="0.75" stroke-opacity=".23"/>
     <!-- 左翼弧形侧脉 -->
     <path d="M53 76 Q35 63 26 43 M54 62 Q33 50 22 34 M54 48 Q39 36 32 24"
-          fill="none" stroke="#eac6b1" stroke-width="0.55" stroke-opacity=".38"/>
+          fill="none" stroke="#eac6b1" stroke-width="0.55" stroke-opacity=".21"/>
     <!-- 右翼弧形侧脉 -->
     <path d="M57 76 Q75 63 84 43 M56 62 Q77 50 88 34 M56 48 Q71 36 78 24"
-          fill="none" stroke="#eac6b1" stroke-width="0.55" stroke-opacity=".38"/>
+          fill="none" stroke="#eac6b1" stroke-width="0.55" stroke-opacity=".21"/>
 
     <!-- ====== 3. 肉穗花序（中央花柱肉质圆柱体与立体高光） ====== -->
     <!-- 花柱肉质圆柱底色（微微向上微弯挺立） -->

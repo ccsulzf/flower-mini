@@ -12,8 +12,9 @@ const materialIdPattern = /^[a-z][a-z0-9-]{0,63}$/;
 const maxRenderSvgLength = 8 * 1024 * 1024;
 const cardFontFamily = 'Ma Shan Zheng';
 const cardFontBuffer = new Uint8Array(fs.readFileSync(path.join(__dirname, 'fonts/MaShanZheng-Regular.ttf')));
-const cardRenderVersion = 'ma-shan-zheng-card-v1';
-const materialListRenderVersion = 'flower-material-list-v5';
+const artworkRenderVersion = 'foliage-clip-v1';
+const cardRenderVersion = 'ma-shan-zheng-card-v2';
+const materialListRenderVersion = 'flower-material-list-v8';
 
 function colorizeMaterialSvg(svg, color) {
   const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd';
@@ -231,9 +232,9 @@ async function buildArtworkSvg(artwork, { drawBackground = true } = {}) {
             const extension = total > naturalHeight
                 ? `<path d="M55 ${naturalHeight}L55 ${total}" fill="none" stroke="${instance.color}" stroke-width="1.6" stroke-linecap="round" opacity=".82"/>`
                 : '';
-            const foliage = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${extension}${nested(source, 0, 0, 110, naturalHeight)}</svg>`;
-            const content = foliage.replace(/^<svg\b[^>]*>/, '').replace(/<\/svg>\s*$/, '');
-            renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${content}</g>`);
+            // 保留叶材视口，裁掉缩短后超出瓶口端的叶片与枝条，与客户端预览一致。
+            const foliage = `<svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="110" height="${total}" viewBox="0 0 110 ${total}" overflow="hidden">${extension}${nested(source, 0, 0, 110, naturalHeight)}</svg>`;
+            renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${foliage}</g>`);
             continue;
         }
         const flower = colorizeMaterialSvg(material.sources.flower, instance.color);
@@ -353,11 +354,12 @@ async function buildMaterialListSvg(artwork) {
             thumbnail,
         });
     }
-    const maxRows = Math.max(...groups.map(group => group.items.length));
+    const visibleGroups = groups.filter(group => group.items.length > 0);
+    const maxRows = Math.max(0, ...visibleGroups.map(group => group.items.length));
     const height = Math.max(1150, 1060 + maxRows * 38);
     if (height > 2000) throw new Error('花材种类较多，暂时无法生成分享图');
-    const columns = groups.map((group, index) => {
-        const x = 48 + index * 212;
+    const columns = visibleGroups.map((group, index) => {
+        const x = 48 + (3 - visibleGroups.length) * 106 + index * 212;
         const heading = `<text x="${x}" y="990" font-family="${cardFontFamily}" font-size="22" fill="#728066">${group.name}</text>`;
         const rows = group.items.map((item, rowIndex) => {
             const rowY = 1030 + rowIndex * 38;
@@ -365,12 +367,12 @@ async function buildMaterialListSvg(artwork) {
             return `${thumbnail}<text x="${x + 36}" y="${rowY}" font-family="${cardFontFamily}" font-size="18" fill="#514a40">${escapeSvgText(item.name)}</text><text x="${x + 178}" y="${rowY}" text-anchor="end" font-family="${cardFontFamily}" font-size="18" fill="#817665">× ${item.count}</text>`;
         }).join('');
         return `${heading}${rows}`;
-    }).join('');
+    }).join('') || `<text x="349" y="1030" text-anchor="middle" font-family="${cardFontFamily}" font-size="20" fill="#817665">这束花还没有添加花材</text>`;
     return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="${height}" viewBox="0 0 698 ${height}">
       <rect width="698" height="${height}" fill="#f8f2e6"/><rect x="16" y="17" width="663" height="${height - 34}" fill="none" stroke="#d5c5a6"/>
       <rect x="278" y="30" width="142" height="38" fill="#e4e7da"/><text x="349" y="57" text-anchor="middle" font-family="${cardFontFamily}" font-size="23" fill="#64705b">花材清单</text>
       ${nested(bouquet, 77, 78, 544, 780)}
-      <path d="M48 890H650" stroke="#cdbb95"/><text x="48" y="918" font-family="${cardFontFamily}" font-size="19" fill="#817665">共 ${validArtwork.materials.length} 枝</text>
+      <path d="M48 890H650" stroke="#cdbb95"/>
       ${columns}
     </svg>`;
 }
@@ -461,7 +463,8 @@ module.exports = {
         if (!work)
             throw { errCode: 'WORK_NOT_FOUND', errMsg: '作品不存在或已删除' };
         if (work.imageRevision === work.artworkRevision && typeof work.imageFileId === 'string'
-            && work.imageFileId.startsWith('cloud://') && typeof work.imagePath === 'string') {
+            && work.imageFileId.startsWith('cloud://') && typeof work.imagePath === 'string'
+            && work.imagePath.endsWith(`-${artworkRenderVersion}.png`)) {
             return { width: 1396, height: 2000, fileID: work.imageFileId, cloudPath: work.imagePath,
                 cached: true, prepareMs: 0, renderMs: 0, wasmInitMs: 0, rasterizeMs: 0, uploadMs: 0,
                 totalMs: Date.now() - startedAt };
@@ -471,7 +474,7 @@ module.exports = {
         const prepareMs = Date.now() - prepareStartedAt;
         const owner = createHash('sha256').update(this.auth.uid).digest('hex');
         const revision = work.artworkRevision || createHash('sha256').update(JSON.stringify(work.artwork)).digest('hex');
-        const cloudPath = `flower-works/${owner}/${workId}/artwork-${revision}.png`;
+        const cloudPath = `flower-works/${owner}/${workId}/artwork-${revision}-${artworkRenderVersion}.png`;
         const result = await renderSvg(svg, cloudPath);
         const updated = await uniCloud.database().collection('flower-works').where({
             _id: workId, user_id: this.auth.uid, updatedAt: work.updatedAt,

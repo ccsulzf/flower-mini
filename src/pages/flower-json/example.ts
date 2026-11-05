@@ -6,7 +6,7 @@ function material(id: number, materialId: string, group: MaterialGroup, x: numbe
 
 // 后方高花先绘制，前方低花后绘制；瓶口坐标保持在现有导入范围内。
 const example: Artwork = {
-  background: { materialId: 'paper-linen' },
+  background: { materialId: 'light-window-diagonal' },
   container: { materialId: 'matte-ceramic-vase', type: 'vase' },
   materials: [
     material(1, 'daisy', 'filler', 340, -13, 0.95, 445, '#f1e5bd'),
