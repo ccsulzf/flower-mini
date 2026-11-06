@@ -18,6 +18,8 @@ const props = defineProps<{
   pickScope?: StudioSelectionFilter
   pickMaterialId?: string | null
 }>()
+// 草稿可能先于素材恢复，仅挂载已准备好的花枝及其操作区域。
+const readyInstances = computed(() => props.artwork.materials.filter(instance => props.preparedMaterials[instance.materialId]?.category === 'flower'))
 const background = computed(() => props.preparedMaterials[props.artwork.background.materialId])
 const container = computed(() => props.preparedMaterials[props.artwork.container.materialId])
 const backgroundSource = computed(() => background.value?.sources.background ? svgImageSource(backgroundSceneSource(background.value)) : '')
@@ -44,7 +46,7 @@ function isDimmed(instance: Artwork['materials'][number]) {
     <view class="board-arrangement" :style="`transform:translateY(${arrangementOffset}px);`">
       <StudioContainer v-if="container" class="board-container" :material="container" :hide-container="hideContainer">
         <FlowerInstance
-          v-for="instance in artwork.materials"
+          v-for="instance in readyInstances"
           :key="instance.id"
           :instance="instance"
           :material="preparedMaterials[instance.materialId]"

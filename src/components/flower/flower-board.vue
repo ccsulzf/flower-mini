@@ -12,6 +12,7 @@ const props = defineProps<{
   artwork: Artwork
   preparedMaterials: Record<string, CachedMaterial>
   selectedId: number | null
+  guideArrange?: boolean
   hideContainer?: boolean
   pickScope?: StudioSelectionFilter
   pickMaterialId?: string | null
@@ -22,6 +23,8 @@ const emit = defineEmits<{
   end: [cancelled: boolean]
   clear: []
 }>()
+// 草稿可能先于素材恢复，仅挂载已准备好的花枝及其操作区域。
+const readyInstances = computed(() => props.artwork.materials.filter(instance => props.preparedMaterials[instance.materialId]?.category === 'flower'))
 const background = computed(() => props.preparedMaterials[props.artwork.background.materialId])
 const container = computed(() => props.preparedMaterials[props.artwork.container.materialId])
 const arrangementOffset = computed(() => backgroundOffset(background.value, container.value))
@@ -44,12 +47,13 @@ function isInteractive(instance: MaterialInstance) {
     <FlowerArtworkRenderer :artwork="artwork" :prepared-materials="preparedMaterials" :hide-container="hideContainer" :selected-id="selectedId" :pick-scope="pickScope" :pick-material-id="pickMaterialId" />
     <view class="board-controls" :style="`transform:translateY(${arrangementOffset}px);`">
       <FlowerStemControl
-        v-for="instance in artwork.materials"
+        v-for="instance in readyInstances"
         :key="instance.id"
         :instance="instance"
         :material="preparedMaterials[instance.materialId]"
         :selected="selectedId === instance.id"
         :interactive="isInteractive(instance)"
+        :guide-target="guideArrange && instance.id === readyInstances[readyInstances.length - 1]?.id"
         :precision="Boolean(pickMaterialId) && instance.materialId === pickMaterialId"
         @start="emit('start', $event, instance)"
         @move="emit('move', $event)"

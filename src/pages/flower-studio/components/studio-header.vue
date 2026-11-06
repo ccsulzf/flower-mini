@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FlowerGuideTarget from '@/components/flower/flower-guide-target.vue'
 import { storeToRefs } from 'pinia'
 import { useCreationArtworkStore } from '@/stores/artworkStore'
 import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
@@ -40,6 +41,7 @@ const emit = defineEmits<{ undo: [], redo: [], reset: [], finish: [] }>()
           <view class="finish-flower"><text>✿</text></view>
           <text class="finish-label">{{ finishing ? '正在完成' : '完成作品' }}</text>
         </button>
+        <FlowerGuideTarget step="save" text="点这里，保存这束花" placement="below" />
       </view>
     </view>
   </view>

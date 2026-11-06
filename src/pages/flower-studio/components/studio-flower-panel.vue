@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import FlowerGuideTarget from '@/components/flower/flower-guide-target.vue'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { type MaterialPickerGroup, useFlowerStudioStore } from '@/stores/flowerStudioStore'
+import { useMaterialPreviewBatch } from '@/hooks/useMaterialPreviewBatch'
 import { materialThumbnailSource } from '@/utils/flower/material-thumbnail'
 
 const props = defineProps<{ usageCounts: Record<string, number> }>()
@@ -20,7 +22,7 @@ const flowers = computed(() => catalog.materials.filter(item => item.category ==
 function sortMaterials(items: typeof flowers.value) {
   return [...items].sort((a, b) => (a.sortOrder ?? 1000) - (b.sortOrder ?? 1000) || a.name.localeCompare(b.name, 'zh-CN'))
 }
-const visibleFlowers = computed(() => {
+const matchingFlowers = computed(() => {
   const keyword = materialKeyword.value.trim().toLocaleLowerCase()
   if (keyword) {
     const matches = flowers.value.filter(item => item.name.toLocaleLowerCase().includes(keyword))
@@ -32,6 +34,8 @@ const visibleFlowers = computed(() => {
   }
   return sortMaterials(flowers.value.filter(item => item.group === activeMaterialGroup.value))
 })
+const { visible: visibleFlowers, loading: previewsLoading, failed: previewsFailed, loadMore, retry } = useMaterialPreviewBatch(() => matchingFlowers.value)
+
 function thumbnail(id: string) {
   return materialThumbnailSource(catalog.get(id))
 }
@@ -63,22 +67,27 @@ function selectGroup(group: MaterialPickerGroup) {
           {{ group.name }}
         </button>
       </view>
-      <scroll-view :key="`${activeMaterialGroup}:${materialKeyword}`" scroll-y class="flowers-scroll">
+      <scroll-view :key="`${activeMaterialGroup}:${materialKeyword}`" scroll-y class="flowers-scroll" @scrolltolower="loadMore">
         <view class="material-grid">
-          <button v-for="flower in visibleFlowers" :key="flower.id" class="material-card" hover-class="material-card-pressed" :disabled="pendingMaterialId === flower.id" :aria-label="`添加${flower.name}`" @click="emit('add', flower.id)">
-            <view class="material-art">
-              <image v-if="thumbnail(flower.id)" :src="thumbnail(flower.id)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-sprout" />
-              <text v-if="lastAddedMaterialId === flower.id" class="added-badge">
-                已加入
+          <view v-for="(flower, index) in visibleFlowers" :key="flower.id" class="material-guide-anchor" :class="{ 'material-guide-first': index === 0 }">
+            <button class="material-card" hover-class="material-card-pressed" :disabled="pendingMaterialId === flower.id" :aria-label="`添加${flower.name}`" @click="emit('add', flower.id)">
+              <view class="material-art">
+                <image v-if="thumbnail(flower.id)" :src="thumbnail(flower.id)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-sprout" />
+                <text v-if="lastAddedMaterialId === flower.id" class="added-badge">
+                  已加入
+                </text>
+              </view>
+              <text class="material-name">
+                {{ flower.name }}<text v-if="usageCounts[flower.id]">
+                  × {{ usageCounts[flower.id] }}
+                </text>
               </text>
-            </view>
-            <text class="material-name">
-              {{ flower.name }}<text v-if="usageCounts[flower.id]">
-                × {{ usageCounts[flower.id] }}
-              </text>
-            </text>
-          </button>
+            </button>
+            <FlowerGuideTarget v-if="index === 0" step="flowers" text="点这枝花，把它加入画面" placement="right" />
+          </view>
         </view>
+        <text v-if="previewsLoading" class="material-note">正在加载预览…</text>
+        <button v-else-if="previewsFailed" class="material-note" @click="retry">部分预览加载失败，点击重试</button>
         <text v-if="!visibleFlowers.length" class="material-note">
           {{ activeMaterialGroup === 'recent' && !materialKeyword.trim() ? '还没有最近使用的花材' : '没有找到花材' }}
         </text>
@@ -91,5 +100,8 @@ function selectGroup(group: MaterialPickerGroup) {
 @use '@/styles/flower-material-panel.scss';
 .material-search { box-sizing:border-box; width:100%; height:68rpx; margin-bottom:14rpx; padding:0 22rpx; border:1rpx solid rgba(112,91,68,.25); border-radius:14rpx; background:rgba(255,253,247,.78); font-size:25rpx; }
 .material-art { position:relative; }
+.material-guide-anchor { position:relative; min-width:0; }
+.material-guide-first { z-index:1; }
+.material-guide-anchor .material-card { width:100%; }
 .added-badge { position:absolute; right:4rpx; bottom:4rpx; padding:5rpx 9rpx; border-radius:10rpx; background:rgba(127,146,116,.92); color:#fff; font-size:18rpx; }
 </style>

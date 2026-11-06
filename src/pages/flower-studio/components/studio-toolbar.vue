@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FlowerGuideTarget from '@/components/flower/flower-guide-target.vue'
 import type { StudioTab } from '../studio-types'
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
@@ -21,12 +22,14 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 <template>
   <view class="studio-toolbar" :class="{ 'toolbar-open': activeTab }">
     <view class="toolbar-materials">
-      <button
-        v-for="tab in tabs" :key="tab.value" class="tool-button"
-        :class="{ 'tool-active': activeTab === tab.value }" :disabled="tab.disabled" @click="emit('select', tab.value)"
-      >
-        <view class="tool-icon" :class="tab.icon" /><text>{{ tab.label }}</text>
-      </button>
+      <view v-for="tab in tabs" :key="tab.value" class="tool-target">
+        <button class="tool-button"
+          :class="{ 'tool-active': activeTab === tab.value }" :disabled="tab.disabled" @click="emit('select', tab.value)"
+        >
+          <view class="tool-icon" :class="tab.icon" /><text>{{ tab.label }}</text>
+        </button>
+        <FlowerGuideTarget v-if="tab.value === 'flowers'" step="open-flowers" text="点这里，打开花材" />
+      </view>
     </view>
   </view>
 </template>
@@ -54,6 +57,9 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
   gap: 10rpx;
   width: 100%;
 }
+
+.tool-target { position:relative; flex:1; min-width:0; }
+.tool-target .tool-button { width:100%; }
 
 .tool-button {
   @include studio-toolbar-button;

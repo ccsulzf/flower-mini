@@ -2,8 +2,9 @@
 import type { MaterialInstance, StudioTouchEvent } from '@/models/artwork'
 import type { CachedMaterial } from '@/models/material'
 import { computed } from 'vue'
+import FlowerGuideTarget from './flower-guide-target.vue'
 
-const props = withDefaults(defineProps<{ instance: MaterialInstance, material: CachedMaterial, selected: boolean, interactive?: boolean, precision?: boolean }>(), { interactive: true, precision: false })
+const props = withDefaults(defineProps<{ instance: MaterialInstance, material: CachedMaterial, selected: boolean, guideTarget?: boolean, interactive?: boolean, precision?: boolean }>(), { interactive: true, precision: false })
 const emit = defineEmits<{ start: [event: StudioTouchEvent], move: [event: StudioTouchEvent], end: [cancelled: boolean] }>()
 const isFoliage = computed(() => props.instance.group === 'foliage')
 const height = computed(() => props.instance.transform.height + 55)
@@ -31,6 +32,7 @@ const touchAreaStyle = computed(() => isFoliage.value ? `height:${height.value +
         @touchend.stop="emit('end', false)"
         @touchcancel.stop="emit('end', true)"
       >
+        <FlowerGuideTarget v-if="guideTarget" step="arrange" workspace text="按住圈里的花，拖动调整位置" placement="below" />
         <view v-if="selected" class="material-outline" />
         <view v-if="selected" class="material-head-marker"><view class="material-head-marker-core" /></view>
       </view>

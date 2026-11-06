@@ -51,6 +51,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
   const needsPreparation = computed(() => preparing.value || !ready.value || Boolean(prepareError.value))
   let prepareTask: Promise<void> | null = null
   let loadTask: Promise<void> | null = null
+  let backgroundTask: Promise<void> | null = null
   const tasks = new Map<string, Promise<CachedMaterial>>()
 
   function failure(value: unknown) {
@@ -70,7 +71,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
       if (!Number.isFinite(cache.checkedAt) || Date.now() - cache.checkedAt < 0 || Date.now() - cache.checkedAt >= catalogCheckInterval)
         return false
       const cachedMaterials = parseMaterialCatalog(cache.catalog)
-      if (!cachedMaterials.length || cachedMaterials.some(item => !hasMaterialFiles(item)))
+      if (!cachedMaterials.length)
         return false
       materials.value = cachedMaterials
       loaded.value = true
@@ -99,8 +100,8 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
         const cloud = uniCloud.importObject('flower-catalog', { customUI: true })
         materials.value = parseMaterialCatalog(await cloud.list())
         loaded.value = true
-        if (materials.value.some(item => !get(item.id) || !hasMaterialFiles(item)))
-          ready.value = false
+        try { cacheCheckedCatalog() }
+        catch { /* 目录缓存失败不影响本次使用。 */ }
       }
       catch (value) {
         error.value = failure(value)
@@ -113,12 +114,21 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     return loadTask
   }
 
-  function ensure(id: string, onAssetProcessed?: () => void, verifyCachedHash = true): Promise<CachedMaterial> {
+  function ensure(id: string, onAssetProcessed?: () => void, verifyCachedHash = true, options: { silent?: boolean } = {}): Promise<CachedMaterial> {
+    const existing = get(id)
+    const record = materials.value.find(item => item.id === id)
+    if (existing && (!record || (existing.updatedAt === record.updatedAt
+      && Object.entries(record.assets).every(([part, asset]) => existing.assets[part as keyof typeof existing.assets]?.hash === asset?.hash)))
+      && hasMaterialFiles(existing)) {
+      Object.keys(existing.assets).forEach(() => onAssetProcessed?.())
+      return Promise.resolve(existing)
+    }
     const running = tasks.get(id)
     if (running)
       return running
     downloading.value++
-    error.value = ''
+    if (!options.silent)
+      error.value = ''
     const task = (async () => {
       try {
         let record = materials.value.find(item => item.id === id)
@@ -137,7 +147,8 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
       }
       catch (value) {
         const message = failure(value)
-        error.value = message
+        if (!options.silent)
+          error.value = message
         throw new Error(message)
       }
       finally {
@@ -149,23 +160,21 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     return task
   }
 
-  function prepareAll(verifyCachedHash = true): Promise<void> {
+  function prepareFor(ids?: string[], verifyCachedHash = true): Promise<void> {
     if (prepareTask)
-      return prepareTask
-    const invalid = loaded.value ? materials.value.filter(item => !get(item.id) || !hasMaterialFiles(item)) : []
-    if (loaded.value && ready.value && !invalid.length)
-      return Promise.resolve()
+      return prepareTask.then(() => prepareFor(ids, verifyCachedHash))
     preparing.value = true
     prepareError.value = ''
     progress.value = { phase: loaded.value ? 'checking' : 'catalog', total: 0, processed: 0 }
     prepareTask = (async () => {
       if (!loaded.value)
         await load()
-      if (error.value)
-        throw new Error(error.value)
-      const queue = materials.value.filter(item => !get(item.id) || !hasMaterialFiles(item))
+      if (!loaded.value)
+        throw new Error(error.value || '素材目录加载失败，请重试')
+      const requested = ids ? [...new Set(ids.filter(Boolean))] : materials.value.map(item => item.id)
+      const queue = requested.map(id => ({ id, assets: materials.value.find(item => item.id === id)?.assets || {} }))
       progress.value = {
-        phase: queue.some(item => !hasMaterialFiles(item)) ? 'downloading' : 'checking',
+        phase: 'downloading',
         total: queue.reduce((total, item) => total + Object.keys(item.assets).length, 0),
         processed: 0,
       }
@@ -183,8 +192,6 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
       ready.value = true
       error.value = ''
       progress.value = { ...progress.value, phase: 'complete', processed: progress.value.total }
-      if (verifyCachedHash)
-        cacheCheckedCatalog()
     })().catch((value) => {
       ready.value = false
       progress.value = { ...progress.value, phase: 'error' }
@@ -200,12 +207,38 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
   function retryPreparation() {
     prepareError.value = ''
     error.value = ''
-    return prepareAll()
+    return prepareFor()
   }
 
-  function preload() {
-    const restored = restoreFreshCatalog()
-    return prepareAll(!restored)
+  async function preload() {
+    if (!loaded.value && !restoreFreshCatalog())
+      await load()
+    if (!loaded.value)
+      throw new Error(error.value || '素材目录加载失败，请重试')
+    ready.value = true
+  }
+
+  function preloadRemaining(): Promise<void> {
+    if (backgroundTask)
+      return backgroundTask
+    if (!loaded.value)
+      return Promise.resolve()
+    const queue = [...materials.value].sort((a, b) => {
+      const priority = (item: UploadedMaterial) => item.category === 'flower' ? item.group === 'main' ? 0 : item.group === 'filler' ? 1 : 2 : 3
+      return priority(a) - priority(b) || (a.sortOrder ?? 1000) - (b.sortOrder ?? 1000)
+    })
+    backgroundTask = (async () => {
+      // 后台仅使用一个下载任务，为用户主动选择和面板预览保留并发空间。
+      for (const item of queue) {
+        try { await ensure(item.id, undefined, true, { silent: true }) }
+        catch { /* 静默预加载失败不阻塞创作，实际使用时仍可重试。 */ }
+      }
+    })().finally(() => { backgroundTask = null })
+    return backgroundTask
+  }
+
+  function prepareAll(verifyCachedHash = true) {
+    return prepareFor(undefined, verifyCachedHash)
   }
 
   return {
@@ -226,7 +259,9 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     load,
     ensure,
     prepareAll,
+    prepareFor,
     preload,
+    preloadRemaining,
     retryPreparation,
     get,
   }
