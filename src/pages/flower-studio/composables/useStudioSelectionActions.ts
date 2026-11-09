@@ -29,8 +29,7 @@ export function useStudioSelectionActions(endDrag: () => void, invalidateImages:
     if (!instance)
       return
     const group = instance.group === 'foliage' ? 'foliage' : 'flowers'
-    const count = materials.value.filter(item => item.materialId === instance.materialId).length
-    studio.activateSelectionMaterial(instance.materialId, group, count > 1)
+    studio.activateSelectionMaterial(instance.materialId, group, true)
     studio.selectSelectionInstance(id)
     invalidateImages()
   }
@@ -90,7 +89,7 @@ export function useStudioSelectionActions(endDrag: () => void, invalidateImages:
       return
     }
     const next = remaining[Math.min(sameMaterialIndex, remaining.length - 1)]
-    studio.activateSelectionMaterial(removed.materialId, removed.group === 'foliage' ? 'foliage' : 'flowers', remaining.length > 1)
+    studio.activateSelectionMaterial(removed.materialId, removed.group === 'foliage' ? 'foliage' : 'flowers', true)
     studio.selectSelectionInstance(next.id)
   }
 

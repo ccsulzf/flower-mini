@@ -118,7 +118,6 @@ async function saveMetadata() {
       <text v-if="imageError" class="image-export-error">{{ imageError }}</text>
     </view>
     <view class="detail-info">
-      <text class="detail-kicker">花作小记</text>
       <view class="detail-heading" @click="editMetadata">
         <text>{{ title }}</text>
         <view class="i-carbon-edit detail-heading-edit" />

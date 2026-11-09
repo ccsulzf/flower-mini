@@ -224,7 +224,7 @@ async function copyToStudio() {
             @click="copyToStudio"
           >
             <view class="i-carbon-copy" />
-            <text>{{ copying ? '复制中' : '复制创作' }}</text>
+            <text>{{ copying ? '准备中' : '创作同款' }}</text>
           </button>
         </view>
       </view>

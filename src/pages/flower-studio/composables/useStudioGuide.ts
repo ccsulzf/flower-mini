@@ -9,7 +9,7 @@ export function useStudioGuide() {
   const step = ref<StudioGuideStep | null>(null)
 
   function start(automatic = false, initialStep: StudioGuideStep = 'open-flowers') {
-    if (automatic && !import.meta.env.DEV) {
+    if (automatic) {
       if (dismissedInSession)
         return
       try {

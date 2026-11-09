@@ -34,18 +34,23 @@ async function cleanup(fileIDs) {
   const unique = [...new Set(fileIDs.filter(id => typeof id === 'string' && id.startsWith('cloud://')))]
   if (!unique.length)
     return 0
-  try {
-    await uniCloud.deleteFile({ fileList: unique })
-    return 0
+  let warnings = 0
+  for (let offset = 0; offset < unique.length; offset += DELETE_CHUNK_SIZE) {
+    const batch = unique.slice(offset, offset + DELETE_CHUNK_SIZE)
+    try {
+      await uniCloud.deleteFile({ fileList: batch })
+    }
+    catch (error) {
+      console.error('作品运维文件清理失败', error)
+      warnings += batch.length
+    }
   }
-  catch (error) {
-    console.error('作品运维文件清理失败', error)
-    return unique.length
-  }
+  return warnings
 }
 
-async function removeRows(collection, filter, fileField) {
-  const selected = await collection().where(filter).field({ [fileField]: true }).limit(MAX_BATCH_SIZE).get()
+async function removeRows(collection, filter, fileFields) {
+  const fields = Object.fromEntries(fileFields.map(field => [field, true]))
+  const selected = await collection().where(filter).field(fields).limit(MAX_BATCH_SIZE).get()
   const rows = selected.data || []
   if (!rows.length)
     return { deleted: 0, cleanupWarnings: 0 }
@@ -53,15 +58,18 @@ async function removeRows(collection, filter, fileField) {
   const command = uniCloud.database().command
   const result = await collection().where({ ...filter, _id: command.in(rowIDs) }).remove()
   const deleted = result.deleted || 0
-  const cleanupWarnings = await cleanup(rows.map(row => row[fileField]))
+  if (!deleted)
+    throw { errCode: 'DELETE_FAILED', errMsg: '删除没有生效，请稍后重试' }
+  const cleanupWarnings = await cleanup(rows.flatMap(row => fileFields.map(field => row[field])))
   return { deleted, cleanupWarnings }
 }
 
-async function removeAllRows(collection, filter, fileField) {
+async function removeAllRows(collection, filter, fileFields) {
+  const fields = Object.fromEntries(fileFields.map(field => [field, true]))
   let deleted = 0
   let cleanupWarnings = 0
   while (true) {
-    const selected = await collection().where(filter).field({ [fileField]: true }).limit(DELETE_CHUNK_SIZE).get()
+    const selected = await collection().where(filter).field(fields).limit(DELETE_CHUNK_SIZE).get()
     const rows = selected.data || []
     if (!rows.length)
       return { deleted, cleanupWarnings }
@@ -72,7 +80,7 @@ async function removeAllRows(collection, filter, fileField) {
     if (!removed)
       throw { errCode: 'DELETE_FAILED', errMsg: '删除没有生效，请稍后重试' }
     deleted += removed
-    cleanupWarnings += await cleanup(rows.map(row => row[fileField]))
+    cleanupWarnings += await cleanup(rows.flatMap(row => fileFields.map(field => row[field])))
   }
 }
 
@@ -111,18 +119,18 @@ module.exports = {
   },
 
   async removeWorks(input = {}) {
-    return success(await removeRows(works, { user_id: this.auth.uid, _id: uniCloud.database().command.in(ids(input.ids)) }, 'thumbnailFileId'))
+    return success(await removeRows(works, { user_id: this.auth.uid, _id: uniCloud.database().command.in(ids(input.ids)) }, ['thumbnailFileId', 'imageFileId']))
   },
 
   async removeAllWorks() {
-    return success(await removeAllRows(works, { user_id: this.auth.uid }, 'thumbnailFileId'))
+    return success(await removeAllRows(works, { user_id: this.auth.uid }, ['thumbnailFileId', 'imageFileId']))
   },
 
   async removeDailyFlowers(input = {}) {
-    return success(await removeRows(dailyFlowers, { _id: uniCloud.database().command.in(ids(input.ids)) }, 'imageFileId'))
+    return success(await removeRows(dailyFlowers, { _id: uniCloud.database().command.in(ids(input.ids)) }, ['imageFileId']))
   },
 
   async removeAllDailyFlowers() {
-    return success(await removeAllRows(dailyFlowers, {}, 'imageFileId'))
+    return success(await removeAllRows(dailyFlowers, {}, ['imageFileId']))
   },
 }

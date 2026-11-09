@@ -37,9 +37,21 @@ function currentLocalDate() {
 }
 
 const today = currentLocalDate()
+const calendar = ref<{ open: () => void } | null>(null)
+const calendarOpen = ref(false)
 
-function filterByDate(event: { detail: { value: string } }) {
-  void dailyFlowers.loadHistory(true, event.detail.value)
+function openCalendar() {
+  if (dailyFlowers.historyLoading || !calendar.value)
+    return
+  calendarOpen.value = true
+  calendar.value.open()
+}
+
+function filterByDate(event: { fulldate: string }) {
+  const date = event.fulldate
+  if (dailyFlowers.historyLoading || !/^\d{4}-\d{2}-\d{2}$/.test(date) || date > today)
+    return
+  void dailyFlowers.loadHistory(true, date)
 }
 
 function clearDateFilter() {
@@ -71,23 +83,20 @@ function openFlower(date: string) {
 </script>
 
 <template>
+  <page-meta :page-style="calendarOpen ? 'overflow: hidden;' : ''" />
   <view class="daily-page">
     <view class="daily-heading">
       <view class="history-filter">
-        <picker
-          mode="date"
-          :value="dailyFlowers.historyDateFilter || today"
-          :end="today"
+        <button
+          class="filter-picker"
           :disabled="dailyFlowers.historyLoading"
-          @change="filterByDate"
+          @click="openCalendar"
         >
-          <view class="filter-picker">
-            <view class="filter-tape" aria-hidden="true" />
-            <view class="i-carbon-calendar" />
-            <text>{{ dailyFlowers.historyDateFilter ? displayDate(dailyFlowers.historyDateFilter) : '选择日期' }}</text>
-            <view class="i-carbon-chevron-down" />
-          </view>
-        </picker>
+          <view class="filter-tape" aria-hidden="true" />
+          <view class="i-carbon-calendar" />
+          <text>{{ dailyFlowers.historyDateFilter ? displayDate(dailyFlowers.historyDateFilter) : '选择日期' }}</text>
+          <view class="i-carbon-chevron-down" />
+        </button>
         <button
           v-if="dailyFlowers.historyDateFilter"
           class="clear-filter"
@@ -167,6 +176,16 @@ function openFlower(date: string) {
     <view v-else-if="dailyFlowers.historyItems.length" class="history-state">
       已经看完所有每日花束了
     </view>
+    <uni-calendar
+      ref="calendar"
+      :insert="false"
+      :date="dailyFlowers.historyDateFilter || today"
+      :end-date="today"
+      :clear-date="true"
+      :show-month="false"
+      @confirm="filterByDate"
+      @close="calendarOpen = false"
+    />
   </view>
 </template>
 
@@ -281,10 +300,6 @@ function openFlower(date: string) {
 .heading-leaf-left { top: 50rpx; left: 14rpx; transform: rotate(28deg); }
 .heading-leaf-right { top: 59rpx; right: 8rpx; transform: rotate(-28deg) scaleX(-1); }
 
-.history-filter picker {
-  transform: rotate(-.8deg);
-}
-
 .load-more {
   margin: 0;
   border: 0;
@@ -305,6 +320,7 @@ function openFlower(date: string) {
   position: relative;
   display: flex;
   height: 58rpx;
+  margin: 0;
   align-items: center;
   gap: 10rpx;
   padding: 0 17rpx;
@@ -315,6 +331,12 @@ function openFlower(date: string) {
   clip-path: polygon(1% 7%, 98% 1%, 100% 91%, 96% 99%, 3% 96%, 0 12%);
   color: #625648;
   font-size: 20rpx;
+  line-height: 1.4;
+  transform: rotate(-.8deg);
+}
+
+.filter-picker::after {
+  border: 0;
 }
 
 .filter-tape {

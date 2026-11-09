@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { FlowerGuideTarget, ReportFlowerGuideTarget } from '@/models/flower-guide'
 import type { StudioTab } from './studio-types'
 import type { SavedFlowerWork } from '@/models/flower-creation'
+import type { FlowerGuideTarget, ReportFlowerGuideTarget } from '@/models/flower-guide'
 import { onHide, onLoad, onShareAppMessage, onShareTimeline, onShow, onUnload } from '@dcloudio/uni-app'
 import { storeToRefs } from 'pinia'
 import { computed, provide, ref, watch } from 'vue'
@@ -11,20 +11,23 @@ import { useFlowerCreationSession } from '@/hooks/useFlowerCreationSession'
 import { useFlowerDrag } from '@/hooks/useFlowerDrag'
 import { useFlowerStudioLayout } from '@/hooks/useFlowerStudioLayout'
 import { useCreationArtworkStore } from '@/stores/artworkStore'
+import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
 import { createCatalogArtwork } from '@/utils/flower/artwork'
-import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioGuide from './components/studio-guide.vue'
+import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioTopToolbar from './components/studio-top-toolbar.vue'
 import { useStudioGuide } from './composables/useStudioGuide'
 import { useStudioSelectionActions } from './composables/useStudioSelectionActions'
 
 const SHARE_TITLE = '选花材，搭配出属于自己的花束'
 const SHARE_PATH = '/pages/flower-studio/flower-studio-page'
+const SHARE_IMAGE_URL = '/static/share/index-share.png'
+const TIMELINE_SHARE_IMAGE_URL = '/static/share/index-share-timeline.png'
 
 definePage({
   type: 'home',
@@ -35,6 +38,7 @@ definePage({
     navigationBarBackgroundColor: '#f6f3eb',
     disableScroll: true,
     enableShareAppMessage: true,
+    enableShareTimeline: true,
   },
 })
 
@@ -68,6 +72,7 @@ const {
 } = selectionActions
 const detailId = ref('')
 const completionState = ref<'idle' | 'saving' | 'generating' | 'ready' | 'failed'>('idle')
+const dailyFlower = useDailyFlowerStore()
 const guide = useStudioGuide()
 const guideStep = guide.step
 watch(activeTab, (tab) => {
@@ -76,7 +81,8 @@ watch(activeTab, (tab) => {
   else if (guideStep.value === 'open-flowers' && tab === 'flowers')
     guideStep.value = 'flowers'
 }, { flush: 'sync' })
-provide('studioGuideStep', computed(() => pageReady.value && !startupError.value && !prepareError.value && !storageError.value && !pendingDraft.value && completionState.value === 'idle' ? guideStep.value : null))
+const guideAvailable = computed(() => pageReady.value && !startupError.value && !prepareError.value && !storageError.value && !pendingDraft.value && completionState.value === 'idle' && !dailyFlower.loading && !dailyFlower.visible)
+provide('studioGuideStep', computed(() => guideAvailable.value ? guideStep.value : null))
 const guideTarget = ref<FlowerGuideTarget | null>(null)
 let guideTargetOwner = -1
 const reportGuideTarget: ReportFlowerGuideTarget = (target, owner) => {
@@ -105,7 +111,6 @@ function endGuidedDrag(cancelled: boolean) {
     guide.arranged()
   guideDragSnapshot = ''
 }
-
 
 const completedWork = ref<SavedFlowerWork>()
 let applying = false
@@ -156,10 +161,12 @@ onUnload(() => {
 onShareAppMessage(() => ({
   title: SHARE_TITLE,
   path: SHARE_PATH,
+  imageUrl: SHARE_IMAGE_URL,
 }))
 
 onShareTimeline(() => ({
   title: SHARE_TITLE,
+  imageUrl: TIMELINE_SHARE_IMAGE_URL,
 }))
 
 watch(() => JSON.stringify(artworkStore.snapshot()), () => {
@@ -269,7 +276,7 @@ function bootstrap(): Promise<void> {
         return
       startupError.value = ''
       pageReady.value = true
-      if (!detailId.value && (import.meta.env.DEV || (!restoring && !draftReadFailed.value && !materials.value.length)))
+      if (!detailId.value && !restoring && !draftReadFailed.value && !materials.value.length)
         guide.start(true, materials.value.length ? 'arrange' : 'open-flowers')
       void catalog.preloadRemaining()
     }
@@ -512,6 +519,7 @@ async function resetWorkspaceAfterLeave() {
     detailId.value = ''
     images.invalidate()
     await initializeDefaultArtwork(true)
+    session.startFreshDraft()
   }
   finally {
     applying = false
@@ -525,14 +533,13 @@ function requestLeave(leave: () => void) {
   const isNewWorkWithContent = !session.workId.value && Boolean(materials.value.length || session.card.value.blessing || session.card.value.signature)
   const meaningful = Boolean(pendingMaterialId.value || session.hasUnsavedChanges.value || isNewWorkWithContent)
   if (!meaningful) {
-    session.flushDraft()
-    if (detailId.value) {
-      void resetWorkspaceAfterLeave()
-        .then(leave)
-        .catch(error => notify(creationFailure(error)))
+    if (!session.discard()) {
+      notify(storageError.value || '本地草稿清理失败，请重试')
       return
     }
-    leave()
+    void resetWorkspaceAfterLeave()
+      .then(leave)
+      .catch(error => notify(creationFailure(error)))
     return
   }
   uni.showModal({
@@ -635,14 +642,16 @@ async function endCreation() {
   await initializeDefaultArtwork()
   pageReady.value = true
 }
-function closeDetail() { uni.navigateBack() }
+function closeDetail() { requestLeave(() => uni.navigateBack()) }
 </script>
 
 <template>
-  <view class="flower-studio studio-light" :style="{ height: `${layout.device.windowHeight}px` }">
+  <view class="flower-studio studio-light" style="height: 100vh;">
     <view class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
       <view class="studio-artwork" :style="layout.workspaceStyle">
-        <FlowerBoard :artwork="artwork" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" :guide-arrange="guideStep === 'arrange' && pageReady && !pendingDraft && !storageError && !startupError && !prepareError && completionState === 'idle'" @start="startGuidedDrag" @move="moveDrag" @end="endGuidedDrag" @clear="closeFlowerTools" />
+        <view class="studio-board-scale" :style="layout.boardStyle">
+          <FlowerBoard :artwork="artwork" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" :guide-arrange="guideStep === 'arrange' && guideAvailable" @start="startGuidedDrag" @move="moveDrag" @end="endGuidedDrag" @clear="closeFlowerTools" />
+        </view>
       </view>
     </view>
     <StudioMaterialDock
@@ -653,7 +662,7 @@ function closeDetail() { uni.navigateBack() }
     />
     <StudioTopToolbar :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
     <StudioGuide
-      v-if="guideStep && pageReady && !startupError && !prepareError && !storageError && !pendingDraft && completionState === 'idle'"
+      v-if="guideStep && guideAvailable"
       :step="guideStep" :target="guideTarget" :window-width="layout.device.windowWidth" :window-height="layout.device.windowHeight"
     />
     <view v-if="storageError && !pendingDraft && !startupError && !needsPreparation" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }">
@@ -665,7 +674,9 @@ function closeDetail() { uni.navigateBack() }
     </view>
     <view v-if="prepareError && !startupError" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }" role="status">
       <text>{{ prepareError }}</text>
-      <text @click="retryMaterialPreparation">重新加载</text>
+      <text @click="retryMaterialPreparation">
+        重新加载
+      </text>
     </view>
     <view v-if="completionState !== 'idle'" class="creation-overlay completion-overlay" @click="completionState === 'ready' && closeCompletion()" @touchmove.stop.prevent>
       <view class="completion-sheet" @click.stop>
@@ -692,7 +703,9 @@ function closeDetail() { uni.navigateBack() }
           </text>
           <view class="completion-actions">
             <view class="completion-button-wrap completion-button-primary">
-              <button class="completion-primary" @click="retryCompletedImage">重新生成</button>
+              <button class="completion-primary" @click="retryCompletedImage">
+                重新生成
+              </button>
             </view>
           </view>
         </template>
@@ -751,5 +764,5 @@ function closeDetail() { uni.navigateBack() }
 @use '@/styles/flower-studio.scss' as *;
 @use '@/styles/flower-creation.scss';
 @use '@/styles/flower-completion.scss';
-.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:radial-gradient(circle at 13% 18%,rgba(139,121,94,.045) 0 2rpx,transparent 3rpx),radial-gradient(circle at 81% 70%,rgba(139,121,94,.035) 0 2rpx,transparent 3rpx),$studio-paper;background-size:42rpx 42rpx,54rpx 54rpx,auto;color:$studio-ink}.studio-stage{position:absolute;left:38rpx;right:38rpx;z-index:5;overflow-x:hidden;overflow-y:auto}.studio-artwork{position:absolute;z-index:1;overflow:hidden;transform-origin:0 0;outline:1rpx solid rgba(102,84,63,.2);border-radius:2rpx 5rpx 3rpx 4rpx;background:#f7f4ec;box-shadow:5rpx 7rpx 0 rgba(195,177,148,.2),0 14rpx 28rpx rgba(88,74,55,.075)}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(53,46,38,.3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(153,92,80,.22);border-radius:14rpx;background:rgba(245,234,215,.96);box-shadow:0 6rpx 16rpx rgba(88,74,55,.055);color:#995c50;font-size:22rpx}
+.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:radial-gradient(circle at 13% 18%,rgba(139,121,94,.045) 0 2rpx,transparent 3rpx),radial-gradient(circle at 81% 70%,rgba(139,121,94,.035) 0 2rpx,transparent 3rpx),$studio-paper;background-size:42rpx 42rpx,54rpx 54rpx,auto;color:$studio-ink}.studio-stage{position:absolute;left:38rpx;right:38rpx;z-index:5;display:flex;align-items:center;justify-content:center;overflow:hidden}.studio-artwork{position:relative;flex-shrink:0;z-index:1;overflow:hidden;outline:1rpx solid rgba(102,84,63,.2);border-radius:2rpx 5rpx 3rpx 4rpx;background:#f7f4ec;box-shadow:5rpx 7rpx 0 rgba(195,177,148,.2),0 14rpx 28rpx rgba(88,74,55,.075)}.studio-board-scale{position:absolute;top:0;left:0;transform-origin:0 0}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(53,46,38,.3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(153,92,80,.22);border-radius:14rpx;background:rgba(245,234,215,.96);box-shadow:0 6rpx 16rpx rgba(88,74,55,.055);color:#995c50;font-size:22rpx}
 </style>

@@ -49,6 +49,10 @@ const cardScale = computed(() => {
 const cardStageStyle = computed(() => `width:${698 * cardScale.value}px;height:${1260 * cardScale.value}px;`)
 const cardPreviewStyle = computed(() => `transform:scale(${cardScale.value});`)
 const previewBlessingLines = computed(() => greetingLines(appliedText.value.blessing))
+const previewSignatureStyle = computed(() => {
+  const baseline = Math.max(1128, Math.min(1226, 1026 + previewBlessingLines.value.length * 34 + 34))
+  return `top:${baseline - 20}px;`
+})
 const canShare = computed(() => !loading.value && !error.value && Boolean(draft.value)
   && !exportingCard.value && !cloudRendering.value)
 const visibleCardError = computed(() => cloudRenderError.value || cardImageError.value)
@@ -164,7 +168,7 @@ function applyEditor() {
             <view class="live-card-blessing">
               <text v-for="(line, index) in previewBlessingLines" :key="index">{{ line }}</text>
             </view>
-            <text v-if="appliedText.signature" class="live-card-signature">—— {{ appliedText.signature }}</text>
+            <text v-if="appliedText.signature" class="live-card-signature" :style="previewSignatureStyle">—— {{ appliedText.signature }}</text>
           </view>
         </view>
       </view>
@@ -423,8 +427,8 @@ function applyEditor() {
 .live-card-blessing {
   position: absolute;
   top: 998px;
-  right: 80px;
   left: 80px;
+  width: 560px;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
@@ -432,12 +436,15 @@ function applyEditor() {
   line-height: 34px;
 }
 
-.live-card-blessing text { display: block; }
+.live-card-blessing text {
+  display: block;
+  flex-shrink: 0;
+  white-space: pre;
+}
 
 .live-card-signature {
   position: absolute;
   right: 52px;
-  bottom: 56px;
   color: #625d50;
   font-family: sans-serif;
   font-size: 25px;

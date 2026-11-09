@@ -32,6 +32,9 @@ const groups: { value: SelectionGroup, name: string }[] = [
   { value: 'foliage', name: '叶材' },
 ]
 const activeGroup = ref<SelectionGroup>('all')
+const emptyMessage = computed(() => activeGroup.value === 'all'
+  ? '暂无已添加的花材'
+  : `暂无${groups.find(group => group.value === activeGroup.value)?.name || '花材'}`)
 
 function thumbnail(instance: MaterialInstance) {
   return materialThumbnailSource(catalog.get(instance.materialId), {
@@ -79,16 +82,16 @@ function materialThumbnail(option: typeof materialOptions.value[number]) {
 
 function chooseMaterial(option: typeof materialOptions.value[number]) {
   const exiting = selectionMaterialId.value === option.id
-  emit('focus', option.id, option.group, option.instances.length > 1)
-  if (!exiting && option.instances.length === 1)
-    emit('instance', option.instances[0].id)
+  emit('focus', option.id, option.group, true)
+  const first = option.instances[0]
+  if (!exiting && first)
+    emit('instance', first.id)
 }
 
 function selectGroup(group: SelectionGroup) {
   activeGroup.value = group
-  const focused = materialOptions.value.find(option => option.id === selectionMaterialId.value)
-  if (focused && group !== 'all' && focused.instances[0]?.group !== group)
-    studio.clearSelectionFocus()
+  artwork.endEdit()
+  studio.clearSelectionFocus()
 }
 </script>
 
@@ -105,6 +108,9 @@ function selectGroup(group: SelectionGroup) {
     </view>
     <scroll-view scroll-x enable-flex class="selection-scroll" :show-scrollbar="false">
       <view class="selection-list">
+        <view v-if="!visibleMaterialOptions.length" class="selection-empty">
+          <text>{{ emptyMessage }}</text>
+        </view>
         <template v-for="option in visibleMaterialOptions" :key="option.id">
           <button
             class="material-card" :class="{ active: selectionMaterialId === option.id }"
@@ -116,7 +122,7 @@ function selectGroup(group: SelectionGroup) {
             <text class="material-count">{{ option.instances.length }}</text>
           </button>
           <view
-            v-if="selectionMaterialId === option.id && option.instances.length > 1"
+            v-if="selectionMaterialId === option.id"
             class="instance-list"
           >
             <button
@@ -159,7 +165,18 @@ function selectGroup(group: SelectionGroup) {
 
 .selection-scroll {
   width: 100%;
+  height: 190rpx;
   white-space: nowrap
+}
+
+.selection-empty {
+  display: flex;
+  width: 100%;
+  height: 190rpx;
+  align-items: center;
+  justify-content: center;
+  color: rgba(72, 63, 53, .62);
+  font-size: 25rpx
 }
 
 .material-filters {

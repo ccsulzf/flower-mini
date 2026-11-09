@@ -14,13 +14,13 @@
   position: relative;
   display: flex;
   width: 100%;
-  max-width: 650rpx;
+  max-width: 570rpx;
   max-height: 88vh;
   overflow: auto;
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
-  padding: 34rpx 28rpx 30rpx;
+  padding: 26rpx 26rpx 24rpx;
   border: 2rpx solid rgba(112, 91, 68, .38);
   border-radius: 5rpx 13rpx 7rpx 10rpx;
   background: $studio-paper;
@@ -30,19 +30,20 @@
 }
 
 .completion-kicker {
-  padding: 0 18rpx 8rpx;
+  padding: 0 14rpx 5rpx;
   border-bottom: 1rpx solid $studio-border;
   color: $studio-muted;
-  font-size: 20rpx;
-  letter-spacing: 5rpx;
+  font-size: 19rpx;
+  line-height: 1.4;
+  letter-spacing: 4rpx;
   transform: rotate(-2deg);
 }
 
 .completion-title {
-  margin-top: 16rpx;
+  margin-top: 10rpx;
   color: $studio-ink;
   font-family: STSong, SimSun, serif;
-  font-size: 36rpx;
+  font-size: 32rpx;
   font-weight: 500;
   line-height: 1.5;
 }
@@ -57,8 +58,8 @@
 .completion-photo {
   position: relative;
   flex-shrink: 0;
-  margin-top: 30rpx;
-  padding: 10rpx 10rpx 0;
+  margin-top: 24rpx;
+  padding: 8rpx;
   border: 1rpx solid rgba(112, 91, 68, .2);
   background: $studio-panel;
   box-shadow: 3rpx 5rpx 0 rgba(112, 91, 68, .09);
@@ -82,6 +83,9 @@
   display: block;
   width: 390rpx;
   height: 559rpx;
+  // 扣除标题、相框与操作区的空间，矮屏上按作品比例同步限制宽高。
+  max-width: calc(61.424vh - 209.4rpx);
+  max-height: calc(88vh - 300rpx);
   background: $studio-secondary;
 }
 
@@ -98,15 +102,15 @@
   display: flex;
   flex-shrink: 0;
   width: 100%;
-  gap: 18rpx;
-  margin-top: 28rpx;
+  gap: 16rpx;
+  margin-top: 22rpx;
 }
 
 .completion-button-wrap {
   position: relative;
   flex: 1;
   min-width: 0;
-  height: 84rpx;
+  height: 76rpx;
   border: 2rpx solid rgba(91, 74, 57, .55);
   border-radius: 17rpx 255rpx 19rpx 225rpx / 225rpx 19rpx 255rpx 17rpx;
   &::before {
@@ -127,12 +131,12 @@
     justify-content: center;
     gap: 10rpx;
     width: calc(100% - 8rpx);
-    height: 76rpx;
+    height: 68rpx;
     margin: 4rpx;
     padding: 0 8rpx;
     border: 0;
     border-radius: 12rpx 9rpx 15rpx 10rpx;
-    font-size: 25rpx;
+    font-size: 24rpx;
     line-height: 1;
     &::after { border: 0; }
     &:active { transform: translateY(3rpx); }
