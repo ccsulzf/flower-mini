@@ -5,7 +5,7 @@
   "group": "main",
   "introduction": "花朵像起伏的鸡冠，颜色醒目，适合给花束增加层次。",
   "flowerMeaning": "热情、真爱",
-  "version": 2,
+  "version": 3,
   "colors": [
     {
       "name": "红色",
@@ -25,5 +25,6 @@
     "flowerHeight": 110,
     "stemHeight": 260,
     "connectionY": 96
-  }
+  },
+  "sortOrder": 305
 }

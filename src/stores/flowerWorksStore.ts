@@ -5,23 +5,23 @@ import { useUserInfoStore } from '@/stores/userInfoStore'
 import { validateDraft } from '@/utils/flower/creation-storage'
 import { clearImageCacheScope } from '@/utils/flower/image-cache'
 
-interface SaveWorkInput { draft: CreationDraft, title: string, description: string, workId?: string, expectedRevision?: number }
+interface SaveWorkInput { draft: CreationDraft, title: string, description: string, workId?: string }
 interface WorksCloud {
   list: (input: { page: number, pageSize: number }) => Promise<{ items: SavedFlowerWorkSummary[], hasMore: boolean }>
   get: (input: { id: string }) => Promise<SavedFlowerWork>
-  save: (input: { id?: string, expectedRevision?: number, title: string, description: string, artwork: CreationDraft['artwork'], card: CreationDraft['card'] }) => Promise<SavedFlowerWork>
-  remove: (input: { id: string, expectedRevision: number }) => Promise<unknown>
+  save: (input: { id?: string, title: string, description: string, artwork: CreationDraft['artwork'], card: CreationDraft['card'] }) => Promise<SavedFlowerWork>
+  remove: (input: { id: string }) => Promise<unknown>
 }
 export function creationFailure(error: unknown) {
   return error instanceof Error ? error.message : typeof error === 'object' && error !== null && 'errMsg' in error ? String(error.errMsg) : '作品操作失败，请重试'
 }
 function normalize(work: SavedFlowerWork): SavedFlowerWork {
-  if (!work || !/^[a-f\d]{32}$/.test(work.id) || typeof work.title !== 'string' || work.title.length > 40 || work.description !== undefined && (typeof work.description !== 'string' || work.description.length > 160) || !Number.isSafeInteger(work.revision) || work.revision < 1 || !Number.isFinite(work.updatedAt) || !Number.isFinite(work.createdAt))
+  if (!work || !/^[a-f\d]{32}$/.test(work.id) || typeof work.title !== 'string' || work.title.length > 40 || work.description !== undefined && (typeof work.description !== 'string' || work.description.length > 160) || !Number.isFinite(work.updatedAt) || !Number.isFinite(work.createdAt))
     throw new Error('云端作品数据无效')
-  return { ...work, description: work.description || '', draft: validateDraft({ ...work.draft, workId: work.id, workRevision: work.revision }) }
+  return { ...work, description: work.description || '', draft: validateDraft({ ...work.draft, workId: work.id }) }
 }
 function normalizeSummary(work: SavedFlowerWorkSummary): SavedFlowerWorkSummary {
-  if (!work || !/^[a-f\d]{32}$/.test(work.id) || typeof work.title !== 'string' || work.title.length > 40 || work.description !== undefined && (typeof work.description !== 'string' || work.description.length > 160) || !Number.isSafeInteger(work.revision) || work.revision < 1 || !Number.isFinite(work.updatedAt) || !Number.isFinite(work.createdAt))
+  if (!work || !/^[a-f\d]{32}$/.test(work.id) || typeof work.title !== 'string' || work.title.length > 40 || work.description !== undefined && (typeof work.description !== 'string' || work.description.length > 160) || !Number.isFinite(work.updatedAt) || !Number.isFinite(work.createdAt))
     throw new Error('云端作品列表数据无效')
   return {
     id: work.id,
@@ -29,7 +29,6 @@ function normalizeSummary(work: SavedFlowerWorkSummary): SavedFlowerWorkSummary 
     description: work.description || '',
     createdAt: work.createdAt,
     updatedAt: work.updatedAt,
-    revision: work.revision,
   }
 }
 function summary(work: SavedFlowerWork): SavedFlowerWorkSummary {
@@ -84,7 +83,7 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
     try {
       const { cloud } = await client()
       const draft = validateDraft(input.draft)
-      const work = normalize(await cloud.save({ ...(input.workId ? { id: input.workId, expectedRevision: input.expectedRevision } : {}), title: input.title, description: input.description, artwork: draft.artwork, card: draft.card }))
+      const work = normalize(await cloud.save({ ...(input.workId ? { id: input.workId } : {}), title: input.title, description: input.description, artwork: draft.artwork, card: draft.card }))
       items.value = [summary(work), ...items.value.filter(row => row.id !== work.id)].sort((a, b) => b.updatedAt - a.updatedAt || b.id.localeCompare(a.id))
       return work
     }
@@ -96,9 +95,9 @@ export const useFlowerWorksStore = defineStore('flowerWorks', () => {
       saving.value = false
     }
   }
-  async function remove(id: string, expectedRevision: number) {
+  async function remove(id: string) {
     const { cloud } = await client()
-    await cloud.remove({ id, expectedRevision })
+    await cloud.remove({ id })
     clearImageCacheScope(`work:${id}`)
     items.value = items.value.filter(row => row.id !== id)
   }

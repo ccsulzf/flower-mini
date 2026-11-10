@@ -14,6 +14,7 @@ function excludeMaterialAdmin(context) {
     result.subPackages = (result.subPackages || []).filter(item => ![
       'subpackages/material-admin',
       'subpackages/daily-flower-admin',
+      'subpackages/artwork-ops',
     ].includes(item.root))
     return result
   }

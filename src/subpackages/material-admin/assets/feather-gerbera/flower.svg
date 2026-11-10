@@ -1,384 +1,175 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
   <defs>
-  <linearGradient id="feather-gerbera-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
-  <stop offset="0" stop-color="__COLOR__"/>
-  <stop offset="1" stop-color="#9d794a"/>
-  </linearGradient>
-  </defs><g transform="rotate(-8 55 94)">
-  <g transform="rotate(0.00 55 55)">
-  <path d="M54 55C52.50 38 48.00 9.00 55.00 5.00C55.50 19.00 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(7.32 55 55)">
-  <path d="M54 55C52.50 38 50.52 11.22 57.52 7.22C55.50 21.22 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(10.62 55 55)">
-  <path d="M54 55C52.50 38 50.73 6.01 57.73 2.01C55.50 16.01 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(14.95 55 55)">
-  <path d="M54 55C52.50 38 48.42 10.81 55.42 6.81C55.50 20.81 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(23.04 55 55)">
-  <path d="M54 55C52.50 38 45.73 9.55 52.73 5.55C55.50 19.55 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(29.13 55 55)">
-  <path d="M54 55C52.50 38 45.12 6.45 52.12 2.45C55.50 16.45 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(31.97 55 55)">
-  <path d="M54 55C52.50 38 47.16 11.89 54.16 7.89C55.50 21.89 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(37.66 55 55)">
-  <path d="M54 55C52.50 38 49.97 7.66 56.97 3.66C55.50 17.66 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(45.85 55 55)">
-  <path d="M54 55C52.50 38 50.97 7.92 57.97 3.92C55.50 17.92 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(50.56 55 55)">
-  <path d="M54 55C52.50 38 49.24 11.80 56.24 7.80C55.50 21.80 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(53.65 55 55)">
-  <path d="M54 55C52.50 38 46.37 6.31 53.37 2.31C55.50 16.31 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(60.65 55 55)">
-  <path d="M54 55C52.50 38 45.00 9.82 52.00 5.82C55.50 19.82 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(68.26 55 55)">
-  <path d="M54 55C52.50 38 46.39 10.58 53.39 6.58C55.50 20.58 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(71.80 55 55)">
-  <path d="M54 55C52.50 38 49.26 6.05 56.26 2.05C55.50 16.05 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(75.79 55 55)">
-  <path d="M54 55C52.50 38 50.97 11.39 57.97 7.39C55.50 21.39 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(83.72 55 55)">
-  <path d="M54 55C52.50 38 49.95 8.72 56.95 4.72C55.50 18.72 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(90.20 55 55)">
-  <path d="M54 55C52.50 38 47.14 6.98 54.14 2.98C55.50 16.98 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(93.10 55 55)">
-  <path d="M54 55C52.50 38 45.12 12.00 52.12 8.00C55.50 22.00 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(98.38 55 55)">
-  <path d="M54 55C52.50 38 45.75 6.98 52.75 2.98C55.50 16.98 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(106.62 55 55)">
-  <path d="M54 55C52.50 38 48.45 8.72 55.45 4.72C55.50 18.72 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(111.72 55 55)">
-  <path d="M54 55C52.50 38 50.74 11.39 57.74 7.39C55.50 21.39 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(114.67 55 55)">
-  <path d="M54 55C52.50 38 50.51 6.05 57.51 2.05C55.50 16.05 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(121.32 55 55)">
-  <path d="M54 55C52.50 38 47.97 10.58 54.97 6.58C55.50 20.58 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(129.16 55 55)">
-  <path d="M54 55C52.50 38 45.46 9.82 52.46 5.82C55.50 19.82 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(133.00 55 55)">
-  <path d="M54 55C52.50 38 45.28 6.31 52.28 2.31C55.50 16.31 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(136.67 55 55)">
-  <path d="M54 55C52.50 38 47.60 11.80 54.60 7.80C55.50 21.80 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(144.39 55 55)">
-  <path d="M54 55C52.50 38 50.29 7.92 57.29 3.92C55.50 17.92 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(151.23 55 55)">
-  <path d="M54 55C52.50 38 50.87 7.66 57.87 3.66C55.50 17.66 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(154.25 55 55)">
-  <path d="M54 55C52.50 38 48.81 11.89 55.81 7.89C55.50 21.89 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(159.14 55 55)">
-  <path d="M54 55C52.50 38 46.01 6.45 53.01 2.45C55.50 16.45 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(167.36 55 55)">
-  <path d="M54 55C52.50 38 45.04 9.55 52.04 5.55C55.50 19.55 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(172.86 55 55)">
-  <path d="M54 55C52.50 38 46.79 10.81 53.79 6.81C55.50 20.81 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(175.72 55 55)">
-  <path d="M54 55C52.50 38 49.65 6.01 56.65 2.01C55.50 16.01 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(181.99 55 55)">
-  <path d="M54 55C52.50 38 51.00 11.22 58.00 7.22C55.50 21.22 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(190.02 55 55)">
-  <path d="M54 55C52.50 38 49.59 9.00 56.59 5.00C55.50 19.00 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(194.19 55 55)">
-  <path d="M54 55C52.50 38 46.72 6.78 53.72 2.78C55.50 16.78 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(197.59 55 55)">
-  <path d="M54 55C52.50 38 45.02 11.99 52.02 7.99C55.50 21.99 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(205.05 55 55)">
-  <path d="M54 55C52.50 38 46.07 7.19 53.07 3.19C55.50 17.19 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(212.23 55 55)">
-  <path d="M54 55C52.50 38 48.89 8.45 55.89 4.45C55.50 18.45 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(215.42 55 55)">
-  <path d="M54 55C52.50 38 50.89 11.55 57.89 7.55C55.50 21.55 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(219.92 55 55)">
-  <path d="M54 55C52.50 38 50.24 6.11 57.24 2.11C55.50 16.11 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(228.07 55 55)">
-  <path d="M54 55C52.50 38 47.52 10.34 54.52 6.34C55.50 20.34 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(233.98 55 55)">
-  <path d="M54 55C52.50 38 45.25 10.08 52.25 6.08C55.50 20.08 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(236.81 55 55)">
-  <path d="M54 55C52.50 38 45.50 6.20 52.50 2.20C55.50 16.20 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(242.68 55 55)">
-  <path d="M54 55C52.50 38 48.05 11.69 55.05 7.69C55.50 21.69 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(250.84 55 55)">
-  <path d="M54 55C52.50 38 50.55 8.18 57.55 4.18C55.50 18.18 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(255.37 55 55)">
-  <path d="M54 55C52.50 38 50.71 7.42 57.71 3.42C55.50 17.42 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(258.55 55 55)">
-  <path d="M54 55C52.50 38 48.37 11.95 55.37 7.95C55.50 21.95 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(265.70 55 55)">
-  <path d="M54 55C52.50 38 45.70 6.61 52.70 2.61C55.50 16.61 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(273.18 55 55)">
-  <path d="M54 55C52.50 38 45.14 9.28 52.14 5.28C55.50 19.28 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(276.61 55 55)">
-  <path d="M54 55C52.50 38 47.21 11.02 54.21 7.02C55.50 21.02 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(280.75 55 55)">
-  <path d="M54 55C52.50 38 50.01 6.00 57.01 2.00C55.50 16.00 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(288.76 55 55)">
-  <path d="M54 55C52.50 38 50.96 11.02 57.96 7.02C55.50 21.02 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(295.06 55 55)">
-  <path d="M54 55C52.50 38 49.19 9.28 56.19 5.28C55.50 19.28 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(297.93 55 55)">
-  <path d="M54 55C52.50 38 46.32 6.61 53.32 2.61C55.50 16.61 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(303.39 55 55)">
-  <path d="M54 55C52.50 38 45.00 11.95 52.00 7.95C55.50 21.95 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(311.62 55 55)">
-  <path d="M54 55C52.50 38 46.44 7.42 53.44 3.42C55.50 17.42 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(316.54 55 55)">
-  <path d="M54 55C52.50 38 49.31 8.18 56.31 4.18C55.50 18.18 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(319.55 55 55)">
-  <path d="M54 55C52.50 38 50.98 11.69 57.98 7.69C55.50 21.69 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(326.36 55 55)">
-  <path d="M54 55C52.50 38 49.91 6.20 56.91 2.20C55.50 16.20 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(334.10 55 55)">
-  <path d="M54 55C52.50 38 47.09 10.08 54.09 6.08C55.50 20.08 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(337.80 55 55)">
-  <path d="M54 55C52.50 38 45.10 10.34 52.10 6.34C55.50 20.34 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(341.61 55 55)">
-  <path d="M54 55C52.50 38 45.78 6.11 52.78 2.11C55.50 16.11 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(349.43 55 55)">
-  <path d="M54 55C52.50 38 48.50 11.55 55.50 7.55C55.50 21.55 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(356.11 55 55)">
-  <path d="M54 55C52.50 38 50.76 8.45 57.76 4.45C55.50 18.45 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(8.00 55 55)">
-  <path d="M54 55C52.50 38 48.00 21.00 55.00 17.00C55.50 31.00 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(16.71 55 55)">
-  <path d="M54 55C52.50 38 50.52 23.22 57.52 19.22C55.50 33.22 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(21.39 55 55)">
-  <path d="M54 55C52.50 38 50.73 18.01 57.73 14.01C55.50 28.01 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(27.10 55 55)">
-  <path d="M54 55C52.50 38 48.42 22.81 55.42 18.81C55.50 32.81 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(36.58 55 55)">
-  <path d="M54 55C52.50 38 45.73 21.55 52.73 17.55C55.50 31.55 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(44.05 55 55)">
-  <path d="M54 55C52.50 38 45.12 18.45 52.12 14.45C55.50 28.45 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(48.28 55 55)">
-  <path d="M54 55C52.50 38 47.16 23.89 54.16 19.89C55.50 33.89 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(55.35 55 55)">
-  <path d="M54 55C52.50 38 49.97 19.66 56.97 15.66C55.50 29.66 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(64.93 55 55)">
-  <path d="M54 55C52.50 38 50.97 19.92 57.97 15.92C55.50 29.92 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(71.02 55 55)">
-  <path d="M54 55C52.50 38 49.24 23.80 56.24 19.80C55.50 33.80 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(75.50 55 55)">
-  <path d="M54 55C52.50 38 46.37 18.31 53.37 14.31C55.50 28.31 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(83.89 55 55)">
-  <path d="M54 55C52.50 38 45.00 21.82 52.00 17.82C55.50 31.82 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(92.88 55 55)">
-  <path d="M54 55C52.50 38 46.39 22.58 53.39 18.58C55.50 32.58 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(97.80 55 55)">
-  <path d="M54 55C52.50 38 49.26 18.05 56.26 14.05C55.50 28.05 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(103.17 55 55)">
-  <path d="M54 55C52.50 38 50.97 23.39 57.97 19.39C55.50 33.39 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(112.49 55 55)">
-  <path d="M54 55C52.50 38 49.95 20.72 56.95 16.72C55.50 30.72 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(120.35 55 55)">
-  <path d="M54 55C52.50 38 47.14 18.98 54.14 14.98C55.50 28.98 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(124.64 55 55)">
-  <path d="M54 55C52.50 38 45.12 24.00 52.12 20.00C55.50 34.00 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(131.30 55 55)">
-  <path d="M54 55C52.50 38 45.75 18.98 52.75 14.98C55.50 28.98 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(140.93 55 55)">
-  <path d="M54 55C52.50 38 48.45 20.72 55.45 16.72C55.50 30.72 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(147.41 55 55)">
-  <path d="M54 55C52.50 38 50.74 23.39 57.74 19.39C55.50 33.39 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(151.75 55 55)">
-  <path d="M54 55C52.50 38 50.51 18.05 57.51 14.05C55.50 28.05 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(159.78 55 55)">
-  <path d="M54 55C52.50 38 47.97 22.58 54.97 18.58C55.50 32.58 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(169.00 55 55)">
-  <path d="M54 55C52.50 38 45.46 21.82 52.46 17.82C55.50 31.82 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(174.23 55 55)">
-  <path d="M54 55C52.50 38 45.28 18.31 52.28 14.31C55.50 28.31 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(179.28 55 55)">
-  <path d="M54 55C52.50 38 47.60 23.80 54.60 19.80C55.50 33.80 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(188.39 55 55)">
-  <path d="M54 55C52.50 38 50.29 19.92 57.29 15.92C55.50 29.92 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(196.62 55 55)">
-  <path d="M54 55C52.50 38 50.87 19.66 57.87 15.66C55.50 29.66 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(201.02 55 55)">
-  <path d="M54 55C52.50 38 48.81 23.89 55.81 19.89C55.50 33.89 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(207.29 55 55)">
-  <path d="M54 55C52.50 38 46.01 18.45 53.01 14.45C55.50 28.45 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(216.90 55 55)">
-  <path d="M54 55C52.50 38 45.04 21.55 52.04 17.55C55.50 31.55 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(223.78 55 55)">
-  <path d="M54 55C52.50 38 46.79 22.81 53.79 18.81C55.50 32.81 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(228.03 55 55)">
-  <path d="M54 55C52.50 38 49.65 18.01 56.65 14.01C55.50 28.01 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(235.68 55 55)">
-  <path d="M54 55C52.50 38 51.00 23.22 58.00 19.22C55.50 33.22 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(245.09 55 55)">
-  <path d="M54 55C52.50 38 49.59 21.00 56.59 17.00C55.50 31.00 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(250.65 55 55)">
-  <path d="M54 55C52.50 38 46.72 18.78 53.72 14.78C55.50 28.78 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(255.43 55 55)">
-  <path d="M54 55C52.50 38 45.02 23.99 52.02 19.99C55.50 33.99 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(264.28 55 55)">
-  <path d="M54 55C52.50 38 46.07 19.19 53.07 15.19C55.50 29.19 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(272.84 55 55)">
-  <path d="M54 55C52.50 38 48.89 20.45 55.89 16.45C55.50 30.45 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(277.42 55 55)">
-  <path d="M54 55C52.50 38 50.89 23.55 57.89 19.55C55.50 33.55 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(283.31 55 55)">
-  <path d="M54 55C52.50 38 50.24 18.11 57.24 14.11C55.50 28.11 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(292.84 55 55)">
-  <path d="M54 55C52.50 38 47.52 22.34 54.52 18.34C55.50 32.34 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(300.13 55 55)">
-  <path d="M54 55C52.50 38 45.25 22.08 52.25 18.08C55.50 32.08 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(304.35 55 55)">
-  <path d="M54 55C52.50 38 45.50 18.20 52.50 14.20C55.50 28.20 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(311.60 55 55)">
-  <path d="M54 55C52.50 38 48.05 23.69 55.05 19.69C55.50 33.69 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(321.14 55 55)">
-  <path d="M54 55C52.50 38 50.55 20.18 57.55 16.18C55.50 30.18 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(327.06 55 55)">
-  <path d="M54 55C52.50 38 50.71 19.42 57.71 15.42C55.50 29.42 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(331.62 55 55)">
-  <path d="M54 55C52.50 38 48.37 23.95 55.37 19.95C55.50 33.95 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(340.16 55 55)">
-  <path d="M54 55C52.50 38 45.70 18.61 52.70 14.61C55.50 28.61 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(349.03 55 55)">
-  <path d="M54 55C52.50 38 45.14 21.28 52.14 17.28C55.50 31.28 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(353.84 55 55)">
-  <path d="M54 55C52.50 38 47.21 23.02 54.21 19.02C55.50 33.02 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <g transform="rotate(359.36 55 55)">
-  <path d="M54 55C52.50 38 50.01 18.00 57.01 14.00C55.50 28.00 57.50 39 56 55Z" fill="__COLOR__" stroke="#927341" stroke-opacity=".24" stroke-width=".2"/>
-  </g>
-  <circle cx="55.00" cy="55.00" r="7.00" fill="#9b9355" />
-  <circle cx="55.58" cy="55.00" r="0.45" fill="#d0c187" />
-  <circle cx="54.26" cy="55.68" r="0.45" fill="#d0c187" />
-  <circle cx="55.11" cy="53.71" r="0.45" fill="#d0c187" />
-  <circle cx="55.93" cy="56.21" r="0.45" fill="#d0c187" />
-  <circle cx="53.29" cy="54.70" r="0.45" fill="#d0c187" />
-  <circle cx="56.62" cy="53.97" r="0.45" fill="#d0c187" />
-  <circle cx="54.46" cy="57.01" r="0.45" fill="#d0c187" />
-  <circle cx="53.97" cy="53.02" r="0.45" fill="#d0c187" />
-  <circle cx="57.24" cy="55.82" r="0.45" fill="#d0c187" />
-  <circle cx="52.67" cy="55.96" r="0.45" fill="#d0c187" />
-  <circle cx="56.12" cy="52.60" r="0.45" fill="#d0c187" />
-  <circle cx="55.83" cy="57.64" r="0.45" fill="#d0c187" />
-  <circle cx="52.50" cy="53.55" r="0.45" fill="#d0c187" />
-  <circle cx="57.93" cy="54.36" r="0.45" fill="#d0c187" />
-  <circle cx="53.21" cy="57.54" r="0.45" fill="#d0c187" />
-  <circle cx="54.59" cy="51.81" r="0.45" fill="#d0c187" />
-  <circle cx="57.54" cy="57.14" r="0.45" fill="#d0c187" />
-  <circle cx="51.59" cy="55.14" r="0.45" fill="#d0c187" />
-  <circle cx="57.49" cy="52.52" r="0.45" fill="#d0c187" />
-  <circle cx="54.83" cy="58.60" r="0.45" fill="#d0c187" />
-  <circle cx="52.63" cy="52.16" r="0.45" fill="#d0c187" />
-  <circle cx="58.75" cy="55.50" r="0.45" fill="#d0c187" />
-  <circle cx="51.82" cy="57.21" r="0.45" fill="#d0c187" />
-  <circle cx="55.87" cy="51.14" r="0.45" fill="#d0c187" />
-</g></svg>
+    <!-- 丝状花瓣通透微光渐变（无脏灰发暗） -->
+    <linearGradient id="spider-light" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.048"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.120"/>
+      <stop offset="90%" stop-color="#ffffff" stop-opacity="0.264"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.384"/>
+    </linearGradient>
+
+    <!-- 花心球形立体凹凸感 -->
+    <radialGradient id="gerbera-core" cx="46%" cy="44%" r="55%">
+      <stop offset="0%" stop-color="#5b4c37"/>
+      <stop offset="50%" stop-color="#6e583b"/>
+      <stop offset="78%" stop-color="#987b4d"/>
+      <stop offset="100%" stop-color="#514634"/>
+    </radialGradient>
+
+    <!-- 外层长针丝花瓣模型 (末端轻微外翻卷丝与细微双裂尖) -->
+    <g id="spider-petal-outer">
+      <path d="M54.2 55
+               C52.8 42 51.5 24 53.6 8.5
+               C54.2 4.2 55.8 4.2 56.4 8.5
+               C58.5 24 57.2 42 55.8 55 Z"
+            fill="__COLOR__"/>
+      <path d="M54.2 55 C52.8 42 51.5 24 53.6 8.5 C54.2 4.2 55.8 4.2 56.4 8.5 C58.5 24 57.2 42 55.8 55 Z"
+            fill="url(#spider-light)"/>
+      <!-- 拉丝中央高光细丝线 -->
+      <path d="M55 52 C54.5 35 54.2 20 55 6" fill="none" stroke="#ffffff" stroke-width="0.38" stroke-linecap="round" opacity="0.360"/>
+    </g>
+
+    <!-- 内层短细丝花瓣模型 (紧凑环绕、弧度稍挺) -->
+    <g id="spider-petal-inner">
+      <path d="M54.5 55
+               C53.2 45 52.8 30 54.3 17.5
+               C54.7 14 55.3 14 55.7 17.5
+               C57.2 30 56.8 45 55.5 55 Z"
+            fill="__COLOR__"/>
+      <path d="M54.5 55 C53.2 45 52.8 30 54.3 17.5 C54.7 14 55.3 14 55.7 17.5 C57.2 30 56.8 45 55.5 55 Z"
+            fill="url(#spider-light)"/>
+      <path d="M55 52 C54.6 40 54.4 28 55 16" fill="none" stroke="#ffffff" stroke-width="0.32" stroke-linecap="round" opacity="0.390"/>
+    </g>
+  </defs>
+
+  <g transform="rotate(-6 55 94)">
+    <!-- ================= 1. 外层：丰满飘逸的超长放射拉丝群 (自然错落旋转) ================= -->
+    <!-- 底层微透光丝 (丰富景深) -->
+    <g opacity="0.82">
+      <use href="#spider-petal-outer" transform="rotate(5 55 55) scale(0.97)"/>
+      <use href="#spider-petal-outer" transform="rotate(16 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(27 55 55) scale(0.96)"/>
+      <use href="#spider-petal-outer" transform="rotate(38 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(49 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(61 55 55) scale(1.03)"/>
+      <use href="#spider-petal-outer" transform="rotate(72 55 55) scale(0.96)"/>
+      <use href="#spider-petal-outer" transform="rotate(83 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(95 55 55) scale(0.97)"/>
+      <use href="#spider-petal-outer" transform="rotate(106 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(117 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(128 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(140 55 55) scale(0.96)"/>
+      <use href="#spider-petal-outer" transform="rotate(151 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(162 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(173 55 55) scale(1.03)"/>
+      <use href="#spider-petal-outer" transform="rotate(185 55 55) scale(0.97)"/>
+      <use href="#spider-petal-outer" transform="rotate(196 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(207 55 55) scale(0.96)"/>
+      <use href="#spider-petal-outer" transform="rotate(218 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(230 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(241 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(252 55 55) scale(0.96)"/>
+      <use href="#spider-petal-outer" transform="rotate(263 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(275 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(286 55 55) scale(1.03)"/>
+      <use href="#spider-petal-outer" transform="rotate(297 55 55) scale(0.96)"/>
+      <use href="#spider-petal-outer" transform="rotate(308 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(320 55 55) scale(0.97)"/>
+      <use href="#spider-petal-outer" transform="rotate(331 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(342 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(354 55 55) scale(1.01)"/>
+    </g>
+
+    <!-- 主表层清晰丝瓣 (晶亮挺拔) -->
+    <g>
+      <use href="#spider-petal-outer" transform="rotate(0 55 55)"/>
+      <use href="#spider-petal-outer" transform="rotate(11 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(22 55 55) scale(0.99)"/>
+      <use href="#spider-petal-outer" transform="rotate(33 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(44 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(55 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(66 55 55) scale(0.99)"/>
+      <use href="#spider-petal-outer" transform="rotate(78 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(89 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(100 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(111 55 55) scale(0.99)"/>
+      <use href="#spider-petal-outer" transform="rotate(122 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(134 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(145 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(156 55 55) scale(0.99)"/>
+      <use href="#spider-petal-outer" transform="rotate(167 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(179 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(190 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(201 55 55) scale(0.99)"/>
+      <use href="#spider-petal-outer" transform="rotate(212 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(224 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(235 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(246 55 55) scale(0.99)"/>
+      <use href="#spider-petal-outer" transform="rotate(257 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(269 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(280 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(291 55 55) scale(0.99)"/>
+      <use href="#spider-petal-outer" transform="rotate(302 55 55) scale(1.02)"/>
+      <use href="#spider-petal-outer" transform="rotate(314 55 55) scale(0.98)"/>
+      <use href="#spider-petal-outer" transform="rotate(325 55 55) scale(1.01)"/>
+      <use href="#spider-petal-outer" transform="rotate(336 55 55) scale(0.99)"/>
+      <use href="#spider-petal-outer" transform="rotate(348 55 55) scale(1.02)"/>
+    </g>
+
+    <!-- ================= 2. 内层：紧凑环绕花心的次级小针丝瓣 ================= -->
+    <g>
+      <use href="#spider-petal-inner" transform="rotate(6 55 55)"/>
+      <use href="#spider-petal-inner" transform="rotate(21 55 55) scale(0.98)"/>
+      <use href="#spider-petal-inner" transform="rotate(36 55 55) scale(1.02)"/>
+      <use href="#spider-petal-inner" transform="rotate(51 55 55) scale(0.97)"/>
+      <use href="#spider-petal-inner" transform="rotate(66 55 55) scale(1.01)"/>
+      <use href="#spider-petal-inner" transform="rotate(81 55 55) scale(0.98)"/>
+      <use href="#spider-petal-inner" transform="rotate(96 55 55) scale(1.02)"/>
+      <use href="#spider-petal-inner" transform="rotate(111 55 55) scale(0.97)"/>
+      <use href="#spider-petal-inner" transform="rotate(126 55 55) scale(1.01)"/>
+      <use href="#spider-petal-inner" transform="rotate(141 55 55) scale(0.98)"/>
+      <use href="#spider-petal-inner" transform="rotate(156 55 55) scale(1.02)"/>
+      <use href="#spider-petal-inner" transform="rotate(171 55 55) scale(0.97)"/>
+      <use href="#spider-petal-inner" transform="rotate(186 55 55) scale(1.01)"/>
+      <use href="#spider-petal-inner" transform="rotate(201 55 55) scale(0.98)"/>
+      <use href="#spider-petal-inner" transform="rotate(216 55 55) scale(1.02)"/>
+      <use href="#spider-petal-inner" transform="rotate(231 55 55) scale(0.97)"/>
+      <use href="#spider-petal-inner" transform="rotate(246 55 55) scale(1.01)"/>
+      <use href="#spider-petal-inner" transform="rotate(261 55 55) scale(0.98)"/>
+      <use href="#spider-petal-inner" transform="rotate(276 55 55) scale(1.02)"/>
+      <use href="#spider-petal-inner" transform="rotate(291 55 55) scale(0.97)"/>
+      <use href="#spider-petal-inner" transform="rotate(306 55 55) scale(1.01)"/>
+      <use href="#spider-petal-inner" transform="rotate(321 55 55) scale(0.98)"/>
+      <use href="#spider-petal-inner" transform="rotate(336 55 55) scale(1.02)"/>
+      <use href="#spider-petal-inner" transform="rotate(351 55 55) scale(0.97)"/>
+    </g>
+
+    <!-- ================= 3. 花盘核心（深邃饱满的非洲菊纽扣心） ================= -->
+    <circle cx="55" cy="55" r="7.6" fill="#2d1606" opacity="0.35"/>
+    <circle cx="55" cy="55" r="7.0" fill="url(#gerbera-core)"/>
+
+    <!-- 外圈初放管状小花（明艳金黄的绒点环） -->
+    <g fill="#f1b212" stroke="#ffe762" stroke-width="0.3">
+      <circle cx="48.5" cy="55" r="0.6"/><circle cx="48.9" cy="57.5" r="0.6"/><circle cx="50.0" cy="59.7" r="0.6"/>
+      <circle cx="51.8" cy="61.2" r="0.6"/><circle cx="54.0" cy="61.9" r="0.6"/><circle cx="56.5" cy="61.7" r="0.6"/>
+      <circle cx="58.7" cy="60.6" r="0.6"/><circle cx="60.4" cy="58.7" r="0.6"/><circle cx="61.4" cy="56.3" r="0.6"/>
+      <circle cx="61.4" cy="53.7" r="0.6"/><circle cx="60.4" cy="51.3" r="0.6"/><circle cx="58.7" cy="49.4" r="0.6"/>
+      <circle cx="56.5" cy="48.3" r="0.6"/><circle cx="54.0" cy="48.1" r="0.6"/><circle cx="51.8" cy="48.8" r="0.6"/>
+      <circle cx="50.0" cy="50.3" r="0.6"/><circle cx="48.9" cy="52.5" r="0.6"/>
+    </g>
+
+    <!-- 中圈过渡管状花（金棕星点） -->
+    <g fill="#c97e0e">
+      <circle cx="51.2" cy="55" r="0.55"/><circle cx="52.2" cy="57.3" r="0.55"/><circle cx="54.0" cy="58.3" r="0.55"/>
+      <circle cx="56.2" cy="58.1" r="0.55"/><circle cx="57.9" cy="56.7" r="0.55"/><circle cx="58.3" cy="54.6" r="0.55"/>
+      <circle cx="57.4" cy="52.7" r="0.55"/><circle cx="55.5" cy="51.9" r="0.55"/><circle cx="53.4" cy="52.3" r="0.55"/>
+      <circle cx="51.9" cy="53.6" r="0.55"/>
+    </g>
+
+    <!-- 中心深凹小黑眼与初绽星芒 -->
+    <circle cx="55" cy="55" r="2.2" fill="#1e0c03"/>
+    <circle cx="54.3" cy="54.4" r="0.5" fill="#f5d654"/>
+    <circle cx="55.7" cy="54.7" r="0.45" fill="#f5d654"/>
+    <circle cx="55.1" cy="55.8" r="0.45" fill="#f5d654"/>
+  </g>
+</svg>

@@ -1,0 +1,720 @@
+{
+  "date": "2026-11-02",
+  "description": "柿窗秋絮：杏茶色大丽花与奶白马蹄莲相映，烟粉帝王花和柔粉红掌收住暖意；金合欢、雪果与细叶秋草穿插其间，圆拱花面像午后斜阳落在旧窗台。",
+  "artwork": {
+    "background": {
+      "materialId": "scene-window-table"
+    },
+    "container": {
+      "materialId": "round-ceramic-vase",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "nandina",
+        "group": "foliage",
+        "color": "#b78f7e",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -36.8,
+          "height": 377.3,
+          "scale": 0.74,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "olive-leaf",
+        "group": "foliage",
+        "color": "#a8b39b",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -29.2,
+          "height": 336.8,
+          "scale": 0.78,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#be9182",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -24.2,
+          "height": 363.2,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -13.3,
+          "height": 394.8,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "nandina",
+        "group": "foliage",
+        "color": "#b78f7e",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -13.8,
+          "height": 380.5,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "olive-leaf",
+        "group": "foliage",
+        "color": "#a8b39b",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -5.8,
+          "height": 418.6,
+          "scale": 0.74,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#be9182",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -4.2,
+          "height": 410.9,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 3.3,
+          "height": 438.5,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "nandina",
+        "group": "foliage",
+        "color": "#b78f7e",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": 4.0,
+          "height": 435.5,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "olive-leaf",
+        "group": "foliage",
+        "color": "#a8b39b",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 13.8,
+          "height": 385.6,
+          "scale": 0.88,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#be9182",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 16.6,
+          "height": 373.8,
+          "scale": 0.74,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 24.8,
+          "height": 393.5,
+          "scale": 0.78,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "nandina",
+        "group": "foliage",
+        "color": "#b78f7e",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 29.7,
+          "height": 332.9,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "olive-leaf",
+        "group": "foliage",
+        "color": "#a8b39b",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 37.0,
+          "height": 355.7,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "acacia",
+        "group": "filler",
+        "color": "#e2cf8d",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -32.5,
+          "height": 377.1,
+          "scale": 0.8,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#e9e5da",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -24.9,
+          "height": 341.9,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#e5cd7a",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -20.9,
+          "height": 371.7,
+          "scale": 0.87,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "kangaroo-paw",
+        "group": "filler",
+        "color": "#b77e68",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -11.1,
+          "height": 407.7,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "acacia",
+        "group": "filler",
+        "color": "#e2cf8d",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -12.0,
+          "height": 394.1,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#e9e5da",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -4.8,
+          "height": 434.0,
+          "scale": 0.8,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#e5cd7a",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -3.8,
+          "height": 426.8,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "kangaroo-paw",
+        "group": "filler",
+        "color": "#b77e68",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 2.9,
+          "height": 454.4,
+          "scale": 0.87,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "acacia",
+        "group": "filler",
+        "color": "#e2cf8d",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": 3.1,
+          "height": 451.2,
+          "scale": 0.91,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#e9e5da",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 12.0,
+          "height": 399.2,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "solidago",
+        "group": "filler",
+        "color": "#e5cd7a",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 14.2,
+          "height": 385.9,
+          "scale": 0.8,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "kangaroo-paw",
+        "group": "filler",
+        "color": "#b77e68",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 21.7,
+          "height": 401.8,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "acacia",
+        "group": "filler",
+        "color": "#e2cf8d",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 25.5,
+          "height": 337.8,
+          "scale": 0.87,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#e9e5da",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 32.4,
+          "height": 355.5,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#ddb38e",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -27.2,
+          "height": 377.6,
+          "scale": 0.9,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -20.6,
+          "height": 346.3,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "king-protea",
+        "group": "main",
+        "color": "#bc9098",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -18.3,
+          "height": 377.2,
+          "scale": 0.95,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "anthurium",
+        "group": "main",
+        "color": "#ce9ca7",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -10.0,
+          "height": 415.0,
+          "scale": 0.98,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#ddb38e",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -12.0,
+          "height": 401.5,
+          "scale": 1.0,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -5.9,
+          "height": 442.3,
+          "scale": 0.9,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "king-protea",
+        "group": "main",
+        "color": "#bc9098",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -5.9,
+          "height": 437.8,
+          "scale": 0.93,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 43,
+        "materialId": "anthurium",
+        "group": "main",
+        "color": "#ce9ca7",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": -0.2,
+          "height": 474.4,
+          "scale": 0.95,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#ddb38e",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -0.9,
+          "height": 484.5,
+          "scale": 0.98,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 5.7,
+          "height": 434.6,
+          "scale": 1.0,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "king-protea",
+        "group": "main",
+        "color": "#bc9098",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 6.3,
+          "height": 426.5,
+          "scale": 0.9,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 44,
+        "materialId": "anthurium",
+        "group": "main",
+        "color": "#ce9ca7",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 12.2,
+          "height": 440.8,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#ddb38e",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 12.4,
+          "height": 379.7,
+          "scale": 0.95,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 17.7,
+          "height": 392.7,
+          "scale": 0.98,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "dahlia",
+        "group": "main",
+        "color": "#ddb38e",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": 20.2,
+          "height": 348.4,
+          "scale": 1.0,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 26.7,
+          "height": 364.7,
+          "scale": 0.9,
+          "mirrored": true
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}

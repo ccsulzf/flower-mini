@@ -1,29 +1,65 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
   <defs>
-  <linearGradient id="anthurium-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
-  <stop offset="0" stop-color="__COLOR__"/>
-  <stop offset="1" stop-color="#824c4d"/>
-  </linearGradient>
-  </defs><g transform="rotate(7 55 98)">
-  <path d="M55 98C43 88 19 69 18 45C15 22 39 13 55 32C74 9 99 28 92 51C86 73 64 92 55 98Z" fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45"/>
-  <path d="M55 98C43 88 19 69 18 45C15 22 39 13 55 32C74 9 99 28 92 51C86 73 64 92 55 98Z" fill="url(#anthurium-fold)" opacity="0.32"/>
-  <path d="M55 98C55 83 44 57 55 32M50 70Q29 57 25 37M58 74Q77 61 86 43" fill="none" stroke="#eac6b1" stroke-width="0.7" stroke-opacity=".45"/>
-  <path d="M52 68L57 25Q60 21 62 25L58 69Z" fill="#d7c68c" stroke="#9f9d66" stroke-width=".5"/>
-  <path d="M54.00 64.00L57.00 64.00" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M54.25 61.90L57.25 61.90" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M54.50 59.80L57.50 59.80" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M54.75 57.70L57.75 57.70" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M55.00 55.60L58.00 55.60" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M55.25 53.50L58.25 53.50" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M55.50 51.40L58.50 51.40" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M55.75 49.30L58.75 49.30" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M56.00 47.20L59.00 47.20" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M56.25 45.10L59.25 45.10" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M56.50 43.00L59.50 43.00" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M56.75 40.90L59.75 40.90" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M57.00 38.80L60.00 38.80" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M57.25 36.70L60.25 36.70" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M57.50 34.60L60.50 34.60" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M57.75 32.50L60.75 32.50" fill="none" stroke="#a7a271" stroke-width="0.35" />
-  <path d="M58.00 30.40L61.00 30.40" fill="none" stroke="#a7a271" stroke-width="0.35" />
-</g></svg>
+    <!-- 保持原有的佛焰苞阴影与色彩过渡定义 -->
+    <linearGradient id="anthurium-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
+      <stop offset="0" stop-color="__COLOR__"/>
+      <stop offset="1" stop-color="#824c4d"/>
+    </linearGradient>
+  <linearGradient id="anthurium-plane" x1=".15" y1="0" x2=".6" y2="1"><stop stop-color="#fff5e5" stop-opacity=".23"/><stop offset=".48" stop-color="#fff5e5" stop-opacity=".03"/><stop offset="1" stop-color="#76515c" stop-opacity=".18"/></linearGradient></defs>
+
+  <g transform="rotate(7 55 98)">
+    <!-- ====== 1. 佛焰苞心形主瓣（革质起伏、饱满肩弧与微翘叶尖） ====== -->
+    <path d="M55 98 C47 89 22 72 18 48 C15 25 36 14 55 29 C74 14 95 25 92 48 C88 72 63 89 55 98 Z"
+          fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45" stroke-linejoin="round"/>
+    <!-- 保持原有的暗调折痕渐变叠加 -->
+    <path d="M55 98 C47 89 22 72 18 48 C15 25 36 14 55 29 C74 14 95 25 92 48 C88 72 63 89 55 98 Z"
+          fill="url(#anthurium-plane)"/>
+
+    <!-- 红掌标志性的两肩蜡质反光（微弱高光层，赋予塑料/皮革般通透光泽） -->
+    <path d="M30 30 C34 20 44 20 50 28 C42 28 35 32 30 30 Z" fill="#fff5df" opacity="0.14"/>
+    <path d="M60 28 C66 20 76 20 80 30 C75 32 68 28 60 28 Z" fill="#fff5df" opacity="0.14"/>
+
+    <!-- ====== 2. 细腻起伏的掌状主侧叶脉群 (#eac6b1 体系) ====== -->
+    <!-- 中央主脉凹陷深折 -->
+    <path d="M55 98 C54 84 50 62 55 29" fill="none" stroke="#eac6b1" stroke-width="0.75" stroke-opacity=".23"/>
+    <!-- 左翼弧形侧脉 -->
+    <path d="M53 76 Q35 63 26 43 M54 62 Q33 50 22 34 M54 48 Q39 36 32 24"
+          fill="none" stroke="#eac6b1" stroke-width="0.55" stroke-opacity=".21"/>
+    <!-- 右翼弧形侧脉 -->
+    <path d="M57 76 Q75 63 84 43 M56 62 Q77 50 88 34 M56 48 Q71 36 78 24"
+          fill="none" stroke="#eac6b1" stroke-width="0.55" stroke-opacity=".21"/>
+
+    <!-- ====== 3. 肉穗花序（中央花柱肉质圆柱体与立体高光） ====== -->
+    <!-- 花柱肉质圆柱底色（微微向上微弯挺立） -->
+    <path d="M53.5 68.5 C54 46 56.5 25 57.5 23 C58.5 20.5 62 20.5 63 23 C63.8 25 60.5 46 59.5 68.5 Z"
+          fill="#d7c68c" stroke="#9f9d66" stroke-width=".45" stroke-linejoin="round"/>
+
+    <!-- 花柱受光面微光高光弧线（形成圆柱立体感） -->
+    <path d="M54.8 66 Q55.8 45 58.5 23.5" fill="none" stroke="#fff5df" stroke-width="0.45" opacity="0.5"/>
+
+    <!-- ====== 4. 肉穗花序真实细密菱形花纹（告别死板横线） ====== -->
+    <g fill="none" stroke="#a7a271" stroke-width="0.32" stroke-linecap="round">
+      <!-- 顺应圆柱透视的交错微型花药小刻线 -->
+      <path d="M54.2 65 L56.5 65.8 L59.0 65"/>
+      <path d="M54.5 62.5 L56.8 63.3 L59.2 62.5"/>
+      <path d="M54.7 60 L57.0 60.8 L59.5 60"/>
+      <path d="M55.0 57.5 L57.3 58.3 L59.8 57.5"/>
+      <path d="M55.2 55 L57.5 55.8 L60.0 55"/>
+      <path d="M55.5 52.5 L57.8 53.3 L60.2 52.5"/>
+      <path d="M55.7 50 L58.0 50.8 L60.5 50"/>
+      <path d="M56.0 47.5 L58.3 48.3 L60.8 47.5"/>
+      <path d="M56.2 45 L58.5 45.8 L61.0 45"/>
+      <path d="M56.5 42.5 L58.8 43.3 L61.2 42.5"/>
+      <path d="M56.7 40 L59.0 40.8 L61.5 40"/>
+      <path d="M57.0 37.5 L59.3 38.3 L61.8 37.5"/>
+      <path d="M57.2 35 L59.5 35.8 L62.0 35"/>
+      <path d="M57.5 32.5 L59.8 33.3 L62.2 32.5"/>
+      <path d="M57.7 30 L60.0 30.8 L62.5 30"/>
+      <path d="M58.0 27.5 L60.2 28.2 L62.6 27.5"/>
+      <path d="M58.3 25 L60.4 25.6 L62.4 25"/>
+    </g>
+
+    <!-- 花柱基部与佛焰苞连接处的微小阴影托点 -->
+    <path d="M53.5 68.5 Q56.5 70 59.5 68.5" fill="none" stroke="#824c4d" stroke-width="0.5" opacity="0.6"/>
+  </g>
+</svg>

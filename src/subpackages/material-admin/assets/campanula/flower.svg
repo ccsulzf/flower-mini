@@ -1,3 +1,91 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="campanula-petal-0" gradientUnits="userSpaceOnUse" x1="-12" y1="-12" x2="21" y2="21"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient></defs><g transform="rotate(7 55 104)">
-<path d="M55 105C55 76.3333 53 44.3333 57 9" fill="none" stroke="#819272" stroke-width="1.1" /><path d="M55 28Q57 8 57 17" fill="none" stroke="#819272" stroke-width="0.65" /><g transform="translate(57 17) rotate(-4) rotate(-12)"><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9587a3" stroke-width="0.45" /><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="url(#campanula-petal-0)" opacity=".14"/><path d="M-4 -5Q-5 8 -7 14M2 -5Q1 8 3 15" fill="none" stroke="#f2e7df" stroke-width="0.55" stroke-opacity=".6"/><ellipse cx="0.00" cy="15.00" rx="8" ry="2.2" fill="#8d7a9d" opacity=".35"/></g><path d="M55 49Q38 29 38 38" fill="none" stroke="#819272" stroke-width="0.65" /><g transform="translate(38 38) rotate(3) rotate(23)"><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9587a3" stroke-width="0.45" /><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="url(#campanula-petal-0)" opacity=".14"/><path d="M-4 -5Q-5 8 -7 14M2 -5Q1 8 3 15" fill="none" stroke="#f2e7df" stroke-width="0.55" stroke-opacity=".6"/><ellipse cx="0.00" cy="15.00" rx="8" ry="2.2" fill="#8d7a9d" opacity=".35"/></g><path d="M55 65Q74 45 74 54" fill="none" stroke="#819272" stroke-width="0.65" /><g transform="translate(74 54) rotate(-2) rotate(-22)"><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9587a3" stroke-width="0.45" /><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="url(#campanula-petal-0)" opacity=".14"/><path d="M-4 -5Q-5 8 -7 14M2 -5Q1 8 3 15" fill="none" stroke="#f2e7df" stroke-width="0.55" stroke-opacity=".6"/><ellipse cx="0.00" cy="15.00" rx="8" ry="2.2" fill="#8d7a9d" opacity=".35"/></g><path d="M55 86Q34 66 34 75" fill="none" stroke="#819272" stroke-width="0.65" /><g transform="translate(34 75) rotate(4) rotate(18)"><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9587a3" stroke-width="0.45" /><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="url(#campanula-petal-0)" opacity=".14"/><path d="M-4 -5Q-5 8 -7 14M2 -5Q1 8 3 15" fill="none" stroke="#f2e7df" stroke-width="0.55" stroke-opacity=".6"/><ellipse cx="0.00" cy="15.00" rx="8" ry="2.2" fill="#8d7a9d" opacity=".35"/></g><path d="M55 101Q70 81 70 90" fill="none" stroke="#819272" stroke-width="0.65" /><g transform="translate(70 90) rotate(-3) rotate(-16)"><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9587a3" stroke-width="0.45" /><path d="M-5 -7C-8 -1 -5 7 -12 15Q-7 20 -4 15Q0 21 4 15Q8 19 12 15C5 7 8 -1 5 -7Z" fill="url(#campanula-petal-0)" opacity=".14"/><path d="M-4 -5Q-5 8 -7 14M2 -5Q1 8 3 15" fill="none" stroke="#f2e7df" stroke-width="0.55" stroke-opacity=".6"/><ellipse cx="0.00" cy="15.00" rx="8" ry="2.2" fill="#8d7a9d" opacity=".35"/></g>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- 保持原有的色彩过渡渐变 (__COLOR__ 动态自适应) -->
+    <linearGradient id="campanula-petal-0" gradientUnits="userSpaceOnUse" x1="-12" y1="-12" x2="21" y2="21">
+      <stop offset="0" stop-color="#fff8e7"/>
+      <stop offset=".48" stop-color="__COLOR__"/>
+      <stop offset="1" stop-color="#68765b"/>
+    </linearGradient>
+
+    <!-- ====== 真实风铃草核心：倒悬钟状花冠组件 (Campanula Bell) ====== -->
+    <g id="campanula-bell">
+      <!-- 1. 花基部反卷的披针形绿色花萼片 (#819272) -->
+      <path d="M-2 -8 L-5 -13 M0 -8 L0 -14 M2 -8 L5 -13 M-2 -7 L-6 -9 M2 -7 L6 -9"
+            stroke="#819272" stroke-width="0.45"/>
+      <ellipse cx="0" cy="-8" rx="2.2" ry="1.2" fill="#6c7c59"/>
+
+      <!-- 2. 真实鼓胀微钟花筒与 5 裂外翻卷唇 (主色 __COLOR__) -->
+      <path d="M-2.5 -8
+               C-6 -2 -9 6 -11 12
+               C-13 15 -11 17 -8 16
+               C-6 17 -4 18 -2 16.5
+               C0 18.5 2 18.5 4 16.5
+               C6 18 8 17 10 16
+               C13 17 14 15 11 12
+               C9 6 6 -2 2.5 -8 Z"
+            fill="__COLOR__" stroke="#9587a3" stroke-width="0.45" stroke-opacity=".65" stroke-linejoin="round"/>
+      <!-- 柔和渐变底纹 -->
+      <path d="M-2.5 -8 C-6 -2 -9 6 -11 12 C-13 15 -11 17 -8 16 C-6 17 -4 18 -2 16.5 C0 18.5 2 18.5 4 16.5 C6 18 8 17 10 16 C13 17 14 15 11 12 C9 6 6 -2 2.5 -8 Z"
+            fill="url(#campanula-petal-0)" opacity=".18"/>
+
+      <!-- 3. 钟口深邃立体中空内腔 (展示花钟内部透视) -->
+      <ellipse cx="0" cy="13.5" rx="7.8" ry="2.6" fill="#635372" opacity=".4"/>
+      <!-- 内腔伸出的微白柱头微卷小芒 -->
+      <path d="M0 8 Q-1.5 12 -2.5 14 M0 8 Q1.5 12 2.5 14" stroke="#f2e7df" stroke-width="0.4"/>
+
+      <!-- 4. 纵向微棱光泽线 (展现风铃草如薄瓷般的微凹脊肋) -->
+      <g fill="none" stroke="#f2e7df" stroke-width="0.4" stroke-opacity="0.26">
+        <path d="M-2 -7 Q-6 4 -8 15"/>
+        <path d="M-0.5 -7 Q-2 5 -2 16.5"/>
+        <path d="M1.5 -7 Q4 5 4 16.5"/>
+        <path d="M2 -7 Q6 4 8 15"/>
+      </g>
+
+      <!-- 钟身单侧受光面 (体现微鼓肉质弧度) -->
+      <path d="M-2 -7 C-5 0 -6 6 -6 12 Q-1 14 1 12 C0 6 -1 0 -2 -7 Z" fill="#fff8e7" opacity="0.14"/>
+    </g>
+
+    <!-- ====== 顶端初生的娇嫩倒垂花蕾组件 ====== -->
+    <g id="campanula-bud">
+      <path d="M-1.5 -6 L-3 -10 M0 -6 L0 -11 M1.5 -6 L3 -10" stroke="#819272" stroke-width="0.4"/>
+      <ellipse cx="0" cy="-6" rx="1.6" ry="0.9" fill="#6c7c59"/>
+      <!-- 含苞待放的螺旋小圆锥花苞 -->
+      <path d="M-1.5 -6 C-3 -2 -3 4 0 7 C3 4 3 -2 1.5 -6 Z"
+            fill="__COLOR__" stroke="#9587a3" stroke-width="0.38" stroke-opacity=".6"/>
+      <path d="M0 -5 Q-1 0 0 6.5" fill="none" stroke="#f2e7df" stroke-width="0.35" opacity="0.26"/>
+    </g>
+  </defs>
+
+  <g transform="rotate(7 55 104)">
+    <!-- ====== 1. 柔韧自然的微弯主花轴与草本小叶 (#819272) ====== -->
+    <path d="M55 105 C55 76 53 42 56 12" fill="none" stroke="#819272" stroke-width="1.15"/>
+
+    <!-- 侧生狭长微弯小苞叶 (增加野生草本生机) -->
+    <path d="M54.5 82 Q47 78 44 83 C48 84 51 83 54.5 82 Z" fill="#819272" opacity="0.75"/>
+    <path d="M55.2 60 Q62 56 66 61 C62 62 59 61 55.2 60 Z" fill="#819272" opacity="0.75"/>
+    <path d="M54.8 40 Q48 37 45 42 C49 43 52 42 54.8 40 Z" fill="#819272" opacity="0.75"/>
+
+    <!-- ====== 2. 顶端初绽的娇嫩花蕾 (Apex y~16) ====== -->
+    <!-- 顶端拱起柔韧细梗与倒挂小花苞 -->
+    <path d="M56 22 Q58 13 56 16" fill="none" stroke="#819272" stroke-width="0.65"/>
+    <use href="#campanula-bud" transform="translate(56, 16) rotate(-10) scale(0.85)"/>
+
+    <!-- ====== 3. 4朵盛开的倒悬微铃（由上到下，左右摇曳） ====== -->
+
+    <!-- 【左上初绽小风铃】 (38, 38) - 活泼向左上微扬 -->
+    <path d="M55 46 Q40 32 38 38" fill="none" stroke="#819272" stroke-width="0.65"/>
+    <use href="#campanula-bell" transform="translate(38, 38) rotate(24) scale(0.88)"/>
+
+    <!-- 【右上舒展风铃】 (74, 54) - 优雅向右下微倾 -->
+    <path d="M55 62 Q71 47 74 54" fill="none" stroke="#819272" stroke-width="0.65"/>
+    <use href="#campanula-bell" transform="translate(74, 54) rotate(-22) scale(0.94)"/>
+
+    <!-- 【左下饱满主景大风铃】 (35, 75) - 丰满倒垂，全幅大景 -->
+    <path d="M55 80 Q37 67 35 75" fill="none" stroke="#819272" stroke-width="0.68"/>
+    <use href="#campanula-bell" transform="translate(35, 75) rotate(19) scale(1.02)"/>
+
+    <!-- 【右下沉稳收束风铃】 (70, 90) - 柔顺微垂 -->
+    <path d="M55 95 Q68 83 70 90" fill="none" stroke="#819272" stroke-width="0.65"/>
+    <use href="#campanula-bell" transform="translate(70, 90) rotate(-17) scale(0.96)"/>
+  </g>
+</svg>

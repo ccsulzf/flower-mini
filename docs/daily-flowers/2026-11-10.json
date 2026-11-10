@@ -1,0 +1,752 @@
+{
+  "date": "2026-11-10",
+  "description": "紫雾书页：淡紫铁线莲与蓝紫鸢尾织出斜向花面，淡紫洋桔梗和奶白银莲花聚拢中央；风铃草、香豌豆、松虫草轻盈过渡，银叶菊与尤加利把轮廓向右上舒展。",
+  "artwork": {
+    "background": {
+      "materialId": "solid-sand"
+    },
+    "container": {
+      "materialId": "glass-cylinder",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 361.5,
+            "y": 747
+          },
+          "angle": 25.5,
+          "height": 361.1,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "eucalyptus",
+        "group": "foliage",
+        "color": "#91a795",
+        "transform": {
+          "anchor": {
+            "x": 339.1,
+            "y": 747
+          },
+          "angle": 23.0,
+          "height": 291.2,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "spirea",
+        "group": "foliage",
+        "color": "#8b9e7d",
+        "transform": {
+          "anchor": {
+            "x": 351.5,
+            "y": 747
+          },
+          "angle": -1.3,
+          "height": 225.5,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 353.2,
+            "y": 747
+          },
+          "angle": -20.4,
+          "height": 223.0,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "eucalyptus",
+        "group": "foliage",
+        "color": "#91a795",
+        "transform": {
+          "anchor": {
+            "x": 352.2,
+            "y": 747
+          },
+          "angle": -36.8,
+          "height": 268.8,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "spirea",
+        "group": "foliage",
+        "color": "#8b9e7d",
+        "transform": {
+          "anchor": {
+            "x": 340.0,
+            "y": 747
+          },
+          "angle": -40.4,
+          "height": 309.3,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 364.8,
+            "y": 747
+          },
+          "angle": -34.4,
+          "height": 356.8,
+          "scale": 0.75,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "eucalyptus",
+        "group": "foliage",
+        "color": "#91a795",
+        "transform": {
+          "anchor": {
+            "x": 365.0,
+            "y": 747
+          },
+          "angle": -23.7,
+          "height": 390.5,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "spirea",
+        "group": "foliage",
+        "color": "#8b9e7d",
+        "transform": {
+          "anchor": {
+            "x": 336.0,
+            "y": 747
+          },
+          "angle": -7.9,
+          "height": 411.8,
+          "scale": 0.82,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 359.4,
+            "y": 747
+          },
+          "angle": 2.1,
+          "height": 464.5,
+          "scale": 0.85,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "eucalyptus",
+        "group": "foliage",
+        "color": "#91a795",
+        "transform": {
+          "anchor": {
+            "x": 337.9,
+            "y": 747
+          },
+          "angle": 13.4,
+          "height": 490.4,
+          "scale": 0.77,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "spirea",
+        "group": "foliage",
+        "color": "#8b9e7d",
+        "transform": {
+          "anchor": {
+            "x": 335.4,
+            "y": 747
+          },
+          "angle": 23.6,
+          "height": 512.4,
+          "scale": 0.75,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 361.2,
+            "y": 747
+          },
+          "angle": 28.0,
+          "height": 494.5,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "eucalyptus",
+        "group": "foliage",
+        "color": "#91a795",
+        "transform": {
+          "anchor": {
+            "x": 341.5,
+            "y": 747
+          },
+          "angle": 30.9,
+          "height": 449.0,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "campanula",
+        "group": "filler",
+        "color": "#b0a1c6",
+        "transform": {
+          "anchor": {
+            "x": 356.6,
+            "y": 747
+          },
+          "angle": 22.0,
+          "height": 350.9,
+          "scale": 0.77,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#ede6db",
+        "transform": {
+          "anchor": {
+            "x": 360.1,
+            "y": 747
+          },
+          "angle": 13.4,
+          "height": 283.8,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "scabiosa",
+        "group": "filler",
+        "color": "#aea0bd",
+        "transform": {
+          "anchor": {
+            "x": 354.8,
+            "y": 747
+          },
+          "angle": -1.4,
+          "height": 235.5,
+          "scale": 0.75,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "blue-star",
+        "group": "filler",
+        "color": "#b7cdd6",
+        "transform": {
+          "anchor": {
+            "x": 365.9,
+            "y": 747
+          },
+          "angle": -23.1,
+          "height": 239.2,
+          "scale": 0.75,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "campanula",
+        "group": "filler",
+        "color": "#b0a1c6",
+        "transform": {
+          "anchor": {
+            "x": 333.6,
+            "y": 747
+          },
+          "angle": -30.2,
+          "height": 259.9,
+          "scale": 0.87,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#ede6db",
+        "transform": {
+          "anchor": {
+            "x": 352.3,
+            "y": 747
+          },
+          "angle": -26.2,
+          "height": 313.0,
+          "scale": 0.8,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "scabiosa",
+        "group": "filler",
+        "color": "#aea0bd",
+        "transform": {
+          "anchor": {
+            "x": 352.0,
+            "y": 747
+          },
+          "angle": -27.1,
+          "height": 351.1,
+          "scale": 0.77,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "blue-star",
+        "group": "filler",
+        "color": "#b7cdd6",
+        "transform": {
+          "anchor": {
+            "x": 360.8,
+            "y": 747
+          },
+          "angle": -21.0,
+          "height": 392.0,
+          "scale": 0.8,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "campanula",
+        "group": "filler",
+        "color": "#b0a1c6",
+        "transform": {
+          "anchor": {
+            "x": 359.9,
+            "y": 747
+          },
+          "angle": -8.3,
+          "height": 429.9,
+          "scale": 0.85,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#ede6db",
+        "transform": {
+          "anchor": {
+            "x": 343.9,
+            "y": 747
+          },
+          "angle": 3.2,
+          "height": 463.4,
+          "scale": 0.75,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "scabiosa",
+        "group": "filler",
+        "color": "#aea0bd",
+        "transform": {
+          "anchor": {
+            "x": 347.4,
+            "y": 747
+          },
+          "angle": 13.1,
+          "height": 483.7,
+          "scale": 0.82,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "blue-star",
+        "group": "filler",
+        "color": "#b7cdd6",
+        "transform": {
+          "anchor": {
+            "x": 365.6,
+            "y": 747
+          },
+          "angle": 16.0,
+          "height": 467.4,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "campanula",
+        "group": "filler",
+        "color": "#b0a1c6",
+        "transform": {
+          "anchor": {
+            "x": 353.7,
+            "y": 747
+          },
+          "angle": 23.9,
+          "height": 461.2,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#ede6db",
+        "transform": {
+          "anchor": {
+            "x": 347.7,
+            "y": 747
+          },
+          "angle": 27.0,
+          "height": 432.5,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "clematis",
+        "group": "main",
+        "color": "#a296c3",
+        "transform": {
+          "anchor": {
+            "x": 340.9,
+            "y": 747
+          },
+          "angle": 8.0,
+          "height": 330.5,
+          "scale": 0.89,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "iris",
+        "group": "main",
+        "color": "#9a9bc9",
+        "transform": {
+          "anchor": {
+            "x": 356.4,
+            "y": 747
+          },
+          "angle": -9.8,
+          "height": 312.7,
+          "scale": 0.9,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#b5a2cb",
+        "transform": {
+          "anchor": {
+            "x": 359.5,
+            "y": 747
+          },
+          "angle": 8.4,
+          "height": 378.1,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "anemone",
+        "group": "main",
+        "color": "#e9e3d8",
+        "transform": {
+          "anchor": {
+            "x": 360.6,
+            "y": 747
+          },
+          "angle": 1.6,
+          "height": 286.5,
+          "scale": 0.92,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "clematis",
+        "group": "main",
+        "color": "#a296c3",
+        "transform": {
+          "anchor": {
+            "x": 343.6,
+            "y": 747
+          },
+          "angle": -7.8,
+          "height": 355.1,
+          "scale": 0.93,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "iris",
+        "group": "main",
+        "color": "#9a9bc9",
+        "transform": {
+          "anchor": {
+            "x": 355.7,
+            "y": 747
+          },
+          "angle": 16.6,
+          "height": 384.5,
+          "scale": 0.87,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#b5a2cb",
+        "transform": {
+          "anchor": {
+            "x": 350.4,
+            "y": 747
+          },
+          "angle": -15.6,
+          "height": 269.0,
+          "scale": 0.89,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "anemone",
+        "group": "main",
+        "color": "#e9e3d8",
+        "transform": {
+          "anchor": {
+            "x": 350.1,
+            "y": 747
+          },
+          "angle": 4.5,
+          "height": 406.4,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "clematis",
+        "group": "main",
+        "color": "#a296c3",
+        "transform": {
+          "anchor": {
+            "x": 333.0,
+            "y": 747
+          },
+          "angle": 18.6,
+          "height": 317.3,
+          "scale": 0.93,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "iris",
+        "group": "main",
+        "color": "#9a9bc9",
+        "transform": {
+          "anchor": {
+            "x": 358.9,
+            "y": 747
+          },
+          "angle": -21.4,
+          "height": 317.6,
+          "scale": 0.87,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#b5a2cb",
+        "transform": {
+          "anchor": {
+            "x": 358.3,
+            "y": 747
+          },
+          "angle": 17.2,
+          "height": 426.2,
+          "scale": 0.93,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "anemone",
+        "group": "main",
+        "color": "#e9e3d8",
+        "transform": {
+          "anchor": {
+            "x": 353.8,
+            "y": 747
+          },
+          "angle": -6.1,
+          "height": 238.8,
+          "scale": 0.88,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "clematis",
+        "group": "main",
+        "color": "#a296c3",
+        "transform": {
+          "anchor": {
+            "x": 351.3,
+            "y": 747
+          },
+          "angle": -8.2,
+          "height": 392.7,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "iris",
+        "group": "main",
+        "color": "#9a9bc9",
+        "transform": {
+          "anchor": {
+            "x": 347.8,
+            "y": 747
+          },
+          "angle": 24.0,
+          "height": 371.4,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 43,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#b5a2cb",
+        "transform": {
+          "anchor": {
+            "x": 364.9,
+            "y": 747
+          },
+          "angle": -30.3,
+          "height": 286.3,
+          "scale": 0.85,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 44,
+        "materialId": "anemone",
+        "group": "main",
+        "color": "#e9e3d8",
+        "transform": {
+          "anchor": {
+            "x": 365.5,
+            "y": 747
+          },
+          "angle": 9.4,
+          "height": 455.8,
+          "scale": 0.87,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 45,
+        "materialId": "clematis",
+        "group": "main",
+        "color": "#a296c3",
+        "transform": {
+          "anchor": {
+            "x": 337.1,
+            "y": 747
+          },
+          "angle": 18.1,
+          "height": 251.1,
+          "scale": 0.95,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 46,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#b5a2cb",
+        "transform": {
+          "anchor": {
+            "x": 336.9,
+            "y": 747
+          },
+          "angle": -19.5,
+          "height": 346.8,
+          "scale": 0.89,
+          "mirrored": true
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}

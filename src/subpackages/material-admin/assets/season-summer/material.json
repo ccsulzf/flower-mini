@@ -1,0 +1,17 @@
+{
+  "id": "season-summer",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "夏雨清凉",
+  "introduction": "雨后浅石台带着少量水痕，边缘绿叶和细雨营造清凉夏日。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 80,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 850
+  }
+}

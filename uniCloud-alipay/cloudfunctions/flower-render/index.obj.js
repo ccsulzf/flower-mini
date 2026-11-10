@@ -1,4 +1,5 @@
 const fs = require('node:fs');
+const path = require('node:path');
 const resolveAuth = require('auth');
 const dailyFlower = require('daily-flower');
 const { createHash, randomBytes } = require('node:crypto');
@@ -8,7 +9,12 @@ let wasmReady;
 
 const workIdPattern = /^[a-f\d]{32}$/;
 const materialIdPattern = /^[a-z][a-z0-9-]{0,63}$/;
-const revisionPattern = /^[a-f\d]{16}$/;
+const maxRenderSvgLength = 8 * 1024 * 1024;
+const cardFontFamily = 'Ma Shan Zheng';
+const cardFontBuffer = new Uint8Array(fs.readFileSync(path.join(__dirname, 'fonts/MaShanZheng-Regular.ttf')));
+const artworkRenderVersion = 'foliage-clip-v1';
+const cardRenderVersion = 'ma-shan-zheng-card-v2';
+const materialListRenderVersion = 'flower-material-list-v8';
 
 function colorizeMaterialSvg(svg, color) {
   const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd';
@@ -28,32 +34,21 @@ function nested(source, x, y, width, height) {
     return source.replace(root, `<svg x="${x}" y="${y}" width="${width}" height="${height}" viewBox="${viewBox}" preserveAspectRatio="none">`);
 }
 
+function hasUnsafeSvgReference(source) {
+    return [...source.matchAll(/\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi)]
+        .some(([, doubleQuoted, singleQuoted, unquoted]) => !(doubleQuoted ?? singleQuoted ?? unquoted).startsWith('#'));
+}
+
 function safeSvg(source, name) {
     if (typeof source !== 'string' || source.length > 512 * 1024
         || !/^\s*<svg\b/i.test(source) || !/<\/svg>\s*$/i.test(source)
-        || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|\b(?:href|xlink:href)\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(source))
+        || hasUnsafeSvgReference(source)
+        || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(source))
         throw new Error(`${name}的云端 SVG 无效`);
     return source;
 }
 
-function backgroundColor(name) {
-    return { warm: '#f4efe5', sage: '#e7eadf', cocoa: '#e8ded3', mist: '#edf0ed', blush: '#f2e4e3', sand: '#eee6d6' }[name];
-}
-
-function builtInVase(name) {
-    if (name === '花束')
-        return '<g><path d="M180 615H520L350 890Z" fill="#ded5c5"/><path d="M205 643H490L350 878Z" fill="#f1e9d9"/><path d="M235 650H475L350 885Z" fill="#e8decb"/><path d="M292 778H408V798H292Z" fill="#c98b94"/></g>';
-    const round = name === '圆花器';
-    const glass = name === '玻璃瓶';
-    const left = round ? 260 : 280;
-    const top = round ? 765 : 735;
-    const width = round ? 180 : 140;
-    const height = round ? 140 : 170;
-    const opacity = glass ? ' opacity=".72"' : '';
-    return `<g><ellipse cx="350" cy="910" rx="109" ry="15" fill="#000" opacity=".12"/><path d="M${left + width * .18} ${top} C${left} ${top} ${left} ${top + height * .15} ${left} ${top + height * .42} C${left} ${top + height} ${left + width * .18} ${top + height} ${left + width * .5} ${top + height} C${left + width * .82} ${top + height} ${left + width} ${top + height} ${left + width} ${top + height * .42} C${left + width} ${top + height * .15} ${left + width * .82} ${top} ${left + width * .82} ${top} Z" fill="url(#vase)"${opacity}/><ellipse cx="350" cy="${top + 2}" rx="${round ? 45 : 70}" ry="7.5" fill="${glass ? '#78958b' : '#667568'}"${glass ? ' opacity=".2"' : ''}/><ellipse cx="${left + 30}" cy="${top + 81}" rx="4" ry="49" fill="#fff" opacity=".2"/></g>`;
-}
-
-function bouquetLayers(source, material) {
+function bouquetLayers(source) {
     const back = source.match(/<!-- bouquet-back:start -->([\s\S]*?)<!-- bouquet-back:end -->/)?.[1];
     const front = source.match(/<!-- bouquet-front:start -->([\s\S]*?)<!-- bouquet-front:end -->/)?.[1];
     if (back && front) {
@@ -63,20 +58,25 @@ function bouquetLayers(source, material) {
         const defs = source.match(/<defs>[\s\S]*?<\/defs>/i)?.[0] || '';
         return { back: `${root}${defs}${back}</svg>`, front: `${root}${defs}${front}</svg>` };
     }
-    const colors = Array.from(source.matchAll(/stop-color="(#[\da-f]{6})"/gi), match => match[1]);
-    const light = colors[0] || '#eee8d9';
-    const shade = colors[1] || '#c7beab';
-    const { width, height } = material.geometry;
-    const frontLayer = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"><g transform="scale(${width / 350} ${height / 290})">
-      <path d="M35 38Q95 112 164 210L181 254L115 213Q65 132 35 38Z" fill="${light}" stroke="${shade}" stroke-width=".6"/>
-      <path d="M320 47Q265 132 185 207L169 254L229 210Q279 135 320 47Z" fill="${shade}" stroke="${light}" stroke-width=".6"/>
-      <path d="M52 58Q110 154 173 243M301 67Q255 158 181 243" fill="none" stroke="${light}" stroke-width="1"/>
-      <path d="M164 232Q177 218 190 232L185 252Q200 267 202 286Q176 292 152 286Q153 267 168 251Z" fill="${light}" stroke="${shade}" stroke-width=".5"/>
-      <path d="M176 249C153 230 139 245 158 253Q169 256 176 249C189 228 214 240 196 252Q186 257 176 249Z" fill="${shade}"/>
-      <path d="M173 252L161 280L169 275L174 281L179 253M181 252L195 275L187 272L185 279L176 254" fill="${shade}"/>
-      <ellipse cx="177" cy="251" rx="5" ry="4" fill="${shade}"/>
-    </g></svg>`;
-    return { back: source, front: frontLayer };
+    throw new Error('花束素材缺少前后分层标记');
+}
+
+function clippedVaseSvg(source, id, geometry, y, height) {
+    const root = source.match(/<svg\b[^>]*>/i)?.[0];
+    if (!root)
+        throw new Error('花瓶 SVG 根节点缺失');
+    const content = source.slice(source.indexOf(root) + root.length).replace(/<\/svg>\s*$/i, '');
+    return `${root}<defs><clipPath id="${id}"><rect x="0" y="${y}" width="${geometry.width}" height="${height}" /></clipPath></defs><g clip-path="url(#${id})">${content}</g></svg>`;
+}
+
+function vaseLayers(source, material) {
+    const geometry = material.geometry;
+    const splitY = Math.max(0, Math.min(geometry.height, geometry.mouthY));
+    const id = material.id.replace(/[^a-z0-9_-]/gi, '-');
+    return {
+        back: clippedVaseSvg(source, `${id}-vase-back`, geometry, 0, splitY),
+        front: clippedVaseSvg(source, `${id}-vase-front`, geometry, splitY, geometry.height - splitY),
+    };
 }
 
 function vasePlacement(material) {
@@ -86,52 +86,65 @@ function vasePlacement(material) {
     return { x: 350 - geometry.mouthX, y: 747 - mouthY, width: geometry.width, height: geometry.height };
 }
 
-function backgroundOffset(background, vase, vaseName) {
+function backgroundOffset(background, vase) {
     if (!background || background.category !== 'background' || background.geometry?.surfaceY === undefined)
         return 0;
-    const bottom = vase
-        ? (() => { const placement = vasePlacement(vase); return placement.y + placement.height; })()
-        : vaseName === '花束' ? 915 : 905;
-    const surfaceY = ['scene-ivory-table', 'scene-sage-table'].includes(background.id)
-        ? 820 : background.geometry.surfaceY;
-    return surfaceY * 1000 / background.geometry.height - bottom;
+    const placement = vasePlacement(vase);
+    const bottom = placement.y + placement.height;
+    return background.geometry.surfaceY * 1000 / background.geometry.height - bottom;
 }
 
-function sceneBackgroundSource(material, source) {
-    if (source.includes('studio-background:v2'))
-        return source;
-    const marker = '<!-- studio-background:v2 -->';
-    if (material.id === 'scene-ivory-table') {
-        const grain = Array.from({ length: 12 }, (_, i) => `<path d="M0 ${835 + i * 14} C150 ${825 + i * 14} 380 ${850 + i * 14} 698 ${832 + i * 14}" fill="none" stroke="#9e7957" stroke-width="2" opacity="0.35"/>`).join('');
-        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000">${marker}<rect width="698" height="1000" fill="#eee7db"/><path d="M0 0 H698 V820 H0Z" fill="#f4efe5"/><path d="M0 0 H130 V820 H0Z" fill="#dcd2c2" opacity="0.45"/><path d="M130 0 V820" stroke="#c5b7a2" stroke-width="3"/><path d="M140 0 V820" stroke="#fffaf0" stroke-width="3"/><path d="M698 160 L430 250 L540 820 H698Z" fill="#fffaf0" opacity="0.65"/><rect y="820" width="698" height="180" fill="#c4a27e"/><path d="M0 820 H698" stroke="#a68462" stroke-width="5"/>${grain}<path d="M0 890 H698 M248 820 L230 1000" fill="none" stroke="#8e6d50" stroke-width="2" opacity="0.38"/></svg>`;
-    }
-    if (material.id === 'scene-sage-table')
-        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000">${marker}<rect width="698" height="1000" fill="#d5dfcc"/><path d="M0 0 H160 V820 H0Z" fill="#b9c9af" opacity="0.65"/><path d="M160 0 V820 M170 0 V820" stroke="#9daf92" stroke-width="2" opacity="0.55"/><path d="M170 560 H698 M170 570 H698" stroke="#9daf92" stroke-width="2" opacity="0.35"/><path d="M530 0 H698 V820 H630Z" fill="#eef1e4" opacity="0.7"/><rect y="820" width="698" height="180" fill="#b9baad"/><path d="M0 820 H698" stroke="#898e7d" stroke-width="5"/><path d="M0 860 C150 895 200 820 365 872 S590 890 698 850 M0 955 C160 925 290 994 480 950 S620 926 698 950" fill="none" stroke="#e5e6da" stroke-width="4" opacity="0.6"/><path d="M0 935 C200 902 320 976 698 914" fill="none" stroke="#929787" stroke-width="2" opacity="0.5"/></svg>`;
-    return source;
+const softLeft = new Set(['tulip', 'calla-lily', 'ranunculus', 'freesia', 'campanula', 'scabiosa', 'phalaenopsis']);
+const softRight = new Set(['gerbera', 'feather-gerbera', 'lisianthus', 'single-lisianthus', 'oncidium', 'dendrobium', 'astilbe']);
+const sturdy = new Set(['king-protea', 'hydrangea', 'sunflower', 'lotus', 'cotton', 'pincushion']);
+function naturalStemSource(source, id) {
+    let changed = 0;
+    return source.replace(/(<path\b[^>]*\bd=")([^"]+)(")/g, (whole, prefix, path, suffix) => {
+        if (changed >= 2) return whole;
+        const numbers = path.match(/^M([\d.]+) ([\d.]+)C([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)$/);
+        if (!numbers) return whole;
+        const [startX, startY, firstX, , secondX, , endX, endY] = numbers.slice(1).map(Number);
+        if (firstX === startX || startY > 1 || endY !== 260 || Math.abs(firstX - startX) > 8 || Math.abs(secondX - endX) > 8) return whole;
+        const offset = startX < 54 && id !== 'bird-of-paradise' ? -.4 : changed === 1 ? -.4 : 0;
+        let control1, control2;
+        if (softLeft.has(id)) { control1 = 18; control2 = 12; }
+        else if (softRight.has(id)) { control1 = 92; control2 = 99; }
+        else if (sturdy.has(id)) { control1 = 37; control2 = 35; }
+        else {
+            const right = [...id].reduce((sum, char) => sum + char.charCodeAt(0), 0) % 2 === 0;
+            control1 = right ? 83 : 25;
+            control2 = right ? 67 : 40;
+        }
+        changed++;
+        return `${prefix}M${startX} ${startY}C${control1 + offset} 76 ${control2 + offset} 180 ${endX} ${endY}${suffix}`;
+    });
+}
+function smoothStemTip(source) {
+    let matched = 0;
+    return source.replace(/(<path\b[^>]*\bd=")(M([\d.]+) ([\d.]+)C)([\d.]+)( [\d.]+ [\d.]+ [\d.]+ [\d.]+ 260")/g, (whole, prefix, start, x, y, _control, rest) => {
+        if (matched >= 2 || Number(y) > 1) return whole;
+        matched++;
+        return `${prefix}${start}${x}${rest}`;
+    });
+}
+function fitStemJoin(source, heightScale) {
+    if (!source.includes('<!-- continuous-stem-join -->')) return source;
+    return source.replace(/(<path\b[^>]*\bd="M)([\d.-]+) 0C([\d.-]+)( [\d.-]+)/g, (_whole, prefix, x, control, rest) => {
+        const fitted = Number((Number(x) + (Number(control) - Number(x)) * heightScale).toFixed(6));
+        return `${prefix}${x} 0C${fitted}${rest}`;
+    });
 }
 
-function builtInPlant(stem) {
-    const color = stem.color;
-    const bloom = stem.kind === 'tulip'
-        ? `<path d="M28 54Q26 17 43 27Q55 0 67 27Q84 17 82 54Q72 76 55 69Q38 76 28 54Z" fill="${color}"/>`
-        : stem.kind === 'daisy'
-            ? `<g>${Array.from({ length: 8 }, (_, i) => `<ellipse cx="55" cy="32" rx="8" ry="20" fill="${color}" transform="rotate(${i * 45} 55 55)"/>`).join('')}<circle cx="55" cy="55" r="11" fill="#d9a83f"/></g>`
-            : `<path d="M55 62C7 50 28 1 55 35C83 0 104 50 55 62Z" fill="${color}"/>`;
-    const leaf = stem.leafMode === 'with' ? '<path d="M55 185Q17 167 25 143Q45 145 55 185M55 225Q91 206 83 182Q64 184 55 225" fill="#849c81"/>' : '';
-    const scaleX = stem.mirrored ? -stem.flowerScale : stem.flowerScale;
-    return `<g transform="translate(${stem.x} 747) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-(stem.stemHeight + 55)})"><path d="M55 55Q52 170 55 ${stem.stemHeight + 55}" fill="none" stroke="#73835c" stroke-width="4"/>${leaf}<g transform="translate(0 ${stem.stemHeight})">${bloom}</g></g>`;
-}
-
-async function getMaterial(id, revision, cache) {
-    if (typeof id !== 'string' || !materialIdPattern.test(id) || typeof revision !== 'string' || !revisionPattern.test(revision))
+async function getMaterial(id, cache) {
+    if (typeof id !== 'string' || !materialIdPattern.test(id))
         throw new Error('作品中的云素材引用无效');
-    const key = `${id}:${revision}`;
+    const key = id;
     if (cache.has(key))
         return cache.get(key);
     const result = await uniCloud.database().collection('flower-material-assets').doc(id).get();
     const material = result.data?.[0];
-    if (!material || material.id !== id || material.revision !== revision)
-        throw new Error(`素材 ${id} 不存在或版本已变化`);
+    if (!material || material.id !== id)
+        throw new Error(`素材 ${id} 不存在`);
     cache.set(key, { ...material, sources: {} });
     return cache.get(key);
 }
@@ -149,101 +162,233 @@ async function materialSource(material, part) {
     return material.sources[part];
 }
 
-async function buildArtworkSvg(artwork) {
-    if (!artwork || typeof artwork !== 'object' || Array.isArray(artwork))
-        throw new Error('作品缺少有效的 artwork 数据');
-    if (artwork.version !== 2 || !Array.isArray(artwork.stems))
-        throw new Error('作品格式版本无效或花材列表缺失');
-    if (!['陶瓶', '玻璃瓶', '圆花器', '花束'].includes(artwork.vase))
-        throw new Error('作品花器类型无效');
-    if (!backgroundColor(artwork.background))
-        throw new Error('作品背景类型无效');
+async function buildArtworkSvg(artwork, { drawBackground = true } = {}) {
+    if (!artwork || typeof artwork !== 'object' || Array.isArray(artwork)
+        || !Array.isArray(artwork.materials)
+        || !materialIdPattern.test(artwork.background?.materialId || '')
+        || !materialIdPattern.test(artwork.container?.materialId || '')
+        || !['vase', 'bouquet'].includes(artwork.container?.type))
+        throw new Error('作品格式无效');
     const cache = new Map();
-    const cloudMaterials = new Map();
-    for (const stem of artwork.stems) {
-        if (!stem || !Number.isFinite(stem.x) || stem.x < 0 || stem.x > 698
-            || !Number.isFinite(stem.angle) || stem.angle < -65 || stem.angle > 65
-            || !Number.isFinite(stem.flowerScale) || stem.flowerScale < .65 || stem.flowerScale > 1.35
-            || !Number.isFinite(stem.stemHeight) || stem.stemHeight < 120 || stem.stemHeight > 620
-            || typeof stem.color !== 'string' || !/^#[\da-f]{6}$/i.test(stem.color))
+    const materialIds = new Set([
+        artwork.background.materialId,
+        artwork.container.materialId,
+    ]);
+    for (const instance of artwork.materials) {
+        const transform = instance?.transform;
+        if (!transform || !Number.isFinite(transform.anchor?.x) || transform.anchor.x < 0 || transform.anchor.x > 698
+            || !Number.isFinite(transform.anchor?.y) || transform.anchor.y < 0 || transform.anchor.y > 1000
+            || !Number.isFinite(transform.angle) || transform.angle < -65 || transform.angle > 65
+            || !Number.isFinite(transform.scale) || transform.scale < .65 || transform.scale > 1.35
+            || !Number.isFinite(transform.height) || transform.height < 120 || transform.height > 620
+            || typeof transform.mirrored !== 'boolean' || typeof instance.color !== 'string' || !/^#[\da-f]{6}$/i.test(instance.color)
+            || !materialIdPattern.test(instance.materialId || ''))
             throw new Error('作品花材数据无效');
-        if (stem.materialId) {
-            const material = await getMaterial(stem.materialId, stem.materialRevision, cache);
-            if (material.category !== 'flower')
-                throw new Error('作品引用的云端花材类型无效');
-            cloudMaterials.set(`${stem.materialId}:${stem.materialRevision}`, material);
-        }
+        materialIds.add(instance.materialId);
     }
-    let background = '';
-    let backgroundMaterial;
-    if (artwork.backgroundMaterialId) {
-        backgroundMaterial = await getMaterial(artwork.backgroundMaterialId, artwork.backgroundMaterialRevision, cache);
-        if (backgroundMaterial.category !== 'background')
-            throw new Error('作品引用的云端背景类型无效');
-        const source = await materialSource(backgroundMaterial, 'background');
-        background = nested(sceneBackgroundSource(backgroundMaterial, source), 0, 0, 698, 1000);
+    await Promise.all([...materialIds].map(id => getMaterial(id, cache)));
+    const cloudMaterials = new Map();
+    for (const instance of artwork.materials) {
+        const material = cache.get(instance.materialId);
+        if (material.category !== 'flower' || material.group !== instance.group)
+            throw new Error('作品引用的云端花材类型无效');
+        cloudMaterials.set(instance.materialId, material);
     }
-    let vaseMaterial;
-    if (artwork.vaseMaterialId)
-        vaseMaterial = await getMaterial(artwork.vaseMaterialId, artwork.vaseMaterialRevision, cache);
-    const anchorOffset = backgroundOffset(backgroundMaterial, vaseMaterial, artwork.vase);
-    const anchorY = artwork.vase === '圆花器' ? 777 : 747;
-    const stems = [];
-    for (const stem of artwork.stems) {
-        if (!stem.materialId) {
-            stems.push(builtInPlant(stem));
-            continue;
-        }
-        const material = cloudMaterials.get(`${stem.materialId}:${stem.materialRevision}`);
+    const backgroundMaterial = cache.get(artwork.background.materialId);
+    if (backgroundMaterial.category !== 'background')
+        throw new Error('作品引用的云端背景类型无效');
+    const vaseMaterial = cache.get(artwork.container.materialId);
+    if (vaseMaterial.category !== artwork.container.type || !vaseMaterial.geometry)
+        throw new Error('作品引用的云端花器无效');
+    const vasePart = vaseMaterial.category === 'bouquet' ? 'bouquet' : 'vase';
+    const requiredSources = [
+        [backgroundMaterial, 'background'],
+        [vaseMaterial, vasePart],
+    ];
+    for (const material of cloudMaterials.values()) {
         if (!material.geometry)
             throw new Error('云端花材几何信息缺失');
-        const total = stem.stemHeight + 55;
+        if (material.group === 'foliage')
+            requiredSources.push([material, 'foliage']);
+        else
+            requiredSources.push([material, 'flower'], [material, 'stemWithoutLeaves']);
+    }
+    await Promise.all(requiredSources.map(([material, part]) => materialSource(material, part)));
+    const background = drawBackground ? nested(backgroundMaterial.sources.background, 0, 0, 698, 1000) : '';
+    const anchorOffset = backgroundOffset(backgroundMaterial, vaseMaterial);
+    const renderedMaterials = [];
+    for (const instance of artwork.materials) {
+        const material = cloudMaterials.get(instance.materialId);
+        const { anchor, angle, height, scale, mirrored } = instance.transform;
+        const total = height + 55;
+        const scaleX = mirrored ? -scale : scale;
         if (material.group === 'foliage') {
-            const source = (await materialSource(material, 'foliage')).replace(/__COLOR__/g, stem.color);
-            const scaleX = stem.mirrored ? -stem.flowerScale : stem.flowerScale;
-            stems.push(`<g transform="translate(${stem.x} ${anchorY}) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-total})">${nested(source, 0, 0, 110, total)}</g>`);
+            const source = material.sources.foliage.replace(/__COLOR__/g, instance.color);
+            const viewBox = source.match(/<svg\b[^>]*\bviewBox\s*=\s*["']([^"']+)["']/)?.[1];
+            const box = viewBox?.trim().split(/[\s,]+/).map(Number);
+            if (!box || box.length !== 4 || box.some(value => !Number.isFinite(value)) || box[2] <= 0 || box[3] <= 0)
+                throw new Error('叶材素材 viewBox 无效');
+            const naturalHeight = box[3] * 110 / box[2];
+            const extension = total > naturalHeight
+                ? `<path d="M55 ${naturalHeight}L55 ${total}" fill="none" stroke="${instance.color}" stroke-width="1.6" stroke-linecap="round" opacity=".82"/>`
+                : '';
+            // 保留叶材视口，裁掉缩短后超出瓶口端的叶片与枝条，与客户端预览一致。
+            const foliage = `<svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="110" height="${total}" viewBox="0 0 110 ${total}" overflow="hidden">${extension}${nested(source, 0, 0, 110, naturalHeight)}</svg>`;
+            renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${foliage}</g>`);
             continue;
         }
-        const flower = colorizeMaterialSvg(await materialSource(material, 'flower'), stem.color);
-        const stemPart = stem.leafMode === 'with' ? 'stemWithLeaves' : 'stemWithoutLeaves';
-        const stemSource = await materialSource(material, stemPart);
+        const flower = colorizeMaterialSvg(material.sources.flower, instance.color);
+        const stemSource = material.sources.stemWithoutLeaves;
         const geometry = material.geometry;
         const headHeight = geometry.flowerHeight * 110 / geometry.width;
+        const connection = geometry.connectionY * 110 / geometry.width;
         const headTop = 55 - headHeight / 2;
-        const join = Math.max(headTop, headTop + geometry.connectionY * 110 / geometry.width - 8);
-        const scaleX = stem.mirrored ? -stem.flowerScale : stem.flowerScale;
-        stems.push(`<g transform="translate(${stem.x} ${anchorY}) rotate(${stem.angle}) scale(${scaleX} ${stem.flowerScale}) translate(-55 ${-total})">${nested(stemSource, 0, join, 110, total - join)}${nested(flower, 0, headTop, 110, headHeight)}</g>`);
+        const overlap = stemSource.includes('<!-- continuous-stem-join -->') ? 0 : 8;
+        const join = Math.max(headTop, headTop + (material.id === 'anemone' ? Math.min(connection, 84) : connection) - overlap);
+        const shapedStem = smoothStemTip(naturalStemSource(stemSource, material.id));
+        const fittedStem = fitStemJoin(shapedStem, (total - join) / geometry.stemHeight / (110 / geometry.width));
+        renderedMaterials.push(`<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${scaleX} ${scale}) translate(-55 ${-total})">${nested(fittedStem, 0, join, 110, total - join)}${nested(flower, 0, headTop, 110, headHeight)}</g>`);
     }
+    const source = vaseMaterial.sources[vasePart];
+    const placement = vasePlacement(vaseMaterial);
     let vaseBack = '';
-    let vaseFront = builtInVase(artwork.vase);
-    if (vaseMaterial) {
-        if (!['vase', 'bouquet'].includes(vaseMaterial.category) || !vaseMaterial.geometry)
-            throw new Error('作品引用的云端花器无效');
-        const part = vaseMaterial.category === 'bouquet' ? 'bouquet' : 'vase';
-        const source = await materialSource(vaseMaterial, part);
-        const placement = vasePlacement(vaseMaterial);
-        if (vaseMaterial.category === 'bouquet') {
-            const layers = bouquetLayers(source, vaseMaterial);
-            vaseBack = nested(layers.back, placement.x, placement.y, placement.width, placement.height);
-            vaseFront = nested(layers.front, placement.x, placement.y, placement.width, placement.height);
-        }
-        else {
-            vaseFront = nested(source, placement.x, placement.y, placement.width, placement.height);
-        }
+    let vaseFront;
+    if (vaseMaterial.category === 'bouquet') {
+        const layers = bouquetLayers(source);
+        vaseBack = nested(layers.back, placement.x, placement.y, placement.width, placement.height);
+        vaseFront = nested(layers.front, placement.x, placement.y, placement.width, placement.height);
     }
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><defs><linearGradient id="vase" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e6e2d7"/><stop offset=".58" stop-color="#dedacf"/><stop offset="1" stop-color="#cdc9bd"/></linearGradient></defs><rect width="698" height="1000" fill="${backgroundColor(artwork.background)}"/>${background}<g transform="translate(0 ${anchorOffset})">${vaseBack}${stems.join('')}${vaseFront}</g></svg>`;
+    else {
+        const layers = vaseLayers(source, vaseMaterial);
+        vaseBack = nested(layers.back, placement.x, placement.y, placement.width, placement.height);
+        vaseFront = nested(layers.front, placement.x, placement.y, placement.width, placement.height);
+    }
+    const paper = drawBackground ? '<rect width="698" height="1000" fill="#f6f3eb"/>' : '';
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000">${paper}${background}<g transform="translate(0 ${anchorOffset})">${vaseBack}${renderedMaterials.join('')}${vaseFront}</g></svg>`;
 }
 
-async function renderSvg(svg, cloudPath) {
+function escapeSvgText(value) {
+    return value.replace(/[&<>"']/g, character => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;',
+    })[character]);
+}
+
+function validateCardText(text) {
+    if (!text || typeof text !== 'object' || Array.isArray(text))
+        throw new Error('贺卡文字无效');
+    const recipient = typeof text.recipient === 'string' ? text.recipient.trim() : '';
+    const blessing = typeof text.blessing === 'string' ? text.blessing.trim() : '';
+    const signature = typeof text.signature === 'string' ? text.signature.trim() : '';
+    if (recipient.length > 24 || blessing.length > 120 || signature.length > 24)
+        throw new Error('贺卡文字超出长度限制');
+    return { recipient, blessing, signature };
+}
+
+function cardLines(blessing) {
+    const lines = [];
+    for (const paragraph of blessing.split('\n')) {
+        const characters = Array.from(paragraph);
+        if (!characters.length) {
+            lines.push('');
+            continue;
+        }
+        for (let offset = 0; offset < characters.length; offset += 20)
+            lines.push(characters.slice(offset, offset + 20).join(''));
+    }
+    return lines.slice(0, 6);
+}
+
+async function buildCardSvg(artwork, text) {
+    const bouquet = await buildArtworkSvg(artwork, { drawBackground: false });
+    const recipient = text.recipient
+        ? `<text x="69" y="128" font-family="${cardFontFamily}" font-size="26" fill="#565247">送给 ${escapeSvgText(text.recipient)}</text>` : '';
+    const lines = cardLines(text.blessing);
+    const blessing = lines.map((line, index) =>
+        `<tspan x="80" y="${1026 + index * 34}">${escapeSvgText(line)}</tspan>`).join('');
+    const signatureY = Math.max(1128, Math.min(1226, 1026 + lines.length * 34 + 34));
+    const signature = text.signature
+        ? `<text x="646" y="${signatureY}" text-anchor="end" font-family="${cardFontFamily}" font-size="25" fill="#625d50">—— ${escapeSvgText(text.signature)}</text>` : '';
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1260" viewBox="0 0 698 1260">
+      <rect width="698" height="1260" fill="#f8f2e6"/>
+      <rect x="16" y="17" width="663" height="1225" fill="none" stroke="#d5c5a6"/>
+      <rect x="26" y="27" width="645" height="1206" fill="none" stroke="#dfd1b8"/>
+      <rect x="284" y="48" width="130" height="36" fill="#e4e7da"/>
+      <text x="349" y="74" text-anchor="middle" font-family="${cardFontFamily}" font-size="23" fill="#64705b">花间寄语</text>
+      ${recipient}
+      ${nested(bouquet, 77, 140, 544, 780)}
+      <path d="M69 970H629" stroke="#cdbb95"/>
+      <circle cx="349" cy="970" r="3.5" fill="#b99f71"/>
+      <text font-family="${cardFontFamily}" font-size="28" fill="#3f463d">${blessing}</text>
+      ${signature}
+    </svg>`;
+}
+
+async function buildMaterialListSvg(artwork) {
+    const validArtwork = dailyFlower.validateArtwork(artwork);
+    const bouquet = await buildArtworkSvg(validArtwork, { drawBackground: false });
+    const groups = [
+        { id: 'main', name: '主花', items: [] },
+        { id: 'filler', name: '配花', items: [] },
+        { id: 'foliage', name: '叶材', items: [] },
+    ];
+    const materialCache = new Map();
+    const counts = new Map();
+    for (const instance of validArtwork.materials) {
+        const key = instance.materialId;
+        const row = counts.get(key);
+        if (row) row.count++;
+        else counts.set(key, { id: key, group: instance.group, count: 1 });
+    }
+    for (const row of counts.values()) {
+        const material = await getMaterial(row.id, materialCache);
+        const group = groups.find(item => item.id === row.group);
+        if (!group) throw new Error('花材分类无效');
+        const thumbnailPart = row.group === 'foliage' ? 'foliage' : 'flower';
+        const thumbnailSource = await materialSource(material, thumbnailPart);
+        const thumbnail = row.group === 'foliage'
+            ? thumbnailSource.replace(/__COLOR__/g, validArtwork.materials.find(item => item.materialId === row.id).color)
+            : colorizeMaterialSvg(thumbnailSource, validArtwork.materials.find(item => item.materialId === row.id).color);
+        group.items.push({
+            name: typeof material.name === 'string' ? Array.from(material.name).slice(0, 9).join('') : '未命名花材',
+            count: row.count,
+            thumbnail,
+        });
+    }
+    const visibleGroups = groups.filter(group => group.items.length > 0);
+    const maxRows = Math.max(0, ...visibleGroups.map(group => group.items.length));
+    const height = Math.max(1150, 1060 + maxRows * 38);
+    if (height > 2000) throw new Error('花材种类较多，暂时无法生成分享图');
+    const columns = visibleGroups.map((group, index) => {
+        const x = 48 + (3 - visibleGroups.length) * 106 + index * 212;
+        const heading = `<text x="${x}" y="990" font-family="${cardFontFamily}" font-size="22" fill="#728066">${group.name}</text>`;
+        const rows = group.items.map((item, rowIndex) => {
+            const rowY = 1030 + rowIndex * 38;
+            const thumbnail = nested(item.thumbnail, x, rowY - 25, 30, 30);
+            return `${thumbnail}<text x="${x + 36}" y="${rowY}" font-family="${cardFontFamily}" font-size="18" fill="#514a40">${escapeSvgText(item.name)}</text><text x="${x + 178}" y="${rowY}" text-anchor="end" font-family="${cardFontFamily}" font-size="18" fill="#817665">× ${item.count}</text>`;
+        }).join('');
+        return `${heading}${rows}`;
+    }).join('') || `<text x="349" y="1030" text-anchor="middle" font-family="${cardFontFamily}" font-size="20" fill="#817665">这束花还没有添加花材</text>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="${height}" viewBox="0 0 698 ${height}">
+      <rect width="698" height="${height}" fill="#f8f2e6"/><rect x="16" y="17" width="663" height="${height - 34}" fill="none" stroke="#d5c5a6"/>
+      <rect x="278" y="30" width="142" height="38" fill="#e4e7da"/><text x="349" y="57" text-anchor="middle" font-family="${cardFontFamily}" font-size="23" fill="#64705b">花材清单</text>
+      ${nested(bouquet, 77, 78, 544, 780)}
+      <path d="M48 890H650" stroke="#cdbb95"/>
+      ${columns}
+    </svg>`;
+}
+
+async function renderSvg(svg, cloudPath, fontBuffers) {
     const startedAt = Date.now();
     const root = typeof svg === 'string' ? svg.match(/^\s*(<svg\b[^>]*>)/i)?.[1] : undefined;
     const width = root && Number(root.match(/\bwidth=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
     const height = root && Number(root.match(/\bheight=["'](\d+(?:\.\d+)?)["']/i)?.[1]);
-    if (typeof svg !== 'string' || svg.length > 1024 * 1024
+    if (typeof svg !== 'string' || svg.length > maxRenderSvgLength
         || !root || !/<\/svg>\s*$/i.test(svg)
-        || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|\b(?:href|xlink:href)\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(svg)
+        || hasUnsafeSvgReference(svg)
+        || /<!DOCTYPE|<!ENTITY|<script\b|<foreignObject\b|\bon\w+\s*=|@import|url\(\s*["']?(?!#)[^)]+\)/i.test(svg)
         || width !== 698 || !Number.isInteger(height) || height < 1000 || height > 2000)
         throw new Error('作品 SVG 无效或尺寸不符合要求');
+    const wasmStartedAt = Date.now();
     if (!wasmReady) {
         const wasmPath = require.resolve('@resvg/resvg-wasm/index_bg.wasm');
         wasmReady = initWasm(fs.readFileSync(wasmPath)).catch((error) => {
@@ -254,9 +399,13 @@ async function renderSvg(svg, cloudPath) {
         });
     }
     await wasmReady;
+    const wasmInitMs = Date.now() - wasmStartedAt;
+    const rasterizeStartedAt = Date.now();
     const renderer = new Resvg(svg, {
         fitTo: { mode: 'width', value: 1396 },
-        font: { loadSystemFonts: true },
+        font: fontBuffers
+            ? { fontBuffers, loadSystemFonts: false, defaultFontFamily: cardFontFamily }
+            : { loadSystemFonts: true },
     });
     let image;
     let png;
@@ -272,15 +421,21 @@ async function renderSvg(svg, cloudPath) {
         image?.free();
         renderer.free();
     }
+    const rasterizeMs = Date.now() - rasterizeStartedAt;
+    const uploadStartedAt = Date.now();
     const uploaded = await uniCloud.uploadFile({ cloudPath, fileContent: Buffer.from(png) });
     if (!uploaded?.fileID)
         throw new Error('云端图片上传失败');
+    const uploadMs = Date.now() - uploadStartedAt;
     return {
         width: renderedWidth,
         height: renderedHeight,
         fileID: uploaded.fileID,
         cloudPath,
         renderMs: Date.now() - startedAt,
+        wasmInitMs,
+        rasterizeMs,
+        uploadMs,
     };
 }
 
@@ -298,23 +453,71 @@ module.exports = {
             result.newToken = this.auth.newToken;
         return result;
     },
-    async renderWork({ workId, expectedRevision } = {}) {
-        if (typeof workId !== 'string' || !workIdPattern.test(workId) || !Number.isSafeInteger(expectedRevision) || expectedRevision < 1)
-            throw new Error('作品编号或版本无效');
+    async renderWork({ workId } = {}) {
+        const startedAt = Date.now();
+        if (typeof workId !== 'string' || !workIdPattern.test(workId))
+            throw new Error('作品编号无效');
         const query = await uniCloud.database().collection('flower-works')
             .where({ _id: workId, user_id: this.auth.uid }).limit(1).get();
         const work = query.data?.[0];
         if (!work)
             throw { errCode: 'WORK_NOT_FOUND', errMsg: '作品不存在或已删除' };
-        if (work.revision !== expectedRevision)
-            throw { errCode: 'WORK_CONFLICT', errMsg: '作品已更新，请刷新后重新生成图片' };
+        if (work.imageRevision === work.artworkRevision && typeof work.imageFileId === 'string'
+            && work.imageFileId.startsWith('cloud://') && typeof work.imagePath === 'string'
+            && work.imagePath.endsWith(`-${artworkRenderVersion}.png`)) {
+            return { width: 1396, height: 2000, fileID: work.imageFileId, cloudPath: work.imagePath,
+                cached: true, prepareMs: 0, renderMs: 0, wasmInitMs: 0, rasterizeMs: 0, uploadMs: 0,
+                totalMs: Date.now() - startedAt };
+        }
+        const prepareStartedAt = Date.now();
         const svg = await buildArtworkSvg(work.artwork);
+        const prepareMs = Date.now() - prepareStartedAt;
         const owner = createHash('sha256').update(this.auth.uid).digest('hex');
-        const cloudPath = `flower-works/${owner}/${workId}/artwork.png`;
+        const revision = work.artworkRevision || createHash('sha256').update(JSON.stringify(work.artwork)).digest('hex');
+        const cloudPath = `flower-works/${owner}/${workId}/artwork-${revision}-${artworkRenderVersion}.png`;
         const result = await renderSvg(svg, cloudPath);
-        return { ...result, workRevision: work.revision };
+        const updated = await uniCloud.database().collection('flower-works').where({
+            _id: workId, user_id: this.auth.uid, updatedAt: work.updatedAt,
+        }).update({ artworkRevision: revision, imageFileId: result.fileID, imagePath: result.cloudPath, imageRevision: revision });
+        if (updated.updated !== 1) {
+            await uniCloud.deleteFile({ fileList: [result.fileID] }).catch(() => {});
+            throw { errCode: 'WORK_CHANGED', errMsg: '作品已更新，请重新生成图片' };
+        }
+        if (work.imageFileId && work.imageFileId !== result.fileID
+            && work.imagePath?.startsWith(`flower-works/${owner}/${workId}/`))
+            await uniCloud.deleteFile({ fileList: [work.imageFileId] }).catch(() => {});
+        return { ...result, cached: false, prepareMs, totalMs: Date.now() - startedAt };
+    },
+    async renderCard({ artwork, text } = {}) {
+        const startedAt = Date.now();
+        const validArtwork = dailyFlower.validateArtwork(artwork);
+        const validText = validateCardText(text);
+        const prepareStartedAt = Date.now();
+        const svg = await buildCardSvg(validArtwork, validText);
+        const prepareMs = Date.now() - prepareStartedAt;
+        const owner = createHash('sha256').update(this.auth.uid).digest('hex');
+        const revision = createHash('sha256')
+            .update(cardRenderVersion)
+            .update(JSON.stringify([validArtwork, validText]))
+            .digest('hex');
+        const cloudPath = `flower-cards/${owner}/card-${revision}.png`;
+        const result = await renderSvg(svg, cloudPath, [cardFontBuffer]);
+        return { ...result, prepareMs, totalMs: Date.now() - startedAt };
+    },
+    async renderMaterialList({ artwork } = {}) {
+        const startedAt = Date.now();
+        const validArtwork = dailyFlower.validateArtwork(artwork);
+        const prepareStartedAt = Date.now();
+        const svg = await buildMaterialListSvg(validArtwork);
+        const prepareMs = Date.now() - prepareStartedAt;
+        const owner = createHash('sha256').update(this.auth.uid).digest('hex');
+        const revision = createHash('sha256').update(materialListRenderVersion).update(JSON.stringify(validArtwork)).digest('hex');
+        const cloudPath = `flower-material-lists/${owner}/list-${revision}.png`;
+        const result = await renderSvg(svg, cloudPath, [cardFontBuffer]);
+        return { ...result, prepareMs, totalMs: Date.now() - startedAt };
     },
     async renderDailyArtwork({ artwork, date } = {}) {
+        const startedAt = Date.now();
         const user = await uniCloud.database().collection('uni-id-users')
             .doc(this.auth.uid).field({ role: true }).get();
         const roles = user.data?.[0]?.role;
@@ -322,8 +525,11 @@ module.exports = {
             throw { errCode: 'ADMIN_REQUIRED', errMsg: '此账号没有每日插花维护权限' };
         const validDate = dailyFlower.validateDate(date);
         const validArtwork = dailyFlower.validateArtwork(artwork);
+        const prepareStartedAt = Date.now();
         const svg = await buildArtworkSvg(validArtwork);
+        const prepareMs = Date.now() - prepareStartedAt;
         const cloudPath = `daily-flower/${validDate}/render-${randomBytes(16).toString('hex')}.png`;
-        return renderSvg(svg, cloudPath);
+        const result = await renderSvg(svg, cloudPath);
+        return { ...result, prepareMs, totalMs: Date.now() - startedAt };
     },
 };

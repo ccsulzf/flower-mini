@@ -1,37 +1,63 @@
 import type { CachedMaterial, SvgPart, UploadedMaterial } from '@/models/material'
+
 function fs() {
-  if (typeof wx === 'undefined' || !wx.getFileSystemManager) throw new Error('当前平台不支持素材文件缓存')
+  if (typeof wx === 'undefined' || !wx.getFileSystemManager)
+    throw new Error('当前平台不支持素材文件缓存')
   return wx.getFileSystemManager()
 }
-async function read(path: string, hash: string) {
-  const info = await new Promise<WechatMiniprogram.GetFileInfoSuccessCallbackResult>((resolve, reject) => fs().getFileInfo({ filePath: path, digestAlgorithm: 'sha1', success: resolve, fail: reject }))
-  if (info.digest !== hash) throw new Error('素材内容校验失败')
+async function read(path: string, hash: string, verifyHash: boolean) {
+  if (verifyHash) {
+    const info = await new Promise<WechatMiniprogram.GetFileInfoSuccessCallbackResult>((resolve, reject) => fs().getFileInfo({ filePath: path, digestAlgorithm: 'sha1', success: resolve, fail: reject }))
+    if (info.digest !== hash)
+      throw new Error('素材内容校验失败')
+  }
   const result = await new Promise<WechatMiniprogram.ReadFileSuccessCallbackResult>((resolve, reject) => fs().readFile({ filePath: path, encoding: 'utf8', success: resolve, fail: reject }))
   const source = String(result.data)
-  if (source.length > 65536 || !/^\s*<svg\b/.test(source) || !/<\/svg>\s*$/.test(source) || /<script|<foreignObject|\bon\w+\s*=|\bhref\s*=|<!DOCTYPE|<!ENTITY/i.test(source)) throw new Error('SVG 内容无效')
+  const hasUnsafeReference = [...source.matchAll(/\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi)]
+    .some(([, doubleQuoted, singleQuoted, unquoted]) => !(doubleQuoted ?? singleQuoted ?? unquoted).startsWith('#'))
+  if (source.length > 65536 || !/^\s*<svg\b/.test(source) || !/<\/svg>\s*$/.test(source) || /<script|<foreignObject|\bon\w+\s*=|<!DOCTYPE|<!ENTITY/i.test(source) || hasUnsafeReference)
+    throw new Error('SVG 内容无效')
   return source
 }
-export async function prepareMaterial(record: UploadedMaterial) {
-  const paths: CachedMaterial['paths'] = {}, sources: CachedMaterial['sources'] = {}
-  let downloaded = 0, cached = 0
+export function hasMaterialFiles(record: UploadedMaterial) {
+  try {
+    for (const asset of Object.values(record.assets)) {
+      if (!asset)
+        continue
+      const path: unknown = uni.getStorageSync(`flower-material-file:${asset.hash}`)
+      if (typeof path !== 'string' || !path)
+        return false
+      fs().accessSync(path)
+    }
+    return true
+  }
+  catch {
+    return false
+  }
+}
+export async function prepareMaterial(record: UploadedMaterial, onAssetProcessed?: () => void, verifyCachedHash = true) {
+  const paths: CachedMaterial['paths'] = {}; const sources: CachedMaterial['sources'] = {}
+  let downloaded = 0; let cached = 0
   for (const key of Object.keys(record.assets) as SvgPart[]) {
     const asset = record.assets[key]!
-    const storageKey = `flower-material-file:v1:${asset.hash}`
+    const storageKey = `flower-material-file:${asset.hash}`
     const old: unknown = uni.getStorageSync(storageKey)
     if (typeof old === 'string') {
-      try { sources[key] = await read(old, asset.hash); paths[key] = old; cached++; continue }
+      try { sources[key] = await read(old, asset.hash, verifyCachedHash); paths[key] = old; cached++; onAssetProcessed?.(); continue }
       catch { uni.removeStorageSync(storageKey) }
     }
-    if (!asset.url || !/^https:\/\//.test(asset.url)) throw new Error('素材下载地址无效，请刷新目录')
+    if (!asset.url || !/^https:\/\//.test(asset.url))
+      throw new Error('素材下载地址无效，请刷新目录')
     const result = await new Promise<UniApp.DownloadSuccessData>((resolve, reject) => uni.downloadFile({ url: asset.url!, success: resolve, fail: reject }))
-    if (result.statusCode !== 200) throw new Error('素材下载失败')
-    sources[key] = await read(result.tempFilePath, asset.hash)
+    if (result.statusCode !== 200)
+      throw new Error('素材下载失败')
+    sources[key] = await read(result.tempFilePath, asset.hash, true)
     const saved = await new Promise<UniApp.SaveFileSuccess>((resolve, reject) => uni.saveFile({ tempFilePath: result.tempFilePath, success: resolve, fail: reject }))
     paths[key] = saved.savedFilePath
-    uni.setStorageSync(storageKey, saved.savedFilePath); downloaded++
+    uni.setStorageSync(storageKey, saved.savedFilePath); downloaded++; onAssetProcessed?.()
   }
   const material: CachedMaterial = { ...record, paths, sources }
-  uni.setStorageSync(`flower-material-record:v1:${record.id}:${record.revision}`, record)
+  uni.setStorageSync(`flower-material-record:${record.id}`, record)
   return { material, downloaded, cached }
 }
-export function cachedRecord(id: string, revision: string): unknown { return uni.getStorageSync(`flower-material-record:v1:${id}:${revision}`) }
+export function cachedRecord(id: string): unknown { return uni.getStorageSync(`flower-material-record:${id}`) }

@@ -1,34 +1,66 @@
 <script setup lang="ts">
+import type { Artwork } from '@/models/artwork'
+import type { StudioSelectionFilter } from '@/models/flower-studio'
+import type { CachedMaterial } from '@/models/material'
 import { computed } from 'vue'
-import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
-import { anchorY, type Artwork, artworkBackground, type Stem, type VaseName } from '@/utils/flower/artwork'
 import { backgroundOffset, backgroundSceneSource } from '@/utils/flower/background-render'
 import { svgImageSource } from '@/utils/flower/material-render'
 import FlowerInstance from './flower-stem.vue'
-import FlowerVase from './flower-vase.vue'
+import StudioContainer from './flower-vase.vue'
 
-const props = defineProps<{ background?: Artwork['background'], backgroundMaterialId?: string, backgroundMaterialRevision?: string, stems: Stem[], vase: VaseName, hideVase?: boolean, vaseMaterialId?: string, vaseMaterialRevision?: string }>()
-const catalog = useFlowerCatalogStore()
-const scene = computed(() => props.backgroundMaterialId && props.backgroundMaterialRevision ? catalog.get(props.backgroundMaterialId, props.backgroundMaterialRevision) : undefined)
-const backgroundSource = computed(() => scene.value?.sources.background ? svgImageSource(backgroundSceneSource(scene.value)) : '')
-const arrangementOffset = computed(() => backgroundOffset(scene.value, props.vaseMaterialId && props.vaseMaterialRevision ? catalog.get(props.vaseMaterialId, props.vaseMaterialRevision) : undefined, props.vase))
-const boardColor = computed(() => artworkBackground(props.background || 'warm'))
+const props = defineProps<{
+  artwork: Artwork
+  preparedMaterials: Record<string, CachedMaterial>
+  hideBackground?: boolean
+  hideContainer?: boolean
+  selectedId?: number | null
+  pickScope?: StudioSelectionFilter
+  pickMaterialId?: string | null
+}>()
+// 草稿可能先于素材恢复，仅挂载已准备好的花枝及其操作区域。
+const readyInstances = computed(() => props.artwork.materials.filter(instance => props.preparedMaterials[instance.materialId]?.category === 'flower'))
+const background = computed(() => props.preparedMaterials[props.artwork.background.materialId])
+const container = computed(() => props.preparedMaterials[props.artwork.container.materialId])
+const backgroundSource = computed(() => background.value?.sources.background ? svgImageSource(backgroundSceneSource(background.value)) : '')
+const arrangementOffset = computed(() => backgroundOffset(background.value, container.value))
+function isDimmed(instance: Artwork['materials'][number]) {
+  if (props.selectedId !== null && props.selectedId !== undefined)
+    return instance.id !== props.selectedId
+  if (props.pickMaterialId)
+    return instance.materialId !== props.pickMaterialId
+  if (props.pickScope === 'flowers')
+    return instance.group === 'foliage'
+  if (props.pickScope === 'foliage')
+    return instance.group !== 'foliage'
+  return false
+}
 </script>
 
 <template>
-  <view class="artwork-renderer" :style="{ backgroundColor: boardColor, width: `${studioMetrics.width}rpx`, height: `${studioMetrics.height}rpx` }">
-    <image v-if="backgroundSource" class="board-background" :src="backgroundSource" mode="scaleToFill" />
-    <view class="board-arrangement" :style="{ transform: `translateY(${arrangementOffset}rpx)` }">
-      <FlowerVase v-if="!hideVase" layer="back" :vase="vase" :material-id="vaseMaterialId" :revision="vaseMaterialRevision" />
-      <FlowerInstance v-for="stem in stems" :key="stem.id" :stem="stem" :anchor="anchorY(vase)" />
-      <FlowerVase v-if="!hideVase" :vase="vase" :material-id="vaseMaterialId" :revision="vaseMaterialRevision" />
+  <view
+    class="artwork-renderer" :class="{ 'artwork-renderer-transparent': hideBackground }"
+    :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`"
+  >
+    <image v-if="backgroundSource && !hideBackground" class="board-background" :src="backgroundSource" mode="scaleToFill" />
+    <view class="board-arrangement" :style="`transform:translateY(${arrangementOffset}px);`">
+      <StudioContainer v-if="container" class="board-container" :material="container" :hide-container="hideContainer">
+        <FlowerInstance
+          v-for="instance in readyInstances"
+          :key="instance.id"
+          :instance="instance"
+          :material="preparedMaterials[instance.materialId]"
+          :dimmed="isDimmed(instance)"
+        />
+      </StudioContainer>
     </view>
   </view>
 </template>
 
 <style scoped lang="scss">
-.artwork-renderer { position: relative; width: 698rpx; height: 1000rpx; overflow: hidden; }
+.artwork-renderer { position: relative; overflow: hidden; background: #f6f3eb; }
+.artwork-renderer-transparent { background: transparent; }
 .board-background { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .board-arrangement { position: absolute; inset: 0; }
+.board-container { position: absolute; inset: 0; width: 698px; height: 1000px; }
 </style>

@@ -4,8 +4,6 @@
     "id",
     "name",
     "group",
-    "version",
-    "revision",
     "colors",
     "assets"
   ],
@@ -25,20 +23,17 @@
     "group": {
       "bsonType": "string"
     },
+    "sortOrder": {
+      "bsonType": "double"
+    },
     "introduction": {
       "bsonType": "string"
     },
     "flowerMeaning": {
       "bsonType": "string"
     },
-    "revision": {
-      "bsonType": "string"
-    },
     "updatedBy": {
       "bsonType": "string"
-    },
-    "version": {
-      "bsonType": "int"
     },
     "updatedAt": {
       "bsonType": "long"
@@ -61,17 +56,6 @@
       "bsonType": "object",
       "properties": {
         "flower": {
-          "bsonType": "object",
-          "properties": {
-            "fileId": {
-              "bsonType": "string"
-            },
-            "hash": {
-              "bsonType": "string"
-            }
-          }
-        },
-        "stemWithLeaves": {
           "bsonType": "object",
           "properties": {
             "fileId": {
@@ -146,6 +130,13 @@
         "vase",
         "bouquet",
         "background"
+      ]
+    },
+    "backgroundKind": {
+      "bsonType": "string",
+      "enum": [
+        "solid",
+        "scene"
       ]
     },
     "geometry": {

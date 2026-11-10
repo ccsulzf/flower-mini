@@ -1,3 +1,77 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="calla-lily-petal-0" gradientUnits="userSpaceOnUse" x1="4" y1="4" x2="103" y2="103"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient></defs><g transform="rotate(11 55 102)">
-<path d="M55 103C43 87 16 49 26 24C31 11 50 18 60 12C74 4 89 10 87 27C83 48 60 54 55 103Z" fill="__COLOR__" stroke-opacity=".62" stroke="#9a9d87" stroke-width="0.6" /><path d="M55 103C43 87 16 49 26 24C31 11 50 18 60 12C74 4 89 10 87 27C83 48 60 54 55 103Z" fill="url(#calla-lily-petal-0)" opacity=".14"/><path d="M55 103C54 64 80 51 87 27C68 54 36 48 26 24C23 49 44 78 55 103Z" fill="#9ba68a" stroke="#819272" stroke-width="0" opacity=".23"/><path d="M55 89Q47 57 51 37Q54 29 56 38L59 68Z" fill="#d5bd72" stroke="#b9a76e" stroke-width="0.5" /><path d="M57 97Q58 66 81 36" fill="none" stroke="#fff4df" stroke-width="0.8" />
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- 保持原有的马蹄莲色彩过渡渐变 (__COLOR__ 动态自适应) -->
+    <linearGradient id="calla-lily-petal-0" gradientUnits="userSpaceOnUse" x1="10" y1="10" x2="95" y2="95">
+      <stop offset="0" stop-color="#fff8e7"/>
+      <stop offset=".48" stop-color="__COLOR__"/>
+      <stop offset="1" stop-color="#68765b"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="rotate(11 55 102)">
+    <!-- ====== 1. 基部肉质粗壮花茎与紧裹花鞘 ====== -->
+    <path d="M55 105 Q54 96 53 88" fill="none" stroke="#68765b" stroke-width="2.2"/>
+
+    <!-- ====== 2. 佛焰苞深邃内壁 (Back Wall：展现深喉景深) ====== -->
+    <path d="M53 88 C40 68 30 45 35 22 C38 12 50 14 62 10 C76 6 88 15 85 32 C82 52 64 68 53 88 Z"
+          fill="__COLOR__" stroke="#9a9d87" stroke-width="0.5" stroke-opacity=".5"/>
+    <path d="M53 88 C40 68 30 45 35 22 C38 12 50 14 62 10 C76 6 88 15 85 32 C82 52 64 68 53 88 Z"
+          fill="url(#calla-lily-petal-0)" opacity=".22"/>
+
+    <!-- 花喉内部深邃幽暗阴影 (将金黄肉穗衬托出来) -->
+    <path d="M53 88 C46 72 40 54 44 42 C50 48 58 48 62 38 C60 55 58 72 53 88 Z"
+          fill="#4a553f" opacity="0.45"/>
+
+    <!-- ====== 3. 深嵌花喉的金黄肉穗花序 (Textured Spadix) ====== -->
+    <!-- 肉质圆柱体底色 (微微挺拔直立) -->
+    <path d="M51.5 75 C50.5 58 50 45 50.5 35 C51 31.5 54 31.5 54.5 35 C55 45 54.5 58 53.5 75 Z"
+          fill="#d5bd72" stroke="#b9a76e" stroke-width="0.45"/>
+    <!-- 肉穗受光圆柱微光弧 -->
+    <path d="M51.2 72 Q51.2 52 51.8 35" fill="none" stroke="#fff4df" stroke-width="0.45" opacity="0.6"/>
+    <!-- 密密匝匝的小两性花颗粒微纹 (点状肌理) -->
+    <g fill="#b9a76e" opacity="0.65">
+      <circle cx="52.2" cy="38" r="0.35"/>
+      <circle cx="53.5" cy="42" r="0.35"/>
+      <circle cx="52.0" cy="46" r="0.35"/>
+      <circle cx="53.2" cy="50" r="0.35"/>
+      <circle cx="52.1" cy="54" r="0.35"/>
+      <circle cx="53.0" cy="58" r="0.35"/>
+      <circle cx="52.3" cy="62" r="0.35"/>
+    </g>
+
+    <!-- ====== 4. 外层优雅回旋搭裹的前襟与翻卷漏斗 (Forefront Wrap) ====== -->
+    <!-- 真实马蹄莲标志性的前襟搭折：自基部紧紧包裹，向上呈优美波状外翻 -->
+    <path d="M54 103
+             C47 88 34 66 31 46
+             C29 32 32 20 42 16
+             C52 12 59 16 64 10
+             C66 8 68 11 67 14
+             C63 26 55 42 50 62
+             C47 74 51 88 54 103 Z"
+          fill="__COLOR__" stroke="#9a9d87" stroke-width="0.55" stroke-linejoin="round"/>
+    <!-- 渐变层叠加 -->
+    <path d="M54 103 C47 88 34 66 31 46 C29 32 32 20 42 16 C52 12 59 16 64 10 C66 8 68 11 67 14 C63 26 55 42 50 62 C47 74 51 88 54 103 Z"
+          fill="url(#calla-lily-petal-0)" opacity=".18"/>
+
+    <!-- 右侧外卷翼瓣 (与左侧搭襟紧密嵌合) -->
+    <path d="M54 103 C60 88 74 72 82 52 C88 36 88 22 81 18 C74 15 67 18 64 10"
+          fill="none" stroke="#9a9d87" stroke-width="0.55" stroke-opacity=".5"/>
+
+    <!-- ====== 5. 白玉般温润的羊脂蜡质光泽与翻卷唇缘高光 ====== -->
+    <!-- 前襟腹部饱满圆润的受光面 (表现马蹄莲厚实多汁的胶质手感) -->
+    <path d="M52 96 C47 82 38 65 36 48 C34 35 38 24 45 20 C42 32 45 52 48 70 C49 80 51 90 52 96 Z"
+          fill="#fff8e7" opacity=".18"/>
+
+    <!-- 顶缘翻卷唇部高光脊线 (如行云流水般的 S 形外卷亮线) -->
+    <path d="M32 30 C34 20 44 14 55 14 C59 14 62 12 64 10 C66 8 67 12 66 16 C60 28 54 44 49 62"
+          fill="none" stroke="#fff4df" stroke-width="0.85" opacity="0.32"/>
+
+    <!-- 右外展翼唇外翻光线 -->
+    <path d="M64 10 C68 14 74 16 80 18 C86 20 86 32 82 48"
+          fill="none" stroke="#fff4df" stroke-width="0.65" opacity="0.3"/>
+
+    <!-- 前襟搭接缝隙处的立体微投影线 (增强前后叠衣般的层叠感) -->
+    <path d="M64 10 C62 24 55 42 50 62 C47 74 51 88 54 103"
+          fill="none" stroke="#5d6e53" stroke-width="0.45" opacity="0.4"/>
+  </g>
+</svg>

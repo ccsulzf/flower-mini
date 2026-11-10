@@ -9,17 +9,17 @@ export function validateCard(value: unknown): FlowerCardText {
 }
 export function validateDraft(value: unknown): CreationDraft {
   const draft = value as Partial<CreationDraft> | null
-  if (!draft || draft.version !== 1 || !Number.isFinite(draft.updatedAt) || (draft.updatedAt ?? -1) < 0
+  if (!draft || !Number.isFinite(draft.updatedAt) || (draft.updatedAt ?? -1) < 0
     || (draft.workId !== undefined && !/^[a-f\d]{32}$/.test(draft.workId))
-    || (draft.workRevision !== undefined && (!Number.isSafeInteger(draft.workRevision) || draft.workRevision < 1))) {
+    ) {
     throw new Error('恢复草稿格式无效')
   }
-  return { version: 1, artwork: parseArtwork(JSON.stringify(draft.artwork)), card: validateCard(draft.card), updatedAt: draft.updatedAt!, ...(draft.workId ? { workId: draft.workId, workRevision: draft.workRevision } : {}) }
+  return { artwork: parseArtwork(JSON.stringify(draft.artwork)), card: validateCard(draft.card), updatedAt: draft.updatedAt!, ...(draft.workId ? { workId: draft.workId } : {}) }
 }
 function key(owner: string) {
   if (!owner)
     throw new Error('请先登录后恢复创作')
-  return `flower-creation-draft:v1:${encodeURIComponent(owner)}`
+  return `flower-creation-draft:${encodeURIComponent(owner)}`
 }
 export function readDraft(owner: string): CreationDraft | null {
   try {

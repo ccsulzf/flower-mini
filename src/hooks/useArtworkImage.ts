@@ -5,13 +5,14 @@ import { renderCloudImage } from '@/utils/flower/cloud-image-renderer'
 import { readImageCache, removeCachedImage, writeImageCache } from '@/utils/flower/image-cache'
 
 type ImageKind = 'artwork' | 'card'
+const cardRenderVersion = 'editorial-bouquet-v2'
 
 // Ignore stale cloud render results after a page closes or a newer request replaces them.
 export function useArtworkImage(
   createSnapshot: () => Artwork,
   cacheScope: () => string = () => '',
-  getWorkIdentity: () => { id: string, revision: number } | undefined = () => undefined,
-  getExistingImagePath: () => string = () => '',
+  getWorkIdentity: () => { id: string } | undefined = () => undefined,
+  getExistingImagePath: () => string | Promise<string> = () => '',
 ) {
   const exportingImage = ref(false)
   const imagePath = ref('')
@@ -47,17 +48,20 @@ export function useArtworkImage(
     cardImagePath.value = ''
     cardImageError.value = ''
   }
-  function workIdentity() {
+  function workIdentity(overrideId?: string) {
+    if (overrideId && /^[a-f\d]{32}$/.test(overrideId))
+      return { id: overrideId }
     const identity = getWorkIdentity()
-    if (!identity || !/^[a-f\d]{32}$/.test(identity.id) || !Number.isSafeInteger(identity.revision) || identity.revision < 1)
+    if (!identity || !/^[a-f\d]{32}$/.test(identity.id))
       throw new Error('请先保存作品，再生成图片')
     return identity
   }
-  async function exportImage(): Promise<boolean> {
+  async function exportImage(workId?: string): Promise<boolean> {
     if (exportingImage.value)
       return false
     const epoch = generation
     const request = ++artworkRequest
+    const current = () => epoch === generation && request === artworkRequest
     const artwork = createSnapshot()
     const signature = JSON.stringify(artwork)
     const scope = cacheScope()
@@ -70,7 +74,9 @@ export function useArtworkImage(
       imageError.value = ''
       return true
     }
-    const existingPath = getExistingImagePath()
+    const existingPath = await getExistingImagePath()
+    if (!current())
+      return false
     if (existingPath) {
       artworkRequest++
       imagePath.value = existingPath
@@ -78,13 +84,12 @@ export function useArtworkImage(
       imageError.value = ''
       return true
     }
-    const current = () => epoch === generation && request === artworkRequest
     exportingImage.value = true
     imagePath.value = ''
     imageError.value = ''
     try {
-      const identity = workIdentity()
-      const path = await renderCloudImage(identity.id, identity.revision)
+      const identity = workIdentity(workId)
+      const path = await renderCloudImage(identity.id)
       if (!current()) {
         removeCachedImage(path)
         return false
@@ -110,7 +115,7 @@ export function useArtworkImage(
     const signature = JSON.stringify(createSnapshot())
     const card = { ...text }
     const scope = cacheScope()
-    const cacheKey = `${scope ? `${scope}:` : ''}card:${JSON.stringify([signature, card])}`
+    const cacheKey = `${scope ? `${scope}:` : ''}card:${JSON.stringify([cardRenderVersion, signature, card])}`
     const cached = readImageCache(cacheKey)
     if (cached) {
       cardRequest++
@@ -200,5 +205,25 @@ export function useArtworkImage(
     if (path)
       uni.previewImage({ urls: [path], current: path })
   }
-  return { exportingImage, imagePath, imageError, exportingCard, cardImagePath, cardImageError, exportImage, exportCard, invalidate, saveImage, shareImage, previewImage }
+  function setCardImagePath(path: string) {
+    cardRequest++
+    exportingCard.value = false
+    cardImagePath.value = path
+    cardImageError.value = ''
+  }
+  return {
+    exportingImage,
+    imagePath,
+    imageError,
+    exportingCard,
+    cardImagePath,
+    cardImageError,
+    exportImage,
+    exportCard,
+    invalidate,
+    saveImage,
+    shareImage,
+    previewImage,
+    setCardImagePath,
+  }
 }

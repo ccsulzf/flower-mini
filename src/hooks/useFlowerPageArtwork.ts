@@ -2,14 +2,15 @@ import type { CreationDraft } from '@/models/flower-creation'
 import { onLoad, onUnload } from '@dcloudio/uni-app'
 import { getCurrentInstance, ref } from 'vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
-import { useUserInfoStore } from '@/stores/userInfoStore'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
+import { useUserInfoStore } from '@/stores/userInfoStore'
 import { validateDraft } from '@/utils/flower/creation-storage'
 import { useArtworkImage } from './useArtworkImage'
 
 export interface FlowerPageDailyInput {
   draft: CreationDraft
-  imagePath: string
+  imagePath?: string
+  resolveImagePath?: () => Promise<string>
   title: string
   description: string
 }
@@ -29,14 +30,20 @@ export function useFlowerPageArtwork(options: {
   let workId = ''
   let dailyFlowerDate = ''
   let existingArtworkImagePath = ''
+  let existingArtworkImageResolver: (() => Promise<string>) | undefined
   let imageScope = ''
+  async function resolveExistingArtworkImage() {
+    if (!existingArtworkImagePath && existingArtworkImageResolver)
+      existingArtworkImagePath = await existingArtworkImageResolver()
+    return existingArtworkImagePath
+  }
   const images = useArtworkImage(() => {
     if (!draft.value)
       throw new Error('作品尚未准备好')
     return draft.value.artwork
-  }, () => workId ? `work:${workId}` : imageScope, () => workId && draft.value?.workRevision
-    ? { id: workId, revision: draft.value.workRevision }
-    : undefined, () => existingArtworkImagePath)
+  }, () => workId ? `work:${workId}` : imageScope, () => workId
+    ? { id: workId }
+    : undefined, resolveExistingArtworkImage)
   const userInfo = useUserInfoStore()
   function channel() {
     return (instance?.proxy as unknown as { getOpenerEventChannel?: () => UniApp.EventChannel })?.getOpenerEventChannel?.()
@@ -54,7 +61,8 @@ export function useFlowerPageArtwork(options: {
       draft.value = validateDraft(value.draft)
       title.value = value.title
       description.value = value.description
-      existingArtworkImagePath = value.imagePath
+      existingArtworkImagePath = value.imagePath || ''
+      existingArtworkImageResolver = value.resolveImagePath
       imageScope = `daily:${date}`
     }
     catch (value) {
@@ -87,8 +95,12 @@ export function useFlowerPageArtwork(options: {
       if (!catalog.loaded)
         await catalog.load()
       const art = draft.value.artwork
-      const refs = [...art.stems.filter(row => row.materialId).map(row => [row.materialId!, row.materialRevision!]), ...(art.vaseMaterialId ? [[art.vaseMaterialId, art.vaseMaterialRevision!]] : []), ...(art.backgroundMaterialId ? [[art.backgroundMaterialId, art.backgroundMaterialRevision!]] : [])]
-      await Promise.all(refs.map(([id, revision]) => catalog.ensure(id, revision)))
+      const refs = [
+        ...art.materials.map(row => row.materialId),
+        art.container.materialId,
+        art.background.materialId,
+      ]
+      await Promise.all(refs.map(id => catalog.ensure(id)))
     }
     catch (value) {
       if (alive)

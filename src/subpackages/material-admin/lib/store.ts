@@ -75,5 +75,13 @@ export const useMaterialAdminStore = defineStore('material-admin', () => {
       message.value = `${draft.name}已从云端删除，本地素材已保留`
     })
   }
-  return { remote, busy, error, message, batchProgress, uploadFailures, refresh, upload, uploadAll, remove }
+  async function removeAllBouquets() {
+    await run(async () => {
+      const cloud = uniCloud.importObject('flower-material-admin', { customUI: true })
+      const result = await cloud.removeAllBouquets()
+      if (remote.value) remote.value = remote.value.filter(item => item.category !== 'bouquet')
+      message.value = `已删除 ${result.removed} 项云端花束包装记录和 ${result.filesDeleted} 个云端文件${result.failures?.length ? `；${result.failures.length} 批文件清理失败` : ''}`
+    })
+  }
+  return { remote, busy, error, message, batchProgress, uploadFailures, refresh, upload, uploadAll, remove, removeAllBouquets }
 })

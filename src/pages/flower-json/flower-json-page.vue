@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { type Artwork, artworkBackground, parseArtwork } from '@/utils/flower/artwork'
+import { ref } from 'vue'
+import type { Artwork } from '@/utils/flower/artwork'
 import FlowerArtworkRenderer from '@/components/flower/flower-artwork-renderer.vue'
+import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
+import { parseArtwork } from '@/utils/flower/artwork'
 import { exampleJson } from './example'
 
 definePage({
@@ -12,9 +14,9 @@ definePage({
 const jsonInput = ref('')
 const artwork = ref<Artwork | null>(null)
 const error = ref('')
-const previewStyle = computed(() => `background-color:${artwork.value ? artworkBackground(artwork.value.background) : '#f6f3eb'};`)
+const catalog = useFlowerCatalogStore()
 
-function generate() {
+async function generate() {
   error.value = ''
   if (!jsonInput.value.trim()) {
     error.value = '请先粘贴花束 JSON，或填入示例'
@@ -22,7 +24,11 @@ function generate() {
   }
   try {
     // 全部校验通过后才替换预览；失败时保留上一束花。
-    artwork.value = parseArtwork(jsonInput.value)
+    const next = parseArtwork(jsonInput.value)
+    if (!catalog.loaded)
+      await catalog.load()
+    await Promise.all([...next.materials.map(item => item.materialId), next.container.materialId, next.background.materialId].map(id => catalog.ensure(id)))
+    artwork.value = next
   }
   catch (cause) {
     error.value = cause instanceof Error ? cause.message : '无法生成花束，请检查 JSON'
@@ -51,17 +57,17 @@ function fillExample() {
         placeholder="在这里粘贴 JSON…" :auto-height="false" :adjust-position="true"
         :disable-default-padding="true"
       />
-      <text class="input-hint">支持普通 JSON 和带转义的 JSON 字符串，最多 16 枝花材。</text>
+      <text class="input-hint">支持普通 JSON 和带转义的 JSON 字符串。</text>
       <text v-if="error" class="error-message">{{ error }}</text>
       <button class="generate-button" @click="generate">生成花束</button>
     </view>
     <view class="preview-heading">
       <text>花束预览</text>
-      <text v-if="artwork" class="stem-count">{{ artwork.stems.length }} 枝 · {{ artwork.vase }}</text>
+      <text v-if="artwork" class="stem-count">{{ artwork.materials.length }} 枝 · {{ artwork.container.type === 'bouquet' ? '花束' : '花瓶' }}</text>
     </view>
-    <view class="preview" :style="previewStyle">
+    <view class="preview">
       <view v-if="artwork" class="preview-board">
-        <FlowerArtworkRenderer :background="artwork.background" :stems="artwork.stems" :vase="artwork.vase" />
+        <FlowerArtworkRenderer :artwork="artwork" :prepared-materials="catalog.prepared" />
       </view>
       <view v-else class="preview-empty">
         <text>你的花束会出现在这里</text>

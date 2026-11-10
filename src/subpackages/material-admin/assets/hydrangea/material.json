@@ -5,7 +5,7 @@
   "group": "main",
   "introduction": "许多小花聚成圆润的大花球，适合作为花束中的主花，增加饱满感。",
   "flowerMeaning": "感恩与团聚（常见象征表达，仅供创作参考）",
-  "version": 6,
+  "version": 7,
   "colors": [
     {
       "name": "淡蓝",
@@ -28,6 +28,7 @@
     "width": 110,
     "flowerHeight": 110,
     "stemHeight": 260,
-    "connectionY": 94
-  }
+    "connectionY": 90
+  },
+  "sortOrder": 19
 }

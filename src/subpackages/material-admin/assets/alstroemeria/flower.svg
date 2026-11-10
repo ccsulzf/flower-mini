@@ -1,3 +1,108 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="alstroemeria-petal-0" gradientUnits="userSpaceOnUse" x1="-20" y1="-20" x2="13" y2="13"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="alstroemeria-petal-1" gradientUnits="userSpaceOnUse" x1="-25" y1="-25" x2="16" y2="16"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient></defs><g transform="rotate(5 55 104)">
-<path d="M55 105C55 85.6667 31 63 31 37" fill="none" stroke="#819272" stroke-width="0.85" /><g transform="translate(31 37) rotate(0.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(31 37) rotate(60.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(31 37) rotate(120.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(31 37) rotate(180.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(31 37) rotate(240.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(31 37) rotate(300.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><ellipse cx="31.00" cy="37.00" rx="3.52" ry="3.52" fill="#c3b579" /><g transform="translate(31 37) rotate(-38)"><path d="M-3.4 -5.0l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M-1.7 -5.7l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M0.0 -6.4l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M1.7 -7.1l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M3.4 -7.8l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /></g><g transform="translate(31 37) rotate(0)"><path d="M-3.4 -5.0l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M-1.7 -5.7l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M0.0 -6.4l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M1.7 -7.1l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M3.4 -7.8l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /></g><g transform="translate(31 37) rotate(38)"><path d="M-3.4 -5.0l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M-1.7 -5.7l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M0.0 -6.4l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M1.7 -7.1l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M3.4 -7.8l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /></g><path d="M55 105Q76 76 76 34" fill="none" stroke="#819272" stroke-width="0.85" /><g transform="translate(76 34) rotate(0.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(76 34) rotate(60.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(76 34) rotate(120.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(76 34) rotate(180.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(76 34) rotate(240.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(76 34) rotate(300.0)"><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-12.8 -3.2 -11.2 -20.0 0 -16C12.8 -20.0 12.8 -2.4 0 1Z" fill="url(#alstroemeria-petal-0)" opacity=".14"/><path d="M0 0Q-2.08 -8.0 0 -13.12" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><ellipse cx="76.00" cy="34.00" rx="3.52" ry="3.52" fill="#c3b579" /><g transform="translate(76 34) rotate(-38)"><path d="M-3.4 -5.0l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M-1.7 -5.7l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M0.0 -6.4l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M1.7 -7.1l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M3.4 -7.8l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /></g><g transform="translate(76 34) rotate(0)"><path d="M-3.4 -5.0l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M-1.7 -5.7l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M0.0 -6.4l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M1.7 -7.1l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M3.4 -7.8l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /></g><g transform="translate(76 34) rotate(38)"><path d="M-3.4 -5.0l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M-1.7 -5.7l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M0.0 -6.4l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M1.7 -7.1l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M3.4 -7.8l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /></g><path d="M55 105Q53 76 53 65" fill="none" stroke="#819272" stroke-width="0.85" /><g transform="translate(53 65) rotate(0.0)"><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="url(#alstroemeria-petal-1)" opacity=".14"/><path d="M0 0Q-2.6 -10.0 0 -16.4" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(53 65) rotate(60.0)"><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="url(#alstroemeria-petal-1)" opacity=".14"/><path d="M0 0Q-2.6 -10.0 0 -16.4" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(53 65) rotate(120.0)"><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="url(#alstroemeria-petal-1)" opacity=".14"/><path d="M0 0Q-2.6 -10.0 0 -16.4" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(53 65) rotate(180.0)"><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="url(#alstroemeria-petal-1)" opacity=".14"/><path d="M0 0Q-2.6 -10.0 0 -16.4" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(53 65) rotate(240.0)"><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="url(#alstroemeria-petal-1)" opacity=".14"/><path d="M0 0Q-2.6 -10.0 0 -16.4" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><g transform="translate(53 65) rotate(300.0)"><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8e827f" stroke-width="0.23" /><path d="M0 1C-16.0 -4.0 -14.0 -25.0 0 -20C16.0 -25.0 16.0 -3.0 0 1Z" fill="url(#alstroemeria-petal-1)" opacity=".14"/><path d="M0 0Q-2.6 -10.0 0 -16.4" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".45"/></g><ellipse cx="53.00" cy="65.00" rx="4.4" ry="4.4" fill="#c3b579" /><g transform="translate(53 65) rotate(-38)"><path d="M-3.4 -5.0l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M-1.7 -5.7l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M0.0 -6.4l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M1.7 -7.1l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M3.4 -7.8l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /></g><g transform="translate(53 65) rotate(0)"><path d="M-3.4 -5.0l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M-1.7 -5.7l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M0.0 -6.4l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M1.7 -7.1l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M3.4 -7.8l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /></g><g transform="translate(53 65) rotate(38)"><path d="M-3.4 -5.0l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M-1.7 -5.7l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M0.0 -6.4l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M1.7 -7.1l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /><path d="M3.4 -7.8l.4 -3" fill="none" stroke="#926e67" stroke-width="0.55" /></g>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <defs>
+    <!-- 保持原有的六出花花瓣专用色彩渐变与 __COLOR__ 替换点 -->
+    <linearGradient id="alstroemeria-petal-0" gradientUnits="userSpaceOnUse" x1="-15" y1="-15" x2="12" y2="12">
+      <stop offset="0" stop-color="#fff8e7"/>
+      <stop offset=".48" stop-color="__COLOR__"/>
+      <stop offset="1" stop-color="#68765b"/>
+    </linearGradient>
+    <linearGradient id="alstroemeria-petal-1" gradientUnits="userSpaceOnUse" x1="-18" y1="-18" x2="15" y2="15">
+      <stop offset="0" stop-color="#fff8e7"/>
+      <stop offset=".48" stop-color="__COLOR__"/>
+      <stop offset="1" stop-color="#68765b"/>
+    </linearGradient>
+
+    <!-- ====== 外轮舒展大花瓣组件 (Outer Tepal) ====== -->
+    <g id="outer-tepal">
+      <path d="M0 0.8 C-3.2 -3 -7.2 -7 -6.5 -13 C-5.8 -17.2 -2.2 -19.5 0 -21 C2.2 -19.5 5.8 -17.2 6.5 -13 C7.2 -7 3.2 -3 0 0.8 Z"
+            fill="__COLOR__" stroke="#8e827f" stroke-opacity=".62" stroke-width="0.25" stroke-linejoin="round"/>
+      <path d="M0 0.8 C-3.2 -3 -7.2 -7 -6.5 -13 C-5.8 -17.2 -2.2 -19.5 0 -21 C2.2 -19.5 5.8 -17.2 6.5 -13 C7.2 -7 3.2 -3 0 0.8 Z"
+            fill="url(#alstroemeria-petal-0)" opacity=".16"/>
+      <!-- 花瓣中脉立体微光 -->
+      <path d="M0 0 Q-0.6 -9 0 -17.5" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".5"/>
+    </g>
+
+    <!-- ====== 内轮带六出花专属斑纹的花瓣组件 (Inner Spotted Tepal) ====== -->
+    <g id="inner-spotted-tepal">
+      <path d="M0 0.8 C-2.6 -2.8 -5.6 -6.8 -5.0 -13.5 C-4.4 -17.8 -1.8 -20.2 0 -21.5 C1.8 -20.2 4.4 -17.8 5.0 -13.5 C5.6 -6.8 2.6 -2.8 0 0.8 Z"
+            fill="__COLOR__" stroke="#8e827f" stroke-opacity=".62" stroke-width="0.25" stroke-linejoin="round"/>
+      <path d="M0 0.8 C-2.6 -2.8 -5.6 -6.8 -5.0 -13.5 C-4.4 -17.8 -1.8 -20.2 0 -21.5 C1.8 -20.2 4.4 -17.8 5.0 -13.5 C5.6 -6.8 2.6 -2.8 0 0.8 Z"
+            fill="url(#alstroemeria-petal-0)" opacity=".16"/>
+      <path d="M0 0 Q-0.5 -10 0 -18" fill="none" stroke="#fff4dd" stroke-width="0.45" stroke-opacity=".5"/>
+      <!-- 六出花标志性的天然羽状紫褐斑纹（#926e67） -->
+      <path d="M-2 -7 L-3.5 -8.5 M-1.6 -10.5 L-3.2 -12 M-1.2 -14 L-2.6 -15.5 M1.8 -7.5 L3.2 -9 M1.5 -11 L3.0 -12.5 M1.1 -14.2 L2.4 -15.6"
+            fill="none" stroke="#926e67" stroke-width="0.48" stroke-linecap="round"/>
+    </g>
+
+    <!-- ====== 花朵中心花蕊群 ====== -->
+    <g id="flower-center">
+      <ellipse cx="0" cy="0" rx="2.5" ry="2.5" fill="#c3b579"/>
+      <!-- 柔韧微弯的雄蕊花丝与微小花药 -->
+      <path d="M0 0 Q-1.8 -2 -2.6 -4 M0 0 Q0 -3 0.2 -4.8 M0 0 Q1.8 -2 2.6 -4 M0 0 Q-2 1 -3.4 1.8 M0 0 Q2 1 3.4 1.8"
+            fill="none" stroke="#926e67" stroke-width="0.35" stroke-linecap="round"/>
+      <circle cx="-2.6" cy="-4" r="0.55" fill="#c3b579"/>
+      <circle cx="0.2" cy="-4.8" r="0.55" fill="#c3b579"/>
+      <circle cx="2.6" cy="-4" r="0.55" fill="#c3b579"/>
+      <circle cx="-3.4" cy="1.8" r="0.5" fill="#c3b579"/>
+      <circle cx="3.4" cy="1.8" r="0.5" fill="#c3b579"/>
+    </g>
+  </defs>
+
+  <g transform="rotate(5 55 104)">
+    <!-- ====== 1. 自然花茎与狭长苞叶（#819272 体系） ====== -->
+    <!-- 左花主茎与细柔小叶 -->
+    <path d="M55 105 C55 85 32 63 31 37" fill="none" stroke="#819272" stroke-width="0.85" stroke-linecap="round"/>
+    <path d="M38 68 Q31 62 26 58 C32 63 36 67 37 70 Z" fill="#819272" opacity="0.85"/>
+
+    <!-- 右花主茎与细柔小叶 -->
+    <path d="M55 105 Q75 76 76 34" fill="none" stroke="#819272" stroke-width="0.85" stroke-linecap="round"/>
+    <path d="M68 65 Q74 58 79 53 C74 59 70 63 67 67 Z" fill="#819272" opacity="0.85"/>
+
+    <!-- 中部主花较短挺拔的承托茎 -->
+    <path d="M55 105 Q53 82 53 65" fill="none" stroke="#819272" stroke-width="0.9" stroke-linecap="round"/>
+
+    <!-- 花下小花托（消除悬空感） -->
+    <ellipse cx="31" cy="38" rx="1.6" ry="1.2" fill="#68765b"/>
+    <ellipse cx="76" cy="35" rx="1.6" ry="1.2" fill="#68765b"/>
+    <ellipse cx="53" cy="66" rx="2" ry="1.5" fill="#68765b"/>
+
+    <!-- ====== 2. 左上方六出花 (31, 37) ====== -->
+    <g transform="translate(31 37) scale(0.82) rotate(-8)">
+      <!-- 外轮大花瓣 (3枚，优雅舒展角度) -->
+      <use href="#outer-tepal" transform="rotate(-5)" />
+      <use href="#outer-tepal" transform="rotate(115)" />
+      <use href="#outer-tepal" transform="rotate(-125)" />
+      <!-- 内轮花瓣 (下瓣纯色，上方两瓣带有典型斑纹) -->
+      <use href="#outer-tepal" transform="scale(0.9) rotate(180)" />
+      <use href="#inner-spotted-tepal" transform="scale(0.92) rotate(55)" />
+      <use href="#inner-spotted-tepal" transform="scale(0.92) rotate(-65)" />
+      <use href="#flower-center" />
+    </g>
+
+    <!-- ====== 3. 右上方六出花 (76, 34) ====== -->
+    <g transform="translate(76 34) scale(0.82) rotate(12)">
+      <!-- 外轮大花瓣 -->
+      <use href="#outer-tepal" transform="rotate(5)" />
+      <use href="#outer-tepal" transform="rotate(125)" />
+      <use href="#outer-tepal" transform="rotate(-115)" />
+      <!-- 内轮花瓣 -->
+      <use href="#outer-tepal" transform="scale(0.9) rotate(180)" />
+      <use href="#inner-spotted-tepal" transform="scale(0.92) rotate(65)" />
+      <use href="#inner-spotted-tepal" transform="scale(0.92) rotate(-55)" />
+      <use href="#flower-center" />
+    </g>
+
+    <!-- ====== 4. 中部盛开主花 (53, 65) - 丰满饱满 ====== -->
+    <g transform="translate(53 65) scale(1.02) rotate(-2)">
+      <!-- 外轮大花瓣 -->
+      <use href="#outer-tepal" transform="rotate(0)" />
+      <use href="#outer-tepal" transform="rotate(118)" />
+      <use href="#outer-tepal" transform="rotate(-122)" />
+      <!-- 内轮花瓣 -->
+      <use href="#outer-tepal" transform="scale(0.92) rotate(178)" />
+      <use href="#inner-spotted-tepal" transform="scale(0.94) rotate(58)" />
+      <use href="#inner-spotted-tepal" transform="scale(0.94) rotate(-62)" />
+      <use href="#flower-center" transform="scale(1.15)" />
+    </g>
+  </g>
+</svg>

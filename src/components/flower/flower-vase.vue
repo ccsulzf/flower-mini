@@ -1,39 +1,38 @@
 <script setup lang="ts">
-import type { VaseName } from '@/utils/flower/artwork'
-import { computed, ref, watch } from 'vue'
-import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
-import { bouquetLayers, svgImageSource, vasePlacement } from '@/utils/flower/material-render'
-import FlowerBouquet from './flower-bouquet.vue'
-const props = defineProps<{ vase: VaseName, materialId?: string, revision?: string, layer?: 'back' | 'front' }>()
-const catalog = useFlowerCatalogStore()
-const material = computed(() => props.materialId && props.revision ? catalog.get(props.materialId, props.revision) : undefined)
-const imageFailed = ref(false)
-const source = computed(() => {
-  if (props.layer === 'back' && material.value?.category !== 'bouquet') return ''
-  if (material.value?.category === 'bouquet') return svgImageSource(bouquetLayers(material.value)[props.layer === 'back' ? 'back' : 'front'])
-  const svg = material.value?.sources.vase || material.value?.sources.bouquet
-  return svg ? svgImageSource(svg) : ''
-})
-watch(source, () => { imageFailed.value = false })
+import type { CachedMaterial } from '@/models/material'
+import { computed } from 'vue'
+import { bouquetLayers, svgImageSource, vaseLayers, vasePlacement } from '@/utils/flower/material-render'
+
+const props = defineProps<{ material: CachedMaterial, hideContainer?: boolean }>()
+const placement = computed(() => vasePlacement(props.material))
 const imageStyle = computed(() => {
-  if (!material.value) return ''
-  const p = vasePlacement(material.value)
-  return `position:absolute;left:${p.x}rpx;top:${p.y}rpx;width:${p.width}rpx;height:${p.height}rpx;pointer-events:none;`
+  const value = placement.value
+  return `position:absolute;left:${value.x}px;top:${value.y}px;width:${value.width}px;height:${value.height}px;pointer-events:none;`
 })
+const backImageStyle = computed(() => `${imageStyle.value}z-index:0;`)
+const frontImageStyle = computed(() => `${imageStyle.value}z-index:2;`)
+const vase = computed(() => props.material.category === 'vase' ? vaseLayers(props.material) : null)
+// Keep the complete vase as the base image. Some mini-program renderers drop an
+// SVG image when its entire contents are wrapped in a dynamic clipPath, which
+// made the default vase disappear before any flowers were added.
+const vaseBack = computed(() => props.material.category === 'vase' && props.material.sources.vase
+  ? svgImageSource(props.material.sources.vase)
+  : '')
+const vaseFront = computed(() => vase.value ? svgImageSource(vase.value.front) : '')
+const bouquet = computed(() => props.material.category === 'bouquet' ? bouquetLayers(props.material) : null)
+const bouquetBack = computed(() => bouquet.value ? svgImageSource(bouquet.value.back) : '')
+const bouquetFront = computed(() => bouquet.value ? svgImageSource(bouquet.value.front) : '')
 </script>
+
 <template>
-  <image v-if="materialId && source && !imageFailed" :src="source" :style="imageStyle" mode="scaleToFill" @error="imageFailed = true" />
-  <FlowerBouquet v-else-if="vase === '花束' && layer !== 'back'" />
-  <template v-else-if="layer !== 'back'">
-    <view class="studio-vase-shadow" />
-    <view class="studio-vase" :class="{ 'vase-glass': vase === '玻璃瓶', 'vase-round': vase === '圆花器' }"><view class="vase-mouth" /><view class="vase-light" /></view>
-  </template>
+  <view class="studio-container">
+    <image v-if="!hideContainer && (bouquetBack || vaseBack)" :src="bouquetBack || vaseBack" :style="backImageStyle" mode="scaleToFill" />
+    <slot />
+    <image v-if="!hideContainer && bouquetFront" :src="bouquetFront" :style="frontImageStyle" mode="scaleToFill" />
+    <image v-if="!hideContainer && vaseFront" :src="vaseFront" :style="frontImageStyle" mode="scaleToFill" />
+  </view>
 </template>
-<style scoped lang="scss">
-.studio-vase-shadow { position: absolute; left: 242rpx; top: 895rpx; width: 218rpx; height: 30rpx; border-radius: 50%; background: radial-gradient(ellipse, rgba(0,0,0,.22), transparent 70%); pointer-events: none; }
-.studio-vase { position: absolute; width: 140rpx; height: 170rpx; left: 280rpx; top: 735rpx; border-radius: 12% 12% 19% 19%; background: linear-gradient(100deg, #e6e2d7, #dedacf 58%, #cdc9bd); pointer-events: none; }
-.vase-mouth { position: absolute; left: 0; top: -6rpx; width: 100%; height: 17rpx; background: #667568; border: 3rpx solid #ece8dc; border-radius: 50%; box-sizing: border-box; }
-.vase-light { position: absolute; left: 19rpx; top: 25rpx; width: 5rpx; height: 102rpx; border-radius: 50%; background: #fff; opacity: .1; }
-.vase-glass { background: linear-gradient(90deg,rgba(126,164,158,.5),rgba(225,240,229,.25),rgba(121,158,151,.5)); border: 1rpx solid #a5bcb2; box-sizing: border-box; }.vase-glass .vase-mouth { background: rgba(120,149,139,.2); border-color: #cbd9cf; }
-.vase-round { width: 180rpx; height: 140rpx; left: 260rpx; top: 765rpx; border-radius: 42% 42% 45% 45%; background: linear-gradient(90deg,#bfa18f,#e5cbbc,#c4a18d); }.vase-round .vase-mouth { width: 90rpx; left: 45rpx; }
+
+<style scoped>
+.studio-container { position: absolute; top: 0; left: 0; width: 698px; height: 1000px; }
 </style>

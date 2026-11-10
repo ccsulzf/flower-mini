@@ -1,32 +1,90 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><g transform="rotate(2 55 94)">
-  <path d="M55 100L55 62" fill="none" stroke="#8d8160" stroke-width="1.1" />
-  <g transform="translate(55 48) scale(1)">
-  <path d="M0 28L-23 12L-16 4L-28 -10L-9 -6L0 -25L8 -7L28 -11L19 7L25 15Z" fill="#8c7253" stroke="#715f46" stroke-width=".6"/>
-  <ellipse cx="-12.00" cy="-4.00" rx="15.00" ry="19.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
-  <path d="M-20 1Q-26 -11 -15 -16" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
-  <ellipse cx="11.00" cy="-5.00" rx="16.00" ry="20.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
-  <path d="M3 0Q-3 -12 8 -17" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
-  <ellipse cx="0.00" cy="13.00" rx="17.00" ry="16.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
-  <path d="M-8 18Q-14 6 -3 1" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- ====== 真实三瓣棉花朵高精组件 (严格保留原版三瓣 + 五星枯壳结构) ====== -->
+    <g id="cotton-three-lobes">
+      <!-- 1. 真实干燥木质棉壳 (保留原版五裂星向，改用微卷木质弧线) -->
+      <path d="M0 27
+               C-8 18 -15 14 -24 13
+               C-17 8 -13 6 -16 3
+               C-21 -1 -28 -7 -28 -11
+               C-20 -9 -14 -7 -9 -6
+               C-5 -15 -2 -22 0 -26
+               C2 -22 5 -15 9 -6
+               C14 -7 20 -9 28 -11
+               C28 -7 21 -1 16 3
+               C13 6 17 8 24 13
+               C15 14 8 18 0 27 Z"
+            fill="#8c7253" stroke="#9c8667" stroke-width="0.55" stroke-linejoin="round"/>
+      <!-- 棉壳表面纵向干枯木纹微棱 -->
+      <path d="M0 -7 L0 -24 M-7 -4 L-24 -9 M7 -4 L24 -9 M-5 8 L-18 12 M5 8 L18 12"
+            fill="none" stroke="#5a4630" stroke-width="0.35" opacity="0.6"/>
+
+      <!-- 2. 【核心三瓣蓬松软棉团】 (彻底取代三个硬椭圆，呈云朵般饱满挤压) -->
+      <!-- 左上棉团 (原 -12, -4 位置) -->
+      <g>
+        <path d="M-1 -1
+                 C-5 -2 -12 -3 -18 -1
+                 C-26 2 -27 -13 -20 -19
+                 C-13 -25 -4 -20 0 -11
+                 C1 -6 0 -2 -1 -1 Z"
+              fill="__COLOR__" stroke="#c7bfac" stroke-width="0.5" stroke-linejoin="round"/>
+        <!-- 棉丝纤维柔和反光弧线 -->
+        <path d="M-20 0 C-26 -10 -16 -18 -12 -16" fill="none" stroke="#fffaf0" stroke-width="0.75" stroke-opacity=".38"/>
+        <path d="M-13 -3 Q-17 -9 -10 -11" fill="none" stroke="#fffaf0" stroke-width="0.4" stroke-opacity=".5"/>
+      </g>
+
+      <!-- 右上棉团 (原 11, -5 位置) -->
+      <g>
+        <path d="M1 -1
+                 C5 -2 12 -3 18 -1
+                 C26 2 27 -13 20 -19
+                 C13 -25 4 -20 0 -11
+                 C-1 -6 0 -2 1 -1 Z"
+              fill="__COLOR__" stroke="#c7bfac" stroke-width="0.5" stroke-linejoin="round"/>
+        <path d="M20 0 C26 -10 16 -18 12 -16" fill="none" stroke="#fffaf0" stroke-width="0.75" stroke-opacity=".38"/>
+        <path d="M13 -3 Q17 -9 10 -11" fill="none" stroke="#fffaf0" stroke-width="0.4" stroke-opacity=".5"/>
+      </g>
+
+      <!-- 前下正中大棉团 (原 0, 13 位置，向前饱满隆起覆盖接缝) -->
+      <g>
+        <path d="M-9 4
+                 C-17 6 -19 16 -13 24
+                 C-7 29 7 29 13 24
+                 C19 16 17 6 9 4
+                 C5 2 -5 2 -9 4 Z"
+              fill="__COLOR__" stroke="#c7bfac" stroke-width="0.5" stroke-linejoin="round"/>
+        <!-- 下棉瓣大弧度高光面 -->
+        <path d="M-9 20 C-14 10 -3 2 0 4 C3 2 14 10 9 20" fill="none" stroke="#fffaf0" stroke-width="0.75" stroke-opacity=".38"/>
+        <path d="M-6 24 Q0 27 6 24" fill="none" stroke="#fffaf0" stroke-width="0.5" stroke-opacity=".32"/>
+      </g>
+
+      <!-- 三瓣交汇中央的柔软微凹阴影窝 (赋予真实景深) -->
+      <circle cx="0" cy="2" r="2.2" fill="#9c8667" opacity="0.18"/>
+    </g>
+  </defs>
+
+  <g transform="rotate(2 55 94)">
+    <!-- ====== 1. 苍劲木质微曲花枝 (#8d8160，保留原有点位并修润微弧) ====== -->
+    <!-- 主干 (直通上方 55, 48 大棉花) -->
+    <path d="M55 101 C55 86 54.5 70 55 58" fill="none" stroke="#8d8160" stroke-width="1.25"/>
+    <!-- 左分枝 (通往 29, 76) -->
+    <path d="M55 88 Q40 86 29 82" fill="none" stroke="#8d8160" stroke-width="1.05"/>
+    <!-- 右分枝 (通往 81, 82) -->
+    <path d="M55 92 Q70 91 81 87" fill="none" stroke="#8d8160" stroke-width="1.0"/>
+
+    <!-- 分枝木质膨大果柄节疤 -->
+    <ellipse cx="55" cy="89" rx="1.5" ry="0.9" fill="#8d7d60"/>
+    <ellipse cx="55" cy="58" rx="1.6" ry="1.0" fill="#8d7d60"/>
+
+    <!-- ====== 2. 三朵完全对应原版位置与尺度的真品三瓣棉花 ====== -->
+
+    <!-- 【主花：中心盛放大棉花】 (55, 48) - 尺度 1.0，全幅焦点 -->
+    <use href="#cotton-three-lobes" transform="translate(55, 48) scale(1.0)"/>
+
+    <!-- 【左花：侧展微倾小棉花】 (29, 76) - 尺度 0.6，灵动呼应 -->
+    <use href="#cotton-three-lobes" transform="translate(29, 76) rotate(-8) scale(0.6)"/>
+
+    <!-- 【右花：灵巧小棉花】 (81, 82) - 尺度 0.52，构成完美三角景深 -->
+    <use href="#cotton-three-lobes" transform="translate(81, 82) rotate(10) scale(0.52)"/>
   </g>
-  <path d="M55 100L29 90" fill="none" stroke="#8d8160" stroke-width="1.1" />
-  <g transform="translate(29 76) scale(0.6)">
-  <path d="M0 28L-23 12L-16 4L-28 -10L-9 -6L0 -25L8 -7L28 -11L19 7L25 15Z" fill="#8c7253" stroke="#715f46" stroke-width=".6"/>
-  <ellipse cx="-12.00" cy="-4.00" rx="15.00" ry="19.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
-  <path d="M-20 1Q-26 -11 -15 -16" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
-  <ellipse cx="11.00" cy="-5.00" rx="16.00" ry="20.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
-  <path d="M3 0Q-3 -12 8 -17" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
-  <ellipse cx="0.00" cy="13.00" rx="17.00" ry="16.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
-  <path d="M-8 18Q-14 6 -3 1" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
-  </g>
-  <path d="M55 100L81 96" fill="none" stroke="#8d8160" stroke-width="1.1" />
-  <g transform="translate(81 82) scale(0.52)">
-  <path d="M0 28L-23 12L-16 4L-28 -10L-9 -6L0 -25L8 -7L28 -11L19 7L25 15Z" fill="#8c7253" stroke="#715f46" stroke-width=".6"/>
-  <ellipse cx="-12.00" cy="-4.00" rx="15.00" ry="19.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
-  <path d="M-20 1Q-26 -11 -15 -16" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
-  <ellipse cx="11.00" cy="-5.00" rx="16.00" ry="20.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
-  <path d="M3 0Q-3 -12 8 -17" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
-  <ellipse cx="0.00" cy="13.00" rx="17.00" ry="16.00" fill="__COLOR__" stroke="#c7bfac" stroke-width=".6"/>
-  <path d="M-8 18Q-14 6 -3 1" fill="none" stroke="#fffaf0" stroke-width="0.8" stroke-opacity=".65"/>
-  </g>
-</g></svg>
+</svg>

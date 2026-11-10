@@ -1,3 +1,117 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><defs><linearGradient id="dendrobium-petal-0" gradientUnits="userSpaceOnUse" x1="-25" y1="-25" x2="8" y2="8"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="dendrobium-petal-1" gradientUnits="userSpaceOnUse" x1="-27" y1="-27" x2="6" y2="6"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient><linearGradient id="dendrobium-petal-2" gradientUnits="userSpaceOnUse" x1="-20" y1="-20" x2="27" y2="27"><stop offset="0" stop-color="#fff8e7"/><stop offset=".48" stop-color="__COLOR__"/><stop offset="1" stop-color="#68765b"/></linearGradient></defs><g transform="rotate(-8 55 104)">
-<path d="M55 104C55 71.3333 58 39.3333 50 8" fill="none" stroke="#819272" stroke-width="0.9" /><path d="M55 25L49 17" fill="none" stroke="#819272" stroke-width="0.5" /><g transform="translate(49 17) rotate(-4) scale(0.5)"><g transform="rotate(0)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><g transform="rotate(120)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><g transform="rotate(240)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><path d="M0 0C-8 -20 -27 -17 -23 -4C-21 6 -7 6 0 0Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 0C-8 -20 -27 -17 -23 -4C-21 6 -7 6 0 0Z" fill="url(#dendrobium-petal-1)" opacity=".14"/><path d="M0 0Q-12 -9 -23 -9" fill="none" stroke="#eee5d9" stroke-width="0.65" opacity=".5"/><path d="M0 0C8 -20 27 -17 23 -4C21 6 7 6 0 0Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 0C8 -20 27 -17 23 -4C21 6 7 6 0 0Z" fill="url(#dendrobium-petal-2)" opacity=".14"/><path d="M0 0Q12 -9 23 -9" fill="none" stroke="#eee5d9" stroke-width="0.65" opacity=".5"/><path d="M-4 -1C-8 5 -11 8 -9 15Q0 25 9 15C11 8 8 5 4 -1Q0 5 -4 -1Z" fill="#ead8ca" stroke="#b393a0" stroke-width="0.4" /><path d="M-3 4Q0 11 3 4L3 12Q0 15 -3 12Z" fill="#b17791" stroke="#819272" stroke-width="0" /><ellipse cx="0.00" cy="-1.00" rx="2.4" ry="2.6" fill="#ded0a2" /></g><path d="M55 49L65 41" fill="none" stroke="#819272" stroke-width="0.5" /><g transform="translate(65 41) rotate(3) scale(0.57)"><g transform="rotate(0)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><g transform="rotate(120)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><g transform="rotate(240)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><path d="M0 0C-8 -20 -27 -17 -23 -4C-21 6 -7 6 0 0Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 0C-8 -20 -27 -17 -23 -4C-21 6 -7 6 0 0Z" fill="url(#dendrobium-petal-1)" opacity=".14"/><path d="M0 0Q-12 -9 -23 -9" fill="none" stroke="#eee5d9" stroke-width="0.65" opacity=".5"/><path d="M0 0C8 -20 27 -17 23 -4C21 6 7 6 0 0Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 0C8 -20 27 -17 23 -4C21 6 7 6 0 0Z" fill="url(#dendrobium-petal-2)" opacity=".14"/><path d="M0 0Q12 -9 23 -9" fill="none" stroke="#eee5d9" stroke-width="0.65" opacity=".5"/><path d="M-4 -1C-8 5 -11 8 -9 15Q0 25 9 15C11 8 8 5 4 -1Q0 5 -4 -1Z" fill="#ead8ca" stroke="#b393a0" stroke-width="0.4" /><path d="M-3 4Q0 11 3 4L3 12Q0 15 -3 12Z" fill="#b17791" stroke="#819272" stroke-width="0" /><ellipse cx="0.00" cy="-1.00" rx="2.4" ry="2.6" fill="#ded0a2" /></g><path d="M55 71L41 63" fill="none" stroke="#819272" stroke-width="0.5" /><g transform="translate(41 63) rotate(-2) scale(0.61)"><g transform="rotate(0)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><g transform="rotate(120)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><g transform="rotate(240)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><path d="M0 0C-8 -20 -27 -17 -23 -4C-21 6 -7 6 0 0Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 0C-8 -20 -27 -17 -23 -4C-21 6 -7 6 0 0Z" fill="url(#dendrobium-petal-1)" opacity=".14"/><path d="M0 0Q-12 -9 -23 -9" fill="none" stroke="#eee5d9" stroke-width="0.65" opacity=".5"/><path d="M0 0C8 -20 27 -17 23 -4C21 6 7 6 0 0Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 0C8 -20 27 -17 23 -4C21 6 7 6 0 0Z" fill="url(#dendrobium-petal-2)" opacity=".14"/><path d="M0 0Q12 -9 23 -9" fill="none" stroke="#eee5d9" stroke-width="0.65" opacity=".5"/><path d="M-4 -1C-8 5 -11 8 -9 15Q0 25 9 15C11 8 8 5 4 -1Q0 5 -4 -1Z" fill="#ead8ca" stroke="#b393a0" stroke-width="0.4" /><path d="M-3 4Q0 11 3 4L3 12Q0 15 -3 12Z" fill="#b17791" stroke="#819272" stroke-width="0" /><ellipse cx="0.00" cy="-1.00" rx="2.4" ry="2.6" fill="#ded0a2" /></g><path d="M55 93L67 85" fill="none" stroke="#819272" stroke-width="0.5" /><g transform="translate(67 85) rotate(4) scale(0.54)"><g transform="rotate(0)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><g transform="rotate(120)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><g transform="rotate(240)"><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 2C-8 -7 -7 -21 0 -25C7 -21 8 -7 0 2Z" fill="url(#dendrobium-petal-0)" opacity=".14"/><path d="M0 0Q-1 -12 0 -20" fill="none" stroke="#f2e8df" stroke-width="0.55" opacity=".6"/></g><path d="M0 0C-8 -20 -27 -17 -23 -4C-21 6 -7 6 0 0Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 0C-8 -20 -27 -17 -23 -4C-21 6 -7 6 0 0Z" fill="url(#dendrobium-petal-1)" opacity=".14"/><path d="M0 0Q-12 -9 -23 -9" fill="none" stroke="#eee5d9" stroke-width="0.65" opacity=".5"/><path d="M0 0C8 -20 27 -17 23 -4C21 6 7 6 0 0Z" fill="__COLOR__" stroke-opacity=".62" stroke="#a595a2" stroke-width="0.4" /><path d="M0 0C8 -20 27 -17 23 -4C21 6 7 6 0 0Z" fill="url(#dendrobium-petal-2)" opacity=".14"/><path d="M0 0Q12 -9 23 -9" fill="none" stroke="#eee5d9" stroke-width="0.65" opacity=".5"/><path d="M-4 -1C-8 5 -11 8 -9 15Q0 25 9 15C11 8 8 5 4 -1Q0 5 -4 -1Z" fill="#ead8ca" stroke="#b393a0" stroke-width="0.4" /><path d="M-3 4Q0 11 3 4L3 12Q0 15 -3 12Z" fill="#b17791" stroke="#819272" stroke-width="0" /><ellipse cx="0.00" cy="-1.00" rx="2.4" ry="2.6" fill="#ded0a2" /></g>
-</g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+  <defs>
+    <!-- 花瓣柔和通透的纵向反光（洁净无灰色） -->
+    <linearGradient id="dendro-shine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- 花瓣基部向外的嫩绿/奶油色自然透光 -->
+    <linearGradient id="dendro-trans" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#def2a7" stop-opacity="0.6"/>
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- 花苞青翠渐变 -->
+    <linearGradient id="dendro-bud" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#738f54"/>
+      <stop offset="50%" stop-color="#9fc272"/>
+      <stop offset="85%" stop-color="__COLOR__" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.5"/>
+    </linearGradient>
+
+    <!-- 1. 窄长萼片模版（中萼片、侧萼片） -->
+    <g id="dendro-sepal">
+      <path d="M0 0 C-3.5 -6 -4.8 -18 -0.5 -25 C0 -25.8 0 -25.8 0.5 -25 C4.8 -18 3.5 -6 0 0 Z" fill="__COLOR__"/>
+      <path d="M0 0 C-3.5 -6 -4.8 -18 -0.5 -25 C0 -25.8 0 -25.8 0.5 -25 C4.8 -18 3.5 -6 0 0 Z" fill="url(#dendro-trans)"/>
+      <path d="M0 0 C-3.5 -6 -4.8 -18 -0.5 -25 C0 -25.8 0 -25.8 0.5 -25 C4.8 -18 3.5 -6 0 0 Z" fill="url(#dendro-shine)"/>
+      <path d="M0 -2 C0 -10 0 -17 0 -23" fill="none" stroke="#ffffff" stroke-width="0.3" stroke-linecap="round" opacity="0.5"/>
+    </g>
+
+    <!-- 2. 宽大侧展花瓣模版（左右各一枚，波浪舒展） -->
+    <g id="dendro-petal">
+      <path d="M0 0 C-3.5 -2.5 -13.5 -10 -15 -17 C-16 -21.5 -12.5 -24 -7.5 -22 C-2 -19.5 -0.8 -9 0 0 Z" fill="__COLOR__"/>
+      <path d="M0 0 C-3.5 -2.5 -13.5 -10 -15 -17 C-16 -21.5 -12.5 -24 -7.5 -22 C-2 -19.5 -0.8 -9 0 0 Z" fill="url(#dendro-trans)"/>
+      <path d="M0 0 C-3.5 -2.5 -13.5 -10 -15 -17 C-16 -21.5 -12.5 -24 -7.5 -22 C-2 -19.5 -0.8 -9 0 0 Z" fill="url(#dendro-shine)"/>
+      <path d="M-1.5 -2 C-6 -8 -9 -14 -11 -18" fill="none" stroke="#ffffff" stroke-width="0.32" stroke-linecap="round" opacity="0.45"/>
+    </g>
+
+    <!-- 3. 完整的一朵石斛兰花模型 -->
+    <g id="dendro-flower">
+      <!-- (1) 背部三枚萼片：中萼片竖直向上，两枚侧萼片向下倾斜外展 -->
+      <use href="#dendro-sepal" transform="rotate(0)"/>
+      <use href="#dendro-sepal" transform="rotate(114) scale(0.92)"/>
+      <use href="#dendro-sepal" transform="rotate(-114) scale(0.92)"/>
+
+      <!-- (2) 前方两侧两枚主花瓣：宽阔舒展 -->
+      <use href="#dendro-petal" transform="scale(1, 1) rotate(42)"/>
+      <use href="#dendro-petal" transform="scale(-1, 1) rotate(42)"/>
+
+      <!-- (3) 核心特征：石斛兰漏斗状唇瓣（唇盘与唇边） -->
+      <g transform="translate(0, 0)">
+        <!-- 唇瓣外翻大兜裙边（饱满圆润、微卷边缘） -->
+        <path d="M-5 1 C-10 4 -12 11 -9 17 C-6 22.5 6 22.5 9 17 C12 11 10 4 5 1 Z" fill="__COLOR__"/>
+        <!-- 唇瓣边缘白透柔晕 -->
+        <path d="M-5 1 C-10 4 -12 11 -9 17 C-6 22.5 6 22.5 9 17 C12 11 10 4 5 1 Z" fill="url(#dendro-trans)"/>
+        <path d="M-5 1 C-10 4 -12 11 -9 17 C-6 22.5 6 22.5 9 17 C12 11 10 4 5 1 Z" fill="url(#dendro-shine)"/>
+
+        <!-- 喉部深色绒毛眼斑（石斛特征眼状斑点） -->
+        <path d="M-4 3 C-6 6 -6 10 -4 13 C-2 15 2 15 4 13 C6 10 6 6 4 3 Z" fill="#7a163c" opacity="0.82"/>
+        <!-- 喉心金黄/嫩黄亮点与导蜜纹 -->
+        <ellipse cx="0" cy="8" rx="2.2" ry="3.2" fill="#ffd53d" opacity="0.9"/>
+        <circle cx="0" cy="7.2" r="1.1" fill="#fff9b8"/>
+        <path d="M-2 11 C-1 12 1 12 2 11" fill="none" stroke="#9e1840" stroke-width="0.35"/>
+
+        <!-- 兰科特有的蕊柱（顶部象牙白小拱柱） -->
+        <path d="M-1.8 -2.5 C-1.8 -4 1.8 -4 1.8 -2.5 C1.8 -0.5 1.2 1.5 0 1.5 C-1.2 1.5 -1.8 -0.5 -1.8 -2.5 Z" fill="#fffae8"/>
+        <ellipse cx="0" cy="-2.5" rx="1.2" ry="0.8" fill="#e5df98"/>
+        <circle cx="0" cy="-2.6" r="0.45" fill="#ab9135"/>
+      </g>
+    </g>
+  </defs>
+
+  <g transform="rotate(-6 55 98)">
+    <!-- 1. 主花序轴（石斛兰标志性的竹节状微弧花梗，清秀挺拔） -->
+    <path d="M55 106 C55.5 76 56.5 42 47.5 7" fill="none" stroke="#68804e" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M54.5 106 C55 76 56 42 47 7" fill="none" stroke="#8fae6a" stroke-width="0.4" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- 竹节微突痕迹 -->
+    <line x1="53.8" y1="84" x2="56.2" y2="84.2" stroke="#52673d" stroke-width="0.7"/>
+    <line x1="54.2" y1="62" x2="56.6" y2="62.2" stroke="#52673d" stroke-width="0.7"/>
+    <line x1="53.5" y1="40" x2="55.8" y2="40.2" stroke="#52673d" stroke-width="0.7"/>
+
+    <!-- 2. 顶生嫩花苞（展现抽枝生机感） -->
+    <path d="M49 16 C46 13 41 12 37 9" fill="none" stroke="#68804e" stroke-width="0.55"/>
+    <ellipse cx="36" cy="8.5" rx="2.2" ry="4.5" transform="rotate(-48 36 8.5)" fill="url(#dendro-bud)"/>
+
+    <path d="M51 22 C53 19 58 17 62 14" fill="none" stroke="#68804e" stroke-width="0.55"/>
+    <ellipse cx="63.2" cy="13.5" rx="2.5" ry="5.2" transform="rotate(38 63.2 13.5)" fill="url(#dendro-bud)"/>
+
+    <!-- 3. 第 1 朵花（上部初绽花朵，小巧灵动，尺寸约 0.65） -->
+    <path d="M52.5 31 C49 27 42 26 38 23" fill="none" stroke="#68804e" stroke-width="0.65"/>
+    <g transform="translate(37, 22) scale(0.65) rotate(-14)">
+      <use href="#dendro-flower"/>
+    </g>
+
+    <!-- 4. 第 2 朵花（中上部侧展花，尺寸约 0.76） -->
+    <path d="M54.5 50 C58.5 45 66 44 71 39" fill="none" stroke="#68804e" stroke-width="0.7"/>
+    <g transform="translate(72, 38) scale(0.76) rotate(16)">
+      <use href="#dendro-flower"/>
+    </g>
+
+    <!-- 5. 第 3 朵花（中下部完全盛开花，尺寸约 0.88） -->
+    <path d="M55.2 70 C51 65 41 64 34 58" fill="none" stroke="#68804e" stroke-width="0.75"/>
+    <g transform="translate(33, 57) scale(0.88) rotate(-12)">
+      <use href="#dendro-flower"/>
+    </g>
+
+    <!-- 6. 第 4 朵花（下部基位大花，丰盈高雅，尺寸 0.98） -->
+    <path d="M55.5 89 C60 84 68 83 74 77" fill="none" stroke="#68804e" stroke-width="0.8"/>
+    <g transform="translate(75, 76) scale(0.98) rotate(12)">
+      <use href="#dendro-flower"/>
+    </g>
+  </g>
+</svg>

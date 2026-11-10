@@ -1,0 +1,720 @@
+{
+  "date": "2026-11-06",
+  "description": "窗边浅歌：奶白芍药和香槟马蹄莲成为圆润焦点，烟粉帝王花、浅粉洋桔梗沿左侧抬高后向右下垂落；香豌豆、六出花与小苍兰柔化空隙，尤加利和蓬莱松收住瀑布边缘。",
+  "artwork": {
+    "background": {
+      "materialId": "scene-puppy-nap"
+    },
+    "container": {
+      "materialId": "glass-bud-vase",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "eucalyptus",
+        "group": "foliage",
+        "color": "#a7b49c",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -32.6,
+          "height": 500.5,
+          "scale": 0.74,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "asparagus-sprengeri",
+        "group": "foliage",
+        "color": "#91a67c",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -30.4,
+          "height": 408.3,
+          "scale": 0.78,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "camellia-leaf",
+        "group": "foliage",
+        "color": "#819779",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -29.5,
+          "height": 386.6,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "plumosa-pine",
+        "group": "foliage",
+        "color": "#b0c28f",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -20.9,
+          "height": 367.4,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "eucalyptus",
+        "group": "foliage",
+        "color": "#a7b49c",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -24.2,
+          "height": 315.9,
+          "scale": 0.88,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "asparagus-sprengeri",
+        "group": "foliage",
+        "color": "#91a67c",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -14.7,
+          "height": 310.8,
+          "scale": 0.74,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "camellia-leaf",
+        "group": "foliage",
+        "color": "#819779",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -13.9,
+          "height": 274.2,
+          "scale": 0.78,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "plumosa-pine",
+        "group": "foliage",
+        "color": "#b0c28f",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": -1.9,
+          "height": 281.0,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "eucalyptus",
+        "group": "foliage",
+        "color": "#a7b49c",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -0.6,
+          "height": 278.2,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "asparagus-sprengeri",
+        "group": "foliage",
+        "color": "#91a67c",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 15.0,
+          "height": 233.2,
+          "scale": 0.88,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "camellia-leaf",
+        "group": "foliage",
+        "color": "#819779",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 19.2,
+          "height": 233.8,
+          "scale": 0.74,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "plumosa-pine",
+        "group": "foliage",
+        "color": "#b0c28f",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 30.0,
+          "height": 272.4,
+          "scale": 0.78,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "eucalyptus",
+        "group": "foliage",
+        "color": "#a7b49c",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 36.3,
+          "height": 232.6,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "asparagus-sprengeri",
+        "group": "foliage",
+        "color": "#91a67c",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 42.5,
+          "height": 278.5,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#dba9ba",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -29.3,
+          "height": 501.6,
+          "scale": 0.8,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "alstroemeria",
+        "group": "filler",
+        "color": "#dfaa91",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -26.8,
+          "height": 412.4,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "freesia",
+        "group": "filler",
+        "color": "#f1e8d8",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -26.2,
+          "height": 392.8,
+          "scale": 0.87,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "bunny-tail",
+        "group": "filler",
+        "color": "#d9cdb1",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -18.1,
+          "height": 378.1,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#dba9ba",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -21.5,
+          "height": 327.0,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "alstroemeria",
+        "group": "filler",
+        "color": "#dfaa91",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -13.1,
+          "height": 325.0,
+          "scale": 0.8,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "freesia",
+        "group": "filler",
+        "color": "#f1e8d8",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -12.7,
+          "height": 289.3,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "bunny-tail",
+        "group": "filler",
+        "color": "#d9cdb1",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": -2.2,
+          "height": 297.0,
+          "scale": 0.87,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#dba9ba",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -1.7,
+          "height": 294.3,
+          "scale": 0.91,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "alstroemeria",
+        "group": "filler",
+        "color": "#dfaa91",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 11.9,
+          "height": 246.5,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "freesia",
+        "group": "filler",
+        "color": "#f1e8d8",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 15.0,
+          "height": 245.2,
+          "scale": 0.8,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "bunny-tail",
+        "group": "filler",
+        "color": "#d9cdb1",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 25.3,
+          "height": 278.7,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#dba9ba",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 29.9,
+          "height": 234.6,
+          "scale": 0.87,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "alstroemeria",
+        "group": "filler",
+        "color": "#dfaa91",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 36.4,
+          "height": 275.2,
+          "scale": 0.91,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#f2e8db",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -25.0,
+          "height": 507.0,
+          "scale": 0.9,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#ddc59b",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": -22.5,
+          "height": 425.2,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "king-protea",
+        "group": "main",
+        "color": "#d2b1b6",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": -22.7,
+          "height": 410.9,
+          "scale": 0.95,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#ddb0b8",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": -16.0,
+          "height": 402.9,
+          "scale": 0.98,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#f2e8db",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": -20.0,
+          "height": 354.9,
+          "scale": 1.0,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#ddc59b",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": -13.4,
+          "height": 356.9,
+          "scale": 0.9,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "king-protea",
+        "group": "main",
+        "color": "#d2b1b6",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": -14.5,
+          "height": 324.2,
+          "scale": 0.93,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 43,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#ddb0b8",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": -6.4,
+          "height": 331.4,
+          "scale": 0.95,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#f2e8db",
+        "transform": {
+          "anchor": {
+            "x": 339,
+            "y": 747
+          },
+          "angle": -7.3,
+          "height": 330.3,
+          "scale": 0.98,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#ddc59b",
+        "transform": {
+          "anchor": {
+            "x": 355,
+            "y": 747
+          },
+          "angle": 1.9,
+          "height": 275.6,
+          "scale": 1.0,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "king-protea",
+        "group": "main",
+        "color": "#d2b1b6",
+        "transform": {
+          "anchor": {
+            "x": 346,
+            "y": 747
+          },
+          "angle": 2.9,
+          "height": 272.2,
+          "scale": 0.9,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 44,
+        "materialId": "lisianthus",
+        "group": "main",
+        "color": "#ddb0b8",
+        "transform": {
+          "anchor": {
+            "x": 360,
+            "y": 747
+          },
+          "angle": 12.0,
+          "height": 294.2,
+          "scale": 0.93,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#f2e8db",
+        "transform": {
+          "anchor": {
+            "x": 350,
+            "y": 747
+          },
+          "angle": 11.9,
+          "height": 245.3,
+          "scale": 0.95,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#ddc59b",
+        "transform": {
+          "anchor": {
+            "x": 342,
+            "y": 747
+          },
+          "angle": 19.0,
+          "height": 273.6,
+          "scale": 0.98,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#f2e8db",
+        "transform": {
+          "anchor": {
+            "x": 358,
+            "y": 747
+          },
+          "angle": 21.6,
+          "height": 246.8,
+          "scale": 1.0,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#ddc59b",
+        "transform": {
+          "anchor": {
+            "x": 348,
+            "y": 747
+          },
+          "angle": 28.5,
+          "height": 283.1,
+          "scale": 0.9,
+          "mirrored": true
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}

@@ -5,7 +5,7 @@
   "group": "main",
   "introduction": "几朵喇叭形大花聚在同一根花茎上，适合做醒目的主花。",
   "flowerMeaning": "喜悦、祝福",
-  "version": 2,
+  "version": 3,
   "colors": [
     {
       "name": "红色",
@@ -25,5 +25,6 @@
     "flowerHeight": 110,
     "stemHeight": 260,
     "connectionY": 104
-  }
+  },
+  "sortOrder": 300
 }

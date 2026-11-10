@@ -1,23 +1,25 @@
-// 工作台统一配色，组件共享，避免各面板分别维护颜色。
-$studio-ink: #3f463d;
-$studio-muted: #737b6c;
+// 创作台使用克制的暖纸与植物色，保持编辑区域安静清晰。
+$studio-ink: #574d40;
+$studio-muted: #7f7465;
 $studio-panel: #fffdf7;
-$studio-border: #dde1d4;
-$studio-accent: #dfe6d7;
-$studio-secondary: #f0efe6;
+$studio-border: rgba(112, 91, 68, .28);
+$studio-accent: #dfe7d5;
+$studio-secondary: #f4eee2;
+$studio-paper: #f8f3e9;
+$studio-pink: #f1dcda;
+$studio-gold: #ead9b9;
+$studio-shadow: rgba(88, 74, 55, .07);
 
 // 上下工具栏共用尺寸和按钮规则，避免局部样式逐渐分叉。
 @mixin studio-toolbar-shell {
   display: flex;
   align-items: center;
-  gap: 10rpx;
+  gap: 12rpx;
   width: 100%;
   height: 96rpx;
-  padding: 14rpx;
+  padding: 12rpx 8rpx;
   box-sizing: border-box;
-  border: 2rpx solid $studio-border;
-  border-radius: 22rpx;
-  background: $studio-panel;
+  background: transparent;
 }
 
 @mixin studio-toolbar-button {
@@ -30,15 +32,16 @@ $studio-secondary: #f0efe6;
   height: 64rpx;
   padding: 0 6rpx;
   margin: 0;
-  border-radius: 16rpx;
-  background: $studio-secondary;
+  border: 0;
+  border-radius: 14rpx;
+  background: transparent;
   color: $studio-ink;
   font-size: 22rpx;
   line-height: 1;
   white-space: nowrap;
   &::after { border: none; }
   &[disabled] { color: $studio-muted; opacity: .4; }
-  &:active { opacity: .82; transform: scale(.98); }
+  &:active { opacity: .72; transform: translateY(2rpx); }
 }
 
 @mixin studio-toolbar-icon {

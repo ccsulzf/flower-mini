@@ -1,0 +1,30 @@
+{
+  "id": "camellia",
+  "category": "flower",
+  "name": "山茶花",
+  "group": "main",
+  "introduction": "花瓣层叠舒展，花心金黄，花形端庄饱满，适合作为花束中的主花。",
+  "flowerMeaning": "理想的爱、谦逊",
+  "version": 3,
+  "colors": [
+    {
+      "name": "朱红",
+      "value": "#c94f52"
+    },
+    {
+      "name": "柔粉",
+      "value": "#d78f9b"
+    },
+    {
+      "name": "奶白",
+      "value": "#f1e8d8"
+    }
+  ],
+  "geometry": {
+    "width": 110,
+    "flowerHeight": 110,
+    "stemHeight": 260,
+    "connectionY": 89
+  },
+  "sortOrder": 321
+}

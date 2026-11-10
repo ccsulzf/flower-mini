@@ -1,0 +1,17 @@
+{
+  "id": "light-rain-window",
+  "category": "background",
+  "backgroundKind": "scene",
+  "name": "雨窗柔光",
+  "introduction": "雾绿雨窗与柔暖室内台面相映，细雨和凝露退到边缘，中央安静透亮。",
+  "flowerMeaning": "",
+  "group": "main",
+  "colors": [],
+  "version": 1,
+  "sortOrder": 30,
+  "geometry": {
+    "width": 698,
+    "height": 1000,
+    "surfaceY": 855
+  }
+}

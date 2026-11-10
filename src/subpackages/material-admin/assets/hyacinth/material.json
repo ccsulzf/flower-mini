@@ -5,7 +5,7 @@
   "group": "main",
   "introduction": "许多小花紧密聚成一串，花头饱满，适合增加花束的色彩和体积。",
   "flowerMeaning": "喜悦、希望",
-  "version": 2,
+  "version": 3,
   "colors": [
     {
       "name": "淡紫",
@@ -25,5 +25,6 @@
     "flowerHeight": 110,
     "stemHeight": 260,
     "connectionY": 104
-  }
+  },
+  "sortOrder": 314
 }

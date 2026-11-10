@@ -2,7 +2,7 @@ import { colorizeMaterialSvg } from '@/utils/flower/material-color'
 import { defaultFlowerGeometry, materialParts, normalizeMaterial } from '@/utils/flower/material-catalog'
 import type { MaterialDraft, MaterialMetadata, SvgPart, UploadedMaterial } from './types'
 export const svgParts: { key: SvgPart, name: string }[] = [
-  { key: 'flower', name: '花朵' }, { key: 'stemWithLeaves', name: '带叶花茎' },
+  { key: 'flower', name: '花朵' },
   { key: 'stemWithoutLeaves', name: '去叶花茎' }, { key: 'foliage', name: '叶枝' }, { key: 'vase', name: '花瓶' }, { key: 'bouquet', name: '花束包装' }, { key: 'background', name: '背景' },
 ]
 export function revisionOf(value: unknown): string {
@@ -27,10 +27,12 @@ export function collectLocalMaterials(files: Record<string, string>): { items: M
       const sources: Partial<Record<SvgPart, string>> = {}
       for (const key of keys) {
         const svg = files[`${directory}${key}.svg`]
-        if (!svg || svg.length > 65536 || !/^\s*<svg\b/.test(svg) || !/<\/svg>\s*$/.test(svg) || /<script|<foreignObject|\bon\w+\s*=|\bhref\s*=|<!DOCTYPE|<!ENTITY/i.test(svg)) throw new Error(`${key}.svg 缺失或无效`)
+        const hasUnsafeReference = !!svg && [...svg.matchAll(/\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/gi)]
+          .some(([, doubleQuoted, singleQuoted, unquoted]) => !(doubleQuoted ?? singleQuoted ?? unquoted).startsWith('#'))
+        if (!svg || svg.length > 65536 || !/^\s*<svg\b/.test(svg) || !/<\/svg>\s*$/.test(svg) || /<script|<foreignObject|\bon\w+\s*=|<!DOCTYPE|<!ENTITY/i.test(svg) || hasUnsafeReference) throw new Error(`${key}.svg 缺失或无效`)
         sources[key] = svg
       }
-      const normalized: MaterialMetadata = { id: normalizedMetadata.id, category, name: normalizedMetadata.name, introduction: normalizedMetadata.introduction, flowerMeaning: normalizedMetadata.flowerMeaning, group: normalizedMetadata.group, colors: normalizedMetadata.colors, version: normalizedMetadata.version, geometry }
+      const normalized: MaterialMetadata = { id: normalizedMetadata.id, category, ...(category === 'background' ? { backgroundKind: normalizedMetadata.backgroundKind } : {}), name: normalizedMetadata.name, introduction: normalizedMetadata.introduction, flowerMeaning: normalizedMetadata.flowerMeaning, group: normalizedMetadata.group, sortOrder: normalizedMetadata.sortOrder, colors: normalizedMetadata.colors, version: normalizedMetadata.version, geometry }
       items.push({ ...normalized, sources, revision: revisionOf({ ...normalized, sources }) })
     } catch (error) { errors.push(`${path}：${error instanceof Error ? error.message : '档案无法读取'}`) }
   }

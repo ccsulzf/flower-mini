@@ -6,7 +6,13 @@ import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import { useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import FlowerArtworkRenderer from './flower-artwork-renderer.vue'
 
-const props = defineProps<{ artwork?: Artwork, workId?: string, dailyDate?: string, scale: number }>()
+const props = defineProps<{
+  artwork?: Artwork
+  workId?: string
+  dailyDate?: string
+  scale: number
+  hideBackground?: boolean
+}>()
 const catalog = useFlowerCatalogStore()
 const dailyFlowers = useDailyFlowerStore()
 const works = useFlowerWorksStore()
@@ -32,11 +38,11 @@ async function prepare() {
     if (catalog.error)
       throw new Error(catalog.error)
     const refs = [
-      ...source.stems.filter(stem => stem.materialId).map(stem => [stem.materialId!, stem.materialRevision!] as const),
-      ...(source.vaseMaterialId ? [[source.vaseMaterialId, source.vaseMaterialRevision!] as const] : []),
-      ...(source.backgroundMaterialId ? [[source.backgroundMaterialId, source.backgroundMaterialRevision!] as const] : []),
+      ...source.materials.map(material => material.materialId),
+      source.container.materialId,
+      source.background.materialId,
     ]
-    await Promise.all(refs.map(([id, revision]) => catalog.ensure(id, revision)))
+    await Promise.all(refs.map(id => catalog.ensure(id)))
     if (currentRequestId === requestId)
       artwork.value = source
   }
@@ -60,13 +66,9 @@ watch(() => [JSON.stringify(props.artwork), props.workId, props.dailyDate], () =
       v-if="!loading && !error && artwork"
       class="artwork-preview-board"
       :style="{ transform: `translate(-50%, -50%) scale(${scale})` }"
-      :background="artwork.background"
-      :background-material-id="artwork.backgroundMaterialId"
-      :background-material-revision="artwork.backgroundMaterialRevision"
-      :stems="artwork.stems"
-      :vase="artwork.vase"
-      :vase-material-id="artwork.vaseMaterialId"
-      :vase-material-revision="artwork.vaseMaterialRevision"
+      :artwork="artwork"
+      :prepared-materials="catalog.prepared"
+      :hide-background="hideBackground"
     />
     <view v-else class="artwork-preview-state">
       <text>{{ loading ? '正在准备作品…' : error }}</text>
