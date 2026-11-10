@@ -26,8 +26,8 @@ import { useStudioSelectionActions } from './composables/useStudioSelectionActio
 
 const SHARE_TITLE = '选花材，搭配出属于自己的花束'
 const SHARE_PATH = '/pages/flower-studio/flower-studio-page'
-const SHARE_IMAGE_URL = '/static/share/index-share.png'
-const TIMELINE_SHARE_IMAGE_URL = '/static/share/index-share-timeline.png'
+const SHARE_IMAGE_URL = 'https://env-00jy6xwsp5fj.normal.cloudstatic.cn/share/index-share.png'
+const TIMELINE_SHARE_IMAGE_URL = 'https://env-00jy6xwsp5fj.normal.cloudstatic.cn/share/index-share-timeline.png'
 
 definePage({
   type: 'home',
