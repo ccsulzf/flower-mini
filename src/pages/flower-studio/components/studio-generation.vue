@@ -31,7 +31,7 @@ const status = computed(() => props.phase === 'revealing' ? '花束正在成形'
         </button>
       </view>
       <text class="sheet-note">
-        想送给谁，发生了什么，或只是此刻的心情。每天可生花 3 次，北京时间零点重置；发起生成即计次。
+        想送给谁，发生了什么，或只是此刻的心情。
       </text>
       <view class="writing-paper">
         <textarea class="generation-input" :value="prompt" :maxlength="1000" :adjust-position="true" :cursor-spacing="24" placeholder-style="color: #a49a88; font-size: 26rpx; line-height: 48rpx;" placeholder="比如：忙完这一周，想让晚饭的小桌子温柔一点。" @input="emit('update:prompt', $event.detail.value)" />

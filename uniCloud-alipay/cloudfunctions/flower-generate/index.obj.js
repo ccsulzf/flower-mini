@@ -1,5 +1,5 @@
 const resolveAuth = require('auth')
-const { consumeDailyQuota } = require('./quota')
+const { consumeDailyQuota, getDailyQuota } = require('./quota')
 const { parsePrompt, parseRecentBackgroundIds, describeCatalog, instructions, buildArtwork } = require('./generation')
 
 module.exports = {
@@ -11,6 +11,9 @@ module.exports = {
     if (error) throw error
     if (this.auth.newToken) result.newToken = this.auth.newToken
     return result
+  },
+  async quota() {
+    return { code: 0, data: await getDailyQuota(uniCloud.database(), this.auth.uid) }
   },
   async generate(input) {
     const started = Date.now()

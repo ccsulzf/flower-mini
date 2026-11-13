@@ -18,6 +18,7 @@ import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
 import { createCatalogArtwork } from '@/utils/flower/artwork'
+import { getFlowerGenerationQuota } from '@/api/flower-generate'
 import { takeGeneratedArtwork } from '@/utils/flower/generated-transfer'
 import StudioGeneration from './components/studio-generation.vue'
 import StudioMaterialDock from './components/studio-material-dock.vue'
@@ -560,13 +561,28 @@ function requestLeave(leave: () => void) {
 }
 
 function openWorks() { requestLeave(() => uni.navigateTo({ url: '/pages/flower-works/flower-works-page' })) }
-function openFlowerGenerate() {
+let checkingGenerationQuota = false
+async function openFlowerGenerate() {
   if (!pageReady.value || pendingMaterialId.value || finishing.value || pendingDraft.value || readonly.value || draftReadFailed.value || startupError.value || prepareError.value || completionState.value !== 'idle')
     return
-  endDrag(true)
-  closePanels()
-  generationError.value = ''
-  generationVisible.value = true
+  if (checkingGenerationQuota)
+    return
+  checkingGenerationQuota = true
+  try {
+    const { available } = await getFlowerGenerationQuota()
+    if (!pageReady.value)
+      return
+    if (!available)
+      return notify('今日额度已用完')
+    endDrag(true)
+    closePanels()
+    generationError.value = ''
+    generationVisible.value = true
+  }
+  catch (error) {
+    notify(error instanceof Error ? error.message : '暂时无法生花，请稍后重试')
+  }
+  finally { checkingGenerationQuota = false }
 }
 async function generateInStudio() {
   uni.hideKeyboard()

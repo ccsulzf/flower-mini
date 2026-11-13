@@ -29,3 +29,10 @@ export function generateFlower(prompt: string, recentBackgroundIds: string[] = [
     payload: { prompt, recentBackgroundIds }, fallbackMessage: '花束生成失败',
   })
 }
+
+export function getFlowerGenerationQuota() {
+  return callCloud<undefined, { available: boolean }>({
+    object: 'flower-generate', method: 'quota', auth: 'authenticated', operation: 'read',
+    payload: undefined, fallbackMessage: '暂时无法生花，请稍后重试',
+  })
+}

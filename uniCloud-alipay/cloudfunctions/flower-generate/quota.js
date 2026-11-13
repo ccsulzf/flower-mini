@@ -18,7 +18,14 @@ async function consumeDailyQuota(db, uid) {
       if (!existing.data.length) throw error
     }
   }
-  throw { errCode: 'DAILY_LIMIT_REACHED', errMsg: '今天的 3 次生花机会已用完，明天再来让花开吧' }
+  throw { errCode: 'DAILY_LIMIT_REACHED', errMsg: '今日额度已用完' }
 }
 
-module.exports = { consumeDailyQuota }
+async function getDailyQuota(db, uid) {
+  const day = new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10)
+  const result = await db.collection('flower-generation-quota')
+    .where({ user_id: uid, day }).limit(3).get()
+  return { available: result.data.length < 3 }
+}
+
+module.exports = { consumeDailyQuota, getDailyQuota }

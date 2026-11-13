@@ -97,7 +97,7 @@ function copy() {
     <button class="action primary" :disabled="busy || opening || !prompt.trim()" :loading="busy" @click="generate">
       <view class="button-paper">{{ busy ? '正在搭配花叶、背景与容器…' : result ? '再生成一束' : '生成我的花束' }}</view>
     </button>
-    <text class="hint">每天可生花 3 次，北京时间零点重置；发起生成即计次。喜欢这一束的话，还可以带入创作台慢慢调整。</text>
+    <text class="hint">喜欢这一束的话，还可以带入创作台慢慢调整。</text>
     <text v-if="error" class="error">{{ error }}</text>
     <view v-if="result" class="result">
       <text class="subtitle">这一束，为你而开</text>
