@@ -10,7 +10,7 @@ import { waitForAppAuthReady } from '@/utils/appAuth'
 import { exampleJson } from '@/pages/flower-json/example'
 import { createComplexArtwork } from './complex-example'
 
-definePage({ layout: 'default', style: { navigationBarTitleText: 'AI 花束调试', navigationBarBackgroundColor: '#f6f3eb' } })
+definePage({ layout: 'default', style: { navigationBarTitleText: '花束搭配调试', navigationBarBackgroundColor: '#f6f3eb' } })
 
 function createCrowdedArtwork() {
   const value = parseArtwork(exampleJson)
@@ -44,7 +44,7 @@ const sourceStore = useCreationArtworkStore()
 const preview = computed(() => showingOriginal.value ? original.value : optimized.value || original.value)
 const changeSummary = computed(() => {
   if (!result.value?.valid || !original.value) return ''
-  if (!optimized.value) return 'AI 认为无需调整，保留原样。'
+  if (!optimized.value) return '花束无需调整，保留原样。'
   const byId = new Map(original.value.materials.map(item => [item.id, item]))
   const moved = optimized.value.materials.filter(item => {
     const before = byId.get(item.id)?.transform
@@ -150,7 +150,7 @@ async function run(force = false) {
     delete next.containerLayouts[next.container.materialId]
     optimized.value = parseArtwork(JSON.stringify(next))
   }
-  catch (cause) { error.value = cause instanceof Error ? cause.message : 'AI 请求失败' }
+  catch (cause) { error.value = cause instanceof Error ? cause.message : '花束整理失败' }
   finally { busy.value = false }
 }
 async function probe() {
@@ -170,8 +170,8 @@ function copyOutput() {
 
 <template>
   <view class="demo-page">
-    <text class="title">请 AI 整理一束花</text>
-    <text class="note">AI 调整花叶位置、大小、层次与配色，程序校验边界。保留全部花叶和花器；结果仅在此页预览，不保存到你的作品。</text>
+    <text class="title">整理一束花</text>
+    <text class="note">调整花叶位置、大小、层次与配色，程序校验边界。保留全部花叶和花器；结果仅在此页预览，不保存到你的作品。</text>
     <view class="tools">
       <button :disabled="busy" @click="loadExample(1)">单枝</button>
       <button :disabled="busy" @click="loadExample(3)">三枝</button>
@@ -184,11 +184,11 @@ function copyOutput() {
     <textarea v-model="input" class="json-input" :disabled="busy" :maxlength="65536" :auto-height="false" placeholder="粘贴作品 JSON" />
     <view class="tools">
       <button :disabled="busy" @click="previewInput">预览原作</button>
-      <button :disabled="busy" :loading="busy" class="primary" @click="run(false)">{{ busy ? '正在整理…' : 'AI 优化' }}</button>
+      <button :disabled="busy" :loading="busy" class="primary" @click="run(false)">{{ busy ? '正在整理…' : '整理花束' }}</button>
     </view>
     <text v-if="error" class="error">{{ error }}</text>
     <text v-if="changeSummary" class="note">{{ changeSummary }}</text>
-    <text v-if="result?.optimization?.reason" class="note">AI 构图判断：{{ result.optimization.reason }}</text>
+    <text v-if="result?.optimization?.reason" class="note">构图说明：{{ result.optimization.reason }}</text>
     <text v-if="result?.optimization?.boundaryAdjustedIds?.length" class="note">已将 {{ result.optimization.boundaryAdjustedIds.length }} 枝花叶的目标位置收回可编辑的安全范围。</text>
     <view v-if="original" class="preview-area">
       <view class="tools">

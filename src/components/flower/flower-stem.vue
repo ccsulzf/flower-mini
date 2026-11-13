@@ -5,8 +5,10 @@ import { computed } from 'vue'
 import { cloudPlantSvg, svgImageSource } from '@/utils/flower/material-render'
 
 const props = withDefaults(defineProps<{ instance: MaterialInstance, material: CachedMaterial, dimmed?: boolean, revealDelay?: number }>(), { dimmed: false })
-const source = computed(() => svgImageSource(cloudPlantSvg(props.material, props.instance)))
 const height = computed(() => props.instance.transform.height + 55)
+const color = computed(() => props.instance.color)
+// 角度和位置只更新外层变换，不触发花材 SVG 重建。
+const source = computed(() => svgImageSource(cloudPlantSvg(props.material, { color: color.value, transform: { height: height.value - 55 } })))
 const outerStyle = computed(() => {
   const { anchor, angle } = props.instance.transform
   return `left:${anchor.x}px;top:${anchor.y}px;height:${height.value}px;transform:translate(-50%, -100%) rotate(${angle}deg);`

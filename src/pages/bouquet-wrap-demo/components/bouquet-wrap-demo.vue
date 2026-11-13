@@ -2,6 +2,7 @@
 import type { CachedMaterial } from '@/models/material'
 import type { MaterialInstance } from '@/models/artwork'
 import { computed, ref } from 'vue'
+import { bouquetBoundary, fitBouquetTransform } from '@/utils/flower/bouquet-boundary.cjs'
 import FlowerStem from '@/components/flower/flower-stem.vue'
 import { bouquetLayers, svgImageSource } from '@/utils/flower/material-render'
 import { wrappingMaterials as wraps } from './wrapping-materials'
@@ -83,8 +84,12 @@ const bouquet = [
     transform: { anchor: { x: 350, y: 747 }, angle, height, scale: 1, mirrored: index % 2 === 0 },
   } satisfies MaterialInstance,
 }))
+const flowerClipStyle = computed(() => {
+  const boundary = bouquetBoundary(selectedWrap.value)
+  return boundary ? `clip-path:polygon(${boundary.points.map(([x, y]) => `${x}px ${y}px`).join(',')});` : ''
+})
 const editableStems = computed(() => bouquet.map(stem => ({ ...stem,
-  instance: { ...stem.instance, transform: transforms.value[stem.instance.id] ?? stem.instance.transform },
+  instance: { ...stem.instance, transform: fitBouquetTransform(transforms.value[stem.instance.id] ?? stem.instance.transform, stem.material, selectedWrap.value) },
 })))
 function flowerHandleStyle(stem: typeof bouquet[number]) {
   const { height, angle, anchor } = stem.instance.transform
@@ -124,7 +129,7 @@ const paperImages = computed(() => {
     <view class="demo-preview" :style="`height:${1000 * scale}px;`">
       <view class="demo-board" :style="`transform:scale(${scale});`">
         <image class="paper-image back-paper" :src="paperImages.back" mode="scaleToFill" />
-        <view class="flower-layer">
+        <view class="flower-layer" :style="flowerClipStyle">
           <FlowerStem v-for="stem in editableStems" :key="stem.instance.id" :instance="stem.instance" :material="stem.material" />
         </view>
         <image class="paper-image front-paper" :src="paperImages.front" mode="scaleToFill" />

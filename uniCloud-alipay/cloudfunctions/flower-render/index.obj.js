@@ -1,3 +1,4 @@
+const { bouquetBoundary, fitBouquetTransform } = require('./bouquet-boundary');
 const fs = require('node:fs');
 const path = require('node:path');
 const resolveAuth = require('auth');
@@ -12,8 +13,8 @@ const materialIdPattern = /^[a-z][a-z0-9-]{0,63}$/;
 const maxRenderSvgLength = 8 * 1024 * 1024;
 const cardFontFamily = 'Ma Shan Zheng';
 const cardFontBuffer = new Uint8Array(fs.readFileSync(path.join(__dirname, 'fonts/MaShanZheng-Regular.ttf')));
-const artworkRenderVersion = 'foliage-clip-v1';
-const cardRenderVersion = 'ma-shan-zheng-card-v2';
+const artworkRenderVersion = 'bouquet-boundary-v2';
+const cardRenderVersion = 'ma-shan-zheng-card-v3';
 const materialListRenderVersion = 'flower-material-list-v8';
 
 function colorizeMaterialSvg(svg, color) {
@@ -219,7 +220,7 @@ async function buildArtworkSvg(artwork, { drawBackground = true } = {}) {
     const renderedMaterials = [];
     for (const instance of artwork.materials) {
         const material = cloudMaterials.get(instance.materialId);
-        const { anchor, angle, height, scale, mirrored } = instance.transform;
+        const { anchor, angle, height, scale, mirrored } = fitBouquetTransform(instance.transform, material, vaseMaterial);
         const total = height + 55;
         const scaleX = mirrored ? -scale : scale;
         if (material.group === 'foliage') {
@@ -263,8 +264,11 @@ async function buildArtworkSvg(artwork, { drawBackground = true } = {}) {
         vaseBack = nested(layers.back, placement.x, placement.y, placement.width, placement.height);
         vaseFront = nested(layers.front, placement.x, placement.y, placement.width, placement.height);
     }
+    const boundary = bouquetBoundary(vaseMaterial);
+    const clip = boundary ? `<defs><clipPath id="bouquet-flower-clip"><polygon points="${boundary.points.map(point => point.join(',')).join(' ')}"/></clipPath></defs>` : '';
+    const flowers = boundary ? `<g clip-path="url(#bouquet-flower-clip)">${renderedMaterials.join('')}</g>` : renderedMaterials.join('');
     const paper = drawBackground ? '<rect width="698" height="1000" fill="#f6f3eb"/>' : '';
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000">${paper}${background}<g transform="translate(0 ${anchorOffset})">${vaseBack}${renderedMaterials.join('')}${vaseFront}</g></svg>`;
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000">${paper}${background}<g transform="translate(0 ${anchorOffset})">${clip}${vaseBack}${flowers}${vaseFront}</g></svg>`;
 }
 
 function escapeSvgText(value) {

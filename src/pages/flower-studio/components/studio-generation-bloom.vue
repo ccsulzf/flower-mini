@@ -10,8 +10,8 @@ const flowers = [
 </script>
 
 <template>
-  <view class="bloom-note" :class="{ 'bloom-settling': revealing }" aria-hidden="true">
-    <view class="bloom-illustration">
+  <view class="bloom-note" :class="{ 'bloom-settling': revealing }">
+    <view class="bloom-illustration" aria-hidden="true">
       <view class="bloom-drawing">
         <view v-for="flower in flowers" :key="flower.name" class="bloom-branch" :class="`branch-${flower.name}`">
           <view class="branch-growth">
@@ -37,7 +37,7 @@ const flowers = [
     </view>
     <view class="bloom-caption">
       <text>{{ message }}</text>
-      <view class="waiting-dots">
+      <view class="waiting-dots" aria-hidden="true">
         <view /><view /><view />
       </view>
     </view>

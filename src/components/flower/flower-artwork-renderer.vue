@@ -3,6 +3,7 @@ import type { Artwork } from '@/models/artwork'
 import type { StudioSelectionFilter } from '@/models/flower-studio'
 import type { CachedMaterial } from '@/models/material'
 import { computed } from 'vue'
+import { fitBouquetInstance } from '@/utils/flower/bouquet-boundary.cjs'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 import { backgroundOffset, backgroundSceneSource } from '@/utils/flower/background-render'
 import { svgImageSource } from '@/utils/flower/material-render'
@@ -20,7 +21,7 @@ const props = defineProps<{
   pickMaterialId?: string | null
 }>()
 // 草稿可能先于素材恢复，仅挂载已准备好的花枝及其操作区域。
-const readyInstances = computed(() => props.artwork.materials.filter(instance => props.preparedMaterials[instance.materialId]?.category === 'flower'))
+const readyInstances = computed(() => props.artwork.materials.filter(instance => props.preparedMaterials[instance.materialId]?.category === 'flower').map(instance => container.value ? fitBouquetInstance(instance, props.preparedMaterials[instance.materialId], container.value) : instance))
 const background = computed(() => props.preparedMaterials[props.artwork.background.materialId])
 const container = computed(() => props.preparedMaterials[props.artwork.container.materialId])
 const backgroundSource = computed(() => background.value?.sources.background ? svgImageSource(backgroundSceneSource(background.value)) : '')

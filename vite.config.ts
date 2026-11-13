@@ -18,6 +18,9 @@ const basePageExclude = [
 ]
 
 const productionPageExclude = [
+  '**/*-demo/**',
+  '**/*-demo.vue',
+  '**/*-demo-page.vue',
   '**/debug*.vue',
   '**/test*.vue',
 ]
@@ -63,7 +66,23 @@ export default defineConfig(({ command, mode }) => {
           ? ['src/subpackages/material-admin', 'src/subpackages/daily-flower-admin', 'src/subpackages/artwork-ops']
           : [],
         mergePages: true,
-        onBeforeWriteFile: includeMaterialAdmin ? undefined : excludeMaterialAdmin,
+        onBeforeWriteFile(context) {
+          if (!includeMaterialAdmin)
+            excludeMaterialAdmin(context)
+          if (mode === 'production') {
+            // mergePages 会保留旧 pages.json 中的页面，最终结果也需过滤。
+            const generate = context.genratePagesJSON.bind(context)
+            context.genratePagesJSON = async () => {
+              const result = await generate()
+              const isDemoPage = (page: { path: string }) => /(?:^|\/)[^/]*-demo(?:-page)?(?:\/|$)/.test(page.path)
+              result.pages = result.pages.filter(page => !isDemoPage(page))
+              for (const subPackage of result.subPackages || []) {
+                subPackage.pages = subPackage.pages.filter(page => !isDemoPage({ path: `${subPackage.root}/${page.path}` }))
+              }
+              return result
+            }
+          }
+        },
         dts: 'src/uni-pages.d.ts',
         // 避免把页面内的子组件当成页面打包
         exclude: pageExclude,

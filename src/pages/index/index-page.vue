@@ -11,6 +11,7 @@ const error = ref('')
 const materialAdminEnabled = __MATERIAL_ADMIN__
 const dailyFlowerAdminEnabled = __DAILY_FLOWER_ADMIN__
 const artworkOpsEnabled = __ARTWORK_OPS__
+const demoEnabled = import.meta.env.DEV
 function openMaterialAdmin() {
   if (__MATERIAL_ADMIN__) uni.navigateTo({ url: '/subpackages/material-admin/material-admin-page' })
 }
@@ -32,15 +33,18 @@ function openFlowerJson() {
 }
 
 function openFlowerAiDemo() {
-  uni.navigateTo({ url: '/pages/flower-ai-demo/flower-ai-demo-page' })
+  if (import.meta.env.DEV)
+    uni.navigateTo({ url: '/pages/flower-ai-demo/flower-ai-demo-page' })
 }
 
 function openFlowerGenerateDemo() {
-  uni.navigateTo({ url: '/pages/flower-generate-demo/flower-generate-demo-page' })
+  if (import.meta.env.DEV)
+    uni.navigateTo({ url: '/pages/flower-generate-demo/flower-generate-demo-page' })
 }
 
 function openBouquetWrapDemo() {
-  uni.navigateTo({ url: '/pages/bouquet-wrap-demo/bouquet-wrap-demo-page' })
+  if (import.meta.env.DEV)
+    uni.navigateTo({ url: '/pages/bouquet-wrap-demo/bouquet-wrap-demo-page' })
 }
 
 function openFlowerRenderTest() {
@@ -108,7 +112,7 @@ onShow(() => checkAuth())
         导入花束
       </button>
     </view>
-    <view class="app-card section">
+    <view v-if="demoEnabled" class="app-card section">
       <view class="app-section-title">
         一句话生花
       </view>
@@ -119,15 +123,15 @@ onShow(() => checkAuth())
         打开文字生成 Demo
       </button>
     </view>
-    <view class="app-card section">
+    <view v-if="demoEnabled" class="app-card section">
       <view class="app-section-title">
-        AI 花束调试
+        花束搭配调试
       </view>
       <view class="app-section-desc">
-        用单枝、三枝或当前作品，看看 AI 怎样整理花束。
+        用单枝、三枝或当前作品，看看花束整理后的样子。
       </view>
       <button class="app-secondary-btn" @click="openFlowerAiDemo">
-        打开 AI 调试页
+        打开搭配调试页
       </button>
     </view>
     <view class="app-card section">
@@ -141,7 +145,7 @@ onShow(() => checkAuth())
         打开验证页
       </button>
     </view>
-    <view class="app-card section">
+    <view v-if="demoEnabled" class="app-card section">
       <view class="app-section-title">
         花束包装实验
       </view>

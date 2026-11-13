@@ -32,6 +32,7 @@ const groups: { value: SelectionGroup, name: string }[] = [
   { value: 'foliage', name: '叶材' },
 ]
 const activeGroup = ref<SelectionGroup>('all')
+const materialGroupOrder: Record<MaterialGroup, number> = { main: 0, filler: 1, foliage: 2 }
 const emptyMessage = computed(() => activeGroup.value === 'all'
   ? '暂无已添加的花材'
   : `暂无${groups.find(group => group.value === activeGroup.value)?.name || '花材'}`)
@@ -59,7 +60,12 @@ const materialOptions = computed(() => {
       instances: [instance],
     })
   }
-  return [...grouped.values()]
+  return [...grouped.values()].sort((a, b) => {
+    const aGroup = a.instances[0]?.group
+    const bGroup = b.instances[0]?.group
+    const groupOrder = (aGroup ? materialGroupOrder[aGroup] : 3) - (bGroup ? materialGroupOrder[bGroup] : 3)
+    return groupOrder || b.instances.length - a.instances.length
+  })
 })
 const visibleMaterialOptions = computed(() => {
   const filtered = activeGroup.value === 'all'

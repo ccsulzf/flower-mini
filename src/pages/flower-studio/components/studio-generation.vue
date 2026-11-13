@@ -23,7 +23,7 @@ const status = computed(() => props.phase === 'revealing' ? '花束正在成形'
     <view v-else class="generation-sheet" @tap.stop>
       <view class="sheet-tape" aria-hidden="true" />
       <text class="sheet-kicker">
-        AI 生花 / 一页花事
+        一句生花 / 一页花事
       </text>
       <view class="sheet-heading">
         <text>写一句话，让花开出来</text><button class="sheet-close" aria-label="关闭一句话生花" @tap="emit('close')">

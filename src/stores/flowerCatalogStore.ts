@@ -13,6 +13,10 @@ interface MaterialPrepareProgress {
   processed: number
 }
 
+// 与素材管理页使用同一份本地档案，不引入管理页的 SVG 资源。
+const localMetadata = import.meta.glob<{ id: string, category?: string, name: string }>('/src/subpackages/material-admin/assets/**/material.json', { eager: true, import: 'default' })
+const availableMaterials = new Map(Object.values(localMetadata).map(item => [item.id, item]))
+
 const catalogCacheKey = 'flower-material-catalog-cache-sort-order-v1'
 
 export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
@@ -57,7 +61,10 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
   }
 
   function usableCatalog(value: unknown) {
-    const items = parseMaterialCatalog(value)
+    const items = parseMaterialCatalog(value).filter((item) => {
+      const local = availableMaterials.get(item.id)
+      return local && item.category === (local.category || 'flower') && item.name === local.name
+    })
     if (!items.length)
       throw new Error('云端素材目录为空，请先上传素材后重试')
     const missing = [

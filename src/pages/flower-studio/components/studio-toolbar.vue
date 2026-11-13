@@ -23,12 +23,8 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
   <view class="studio-toolbar" :class="{ 'toolbar-open': activeTab }">
     <view class="toolbar-materials">
       <view class="tool-target tool-generate-target">
-        <button class="tool-button tool-generate" aria-label="AI 一句话生花" @click="emit('generate')">
-          <view class="ai-mark" aria-hidden="true">
-            AI<text class="ai-spark">
-              ✦
-            </text>
-          </view>
+        <button class="tool-button tool-generate" aria-label="一句话生花" @click="emit('generate')">
+          <text class="bloom-mark" aria-hidden="true">✿</text>
           <text>生花</text>
         </button>
       </view>
@@ -73,9 +69,8 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 .tool-target .tool-button { width:100%; }
 .tool-generate-target { flex: 1.15; }
 .tool-divider { width: 1rpx; height: 30rpx; flex-shrink: 0; background: rgba(112, 91, 68, .18); transform: rotate(3deg); }
+.bloom-mark { color: #8b9d78; font-size: 32rpx; line-height: 1; transform: rotate(-8deg); }
 .tool-button.tool-generate { color: #6c7e5f; gap: 9rpx; white-space: nowrap; }
-.ai-mark { position: relative; box-sizing: border-box; width: 33rpx; height: 30rpx; flex-shrink: 0; border: 1rpx solid #a8b29a; border-radius: 7rpx 5rpx 8rpx 6rpx; background: #edf0e4; color: #708061; font-size: 17rpx; font-weight: 600; line-height: 28rpx; letter-spacing: 1rpx; text-align: center; transform: rotate(-4deg); }
-.ai-spark { position: absolute; top: -12rpx; right: -9rpx; color: #8b9d78; font-size: 18rpx; line-height: 20rpx; text-shadow: 0 0 3rpx #fffdf7; }
 
 .tool-button {
   @include studio-toolbar-button;

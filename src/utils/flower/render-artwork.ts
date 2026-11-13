@@ -1,3 +1,4 @@
+import { bouquetBoundary, fitBouquetTransform } from './bouquet-boundary.cjs'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
 import type { VaseGeometry } from '@/models/material'
 import { bouquetLayers, cloudPlantSvg, vasePlacement } from './material-render'
@@ -61,18 +62,27 @@ export async function renderArtwork(
     ctx.restore()
   }
 
+  ctx.save()
+  const boundary = bouquetBoundary(cloudVase)
+  if (boundary) {
+    ctx.beginPath()
+    boundary.points.forEach(([x, y], index) => index === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y))
+    ctx.closePath()
+    ctx.clip()
+  }
   for (const instance of artwork.materials) {
     const asset = cloudAssets.get(instance.materialId)!
-    const { anchor, angle, height, scale, mirrored } = instance.transform
+    const { anchor, angle, height, scale, mirrored } = fitBouquetTransform(instance.transform, asset, cloudVase)
     ctx.save()
     ctx.translate(anchor.x, anchor.y)
     ctx.rotate(angle * Math.PI / 180)
     ctx.scale(mirrored ? -scale : scale, scale)
     ctx.translate(-55, -height - 55)
-    drawSvg(ctx, cloudPlantSvg(asset, instance), 110, height + 55, flowerStrokeOpacityScale)
+    drawSvg(ctx, cloudPlantSvg(asset, { ...instance, transform: fitBouquetTransform(instance.transform, asset, cloudVase) }), 110, height + 55, flowerStrokeOpacityScale)
     ctx.restore()
   }
 
+  ctx.restore()
   ctx.save()
   ctx.translate(placement.x, placement.y)
   const source = cloudVase.category === 'bouquet' ? bouquetLayers(cloudVase).front : cloudVase.sources.vase
