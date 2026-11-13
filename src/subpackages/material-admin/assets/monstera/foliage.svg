@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370"><title>龟背竹</title><desc>保留品种特征，细化叶片轮廓、脉络与自然层次。</desc>
   <defs>
   <linearGradient id="monstera-shade" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="180">
   <stop offset="0" stop-color="__COLOR__"/>
@@ -9,4 +9,5 @@
   <path d="M55 165C26 154 9 137 12 119L35 134Q37 132 34 128L13 111Q6 94 14 80L40 111Q44 112 40 104L15 69Q12 51 25 43L46 91Q49 92 46 80L29 31Q43 20 53 40L55 70L58 29Q74 17 85 37L67 84Q66 91 70 87L92 46Q106 53 101 75L76 108Q74 114 79 110L103 83Q111 103 97 121L76 136Q75 141 80 138L95 132Q84 158 55 165Z" fill="__COLOR__" stroke="#5e7b60" stroke-width=".6"/>
   <path d="M55 165C26 154 9 137 12 119L35 134Q37 132 34 128L13 111Q6 94 14 80L40 111Q44 112 40 104L15 69Q12 51 25 43L46 91Q49 92 46 80L29 31Q43 20 53 40L55 70L58 29Q74 17 85 37L67 84Q66 91 70 87L92 46Q106 53 101 75L76 108Q74 114 79 110L103 83Q111 103 97 121L76 136Q75 141 80 138L95 132Q84 158 55 165Z" fill="url(#monstera-shade)" opacity=".25"/>
   <path d="M55 162Q51 98 58 37M54 133L22 117M54 110L19 78M54 83L33 43M56 132L93 112M56 105L93 72M56 78L75 43" fill="none" stroke="#b7c49a" stroke-width="0.8" stroke-opacity=".65"/>
+<path d="M55 157 C49 129 49 96 55 75 Q51 123 58 157Z" fill="#e3e8bd" opacity=".18"/><path d="M53 147 Q39 141 29 134 M57 148 Q72 143 83 136 M53 119 Q44 116 38 110 M58 118 Q69 116 75 110" fill="none" stroke="#bed0a4" stroke-width=".45" opacity=".7" stroke-linecap="round"/>
 </svg>

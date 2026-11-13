@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><title>洋牡丹</title><desc>保留洋牡丹的品种轮廓，细化花瓣舒展与前后叠合层次。</desc><!-- adaptive-petal-outline -->
+<defs><linearGradient id="ranunculus-volume" x1=".15" y1="0" x2=".65" y2="1"><stop stop-color="#fff5e7" stop-opacity=".19"/><stop offset=".5" stop-color="#fff5e7" stop-opacity=".015"/><stop offset="1" stop-color="#744553" stop-opacity=".17"/></linearGradient></defs>
+<path d="M54.2 94C54.5 89 52 85 50 81L60 81C57 87 55.6 90 55.8 94Z" fill="#80906d"/>
+<path d="M55 85C46 84 40 79 37 74L50 78L55 74L61 78L73 72C69 80 62 85 55 85Z" fill="#98a580"/>
+<g transform="rotate(7 55 76)">
+<path d="M29 44C29 32 42 29 55 30C70 28 83 35 84 46C86 63 73 80 56 82C41 82 28 64 29 44Z" fill="__COLOR__"/>
+<g><path d="M29 52C24 40 33 29 43 30C50 25 58 25 62 29Q64 28 66 32C77 29 86 39 82 51C75 60 40 62 29 52Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M29 52C24 40 33 29 43 30C50 25 58 25 62 29Q64 28 66 32C77 29 86 39 82 51C75 60 40 62 29 52Z" fill="url(#ranunculus-volume)"/>
+<path d="M29 52C24 40 33 29 43 30C50 25 58 25 62 29Q64 28 66 32C77 29 86 39 82 51C75 60 40 62 29 52Z" fill="#fff5e7" opacity="0.04"/>
+</g>
+<g><path d="M33 44C31 35 41 29 49 33C55 28 64 29 68 33Q70 32 72 36C82 35 84 44 78 49C66 56 44 55 33 44Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M33 44C31 35 41 29 49 33C55 28 64 29 68 33Q70 32 72 36C82 35 84 44 78 49C66 56 44 55 33 44Z" fill="url(#ranunculus-volume)"/>
+<path d="M33 44C31 35 41 29 49 33C55 28 64 29 68 33Q70 32 72 36C82 35 84 44 78 49C66 56 44 55 33 44Z" fill="#fff5e7" opacity="0.1"/>
+</g>
+<g><path d="M36 44C39 34 49 33 56 36C64 33 74 36 76 43C70 52 47 54 36 44Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M36 44C39 34 49 33 56 36C64 33 74 36 76 43C70 52 47 54 36 44Z" fill="url(#ranunculus-volume)"/>
+<path d="M36 44C39 34 49 33 56 36C64 33 74 36 76 43C70 52 47 54 36 44Z" fill="#fff5e7" opacity="0.03"/>
+</g>
+<g><path d="M76.00 44.00Q75.22 45.73 67.93 51.09Q70.28 53.07 76.00 44.00Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M76.00 44.00Q75.22 45.73 67.93 51.09Q70.28 53.07 76.00 44.00Z" fill="url(#ranunculus-volume)"/>
+<path d="M76.00 44.00Q75.22 45.73 67.93 51.09Q70.28 53.07 76.00 44.00Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M71.09 49.79Q64.15 50.87 54.27 52.99Q61.91 56.39 71.09 49.79Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M71.09 49.79Q64.15 50.87 54.27 52.99Q61.91 56.39 71.09 49.79Z" fill="url(#ranunculus-volume)"/>
+<path d="M71.09 49.79Q64.15 50.87 54.27 52.99Q61.91 56.39 71.09 49.79Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M58.65 52.86Q48.80 51.38 40.95 50.69Q50.31 56.73 58.65 52.86Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M58.65 52.86Q48.80 51.38 40.95 50.69Q50.31 56.73 58.65 52.86Z" fill="url(#ranunculus-volume)"/>
+<path d="M58.65 52.86Q48.80 51.38 40.95 50.69Q50.31 56.73 58.65 52.86Z" fill="#fff5e7" opacity="0.095"/>
+</g>
+<g><path d="M44.50 51.79Q36.35 47.04 34.20 45.25Q40.91 53.91 44.50 51.79Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M44.50 51.79Q36.35 47.04 34.20 45.25Q40.91 53.91 44.50 51.79Z" fill="url(#ranunculus-volume)"/>
+<path d="M44.50 51.79Q36.35 47.04 34.20 45.25Q40.91 53.91 44.50 51.79Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M35.27 47.08Q32.62 39.87 37.19 39.23Q38.09 49.27 35.27 47.08Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M35.27 47.08Q32.62 39.87 37.19 39.23Q38.09 49.27 35.27 47.08Z" fill="url(#ranunculus-volume)"/>
+<path d="M35.27 47.08Q32.62 39.87 37.19 39.23Q38.09 49.27 35.27 47.08Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M35.27 40.92Q39.37 33.23 48.51 35.44Q43.19 44.96 35.27 40.92Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M35.27 40.92Q39.37 33.23 48.51 35.44Q43.19 44.96 35.27 40.92Z" fill="url(#ranunculus-volume)"/>
+<path d="M35.27 40.92Q39.37 33.23 48.51 35.44Q43.19 44.96 35.27 40.92Z" fill="#fff5e7" opacity="0.095"/>
+</g>
+<g><path d="M44.50 36.21Q53.43 30.23 62.87 35.66Q53.81 43.02 44.50 36.21Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M44.50 36.21Q53.43 30.23 62.87 35.66Q53.81 43.02 44.50 36.21Z" fill="url(#ranunculus-volume)"/>
+<path d="M44.50 36.21Q53.43 30.23 62.87 35.66Q53.81 43.02 44.50 36.21Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M58.65 35.14Q68.23 32.26 73.54 39.77Q64.99 44.34 58.65 35.14Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M58.65 35.14Q68.23 32.26 73.54 39.77Q64.99 44.34 58.65 35.14Z" fill="url(#ranunculus-volume)"/>
+<path d="M58.65 35.14Q68.23 32.26 73.54 39.77Q64.99 44.34 58.65 35.14Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M71.09 38.21Q76.83 38.39 75.54 45.87Q71.50 48.31 71.09 38.21Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M71.09 38.21Q76.83 38.39 75.54 45.87Q71.50 48.31 71.09 38.21Z" fill="url(#ranunculus-volume)"/>
+<path d="M71.09 38.21Q76.83 38.39 75.54 45.87Q71.50 48.31 71.09 38.21Z" fill="#fff5e7" opacity="0.095"/>
+</g>
+<g><path d="M68.94 46.20Q65.15 46.96 57.72 49.70Q61.92 52.89 68.94 46.20Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M68.94 46.20Q65.15 46.96 57.72 49.70Q61.92 52.89 68.94 46.20Z" fill="url(#ranunculus-volume)"/>
+<path d="M68.94 46.20Q65.15 46.96 57.72 49.70Q61.92 52.89 68.94 46.20Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M60.90 49.31Q53.77 48.58 47.08 48.88Q54.16 53.79 60.90 49.31Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M60.90 49.31Q53.77 48.58 47.08 48.88Q54.16 53.79 60.90 49.31Z" fill="url(#ranunculus-volume)"/>
+<path d="M60.90 49.31Q53.77 48.58 47.08 48.88Q54.16 53.79 60.90 49.31Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M50.10 49.46Q42.97 46.18 40.15 45.32Q46.79 52.45 50.10 49.46Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M50.10 49.46Q42.97 46.18 40.15 45.32Q46.79 52.45 50.10 49.46Z" fill="url(#ranunculus-volume)"/>
+<path d="M50.10 49.46Q42.97 46.18 40.15 45.32Q46.79 52.45 50.10 49.46Z" fill="#fff5e7" opacity="0.095"/>
+</g>
+<g><path d="M41.59 46.60Q37.79 40.89 40.16 40.67Q43.26 49.50 41.59 46.60Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M41.59 46.60Q37.79 40.89 40.16 40.67Q43.26 49.50 41.59 46.60Z" fill="url(#ranunculus-volume)"/>
+<path d="M41.59 46.60Q37.79 40.89 40.16 40.67Q43.26 49.50 41.59 46.60Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M39.36 42.04Q40.67 35.18 47.12 37.11Q45.23 46.31 39.36 42.04Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M39.36 42.04Q40.67 35.18 47.12 37.11Q45.23 46.31 39.36 42.04Z" fill="url(#ranunculus-volume)"/>
+<path d="M39.36 42.04Q40.67 35.18 47.12 37.11Q45.23 46.31 39.36 42.04Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M44.44 37.94Q50.25 31.73 57.76 36.30Q51.76 44.38 44.44 37.94Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M44.44 37.94Q50.25 31.73 57.76 36.30Q51.76 44.38 44.44 37.94Z" fill="url(#ranunculus-volume)"/>
+<path d="M44.44 37.94Q50.25 31.73 57.76 36.30Q51.76 44.38 44.44 37.94Z" fill="#fff5e7" opacity="0.095"/>
+</g>
+<g><path d="M54.47 36.20Q62.06 32.15 67.12 38.64Q59.81 44.62 54.47 36.20Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M54.47 36.20Q62.06 32.15 67.12 38.64Q59.81 44.62 54.47 36.20Z" fill="url(#ranunculus-volume)"/>
+<path d="M54.47 36.20Q62.06 32.15 67.12 38.64Q59.81 44.62 54.47 36.20Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M64.74 37.65Q70.56 36.24 70.80 43.01Q65.61 46.90 64.74 37.65Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M64.74 37.65Q70.56 36.24 70.80 43.01Q65.61 46.90 64.74 37.65Z" fill="url(#ranunculus-volume)"/>
+<path d="M64.74 37.65Q70.56 36.24 70.80 43.01Q65.61 46.90 64.74 37.65Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M70.46 41.59Q71.78 42.09 67.09 47.38Q66.45 50.17 70.46 41.59Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M70.46 41.59Q71.78 42.09 67.09 47.38Q66.45 50.17 70.46 41.59Z" fill="url(#ranunculus-volume)"/>
+<path d="M70.46 41.59Q71.78 42.09 67.09 47.38Q66.45 50.17 70.46 41.59Z" fill="#fff5e7" opacity="0.095"/>
+</g>
+<g><path d="M60.68 45.74Q55.09 45.30 49.44 45.77Q55.05 50.50 60.68 45.74Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M60.68 45.74Q55.09 45.30 49.44 45.77Q55.05 50.50 60.68 45.74Z" fill="url(#ranunculus-volume)"/>
+<path d="M60.68 45.74Q55.09 45.30 49.44 45.77Q55.05 50.50 60.68 45.74Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M51.92 46.29Q45.91 42.96 44.85 42.44Q50.18 49.57 51.92 46.29Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M51.92 46.29Q45.91 42.96 44.85 42.44Q50.18 49.57 51.92 46.29Z" fill="url(#ranunculus-volume)"/>
+<path d="M51.92 46.29Q45.91 42.96 44.85 42.44Q50.18 49.57 51.92 46.29Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M45.48 43.61Q43.57 37.64 47.90 38.77Q48.95 47.46 45.48 43.61Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M45.48 43.61Q43.57 37.64 47.90 38.77Q48.95 47.46 45.48 43.61Z" fill="url(#ranunculus-volume)"/>
+<path d="M45.48 43.61Q43.57 37.64 47.90 38.77Q48.95 47.46 45.48 43.61Z" fill="#fff5e7" opacity="0.095"/>
+</g>
+<g><path d="M46.21 39.72Q49.85 33.34 56.29 37.54Q52.27 45.76 46.21 39.72Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M46.21 39.72Q49.85 33.34 56.29 37.54Q52.27 45.76 46.21 39.72Z" fill="url(#ranunculus-volume)"/>
+<path d="M46.21 39.72Q49.85 33.34 56.29 37.54Q52.27 45.76 46.21 39.72Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M53.56 37.55Q60.00 33.30 63.72 39.66Q57.65 45.74 53.56 37.55Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M53.56 37.55Q60.00 33.30 63.72 39.66Q57.65 45.74 53.56 37.55Z" fill="url(#ranunculus-volume)"/>
+<path d="M53.56 37.55Q60.00 33.30 63.72 39.66Q57.65 45.74 53.56 37.55Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M61.99 38.72Q66.39 37.55 64.58 43.55Q61.03 47.43 61.99 38.72Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M61.99 38.72Q66.39 37.55 64.58 43.55Q61.03 47.43 61.99 38.72Z" fill="url(#ranunculus-volume)"/>
+<path d="M61.99 38.72Q66.39 37.55 64.58 43.55Q61.03 47.43 61.99 38.72Z" fill="#fff5e7" opacity="0.095"/>
+</g>
+<g><path d="M65.17 42.37Q64.20 42.89 58.22 46.27Q59.88 49.54 65.17 42.37Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M65.17 42.37Q64.20 42.89 58.22 46.27Q59.88 49.54 65.17 42.37Z" fill="url(#ranunculus-volume)"/>
+<path d="M65.17 42.37Q64.20 42.89 58.22 46.27Q59.88 49.54 65.17 42.37Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M55.52 44.19Q50.60 41.89 49.80 41.60Q54.21 48.03 55.52 44.19Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M55.52 44.19Q50.60 41.89 49.80 41.60Q54.21 48.03 55.52 44.19Z" fill="url(#ranunculus-volume)"/>
+<path d="M55.52 44.19Q50.60 41.89 49.80 41.60Q54.21 48.03 55.52 44.19Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M50.24 42.59Q48.83 36.74 53.21 38.97Q53.90 47.23 50.24 42.59Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M50.24 42.59Q48.83 36.74 53.21 38.97Q53.90 47.23 50.24 42.59Z" fill="url(#ranunculus-volume)"/>
+<path d="M50.24 42.59Q48.83 36.74 53.21 38.97Q53.90 47.23 50.24 42.59Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M51.54 39.49Q55.59 34.02 59.09 39.83Q55.11 46.80 51.54 39.49Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M51.54 39.49Q55.59 34.02 59.09 39.83Q55.11 46.80 51.54 39.49Z" fill="url(#ranunculus-volume)"/>
+<path d="M51.54 39.49Q55.59 34.02 59.09 39.83Q55.11 46.80 51.54 39.49Z" fill="#fff5e7" opacity="0.095"/>
+</g>
+<g><path d="M57.62 39.17Q61.53 37.49 59.32 43.00Q56.17 47.34 57.62 39.17Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M57.62 39.17Q61.53 37.49 59.32 43.00Q56.17 47.34 57.62 39.17Z" fill="url(#ranunculus-volume)"/>
+<path d="M57.62 39.17Q61.53 37.49 59.32 43.00Q56.17 47.34 57.62 39.17Z" fill="#fff5e7" opacity="0.025"/>
+</g>
+<g><path d="M60.08 42.07Q58.45 42.36 53.58 44.10Q55.62 48.10 60.08 42.07Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M60.08 42.07Q58.45 42.36 53.58 44.10Q55.62 48.10 60.08 42.07Z" fill="url(#ranunculus-volume)"/>
+<path d="M60.08 42.07Q58.45 42.36 53.58 44.10Q55.62 48.10 60.08 42.07Z" fill="#fff5e7" opacity="0.060000000000000005"/>
+</g>
+<g><path d="M28 44C32 42 37 48 42 50C49 54 56 54 63 52C59 66 44 71 34 61C29 55 27 49 28 44Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M28 44C32 42 37 48 42 50C49 54 56 54 63 52C59 66 44 71 34 61C29 55 27 49 28 44Z" fill="url(#ranunculus-volume)"/>
+<path d="M28 44C32 42 37 48 42 50C49 54 56 54 63 52C59 66 44 71 34 61C29 55 27 49 28 44Z" fill="#fff5e7" opacity="0.07"/>
+<path d="M30 45Q34 45 39 49" fill="none" stroke="#fff4e4" stroke-opacity=".28" stroke-width=".65"/>
+</g>
+<g><path d="M74 45C78 43 82 41 84 44C86 55 79 66 66 70L54 61C64 59 70 52 74 45Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M74 45C78 43 82 41 84 44C86 55 79 66 66 70L54 61C64 59 70 52 74 45Z" fill="url(#ranunculus-volume)"/>
+<path d="M74 45C78 43 82 41 84 44C86 55 79 66 66 70L54 61C64 59 70 52 74 45Z" fill="#fff5e7" opacity="0.03"/>
+<path d="M77 46Q81 43 83 45" fill="none" stroke="#fff4e4" stroke-opacity=".28" stroke-width=".65"/>
+</g>
+<g><path d="M32 55C39 56 44 64 53 65C62 66 72 59 79 54C79 63 70 75 57 76C45 76 36 67 32 55Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M32 55C39 56 44 64 53 65C62 66 72 59 79 54C79 63 70 75 57 76C45 76 36 67 32 55Z" fill="url(#ranunculus-volume)"/>
+<path d="M32 55C39 56 44 64 53 65C62 66 72 59 79 54C79 63 70 75 57 76C45 76 36 67 32 55Z" fill="#fff5e7" opacity="0.07"/>
+<path d="M35 57Q44 65 51 66" fill="none" stroke="#fff4e4" stroke-opacity=".28" stroke-width=".65"/>
+</g>
+<g><path d="M37 65C45 67 48 73 57 72C66 72 72 68 76 65C73 75 64 81 55 80C46 79 40 73 37 65Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M37 65C45 67 48 73 57 72C66 72 72 68 76 65C73 75 64 81 55 80C46 79 40 73 37 65Z" fill="url(#ranunculus-volume)"/>
+<path d="M37 65C45 67 48 73 57 72C66 72 72 68 76 65C73 75 64 81 55 80C46 79 40 73 37 65Z" fill="#fff5e7" opacity="0.04"/>
+</g>
+<g><path d="M42 73C50 77 60 79 69 73C65 80 60 83 54 82C49 81 45 78 42 73Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M42 73C50 77 60 79 69 73C65 80 60 83 54 82C49 81 45 78 42 73Z" fill="url(#ranunculus-volume)"/>
+<path d="M42 73C50 77 60 79 69 73C65 80 60 83 54 82C49 81 45 78 42 73Z" fill="#fff5e7" opacity="0.02"/>
+</g>
+</g>
+</svg>

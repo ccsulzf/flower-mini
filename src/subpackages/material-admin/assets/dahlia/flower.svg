@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" shape-rendering="geometricPrecision" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" shape-rendering="geometricPrecision" stroke-linecap="round" stroke-linejoin="round"><title>大丽花</title><desc>保留大丽花的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs>
     <!-- 基础光影渐变 -->
     <linearGradient id="dahlia-fold" x1="0" y1="0" x2="1" y2=".7">
@@ -9,9 +9,9 @@
     <!-- ====== 第 1 轮（外轮长瓣，折光透明度 0.10）====== -->
     <!-- 1-A 标准尖 -->
     <g id="l1-a">
-      <path d="M51 60C47 42 51 19 55 12C63 22 63 46 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
-      <path d="M51 60C47 42 51 19 55 12C63 22 63 46 59 59Z" fill="url(#dahlia-fold)" opacity="0.32"/>
-      <path d="M55 55Q53 29 55 16" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
+      <path d="M51 60C47 42 49 24 55 12C59 18 63 27 62 36C63 46 61 54 59 59Z" fill="__COLOR__" stroke="#8e7175" stroke-opacity=".4" stroke-width=".45"/>
+      <path d="M51 60C47 42 49 24 55 12C59 18 63 27 62 36C63 46 61 54 59 59Z" fill="url(#dahlia-fold)" opacity="0.32"/>
+      <path d="M55 55Q51.5 34 55 16Q57 29 57 40" fill="none" stroke="#f9f1dc" stroke-width="0.65" stroke-opacity=".42"/>
     </g>
     <!-- 1-B 微缩圆尖 -->
     <g id="l1-b">

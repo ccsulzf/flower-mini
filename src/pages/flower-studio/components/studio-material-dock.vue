@@ -13,6 +13,7 @@ import StudioToolbar from './studio-toolbar.vue'
 defineProps<{ toolbarBottom: number, stageBottom: number }>()
 const emit = defineEmits<{
   select: [tab: StudioTab]
+  generate: []
   close: []
   dismiss: []
   material: [id: string]
@@ -47,7 +48,7 @@ function forwardFocus(materialId: string, group: 'flowers' | 'foliage', expanded
       @duplicate="emit('duplicate')" @remove="emit('remove')" @mirror="emit('mirror')"
     />
   </view>
-  <view class="studio-toolbar-position" :style="{ bottom: `${toolbarBottom}px` }"><StudioToolbar @select="emit('select', $event)" /></view>
+  <view class="studio-toolbar-position" :style="{ bottom: `${toolbarBottom}px` }"><StudioToolbar @select="emit('select', $event)" @generate="emit('generate')" /></view>
 </template>
 
 <style scoped lang="scss">

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><title>红掌</title><desc>保留红掌的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs>
     <!-- 保持原有的佛焰苞阴影与色彩过渡定义 -->
     <linearGradient id="anthurium-fold" gradientUnits="userSpaceOnUse" x1="15" y1="10" x2="85" y2="90">
@@ -9,10 +9,10 @@
 
   <g transform="rotate(7 55 98)">
     <!-- ====== 1. 佛焰苞心形主瓣（革质起伏、饱满肩弧与微翘叶尖） ====== -->
-    <path d="M55 98 C47 89 22 72 18 48 C15 25 36 14 55 29 C74 14 95 25 92 48 C88 72 63 89 55 98 Z"
+    <path d="M55 98 C47 89 22 72 18 48 C15 25 36 13 49 24Q53 27 55 29Q58 25 62 23C77 14 95 26 92 48 C88 72 63 89 55 98 Z"
           fill="__COLOR__" stroke="#8c7577" stroke-opacity=".4" stroke-width=".45" stroke-linejoin="round"/>
     <!-- 保持原有的暗调折痕渐变叠加 -->
-    <path d="M55 98 C47 89 22 72 18 48 C15 25 36 14 55 29 C74 14 95 25 92 48 C88 72 63 89 55 98 Z"
+    <path d="M55 98 C47 89 22 72 18 48 C15 25 36 13 49 24Q53 27 55 29Q58 25 62 23C77 14 95 26 92 48 C88 72 63 89 55 98 Z"
           fill="url(#anthurium-plane)"/>
 
     <!-- 红掌标志性的两肩蜡质反光（微弱高光层，赋予塑料/皮革般通透光泽） -->
@@ -21,7 +21,7 @@
 
     <!-- ====== 2. 细腻起伏的掌状主侧叶脉群 (#eac6b1 体系) ====== -->
     <!-- 中央主脉凹陷深折 -->
-    <path d="M55 98 C54 84 50 62 55 29" fill="none" stroke="#eac6b1" stroke-width="0.75" stroke-opacity=".23"/>
+    <path d="M55 98 C53 84 51 64 54 43Q56 34 55 29" fill="none" stroke="#eac6b1" stroke-width="0.75" stroke-opacity=".23"/>
     <!-- 左翼弧形侧脉 -->
     <path d="M53 76 Q35 63 26 43 M54 62 Q33 50 22 34 M54 48 Q39 36 32 24"
           fill="none" stroke="#eac6b1" stroke-width="0.55" stroke-opacity=".21"/>

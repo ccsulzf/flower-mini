@@ -12,6 +12,8 @@ const props = defineProps<{
   artwork: Artwork
   preparedMaterials: Record<string, CachedMaterial>
   selectedId: number | null
+  revealing?: boolean
+  hideEmpty?: boolean
   guideArrange?: boolean
   hideContainer?: boolean
   pickScope?: StudioSelectionFilter
@@ -44,7 +46,7 @@ function isInteractive(instance: MaterialInstance) {
 
 <template>
   <view class="studio-board" :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`" @tap="emit('clear')">
-    <FlowerArtworkRenderer :artwork="artwork" :prepared-materials="preparedMaterials" :hide-container="hideContainer" :selected-id="selectedId" :pick-scope="pickScope" :pick-material-id="pickMaterialId" />
+    <FlowerArtworkRenderer :artwork="artwork" :revealing="revealing" :prepared-materials="preparedMaterials" :hide-container="hideContainer" :selected-id="selectedId" :pick-scope="pickScope" :pick-material-id="pickMaterialId" />
     <view class="board-controls" :style="`transform:translateY(${arrangementOffset}px);`">
       <FlowerStemControl
         v-for="instance in readyInstances"
@@ -60,8 +62,12 @@ function isInteractive(instance: MaterialInstance) {
         @end="emit('end', $event)"
       />
     </view>
-    <view v-if="!artwork.materials.length" class="studio-empty">
-      <text>从一枝花开始</text><text class="empty-hint">在下方选择喜欢的花材</text>
+    <view v-if="!artwork.materials.length && !hideEmpty" class="studio-empty">
+      <text>从一枝花开始</text>
+      <text class="empty-hint">
+        在下方选择喜欢的花材
+      </text>
+
     </view>
   </view>
 </template>

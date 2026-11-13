@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370"><title>尤加利</title><desc>保留品种特征，细化叶片轮廓、脉络与自然层次。</desc>
+  <defs>
+    <!-- 尤加利叶独特的白粉霜雾感（通透清爽，绝不发灰发黑） -->
+    <radialGradient id="euca-frost" cx="45%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="50%" stop-color="#f5fcf7" stop-opacity="0.25"/>
+      <stop offset="85%" stop-color="#edf6f0" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- 叶缘卷曲微光立体感 -->
+    <linearGradient id="euca-wax" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="40%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="80%" stop-color="#000000" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.3"/>
+    </linearGradient>
+
+    <!-- 幼叶顶芽清透渐变 -->
+    <linearGradient id="euca-tip" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#8a9e7d"/>
+      <stop offset="60%" stop-color="__COLOR__"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.7"/>
+    </linearGradient>
+
+    <!-- 真实圆币形尤加利叶片模型 A (正圆饱满、微心形底) -->
+    <g id="euca-leaf-a">
+      <!-- 叶柄微接点 -->
+      <path d="M0 0 C-0.5 2 -1 4 -1.5 6" fill="none" stroke="#79886a" stroke-width="0.8" stroke-linecap="round"/>
+      <!-- 叶片主形 -->
+      <path d="M0 0
+               C-8 1 -20 -8 -21 -21
+               C-22 -32 -10 -40 0 -41
+               C10 -40 22 -32 21 -21
+               C20 -8 8 1 0 0 Z"
+            fill="__COLOR__"/>
+      <path d="M0 0 C-8 1 -20 -8 -21 -21 C-22 -32 -10 -40 0 -41 C10 -40 22 -32 21 -21 C20 -8 8 1 0 0 Z"
+            fill="url(#euca-frost)"/>
+      <path d="M0 0 C-8 1 -20 -8 -21 -21 C-22 -32 -10 -40 0 -41 C10 -40 22 -32 21 -21 C20 -8 8 1 0 0 Z"
+            fill="url(#euca-wax)"/>
+      <!-- 纤细清晰的中央叶脉与对生侧脉 -->
+      <path d="M0 -2 C0 -14 0 -28 0 -38" fill="none" stroke="#ffffff" stroke-width="0.55" stroke-linecap="round" opacity="0.6"/>
+      <path d="M0 -12 C-5 -15 -11 -17 -15 -18" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.4"/>
+      <path d="M0 -12 C5 -15 11 -17 15 -18" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.4"/>
+      <path d="M0 -22 C-5 -25 -10 -27 -14 -28" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.4"/>
+      <path d="M0 -22 C5 -25 10 -27 14 -28" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.4"/>
+    <path d="M-3 -5 C-14 -10 -19 -23 -13 -31 C-9 -36 -4 -38 0 -38 M3 -5 C14 -10 19 -23 13 -31 C9 -36 4 -38 0 -38" fill="none" stroke="#f5fcf7" stroke-width=".32" opacity=".46" stroke-linecap="round"/></g>
+
+    <!-- 真实微倾斜卷翘尤加利叶片模型 B (稍具动势与透视感) -->
+    <g id="euca-leaf-b">
+      <path d="M0 0 C0.5 2 1 4 1.5 6" fill="none" stroke="#79886a" stroke-width="0.8" stroke-linecap="round"/>
+      <path d="M0 0
+               C-10 2 -22 -6 -20 -20
+               C-18 -32 -6 -39 2 -40
+               C11 -41 22 -30 19 -18
+               C16 -7 6 1 0 0 Z"
+            fill="__COLOR__"/>
+      <path d="M0 0 C-10 2 -22 -6 -20 -20 C-18 -32 -6 -39 2 -40 C11 -41 22 -30 19 -18 C16 -7 6 1 0 0 Z"
+            fill="url(#euca-frost)"/>
+      <path d="M0 0 C-10 2 -22 -6 -20 -20 C-18 -32 -6 -39 2 -40 C11 -41 22 -30 19 -18 C16 -7 6 1 0 0 Z"
+            fill="url(#euca-wax)"/>
+      <path d="M0 -2 C1 -13 1 -26 2 -37" fill="none" stroke="#ffffff" stroke-width="0.55" stroke-linecap="round" opacity="0.6"/>
+      <path d="M1 -13 C-4 -16 -10 -18 -14 -19" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.4"/>
+      <path d="M1 -13 C6 -16 11 -18 15 -19" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.4"/>
+      <path d="M2 -23 C-3 -26 -8 -28 -12 -29" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.4"/>
+      <path d="M2 -23 C6 -26 11 -28 15 -29" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.4"/>
+    <path d="M-3 -5 C-13 -10 -18 -21 -13 -29 M4 -5 C13 -12 18 -24 13 -31" fill="none" stroke="#f5fcf7" stroke-width=".32" opacity=".42" stroke-linecap="round"/></g>
+  </defs>
+
+  <!-- ================= 1. 枝条系统（纤细而富有弹性的木质红褐/灰绿主茎） ================= -->
+  <!-- 主茎 -->
+  <path d="M55 370 C57 265 47 165 59 16" fill="none" stroke="#79886a" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M54.4 370 C56.4 265 46.4 165 58.4 16" fill="none" stroke="#9bb08b" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- 左侧分枝（顺滑生长交接） -->
+  <path d="M52 230 C45 205 32 178 18 126" fill="none" stroke="#79886a" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M51.6 230 C44.6 205 31.6 178 17.6 126" fill="none" stroke="#9bb08b" stroke-width="0.4" opacity="0.5"/>
+
+  <!-- 右侧分枝 -->
+  <path d="M51.5 162 C62 140 76 112 88 64" fill="none" stroke="#79886a" stroke-width="1.1" stroke-linecap="round"/>
+  <path d="M51.9 162 C62.4 140 76.4 112 88.4 64" fill="none" stroke="#9bb08b" stroke-width="0.4" opacity="0.5"/>
+
+  <!-- ================= 2. 顶端幼嫩芽叶 ================= -->
+  <g transform="translate(59, 16)">
+    <ellipse cx="-1.5" cy="-4" rx="2.2" ry="4" transform="rotate(-28 -1.5 -4)" fill="url(#euca-tip)"/>
+    <ellipse cx="2.5" cy="-5" rx="2.4" ry="4.5" transform="rotate(22 2.5 -5)" fill="url(#euca-tip)"/>
+  </g>
+
+  <!-- ================= 3. 主干各节错落叶片（上小下大、圆润疏朗） ================= -->
+  <!-- 顶下第一对互生小叶 -->
+  <g transform="translate(58, 38) rotate(-42) scale(0.55)">
+    <use href="#euca-leaf-b"/>
+  </g>
+  <g transform="translate(57, 58) rotate(48) scale(0.68)">
+    <use href="#euca-leaf-a"/>
+  </g>
+
+  <!-- 中上部叶片 -->
+  <g transform="translate(55, 84) rotate(-55) scale(0.78)">
+    <use href="#euca-leaf-b"/>
+  </g>
+  <g transform="translate(54, 114) rotate(52) scale(0.88)">
+    <use href="#euca-leaf-a"/>
+  </g>
+  <g transform="translate(52, 145) rotate(-62) scale(0.96)">
+    <use href="#euca-leaf-b"/>
+  </g>
+
+  <!-- 中层舒展大叶 (最饱满层) -->
+  <g transform="translate(51, 180) rotate(58) scale(1.04)">
+    <use href="#euca-leaf-a"/>
+  </g>
+  <g transform="translate(52, 215) rotate(-56) scale(1.06)">
+    <use href="#euca-leaf-b"/>
+  </g>
+
+  <!-- 中下部大叶 -->
+  <g transform="translate(53.5, 252) rotate(55) scale(1.02)">
+    <use href="#euca-leaf-a"/>
+  </g>
+  <g transform="translate(54.5, 290) rotate(-50) scale(0.95)">
+    <use href="#euca-leaf-b"/>
+  </g>
+  <g transform="translate(55.5, 326) rotate(46) scale(0.88)">
+    <use href="#euca-leaf-a"/>
+  </g>
+
+  <!-- ================= 4. 左分支叶片群 ================= -->
+  <g transform="translate(18, 126) rotate(-48) scale(0.64)">
+    <use href="#euca-leaf-a"/>
+  </g>
+  <g transform="translate(26, 155) rotate(36) scale(0.74)">
+    <use href="#euca-leaf-b"/>
+  </g>
+  <g transform="translate(36, 184) rotate(-40) scale(0.82)">
+    <use href="#euca-leaf-a"/>
+  </g>
+
+  <!-- ================= 5. 右分支叶片群 ================= -->
+  <g transform="translate(88, 64) rotate(45) scale(0.56)">
+    <use href="#euca-leaf-a"/>
+  </g>
+  <g transform="translate(79, 90) rotate(-35) scale(0.66)">
+    <use href="#euca-leaf-b"/>
+  </g>
+  <g transform="translate(69, 118) rotate(40) scale(0.76)">
+    <use href="#euca-leaf-a"/>
+  </g>
+</svg>

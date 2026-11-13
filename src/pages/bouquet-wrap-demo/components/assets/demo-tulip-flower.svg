@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><!-- adaptive-petal-outline -->
+  <title>郁金香花头</title>
+  <desc>柔和的杯状花冠，花瓣自然交叠，花颈连接于底部中央。</desc>
+  <defs>
+    <linearGradient id="tulip-petal-light" x1="0" y1="0" x2=".65" y2="1">
+      <stop stop-color="#fff6e9" stop-opacity=".3"/>
+      <stop offset=".55" stop-color="#fff6e9" stop-opacity=".04"/>
+      <stop offset="1" stop-color="#75434b" stop-opacity=".14"/>
+    </linearGradient>
+  </defs>
+  <!-- The short neck meets the separate stem at (55, 96). -->
+  <path d="M51 85C53 89 53.8 92 53.9 96L56.1 96C56 92 57 88 59 85Z" fill="#7e906d"/>
+  <path d="M54.6 95C54.7 92 54 89 53.5 88" fill="none" stroke="#c2caa5" stroke-width=".55" stroke-linecap="round"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- A slightly leaning rear crown, with rounded rather than pointed tips. -->
+    <g fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".65">
+      <path d="M34 57C29 42 33 27 42 19C48 23 52 30 55 37C59 25 66 16 72 15C81 32 82 50 74 65L57 86Z"/>
+      <path d="M40 58C37 39 43 22 53 11C65 18 73 35 70 52C68 66 61 78 55 83Z"/>
+      <path d="M40 58C37 39 43 22 53 11C65 18 73 35 70 52C68 66 61 78 55 83Z" fill="url(#tulip-petal-light)" stroke="none"/>
+      <!-- The left petal wraps beneath the right, forming one continuous cup. -->
+      <path d="M54 89C33 87 22 68 22 47C22 37 20 30 19 25C31 26 40 33 46 41C51 46 55 51 57 55C63 69 62 81 54 89Z"/>
+      <path d="M54 89C33 87 22 68 22 47C22 37 20 30 19 25C31 26 40 33 46 41C51 46 55 51 57 55C63 69 62 81 54 89Z" fill="url(#tulip-petal-light)" stroke="none"/>
+      <path d="M53 89C72 94 87 75 88 54C89 42 86 31 88 24C72 28 59 39 53 55C48 68 47 81 53 89Z"/>
+      <path d="M53 89C72 94 87 75 88 54C89 42 86 31 88 24C72 28 59 39 53 55C48 68 47 81 53 89Z" fill="url(#tulip-petal-light)" stroke="none"/>
+    </g>
+    <!-- Broad, translucent planes keep all selectable flower colors readable. -->
+    <path d="M24 31C37 36 46 47 51 59C43 50 33 44 25 44Z" fill="#fff6e9" opacity=".17"/>
+    <path d="M57 79C57 62 66 44 81 34C72 45 64 63 61 80Z" fill="#fff6e9" opacity=".16"/>
+    <path d="M48 25C49 21 51 18 53 16C58 21 62 28 64 35C59 29 55 25 52 23Z" fill="#fff6e9" opacity=".22"/>
+    <path d="M27 40C26 52 30 64 37 71" fill="none" stroke="#fff6e9" stroke-opacity=".3" stroke-width=".85"/>
+    <path d="M57 83C58 70 63 57 69 49" fill="none" stroke="#75434b" stroke-opacity=".12" stroke-width=".65"/>
+  </g>
+</svg>

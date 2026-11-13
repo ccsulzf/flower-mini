@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><title>帝王花</title><desc>保留帝王花的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs>
     <!-- 帝王花苞片丝质通透微光（纯净无灰脏杂质） -->
     <linearGradient id="protea-glow" x1=".15" y1="0" x2=".6" y2="1"><stop stop-color="#fff5e5" stop-opacity=".23"/><stop offset=".48" stop-color="#fff5e5" stop-opacity=".03"/><stop offset="1" stop-color="#76515c" stop-opacity=".18"/></linearGradient>
@@ -18,13 +18,13 @@
   <path d="M54.2 94L53 88L58 88L55.8 94Z" fill="#82906d"/><g transform="rotate(-3 55 94)">
     <!-- ================= 1. 后排高耸的披针形外层总苞片（如皇冠齿刃，完全保留原版轨迹） ================= -->
     <!-- 苞片 1 (左后侧) -->
-    <path d="M43 84 C27 72 24 45 29 24 C40 35 45 59 47 79 Z" fill="__COLOR__" stroke="#9b7b83" stroke-width="0.35" stroke-opacity="0.4"/>
-    <path d="M43 84 C27 72 24 45 29 24 C40 35 45 59 47 79 Z" fill="url(#protea-glow)"/>
+    <path d="M43 84 C27 72 23 45 29 24 C32 28 36 31 38 38 C43 51 45 67 47 79 Z" fill="__COLOR__" stroke="#9b7b83" stroke-width="0.35" stroke-opacity="0.4"/>
+    <path d="M43 84 C27 72 23 45 29 24 C32 28 36 31 38 38 C43 51 45 67 47 79 Z" fill="url(#protea-glow)"/>
     <path d="M29 24 C37 36 43 55 45 76" fill="none" stroke="#9b7b83" stroke-width="0.45" opacity="0.35"/>
 
     <!-- 苞片 2 (中左后) -->
-    <path d="M49 81 C38 59 39 33 44 17 C53 35 53 60 53 80 Z" fill="__COLOR__" stroke="#9b7b83" stroke-width="0.35" stroke-opacity="0.4"/>
-    <path d="M49 81 C38 59 39 33 44 17 C53 35 53 60 53 80 Z" fill="url(#protea-glow)"/>
+    <path d="M49 81 C38 59 38 33 44 17 C48 23 51 29 51 37 C54 51 53 67 53 80 Z" fill="__COLOR__" stroke="#9b7b83" stroke-width="0.35" stroke-opacity="0.4"/>
+    <path d="M49 81 C38 59 38 33 44 17 C48 23 51 29 51 37 C54 51 53 67 53 80 Z" fill="url(#protea-glow)"/>
     <path d="M44 17 C48 35 50 56 50 78" fill="none" stroke="#9b7b83" stroke-width="0.45" opacity="0.35"/>
 
     <!-- 苞片 3 (正中最高主尖) -->

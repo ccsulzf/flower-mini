@@ -4,13 +4,13 @@
   <g transform="rotate(5 55 104)">
 
     <path d="M55 104 C55 75.3 52 46 56 16" fill="none" stroke="#798b64" stroke-width="1.1"/>
-    <path d="M55 102 Q33 64 33 29" fill="none" stroke="#798b64" stroke-width="0.8"/>
-    <path d="M55 102 Q57 64 57 21" fill="none" stroke="#798b64" stroke-width="0.8"/>
-    <path d="M55 102 Q79 64 79 36" fill="none" stroke="#798b64" stroke-width="0.8"/>
-    <path d="M55 102 Q42 64 42 55" fill="none" stroke="#798b64" stroke-width="0.8"/>
-    <path d="M55 102 Q69 64 69 61" fill="none" stroke="#798b64" stroke-width="0.8"/>
-    <path d="M55 102 Q29 64 29 77" fill="none" stroke="#798b64" stroke-width="0.8"/>
-    <path d="M55 102 Q53 64 53 83" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 72Q44.0 59.0 33 29" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 48Q56.0 35.0 57 21" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 65Q67.0 52.0 79 36" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 81Q48.5 68.0 42 55" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 88Q62.0 75.0 69 61" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 96Q42.0 86.0 29 77" fill="none" stroke="#798b64" stroke-width="0.8"/>
+    <path d="M55 99Q54.0 92.0 53 83" fill="none" stroke="#798b64" stroke-width="0.8"/>
 
 
 

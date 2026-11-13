@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370" stroke-linecap="round" stroke-linejoin="round"><title>文竹</title><desc>保留品种特征，细化叶片轮廓、脉络与自然层次。</desc>
+  <defs>
+    <!-- 文竹标志性的簇生针状叶状枝（Cladode Tuft：微散细丝，如松针轻羽） -->
+    <g id="needle-fan">
+      <path d="M0 0 L-4 -4.8 M0 0 L-2 -6.2 M0 0 L0.5 -6.5 M0 0 L3 -5.4 M0 0 L4.8 -3.6"
+            fill="none" stroke="__COLOR__" stroke-width="0.25" opacity="0.9"/>
+    <path d="M0 0 Q-2 -2 -3.8 -5.5 M0 0 Q1 -2 2 -6.2 M0 0 Q3 -1.8 5.2 -3.2" fill="none" stroke="__COLOR__" stroke-width=".23" opacity=".65" stroke-linecap="round"/></g>
+    <!-- 梢头更娇嫩小巧的微型针束 -->
+    <g id="needle-fan-sm">
+      <path d="M0 0 L-2.8 -3.6 M0 0 L-1 -4.6 M0 0 L1.2 -4.4 M0 0 L2.8 -2.8"
+            fill="none" stroke="__COLOR__" stroke-width="0.22" opacity="0.85"/>
+    </g>
+  </defs>
+
+  <!-- ====== 1. 刚柔并济的文竹纤细主竿（带着天然竹节微曲） ====== -->
+  <path d="M55 370 C56 280 52 180 56.5 15" fill="none" stroke="__COLOR__" stroke-width="1.1"/>
+  <!-- 主竿梢头柔韧微弯的细须延伸 -->
+  <path d="M56.5 15 Q57.5 7 55.5 2" fill="none" stroke="__COLOR__" stroke-width="0.65" opacity="0.85"/>
+
+  <!-- 主茎各节位上的微小退化托叶小刺（文竹极具辨识度的生态细节） -->
+  <path d="M54.5 272 L53 274 M55.2 228 L57 230 M54.2 182 L52.5 184 M55.5 136 L57.5 138 M54 90 L52 92"
+        fill="none" stroke="__COLOR__" stroke-width="0.5" opacity="0.7"/>
+
+  <!-- ====== 2. 顶端舒朗初展的娇嫩轻梢 (Tier 1 & 2: y 15 ~ 55) ====== -->
+  <!-- 梢头嫩枝小羽片 (y~25) -->
+  <g transform="translate(56.5, 25)">
+    <path d="M0 0 Q5 -4 12 -7" fill="none" stroke="__COLOR__" stroke-width="0.38"/>
+    <use href="#needle-fan-sm" transform="translate(6, -4.5) rotate(50) scale(0.85)"/>
+    <use href="#needle-fan-sm" transform="translate(12, -7) rotate(65) scale(0.75)"/>
+  </g>
+
+  <!-- 左上轻盈小羽片 (y~48) -->
+  <g transform="translate(55, 48)">
+    <path d="M0 0 Q-12 -6 -24 -4" fill="none" stroke="__COLOR__" stroke-width="0.45"/>
+    <path d="M-10 -3 Q-16 -9 -21 -11" fill="none" stroke="__COLOR__" stroke-width="0.32"/>
+    <use href="#needle-fan-sm" transform="translate(-8, -2.5) rotate(-60)"/>
+    <use href="#needle-fan-sm" transform="translate(-16, -5) rotate(-80)"/>
+    <use href="#needle-fan" transform="translate(-21, -11) rotate(-110) scale(0.8)"/>
+    <use href="#needle-fan-sm" transform="translate(-24, -4) rotate(-95) scale(0.8)"/>
+  </g>
+
+  <!-- ====== 3. 上层舒展平展翠云 (Tier 3: y~88 右展优雅云片) ====== -->
+  <g transform="translate(55, 88)">
+    <!-- 侧生一回主枝：先微升后平展微垂 -->
+    <path d="M0 0 C12 -6 26 -7 38 -3" fill="none" stroke="__COLOR__" stroke-width="0.52"/>
+    <!-- 二回互生细分小枝（构成三角形水平云片） -->
+    <path d="M12 -3.5 Q18 -10 26 -11" fill="none" stroke="__COLOR__" stroke-width="0.35"/>
+    <path d="M22 -5 Q30 -11 37 -10" fill="none" stroke="__COLOR__" stroke-width="0.32"/>
+    <path d="M28 -4.5 Q36 -1 42 1" fill="none" stroke="__COLOR__" stroke-width="0.32"/>
+
+    <!-- 节点处密集的纤细叶状枝簇 -->
+    <use href="#needle-fan" transform="translate(12, -3.5) rotate(45)"/>
+    <use href="#needle-fan" transform="translate(20, -10.5) rotate(60) scale(0.9)"/>
+    <use href="#needle-fan-sm" transform="translate(26, -11) rotate(75) scale(0.85)"/>
+    <use href="#needle-fan" transform="translate(22, -5) rotate(40)"/>
+    <use href="#needle-fan" transform="translate(30, -10.5) rotate(55) scale(0.9)"/>
+    <use href="#needle-fan-sm" transform="translate(37, -10) rotate(70) scale(0.8)"/>
+    <use href="#needle-fan" transform="translate(32, -4) rotate(35)"/>
+    <use href="#needle-fan-sm" transform="translate(38, -3) rotate(50) scale(0.85)"/>
+    <use href="#needle-fan-sm" transform="translate(42, 1) rotate(65) scale(0.8)"/>
+  </g>
+
+  <!-- ====== 4. 中上层丰满主云片 (Tier 4: y~134 左展宽阔云层) ====== -->
+  <g transform="translate(54.5, 134)">
+    <path d="M0 0 C-14 -7 -30 -7 -44 -2" fill="none" stroke="__COLOR__" stroke-width="0.55"/>
+    <!-- 细密分叉小枝体系 -->
+    <path d="M-13 -4 Q-21 -12 -31 -13" fill="none" stroke="__COLOR__" stroke-width="0.35"/>
+    <path d="M-25 -6 Q-34 -13 -42 -12" fill="none" stroke="__COLOR__" stroke-width="0.32"/>
+    <path d="M-32 -5 Q-40 -2 -48 2" fill="none" stroke="__COLOR__" stroke-width="0.32"/>
+
+    <!-- 针状枝簇层叠交织 -->
+    <use href="#needle-fan" transform="translate(-13, -4) rotate(-45)"/>
+    <use href="#needle-fan" transform="translate(-22, -12) rotate(-60) scale(0.95)"/>
+    <use href="#needle-fan-sm" transform="translate(-31, -13) rotate(-75) scale(0.85)"/>
+    <use href="#needle-fan" transform="translate(-25, -6) rotate(-40)"/>
+    <use href="#needle-fan" transform="translate(-34, -12.5) rotate(-55) scale(0.9)"/>
+    <use href="#needle-fan-sm" transform="translate(-42, -12) rotate(-70) scale(0.8)"/>
+    <use href="#needle-fan" transform="translate(-36, -4.5) rotate(-35)"/>
+    <use href="#needle-fan-sm" transform="translate(-44, -2) rotate(-50) scale(0.85)"/>
+    <use href="#needle-fan-sm" transform="translate(-48, 2) rotate(-65) scale(0.8)"/>
+  </g>
+
+  <!-- ====== 5. 中部最飘逸横展大云片 (Tier 5: y~180 右展主力云景) ====== -->
+  <g transform="translate(54.5, 180)">
+    <path d="M0 0 C14 -7 -32 -7 46 -1" fill="none" stroke="__COLOR__" stroke-width="0.55"/>
+    <path d="M14 -4 Q23 -13 34 -14" fill="none" stroke="__COLOR__" stroke-width="0.35"/>
+    <path d="M26 -6 Q36 -14 45 -13" fill="none" stroke="__COLOR__" stroke-width="0.32"/>
+    <path d="M34 -5 Q43 -1 50 4" fill="none" stroke="__COLOR__" stroke-width="0.32"/>
+
+    <use href="#needle-fan" transform="translate(14, -4) rotate(45)"/>
+    <use href="#needle-fan" transform="translate(24, -13) rotate(60) scale(0.95)"/>
+    <use href="#needle-fan-sm" transform="translate(34, -14) rotate(75) scale(0.85)"/>
+    <use href="#needle-fan" transform="translate(26, -6) rotate(40)"/>
+    <use href="#needle-fan" transform="translate(36, -13.5) rotate(55) scale(0.9)"/>
+    <use href="#needle-fan-sm" transform="translate(45, -13) rotate(70) scale(0.8)"/>
+    <use href="#needle-fan" transform="translate(37, -4.5) rotate(35)"/>
+    <use href="#needle-fan-sm" transform="translate(46, -1) rotate(50) scale(0.85)"/>
+    <use href="#needle-fan-sm" transform="translate(50, 4) rotate(65) scale(0.8)"/>
+  </g>
+
+  <!-- ====== 6. 中下部沉静微垂云片 (Tier 6: y~226 左展雅致层) ====== -->
+  <g transform="translate(55, 226)">
+    <path d="M0 0 C-12 -5 -24 -4 -35 2" fill="none" stroke="__COLOR__" stroke-width="0.5"/>
+    <path d="M-11 -3 Q-18 -9 -26 -9" fill="none" stroke="__COLOR__" stroke-width="0.34"/>
+    <path d="M-20 -3.5 Q-28 -7 -34 -4" fill="none" stroke="__COLOR__" stroke-width="0.3"/>
+
+    <use href="#needle-fan" transform="translate(-11, -3) rotate(-40)"/>
+    <use href="#needle-fan" transform="translate(-19, -8.5) rotate(-60) scale(0.9)"/>
+    <use href="#needle-fan-sm" transform="translate(-26, -9) rotate(-75) scale(0.8)"/>
+    <use href="#needle-fan" transform="translate(-20, -3.5) rotate(-35)"/>
+    <use href="#needle-fan-sm" transform="translate(-28, -6.5) rotate(-50) scale(0.85)"/>
+    <use href="#needle-fan-sm" transform="translate(-35, 2) rotate(-60) scale(0.8)"/>
+  </g>
+
+  <!-- ====== 7. 基部收束平衡小羽层 (Tier 7: y~268 右下清秀微片) ====== -->
+  <g transform="translate(55, 268)">
+    <path d="M0 0 Q11 -4 22 1" fill="none" stroke="__COLOR__" stroke-width="0.45"/>
+    <path d="M9 -2.5 Q15 -7 21 -6" fill="none" stroke="__COLOR__" stroke-width="0.3"/>
+    <use href="#needle-fan-sm" transform="translate(9, -2.5) rotate(40)"/>
+    <use href="#needle-fan-sm" transform="translate(16, -6.5) rotate(60) scale(0.85)"/>
+    <use href="#needle-fan-sm" transform="translate(22, 1) rotate(50) scale(0.8)"/>
+  </g>
+
+  <!-- 下方 y: 268 ~ 370 留出文竹标志性挺拔清绝、节节高升的挺秀光竿基座 -->
+</svg>

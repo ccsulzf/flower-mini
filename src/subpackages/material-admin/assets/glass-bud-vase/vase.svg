@@ -1,17 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="115" height="195" viewBox="0 0 115 195" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="115" height="195" viewBox="0 0 115 195" stroke-linecap="round" stroke-linejoin="round"><title>细口玻璃瓶</title><desc>柔和轮廓与分层材质，保留瓶口定位和透明背景。</desc>
 <defs><clipPath id="glass-bud-vase-inside"><path d="M36.5 8L36.5 69C36.5 85 28 93 22 107C8 135 8 164 20 183Q26 193 57.5 193Q89 193 95 183C107 164 107 135 93 107C87 93 78.5 85 78.5 69L78.5 8Z"/></clipPath><linearGradient id="glass-bud-vase-body" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="115" y2="0"><stop offset="0" stop-color="#b3a181"/><stop offset=".23" stop-color="#d5c29c"/><stop offset=".43" stop-color="#fff9e8"/><stop offset=".73" stop-color="#d5c29c"/><stop offset="1" stop-color="#b3a181"/></linearGradient></defs>
 <path d="M36.5 8L36.5 69C36.5 85 28 93 22 107C8 135 8 164 20 183Q26 193 57.5 193Q89 193 95 183C107 164 107 135 93 107C87 93 78.5 85 78.5 69L78.5 8Z" fill="#d5c29c" fill-opacity=".085" stroke="#b3a181" stroke-width=".75"/>
 <g clip-path="url(#glass-bud-vase-inside)">
-<path d="M0 128Q57.5 135 115 128V195H0Z" fill="#b7cfc1" opacity=".12"/>
+<path d="M47 28V65C47 83 41 97 36 108" fill="none" stroke="#fff9e8" stroke-width=".8" stroke-opacity=".65"/><path d="M26 133Q57.5 139 90 133" fill="none" stroke="#f5f4df" stroke-width=".7" stroke-opacity=".5"/>
+<path d="M0 128Q57.5 133 115 128V195H0Z" fill="#b7cfc1" opacity=".12"/>
 <path d="M37 9V68C37 89 26 100 22 117C13 141 14 165 23 184L29 188C18 166 21 138 29 119C35 103 43 88 43 69V9Z" fill="#b7a17b" opacity=".17"/>
 <path d="M78 10V69C78 88 88 102 94 118C104 145 101 167 94 182L89 188C97 164 97 141 87 120C79 102 73 87 73 69V10Z" fill="#baa784" opacity=".16"/>
-<path d="M19 179Q57.5 193 96 179L93 190Q57.5 199 22 190Z" fill="#b8a584" opacity=".4"/>
+<path d="M19 180Q57.5 191 96 180L93 189Q57.5 196 22 189Z" fill="#b8a584" opacity=".4"/>
 <path d="M42 21V67C42 87 32 101 27 120Q18 145 24 166" fill="none" stroke="#fffcf0" stroke-width="2.1" stroke-opacity=".9"/>
-<path d="M27.50 112Q14.50 148 27.50 181" fill="none" stroke="#b39b72" stroke-opacity=".19" stroke-width=".65"/>
-<path d="M42.50 112Q36.00 148 42.50 181" fill="none" stroke="#b39b72" stroke-opacity=".19" stroke-width=".65"/>
-<path d="M57.50 112Q57.50 148 57.50 181" fill="none" stroke="#b39b72" stroke-opacity=".19" stroke-width=".65"/>
-<path d="M72.50 112Q79.00 148 72.50 181" fill="none" stroke="#b39b72" stroke-opacity=".19" stroke-width=".65"/>
-<path d="M87.50 112Q100.50 148 87.50 181" fill="none" stroke="#b39b72" stroke-opacity=".19" stroke-width=".65"/>
+<path d="M27.50 112Q14.50 148 27.50 181" fill="none" stroke="#b39b72" stroke-opacity=".12" stroke-width=".55"/>
+<path d="M42.50 112Q36.00 148 42.50 181" fill="none" stroke="#b39b72" stroke-opacity=".12" stroke-width=".55"/>
+<path d="M57.50 112Q57.50 148 57.50 181" fill="none" stroke="#b39b72" stroke-opacity=".12" stroke-width=".55"/>
+<path d="M72.50 112Q79.00 148 72.50 181" fill="none" stroke="#b39b72" stroke-opacity=".12" stroke-width=".55"/>
+<path d="M87.50 112Q100.50 148 87.50 181" fill="none" stroke="#b39b72" stroke-opacity=".12" stroke-width=".55"/>
 <ellipse cx="57.5" cy="128" rx="43" ry="4.4" fill="none" stroke="#90aea0" stroke-opacity=".5" stroke-width=".55"/>
 <path d="M19.5 127Q57.5 122 95.5 127" fill="none" stroke="#fffdf0" stroke-opacity=".7" stroke-width=".7"/>
 </g>

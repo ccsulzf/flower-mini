@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import FlowerGuideTarget from '@/components/flower/flower-guide-target.vue'
 import type { StudioTab } from '../studio-types'
-import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+import FlowerGuideTarget from '@/components/flower/flower-guide-target.vue'
 import { useCreationArtworkStore } from '@/stores/artworkStore'
 import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 
+const emit = defineEmits<{ select: [tab: StudioTab], generate: [] }>()
 const studio = useFlowerStudioStore()
 const artwork = useCreationArtworkStore()
 const { activeTab } = storeToRefs(studio)
 const { materials } = storeToRefs(artwork)
-const emit = defineEmits<{ select: [tab: StudioTab] }>()
 const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?: boolean }[]>(() => [
   { value: 'flowers', label: '花材', icon: 'i-carbon-sprout' },
   { value: 'vases', label: '容器', icon: 'i-carbon-chemistry' },
@@ -22,9 +22,20 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 <template>
   <view class="studio-toolbar" :class="{ 'toolbar-open': activeTab }">
     <view class="toolbar-materials">
+      <view class="tool-target tool-generate-target">
+        <button class="tool-button tool-generate" aria-label="AI 一句话生花" @click="emit('generate')">
+          <view class="ai-mark" aria-hidden="true">
+            AI<text class="ai-spark">
+              ✦
+            </text>
+          </view>
+          <text>生花</text>
+        </button>
+      </view>
+      <view class="tool-divider" aria-hidden="true" />
       <view v-for="tab in tabs" :key="tab.value" class="tool-target">
-        <button class="tool-button"
-          :class="{ 'tool-active': activeTab === tab.value }" :disabled="tab.disabled" @click="emit('select', tab.value)"
+        <button
+          class="tool-button" :class="{ 'tool-active': activeTab === tab.value }" :disabled="tab.disabled" @click="emit('select', tab.value)"
         >
           <view class="tool-icon" :class="tab.icon" /><text>{{ tab.label }}</text>
         </button>
@@ -60,6 +71,11 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
 
 .tool-target { position:relative; flex:1; min-width:0; }
 .tool-target .tool-button { width:100%; }
+.tool-generate-target { flex: 1.15; }
+.tool-divider { width: 1rpx; height: 30rpx; flex-shrink: 0; background: rgba(112, 91, 68, .18); transform: rotate(3deg); }
+.tool-button.tool-generate { color: #6c7e5f; gap: 9rpx; white-space: nowrap; }
+.ai-mark { position: relative; box-sizing: border-box; width: 33rpx; height: 30rpx; flex-shrink: 0; border: 1rpx solid #a8b29a; border-radius: 7rpx 5rpx 8rpx 6rpx; background: #edf0e4; color: #708061; font-size: 17rpx; font-weight: 600; line-height: 28rpx; letter-spacing: 1rpx; text-align: center; transform: rotate(-4deg); }
+.ai-spark { position: absolute; top: -12rpx; right: -9rpx; color: #8b9d78; font-size: 18rpx; line-height: 20rpx; text-shadow: 0 0 3rpx #fffdf7; }
 
 .tool-button {
   @include studio-toolbar-button;

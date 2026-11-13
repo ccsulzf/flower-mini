@@ -31,6 +31,18 @@ function openFlowerJson() {
   uni.navigateTo({ url: '/pages/flower-json/flower-json-page' })
 }
 
+function openFlowerAiDemo() {
+  uni.navigateTo({ url: '/pages/flower-ai-demo/flower-ai-demo-page' })
+}
+
+function openFlowerGenerateDemo() {
+  uni.navigateTo({ url: '/pages/flower-generate-demo/flower-generate-demo-page' })
+}
+
+function openBouquetWrapDemo() {
+  uni.navigateTo({ url: '/pages/bouquet-wrap-demo/bouquet-wrap-demo-page' })
+}
+
 function openFlowerRenderTest() {
   uni.navigateTo({ url: '/pages/flower-render-test/flower-render-test-page' })
 }
@@ -98,6 +110,28 @@ onShow(() => checkAuth())
     </view>
     <view class="app-card section">
       <view class="app-section-title">
+        一句话生花
+      </view>
+      <view class="app-section-desc">
+        说说想送给谁，或最近发生的一件事，让这一刻开成花。
+      </view>
+      <button class="app-secondary-btn" @click="openFlowerGenerateDemo">
+        打开文字生成 Demo
+      </button>
+    </view>
+    <view class="app-card section">
+      <view class="app-section-title">
+        AI 花束调试
+      </view>
+      <view class="app-section-desc">
+        用单枝、三枝或当前作品，看看 AI 怎样整理花束。
+      </view>
+      <button class="app-secondary-btn" @click="openFlowerAiDemo">
+        打开 AI 调试页
+      </button>
+    </view>
+    <view class="app-card section">
+      <view class="app-section-title">
         渲染路线验证
       </view>
       <view class="app-section-desc">
@@ -105,6 +139,17 @@ onShow(() => checkAuth())
       </view>
       <button class="app-secondary-btn" @click="openFlowerRenderTest">
         打开验证页
+      </button>
+    </view>
+    <view class="app-card section">
+      <view class="app-section-title">
+        花束包装实验
+      </view>
+      <view class="app-section-desc">
+        试试包装纸配色、开口和花枝展开效果。
+      </view>
+      <button class="app-secondary-btn" @click="openBouquetWrapDemo">
+        试试花束包装
       </button>
     </view>
     <view v-if="materialAdminEnabled" class="app-card section">

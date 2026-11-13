@@ -1,0 +1,15 @@
+{
+  "id": "bouquet-wrap-ivory",
+  "category": "bouquet",
+  "name": "杏色双衬",
+  "introduction": "杏色外纸与奶油色双衬错位叠放，形成轻盈的纸边层次。",
+  "version": 1,
+  "sortOrder": 205,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

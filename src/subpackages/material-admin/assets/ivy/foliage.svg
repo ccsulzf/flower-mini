@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370" stroke-linecap="round" stroke-linejoin="round"><title>常春藤</title><desc>保留品种特征，细化叶片轮廓、脉络与自然层次。</desc>
   <defs>
     <!-- 常春藤革质叶片通透微光（纯净无灰脏杂质） -->
     <linearGradient id="ivy-gloss" x1="0" y1="1" x2="0" y2="0">
@@ -48,7 +48,7 @@
       <path d="M0 -1 C-4 -4 -9 -7 -13 -10" fill="none" stroke="#e3ecce" stroke-width="0.4" stroke-linecap="round" opacity="0.75"/>
       <!-- 右基侧脉 -->
       <path d="M0 -1 C4 -4 9 -7 13 -10" fill="none" stroke="#e3ecce" stroke-width="0.4" stroke-linecap="round" opacity="0.75"/>
-    </g>
+    <path d="M0 -17 Q-4 -20 -6 -27 M0 -29 Q-3 -32 -3 -37 M0 -17 Q4 -20 6 -27 M0 -29 Q3 -32 3 -37 M-9 -13 Q-12 -13 -14 -16 M9 -13 Q12 -13 14 -16" fill="none" stroke="#d5dcb6" stroke-width=".28" opacity=".6" stroke-linecap="round"/></g>
   </defs>
 
   <!-- ================= 1. 攀援主藤茎（完全保留原版 S 形蜿蜒轨迹） ================= -->

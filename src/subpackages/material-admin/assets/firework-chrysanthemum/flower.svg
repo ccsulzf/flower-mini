@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><title>金丝菊</title><desc>保留金丝菊的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs>
     <!-- 金丝瓣丝绸柔光（洁净明朗，无任何黑灰杂质） -->
     <linearGradient id="silk-shine" x1="0" y1="0" x2="1" y2="0">
@@ -25,13 +25,13 @@
     <!-- 1. 外层飘逸长丝瓣（如行云流水般优美的微弧长丝） -->
     <g id="petal-streamer">
       <path d="M54.4 55
-               C53 38 48 20 52 7
-               C53 4 54.8 4 55.5 6.5
+               C53 38 46.5 20 51.5 8Q51.7 7.5 52 7
+               C53 3.5 55.8 3.5 55.5 6.5
                C56.2 12 55.5 28 55.6 55 Z"
             fill="__COLOR__"/>
-      <path d="M54.4 55 C53 38 48 20 52 7 C53 4 54.8 4 55.5 6.5 C56.2 12 55.5 28 55.6 55 Z"
+      <path d="M54.4 55 C53 38 46.5 20 51.5 8Q51.7 7.5 52 7 C53 3.5 55.8 3.5 55.5 6.5 C56.2 12 55.5 28 55.6 55 Z"
             fill="url(#silk-tip)"/>
-      <path d="M54.4 55 C53 38 48 20 52 7 C53 4 54.8 4 55.5 6.5 C56.2 12 55.5 28 55.6 55 Z"
+      <path d="M54.4 55 C53 38 46.5 20 51.5 8Q51.7 7.5 52 7 C53 3.5 55.8 3.5 55.5 6.5 C56.2 12 55.5 28 55.6 55 Z"
             fill="url(#silk-shine)"/>
       <path d="M54.8 52 C53.5 35 50.5 18 53 7" fill="none" stroke="#ffffff" stroke-width="0.38" stroke-linecap="round" opacity="0.390"/>
     </g>

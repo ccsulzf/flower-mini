@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><title>朱顶红</title><desc>保留朱顶红的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs><linearGradient id="amaryllis-plane" x1=".15" y1="0" x2=".6" y2="1"><stop stop-color="#fff5e5" stop-opacity=".23"/><stop offset=".48" stop-color="#fff5e5" stop-opacity=".03"/><stop offset="1" stop-color="#76515c" stop-opacity=".18"/></linearGradient>
     <!-- 朱顶红舒展外轮阔花瓣组件 -->
     <g id="amaryllis-petal-outer">
       <!-- 花瓣主轮廓（基部收窄、腰部宽阔、尖端带微卷尖芒） -->
-      <path d="M-2 4 C-8 0 -13.5 -9 -12.5 -18.5 C-11.5 -25 -5 -27.5 0 -26.5 C5 -27.5 11.5 -25 12.5 -18.5 C13.5 -9 8 0 2 4 Z"
+      <path d="M-2 4 C-8 0 -13.5 -9 -12.5 -18.5 C-11.5 -25 -6 -28 0 -26.5 C5 -28.5 10 -25.5 11 -22Q13 -20 12.5 -18.5 C13.5 -9 8 0 2 4 Z"
             fill="__COLOR__" stroke="#78585b" stroke-width="0.38" stroke-opacity=".3" stroke-linejoin="round"/>
       <!-- 正面透光暖白层 -->
-      <path d="M-2 4 C-8 0 -13.5 -9 -12.5 -18.5 C-11.5 -25 -5 -27.5 0 -26.5 C5 -27.5 11.5 -25 12.5 -18.5 C13.5 -9 8 0 2 4 Z"
+      <path d="M-2 4 C-8 0 -13.5 -9 -12.5 -18.5 C-11.5 -25 -6 -28 0 -26.5 C5 -28.5 10 -25.5 11 -22Q13 -20 12.5 -18.5 C13.5 -9 8 0 2 4 Z"
             fill="url(#amaryllis-plane)"/>
       <!-- 花瓣主脉高光脊线 -->
       <path d="M-0.8 4 C-3.5 -4 -3.5 -15 0 -24 C1 -15 2 -4 1.5 4 Z" fill="#fff5df" opacity=".23"/>
@@ -16,9 +16,9 @@
 
     <!-- 朱顶红微卷内轮花瓣组件（略为修长） -->
     <g id="amaryllis-petal-inner">
-      <path d="M-1.8 4 C-6.5 -1 -11.5 -9 -10.5 -18 C-9.5 -24 -4 -26.5 0 -25.5 C4 -26.5 9.5 -24 10.5 -18 C11.5 -9 6.5 -1 1.8 4 Z"
+      <path d="M-1.8 4 C-6.5 -1 -11.5 -9 -10.5 -18 C-9.5 -24 -4 -27 0 -25.5 C4 -27 8 -24.5 9 -21Q11 -20 10.5 -18 C11.5 -9 6.5 -1 1.8 4 Z"
             fill="__COLOR__" stroke="#78585b" stroke-width="0.38" stroke-opacity=".3" stroke-linejoin="round"/>
-      <path d="M-1.8 4 C-6.5 -1 -11.5 -9 -10.5 -18 C-9.5 -24 -4 -26.5 0 -25.5 C4 -26.5 9.5 -24 10.5 -18 C11.5 -9 6.5 -1 1.8 4 Z"
+      <path d="M-1.8 4 C-6.5 -1 -11.5 -9 -10.5 -18 C-9.5 -24 -4 -27 0 -25.5 C4 -27 8 -24.5 9 -21Q11 -20 10.5 -18 C11.5 -9 6.5 -1 1.8 4 Z"
             fill="url(#amaryllis-plane)"/>
       <path d="M-0.6 4 C-2.8 -4 -2.8 -14 0 -23 C0.8 -14 1.8 -4 1.2 4 Z" fill="#fff5df" opacity=".23"/>
       <path d="M0 2 Q-3.5 -6 -5 -15 M0 2 Q3.5 -6 5 -15" fill="none" stroke="#78585b" stroke-width="0.3" opacity="0.35"/>

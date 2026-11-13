@@ -14,12 +14,6 @@ interface MaterialPrepareProgress {
 }
 
 const catalogCacheKey = 'flower-material-catalog-cache-sort-order-v1'
-const catalogCheckInterval = 24 * 60 * 60 * 1000
-
-interface CatalogCache {
-  checkedAt: number
-  catalog: unknown
-}
 
 export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
   const materials = ref<UploadedMaterial[]>([])
@@ -62,49 +56,55 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     return prepared.value[id]
   }
 
-  function restoreFreshCatalog() {
+  function usableCatalog(value: unknown) {
+    const items = parseMaterialCatalog(value)
+    if (!items.length)
+      throw new Error('云端素材目录为空，请先上传素材后重试')
+    const missing = [
+      ...(!items.some(item => item.category === 'vase') ? ['花瓶'] : []),
+      ...(!items.some(item => item.category === 'background') ? ['背景'] : []),
+    ]
+    if (missing.length)
+      throw new Error(`素材目录缺少${missing.join('、')}，请上传后重试`)
+    return items
+  }
+
+  function restoreCatalog() {
     try {
-      const value: unknown = uni.getStorageSync(catalogCacheKey)
-      if (!value || typeof value !== 'object')
-        return false
-      const cache = value as CatalogCache
-      if (!Number.isFinite(cache.checkedAt) || Date.now() - cache.checkedAt < 0 || Date.now() - cache.checkedAt >= catalogCheckInterval)
-        return false
-      const cachedMaterials = parseMaterialCatalog(cache.catalog)
-      if (!cachedMaterials.length)
-        return false
-      materials.value = cachedMaterials
+      const cache: unknown = uni.getStorageSync(catalogCacheKey)
+      if (!cache || typeof cache !== 'object' || !('catalog' in cache))
+        return
+      materials.value = usableCatalog(cache.catalog)
       loaded.value = true
-      return true
     }
-    catch {
-      return false
-    }
+    catch { /* 缓存不可用时再从云端获取目录。 */ }
   }
 
-  function cacheCheckedCatalog() {
-    uni.setStorageSync(catalogCacheKey, {
-      checkedAt: Date.now(),
-      catalog: { items: materials.value },
-    } satisfies CatalogCache)
-  }
-
-  function load(): Promise<void> {
+  function load(options: { silent?: boolean } = {}): Promise<void> {
     if (loadTask)
       return loadTask
-    loading.value = true
-    error.value = ''
+    if (!options.silent) {
+      loading.value = true
+      error.value = ''
+    }
     loadTask = (async () => {
       try {
         await waitForAppAuthReady()
         const cloud = uniCloud.importObject('flower-catalog', { customUI: true })
-        materials.value = parseMaterialCatalog(await cloud.list())
+        // 校验通过后才替换目录，失败时保留已有可用素材。
+        const items = usableCatalog(await cloud.list())
+        materials.value = items
         loaded.value = true
-        try { cacheCheckedCatalog() }
-        catch { /* 目录缓存失败不影响本次使用。 */ }
+        try { uni.setStorageSync(catalogCacheKey, { catalog: { items: materials.value } }) }
+        catch { /* 缓存写入失败不影响本次使用。 */ }
       }
       catch (value) {
-        error.value = failure(value)
+        if (!options.silent)
+          error.value = failure(value)
+        const message = failure(value)
+        throw new Error(message === 'request:fail'
+          ? '素材目录请求失败，请检查网络或开发者工具的请求屏蔽设置后重试'
+          : message)
       }
       finally {
         loading.value = false
@@ -126,9 +126,10 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     const running = tasks.get(id)
     if (running)
       return running
-    downloading.value++
-    if (!options.silent)
+    if (!options.silent) {
+      downloading.value++
       error.value = ''
+    }
     const task = (async () => {
       try {
         let record = materials.value.find(item => item.id === id)
@@ -152,7 +153,8 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
         throw new Error(message)
       }
       finally {
-        downloading.value--
+        if (!options.silent)
+          downloading.value--
         tasks.delete(id)
       }
     })()
@@ -211,11 +213,24 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
   }
 
   async function preload() {
-    if (!loaded.value && !restoreFreshCatalog())
+    if (!loaded.value)
+      restoreCatalog()
+    if (!loaded.value)
       await load()
     if (!loaded.value)
       throw new Error(error.value || '素材目录加载失败，请重试')
     ready.value = true
+  }
+
+  async function refreshInBackground() {
+    try {
+      await load({ silent: true })
+      // 等待旧目录的预下载结束，再检查新目录，避免漏掉新增素材。
+      if (backgroundTask)
+        await backgroundTask
+      await preloadRemaining()
+    }
+    catch { /* 后台更新失败继续使用已有素材，下次打开时重试。 */ }
   }
 
   function preloadRemaining(): Promise<void> {
@@ -262,6 +277,7 @@ export const useFlowerCatalogStore = defineStore('flowerCatalog', () => {
     prepareFor,
     preload,
     preloadRemaining,
+    refreshInBackground,
     retryPreparation,
     get,
   }

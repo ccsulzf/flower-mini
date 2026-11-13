@@ -12,6 +12,7 @@ import StudioContainer from './flower-vase.vue'
 const props = defineProps<{
   artwork: Artwork
   preparedMaterials: Record<string, CachedMaterial>
+  revealing?: boolean
   hideBackground?: boolean
   hideContainer?: boolean
   selectedId?: number | null
@@ -46,11 +47,12 @@ function isDimmed(instance: Artwork['materials'][number]) {
     <view class="board-arrangement" :style="`transform:translateY(${arrangementOffset}px);`">
       <StudioContainer v-if="container" class="board-container" :material="container" :hide-container="hideContainer">
         <FlowerInstance
-          v-for="instance in readyInstances"
+          v-for="(instance, index) in readyInstances"
           :key="instance.id"
           :instance="instance"
           :material="preparedMaterials[instance.materialId]"
           :dimmed="isDimmed(instance)"
+          :reveal-delay="revealing ? Math.min(index, 24) * 90 : undefined"
         />
       </StudioContainer>
     </view>

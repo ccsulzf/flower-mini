@@ -8,7 +8,7 @@
     </linearGradient>
 
     <!-- 真实满天星小花单瓣原型 (匙形、顶端微凹缺) -->
-    <path id="gyp-single-petal" d="M0 0 C-0.9 -0.6 -1.6 -1.8 -1.4 -3.1 C-1.2 -4.0 -0.4 -4.3 0 -3.8 C0.4 -4.3 1.2 -4.0 1.4 -3.1 C1.6 -1.8 0.9 -0.6 0 0 Z" fill="__COLOR__" stroke="#9b9980" stroke-width=".28" stroke-opacity=".5"/>
+    <path id="gyp-single-petal" d="M0 0C-0.9 -0.6 -1.7 -1.9 -1.4 -3.1Q-1.1 -4.3 -0.4 -4L0 -3.5L0.5 -4Q1.3 -4.2 1.5 -3C1.7 -1.7 0.9 -0.5 0 0Z" fill="__COLOR__" stroke="#9b9980" stroke-width=".28" stroke-opacity=".5"/>
 
     <!-- 单朵完整的满天星小花（由5枚微凹花瓣与柔黄花蕊组成） -->
     <g id="gyp-floret">

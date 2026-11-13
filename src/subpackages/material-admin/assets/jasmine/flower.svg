@@ -17,9 +17,9 @@
 
     <!-- 1. 外层展开长花瓣模型 (长约 22px，圆润微凹匙形) -->
     <g id="jas-petal-outer">
-      <path d="M-2 3 C-8 -1 -11 -15 -3 -21 C5 -23 10 -7 2 3 Z" fill="__COLOR__"/>
-      <path d="M-2 3 C-8 -1 -11 -15 -3 -21 C5 -23 10 -7 2 3 Z" fill="url(#jasmine-glow)"/>
-      <path d="M-2 3 C-8 -1 -11 -15 -3 -21 C5 -23 10 -7 2 3 Z" fill="url(#jasmine-rim)" stroke="#97937b" stroke-width=".44" stroke-opacity=".4"/>
+      <path d="M-2 3C-7 -1 -11 -11 -7 -17Q-4 -22 0 -21C5 -20 9 -13 7 -7Q6 -1 2 3Z" fill="__COLOR__"/>
+      <path d="M-2 3C-7 -1 -11 -11 -7 -17Q-4 -22 0 -21C5 -20 9 -13 7 -7Q6 -1 2 3Z" fill="url(#jasmine-glow)"/>
+      <path d="M-2 3C-7 -1 -11 -11 -7 -17Q-4 -22 0 -21C5 -20 9 -13 7 -7Q6 -1 2 3Z" fill="url(#jasmine-rim)" stroke="#97937b" stroke-width=".44" stroke-opacity=".4"/>
       <path d="M0 2 C-2 -6 -2 -14 -1 -18" fill="none" stroke="#a5a28a" stroke-width="0.38" opacity="0.32"/>
     </g>
 

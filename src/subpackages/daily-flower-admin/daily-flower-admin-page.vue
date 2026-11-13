@@ -134,10 +134,11 @@ async function validateItem(item: DraftQueueItem) {
       await catalog.load()
     if (catalog.error)
       throw new Error(catalog.error)
-    if (item.draft.artwork.container.type === 'bouquet') {
+    if (item.draft.artwork.container.type === 'bouquet'
+      && !catalog.materials.some(material => material.id === item.draft.artwork.container.materialId && material.category === 'bouquet')) {
       const vase = catalog.materials.find(material => material.category === 'vase')
       if (!vase)
-        throw new Error('旧草稿使用了已停用的花束包装，且云端没有可替换的花瓶')
+        throw new Error('草稿引用的花束包装已不存在，且云端没有可替换的花瓶')
       item.draft.artwork.container = { materialId: vase.id, type: 'vase' }
       item.draft.artwork.containerLayouts = {}
       item.result = '已将旧包装引用替换为花瓶'

@@ -1,14 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="160" height="180" viewBox="0 0 160 180" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="180" viewBox="0 0 160 180" stroke-linecap="round" stroke-linejoin="round"><title>方形花瓶</title><desc>柔和轮廓与分层材质，保留瓶口定位和透明背景。</desc>
 <defs><linearGradient id="square-glaze" x1="0" y1="0" x2="1" y2=".4"><stop stop-color="#dce2d1"/><stop offset=".48" stop-color="#d2dbc6"/><stop offset="1" stop-color="#b2bfa5"/></linearGradient></defs>
 <path d="M22 3L41 15V176L22 164Z" fill="#a0af94" stroke="#8e9b83" stroke-width=".65"/>
-<path d="M41 15H138V176H41Z" fill="url(#square-glaze)" stroke="#9da98f" stroke-width=".65"/>
+<path d="M41 15H138V174Q138 176 136 176H43Q41 176 41 174Z" fill="url(#square-glaze)" stroke="#9da98f" stroke-width=".65"/>
 <path d="M22 151L41 163H138V176H41L22 164Z" fill="#c2b59d"/>
 <path d="M41 163H138" fill="none" stroke="#e8e6d0" stroke-width=".8"/>
 <path d="M22 3H119L138 15H41Z" fill="#e2e6d5" stroke="#9ca78f" stroke-width=".65"/>
 <path d="M30 5.4H117.5L130.5 12.5H43Z" fill="#727e6b"/>
 <path d="M30 5.4H117.5V8.8H36Z" fill="#8e9982"/>
 <path d="M43 12.5H130.5M41.5 16V162" fill="none" stroke="#f1f1de" stroke-width=".95"/>
-<path d="M63 139V77Q63 56 83 55Q104 55 104 77V139" fill="none" stroke="#a4b197" stroke-opacity=".45" stroke-width="1.15"/>
-<path d="M64.5 139V77Q64.5 57 83 56.5Q102.5 56.5 102.5 77V139" fill="none" stroke="#edf0db" stroke-opacity=".55" stroke-width=".7"/>
+<path d="M63 139V78C63 65 69 56 82 55C95 54 104 64 104 77V139" fill="none" stroke="#a4b197" stroke-opacity=".45" stroke-width="1.15"/>
+<path d="M64.5 139V78C64.5 65 70 57 82 56.5C95 55.5 102.5 65 102.5 77V139" fill="none" stroke="#edf0db" stroke-opacity=".55" stroke-width=".7"/>
 <path d="M47 23V147" fill="none" stroke="#f5f4e0" stroke-opacity=".27" stroke-width="1.7"/>
+<path d="M48 25H58L56 145H48Z" fill="#f4f1dd" opacity=".14"/>
 </svg>

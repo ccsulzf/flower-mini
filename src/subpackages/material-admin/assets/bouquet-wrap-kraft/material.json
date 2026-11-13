@@ -1,0 +1,15 @@
+{
+  "id": "bouquet-wrap-kraft",
+  "category": "bouquet",
+  "name": "斜折牛皮",
+  "introduction": "牛皮纸以不对称斜折包住花茎，适合自然错落的花束。",
+  "version": 1,
+  "sortOrder": 201,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

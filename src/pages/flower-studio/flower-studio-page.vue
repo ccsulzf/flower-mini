@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { StudioTab } from './studio-types'
+import type { Artwork } from '@/models/artwork'
 import type { SavedFlowerWork } from '@/models/flower-creation'
 import type { FlowerGuideTarget, ReportFlowerGuideTarget } from '@/models/flower-guide'
 import { onHide, onLoad, onShareAppMessage, onShareTimeline, onShow, onUnload } from '@dcloudio/uni-app'
@@ -18,9 +19,12 @@ import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
 import { createCatalogArtwork } from '@/utils/flower/artwork'
+import { takeGeneratedArtwork } from '@/utils/flower/generated-transfer'
+import StudioGeneration from './components/studio-generation.vue'
 import StudioGuide from './components/studio-guide.vue'
 import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioTopToolbar from './components/studio-top-toolbar.vue'
+import { useStudioGeneration } from './composables/useStudioGeneration'
 import { useStudioGuide } from './composables/useStudioGuide'
 import { useStudioSelectionActions } from './composables/useStudioSelectionActions'
 
@@ -73,6 +77,8 @@ const {
 const detailId = ref('')
 const completionState = ref<'idle' | 'saving' | 'generating' | 'ready' | 'failed'>('idle')
 const dailyFlower = useDailyFlowerStore()
+const generation = useStudioGeneration()
+const { visible: generationVisible, prompt: generationPrompt, error: generationError, phase: generationPhase, preview: generationPreview, busy: generationBusy } = generation
 const guide = useStudioGuide()
 const guideStep = guide.step
 watch(activeTab, (tab) => {
@@ -81,7 +87,7 @@ watch(activeTab, (tab) => {
   else if (guideStep.value === 'open-flowers' && tab === 'flowers')
     guideStep.value = 'flowers'
 }, { flush: 'sync' })
-const guideAvailable = computed(() => pageReady.value && !startupError.value && !prepareError.value && !storageError.value && !pendingDraft.value && completionState.value === 'idle' && !dailyFlower.loading && !dailyFlower.visible)
+const guideAvailable = computed(() => pageReady.value && !generationVisible.value && (guideStep.value !== 'open-flowers' || materials.value.length > 0) && !startupError.value && !prepareError.value && !storageError.value && !pendingDraft.value && completionState.value === 'idle' && !dailyFlower.loading && !dailyFlower.visible)
 provide('studioGuideStep', computed(() => guideAvailable.value ? guideStep.value : null))
 const guideTarget = ref<FlowerGuideTarget | null>(null)
 let guideTargetOwner = -1
@@ -128,6 +134,8 @@ const { startDrag, moveDrag, endDrag } = useFlowerDrag(
 )
 cancelDrag = () => endDrag(true)
 
+let generatedKey = ''
+let generatedArtwork: Artwork | null = null
 onLoad((query) => {
   // #ifdef MP-WEIXIN
   uni.showShareMenu({
@@ -137,16 +145,22 @@ onLoad((query) => {
   // #endif
 
   detailId.value = String(query?.workId || '')
+  generatedKey = String(query?.generated || '')
   void bootstrap()
 })
 onShow(() => {
   if (!bootTask && alive && !pageReady.value)
     void bootstrap()
 })
-onHide(() => { endDrag(true); session.flushDraft() })
+onHide(() => {
+  generation.cancel()
+  endDrag(true)
+  session.flushDraft()
+})
 onUnload(() => {
   if (detailId.value && !session.hasUnsavedChanges.value)
     void resetWorkspaceAfterLeave()
+  generation.cancel()
   alive = false
   if (addedMaterialTimer)
     clearTimeout(addedMaterialTimer)
@@ -227,7 +241,11 @@ function bootstrap(): Promise<void> {
       if (!alive || pageReady.value)
         return
       session.initialize(uid, Boolean(detailId.value))
-      let restoring = Boolean(pendingDraft.value)
+      if (generatedKey)
+        generatedArtwork = takeGeneratedArtwork(uid, generatedKey)
+      const generated = generatedArtwork
+      generatedKey = ''
+      let restoring = !generated && Boolean(pendingDraft.value)
       let useDefaultArtwork = draftReadFailed.value
       if (restoring) {
         applying = true
@@ -244,7 +262,15 @@ function bootstrap(): Promise<void> {
         return
       if (detailId.value && !/^[a-f\d]{32}$/.test(detailId.value))
         throw new Error('作品链接无效')
-      if (detailId.value) {
+      if (generated) {
+        await catalog.prepareFor([generated.background.materialId, generated.container.materialId,
+          ...generated.materials.map(item => item.materialId)])
+        if (!alive)
+          return
+        artworkStore.initialize(generated)
+        session.startFreshDraft()
+      }
+      else if (detailId.value) {
         const work = await works.get(detailId.value)
         if (!alive)
           return
@@ -253,7 +279,7 @@ function bootstrap(): Promise<void> {
         session.editWork()
         applying = false
       }
-      if (detailId.value) {
+      if (generated || detailId.value) {
         await prepareArtwork()
       }
       else {
@@ -276,6 +302,7 @@ function bootstrap(): Promise<void> {
         return
       startupError.value = ''
       pageReady.value = true
+      generatedArtwork = null
       if (!detailId.value && !restoring && !draftReadFailed.value && !materials.value.length)
         guide.start(true, materials.value.length ? 'arrange' : 'open-flowers')
       void catalog.preloadRemaining()
@@ -588,6 +615,22 @@ function requestLeave(leave: () => void) {
 }
 
 function openWorks() { requestLeave(() => uni.navigateTo({ url: '/pages/flower-works/flower-works-page' })) }
+function openFlowerGenerate() {
+  if (!pageReady.value || pendingMaterialId.value || finishing.value || pendingDraft.value || readonly.value || draftReadFailed.value || startupError.value || prepareError.value || completionState.value !== 'idle')
+    return
+  endDrag(true)
+  closePanels()
+  generationError.value = ''
+  generationVisible.value = true
+}
+async function generateInStudio() {
+  uni.hideKeyboard()
+  if (await generation.generate()) {
+    images.invalidate()
+    if (guideStep.value)
+      guideStep.value = 'arrange'
+  }
+}
 function openDailyFlowers() {
   requestLeave(() => {
     closePanels()
@@ -650,12 +693,19 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
     <view class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
       <view class="studio-artwork" :style="layout.workspaceStyle">
         <view class="studio-board-scale" :style="layout.boardStyle">
-          <FlowerBoard :artwork="artwork" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" :guide-arrange="guideStep === 'arrange' && guideAvailable" @start="startGuidedDrag" @move="moveDrag" @end="endGuidedDrag" @clear="closeFlowerTools" />
+          <FlowerBoard :artwork="generationPreview || artwork" :revealing="generationPhase === 'revealing'" :hide-empty="generationBusy" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" :guide-arrange="guideStep === 'arrange' && guideAvailable" @start="startGuidedDrag" @move="moveDrag" @end="endGuidedDrag" @clear="closeFlowerTools" />
         </view>
       </view>
     </view>
+    <StudioGeneration
+      v-if="generationVisible" v-model:prompt="generationPrompt" :error="generationError" :phase="generationPhase"
+      :toolbar-bottom="layout.toolbarBottom" :replacing="Boolean(materials.length)"
+      @generate="generateInStudio" @close="generation.cancel"
+    />
     <StudioMaterialDock
+      v-if="!generationBusy"
       :toolbar-bottom="layout.toolbarBottom" :stage-bottom="layout.stageBottom" @select="toggleTab" @close="studio.closePanel"
+      @generate="openFlowerGenerate"
       @dismiss="closePanels" @material="selectCatalogMaterial" @focus="focusSelectionMaterial" @instance="selectSelectionInstance"
       @color="setColor" @toggle-colors="colorsExpanded = !colorsExpanded" @layer="setLayer"
       @duplicate="duplicateSelected" @remove="removeSelected" @mirror="mirrorSelected"

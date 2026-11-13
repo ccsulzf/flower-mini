@@ -8,8 +8,8 @@ import { useMaterialAdminStore } from './lib/store'
 
 definePage({ layout: 'default', style: { navigationBarTitleText: '素材管理' } })
 const store = useMaterialAdminStore()
-const groups = [{ key: 'all', name: '全部' }, { key: 'main', name: '主花' }, { key: 'filler', name: '配花' }, { key: 'foliage', name: '叶材' }, { key: 'vase', name: '花瓶' }, { key: 'background', name: '背景' }] as const
-const group = ref<MaterialGroup | 'all' | 'vase' | 'background'>('all')
+const groups = [{ key: 'all', name: '全部' }, { key: 'main', name: '主花' }, { key: 'filler', name: '配花' }, { key: 'foliage', name: '叶材' }, { key: 'vase', name: '花瓶' }, { key: 'bouquet', name: '花束包装' }, { key: 'background', name: '背景' }] as const
+const group = ref<MaterialGroup | 'all' | 'vase' | 'bouquet' | 'background'>('all')
 const materials = computed(() => localCatalog.items.filter(item => group.value === 'all' || (group.value === 'vase' || group.value === 'bouquet' || group.value === 'background' ? item.category === group.value : item.category === 'flower' && item.group === group.value)))
 const selected = ref<MaterialDraft | null>(null)
 const canDelete = computed(() => !!selected.value && !!store.remote?.some(item => item.id === selected.value!.id))

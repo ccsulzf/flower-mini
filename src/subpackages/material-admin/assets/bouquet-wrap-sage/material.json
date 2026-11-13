@@ -1,0 +1,15 @@
+{
+  "id": "bouquet-wrap-sage",
+  "category": "bouquet",
+  "name": "绿意圆领",
+  "introduction": "鼠尾草绿柔纸搭配圆弧领口与浅色内衬，轮廓柔和。",
+  "version": 1,
+  "sortOrder": 202,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

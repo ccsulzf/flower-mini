@@ -1,0 +1,15 @@
+{
+  "id": "bouquet-wrap-lavender",
+  "category": "bouquet",
+  "name": "雾紫信封",
+  "introduction": "雾紫纸张交叠成信封式包裹，折边利落而温柔。",
+  "version": 1,
+  "sortOrder": 204,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

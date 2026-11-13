@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><title>铁线莲</title><desc>保留铁线莲的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs>
     <!-- ====== 1. 真实铁线莲大萼瓣：阔椭圆形、微波浪边缘、具特征性急尖与三纵脉 ====== -->
     <g id="clematis-petal">
@@ -6,14 +6,14 @@
       <path d="M-2 0
                C-6 -8 -15 -16 -17 -25
                C-18 -32 -12 -38 -5 -42
-               C-2 -44 -0.5 -46 0 -47
-               C0.5 -46 2 -44 5 -42
+               C-3 -43 -1.5 -46 0 -47
+               C1.5 -45 3 -44 5 -42
                C12 -38 18 -32 17 -25
                C15 -16 6 -8 2 0 Z"
             fill="__COLOR__" stroke="#78585b" stroke-width="0.38" stroke-opacity=".35" stroke-linejoin="round"/>
 
       <!-- 铁线莲标志性的中央三纵脉微折受光区 (展现花瓣微凹拱起的立体感) -->
-      <path d="M0 -1 Q-5 -22 0 -43 Q5 -22 0 -1 Z" fill="#fff5df" opacity="0.09"/>
+      <path d="M0 -1 Q-4 -19 -1 -35L0 -43Q5 -23 0 -1 Z" fill="#fff5df" opacity="0.09"/>
       <!-- 中脉下陷主光线 -->
       <path d="M0 -1 Q-0.4 -22 0 -44" fill="none" stroke="#fff5df" stroke-width="0.5" opacity="0.4"/>
       <!-- 两侧微细副侧纵脉 -->

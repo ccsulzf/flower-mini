@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><!-- adaptive-petal-outline -->
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><title>牡丹</title><desc>保留牡丹的品种轮廓，细化花瓣舒展与前后叠合层次。</desc><!-- adaptive-petal-outline -->
 <defs><linearGradient id="peony-volume" x1=".15" y1="0" x2=".65" y2="1"><stop stop-color="#fff5e7" stop-opacity=".19"/><stop offset=".5" stop-color="#fff5e7" stop-opacity=".015"/><stop offset="1" stop-color="#744553" stop-opacity=".17"/></linearGradient></defs>
 <path d="M54 94C54.5 89 51 85 47 81L61 80C57 86 55.7 90 56 94Z" fill="#7e906d"/><path d="M54 87C43 85 37 80 33 73L49 79L54 74L61 79L77 72C71 82 63 87 54 87Z" fill="#92a078"/>
 <g transform="rotate(-8 55 75)">
 <path d="M24 46C22 33 37 24 51 27C67 22 85 32 89 47C96 61 80 81 61 84C42 87 20 73 20 58C18 52 20 48 24 46Z" fill="__COLOR__"/>
-<g><path d="M24 51C19 44 20 33 28 30C31 26 37 28 39 31C43 25 49 27 51 32C54 42 44 51 38 58Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M24 51C19 44 20 33 28 30C31 26 37 28 39 31C43 25 49 27 51 32C54 42 44 51 38 58Z" fill="url(#peony-volume)"/>
-<path d="M24 51C19 44 20 33 28 30C31 26 37 28 39 31C43 25 49 27 51 32C54 42 44 51 38 58Z" fill="#fff5e7" opacity="0.08"/>
+<g><path d="M24 51C19 44 20 33 28 30C30 25 35 27 37 30Q39 32 41 29C45 25 49 27 51 32C54 42 44 51 38 58Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M24 51C19 44 20 33 28 30C30 25 35 27 37 30Q39 32 41 29C45 25 49 27 51 32C54 42 44 51 38 58Z" fill="url(#peony-volume)"/>
+<path d="M24 51C19 44 20 33 28 30C30 25 35 27 37 30Q39 32 41 29C45 25 49 27 51 32C54 42 44 51 38 58Z" fill="#fff5e7" opacity="0.08"/>
 </g>
 <g><path d="M36 44C31 35 33 25 40 24C43 20 48 22 50 25C53 21 58 20 61 24C69 23 72 29 69 36C61 45 49 48 36 44Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M36 44C31 35 33 25 40 24C43 20 48 22 50 25C53 21 58 20 61 24C69 23 72 29 69 36C61 45 49 48 36 44Z" fill="url(#peony-volume)"/>
 <path d="M36 44C31 35 33 25 40 24C43 20 48 22 50 25C53 21 58 20 61 24C69 23 72 29 69 36C61 45 49 48 36 44Z" fill="#fff5e7" opacity="0.12"/>
@@ -39,8 +39,8 @@
 <path d="M70 58C76 55 85 52 89 56C90 66 81 76 69 78L58 69C64 67 67 62 70 58Z" fill="#fff5e7" opacity="0.03"/>
 <path d="M75 59Q83 54 87 57" fill="none" stroke="#fff4e4" stroke-opacity=".28" stroke-width=".65"/>
 </g>
-<g><path d="M34 66C40 62 47 70 54 71C62 73 70 68 77 65C77 75 66 84 55 83C44 82 37 76 34 66Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M34 66C40 62 47 70 54 71C62 73 70 68 77 65C77 75 66 84 55 83C44 82 37 76 34 66Z" fill="url(#peony-volume)"/>
-<path d="M34 66C40 62 47 70 54 71C62 73 70 68 77 65C77 75 66 84 55 83C44 82 37 76 34 66Z" fill="#fff5e7" opacity="0.1"/>
+<g><path d="M34 66C39 61 43 66 47 67Q50 66 54 71C62 73 70 68 77 65C77 75 66 84 55 83C44 82 37 76 34 66Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M34 66C39 61 43 66 47 67Q50 66 54 71C62 73 70 68 77 65C77 75 66 84 55 83C44 82 37 76 34 66Z" fill="url(#peony-volume)"/>
+<path d="M34 66C39 61 43 66 47 67Q50 66 54 71C62 73 70 68 77 65C77 75 66 84 55 83C44 82 37 76 34 66Z" fill="#fff5e7" opacity="0.1"/>
 <path d="M37 66Q43 66 48 71" fill="none" stroke="#fff4e4" stroke-opacity=".28" stroke-width=".65"/>
 </g>
 <g><path d="M51 73C55 68 59 73 63 72C67 69 71 73 74 70Q78 67 80 67C78 76 71 83 62 84C57 84 53 79 51 73Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M51 73C55 68 59 73 63 72C67 69 71 73 74 70Q78 67 80 67C78 76 71 83 62 84C57 84 53 79 51 73Z" fill="url(#peony-volume)"/>

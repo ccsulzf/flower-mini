@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370" stroke-linecap="round" stroke-linejoin="round"><title>肾蕨</title><desc>保留品种特征，细化叶片轮廓、脉络与自然层次。</desc>
+  <defs>
+    <!-- ====== 真实肾蕨核心小羽片：微弯镰刀形 + 上基部耳状突起 (右展) ====== -->
+    <g id="pinna-r">
+      <!-- 带有近轴耳片突起的小羽片 (主色 __COLOR__) -->
+      <path d="M0 0
+               C0 -2.6 1.2 -4.8 2.8 -4.8
+               C4.0 -4.8 5.2 -3.2 6.8 -3.0
+               C11 -2.6 16 -1.8 22 1.5
+               C16 3.6 9 4.2 3 3.6
+               C1 3.2 0 1.5 0 0 Z"
+            fill="__COLOR__" stroke="#73886b" stroke-width="0.32" stroke-linejoin="round"/>
+      <!-- 单侧天鹅绒轻柔反光面 (展现微折质感) -->
+      <path d="M0 0 C1.2 -4.8 2.8 -4.8 6.8 -3.0 C11 -2.6 16 -1.8 22 1.5 Q8 0 0 0 Z"
+            fill="#fff5df" opacity="0.14"/>
+      <!-- 贯穿镰刀小羽片的主脉细线 -->
+      <path d="M0 0 Q10 0.5 21 1.5" fill="none" stroke="#d2d7b7" stroke-width="0.32" opacity="0.75"/>
+    <path d="M5 .2 Q7 -1 8 -2 M9 .5 Q11 -1 12 -1 M13 .8 Q15 0 16 -.1 M7 .3 Q8 2 10 2.6 M12 .8 Q13 2 15 2.7" fill="none" stroke="#d2d7b7" stroke-width=".22" opacity=".55" stroke-linecap="round"/></g>
+
+    <!-- 肾蕨核心小羽片 (左展) -->
+    <g id="pinna-l">
+      <path d="M0 0
+               C0 -2.6 -1.2 -4.8 -2.8 -4.8
+               C-4.0 -4.8 -5.2 -3.2 -6.8 -3.0
+               C-11 -2.6 -16 -1.8 -22 1.5
+               C-16 3.6 -9 4.2 -3 3.6
+               C-1 3.2 0 1.5 0 0 Z"
+            fill="__COLOR__" stroke="#73886b" stroke-width="0.32" stroke-linejoin="round"/>
+      <path d="M0 0 C-1.2 -4.8 -2.8 -4.8 -6.8 -3.0 C-11 -2.6 -16 -1.8 -22 1.5 Q-8 0 0 0 Z"
+            fill="#fff5df" opacity="0.14"/>
+      <path d="M0 0 Q-10 0.5 -21 1.5" fill="none" stroke="#d2d7b7" stroke-width="0.32" opacity="0.75"/>
+    <path d="M-5 .2 Q-7 -1 -8 -2 M-9 .5 Q-11 -1 -12 -1 M-13 .8 Q-15 0 -16 -.1 M-7 .3 Q-8 2 -10 2.6 M-12 .8 Q-13 2 -15 2.7" fill="none" stroke="#d2d7b7" stroke-width=".22" opacity=".55" stroke-linecap="round"/></g>
+
+    <!-- 基部与顶端较短钝的紧凑小羽片 (右) -->
+    <g id="pinna-sm-r">
+      <path d="M0 0 C0 -2 0.8 -3.5 2.2 -3.5 C3.2 -3.5 4.5 -2.2 6 -2.0 C9 -1.8 12 -1.2 15 1.0 C11 2.5 6 3.0 2 2.5 C0.8 2.2 0 1.0 0 0 Z"
+            fill="__COLOR__" stroke="#73886b" stroke-width="0.3"/>
+      <path d="M0 0 Q7 0.3 14 1.0" fill="none" stroke="#d2d7b7" stroke-width="0.3" opacity="0.7"/>
+    </g>
+    <!-- 基部与顶端短钝羽片 (左) -->
+    <g id="pinna-sm-l">
+      <path d="M0 0 C0 -2 -0.8 -3.5 -2.2 -3.5 C-3.2 -3.5 -4.5 -2.2 -6 -2.0 C-9 -1.8 -12 -1.2 -15 1.0 C-11 2.5 -6 3.0 -2 2.5 C-0.8 2.2 0 1.0 0 0 Z"
+            fill="__COLOR__" stroke="#73886b" stroke-width="0.3"/>
+      <path d="M0 0 Q-7 0.3 -14 1.0" fill="none" stroke="#d2d7b7" stroke-width="0.3" opacity="0.7"/>
+    </g>
+
+    <!-- ====== 独立高精单支肾蕨羽状大叶 (带完整自然长短过渡与交错互生) ====== -->
+    <g id="nephrolepis-frond">
+      <!-- 柔韧弓曲的坚挺叶轴 (主色 __COLOR__) -->
+      <path d="M0 0 C-4 -80 -2 -190 6 -290" fill="none" stroke="__COLOR__" stroke-width="1.3"/>
+      <path d="M0 0 C-4 -80 -2 -190 6 -290" fill="none" stroke="#73886b" stroke-width="0.4" opacity="0.6"/>
+
+      <!-- 【基部短圆羽片段】 (y: -15 ~ -45) -->
+      <use href="#pinna-sm-l" transform="translate(-1, -16) rotate(6) scale(0.65)"/>
+      <use href="#pinna-sm-r" transform="translate(0, -23) rotate(-6) scale(0.7)"/>
+      <use href="#pinna-sm-l" transform="translate(-2, -31) rotate(4) scale(0.78)"/>
+      <use href="#pinna-sm-r" transform="translate(-1, -39) rotate(-4) scale(0.85)"/>
+
+      <!-- 【中下部舒展羽片段】 (y: -48 ~ -110) -->
+      <use href="#pinna-l" transform="translate(-2.5, -48) rotate(3) scale(0.88)"/>
+      <use href="#pinna-r" transform="translate(-1.5, -57) rotate(-3) scale(0.92)"/>
+      <use href="#pinna-l" transform="translate(-3.0, -67) rotate(2) scale(0.96)"/>
+      <use href="#pinna-r" transform="translate(-2.0, -77) rotate(-2) scale(1.0)"/>
+      <use href="#pinna-l" transform="translate(-3.2, -87) rotate(1) scale(1.04)"/>
+      <use href="#pinna-r" transform="translate(-2.2, -97) rotate(-1) scale(1.06)"/>
+      <use href="#pinna-l" transform="translate(-3.0, -107) rotate(0) scale(1.08)"/>
+
+      <!-- 【中部最宽盛密生梳齿段】 (y: -117 ~ -195 最标志性蜈蚣草形态) -->
+      <use href="#pinna-r" transform="translate(-1.8, -117) rotate(-1) scale(1.1)"/>
+      <use href="#pinna-l" transform="translate(-2.5, -127) rotate(1) scale(1.1)"/>
+      <use href="#pinna-r" transform="translate(-1.2, -137) rotate(-2) scale(1.08)"/>
+      <use href="#pinna-l" transform="translate(-1.8, -147) rotate(2) scale(1.06)"/>
+      <use href="#pinna-r" transform="translate(-0.5, -157) rotate(-3) scale(1.04)"/>
+      <use href="#pinna-l" transform="translate(-1.0, -167) rotate(3) scale(1.0)"/>
+      <use href="#pinna-r" transform="translate(0.2, -177) rotate(-4) scale(0.98)"/>
+      <use href="#pinna-l" transform="translate(-0.2, -187) rotate(4) scale(0.95)"/>
+
+      <!-- 【中上部渐细柔垂段】 (y: -197 ~ -255) -->
+      <use href="#pinna-r" transform="translate(1.0, -197) rotate(-5) scale(0.92)"/>
+      <use href="#pinna-l" transform="translate(0.6, -207) rotate(5) scale(0.88)"/>
+      <use href="#pinna-r" transform="translate(1.8, -217) rotate(-6) scale(0.84)"/>
+      <use href="#pinna-l" transform="translate(1.4, -227) rotate(6) scale(0.80)"/>
+      <use href="#pinna-r" transform="translate(2.6, -237) rotate(-8) scale(0.75)"/>
+      <use href="#pinna-l" transform="translate(2.2, -247) rotate(8) scale(0.70)"/>
+
+      <!-- 【顶尖微细针芒小梢】 (y: -256 ~ -290) -->
+      <use href="#pinna-sm-r" transform="translate(3.4, -256) rotate(-10) scale(0.65)"/>
+      <use href="#pinna-sm-l" transform="translate(3.0, -265) rotate(10) scale(0.60)"/>
+      <use href="#pinna-sm-r" transform="translate(4.2, -274) rotate(-12) scale(0.55)"/>
+      <use href="#pinna-sm-l" transform="translate(4.0, -282) rotate(12) scale(0.50)"/>
+      <!-- 终生微尖单叶 -->
+      <path d="M5.5 -288 C5.0 -292 6.0 -296 6.0 -298 C6.0 -296 7.0 -292 6.5 -288 Z" fill="__COLOR__" stroke="#73886b" stroke-width="0.25"/>
+    </g>
+  </defs>
+
+  <!-- ====== 2. 三枝大叶丛生喷泉态（优雅交叠与主客层次） ====== -->
+
+  <!-- 【伴生底叶】 (向左侧低垂舒展，层次托底) -->
+  <g transform="translate(54, 350) rotate(-30) scale(0.85)">
+    <use href="#nephrolepis-frond" opacity="0.8"/>
+  </g>
+
+  <!-- 【右展主叶】 (高挺向右微弓，全幅核心大景) -->
+  <g transform="translate(55, 362) rotate(22) scale(0.98)">
+    <use href="#nephrolepis-frond"/>
+  </g>
+
+  <!-- 【左展前叶】 (挺拔向左飘逸，前后穿插) -->
+  <g transform="translate(55, 368) rotate(-14) scale(0.94)">
+    <use href="#nephrolepis-frond"/>
+  </g>
+
+  <!-- 丛生基部自然收束的小鳞片与根茎阴影点缀 -->
+  <path d="M52 368 Q55 363 58 368" fill="none" stroke="#73886b" stroke-width="2.5" opacity="0.8"/>
+</svg>

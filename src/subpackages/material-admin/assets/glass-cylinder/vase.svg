@@ -1,12 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="140" height="185" viewBox="0 0 140 185" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="185" viewBox="0 0 140 185" stroke-linecap="round" stroke-linejoin="round"><title>透明直筒瓶</title><desc>柔和轮廓与分层材质，保留瓶口定位和透明背景。</desc>
 <defs><clipPath id="glass-cylinder-inside"><path d="M15 9L15 169Q15 181 31 182Q70 187 109 182Q125 181 125 169L125 9Z"/></clipPath><linearGradient id="glass-cylinder-body" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="140" y2="0"><stop offset="0" stop-color="#91aaa1"/><stop offset=".23" stop-color="#c8ddd3"/><stop offset=".43" stop-color="#fff9e8"/><stop offset=".73" stop-color="#c8ddd3"/><stop offset="1" stop-color="#91aaa1"/></linearGradient></defs>
 <path d="M15 9L15 169Q15 181 31 182Q70 187 109 182Q125 181 125 169L125 9Z" fill="#c8ddd3" fill-opacity=".085" stroke="#91aaa1" stroke-width=".75"/>
 <g clip-path="url(#glass-cylinder-inside)">
-<path d="M0 110Q70 117 140 110V185H0Z" fill="#b7cfc1" opacity=".12"/>
+<path d="M29 42L33 43V100L30 100Z" fill="#fffdf0" opacity=".3"/><path d="M27 114Q70 121 113 114" fill="none" stroke="#f7f8e9" stroke-width=".8" stroke-opacity=".45"/>
+<path d="M0 110Q70 116 140 110V185H0Z" fill="#b7cfc1" opacity=".12"/>
 <path d="M15 10V168Q15 177 24 180L24 11Z" fill="#96b3a7" opacity=".23"/>
 <path d="M125 10V169Q125 178 116 181L117 11Z" fill="#93b0a3" opacity=".24"/>
-<path d="M16 168Q70 180 124 168L123 180Q70 188 17 180Z" fill="#9bb8ac" opacity=".35"/>
-<path d="M23 25V149M23 156V164" fill="none" stroke="#fffdf0" stroke-width="2.7" stroke-opacity=".9"/>
+<path d="M16 169Q70 179 124 169L123 179Q70 186 17 179Z" fill="#9bb8ac" opacity=".35"/>
+<path d="M23 25V149M23 156V164" fill="none" stroke="#fffdf0" stroke-width="2.2" stroke-opacity=".8"/>
 <path d="M118 28V163" fill="none" stroke="#7f9f91" stroke-width=".55" stroke-opacity=".38"/>
 <ellipse cx="70" cy="110" rx="53" ry="4.4" fill="none" stroke="#90aea0" stroke-opacity=".5" stroke-width=".55"/>
 <path d="M22 109Q70 104 118 109" fill="none" stroke="#fffdf0" stroke-opacity=".7" stroke-width=".7"/>

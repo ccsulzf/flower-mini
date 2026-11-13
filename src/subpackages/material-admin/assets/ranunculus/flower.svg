@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><!-- adaptive-petal-outline -->
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><title>洋牡丹</title><desc>保留洋牡丹的品种轮廓，细化花瓣舒展与前后叠合层次。</desc><!-- adaptive-petal-outline -->
 <defs><linearGradient id="ranunculus-volume" x1=".15" y1="0" x2=".65" y2="1"><stop stop-color="#fff5e7" stop-opacity=".19"/><stop offset=".5" stop-color="#fff5e7" stop-opacity=".015"/><stop offset="1" stop-color="#744553" stop-opacity=".17"/></linearGradient></defs>
 <path d="M54.2 94C54.5 89 52 85 50 81L60 81C57 87 55.6 90 55.8 94Z" fill="#80906d"/>
 <path d="M55 85C46 84 40 79 37 74L50 78L55 74L61 78L73 72C69 80 62 85 55 85Z" fill="#98a580"/>
 <g transform="rotate(7 55 76)">
 <path d="M29 44C29 32 42 29 55 30C70 28 83 35 84 46C86 63 73 80 56 82C41 82 28 64 29 44Z" fill="__COLOR__"/>
-<g><path d="M29 52C24 40 33 29 43 30C51 25 62 27 66 32C77 29 86 39 82 51C75 60 40 62 29 52Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M29 52C24 40 33 29 43 30C51 25 62 27 66 32C77 29 86 39 82 51C75 60 40 62 29 52Z" fill="url(#ranunculus-volume)"/>
-<path d="M29 52C24 40 33 29 43 30C51 25 62 27 66 32C77 29 86 39 82 51C75 60 40 62 29 52Z" fill="#fff5e7" opacity="0.04"/>
+<g><path d="M29 52C24 40 33 29 43 30C50 25 58 25 62 29Q64 28 66 32C77 29 86 39 82 51C75 60 40 62 29 52Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M29 52C24 40 33 29 43 30C50 25 58 25 62 29Q64 28 66 32C77 29 86 39 82 51C75 60 40 62 29 52Z" fill="url(#ranunculus-volume)"/>
+<path d="M29 52C24 40 33 29 43 30C50 25 58 25 62 29Q64 28 66 32C77 29 86 39 82 51C75 60 40 62 29 52Z" fill="#fff5e7" opacity="0.04"/>
 </g>
-<g><path d="M33 44C31 35 41 29 49 33C56 28 68 31 72 36C82 35 84 44 78 49C66 56 44 55 33 44Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M33 44C31 35 41 29 49 33C56 28 68 31 72 36C82 35 84 44 78 49C66 56 44 55 33 44Z" fill="url(#ranunculus-volume)"/>
-<path d="M33 44C31 35 41 29 49 33C56 28 68 31 72 36C82 35 84 44 78 49C66 56 44 55 33 44Z" fill="#fff5e7" opacity="0.1"/>
+<g><path d="M33 44C31 35 41 29 49 33C55 28 64 29 68 33Q70 32 72 36C82 35 84 44 78 49C66 56 44 55 33 44Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M33 44C31 35 41 29 49 33C55 28 64 29 68 33Q70 32 72 36C82 35 84 44 78 49C66 56 44 55 33 44Z" fill="url(#ranunculus-volume)"/>
+<path d="M33 44C31 35 41 29 49 33C55 28 64 29 68 33Q70 32 72 36C82 35 84 44 78 49C66 56 44 55 33 44Z" fill="#fff5e7" opacity="0.1"/>
 </g>
 <g><path d="M36 44C39 34 49 33 56 36C64 33 74 36 76 43C70 52 47 54 36 44Z" fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".48"/><path d="M36 44C39 34 49 33 56 36C64 33 74 36 76 43C70 52 47 54 36 44Z" fill="url(#ranunculus-volume)"/>
 <path d="M36 44C39 34 49 33 56 36C64 33 74 36 76 43C70 52 47 54 36 44Z" fill="#fff5e7" opacity="0.03"/>

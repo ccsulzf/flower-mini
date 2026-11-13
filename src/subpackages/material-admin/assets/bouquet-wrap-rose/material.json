@@ -1,0 +1,15 @@
+{
+  "id": "bouquet-wrap-rose",
+  "category": "bouquet",
+  "name": "豆沙褶纸",
+  "introduction": "豆沙色纸张以错落褶边和收束折线营造轻柔层次。",
+  "version": 1,
+  "sortOrder": 203,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

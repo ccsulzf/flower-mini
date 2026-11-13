@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><title>大花蕙兰</title><desc>保留大花蕙兰的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs>
     <!-- 渐变底色定义 -->
     <linearGradient id="cymbidium-petal-0" gradientUnits="userSpaceOnUse" x1="-20" y1="-20" x2="7" y2="7">
@@ -14,15 +14,15 @@
 
     <!-- 外轮萼片单元 -->
     <g id="sepal">
-      <path d="M0 3C-6 -4 -7 -15 0 -20C7 -15 6 -4 0 3Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c987d" stroke-width=".4"/>
-      <path d="M0 3C-6 -4 -7 -15 0 -20C7 -15 6 -4 0 3Z" fill="url(#cymbidium-petal-0)" opacity=".14"/>
+      <path d="M0 3C-5.5 -3 -8 -13 -2 -18Q-1 -19 0 -20C7 -15 6.8 -5 0 3Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c987d" stroke-width=".4"/>
+      <path d="M0 3C-5.5 -3 -8 -13 -2 -18Q-1 -19 0 -20C7 -15 6.8 -5 0 3Z" fill="url(#cymbidium-petal-0)" opacity=".14"/>
       <path d="M0 0V-15" fill="none" stroke="#e4e1ba" stroke-width=".5"/>
     </g>
 
     <!-- 内轮侧瓣单元 -->
     <g id="inner-petal">
-      <path d="M0 2C-10 -3 -15 -13 -5 -17C5 -21 12 -9 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c987d" stroke-width=".4"/>
-      <path d="M0 2C-10 -3 -15 -13 -5 -17C5 -21 12 -9 0 2Z" fill="url(#cymbidium-petal-1)" opacity=".14"/>
+      <path d="M0 2C-10 -3 -15 -12 -8 -16Q-5 -19 -2 -17C6 -19 12 -9 0 2Z" fill="__COLOR__" stroke-opacity=".62" stroke="#8c987d" stroke-width=".4"/>
+      <path d="M0 2C-10 -3 -15 -12 -8 -16Q-5 -19 -2 -17C6 -19 12 -9 0 2Z" fill="url(#cymbidium-petal-1)" opacity=".14"/>
       <path d="M0 0Q-4 -7 -5 -14" fill="none" stroke="#e8dfc5" stroke-width=".6"/>
     </g>
 

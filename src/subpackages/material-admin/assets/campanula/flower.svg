@@ -29,9 +29,9 @@
             fill="url(#campanula-petal-0)" opacity=".18"/>
 
       <!-- 3. 钟口深邃立体中空内腔 (展示花钟内部透视) -->
-      <ellipse cx="0" cy="13.5" rx="7.8" ry="2.6" fill="#635372" opacity=".4"/>
+      <ellipse cx="0" cy="13.7" rx="8.3" ry="3.1" fill="#635372" opacity=".4"/>
       <!-- 内腔伸出的微白柱头微卷小芒 -->
-      <path d="M0 8 Q-1.5 12 -2.5 14 M0 8 Q1.5 12 2.5 14" stroke="#f2e7df" stroke-width="0.4"/>
+      <path d="M0 7Q-0.8 11 -2.5 14M0 7Q1 11 2.5 14M0 7L0 13" stroke="#f2e7df" stroke-width="0.4"/>
 
       <!-- 4. 纵向微棱光泽线 (展现风铃草如薄瓷般的微凹脊肋) -->
       <g fill="none" stroke="#f2e7df" stroke-width="0.4" stroke-opacity="0.26">
