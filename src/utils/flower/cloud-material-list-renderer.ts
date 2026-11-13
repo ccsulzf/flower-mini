@@ -1,7 +1,7 @@
 import type { Artwork } from '@/models/artwork'
 import { readImageCache, writeImageCache } from './image-cache'
 
-const renderVersion = 'cloud-material-list-v8'
+const renderVersion = 'mint-material-list-v9'
 interface RenderResult { width: number, height: number, fileID: string, cloudPath: string }
 interface FlowerRenderCloud { renderMaterialList(input: { artwork: Artwork }): Promise<RenderResult> }
 interface CloudFileUrlResult { fileList?: Array<{ fileID: string, tempFileURL?: string }> }

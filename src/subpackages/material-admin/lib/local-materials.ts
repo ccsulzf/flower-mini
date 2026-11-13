@@ -20,7 +20,7 @@ export function collectLocalMaterials(files: Record<string, string>): { items: M
       const category = metadata.category || 'flower'
       const geometry = metadata.geometry || (category === 'flower' ? defaultFlowerGeometry(metadata.id) : undefined)
       const keys = materialParts({ category, group: metadata.group })
-      const normalizedMetadata = normalizeMaterial({ ...metadata, category, geometry, revision: '0'.repeat(16),
+      const normalizedMetadata = normalizeMaterial({ ...metadata, category, geometry,
         assets: Object.fromEntries(keys.map(key => [key, { fileId: 'local', hash: '0'.repeat(40) }])) })
       if (items.some(item => item.id === metadata.id)) throw new Error('素材标识重复')
       const directory = path.slice(0, -'material.json'.length)
@@ -32,7 +32,7 @@ export function collectLocalMaterials(files: Record<string, string>): { items: M
         if (!svg || svg.length > 65536 || !/^\s*<svg\b/.test(svg) || !/<\/svg>\s*$/.test(svg) || /<script|<foreignObject|\bon\w+\s*=|<!DOCTYPE|<!ENTITY/i.test(svg) || hasUnsafeReference) throw new Error(`${key}.svg 缺失或无效`)
         sources[key] = svg
       }
-      const normalized: MaterialMetadata = { id: normalizedMetadata.id, category, ...(category === 'background' ? { backgroundKind: normalizedMetadata.backgroundKind } : {}), name: normalizedMetadata.name, introduction: normalizedMetadata.introduction, flowerMeaning: normalizedMetadata.flowerMeaning, group: normalizedMetadata.group, sortOrder: normalizedMetadata.sortOrder, colors: normalizedMetadata.colors, version: normalizedMetadata.version, geometry }
+      const normalized: MaterialMetadata = { id: normalizedMetadata.id, category, ...(category === 'background' ? { backgroundKind: normalizedMetadata.backgroundKind } : {}), name: normalizedMetadata.name, introduction: normalizedMetadata.introduction, flowerMeaning: normalizedMetadata.flowerMeaning, group: normalizedMetadata.group, sortOrder: normalizedMetadata.sortOrder, colors: normalizedMetadata.colors, geometry }
       items.push({ ...normalized, sources, revision: revisionOf({ ...normalized, sources }) })
     } catch (error) { errors.push(`${path}：${error instanceof Error ? error.message : '档案无法读取'}`) }
   }

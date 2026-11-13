@@ -1,14 +1,14 @@
-// 创作台使用克制的暖纸与植物色，保持编辑区域安静清晰。
-$studio-ink: #574d40;
-$studio-muted: #7f7465;
-$studio-panel: #fffdf7;
-$studio-border: rgba(112, 91, 68, .28);
-$studio-accent: #dfe7d5;
-$studio-secondary: #f4eee2;
-$studio-paper: #f8f3e9;
-$studio-pink: #f1dcda;
-$studio-gold: #ead9b9;
-$studio-shadow: rgba(88, 74, 55, .07);
+// 创作台引用 UnoCSS 主题，保持编辑区域安静清晰。
+$studio-ink: var(--app-ink);
+$studio-muted: var(--app-inkMuted);
+$studio-panel: var(--app-surface);
+$studio-border: rgba(var(--app-ink-rgb), .28);
+$studio-accent: var(--app-brandSoft);
+$studio-secondary: var(--app-surfaceMuted);
+$studio-paper: var(--app-page);
+$studio-pink: var(--app-brandSoft);
+$studio-gold: var(--app-sageSoft);
+$studio-shadow: rgba(var(--app-ink-rgb), .07);
 
 // 上下工具栏共用尺寸和按钮规则，避免局部样式逐渐分叉。
 @mixin studio-toolbar-shell {

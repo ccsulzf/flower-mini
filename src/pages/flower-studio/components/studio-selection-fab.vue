@@ -162,11 +162,11 @@ function selectGroup(group: SelectionGroup) {
   flex-direction: column;
   gap: 10rpx;
   padding: 10rpx;
-  border: 1rpx solid rgba(112, 91, 68, .2);
+  border: 1rpx solid rgba(var(--app-ink-rgb), .2);
   border-bottom: 0;
   border-radius: 28rpx 28rpx 0 0;
-  background: rgba(255, 253, 247, .98);
-  box-shadow: 0 -10rpx 30rpx rgba(88, 74, 55, .075)
+  background: rgba(var(--app-surface-rgb), .98);
+  box-shadow: 0 -10rpx 30rpx rgba(var(--app-ink-rgb), .075)
 }
 
 .selection-scroll {
@@ -181,7 +181,7 @@ function selectGroup(group: SelectionGroup) {
   height: 190rpx;
   align-items: center;
   justify-content: center;
-  color: rgba(72, 63, 53, .62);
+  color: rgba(var(--app-ink-rgb), .62);
   font-size: 25rpx
 }
 
@@ -190,7 +190,7 @@ function selectGroup(group: SelectionGroup) {
   align-items: center;
   gap: 10rpx;
   padding: 2rpx 4rpx 4rpx;
-  border-bottom: 1rpx solid rgba(112, 91, 68, .12)
+  border-bottom: 1rpx solid rgba(var(--app-ink-rgb), .12)
 }
 
 .material-filter {
@@ -202,7 +202,7 @@ function selectGroup(group: SelectionGroup) {
   border: 0;
   border-radius: 10rpx 14rpx 9rpx 13rpx;
   background: transparent;
-  color: rgba(72, 63, 53, .72);
+  color: rgba(var(--app-ink-rgb), .72);
   font-size: 23rpx;
   line-height: 52rpx
 }
@@ -212,8 +212,8 @@ function selectGroup(group: SelectionGroup) {
 }
 
 .material-filter.active {
-  background: rgba(226, 231, 217, .78);
-  color: #465044;
+  background: rgba(var(--app-sageSoft-rgb), .78);
+  color: var(--app-brandStrong);
   font-weight: 600
 }
 
@@ -223,7 +223,7 @@ function selectGroup(group: SelectionGroup) {
   bottom: 5rpx;
   left: 12rpx;
   height: 2rpx;
-  background: rgba(112, 132, 101, .62);
+  background: rgba(var(--app-brandStrong-rgb), .62);
   content: '';
   transform: rotate(-1deg)
 }
@@ -244,8 +244,8 @@ function selectGroup(group: SelectionGroup) {
   align-items: center;
   justify-content: center;
   margin: 0;
-  border: 1rpx solid rgba(112, 91, 68, .17);
-  background: rgba(248, 243, 233, .5);
+  border: 1rpx solid rgba(var(--app-ink-rgb), .17);
+  background: rgba(var(--app-page-rgb), .5);
   color: $studio-ink;
   box-shadow: none
 }
@@ -269,10 +269,10 @@ function selectGroup(group: SelectionGroup) {
 
 .material-card.active,
 .instance-card.active {
-  border-color: #7f9274;
+  border-color: var(--app-brand);
   background: $studio-accent;
-  color: #3f463d;
-  box-shadow: inset 0 -4rpx 0 rgba(126, 145, 113, .1)
+  color: var(--app-ink);
+  box-shadow: inset 0 -4rpx 0 rgba(var(--app-sage-rgb), .1)
 }
 
 .material-thumbnail {
@@ -309,8 +309,8 @@ function selectGroup(group: SelectionGroup) {
   justify-content: center;
   padding: 0 8rpx;
   border-radius: 10rpx;
-  background: #7f9274;
-  color: #fff;
+  background: var(--app-brand);
+  color: var(--app-surface);
   font-size: 18rpx;
   line-height: 1
 }

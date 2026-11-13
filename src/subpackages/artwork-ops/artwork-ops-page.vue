@@ -11,7 +11,7 @@ import {
   removeWorks,
 } from './lib/api'
 
-definePage({ layout: 'default', style: { navigationBarTitleText: '作品运维', navigationBarBackgroundColor: '#f6f3eb' } })
+definePage({ layout: 'default', style: { navigationBarTitleText: '作品运维', } })
 
 type Tab = 'works' | 'daily'
 
@@ -287,27 +287,27 @@ onShow(() => {
 
 <style scoped lang="scss">
 .ops-page { padding: 24rpx; box-sizing: border-box; }
-.warning { margin-bottom: 20rpx; padding: 18rpx 22rpx; color: #87551d; background: #fff2d8; border-radius: 14rpx; font-size: 24rpx; line-height: 1.6; }
-.tabs { display: flex; padding: 6rpx; margin-bottom: 20rpx; background: #e4e8de; border-radius: 16rpx; }
-.tab { flex: 1; padding: 18rpx; text-align: center; color: #667064; font-size: 27rpx; border-radius: 12rpx; }
-.tab.active { color: #324b35; background: #fff; font-weight: 600; }
-.action-bar { margin-bottom: 18rpx; padding: 20rpx; color: #566057; font-size: 24rpx; }
+.warning { margin-bottom: 20rpx; padding: 18rpx 22rpx; color: var(--app-ink); background: var(--app-surfaceMuted); border-radius: 14rpx; font-size: 24rpx; line-height: 1.6; }
+.tabs { display: flex; padding: 6rpx; margin-bottom: 20rpx; background: var(--app-surfaceMuted); border-radius: 16rpx; }
+.tab { flex: 1; padding: 18rpx; text-align: center; color: var(--app-brandStrong); font-size: 27rpx; border-radius: 12rpx; }
+.tab.active { color: var(--app-brandStrong); background: var(--app-surface); font-weight: 600; }
+.action-bar { margin-bottom: 18rpx; padding: 20rpx; color: var(--app-ink); font-size: 24rpx; }
 .actions { display: flex; gap: 12rpx; margin-top: 16rpx; }
 .actions button { flex: 1; margin: 0; padding: 0 10rpx; font-size: 24rpx; }
-.delete-button { color: #9d3038; background: #f7e9e7; }
-.delete-all-button { color: #fff; background: #ad323d; }
-.delete-button[disabled], .delete-all-button[disabled] { color: #a49a95; background: #ece9e5; }
+.delete-button { color: var(--app-danger); background: var(--app-dangerSoft); }
+.delete-all-button { color: var(--app-surface); background: var(--app-danger); }
+.delete-button[disabled], .delete-all-button[disabled] { color: var(--app-subtle); background: var(--app-surfaceMuted); }
 .record { display: flex; align-items: flex-start; gap: 18rpx; margin-bottom: 14rpx; padding: 22rpx; border: 2rpx solid transparent; }
-.record.selected { border-color: #849c81; background: #f3f7ef; }
-.check { width: 36rpx; height: 36rpx; flex-shrink: 0; border: 2rpx solid #9ca69a; border-radius: 8rpx; color: #fff; background: #fff; line-height: 34rpx; text-align: center; font-size: 24rpx; }
-.selected .check { border-color: #657f63; background: #657f63; }
+.record.selected { border-color: var(--app-sage); background: var(--app-page); }
+.check { width: 36rpx; height: 36rpx; flex-shrink: 0; border: 2rpx solid var(--app-sage); border-radius: 8rpx; color: var(--app-surface); background: var(--app-surface); line-height: 34rpx; text-align: center; font-size: 24rpx; }
+.selected .check { border-color: var(--app-brandStrong); background: var(--app-brandStrong); }
 .record-info { flex: 1; min-width: 0; }
-.record-title { color: #303832; font-size: 28rpx; font-weight: 600; overflow-wrap: anywhere; }
-.description { margin-top: 8rpx; color: #656d65; font-size: 24rpx; line-height: 1.55; }
-.meta, .id { margin-top: 10rpx; color: #858c84; font-size: 21rpx; overflow-wrap: anywhere; }
+.record-title { color: var(--app-ink); font-size: 28rpx; font-weight: 600; overflow-wrap: anywhere; }
+.description { margin-top: 8rpx; color: var(--app-inkMuted); font-size: 24rpx; line-height: 1.55; }
+.meta, .id { margin-top: 10rpx; color: var(--app-inkMuted); font-size: 21rpx; overflow-wrap: anywhere; }
 .error-message, .success-message { margin-bottom: 16rpx; padding: 16rpx 20rpx; border-radius: 12rpx; font-size: 24rpx; line-height: 1.5; }
-.error-message { color: #9d3038; background: #f7e9e7; }
-.success-message { color: #456344; background: #edf3e7; }
-.empty, .loading { padding: 46rpx 24rpx; color: #7b8276; text-align: center; font-size: 25rpx; }
+.error-message { color: var(--app-danger); background: var(--app-dangerSoft); }
+.success-message { color: var(--app-brandStrong); background: var(--app-sageSoft); }
+.empty, .loading { padding: 46rpx 24rpx; color: var(--app-brandStrong); text-align: center; font-size: 25rpx; }
 .load-more { margin-top: 18rpx; }
 </style>

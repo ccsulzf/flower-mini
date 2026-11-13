@@ -1,9 +1,8 @@
 {
   "id": "bouquet-wrap-rose",
   "category": "bouquet",
-  "name": "豆沙褶纸",
-  "introduction": "豆沙色纸张以错落褶边和收束折线营造轻柔层次。",
-  "version": 1,
+  "name": "豆沙柔纸",
+  "introduction": "两张豆沙薄纸错位轻叠，低浅兜口与细长缎带留下轻柔的空气感。",
   "sortOrder": 203,
   "geometry": {
     "width": 698,

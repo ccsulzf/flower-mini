@@ -1,4 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000" role="img"><title>奶油叠纸</title><defs><linearGradient id="paper-cream" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#e7dcc7"/><stop offset=".52" stop-color="#faf5e9"/><stop offset="1" stop-color="#e7dcc7"/></linearGradient></defs>
-<!-- bouquet-back:start --><path d="M330 748 L318 817 L351 800 L389 824 L370 748Z" fill="#e7dcc7" stroke="#cabb9e" stroke-width="2"/><path d="M350 762 L351 800 L389 824 L369 758" fill="#cabb9e" opacity=".16"/><path d="M190 427 L255 365 L350 411 L455 374 L510 452 L370 759 L329 759Z" fill="#e7dcc7" stroke="#cabb9e" stroke-width="2" stroke-linejoin="round"/><path d="M205 432 L258 390 L350 434 L451 399 L492 454 L357 736Z" fill="#faf5e9"/><!-- bouquet-back:end -->
-<!-- bouquet-front:start --><path d="M192 477 Q278 501 431 585 L369 758 L330 758Z" fill="url(#paper-cream)" stroke="#cabb9e" stroke-width="2" stroke-linejoin="round"/><path d="M193 477 Q285 513 431 585 L415 600 Q284 535 208 499Z" fill="#faf5e9" stroke="#cabb9e" stroke-width="1"/><path d="M503 487 Q443 542 267 577 L330 758 L370 758Z" fill="#e7dcc7" stroke="#cabb9e" stroke-width="2" stroke-linejoin="round"/><path d="M502 487 Q419 553 267 577 L280 593 Q428 568 487 509Z" fill="#faf5e9" stroke="#cabb9e" stroke-width="1"/><path d="M287 596 Q321 652 345 745 M427 605 Q391 670 359 747" fill="none" stroke="#cabb9e" stroke-width="1.5" opacity=".55"/><path d="M329 747 Q349 754 371 749 L370 761 Q350 766 330 758Z" fill="#9b8270"/><path d="M350 757 C318 727 302 753 328 763 Q341 766 350 757 C382 730 398 756 374 764 Q360 767 350 757 M349 760 Q339 782 330 796 M354 760 Q364 775 378 786" fill="none" stroke="#9b8270" stroke-width="4" stroke-linecap="round"/><!-- bouquet-front:end -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000" role="img">
+  <title>奶油叠纸</title>
+  <defs>
+    <linearGradient id="paper-cream" x1="0" y1="0" x2="1" y2=".25">
+      <stop stop-color="#e5dbc3"/>
+      <stop offset=".48" stop-color="#f5efdf"/>
+      <stop offset="1" stop-color="#fffbf0"/>
+    </linearGradient>
+    <linearGradient id="cream-fold" x1="0" y1="0" x2="1" y2=".5">
+      <stop stop-color="#fffbf1"/>
+      <stop offset=".7" stop-color="#f2ead8"/>
+      <stop offset="1" stop-color="#e4d8be"/>
+    </linearGradient>
+  </defs>
+  <!-- bouquet-back:start -->
+  <!-- 一张斜展的后衬纸，两侧连续向束口卷拢。 -->
+  <path d="M156 438 Q350 398 535 335 C553 487 491 653 375 754 Q350 765 326 754 C240 688 180 558 156 438Z" fill="url(#paper-cream)" stroke="#cabb9e" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M156 438 Q350 398 535 335" fill="none" stroke="#fffaf0" stroke-width="2"/>
+  <path d="M332 754 Q325 782 322 802 L344 799 Q354 806 376 809 Q369 779 370 753Z" fill="#eee5d1" stroke="#cabb9e" stroke-width="1.2" stroke-linejoin="round"/>
+  <!-- bouquet-back:end -->
+  <!-- bouquet-front:start -->
+  <!-- 左侧向内折入，前沿在束口上方形成低而松的围合。 -->
+  <path d="M199 598 Q253 651 349 710 L330 755 C274 723 229 666 199 598Z" fill="#e9dfc9" stroke="#cabb9e" stroke-width="1.3" stroke-linejoin="round"/>
+  <!-- 右侧卷面是完整弧面，不再用两片三角形交叉。 -->
+  <path d="M520 553 C487 623 417 686 349 710 Q319 699 294 677 C300 711 313 740 330 755 Q349 765 375 754 C440 709 494 631 520 553Z" fill="url(#cream-fold)" stroke="#cabb9e" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M520 553 C488 625 417 689 350 713 Q320 704 298 683" fill="none" stroke="#fffcf3" stroke-width="2" stroke-linecap="round"/>
+  <!-- 褶皱只集中在实际收束处。 -->
+  <path d="M318 727 Q331 740 339 750 M393 723 Q374 742 366 751" fill="none" stroke="#c3b493" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+  <!-- 窄缎带绕过纸面，环与垂尾分别成形。 -->
+  <path d="M327 750 Q350 757 374 749 L373 758 Q349 765 329 758Z" fill="#e3d7bd" stroke="#c2b396" stroke-width="1"/>
+  <path d="M345 759 C326 760 318 773 310 802 L321 799 L328 805 Q333 779 351 764Z" fill="#f8f1df" stroke="#cabb9e" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M354 760 Q355 793 365 826 L373 818 L380 819 Q366 787 362 759Z" fill="#ede2ca" stroke="#cabb9e" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M348 757 C331 732 308 734 312 750 C315 764 338 769 348 757Z" fill="#faf5e8" stroke="#bdad8d" stroke-width="1.4"/>
+  <path d="M347 757 Q325 741 318 747 Q324 757 347 760Z" fill="#d9cdb2"/>
+  <path d="M353 756 C369 737 391 737 385 752 C381 765 363 768 353 756Z" fill="#f7efdc" stroke="#bdad8d" stroke-width="1.4"/>
+  <path d="M355 758 Q376 742 380 748 Q376 757 355 760Z" fill="#dacdb0"/>
+  <path d="M346 751 Q352 749 358 754 L357 762 Q352 766 345 761Z" fill="#ede2ca" stroke="#bdad8d" stroke-width="1.2"/>
+  <!-- bouquet-front:end -->
 </svg>

@@ -52,7 +52,7 @@ export async function prepareMaterial(record: UploadedMaterial, onAssetProcessed
     if (result.statusCode !== 200)
       throw new Error('素材下载失败')
     sources[key] = await read(result.tempFilePath, asset.hash, true)
-    const saved = await new Promise<UniApp.SaveFileSuccess>((resolve, reject) => uni.saveFile({ tempFilePath: result.tempFilePath, success: resolve, fail: reject }))
+    const saved = await new Promise<WechatMiniprogram.SaveFileSuccessCallbackResult>((resolve, reject) => fs().saveFile({ tempFilePath: result.tempFilePath, success: resolve, fail: reject }))
     paths[key] = saved.savedFilePath
     uni.setStorageSync(storageKey, saved.savedFilePath); downloaded++; onAssetProcessed?.()
   }

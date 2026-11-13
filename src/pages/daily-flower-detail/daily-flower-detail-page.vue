@@ -6,7 +6,7 @@ import FlowerMaterialListModal from '@/components/flower/flower-material-list-mo
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 
-definePage({ style: { navigationBarTitleText: '每日花束', navigationBarBackgroundColor: '#f6f3eb', backgroundColor: '#f6f3eb' } })
+definePage({ style: { navigationBarTitleText: '每日花束', } })
 
 const dailyFlowers = useDailyFlowerStore()
 const works = useFlowerWorksStore()
@@ -244,21 +244,21 @@ async function copyToStudio() {
   padding: 24rpx 30rpx calc(0rpx + env(safe-area-inset-bottom));
   overflow: hidden;
   background:
-    radial-gradient(circle at 18% 8%, rgba(193, 171, 139, .07) 0 2rpx, transparent 3rpx),
-    radial-gradient(circle at 72% 28%, rgba(193, 171, 139, .05) 0 2rpx, transparent 3rpx),
-    #f8f3e9;
+    radial-gradient(circle at 18% 8%, rgba(var(--app-subtle-rgb), .07) 0 2rpx, transparent 3rpx),
+    radial-gradient(circle at 72% 28%, rgba(var(--app-subtle-rgb), .05) 0 2rpx, transparent 3rpx),
+    var(--app-page);
   background-size: 34rpx 34rpx, 46rpx 46rpx, auto;
-  color: #514a40;
+  color: var(--app-ink);
 }
 
 .artwork-paper {
   position: relative;
   flex: 0 0 auto;
   padding: 20rpx;
-  border: 2rpx solid rgba(184, 168, 139, .18);
+  border: 2rpx solid rgba(var(--app-subtle-rgb), .18);
   border-radius: 18rpx 26rpx 20rpx 30rpx;
-  background: rgba(255, 253, 246, .9);
-  box-shadow: 0 14rpx 34rpx rgba(88, 74, 55, .075);
+  background: rgba(var(--app-page-rgb), .9);
+  box-shadow: 0 14rpx 34rpx rgba(var(--app-ink-rgb), .075);
 }
 
 .artwork-paper::after {
@@ -267,7 +267,7 @@ async function copyToStudio() {
   bottom: -5rpx;
   left: 34rpx;
   height: 10rpx;
-  border-bottom: 2rpx dashed rgba(174, 152, 120, .24);
+  border-bottom: 2rpx dashed rgba(var(--app-subtle-rgb), .24);
   content: '';
 }
 
@@ -279,8 +279,8 @@ async function copyToStudio() {
   opacity: .72;
 }
 
-.paper-tape-left { top: -18rpx; left: 34rpx; transform: rotate(-9deg); background: #cbd2af; }
-.paper-tape-right { top: -17rpx; right: 54rpx; transform: rotate(7deg); background: #e4cfaf; }
+.paper-tape-left { top: -18rpx; left: 34rpx; transform: rotate(-9deg); background: var(--app-sage); }
+.paper-tape-right { top: -17rpx; right: 54rpx; transform: rotate(7deg); background: var(--app-line); }
 
 .detail-image-wrap {
   display: flex;
@@ -290,7 +290,7 @@ async function copyToStudio() {
   justify-content: center;
   overflow: hidden;
   border-radius: 12rpx 20rpx 14rpx 22rpx;
-  background: #f2f0e7;
+  background: var(--app-surfaceMuted);
 }
 
 .detail-image {
@@ -306,9 +306,9 @@ async function copyToStudio() {
   width: 74rpx;
   height: 112rpx;
   transform: rotate(7deg);
-  border: 1rpx solid rgba(152, 142, 119, .2);
-  background: rgba(248, 244, 231, .9);
-  box-shadow: 0 5rpx 12rpx rgba(85, 75, 59, .06);
+  border: 1rpx solid rgba(var(--app-inkMuted-rgb), .2);
+  background: rgba(var(--app-page-rgb), .9);
+  box-shadow: 0 5rpx 12rpx rgba(var(--app-ink-rgb), .06);
 }
 
 .botanical-stem {
@@ -318,7 +318,7 @@ async function copyToStudio() {
   width: 2rpx;
   height: 78rpx;
   transform: rotate(14deg);
-  background: #7f9274;
+  background: var(--app-brand);
 }
 
 .botanical-leaf {
@@ -326,7 +326,7 @@ async function copyToStudio() {
   width: 22rpx;
   height: 12rpx;
   border-radius: 100% 0 100% 0;
-  background: #91a186;
+  background: var(--app-sage);
 }
 
 .leaf-one { top: 32rpx; left: 15rpx; transform: rotate(30deg); }
@@ -342,8 +342,8 @@ async function copyToStudio() {
   margin: 24rpx auto 22rpx;
   padding: 30rpx 34rpx 22rpx;
   transform: rotate(-.7deg);
-  background: #f5ead7;
-  box-shadow: 0 8rpx 20rpx rgba(92, 74, 51, .06);
+  background: var(--app-surfaceMuted);
+  box-shadow: 0 8rpx 20rpx rgba(var(--app-ink-rgb), .06);
   text-align: center;
 }
 
@@ -354,11 +354,11 @@ async function copyToStudio() {
   width: 86rpx;
   height: 26rpx;
   transform: translateX(-50%) rotate(3deg);
-  background: rgba(218, 180, 173, .58);
+  background: rgba(var(--app-subtle-rgb), .58);
 }
 
 .detail-description {
-  color: #655849;
+  color: var(--app-ink);
   font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
   font-size: 27rpx;
   line-height: 1.65;
@@ -377,7 +377,7 @@ async function copyToStudio() {
   left: 10rpx;
   width: 135rpx;
   height: 16rpx;
-  border-top: 2rpx solid #887261;
+  border-top: 2rpx solid var(--app-ink);
   border-radius: 50%;
   transform: rotate(-3deg);
 }
@@ -386,7 +386,7 @@ async function copyToStudio() {
   position: absolute;
   top: -5rpx;
   right: 1rpx;
-  color: #887261;
+  color: var(--app-ink);
   font-size: 32rpx;
 }
 
@@ -417,7 +417,7 @@ async function copyToStudio() {
   right: -2rpx;
   bottom: -2rpx;
   left: 2rpx;
-  border: 2rpx solid rgba(91, 74, 57, .34);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .34);
   border-radius: 255rpx 18rpx 225rpx 22rpx / 20rpx 225rpx 24rpx 255rpx;
   transform: rotate(-.65deg);
 }
@@ -427,7 +427,7 @@ async function copyToStudio() {
   right: 2rpx;
   bottom: 2rpx;
   left: -1rpx;
-  border: 2rpx solid rgba(91, 74, 57, .7);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .7);
   border-radius: 18rpx 255rpx 20rpx 225rpx / 225rpx 20rpx 255rpx 18rpx;
   transform: rotate(.45deg);
 }
@@ -484,9 +484,9 @@ async function copyToStudio() {
   border: 0;
   border-radius: 18rpx 12rpx 20rpx 14rpx;
   background: transparent;
-  box-shadow: 5rpx 6rpx 0 rgba(105, 88, 68, .08);
+  box-shadow: 5rpx 6rpx 0 rgba(var(--app-ink-rgb), .08);
   clip-path: polygon(1% 7%, 97% 1%, 100% 90%, 96% 99%, 4% 96%, 0 13%);
-  color: #5c5145;
+  color: var(--app-ink);
   font-size: 23rpx;
   font-weight: 500;
   line-height: 1;
@@ -497,10 +497,10 @@ async function copyToStudio() {
 }
 .paper-action view { flex-shrink: 0; font-size: 29rpx; transform: rotate(-4deg); }
 .paper-action text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.sketch-card .paper-action { background: #f2deda; }
-.sketch-share .paper-action { background: #e3e9d7; }
+.sketch-card .paper-action { background: var(--app-surfaceMuted); }
+.sketch-share .paper-action { background: var(--app-sageSoft); }
 .sketch-share .paper-action view { transform: rotate(3deg); }
-.sketch-copy .paper-action { background: #f0e3c8; }
+.sketch-copy .paper-action { background: var(--app-surfaceMuted); }
 .sketch-copy .paper-action view { transform: rotate(-2deg); }
 .paper-action[disabled] { opacity: .48; }
 .paper-action-pressed { transform: translate(3rpx, 4rpx) rotate(.4deg); opacity: .8; }
@@ -512,19 +512,19 @@ async function copyToStudio() {
   align-items: center;
   justify-content: center;
   gap: 20rpx;
-  color: #7c8474;
+  color: var(--app-brandStrong);
   font-size: 25rpx;
   text-align: center;
 }
 
 .detail-error {
-  color: #995c50;
+  color: var(--app-danger);
 }
 
 .retry-button {
   padding: 0 28rpx;
-  background: #fffdf7;
-  color: #64715b;
+  background: var(--app-surface);
+  color: var(--app-brandStrong);
   font-size: 24rpx;
   line-height: 60rpx;
 }

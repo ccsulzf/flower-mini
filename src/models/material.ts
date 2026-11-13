@@ -16,8 +16,9 @@ export interface MaterialMetadata {
   colors: { name: string, value: string }[]
   geometry?: FlowerGeometry | VaseGeometry | BackgroundGeometry
 }
-export interface MaterialDraft extends MaterialMetadata { sources: Partial<Record<SvgPart, string>> }
+export interface MaterialDraft extends MaterialMetadata { sources: Partial<Record<SvgPart, string>>, revision: string }
 export interface UploadedMaterial extends MaterialMetadata {
+  revision?: string
   assets: Partial<Record<SvgPart, { fileId: string, hash: string, url?: string }>>
   updatedAt: number
 }

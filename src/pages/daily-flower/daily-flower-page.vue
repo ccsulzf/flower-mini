@@ -6,7 +6,7 @@ import { useDevice } from '@/hooks/useDevice'
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 
-definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花', navigationBarBackgroundColor: '#f8f3e9', backgroundColor: '#f8f3e9' } })
+definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花', } })
 
 const dailyFlowers = useDailyFlowerStore()
 const { deviceWidth } = useDevice()
@@ -197,11 +197,11 @@ function openFlower(date: string) {
   padding: 34rpx 28rpx calc(42rpx + env(safe-area-inset-bottom));
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 18% 8%, rgba(193, 171, 139, .07) 0 2rpx, transparent 3rpx),
-    radial-gradient(circle at 72% 28%, rgba(193, 171, 139, .05) 0 2rpx, transparent 3rpx),
-    #f8f3e9;
+    radial-gradient(circle at 18% 8%, rgba(var(--app-subtle-rgb), .07) 0 2rpx, transparent 3rpx),
+    radial-gradient(circle at 72% 28%, rgba(var(--app-subtle-rgb), .05) 0 2rpx, transparent 3rpx),
+    var(--app-page);
   background-size: 34rpx 34rpx, 46rpx 46rpx, auto;
-  color: #514a40;
+  color: var(--app-ink);
 }
 
 .daily-heading {
@@ -221,7 +221,7 @@ function openFlower(date: string) {
   left: 6rpx;
   height: 14rpx;
   transform: rotate(-1deg);
-  border-top: 2rpx solid rgba(112, 91, 68, .52);
+  border-top: 2rpx solid rgba(var(--app-ink-rgb), .52);
   border-radius: 50%;
   content: '';
 }
@@ -244,7 +244,7 @@ function openFlower(date: string) {
 .daily-kicker {
   overflow: hidden;
   margin-bottom: 3rpx;
-  color: #a28b71;
+  color: var(--app-danger);
   font-family: Georgia, serif;
   font-size: 15rpx;
   letter-spacing: 2rpx;
@@ -254,7 +254,7 @@ function openFlower(date: string) {
 
 .daily-subtitle {
   overflow: hidden;
-  color: #817667;
+  color: var(--app-inkMuted);
   font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
   font-size: 19rpx;
   letter-spacing: 1rpx;
@@ -287,16 +287,16 @@ function openFlower(date: string) {
 .heading-petal {
   width: 17rpx;
   height: 22rpx;
-  background: rgba(213, 154, 153, .84);
+  background: rgba(var(--app-danger-rgb), .84);
 }
 
 .petal-a { top: 0; left: 13rpx; }
 .petal-b { top: 10rpx; right: 0; transform: rotate(90deg); }
 .petal-c { bottom: 0; left: 13rpx; transform: rotate(180deg); }
 .petal-d { top: 10rpx; left: 0; transform: rotate(-90deg); }
-.heading-flower-center { top: 15rpx; left: 16rpx; width: 10rpx; height: 10rpx; background: #d6ad58; }
-.heading-stem { position: absolute; top: 36rpx; left: 32rpx; width: 2rpx; height: 39rpx; transform: rotate(9deg); background: #829178; }
-.heading-leaf { position: absolute; width: 20rpx; height: 10rpx; border-radius: 100% 0 100% 0; background: rgba(137, 156, 125, .9); }
+.heading-flower-center { top: 15rpx; left: 16rpx; width: 10rpx; height: 10rpx; background: var(--app-danger); }
+.heading-stem { position: absolute; top: 36rpx; left: 32rpx; width: 2rpx; height: 39rpx; transform: rotate(9deg); background: var(--app-sage); }
+.heading-leaf { position: absolute; width: 20rpx; height: 10rpx; border-radius: 100% 0 100% 0; background: rgba(var(--app-sage-rgb), .9); }
 .heading-leaf-left { top: 50rpx; left: 14rpx; transform: rotate(28deg); }
 .heading-leaf-right { top: 59rpx; right: 8rpx; transform: rotate(-28deg) scaleX(-1); }
 
@@ -324,12 +324,12 @@ function openFlower(date: string) {
   align-items: center;
   gap: 10rpx;
   padding: 0 17rpx;
-  border: 2rpx solid rgba(105, 88, 68, .42);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .42);
   border-radius: 18rpx 12rpx 20rpx 14rpx;
-  background: #f3ead8;
-  box-shadow: 5rpx 6rpx 0 rgba(105, 88, 68, .07);
+  background: var(--app-surfaceMuted);
+  box-shadow: 5rpx 6rpx 0 rgba(var(--app-ink-rgb), .07);
   clip-path: polygon(1% 7%, 98% 1%, 100% 91%, 96% 99%, 3% 96%, 0 12%);
-  color: #625648;
+  color: var(--app-ink);
   font-size: 20rpx;
   line-height: 1.4;
   transform: rotate(-.8deg);
@@ -346,12 +346,12 @@ function openFlower(date: string) {
   width: 52rpx;
   height: 18rpx;
   transform: translateX(-50%) rotate(3deg);
-  background: rgba(203, 210, 175, .72);
+  background: rgba(var(--app-sage-rgb), .72);
 }
 
 .filter-picker .i-carbon-calendar,
 .filter-picker .i-carbon-chevron-down {
-  color: #78866f;
+  color: var(--app-brandStrong);
   font-size: 22rpx;
 }
 
@@ -359,12 +359,12 @@ function openFlower(date: string) {
   margin: 0;
   padding: 0 2rpx;
   background: transparent;
-  color: #7d6e5d;
+  color: var(--app-inkMuted);
   font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
   font-size: 19rpx;
   line-height: 54rpx;
   text-decoration: underline;
-  text-decoration-color: rgba(125, 110, 93, .44);
+  text-decoration-color: rgba(var(--app-inkMuted-rgb), .44);
   text-underline-offset: 7rpx;
 }
 
@@ -382,10 +382,10 @@ function openFlower(date: string) {
 .history-card {
   position: relative;
   overflow: hidden;
-  border: 2rpx solid rgba(113, 94, 70, .38);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .38);
   border-radius: 15rpx 23rpx 18rpx 27rpx;
-  background: rgba(255, 253, 246, .94);
-  box-shadow: 7rpx 10rpx 0 rgba(101, 83, 61, .06), 0 15rpx 28rpx rgba(88, 74, 55, .07);
+  background: rgba(var(--app-page-rgb), .94);
+  box-shadow: 7rpx 10rpx 0 rgba(var(--app-ink-rgb), .06), 0 15rpx 28rpx rgba(var(--app-ink-rgb), .07);
   clip-path: polygon(.7% 1.5%, 98.8% .3%, 100% 97.5%, 96.8% 100%, 1.2% 98.7%, 0 3%);
   transition: opacity .15s ease, transform .15s ease;
   &:active { opacity: .78; }
@@ -404,13 +404,13 @@ function openFlower(date: string) {
   width: 76rpx;
   height: 27rpx;
   transform: translateX(-50%) rotate(-4deg);
-  background: rgba(228, 207, 175, .76);
+  background: rgba(var(--app-line-rgb), .76);
   pointer-events: none;
 }
 
 .history-card-even .card-tape {
   transform: translateX(-50%) rotate(5deg);
-  background: rgba(203, 210, 175, .76);
+  background: rgba(var(--app-sage-rgb), .76);
 }
 
 .history-cover {
@@ -418,15 +418,18 @@ function openFlower(date: string) {
   height: 420rpx;
   margin: 12rpx 12rpx 0;
   overflow: hidden;
-  border: 1rpx solid rgba(153, 138, 113, .17);
+  border: 1rpx solid rgba(var(--app-inkMuted-rgb), .17);
   border-radius: 10rpx 16rpx 12rpx 19rpx;
-  background: #f2f0e7;
+  background: var(--app-surfaceMuted);
 }
 
 .history-cover-hitarea {
   position: absolute;
   z-index: 2;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: transparent;
 }
 
@@ -438,7 +441,7 @@ function openFlower(date: string) {
 }
 
 .history-date {
-  color: #5f5345;
+  color: var(--app-ink);
   font-family: Georgia, 'Songti SC', 'STSong', serif;
   font-size: 25rpx;
   font-weight: 500;
@@ -449,7 +452,7 @@ function openFlower(date: string) {
   height: 9rpx;
   margin: 7rpx 0 1rpx;
   transform: rotate(-1deg);
-  border-top: 2rpx solid rgba(111, 91, 70, .42);
+  border-top: 2rpx solid rgba(var(--app-ink-rgb), .42);
   border-radius: 50%;
 }
 
@@ -458,7 +461,7 @@ function openFlower(date: string) {
   overflow: hidden;
   min-height: 60rpx;
   margin-top: 5rpx;
-  color: #75695b;
+  color: var(--app-inkMuted);
   font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
   font-size: 22rpx;
   line-height: 1.55;
@@ -478,9 +481,9 @@ function openFlower(date: string) {
   margin: 22rpx auto;
   padding: 30rpx 24rpx;
   transform: rotate(-.45deg);
-  background: rgba(245, 234, 215, .72);
-  box-shadow: 0 8rpx 20rpx rgba(92, 74, 51, .05);
-  color: #7b6f60;
+  background: rgba(var(--app-surfaceMuted-rgb), .72);
+  box-shadow: 0 8rpx 20rpx rgba(var(--app-ink-rgb), .05);
+  color: var(--app-inkMuted);
   font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
   font-size: 24rpx;
   text-align: center;
@@ -496,22 +499,22 @@ function openFlower(date: string) {
 }
 
 .history-empty .i-carbon-calendar {
-  color: #91a186;
+  color: var(--app-sage);
   font-size: 48rpx;
 }
 
 .history-error {
-  color: #995c50;
+  color: var(--app-danger);
 }
 
 .history-error button {
   display: block;
   margin: 18rpx auto 0;
   padding: 0 24rpx;
-  border: 2rpx solid rgba(105, 88, 68, .42);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .42);
   border-radius: 16rpx 11rpx 18rpx 13rpx;
-  background: #e3e9d7;
-  color: #625648;
+  background: var(--app-sageSoft);
+  color: var(--app-ink);
   font-size: 23rpx;
 }
 
@@ -520,11 +523,11 @@ function openFlower(date: string) {
   margin: 30rpx auto 0;
   padding: 0 30rpx;
   transform: rotate(.5deg);
-  border: 2rpx solid rgba(105, 88, 68, .42);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .42);
   border-radius: 18rpx 12rpx 20rpx 14rpx;
-  background: #e3e9d7;
-  box-shadow: 5rpx 6rpx 0 rgba(105, 88, 68, .07);
-  color: #625648;
+  background: var(--app-sageSoft);
+  box-shadow: 5rpx 6rpx 0 rgba(var(--app-ink-rgb), .07);
+  color: var(--app-ink);
   font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
 }
 </style>

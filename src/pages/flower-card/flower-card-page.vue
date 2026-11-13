@@ -10,7 +10,7 @@ import { renderCloudCard } from '@/utils/flower/cloud-card-renderer'
 import { resolveDailyFlowerImage } from '@/utils/flower/daily-flower-image-cache'
 import { greetingLines, renderFlowerCard } from '@/utils/flower/render-flower-card'
 
-definePage({ style: { navigationBarTitleText: '制作贺卡', navigationBarBackgroundColor: '#f6f3eb' } })
+definePage({ style: { navigationBarTitleText: '制作贺卡', } })
 const { draft, loading, error, images, retry } = useFlowerPageArtwork({
   loadDailyFlower: async (date) => {
     const flower = await getDailyFlowerByDate(date)
@@ -290,12 +290,12 @@ function applyEditor() {
   flex-direction: column;
   min-height: 100vh;
   box-sizing: border-box;
-  color: #574d40;
+  color: var(--app-ink);
   padding: 28rpx 30rpx calc(24rpx + env(safe-area-inset-bottom));
   background:
-    radial-gradient(circle at 18% 8%, rgba(193, 171, 139, .07) 0 2rpx, transparent 3rpx),
-    radial-gradient(circle at 72% 28%, rgba(193, 171, 139, .05) 0 2rpx, transparent 3rpx),
-    #f8f3e9;
+    radial-gradient(circle at 18% 8%, rgba(var(--app-subtle-rgb), .07) 0 2rpx, transparent 3rpx),
+    radial-gradient(circle at 72% 28%, rgba(var(--app-subtle-rgb), .05) 0 2rpx, transparent 3rpx),
+    var(--app-page);
   background-size: 34rpx 34rpx, 46rpx 46rpx, auto;
 }
 
@@ -317,10 +317,10 @@ function applyEditor() {
   overflow: visible;
   margin: 12rpx 4rpx 4rpx;
   padding: 16rpx;
-  border: 2rpx solid rgba(184, 168, 139, .24);
+  border: 2rpx solid rgba(var(--app-subtle-rgb), .24);
   border-radius: 18rpx 26rpx 20rpx 30rpx;
-  background: rgba(255, 253, 246, .92);
-  box-shadow: 0 14rpx 34rpx rgba(88, 74, 55, .075);
+  background: rgba(var(--app-page-rgb), .92);
+  box-shadow: 0 14rpx 34rpx rgba(var(--app-ink-rgb), .075);
 }
 
 .live-card-stage {
@@ -336,14 +336,14 @@ function applyEditor() {
   height: 1260px;
   overflow: hidden;
   transform-origin: top left;
-  border: 1px solid #d5c5a6;
+  border: 1px solid var(--app-subtle);
   box-sizing: border-box;
   background:
-    radial-gradient(circle at 12% 18%, rgba(162, 137, 102, .065) 0 1px, transparent 2px),
-    radial-gradient(circle at 78% 42%, rgba(162, 137, 102, .045) 0 1px, transparent 2px),
-    #f8f2e6;
+    radial-gradient(circle at 12% 18%, rgba(var(--app-danger-rgb), .065) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 42%, rgba(var(--app-danger-rgb), .045) 0 1px, transparent 2px),
+    var(--app-page);
   background-size: 25px 25px, 33px 33px, auto;
-  color: #3f463d;
+  color: var(--app-ink);
 }
 
 .live-card::before {
@@ -352,7 +352,7 @@ function applyEditor() {
   right: 19px;
   bottom: 18px;
   left: 16px;
-  border: 1px solid rgba(177, 153, 117, .42);
+  border: 1px solid rgba(var(--app-danger-rgb), .42);
   border-radius: 3px 8px 4px 7px;
   content: '';
   pointer-events: none;
@@ -365,8 +365,8 @@ function applyEditor() {
   width: 130px;
   box-sizing: border-box;
   padding: 5px 0 6px;
-  color: #64705b;
-  background: #e4e7da;
+  color: var(--app-brandStrong);
+  background: var(--app-sageSoft);
   font-family: sans-serif;
   font-size: 23px;
   line-height: 25px;
@@ -381,7 +381,7 @@ function applyEditor() {
   box-sizing: border-box;
   width: auto;
   padding: 0;
-  color: #565247;
+  color: var(--app-ink);
   background: transparent;
   box-shadow: none;
   font-family: sans-serif;
@@ -410,7 +410,7 @@ function applyEditor() {
   left: 69px;
   width: 560px;
   height: 1px;
-  background: rgba(183, 157, 113, .55);
+  background: rgba(var(--app-danger-rgb), .55);
 }
 
 .live-card-letter-divider::after {
@@ -420,7 +420,7 @@ function applyEditor() {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #b99f71;
+  background: var(--app-danger);
   content: '';
 }
 
@@ -445,7 +445,7 @@ function applyEditor() {
 .live-card-signature {
   position: absolute;
   right: 52px;
-  color: #625d50;
+  color: var(--app-ink);
   font-family: sans-serif;
   font-size: 25px;
   line-height: 26px;
@@ -464,7 +464,7 @@ function applyEditor() {
   justify-content: center;
   padding: 40rpx;
   box-sizing: border-box;
-  background: rgba(61, 53, 43, .32);
+  background: rgba(var(--app-ink-rgb), .32);
   animation: render-backdrop-in .2s ease-out both;
 }
 
@@ -478,13 +478,13 @@ function applyEditor() {
   justify-content: center;
   box-sizing: border-box;
   padding: 46rpx 42rpx 40rpx;
-  border: 2rpx solid rgba(139, 119, 91, .34);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .34);
   border-radius: 20rpx 28rpx 18rpx 25rpx;
   background:
-    radial-gradient(circle at 18% 20%, rgba(168, 143, 105, .08) 0 1rpx, transparent 2rpx),
-    #fffaf0;
+    radial-gradient(circle at 18% 20%, rgba(var(--app-danger-rgb), .08) 0 1rpx, transparent 2rpx),
+    var(--app-surface);
   background-size: 30rpx 30rpx, auto;
-  box-shadow: 8rpx 11rpx 0 rgba(76, 64, 48, .09), 0 24rpx 60rpx rgba(48, 41, 33, .15);
+  box-shadow: 8rpx 11rpx 0 rgba(var(--app-ink-rgb), .09), 0 24rpx 60rpx rgba(var(--app-ink-rgb), .15);
   animation: render-dialog-in .32s cubic-bezier(.2, .8, .25, 1.1) both;
 }
 
@@ -494,7 +494,7 @@ function applyEditor() {
   left: 50%;
   width: 112rpx;
   height: 27rpx;
-  background: rgba(216, 207, 174, .78);
+  background: rgba(var(--app-line-rgb), .78);
   content: '';
   transform: translateX(-50%) rotate(-2deg);
 }
@@ -506,13 +506,13 @@ function applyEditor() {
   align-items: center;
   justify-content: center;
   margin-bottom: 22rpx;
-  color: #7d8973;
+  color: var(--app-sage);
   font-size: 62rpx;
   animation: render-flower-turn 2.2s ease-in-out infinite;
 }
 
 .render-title {
-  color: #514a3f;
+  color: var(--app-ink);
   font-family: 'Kaiti SC', 'STKaiti', serif;
   font-size: 31rpx;
   line-height: 1.4;
@@ -520,7 +520,7 @@ function applyEditor() {
 
 .render-note {
   margin-top: 11rpx;
-  color: #8b8375;
+  color: var(--app-inkMuted);
   font-size: 22rpx;
   line-height: 1.5;
 }
@@ -535,7 +535,7 @@ function applyEditor() {
   width: 9rpx;
   height: 9rpx;
   border-radius: 50%;
-  background: #b69f78;
+  background: var(--app-subtle);
   animation: render-dot-bounce .9s ease-in-out infinite;
 }
 
@@ -575,13 +575,13 @@ function applyEditor() {
 .preview-tape-left {
   left: 38rpx;
   transform: rotate(-8deg);
-  background: #cbd2af;
+  background: var(--app-sage);
 }
 
 .preview-tape-right {
   right: 48rpx;
   transform: rotate(7deg);
-  background: #e4cfaf;
+  background: var(--app-line);
 }
 
 .greeting-actions {
@@ -599,11 +599,11 @@ function applyEditor() {
   height: 84rpx;
   margin: 0;
   padding: 0;
-  border: 2rpx solid rgba(101, 86, 66, .58);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .58);
   border-radius: 8rpx 12rpx 7rpx 10rpx;
-  background: #f3e3df;
-  box-shadow: 3rpx 4rpx 0 rgba(91, 75, 57, .07);
-  color: #5c5549;
+  background: var(--app-surfaceMuted);
+  box-shadow: 3rpx 4rpx 0 rgba(var(--app-ink-rgb), .07);
+  color: var(--app-ink);
   line-height: 1;
   font-size: 22rpx;
   white-space: nowrap;
@@ -615,7 +615,7 @@ function applyEditor() {
   right: 3rpx;
   bottom: 4rpx;
   left: -4rpx;
-  border: 2rpx solid rgba(101, 86, 66, .36);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .36);
   border-radius: 11rpx 7rpx 13rpx 6rpx;
   content: '';
   pointer-events: none;
@@ -641,11 +641,11 @@ function applyEditor() {
 }
 
 .greeting-actions .greeting-primary {
-  border-color: rgba(99, 108, 87, .62);
+  border-color: rgba(var(--app-brandStrong-rgb), .62);
   border-radius: 11rpx 7rpx 13rpx 8rpx;
-  background: #e4eadc;
-  box-shadow: 3rpx 4rpx 0 rgba(81, 98, 74, .08);
-  color: #545d4d;
+  background: var(--app-sageSoft);
+  box-shadow: 3rpx 4rpx 0 rgba(var(--app-brandStrong-rgb), .08);
+  color: var(--app-brandStrong);
   font-weight: 600;
   transform: rotate(.25deg);
 }
@@ -655,7 +655,7 @@ function applyEditor() {
   right: -4rpx;
   bottom: 3rpx;
   left: 4rpx;
-  border-color: rgba(99, 108, 87, .38);
+  border-color: rgba(var(--app-brandStrong-rgb), .38);
   border-radius: 7rpx 13rpx 8rpx 12rpx;
 }
 
@@ -674,7 +674,7 @@ function applyEditor() {
 .greeting-error {
   flex-shrink: 0;
   margin-top: 8rpx;
-  color: #a35a47;
+  color: var(--app-danger);
   font-size: 24rpx;
   text-align: center;
 }
@@ -687,20 +687,20 @@ function applyEditor() {
   text-align: center;
   margin: auto;
   padding: 72rpx 54rpx;
-  border: 2rpx solid rgba(112, 91, 68, .2);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .2);
   border-radius: 22rpx 30rpx 20rpx 28rpx;
-  background: #fffaf0;
-  box-shadow: 7rpx 9rpx 0 rgba(143, 124, 95, .1);
+  background: var(--app-surface);
+  box-shadow: 7rpx 9rpx 0 rgba(var(--app-ink-rgb), .1);
   font-size: 26rpx;
 }
 
 .greeting-state button {
   margin: 0;
   padding: 0 24rpx;
-  border: 2rpx solid rgba(105, 88, 68, .28);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .28);
   border-radius: 18rpx 12rpx 20rpx 14rpx;
-  background: #f3ead8;
-  color: #596451;
+  background: var(--app-surfaceMuted);
+  color: var(--app-brandStrong);
   font-size: 24rpx;
   line-height: 60rpx;
 }
@@ -716,7 +716,7 @@ function applyEditor() {
   align-items: flex-end;
   box-sizing: border-box;
   padding: 24rpx;
-  background: rgba(63, 55, 45, .34);
+  background: rgba(var(--app-ink-rgb), .34);
 }
 
 .editor-sheet {
@@ -726,14 +726,14 @@ function applyEditor() {
   overflow: auto;
   box-sizing: border-box;
   padding: 38rpx 34rpx 36rpx;
-  border: 2rpx solid rgba(112, 91, 68, .3);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .3);
   border-radius: 22rpx 30rpx 20rpx 28rpx;
   background:
-    radial-gradient(circle at 18% 16%, rgba(174, 147, 111, .08) 0 1rpx, transparent 2rpx),
-    radial-gradient(circle at 76% 34%, rgba(174, 147, 111, .06) 0 1rpx, transparent 2rpx),
-    #fffaf0;
+    radial-gradient(circle at 18% 16%, rgba(var(--app-danger-rgb), .08) 0 1rpx, transparent 2rpx),
+    radial-gradient(circle at 76% 34%, rgba(var(--app-danger-rgb), .06) 0 1rpx, transparent 2rpx),
+    var(--app-surface);
   background-size: 32rpx 32rpx, 46rpx 46rpx, auto;
-  box-shadow: 8rpx 12rpx 0 rgba(101, 83, 61, .07), 0 24rpx 46rpx rgba(54, 46, 37, .12);
+  box-shadow: 8rpx 12rpx 0 rgba(var(--app-ink-rgb), .07), 0 24rpx 46rpx rgba(var(--app-ink-rgb), .12);
 }
 
 .editor-sheet::before {
@@ -743,7 +743,7 @@ function applyEditor() {
   width: 96rpx;
   height: 24rpx;
   transform: translateX(-50%) rotate(2deg);
-  background: rgba(218, 180, 173, .58);
+  background: rgba(var(--app-subtle-rgb), .58);
   content: '';
 }
 
@@ -757,7 +757,7 @@ function applyEditor() {
 .editor-kicker {
   display: block;
   margin-bottom: 4rpx;
-  color: #a08a70;
+  color: var(--app-danger);
   font-family: Georgia, serif;
   font-size: 15rpx;
   letter-spacing: 2rpx;
@@ -765,7 +765,7 @@ function applyEditor() {
 
 .editor-title {
   display: block;
-  color: #574d40;
+  color: var(--app-ink);
   font-family: Georgia, 'Songti SC', 'STSong', serif;
   font-size: 32rpx;
   font-weight: 600;
@@ -776,10 +776,10 @@ function applyEditor() {
   height: 60rpx;
   margin: 0;
   padding: 0;
-  border: 2rpx solid rgba(116, 132, 105, .22);
+  border: 2rpx solid rgba(var(--app-brandStrong-rgb), .22);
   border-radius: 52% 44% 48% 42%;
-  background: #edf0e5;
-  color: #74806b;
+  background: var(--app-surfaceMuted);
+  color: var(--app-brand);
   font-size: 38rpx;
   line-height: 60rpx;
 }
@@ -791,7 +791,7 @@ function applyEditor() {
 .greeting-form :deep(.uni-forms-item__label) {
   height: auto;
   padding: 0 4rpx 10rpx;
-  color: #3f463d;
+  color: var(--app-ink);
   font-size: 26rpx;
 }
 
@@ -803,9 +803,9 @@ function applyEditor() {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  border: 2rpx solid #d9cdb8;
-  background: #f8eedb;
-  box-shadow: 5rpx 6rpx 0 rgba(121, 99, 69, .09);
+  border: 2rpx solid var(--app-line);
+  background: var(--app-surfaceMuted);
+  box-shadow: 5rpx 6rpx 0 rgba(var(--app-ink-rgb), .09);
 }
 
 .paper-field::after {
@@ -814,7 +814,7 @@ function applyEditor() {
   right: -3rpx;
   bottom: -4rpx;
   left: 3rpx;
-  border: 2rpx solid rgba(139, 122, 94, .2);
+  border: 2rpx solid rgba(var(--app-inkMuted-rgb), .2);
   content: '';
   pointer-events: none;
 }
@@ -828,7 +828,7 @@ function applyEditor() {
 .paper-field-blessing {
   height: 220rpx;
   border-radius: 12rpx 7rpx 15rpx 9rpx;
-  background: #fffaf0;
+  background: var(--app-surface);
   transform: rotate(.25deg);
 }
 
@@ -836,7 +836,7 @@ function applyEditor() {
   width: 58%;
   margin-left: auto;
   border-radius: 14rpx 8rpx 11rpx 6rpx;
-  background: #f1e5ce;
+  background: var(--app-surfaceMuted);
   transform: rotate(-.45deg);
 }
 
@@ -847,7 +847,7 @@ function applyEditor() {
   height: 82rpx;
   box-sizing: border-box;
   padding: 0 24rpx;
-  color: #51483d;
+  color: var(--app-ink);
   font-size: 27rpx;
 }
 
@@ -858,7 +858,7 @@ function applyEditor() {
   height: 220rpx;
   box-sizing: border-box;
   padding: 20rpx 24rpx 18rpx 54rpx;
-  color: #51483d;
+  color: var(--app-ink);
   font-size: 27rpx;
   line-height: 52rpx;
 }
@@ -869,7 +869,7 @@ function applyEditor() {
   bottom: 0;
   left: 38rpx;
   width: 2rpx;
-  background: rgba(188, 128, 119, .26);
+  background: rgba(var(--app-danger-rgb), .26);
   pointer-events: none;
 }
 
@@ -878,7 +878,7 @@ function applyEditor() {
   right: 18rpx;
   left: 18rpx;
   height: 2rpx;
-  background: rgba(127, 144, 113, .16);
+  background: rgba(var(--app-sage-rgb), .16);
   pointer-events: none;
 }
 
@@ -888,7 +888,7 @@ function applyEditor() {
 
 .field-label {
   font-size: 26rpx;
-  color: #3f463d;
+  color: var(--app-ink);
 }
 
 .field-label-row {
@@ -902,7 +902,7 @@ function applyEditor() {
 .field-hint,
 .field-count {
   font-size: 22rpx;
-  color: #8a907f;
+  color: var(--app-sage);
 }
 
 .field-limit {
@@ -925,18 +925,18 @@ function applyEditor() {
 }
 
 .field-count-limit {
-  color: #a35a47;
+  color: var(--app-danger);
 }
 
 .editor-done {
   position: relative;
   width: 100%;
   margin: 30rpx 0 2rpx;
-  border: 2rpx solid #718068;
+  border: 2rpx solid var(--app-brandStrong);
   border-radius: 23rpx 15rpx 26rpx 17rpx;
-  background: #7d8d73;
-  box-shadow: 5rpx 6rpx 0 rgba(81, 98, 74, .18);
-  color: #fffdf7;
+  background: var(--app-sage);
+  box-shadow: 5rpx 6rpx 0 rgba(var(--app-brandStrong-rgb), .18);
+  color: var(--app-surface);
   line-height: 84rpx;
   font-size: 28rpx;
 }
@@ -947,7 +947,7 @@ function applyEditor() {
   right: 5rpx;
   bottom: 4rpx;
   left: -5rpx;
-  border: 2rpx solid rgba(91, 105, 82, .48);
+  border: 2rpx solid rgba(var(--app-brandStrong-rgb), .48);
   border-radius: 17rpx 25rpx 15rpx 23rpx;
   content: '';
   pointer-events: none;
@@ -969,7 +969,7 @@ function applyEditor() {
   display: inline-block;
   margin: 0 0 0 12rpx;
   padding: 0 14rpx;
-  color: #995c50;
+  color: var(--app-danger);
   background: transparent;
   font-size: 24rpx;
   line-height: 1.5;

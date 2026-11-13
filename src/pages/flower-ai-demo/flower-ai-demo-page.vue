@@ -10,7 +10,7 @@ import { waitForAppAuthReady } from '@/utils/appAuth'
 import { exampleJson } from '@/pages/flower-json/example'
 import { createComplexArtwork } from './complex-example'
 
-definePage({ layout: 'default', style: { navigationBarTitleText: '花束搭配调试', navigationBarBackgroundColor: '#f6f3eb' } })
+definePage({ layout: 'default', style: { navigationBarTitleText: '花束搭配调试', } })
 
 function createCrowdedArtwork() {
   const value = parseArtwork(exampleJson)
@@ -216,18 +216,18 @@ function copyOutput() {
 </template>
 
 <style scoped lang="scss">
-.demo-page { min-height: 100vh; padding: 32rpx 16px 60rpx; box-sizing: border-box; background: #f6f3eb; color: #655c50; }
+.demo-page { min-height: 100vh; padding: 32rpx 16px 60rpx; box-sizing: border-box; background: var(--app-page); color: var(--app-ink); }
 .title { display: block; font-family: STSong, SimSun, serif; font-size: 38rpx; }
-.note { display: block; margin: 20rpx 0; font-size: 24rpx; line-height: 1.7; color: #817767; }
+.note { display: block; margin: 20rpx 0; font-size: 24rpx; line-height: 1.7; color: var(--app-inkMuted); }
 .tools { display: flex; align-items: center; flex-wrap: wrap; gap: 16rpx; margin: 24rpx 0; font-size: 25rpx; }
-button { margin: 0; padding: 0 22rpx; min-height: 72rpx; line-height: 72rpx; border: 1rpx solid #c5c6b2; border-radius: 12rpx 20rpx 15rpx 9rpx; background: #eeeddf; color: #59634e; font-size: 24rpx; }
+button { margin: 0; padding: 0 22rpx; min-height: 72rpx; line-height: 72rpx; border: 1rpx solid var(--app-sage); border-radius: 12rpx 20rpx 15rpx 9rpx; background: var(--app-surfaceMuted); color: var(--app-brandStrong); font-size: 24rpx; }
 button::after { border: none; }
-button[disabled] { opacity: .5; color: #655c50; }
-.primary { background: #dfe6d5; border-radius: 20rpx 11rpx 16rpx 13rpx; box-shadow: 3rpx 4rpx 0 #d4d4c5; }
-.json-input { width: 100%; height: 320rpx; padding: 20rpx; box-sizing: border-box; border: 1rpx solid #d8d2c4; background: #fffcf4; font-family: monospace; font-size: 23rpx; line-height: 1.6; }
-.error { display: block; color: #a44f4a; font-size: 25rpx; line-height: 1.7; }
-.preview { position: relative; width: 100%; overflow: hidden; border: 1rpx solid #ddd7c9; box-sizing: border-box; }
-.debug { margin-top: 36rpx; padding-top: 28rpx; border-top: 1rpx dashed #cfc7b6; }
+button[disabled] { opacity: .5; color: var(--app-ink); }
+.primary { background: var(--app-sageSoft); border-radius: 20rpx 11rpx 16rpx 13rpx; box-shadow: 3rpx 4rpx 0 var(--app-line); }
+.json-input { width: 100%; height: 320rpx; padding: 20rpx; box-sizing: border-box; border: 1rpx solid var(--app-line); background: var(--app-page); font-family: monospace; font-size: 23rpx; line-height: 1.6; }
+.error { display: block; color: var(--app-danger); font-size: 25rpx; line-height: 1.7; }
+.preview { position: relative; width: 100%; overflow: hidden; border: 1rpx solid var(--app-line); box-sizing: border-box; }
+.debug { margin-top: 36rpx; padding-top: 28rpx; border-top: 1rpx dashed var(--app-line); }
 .subtitle { display: block; margin: 20rpx 0; font-size: 28rpx; }
-.code { display: block; white-space: pre-wrap; overflow-wrap: anywhere; font-family: monospace; font-size: 22rpx; line-height: 1.6; padding: 20rpx; background: #fffcf4; }
+.code { display: block; white-space: pre-wrap; overflow-wrap: anywhere; font-family: monospace; font-size: 22rpx; line-height: 1.6; padding: 20rpx; background: var(--app-page); }
 </style>

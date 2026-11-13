@@ -70,6 +70,7 @@ module.exports = {
     const invalid = () => { throw { errCode: 'INVALID_MATERIAL', errMsg: '花材档案无效' } }
     if (!data || typeof data.id !== 'string' || !/^[a-z][a-z0-9-]{0,63}$/.test(data.id || '') || typeof data.name !== 'string' || !data.name.trim() || data.name.length > 40
       || typeof data.introduction !== 'string' || data.introduction.length > 2000) invalid()
+    if (data.revision !== undefined && (typeof data.revision !== 'string' || !/^[a-f0-9]{16}$/.test(data.revision))) invalid()
     const category = data.category || 'flower'
     if (!['flower', 'vase', 'bouquet', 'background'].includes(category)) invalid()
     const sortOrder = data.sortOrder === undefined ? 1000 : data.sortOrder
@@ -103,6 +104,7 @@ module.exports = {
     }
     const record = { id: data.id, name: data.name.trim(), category, ...(category === 'background' ? { backgroundKind: data.backgroundKind === 'solid' ? 'solid' : 'scene' } : {}), geometry: cleanGeometry, group: category === 'flower' ? data.group : 'main', sortOrder, introduction: data.introduction, flowerMeaning: category === 'flower' ? data.flowerMeaning : '',
       colors: (category === 'flower' ? data.colors : []).map(color => ({ name: color.name, value: color.value })), assets,
+      ...(data.revision !== undefined ? { revision: data.revision } : {}),
       updatedBy: this.auth.uid, updatedAt: Date.now() }
     const collection = uniCloud.database().collection('flower-material-assets')
     const previous = await collection.doc(data.id).get()

@@ -10,6 +10,33 @@ import {
 // 配置在 Node 中执行，用 CommonJS 读取 JSON，避免 ESM 导入缺少 type: json。
 const carbonIcons = createRequire(import.meta.url)('@iconify-json/carbon/icons.json')
 
+// 界面配色的唯一来源；花材、画布和作品数据不使用这套主题。
+export const appColors = {
+  page: '#F5FBF8',
+  surface: '#FFFFFF',
+  surfaceMuted: '#EAF5EF',
+  ink: '#40534C',
+  inkMuted: '#667A71',
+  subtle: '#82958C',
+  brand: '#4F806C',
+  brandStrong: '#3E6958',
+  brandSoft: '#DFF2E8',
+  sage: '#64846E',
+  sageSoft: '#EBF5EC',
+  line: '#DCEAE2',
+  danger: '#AC5D60',
+  dangerSoft: '#FCEBED',
+  neutral: '#8B7166',
+  neutralSoft: '#F8EEE8',
+}
+
+const appVariables = Object.fromEntries(
+  Object.entries(appColors).flatMap(([name, value]) => {
+    const rgb = [1, 3, 5].map(offset => Number.parseInt(value.slice(offset, offset + 2), 16)).join(', ')
+    return [[`--app-${name}`, value], [`--app-${name}-rgb`, rgb]]
+  }),
+)
+
 export default defineConfig({
   presets: [
     presetUni({
@@ -42,33 +69,22 @@ export default defineConfig({
       ],
     },
   },
+  preflights: [{ getCSS: () => `page { ${Object.entries(appVariables).map(([name, value]) => `${name}: ${value};`).join(' ')} }` }],
   // 主题设置
 
   theme: {
     colors: {
-      page: '#F6F3EB',
-      surface: '#FFFDF7',
-      surfaceMuted: '#F0EFE6',
-      ink: '#3F463D',
-      inkMuted: '#737B6C',
-      brand: '#74806B',
-      brandStrong: '#596451',
-      brandSoft: '#DFE6D7',
-      line: '#DDE1D4',
-      danger: '#A85F62',
-      dangerSoft: '#F7E9E7',
-      // 兼容现有管理页和演示页的旧语义名。
-      primary: '#74806B',
-      primaryStrong: '#596451',
-      surfaceCard: '#FFFDF7',
-      surfaceRow: '#F0EFE6',
-      textBase: '#3F463D',
-      textSoft: '#737B6C',
-      positive: '#74806B',
-      neutral: '#9B7A3C',
-      negative: '#A85F62',
-      muted: '#737B6C',
-      subtle: '#949B8D',
+      ...appColors,
+      primary: appColors.brand,
+      primaryStrong: appColors.brandStrong,
+      surfaceCard: appColors.surface,
+      surfaceRow: appColors.surfaceMuted,
+      textBase: appColors.ink,
+      textSoft: appColors.inkMuted,
+      positive: appColors.sage,
+      neutral: appColors.neutral,
+      negative: appColors.danger,
+      muted: appColors.inkMuted,
     },
 
   },
@@ -86,8 +102,8 @@ export default defineConfig({
       'app-gradient-page',
       {
         'min-height': '100vh',
-        'background': 'linear-gradient(180deg, #f6f3eb 0%, #f8f5ee 42%, #f0efe6 100%)',
-        'color': '#3f463d',
+        'background': 'linear-gradient(180deg, var(--app-surfaceMuted) 0%, var(--app-page) 42%, var(--app-surfaceMuted) 100%)',
+        'color': 'var(--app-ink)',
       },
     ],
     [
@@ -95,20 +111,20 @@ export default defineConfig({
       {
         'box-sizing': 'border-box',
         'padding': '28rpx',
-        'border': '2rpx solid #dde1d4',
+        'border': '2rpx solid var(--app-sageSoft)',
         'border-radius': '28rpx',
-        'background': '#fffdf7',
-        'box-shadow': '0 10rpx 28rpx rgba(63, 70, 61, 0.055)',
+        'background': 'var(--app-page)',
+        'box-shadow': '0 10rpx 28rpx rgba(var(--app-ink-rgb), 0.055)',
       },
     ],
     [
       'app-card-paper',
       {
         'box-sizing': 'border-box',
-        'border': '2rpx solid #dde1d4',
+        'border': '2rpx solid var(--app-sageSoft)',
         'border-radius': '34rpx',
-        'background': 'linear-gradient(180deg, #fffdf7, #f8f5ee)',
-        'box-shadow': '0 8rpx 22rpx rgba(63, 70, 61, 0.045)',
+        'background': 'linear-gradient(180deg, var(--app-page), var(--app-page))',
+        'box-shadow': '0 8rpx 22rpx rgba(var(--app-ink-rgb), 0.045)',
       },
     ],
     [
@@ -117,7 +133,7 @@ export default defineConfig({
         'font-size': '30rpx',
         'line-height': '1.25',
         'font-weight': '700',
-        'color': '#3f463d',
+        'color': 'var(--app-ink)',
       },
     ],
     [
@@ -125,7 +141,7 @@ export default defineConfig({
       {
         'font-size': '22rpx',
         'line-height': '1.6',
-        'color': '#737b6c',
+        'color': 'var(--app-brandStrong)',
       },
     ],
     [
@@ -148,25 +164,25 @@ export default defineConfig({
         if (type === 'primary') {
           return {
             ...style,
-            'color': '#fff',
-            'background': '#74806b',
-            'box-shadow': '0 10rpx 24rpx rgba(89, 100, 81, 0.18)',
+            'color': 'var(--app-surface)',
+            'background': 'var(--app-brand)',
+            'box-shadow': '0 10rpx 24rpx rgba(var(--app-brand-rgb), 0.18)',
           }
         }
 
         if (type === 'danger') {
           return {
             ...style,
-            color: '#a85f62',
-            background: '#f7e9e7',
-            border: '2rpx solid rgba(168, 95, 98, 0.2)',
+            color: 'var(--app-danger)',
+            background: 'var(--app-surfaceMuted)',
+            border: '2rpx solid rgba(var(--app-danger-rgb), 0.2)',
           }
         }
 
         if (type === 'ghost') {
           return {
             ...style,
-            color: '#596451',
+            color: 'var(--app-brandStrong)',
             background: 'transparent',
             border: '2rpx solid transparent',
             'box-shadow': 'none',
@@ -175,9 +191,9 @@ export default defineConfig({
 
         return {
           ...style,
-          color: '#596451',
-          background: '#fffdf7',
-          border: '2rpx solid #dde1d4',
+          color: 'var(--app-brandStrong)',
+          background: 'var(--app-page)',
+          border: '2rpx solid var(--app-sageSoft)',
         }
       },
     ],

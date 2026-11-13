@@ -1,25 +1,25 @@
-$brand-color: #74806b;
-$brand-color-strong: #596451;
-$brand-color-soft: #dfe6d7;
-$brand-color-tint: #eef1e9;
-$accent-blue: #74806b;
-$accent-blue-soft: #eef1e9;
-$accent-orange: #b97845;
-$accent-orange-soft: #fff3e8;
-$accent-yellow: #a98a35;
-$accent-yellow-soft: #fff6d8;
-$danger-color: #a85f62;
-$danger-soft: #f7e9e7;
-$surface-color: #f6f3eb;
-$surface-color-soft: #faf7f0;
-$surface-card: #fffdf7;
-$surface-card-cool: #f8f5ee;
-$surface-row: #f0efe6;
-$surface-row-strong: #e4e7dc;
-$card-surface: rgba(255, 253, 247, 0.96);
-$card-border: #dde1d4;
-$card-shadow: 0 12rpx 30rpx rgba(63, 70, 61, 0.055);
-$card-shadow-soft: 0 8rpx 22rpx rgba(63, 70, 61, 0.045);
+$brand-color: var(--app-brand);
+$brand-color-strong: var(--app-brandStrong);
+$brand-color-soft: var(--app-brandSoft);
+$brand-color-tint: var(--app-brandSoft);
+$accent-blue: var(--app-brand);
+$accent-blue-soft: var(--app-brandSoft);
+$accent-orange: var(--app-neutral);
+$accent-orange-soft: var(--app-page);
+$accent-yellow: var(--app-neutral);
+$accent-yellow-soft: var(--app-page);
+$danger-color: var(--app-danger);
+$danger-soft: var(--app-dangerSoft);
+$surface-color: var(--app-page);
+$surface-color-soft: var(--app-page);
+$surface-card: var(--app-surface);
+$surface-card-cool: var(--app-page);
+$surface-row: var(--app-surfaceMuted);
+$surface-row-strong: var(--app-surfaceMuted);
+$card-surface: rgba(var(--app-surface-rgb), 0.96);
+$card-border: var(--app-line);
+$card-shadow: 0 12rpx 30rpx rgba(var(--app-ink-rgb), 0.055);
+$card-shadow-soft: 0 8rpx 22rpx rgba(var(--app-ink-rgb), 0.045);
 $card-radius: 28rpx;
 $card-radius-lg: 34rpx;
 $card-radius-sm: 20rpx;
@@ -27,10 +27,10 @@ $card-padding: 28rpx;
 $page-padding: 24rpx;
 $section-gap: 30rpx;
 $item-gap: 18rpx;
-$text-color: #3f463d;
-$text-soft: #596451;
-$text-muted: #737b6c;
-$text-subtle: #949b8d;
+$text-color: var(--app-ink);
+$text-soft: var(--app-inkMuted);
+$text-muted: var(--app-inkMuted);
+$text-subtle: var(--app-subtle);
 $font-title: 36rpx;
 $font-section: 31rpx;
 $font-body: 27rpx;
@@ -53,9 +53,9 @@ $font-caption: 23rpx;
   padding: 16rpx 34rpx;
   font-size: 28rpx;
   font-weight: 600;
-  color: #fff;
+  color: var(--app-surface);
   background: $brand-color;
-  box-shadow: 0 10rpx 24rpx rgba(89, 100, 81, 0.18);
+  box-shadow: 0 10rpx 24rpx rgba(var(--app-brandStrong-rgb), 0.18);
 }
 
 @mixin subtle-text {
@@ -77,7 +77,7 @@ $font-caption: 23rpx;
   border: 2rpx solid $card-border;
   border-radius: $card-radius-lg;
   background:
-    linear-gradient(180deg, rgba(255, 253, 247, 0.98), rgba(248, 245, 238, 0.96)),
+    linear-gradient(180deg, rgba(var(--app-surface-rgb), 0.98), rgba(var(--app-page-rgb), 0.96)),
     $surface-card;
   box-shadow: $card-shadow-soft;
 }

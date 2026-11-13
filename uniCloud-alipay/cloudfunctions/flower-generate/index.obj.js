@@ -1,4 +1,5 @@
 const resolveAuth = require('auth')
+const { consumeDailyQuota } = require('./quota')
 const { parsePrompt, parseRecentBackgroundIds, describeCatalog, instructions, buildArtwork } = require('./generation')
 
 module.exports = {
@@ -37,6 +38,7 @@ module.exports = {
       || !catalog.some(item => ['vase', 'bouquet'].includes(item.category))
       || !catalog.some(item => item.category === 'flower'))
       throw { errCode: 'CATALOG_INCOMPLETE', errMsg: '请先上传背景、容器和花叶素材' }
+    await consumeDailyQuota(uniCloud.database(), this.auth.uid)
     const messages = [{ role: 'system', content: instructions },
       { role: 'user', content: JSON.stringify({ prompt, catalog, recentBackgroundIds }) }]
     let result

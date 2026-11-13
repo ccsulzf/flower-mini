@@ -2,10 +2,9 @@
 import type { StudioTab } from './studio-types'
 import type { Artwork } from '@/models/artwork'
 import type { SavedFlowerWork } from '@/models/flower-creation'
-import type { FlowerGuideTarget, ReportFlowerGuideTarget } from '@/models/flower-guide'
 import { onHide, onLoad, onShareAppMessage, onShareTimeline, onShow, onUnload } from '@dcloudio/uni-app'
 import { storeToRefs } from 'pinia'
-import { computed, provide, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import FlowerBoard from '@/components/flower/flower-board.vue'
 import { useArtworkImage } from '@/hooks/useArtworkImage'
 import { useFlowerCreationSession } from '@/hooks/useFlowerCreationSession'
@@ -21,11 +20,9 @@ import { initializeAppAuth } from '@/utils/appAuth'
 import { createCatalogArtwork } from '@/utils/flower/artwork'
 import { takeGeneratedArtwork } from '@/utils/flower/generated-transfer'
 import StudioGeneration from './components/studio-generation.vue'
-import StudioGuide from './components/studio-guide.vue'
 import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioTopToolbar from './components/studio-top-toolbar.vue'
 import { useStudioGeneration } from './composables/useStudioGeneration'
-import { useStudioGuide } from './composables/useStudioGuide'
 import { useStudioSelectionActions } from './composables/useStudioSelectionActions'
 
 const SHARE_TITLE = '选花材，搭配出属于自己的花束'
@@ -39,7 +36,6 @@ definePage({
   style: {
     navigationStyle: 'custom',
     navigationBarTitleText: '花瓶小作',
-    navigationBarBackgroundColor: '#f6f3eb',
     disableScroll: true,
     enableShareAppMessage: true,
     enableShareTimeline: true,
@@ -79,45 +75,6 @@ const completionState = ref<'idle' | 'saving' | 'generating' | 'ready' | 'failed
 const dailyFlower = useDailyFlowerStore()
 const generation = useStudioGeneration()
 const { visible: generationVisible, prompt: generationPrompt, error: generationError, phase: generationPhase, preview: generationPreview, busy: generationBusy } = generation
-const guide = useStudioGuide()
-const guideStep = guide.step
-watch(activeTab, (tab) => {
-  if (guideStep.value === 'flowers' && tab !== 'flowers')
-    guideStep.value = 'open-flowers'
-  else if (guideStep.value === 'open-flowers' && tab === 'flowers')
-    guideStep.value = 'flowers'
-}, { flush: 'sync' })
-const guideAvailable = computed(() => pageReady.value && !generationVisible.value && (guideStep.value !== 'open-flowers' || materials.value.length > 0) && !startupError.value && !prepareError.value && !storageError.value && !pendingDraft.value && completionState.value === 'idle' && !dailyFlower.loading && !dailyFlower.visible)
-provide('studioGuideStep', computed(() => guideAvailable.value ? guideStep.value : null))
-const guideTarget = ref<FlowerGuideTarget | null>(null)
-let guideTargetOwner = -1
-const reportGuideTarget: ReportFlowerGuideTarget = (target, owner) => {
-  if (target) {
-    if (target.step !== guideStep.value)
-      return
-    guideTargetOwner = owner
-    guideTarget.value = target
-  }
-  else if (owner === guideTargetOwner) {
-    guideTarget.value = null
-    guideTargetOwner = -1
-  }
-}
-provide('studioGuideTarget', reportGuideTarget)
-let guideDragSnapshot = ''
-
-function startGuidedDrag(...args: Parameters<typeof startDrag>) {
-  guideDragSnapshot = JSON.stringify(materials.value)
-  startDrag(...args)
-}
-
-function endGuidedDrag(cancelled: boolean) {
-  endDrag(cancelled)
-  if (!cancelled && guideDragSnapshot && guideDragSnapshot !== JSON.stringify(materials.value))
-    guide.arranged()
-  guideDragSnapshot = ''
-}
-
 const completedWork = ref<SavedFlowerWork>()
 let applying = false
 let alive = true
@@ -190,10 +147,6 @@ watch(() => JSON.stringify(artworkStore.snapshot()), () => {
 watch(storageError, (value) => {
   if (value)
     notify(value)
-})
-watch(() => materials.value.length, (count) => {
-  if (!count && (guideStep.value === 'arrange' || guideStep.value === 'save'))
-    guideStep.value = activeTab.value === 'flowers' ? 'flowers' : 'open-flowers'
 })
 
 function notify(title: string) {
@@ -303,8 +256,6 @@ function bootstrap(): Promise<void> {
       startupError.value = ''
       pageReady.value = true
       generatedArtwork = null
-      if (!detailId.value && !restoring && !draftReadFailed.value && !materials.value.length)
-        guide.start(true, materials.value.length ? 'arrange' : 'open-flowers')
       void catalog.preloadRemaining()
     }
     catch (error) {
@@ -389,10 +340,6 @@ async function selectCatalogMaterial(id: string) {
       if (id === null)
         return
       studio.recordRecentMaterial(material.id)
-      if (guideStep.value === 'flowers') {
-        guide.added()
-        studio.closePanel()
-      }
       lastAddedMaterialId.value = material.id
       if (addedMaterialTimer)
         clearTimeout(addedMaterialTimer)
@@ -464,8 +411,6 @@ async function finish() {
     // 完成后仍可留在工作台编辑，保留草稿和作品 ID，后续保存更新同一作品。
     if (!session.saved(work, true))
       notify(storageError.value || '作品已保存，但本地草稿保存失败')
-    if (guideStep.value)
-      guide.dismiss()
     completionState.value = 'generating'
     if (await images.exportImage(work.id))
       completionState.value = 'ready'
@@ -627,8 +572,6 @@ async function generateInStudio() {
   uni.hideKeyboard()
   if (await generation.generate()) {
     images.invalidate()
-    if (guideStep.value)
-      guideStep.value = 'arrange'
   }
 }
 function openDailyFlowers() {
@@ -693,7 +636,7 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
     <view class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
       <view class="studio-artwork" :style="layout.workspaceStyle">
         <view class="studio-board-scale" :style="layout.boardStyle">
-          <FlowerBoard :artwork="generationPreview || artwork" :revealing="generationPhase === 'revealing'" :hide-empty="generationBusy" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" :guide-arrange="guideStep === 'arrange' && guideAvailable" @start="startGuidedDrag" @move="moveDrag" @end="endGuidedDrag" @clear="closeFlowerTools" />
+          <FlowerBoard :artwork="generationPreview || artwork" :revealing="generationPhase === 'revealing'" :hide-empty="generationBusy" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" @start="startDrag" @move="moveDrag" @end="endDrag" @clear="closeFlowerTools" />
         </view>
       </view>
     </view>
@@ -711,10 +654,6 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
       @duplicate="duplicateSelected" @remove="removeSelected" @mirror="mirrorSelected"
     />
     <StudioTopToolbar :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
-    <StudioGuide
-      v-if="guideStep && guideAvailable"
-      :step="guideStep" :target="guideTarget" :window-width="layout.device.windowWidth" :window-height="layout.device.windowHeight"
-    />
     <view v-if="storageError && !pendingDraft && !startupError && !needsPreparation" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }">
       <text>{{ storageError }}</text><text v-if="draftReadFailed" @click="retryLocalDraft">
         重新读取
@@ -814,5 +753,5 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
 @use '@/styles/flower-studio.scss' as *;
 @use '@/styles/flower-creation.scss';
 @use '@/styles/flower-completion.scss';
-.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:radial-gradient(circle at 13% 18%,rgba(139,121,94,.045) 0 2rpx,transparent 3rpx),radial-gradient(circle at 81% 70%,rgba(139,121,94,.035) 0 2rpx,transparent 3rpx),$studio-paper;background-size:42rpx 42rpx,54rpx 54rpx,auto;color:$studio-ink}.studio-stage{position:absolute;left:38rpx;right:38rpx;z-index:5;display:flex;align-items:center;justify-content:center;overflow:hidden}.studio-artwork{position:relative;flex-shrink:0;z-index:1;overflow:hidden;outline:1rpx solid rgba(102,84,63,.2);border-radius:2rpx 5rpx 3rpx 4rpx;background:#f7f4ec;box-shadow:5rpx 7rpx 0 rgba(195,177,148,.2),0 14rpx 28rpx rgba(88,74,55,.075)}.studio-board-scale{position:absolute;top:0;left:0;transform-origin:0 0}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(53,46,38,.3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(153,92,80,.22);border-radius:14rpx;background:rgba(245,234,215,.96);box-shadow:0 6rpx 16rpx rgba(88,74,55,.055);color:#995c50;font-size:22rpx}
+.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:radial-gradient(circle at 13% 18%,rgba(var(--app-inkMuted-rgb), .045) 0 2rpx,transparent 3rpx),radial-gradient(circle at 81% 70%,rgba(var(--app-inkMuted-rgb), .035) 0 2rpx,transparent 3rpx),$studio-paper;background-size:42rpx 42rpx,54rpx 54rpx,auto;color:$studio-ink}.studio-stage{position:absolute;left:38rpx;right:38rpx;z-index:5;display:flex;align-items:center;justify-content:center;overflow:hidden}.studio-artwork{position:relative;flex-shrink:0;z-index:1;overflow:hidden;outline:1rpx solid rgba(var(--app-ink-rgb), .2);border-radius:2rpx 5rpx 3rpx 4rpx;background:var(--app-page);box-shadow:5rpx 7rpx 0 rgba(var(--app-subtle-rgb), .2),0 14rpx 28rpx rgba(var(--app-ink-rgb), .075)}.studio-board-scale{position:absolute;top:0;left:0;transform-origin:0 0}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(var(--app-ink-rgb), .3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(var(--app-danger-rgb), .22);border-radius:14rpx;background:rgba(var(--app-surfaceMuted-rgb), .96);box-shadow:0 6rpx 16rpx rgba(var(--app-ink-rgb), .055);color:var(--app-danger);font-size:22rpx}
 </style>

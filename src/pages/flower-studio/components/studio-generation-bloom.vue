@@ -60,8 +60,8 @@ const flowers = [
 .branch-sway { animation: branch-sway 3.8s ease-in-out infinite; }
 .branch-cream .branch-sway { animation-duration: 4.6s; animation-delay: -.8s; }
 .branch-lilac .branch-sway { animation-duration: 4.1s; animation-delay: -1.7s; }
-.pencil-stem { position: absolute; top: 4rpx; bottom: 0; left: 20rpx; width: 1rpx; border-left: 2rpx solid #89967b; border-radius: 40%; }
-.pencil-leaf { position: absolute; box-sizing: border-box; width: 24rpx; height: 12rpx; border: 1rpx solid #8e9d7d; background: #d2dcc2; border-radius: 90% 10% 85% 15%; }
+.pencil-stem { position: absolute; top: 4rpx; bottom: 0; left: 20rpx; width: 1rpx; border-left: 2rpx solid var(--app-sage); border-radius: 40%; }
+.pencil-leaf { position: absolute; box-sizing: border-box; width: 24rpx; height: 12rpx; border: 1rpx solid var(--app-sage); background: var(--app-sageSoft); border-radius: 90% 10% 85% 15%; }
 .leaf-left { left: -3rpx; bottom: 30rpx; transform: rotate(27deg); transform-origin: 100% 100%; }
 .leaf-right { left: 20rpx; bottom: 54rpx; transform: rotate(-22deg); transform-origin: 0 100%; }
 .leaf-tip { left: 5rpx; top: 3rpx; width: 17rpx; height: 28rpx; border-radius: 80% 20% 80% 20%; transform: rotate(-28deg); }
@@ -69,20 +69,20 @@ const flowers = [
 .flower-breath { position: relative; width: 40rpx; height: 40rpx; animation: flower-breathe 4.8s ease-in-out 2.6s infinite; }
 .branch-cream .flower-breath { animation-delay: 3.4s; }
 .branch-lilac .flower-breath { animation-delay: 4s; }
-.pencil-petal { position: absolute; top: -5rpx; left: 13rpx; box-sizing: border-box; width: 14rpx; height: 24rpx; border: 1rpx solid #b28d83; border-radius: 53% 47% 44% 56%; background: #e3bfb4; transform-origin: 50% 24rpx; }
-.branch-cream .pencil-petal { width: 12rpx; left: 14rpx; border-color: #b09b6d; background: #e9d6a5; }
-.branch-lilac .pencil-petal { border-color: #a495b1; background: #dcd1e3; }
-.pencil-center { position: absolute; top: 14rpx; left: 14rpx; box-sizing: border-box; width: 12rpx; height: 12rpx; border: 1rpx solid #ad946e; border-radius: 48% 52% 45% 55%; background: #d4ba84; }
+.pencil-petal { position: absolute; top: -5rpx; left: 13rpx; box-sizing: border-box; width: 14rpx; height: 24rpx; border: 1rpx solid var(--app-danger); border-radius: 53% 47% 44% 56%; background: var(--app-line); transform-origin: 50% 24rpx; }
+.branch-cream .pencil-petal { width: 12rpx; left: 14rpx; border-color: var(--app-subtle); background: var(--app-line); }
+.branch-lilac .pencil-petal { border-color: var(--app-subtle); background: var(--app-line); }
+.pencil-center { position: absolute; top: 14rpx; left: 14rpx; box-sizing: border-box; width: 12rpx; height: 12rpx; border: 1rpx solid var(--app-danger); border-radius: 48% 52% 45% 55%; background: var(--app-subtle); }
 .bouquet-tie { position: absolute; bottom: 10rpx; left: 115rpx; width: 1rpx; height: 1rpx; animation: tie-appear 6.4s ease-in-out infinite; }
-.tie-loop { position: absolute; top: -5rpx; box-sizing: border-box; width: 22rpx; height: 12rpx; border: 2rpx solid #ad9279; border-radius: 65% 35% 60% 40%; }
+.tie-loop { position: absolute; top: -5rpx; box-sizing: border-box; width: 22rpx; height: 12rpx; border: 2rpx solid var(--app-danger); border-radius: 65% 35% 60% 40%; }
 .loop-left { right: -1rpx; transform: rotate(24deg); }
 .loop-right { left: -1rpx; transform: rotate(-24deg); }
-.tie-knot { position: absolute; top: 0; left: -3rpx; width: 6rpx; height: 5rpx; border-radius: 40%; background: #ad9279; }
-.tie-tail { position: absolute; top: 5rpx; left: -5rpx; width: 10rpx; height: 12rpx; border-right: 1rpx solid #ad9279; border-left: 1rpx solid #ad9279; transform: rotate(14deg); }
-.pencil-ground { position: absolute; bottom: -8rpx; left: 70rpx; width: 92rpx; height: 4rpx; border-bottom: 1rpx solid rgba(145, 130, 106, .28); border-radius: 50%; transform: rotate(-2deg); }
-.bloom-caption { display: flex; align-items: center; gap: 9rpx; color: #786d5c; font-family: STKaiti, KaiTi, serif; font-size: 25rpx; line-height: 1.6; letter-spacing: 2rpx; }
+.tie-knot { position: absolute; top: 0; left: -3rpx; width: 6rpx; height: 5rpx; border-radius: 40%; background: var(--app-danger); }
+.tie-tail { position: absolute; top: 5rpx; left: -5rpx; width: 10rpx; height: 12rpx; border-right: 1rpx solid var(--app-danger); border-left: 1rpx solid var(--app-danger); transform: rotate(14deg); }
+.pencil-ground { position: absolute; bottom: -8rpx; left: 70rpx; width: 92rpx; height: 4rpx; border-bottom: 1rpx solid rgba(var(--app-inkMuted-rgb), .28); border-radius: 50%; transform: rotate(-2deg); }
+.bloom-caption { display: flex; align-items: center; gap: 9rpx; color: var(--app-inkMuted); font-family: STKaiti, KaiTi, serif; font-size: 25rpx; line-height: 1.6; letter-spacing: 2rpx; }
 .waiting-dots { display: flex; gap: 5rpx; }
-.waiting-dots view { width: 5rpx; height: 5rpx; border-radius: 50%; background: #8f9e7b; animation: waiting-pulse 1.5s ease-in-out infinite; }
+.waiting-dots view { width: 5rpx; height: 5rpx; border-radius: 50%; background: var(--app-sage); animation: waiting-pulse 1.5s ease-in-out infinite; }
 .waiting-dots view:nth-child(2) { animation-delay: .2s; }
 .waiting-dots view:nth-child(3) { animation-delay: .4s; }
 // 各花枝共享同一轮时间轴，展开从左到右，收拢从右到左。

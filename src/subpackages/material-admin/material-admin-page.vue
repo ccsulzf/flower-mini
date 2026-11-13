@@ -169,7 +169,7 @@ async function removeCloudBouquets() {
         </view>
         <scroll-view scroll-y class="detail-body">
           <view class="status">
-            {{ groupName(selected.category !== 'flower' ? selected.category! : selected.group) }} · {{ uploadStatus(selected, store.remote) }} · v{{ selected.version }}
+            {{ groupName(selected.category !== 'flower' ? selected.category! : selected.group) }} · {{ uploadStatus(selected, store.remote) }}
           </view>
           <view class="label">
             介绍
@@ -234,30 +234,30 @@ async function removeCloudBouquets() {
 <style scoped lang="scss">
 .admin-page { padding: 24rpx; }
 .upload-all { margin-top: 20rpx; }
-.batch-status, .batch-failures { padding: 16rpx; margin: 16rpx 0; background: #edf0e8; border-radius: 12rpx; }
-.delete-action { margin-top: 12rpx; color: #b82b36; background: #f7e9e7; font-size: 25rpx; }
-.delete-action[disabled] { color: #a49a95; }
+.batch-status, .batch-failures { padding: 16rpx; margin: 16rpx 0; background: var(--app-surfaceMuted); border-radius: 12rpx; }
+.delete-action { margin-top: 12rpx; color: var(--app-danger); background: var(--app-dangerSoft); font-size: 25rpx; }
+.delete-action[disabled] { color: var(--app-subtle); }
 .heading { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; }
 .heading-actions { display: flex; align-items: center; gap: 8rpx; }
 .refresh, .close { font-size: 24rpx; margin: 0; padding: 0 18rpx; }
-.hint { font-size: 23rpx; color: #7b8276; line-height: 1.6; margin: 12rpx 0; }
-.catalog { display: flex; margin-top: 24rpx; min-height: 70vh; background: #fff; border-radius: 20rpx; overflow: hidden; }
-.categories { width: 140rpx; flex-shrink: 0; background: #edf0e8; }
+.hint { font-size: 23rpx; color: var(--app-brandStrong); line-height: 1.6; margin: 12rpx 0; }
+.catalog { display: flex; margin-top: 24rpx; min-height: 70vh; background: var(--app-surface); border-radius: 20rpx; overflow: hidden; }
+.categories { width: 140rpx; flex-shrink: 0; background: var(--app-surfaceMuted); }
 .category { padding: 28rpx 16rpx; font-size: 26rpx; }
-.category.active { background: #fff; color: #456344; font-weight: 600; border-left: 6rpx solid #849c81; }
-.count { display: block; font-size: 22rpx; color: #7b8276; margin-top: 4rpx; }
+.category.active { background: var(--app-surface); color: var(--app-brandStrong); font-weight: 600; border-left: 6rpx solid var(--app-sage); }
+.count { display: block; font-size: 22rpx; color: var(--app-brandStrong); margin-top: 4rpx; }
 .materials { flex: 1; min-width: 0; padding: 0 16rpx; }
-.material-row { display: flex; align-items: center; gap: 16rpx; padding: 24rpx 0; border-bottom: 1rpx solid #e4e8de; }
-.thumbnail { width: 100rpx; height: 120rpx; flex-shrink: 0; background: #f6f3eb; border-radius: 12rpx; }
+.material-row { display: flex; align-items: center; gap: 16rpx; padding: 24rpx 0; border-bottom: 1rpx solid var(--app-surfaceMuted); }
+.thumbnail { width: 100rpx; height: 120rpx; flex-shrink: 0; background: var(--app-page); border-radius: 12rpx; }
 .row-info { flex: 1; min-width: 0; }.name { font-size: 28rpx; font-weight: 600; overflow-wrap: anywhere; }
-.status { font-size: 24rpx; color: #456344; margin: 12rpx 0; }.error { font-size: 24rpx; color: #b82b36; margin: 12rpx 0; overflow-wrap: anywhere; }
-.empty { padding: 40rpx 0; color: #7b8276; font-size: 25rpx; }
-.overlay { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.35); display: flex; align-items: center; justify-content: center; padding: 24rpx; }
-.detail { width: 100%; max-height: 90vh; box-sizing: border-box; background: #f6f3eb; border-radius: 24rpx; padding: 24rpx; }
+.status { font-size: 24rpx; color: var(--app-brandStrong); margin: 12rpx 0; }.error { font-size: 24rpx; color: var(--app-danger); margin: 12rpx 0; overflow-wrap: anywhere; }
+.empty { padding: 40rpx 0; color: var(--app-brandStrong); font-size: 25rpx; }
+.overlay { position: fixed; inset: 0; z-index: 100; background: rgba(var(--app-ink-rgb), .35); display: flex; align-items: center; justify-content: center; padding: 24rpx; }
+.detail { width: 100%; max-height: 90vh; box-sizing: border-box; background: var(--app-page); border-radius: 24rpx; padding: 24rpx; }
 .detail-body { height: 62vh; margin: 16rpx 0; }.label { font-size: 26rpx; font-weight: 600; margin-top: 24rpx; }.description { font-size: 26rpx; line-height: 1.7; margin-top: 8rpx; }
-.colors { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 16rpx; }.color-option { display: flex; align-items: center; gap: 8rpx; padding: 8rpx 12rpx; border: 2rpx solid transparent; border-radius: 12rpx; font-size: 24rpx; }.chosen { border-color: #849c81; }.swatch { width: 30rpx; height: 30rpx; border-radius: 50%; border: 1rpx solid #aaa; }
-.previews { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 24rpx; }.preview-card { flex: 1; min-width: 140rpx; padding: 16rpx 8rpx; background: #fff; text-align: center; border-radius: 16rpx; font-size: 24rpx; }.preview-image { width: 100%; height: 300rpx; margin-top: 16rpx; }
-.whole-preview { margin-top: 24rpx; padding: 18rpx; background: #fff; border-radius: 16rpx; }
+.colors { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 16rpx; }.color-option { display: flex; align-items: center; gap: 8rpx; padding: 8rpx 12rpx; border: 2rpx solid transparent; border-radius: 12rpx; font-size: 24rpx; }.chosen { border-color: var(--app-sage); }.swatch { width: 30rpx; height: 30rpx; border-radius: 50%; border: 1rpx solid var(--app-subtle); }
+.previews { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 24rpx; }.preview-card { flex: 1; min-width: 140rpx; padding: 16rpx 8rpx; background: var(--app-surface); text-align: center; border-radius: 16rpx; font-size: 24rpx; }.preview-image { width: 100%; height: 300rpx; margin-top: 16rpx; }
+.whole-preview { margin-top: 24rpx; padding: 18rpx; background: var(--app-surface); border-radius: 16rpx; }
 .whole-heading { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; }.whole-heading .label { margin-top: 0; }
 .whole-image { display: block; width: 100%; height: 460rpx; margin-top: 16rpx; }
 </style>

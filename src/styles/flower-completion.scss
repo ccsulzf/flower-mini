@@ -7,7 +7,7 @@
   left: 0;
   z-index: 30;
   padding: 38rpx;
-  background: rgba(70, 61, 48, .42);
+  background: rgba(var(--app-ink-rgb), .42);
 }
 
 .completion-sheet {
@@ -21,10 +21,10 @@
   flex-direction: column;
   align-items: center;
   padding: 26rpx 26rpx 24rpx;
-  border: 2rpx solid rgba(112, 91, 68, .38);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .38);
   border-radius: 5rpx 13rpx 7rpx 10rpx;
   background: $studio-paper;
-  box-shadow: 6rpx 8rpx 0 #d8cdb9, 9rpx 12rpx 0 rgba(79, 64, 45, .18);
+  box-shadow: 6rpx 8rpx 0 var(--app-line), 9rpx 12rpx 0 rgba(var(--app-ink-rgb), .18);
   color: $studio-ink;
   text-align: center;
 }
@@ -60,9 +60,9 @@
   flex-shrink: 0;
   margin-top: 24rpx;
   padding: 8rpx;
-  border: 1rpx solid rgba(112, 91, 68, .2);
+  border: 1rpx solid rgba(var(--app-ink-rgb), .2);
   background: $studio-panel;
-  box-shadow: 3rpx 5rpx 0 rgba(112, 91, 68, .09);
+  box-shadow: 3rpx 5rpx 0 rgba(var(--app-ink-rgb), .09);
 }
 
 .completion-tape {
@@ -73,8 +73,8 @@
   width: 100rpx;
   height: 28rpx;
   margin-left: -50rpx;
-  border: 1rpx solid rgba(174, 151, 106, .12);
-  background: rgba(224, 207, 166, .64);
+  border: 1rpx solid rgba(var(--app-danger-rgb), .12);
+  background: rgba(var(--app-line-rgb), .64);
   transform: rotate(-4deg);
   pointer-events: none;
 }
@@ -92,7 +92,7 @@
 .completion-caption {
   display: block;
   padding: 12rpx 0 14rpx;
-  color: #968675;
+  color: var(--app-inkMuted);
   font-family: STKaiti, KaiTi, serif;
   font-size: 22rpx;
   letter-spacing: 3rpx;
@@ -111,7 +111,7 @@
   flex: 1;
   min-width: 0;
   height: 76rpx;
-  border: 2rpx solid rgba(91, 74, 57, .55);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .55);
   border-radius: 17rpx 255rpx 19rpx 225rpx / 225rpx 19rpx 255rpx 17rpx;
   &::before {
     position: absolute;
@@ -119,7 +119,7 @@
     right: 2rpx;
     bottom: 2rpx;
     left: -3rpx;
-    border: 1rpx solid rgba(91, 74, 57, .32);
+    border: 1rpx solid rgba(var(--app-ink-rgb), .32);
     border-radius: 255rpx 16rpx 225rpx 20rpx / 19rpx 225rpx 23rpx 255rpx;
     content: '';
     transform: rotate(-.7deg);
@@ -148,7 +148,7 @@
   border-radius: 255rpx 18rpx 225rpx 20rpx / 19rpx 225rpx 23rpx 255rpx;
   &::before { transform: rotate(.8deg); }
 }
-.completion-primary { background: #87977d; color: $studio-panel; }
+.completion-primary { background: var(--app-brand); color: $studio-panel; }
 .completion-secondary { background: $studio-secondary; color: $studio-ink; }
 
 .completion-close {
@@ -170,7 +170,7 @@
 
 .completion-bloom {
   padding-top: 18rpx;
-  color: #a4867e;
+  color: var(--app-danger);
   font-size: 64rpx;
   line-height: 1.3;
   animation: completion-bloom 1.6s ease-in-out infinite;

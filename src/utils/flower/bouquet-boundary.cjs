@@ -13,6 +13,28 @@ function bouquetBoundary(material) {
 function readBouquetBoundary(material) {
   if (material.category !== 'bouquet' || !material.geometry || !material.sources.bouquet) return null
   const geometry = material.geometry
+  const mouthY = geometry.mouthY < geometry.height * .65 ? geometry.height * .86 : geometry.mouthY
+  const offsetX = 350 - geometry.mouthX
+  const offsetY = 747 - mouthY
+  // 窄卷纸可在 defs 中提供实际内侧轮廓，避免直线近似伸出弯曲纸边。
+  const authored = material.sources.bouquet.match(/<polygon\b[^>]*\bid="bouquet-interior"[^>]*\bpoints="([^"]+)"/)?.[1]
+  if (authored) {
+    const values = authored.trim().split(/[\s,]+/).map(Number)
+    const contour = []
+    for (let i = 0; i + 1 < values.length; i += 2) contour.push([values[i], values[i + 1]])
+    const right = contour[0]
+    const left = contour[contour.length - 1]
+    if (values.length % 2 === 0 && contour.length >= 4 && contour.length <= 32
+      && right[0] > geometry.mouthX && left[0] < geometry.mouthX && right[1] === left[1]
+      && right[1] < mouthY - 80
+      && contour.every(([x, y]) => Number.isFinite(x) && Number.isFinite(y)
+        && x >= 0 && x <= geometry.width && y >= right[1] && y <= geometry.height)) {
+      const openingY = right[1] + offsetY
+      const points = [[0, 0], [698, 0], [698, openingY],
+        ...contour.map(([x, y]) => [x + offsetX, y + offsetY]), [0, openingY]]
+      return { left: left[0] + offsetX, right: right[0] + offsetX, openingY, points }
+    }
+  }
   const front = material.sources.bouquet.match(/<!-- bouquet-front:start -->([\s\S]*?)<!-- bouquet-front:end -->/)?.[1]
   if (!front) return null
   const starts = [...front.matchAll(/<path\b[^>]*\bd="M([\d.]+)[ ,]+([\d.]+)/g)]
@@ -21,9 +43,6 @@ function readBouquetBoundary(material) {
   const left = starts.filter(point => point.x < geometry.mouthX - 60).sort((a, b) => a.x - b.x)[0]
   const right = starts.filter(point => point.x > geometry.mouthX + 60).sort((a, b) => b.x - a.x)[0]
   if (!left || !right) return null
-  const mouthY = geometry.mouthY < geometry.height * .65 ? geometry.height * .86 : geometry.mouthY
-  const offsetX = 350 - geometry.mouthX
-  const offsetY = 747 - mouthY
   const openingY = Math.min(left.y, right.y) + offsetY
   const half = Math.min(geometry.mouthWidth, 24) / 2
   const points = [[0, 0], [698, 0], [698, openingY], [right.x + offsetX, openingY],

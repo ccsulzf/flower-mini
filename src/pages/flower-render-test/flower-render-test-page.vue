@@ -7,7 +7,7 @@ import { createComplexRenderTestArtwork } from '@/utils/flower/render-test-svg'
 
 definePage({
   layout: 'default',
-  style: { navigationBarTitleText: '渲染路线验证', navigationBarBackgroundColor: '#f6f3eb' },
+  style: { navigationBarTitleText: '渲染路线验证', },
 })
 
 const jsonInput = ref('')
@@ -191,15 +191,15 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-.render-test-page { min-height: 100vh; padding: 30rpx 26rpx 60rpx; box-sizing: border-box; background: #f6f3eb; color: #3f463d; }
-.intro { margin: 8rpx 0 24rpx; }.title { display: block; font-size: 36rpx; font-weight: 600; }.description { display: block; margin-top: 10rpx; color: #777d70; font-size: 23rpx; line-height: 1.6; }
-.input-card { padding: 20rpx; border: 1rpx solid #e3dfd3; border-radius: 22rpx; background: #fffdf7; }.input-title { display: block; margin-bottom: 12rpx; font-size: 26rpx; font-weight: 600; }
-.example-button { margin: 0 0 12rpx; border-radius: 12rpx; background: #eceee3; color: #59634e; font-size: 22rpx; line-height: 64rpx; }.example-button::after, .vue-button::after { border: none; }.example-button[disabled], .vue-button[disabled] { opacity: .6; }
-.json-input { display: block; width: 100%; height: 220rpx; padding: 16rpx; box-sizing: border-box; border-radius: 12rpx; background: #f1f0e9; color: #3f463d; font-family: monospace; font-size: 20rpx; line-height: 1.5; }
-.input-hint { display: block; margin-top: 12rpx; color: #777d70; font-size: 20rpx; line-height: 1.5; }.error-message { display: block; margin-top: 12rpx; color: #b82b36; font-size: 22rpx; line-height: 1.5; }
-.vue-button, .cloud-button { margin-top: 16rpx; border-radius: 14rpx; color: #fffdf7; font-size: 24rpx; line-height: 68rpx; }.vue-button { background: #687a62; }.cloud-button { background: #59634e; }.vue-button::after, .cloud-button::after { border: none; }.cloud-button[disabled] { opacity: .6; }
-.comparison-heading { display: flex; justify-content: space-between; align-items: center; margin: 24rpx 4rpx 12rpx; font-size: 27rpx; font-weight: 600; }.stem-count { color: #777d70; font-size: 21rpx; font-weight: 400; }
-.comparison { display: flex; gap: 14rpx; }.comparison-column { flex: 1; min-width: 0; }.comparison-label { display: block; min-height: 32rpx; margin: 0 0 8rpx 2rpx; color: #626b59; font-size: 19rpx; line-height: 1.5; }
-.preview { position: relative; width: 100%; height: 480rpx; overflow: hidden; border: 1rpx solid #e3dfd3; border-radius: 14rpx; }.preview :deep(.studio-board) { transform: scale(.48); transform-origin: top left; }.cloud-image { display: block; width: 100%; height: 100%; }
-.preview-empty { display: flex; height: 100%; align-items: center; justify-content: center; padding: 12rpx; box-sizing: border-box; color: #777d70; font-size: 21rpx; text-align: center; }
+.render-test-page { min-height: 100vh; padding: 30rpx 26rpx 60rpx; box-sizing: border-box; background: var(--app-page); color: var(--app-ink); }
+.intro { margin: 8rpx 0 24rpx; }.title { display: block; font-size: 36rpx; font-weight: 600; }.description { display: block; margin-top: 10rpx; color: var(--app-brandStrong); font-size: 23rpx; line-height: 1.6; }
+.input-card { padding: 20rpx; border: 1rpx solid var(--app-line); border-radius: 22rpx; background: var(--app-surface); }.input-title { display: block; margin-bottom: 12rpx; font-size: 26rpx; font-weight: 600; }
+.example-button { margin: 0 0 12rpx; border-radius: 12rpx; background: var(--app-surfaceMuted); color: var(--app-brandStrong); font-size: 22rpx; line-height: 64rpx; }.example-button::after, .vue-button::after { border: none; }.example-button[disabled], .vue-button[disabled] { opacity: .6; }
+.json-input { display: block; width: 100%; height: 220rpx; padding: 16rpx; box-sizing: border-box; border-radius: 12rpx; background: var(--app-surfaceMuted); color: var(--app-ink); font-family: monospace; font-size: 20rpx; line-height: 1.5; }
+.input-hint { display: block; margin-top: 12rpx; color: var(--app-brandStrong); font-size: 20rpx; line-height: 1.5; }.error-message { display: block; margin-top: 12rpx; color: var(--app-danger); font-size: 22rpx; line-height: 1.5; }
+.vue-button, .cloud-button { margin-top: 16rpx; border-radius: 14rpx; color: var(--app-surface); font-size: 24rpx; line-height: 68rpx; }.vue-button { background: var(--app-brandStrong); }.cloud-button { background: var(--app-brandStrong); }.vue-button::after, .cloud-button::after { border: none; }.cloud-button[disabled] { opacity: .6; }
+.comparison-heading { display: flex; justify-content: space-between; align-items: center; margin: 24rpx 4rpx 12rpx; font-size: 27rpx; font-weight: 600; }.stem-count { color: var(--app-brandStrong); font-size: 21rpx; font-weight: 400; }
+.comparison { display: flex; gap: 14rpx; }.comparison-column { flex: 1; min-width: 0; }.comparison-label { display: block; min-height: 32rpx; margin: 0 0 8rpx 2rpx; color: var(--app-brandStrong); font-size: 19rpx; line-height: 1.5; }
+.preview { position: relative; width: 100%; height: 480rpx; overflow: hidden; border: 1rpx solid var(--app-line); border-radius: 14rpx; }.preview :deep(.studio-board) { transform: scale(.48); transform-origin: top left; }.cloud-image { display: block; width: 100%; height: 100%; }
+.preview-empty { display: flex; height: 100%; align-items: center; justify-content: center; padding: 12rpx; box-sizing: border-box; color: var(--app-brandStrong); font-size: 21rpx; text-align: center; }
 </style>

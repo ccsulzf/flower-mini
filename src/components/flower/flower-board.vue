@@ -15,7 +15,6 @@ const props = defineProps<{
   selectedId: number | null
   revealing?: boolean
   hideEmpty?: boolean
-  guideArrange?: boolean
   hideContainer?: boolean
   pickScope?: StudioSelectionFilter
   pickMaterialId?: string | null
@@ -56,7 +55,6 @@ function isInteractive(instance: MaterialInstance) {
         :material="preparedMaterials[instance.materialId]"
         :selected="selectedId === instance.id"
         :interactive="isInteractive(instance)"
-        :guide-target="guideArrange && instance.id === readyInstances[readyInstances.length - 1]?.id"
         :precision="Boolean(pickMaterialId) && instance.materialId === pickMaterialId"
         @start="emit('start', $event, instance)"
         @move="emit('move', $event)"

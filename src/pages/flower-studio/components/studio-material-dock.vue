@@ -52,5 +52,5 @@ function forwardFocus(materialId: string, group: 'flowers' | 'foliage', expanded
 </template>
 
 <style scoped lang="scss">
-.panel-backdrop{position:absolute;z-index:4;top:0;right:0;bottom:0;left:0;background:rgba(75,65,52,.025)}.studio-options-position{position:absolute;z-index:6;right:38rpx;left:38rpx}.studio-toolbar-position{position:absolute;z-index:7;right:38rpx;left:38rpx}
+.panel-backdrop{position:absolute;z-index:4;top:0;right:0;bottom:0;left:0;background:rgba(var(--app-ink-rgb), .025)}.studio-options-position{position:absolute;z-index:6;right:38rpx;left:38rpx}.studio-toolbar-position{position:absolute;z-index:7;right:38rpx;left:38rpx}
 </style>

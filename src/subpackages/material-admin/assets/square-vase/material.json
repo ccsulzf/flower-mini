@@ -3,7 +3,6 @@
   "category": "vase",
   "name": "方形花瓶",
   "introduction": "浅灰绿色釉面方瓶，浅浮雕拱线与露胎底部增加层次，适合简洁的桌面插花。",
-  "version": 7,
   "geometry": {
     "width": 160,
     "height": 180,

@@ -1,4 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000" role="img"><title>斜折牛皮</title><defs><linearGradient id="paper-kraft" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#c4a17b"/><stop offset=".52" stop-color="#eadbc2"/><stop offset="1" stop-color="#c4a17b"/></linearGradient></defs>
-<!-- bouquet-back:start --><path d="M330 748 L318 817 L351 800 L389 824 L370 748Z" fill="#c4a17b" stroke="#a4825c" stroke-width="2"/><path d="M350 762 L351 800 L389 824 L369 758" fill="#a4825c" opacity=".16"/><path d="M206 361 L500 445 L372 759 L329 759Z" fill="#c4a17b" stroke="#a4825c" stroke-width="2" stroke-linejoin="round"/><path d="M222 389 L478 458 L356 737Z" fill="#eadbc2"/><!-- bouquet-back:end -->
-<!-- bouquet-front:start --><path d="M202 466 L440 574 L369 759 L329 759Z" fill="url(#paper-kraft)" stroke="#a4825c" stroke-width="2" stroke-linejoin="round"/><path d="M202 466 L440 574 L421 590 L216 488Z" fill="#eadbc2" stroke="#a4825c" stroke-width="1"/><path d="M494 510 L280 565 L329 759 L371 759Z" fill="#c4a17b" stroke="#a4825c" stroke-width="2" stroke-linejoin="round"/><path d="M494 510 L280 565 L292 582 L482 530Z" fill="#eadbc2" stroke="#a4825c" stroke-width="1"/><path d="M287 596 Q321 652 345 745 M427 605 Q391 670 359 747" fill="none" stroke="#a4825c" stroke-width="1.5" opacity=".55"/><path d="M329 747 Q349 754 371 749 L370 761 Q350 766 330 758Z" fill="#9b8270"/><path d="M350 757 C318 727 302 753 328 763 Q341 766 350 757 C382 730 398 756 374 764 Q360 767 350 757 M349 760 Q339 782 330 796 M354 760 Q364 775 378 786" fill="none" stroke="#9b8270" stroke-width="4" stroke-linecap="round"/><!-- bouquet-front:end -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 1000" role="img">
+  <title>牛皮卷包</title>
+  <defs>
+    <!-- 花茎可用的内侧范围：右纸口沿侧边收至绑带，再沿左侧返回。 -->
+    <polygon id="bouquet-interior" points="472,558 438,620 402,680 378,730 369,747 356,755 344,755 337,747 326,730 300,680 276,620 256,558"/>
+    <linearGradient id="paper-kraft" x1="0" y1="0" x2="1" y2=".25">
+      <stop stop-color="#c4a17b"/><stop offset="1" stop-color="#e8d5b8"/>
+    </linearGradient>
+    <linearGradient id="fold-kraft" x1="0" y1="0" x2="1" y2=".5">
+      <stop stop-color="#e8d5b8"/><stop offset="1" stop-color="#c4a17b"/>
+    </linearGradient>
+  </defs>
+  <!-- bouquet-back:start -->
+  <path d="M210 447 L421 355 Q472 408 503 475 C479 595 425 699 373 754 L329 754 Q258 635 210 447Z" fill="url(#paper-kraft)" stroke="#aa8862" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M210 447 L421 355 Q442 375 454 393" fill="none" stroke="#ecdabd" stroke-width="2"/>
+  <path d="M331 752 L320 806 L346 799 L378 810 L369 751Z" fill="#cfb18b" stroke="#aa8862" stroke-width="1.2"/>
+  <!-- bouquet-back:end -->
+  <!-- bouquet-front:start -->
+  <!-- 左侧卷入，右纸面斜向搭接；纸口与下缘保持连续弧面。 -->
+  <path d="M219 588 Q279 640 351 683 L332 754 Q273 703 219 588Z" fill="#bea07a" stroke="#aa8862" stroke-width="1.3"/>
+  <path d="M491 558 Q418 636 295 687 Q310 727 333 754 Q350 763 373 753 Q446 682 491 558Z" fill="url(#fold-kraft)" stroke="#aa8862" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M491 558 Q418 636 295 687" fill="none" stroke="#ecdbbf" stroke-width="2"/>
+  <path d="M308 698 Q346 686 378 670" fill="none" stroke="#aa8862" stroke-width="1" opacity=".3"/>
+  <path d="M324 728 L339 750 M387 722 L366 750" fill="none" stroke="#aa8862" stroke-width="1.2" opacity=".5"/>
+  <!-- 收口绑带 -->
+  <path d="M329 751 Q351 758 374 750 M329 755 Q351 762 374 754" fill="none" stroke="#8f795b" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M350 758 C329 738 313 742 320 754 C326 763 341 763 350 758 C369 738 389 748 379 757 Q369 766 350 758 M349 761 Q336 781 337 807 M354 762 Q360 787 375 798" fill="none" stroke="#8f795b" stroke-width="2.7" stroke-linecap="round"/>
+  <path d="M347 754 L354 753 L356 761 L348 763Z" fill="#a18a68"/>
+  <!-- bouquet-front:end -->
 </svg>

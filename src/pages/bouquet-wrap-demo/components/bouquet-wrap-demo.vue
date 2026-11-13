@@ -145,10 +145,10 @@ const paperImages = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.wrap-demo { padding: 20rpx; margin-bottom: 36rpx; background: #fffaf0; border: 1rpx solid #e3dac7; }
-.demo-title { display: block; font-family: STSong, SimSun, serif; font-size: 36rpx; color: #605747; }
-.demo-note { display: block; margin-top: 12rpx; font-size: 22rpx; line-height: 1.7; color: #8a8172; }
-.section-label { display: block; font-size: 24rpx; color: #776c5b; }
+.wrap-demo { padding: 20rpx; margin-bottom: 36rpx; background: var(--app-surface); border: 1rpx solid var(--app-line); }
+.demo-title { display: block; font-family: STSong, SimSun, serif; font-size: 36rpx; color: var(--app-ink); }
+.demo-note { display: block; margin-top: 12rpx; font-size: 22rpx; line-height: 1.7; color: var(--app-inkMuted); }
+.section-label { display: block; font-size: 24rpx; color: var(--app-inkMuted); }
 .demo-preview { position: relative; width: 100%; overflow: hidden; }
 .demo-board { position: absolute; top: 0; left: 0; width: 698px; height: 1000px; transform-origin: top left; }
 .paper-image { position: absolute; top: 0; left: 0; width: 698px; height: 1000px; pointer-events: none; }
@@ -156,12 +156,12 @@ const paperImages = computed(() => {
 .flower-layer { position: absolute; top: 0; left: 0; width: 698px; height: 1000px; z-index: 1; }
 .front-paper { z-index: 2; }
 .flower-handle { position: absolute; width: 72px; height: 72px; z-index: 3; border: 2px solid transparent; border-radius: 50%; box-sizing: border-box; touch-action: none; }
-.flower-handle.selected { border-color: #98a588; }
+.flower-handle.selected { border-color: var(--app-sage); }
 .demo-options { display: flex; flex-wrap: wrap; gap: 14rpx; margin: 12rpx 0 24rpx; }
-.paper-button { flex: 0 0 calc((100% - 28rpx) / 3); box-sizing: border-box; margin: 0; padding: 0 8rpx; color: #776c5b; background: #f4eedf; font-size: 23rpx; line-height: 72rpx; border: 1rpx solid #d6cbb6; border-radius: 12rpx 18rpx 10rpx 16rpx; box-shadow: 2rpx 3rpx 0 #e5dccb; }
-.paper-button::after { border: 1rpx solid #ded3be; top: 4rpx; left: 3rpx; right: 2rpx; bottom: 3rpx; border-radius: 15rpx 10rpx 16rpx 9rpx; }
+.paper-button { flex: 0 0 calc((100% - 28rpx) / 3); box-sizing: border-box; margin: 0; padding: 0 8rpx; color: var(--app-inkMuted); background: var(--app-surfaceMuted); font-size: 23rpx; line-height: 72rpx; border: 1rpx solid var(--app-line); border-radius: 12rpx 18rpx 10rpx 16rpx; box-shadow: 2rpx 3rpx 0 var(--app-line); }
+.paper-button::after { border: 1rpx solid var(--app-line); top: 4rpx; left: 3rpx; right: 2rpx; bottom: 3rpx; border-radius: 15rpx 10rpx 16rpx 9rpx; }
 .paper-button:nth-child(2) { border-radius: 18rpx 9rpx 14rpx 11rpx; }
-.paper-button.active { background: #e4eadb; color: #536347; border-color: #98a588; }
-.reset-button { margin: 0; padding: 8rpx; font-size: 22rpx; color: #8a8172; background: transparent; line-height: 48rpx; }
+.paper-button.active { background: var(--app-sageSoft); color: var(--app-brandStrong); border-color: var(--app-sage); }
+.reset-button { margin: 0; padding: 8rpx; font-size: 22rpx; color: var(--app-inkMuted); background: transparent; line-height: 48rpx; }
 .reset-button::after { border: none; }
 </style>

@@ -14,8 +14,8 @@ const maxRenderSvgLength = 8 * 1024 * 1024;
 const cardFontFamily = 'Ma Shan Zheng';
 const cardFontBuffer = new Uint8Array(fs.readFileSync(path.join(__dirname, 'fonts/MaShanZheng-Regular.ttf')));
 const artworkRenderVersion = 'bouquet-boundary-v2';
-const cardRenderVersion = 'ma-shan-zheng-card-v3';
-const materialListRenderVersion = 'flower-material-list-v8';
+const cardRenderVersion = 'mint-card-v4';
+const materialListRenderVersion = 'mint-material-list-v9';
 
 function colorizeMaterialSvg(svg, color) {
   const safeColor = /^#[\da-f]{6}$/i.test(color) ? color : '#f1e5bd';
@@ -305,24 +305,24 @@ function cardLines(blessing) {
 async function buildCardSvg(artwork, text) {
     const bouquet = await buildArtworkSvg(artwork, { drawBackground: false });
     const recipient = text.recipient
-        ? `<text x="69" y="128" font-family="${cardFontFamily}" font-size="26" fill="#565247">送给 ${escapeSvgText(text.recipient)}</text>` : '';
+        ? `<text x="69" y="128" font-family="${cardFontFamily}" font-size="26" fill="#40534C">送给 ${escapeSvgText(text.recipient)}</text>` : '';
     const lines = cardLines(text.blessing);
     const blessing = lines.map((line, index) =>
         `<tspan x="80" y="${1026 + index * 34}">${escapeSvgText(line)}</tspan>`).join('');
     const signatureY = Math.max(1128, Math.min(1226, 1026 + lines.length * 34 + 34));
     const signature = text.signature
-        ? `<text x="646" y="${signatureY}" text-anchor="end" font-family="${cardFontFamily}" font-size="25" fill="#625d50">—— ${escapeSvgText(text.signature)}</text>` : '';
+        ? `<text x="646" y="${signatureY}" text-anchor="end" font-family="${cardFontFamily}" font-size="25" fill="#40534C">—— ${escapeSvgText(text.signature)}</text>` : '';
     return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1260" viewBox="0 0 698 1260">
-      <rect width="698" height="1260" fill="#f8f2e6"/>
-      <rect x="16" y="17" width="663" height="1225" fill="none" stroke="#d5c5a6"/>
-      <rect x="26" y="27" width="645" height="1206" fill="none" stroke="#dfd1b8"/>
-      <rect x="284" y="48" width="130" height="36" fill="#e4e7da"/>
-      <text x="349" y="74" text-anchor="middle" font-family="${cardFontFamily}" font-size="23" fill="#64705b">花间寄语</text>
+      <rect width="698" height="1260" fill="#F5FBF8"/>
+      <rect x="16" y="17" width="663" height="1225" fill="none" stroke="#DCEAE2"/>
+      <rect x="26" y="27" width="645" height="1206" fill="none" stroke="#EAF5EF"/>
+      <rect x="284" y="48" width="130" height="36" fill="#EBF5EC"/>
+      <text x="349" y="74" text-anchor="middle" font-family="${cardFontFamily}" font-size="23" fill="#3E6958">花间寄语</text>
       ${recipient}
       ${nested(bouquet, 77, 140, 544, 780)}
-      <path d="M69 970H629" stroke="#cdbb95"/>
-      <circle cx="349" cy="970" r="3.5" fill="#b99f71"/>
-      <text font-family="${cardFontFamily}" font-size="28" fill="#3f463d">${blessing}</text>
+      <path d="M69 970H629" stroke="#DCEAE2"/>
+      <circle cx="349" cy="970" r="3.5" fill="#4F806C"/>
+      <text font-family="${cardFontFamily}" font-size="28" fill="#40534C">${blessing}</text>
       ${signature}
     </svg>`;
 }
@@ -364,19 +364,19 @@ async function buildMaterialListSvg(artwork) {
     if (height > 2000) throw new Error('花材种类较多，暂时无法生成分享图');
     const columns = visibleGroups.map((group, index) => {
         const x = 48 + (3 - visibleGroups.length) * 106 + index * 212;
-        const heading = `<text x="${x}" y="990" font-family="${cardFontFamily}" font-size="22" fill="#728066">${group.name}</text>`;
+        const heading = `<text x="${x}" y="990" font-family="${cardFontFamily}" font-size="22" fill="#3E6958">${group.name}</text>`;
         const rows = group.items.map((item, rowIndex) => {
             const rowY = 1030 + rowIndex * 38;
             const thumbnail = nested(item.thumbnail, x, rowY - 25, 30, 30);
-            return `${thumbnail}<text x="${x + 36}" y="${rowY}" font-family="${cardFontFamily}" font-size="18" fill="#514a40">${escapeSvgText(item.name)}</text><text x="${x + 178}" y="${rowY}" text-anchor="end" font-family="${cardFontFamily}" font-size="18" fill="#817665">× ${item.count}</text>`;
+            return `${thumbnail}<text x="${x + 36}" y="${rowY}" font-family="${cardFontFamily}" font-size="18" fill="#40534C">${escapeSvgText(item.name)}</text><text x="${x + 178}" y="${rowY}" text-anchor="end" font-family="${cardFontFamily}" font-size="18" fill="#667A71">× ${item.count}</text>`;
         }).join('');
         return `${heading}${rows}`;
-    }).join('') || `<text x="349" y="1030" text-anchor="middle" font-family="${cardFontFamily}" font-size="20" fill="#817665">这束花还没有添加花材</text>`;
+    }).join('') || `<text x="349" y="1030" text-anchor="middle" font-family="${cardFontFamily}" font-size="20" fill="#667A71">这束花还没有添加花材</text>`;
     return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="${height}" viewBox="0 0 698 ${height}">
-      <rect width="698" height="${height}" fill="#f8f2e6"/><rect x="16" y="17" width="663" height="${height - 34}" fill="none" stroke="#d5c5a6"/>
-      <rect x="278" y="30" width="142" height="38" fill="#e4e7da"/><text x="349" y="57" text-anchor="middle" font-family="${cardFontFamily}" font-size="23" fill="#64705b">花材清单</text>
+      <rect width="698" height="${height}" fill="#F5FBF8"/><rect x="16" y="17" width="663" height="${height - 34}" fill="none" stroke="#DCEAE2"/>
+      <rect x="278" y="30" width="142" height="38" fill="#EBF5EC"/><text x="349" y="57" text-anchor="middle" font-family="${cardFontFamily}" font-size="23" fill="#3E6958">花材清单</text>
       ${nested(bouquet, 77, 78, 544, 780)}
-      <path d="M48 890H650" stroke="#cdbb95"/>
+      <path d="M48 890H650" stroke="#DCEAE2"/>
       ${columns}
     </svg>`;
 }

@@ -21,7 +21,7 @@ const error = ref('')
 const artwork = ref<Artwork | null>(null)
 let requestId = 0
 
-async function prepare() {
+async function prepare(refreshCatalog = false) {
   const currentRequestId = ++requestId
   loading.value = true
   error.value = ''
@@ -33,16 +33,14 @@ async function prepare() {
       source = await dailyFlowers.getArtwork(props.dailyDate) ?? undefined
     if (!source)
       throw new Error('作品花束数据不存在')
-    if (!catalog.loaded)
-      await catalog.load()
-    if (catalog.error)
-      throw new Error(catalog.error)
-    const refs = [
+    const refs = [...new Set([
       ...source.materials.map(material => material.materialId),
       source.container.materialId,
       source.background.materialId,
-    ]
-    await Promise.all(refs.map(id => catalog.ensure(id)))
+    ])]
+    if (refreshCatalog || !catalog.loaded || refs.some(id => !catalog.materials.some(material => material.id === id)))
+      await catalog.load()
+    await Promise.all(refs.map(id => catalog.ensure(id, undefined, true, { silent: true })))
     if (currentRequestId === requestId)
       artwork.value = source
   }
@@ -72,7 +70,7 @@ watch(() => [JSON.stringify(props.artwork), props.workId, props.dailyDate], () =
     />
     <view v-else class="artwork-preview-state">
       <text>{{ loading ? '正在准备作品…' : error }}</text>
-      <button v-if="!loading" @click.stop="prepare">
+      <button v-if="!loading" @click.stop="prepare(true)">
         重试
       </button>
     </view>
@@ -101,15 +99,17 @@ watch(() => [JSON.stringify(props.artwork), props.workId, props.dailyDate], () =
   align-items: center;
   justify-content: center;
   gap: 12rpx;
-  color: #7c8474;
+  color: var(--app-brandStrong);
   font-size: 22rpx;
 }
 
 .artwork-preview-state button {
+  position: relative;
+  z-index: 3;
   margin: 0;
   padding: 0 16rpx;
   background: transparent;
-  color: #75806c;
+  color: var(--app-brandStrong);
   font-size: 22rpx;
   line-height: 44rpx;
 }
