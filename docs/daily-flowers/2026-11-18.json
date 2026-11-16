@@ -1,0 +1,752 @@
+{
+  "date": "2026-11-18",
+  "description": "青柠留白：浅绿大花蕙兰和奶白马蹄莲形成两组错落焦点，奶白栀子花与浅绿乒乓菊承接中段；茉莉、浅绿蕾丝花和雪果轻轻填隙，文竹与马醉木向两翼展开，在奶油背景前留出清亮的呼吸。",
+  "artwork": {
+    "background": {
+      "materialId": "paper-ivory"
+    },
+    "container": {
+      "materialId": "glass-cylinder",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "asparagus-fern",
+        "group": "foliage",
+        "color": "#9daa7c",
+        "transform": {
+          "anchor": {
+            "x": 361.8,
+            "y": 747
+          },
+          "angle": 28.7,
+          "height": 375.6,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "pieris",
+        "group": "foliage",
+        "color": "#b6c39a",
+        "transform": {
+          "anchor": {
+            "x": 338.9,
+            "y": 747
+          },
+          "angle": 33.3,
+          "height": 323.2,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "gardenia-leaf",
+        "group": "foliage",
+        "color": "#8fa57b",
+        "transform": {
+          "anchor": {
+            "x": 350.7,
+            "y": 747
+          },
+          "angle": 23.4,
+          "height": 239.6,
+          "scale": 0.82,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "asparagus-fern",
+        "group": "foliage",
+        "color": "#9daa7c",
+        "transform": {
+          "anchor": {
+            "x": 360.3,
+            "y": 747
+          },
+          "angle": -3.1,
+          "height": 192.3,
+          "scale": 0.85,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "pieris",
+        "group": "foliage",
+        "color": "#b6c39a",
+        "transform": {
+          "anchor": {
+            "x": 337.6,
+            "y": 747
+          },
+          "angle": -20.8,
+          "height": 235.2,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "gardenia-leaf",
+        "group": "foliage",
+        "color": "#8fa57b",
+        "transform": {
+          "anchor": {
+            "x": 353.6,
+            "y": 747
+          },
+          "angle": -32.2,
+          "height": 319.2,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "asparagus-fern",
+        "group": "foliage",
+        "color": "#9daa7c",
+        "transform": {
+          "anchor": {
+            "x": 358.3,
+            "y": 747
+          },
+          "angle": -31.3,
+          "height": 385.7,
+          "scale": 0.82,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "pieris",
+        "group": "foliage",
+        "color": "#b6c39a",
+        "transform": {
+          "anchor": {
+            "x": 337.1,
+            "y": 747
+          },
+          "angle": -21.9,
+          "height": 411.8,
+          "scale": 0.85,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "gardenia-leaf",
+        "group": "foliage",
+        "color": "#8fa57b",
+        "transform": {
+          "anchor": {
+            "x": 356.4,
+            "y": 747
+          },
+          "angle": -13.9,
+          "height": 426.3,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "asparagus-fern",
+        "group": "foliage",
+        "color": "#9daa7c",
+        "transform": {
+          "anchor": {
+            "x": 355.8,
+            "y": 747
+          },
+          "angle": -0.8,
+          "height": 416.0,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "pieris",
+        "group": "foliage",
+        "color": "#b6c39a",
+        "transform": {
+          "anchor": {
+            "x": 337.1,
+            "y": 747
+          },
+          "angle": 14.7,
+          "height": 427.9,
+          "scale": 0.82,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "gardenia-leaf",
+        "group": "foliage",
+        "color": "#8fa57b",
+        "transform": {
+          "anchor": {
+            "x": 358.7,
+            "y": 747
+          },
+          "angle": 22.4,
+          "height": 413.4,
+          "scale": 0.85,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "jasmine",
+        "group": "filler",
+        "color": "#f1ecde",
+        "transform": {
+          "anchor": {
+            "x": 353.0,
+            "y": 747
+          },
+          "angle": 27.3,
+          "height": 336.9,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "queen-annes-lace",
+        "group": "filler",
+        "color": "#d6ddba",
+        "transform": {
+          "anchor": {
+            "x": 337.9,
+            "y": 747
+          },
+          "angle": 29.2,
+          "height": 292.1,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#b8c5a0",
+        "transform": {
+          "anchor": {
+            "x": 360.7,
+            "y": 747
+          },
+          "angle": 16.9,
+          "height": 228.4,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "lily-of-the-valley",
+        "group": "filler",
+        "color": "#f1ecdf",
+        "transform": {
+          "anchor": {
+            "x": 350.1,
+            "y": 747
+          },
+          "angle": 2.5,
+          "height": 197.5,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "jasmine",
+        "group": "filler",
+        "color": "#f1ecde",
+        "transform": {
+          "anchor": {
+            "x": 339.2,
+            "y": 747
+          },
+          "angle": -13.5,
+          "height": 217.8,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "queen-annes-lace",
+        "group": "filler",
+        "color": "#d6ddba",
+        "transform": {
+          "anchor": {
+            "x": 362.1,
+            "y": 747
+          },
+          "angle": -28.2,
+          "height": 278.2,
+          "scale": 0.76,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#b8c5a0",
+        "transform": {
+          "anchor": {
+            "x": 347.2,
+            "y": 747
+          },
+          "angle": -27.6,
+          "height": 325.4,
+          "scale": 0.79,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "lily-of-the-valley",
+        "group": "filler",
+        "color": "#f1ecdf",
+        "transform": {
+          "anchor": {
+            "x": 341.1,
+            "y": 747
+          },
+          "angle": -24.1,
+          "height": 364.5,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "jasmine",
+        "group": "filler",
+        "color": "#f1ecde",
+        "transform": {
+          "anchor": {
+            "x": 362.8,
+            "y": 747
+          },
+          "angle": -21.2,
+          "height": 396.6,
+          "scale": 0.83,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "queen-annes-lace",
+        "group": "filler",
+        "color": "#d6ddba",
+        "transform": {
+          "anchor": {
+            "x": 344.4,
+            "y": 747
+          },
+          "angle": -10.3,
+          "height": 398.5,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#b8c5a0",
+        "transform": {
+          "anchor": {
+            "x": 343.5,
+            "y": 747
+          },
+          "angle": -0.3,
+          "height": 395.0,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "lily-of-the-valley",
+        "group": "filler",
+        "color": "#f1ecdf",
+        "transform": {
+          "anchor": {
+            "x": 363.0,
+            "y": 747
+          },
+          "angle": 7.0,
+          "height": 397.6,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "jasmine",
+        "group": "filler",
+        "color": "#f1ecde",
+        "transform": {
+          "anchor": {
+            "x": 341.9,
+            "y": 747
+          },
+          "angle": 18.7,
+          "height": 397.8,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "queen-annes-lace",
+        "group": "filler",
+        "color": "#d6ddba",
+        "transform": {
+          "anchor": {
+            "x": 346.2,
+            "y": 747
+          },
+          "angle": 24.7,
+          "height": 377.3,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 362.4,
+            "y": 747
+          },
+          "angle": -7.6,
+          "height": 408.1,
+          "scale": 0.89,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 339.8,
+            "y": 747
+          },
+          "angle": 5.3,
+          "height": 396.1,
+          "scale": 0.92,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "gardenia",
+        "group": "main",
+        "color": "#f0eadb",
+        "transform": {
+          "anchor": {
+            "x": 349.1,
+            "y": 747
+          },
+          "angle": -16.9,
+          "height": 383.9,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "ping-pong-chrysanthemum",
+        "group": "main",
+        "color": "#b4c091",
+        "transform": {
+          "anchor": {
+            "x": 361.2,
+            "y": 747
+          },
+          "angle": 14.6,
+          "height": 378.4,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 338.3,
+            "y": 747
+          },
+          "angle": 0.2,
+          "height": 348.0,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 352.0,
+            "y": 747
+          },
+          "angle": 7.0,
+          "height": 337.1,
+          "scale": 0.89,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "gardenia",
+        "group": "main",
+        "color": "#f0eadb",
+        "transform": {
+          "anchor": {
+            "x": 359.5,
+            "y": 747
+          },
+          "angle": -12.4,
+          "height": 338.4,
+          "scale": 0.92,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "ping-pong-chrysanthemum",
+        "group": "main",
+        "color": "#b4c091",
+        "transform": {
+          "anchor": {
+            "x": 337.3,
+            "y": 747
+          },
+          "angle": -22.2,
+          "height": 328.4,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 354.8,
+            "y": 747
+          },
+          "angle": 21.9,
+          "height": 331.0,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 357.2,
+            "y": 747
+          },
+          "angle": -1.4,
+          "height": 297.4,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "gardenia",
+        "group": "main",
+        "color": "#f0eadb",
+        "transform": {
+          "anchor": {
+            "x": 337.0,
+            "y": 747
+          },
+          "angle": 18.6,
+          "height": 298.7,
+          "scale": 0.89,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "ping-pong-chrysanthemum",
+        "group": "main",
+        "color": "#b4c091",
+        "transform": {
+          "anchor": {
+            "x": 357.4,
+            "y": 747
+          },
+          "angle": -20.6,
+          "height": 298.1,
+          "scale": 0.92,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 354.6,
+            "y": 747
+          },
+          "angle": -10.9,
+          "height": 266.7,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 337.4,
+            "y": 747
+          },
+          "angle": 12.1,
+          "height": 241.2,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "gardenia",
+        "group": "main",
+        "color": "#f0eadb",
+        "transform": {
+          "anchor": {
+            "x": 359.6,
+            "y": 747
+          },
+          "angle": 22.4,
+          "height": 268.8,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "ping-pong-chrysanthemum",
+        "group": "main",
+        "color": "#b4c091",
+        "transform": {
+          "anchor": {
+            "x": 351.8,
+            "y": 747
+          },
+          "angle": -30.8,
+          "height": 276.0,
+          "scale": 0.89,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 43,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#b9c498",
+        "transform": {
+          "anchor": {
+            "x": 338.4,
+            "y": 747
+          },
+          "angle": -17.4,
+          "height": 219.1,
+          "scale": 0.92,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 44,
+        "materialId": "calla-lily",
+        "group": "main",
+        "color": "#eee8db",
+        "transform": {
+          "anchor": {
+            "x": 361.4,
+            "y": 747
+          },
+          "angle": -2.8,
+          "height": 204.2,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 45,
+        "materialId": "gardenia",
+        "group": "main",
+        "color": "#f0eadb",
+        "transform": {
+          "anchor": {
+            "x": 348.8,
+            "y": 747
+          },
+          "angle": 17.4,
+          "height": 198.0,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 46,
+        "materialId": "gardenia",
+        "group": "main",
+        "color": "#f0eadb",
+        "transform": {
+          "anchor": {
+            "x": 340.0,
+            "y": 747
+          },
+          "angle": -9.1,
+          "height": 164.9,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}

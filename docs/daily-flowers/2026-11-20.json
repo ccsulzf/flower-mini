@@ -1,0 +1,752 @@
+{
+  "date": "2026-11-20",
+  "description": "麦糖来客：杏橙拉丝非洲菊与奶黄大花蕙兰铺出温暖花心，浅金鹤望兰向右上伸展，奶白洋牡丹在低处相拥；铜橙文心兰、浅黄小苍兰和兔尾草串起轻盈节奏，麦色喷泉草与橄榄叶托住舒展的偏右扇面。",
+  "artwork": {
+    "background": {
+      "materialId": "scene-corgi-peek"
+    },
+    "container": {
+      "materialId": "round-ceramic-vase",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 340.2,
+            "y": 747
+          },
+          "angle": 32.9,
+          "height": 408.0,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "olive-leaf",
+        "group": "foliage",
+        "color": "#a8b39b",
+        "transform": {
+          "anchor": {
+            "x": 348.5,
+            "y": 747
+          },
+          "angle": 33.7,
+          "height": 338.2,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#c9aa8b",
+        "transform": {
+          "anchor": {
+            "x": 361.5,
+            "y": 747
+          },
+          "angle": 24.8,
+          "height": 249.2,
+          "scale": 0.82,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 338.5,
+            "y": 747
+          },
+          "angle": 9.3,
+          "height": 194.6,
+          "scale": 0.85,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "olive-leaf",
+        "group": "foliage",
+        "color": "#a8b39b",
+        "transform": {
+          "anchor": {
+            "x": 351.5,
+            "y": 747
+          },
+          "angle": -22.4,
+          "height": 203.2,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#c9aa8b",
+        "transform": {
+          "anchor": {
+            "x": 359.8,
+            "y": 747
+          },
+          "angle": -36.0,
+          "height": 265.5,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 337.4,
+            "y": 747
+          },
+          "angle": -31.0,
+          "height": 309.8,
+          "scale": 0.82,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "olive-leaf",
+        "group": "foliage",
+        "color": "#a8b39b",
+        "transform": {
+          "anchor": {
+            "x": 354.3,
+            "y": 747
+          },
+          "angle": -24.7,
+          "height": 359.8,
+          "scale": 0.85,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#c9aa8b",
+        "transform": {
+          "anchor": {
+            "x": 357.7,
+            "y": 747
+          },
+          "angle": -12.4,
+          "height": 390.9,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "fountain-grass",
+        "group": "foliage",
+        "color": "#c3b290",
+        "transform": {
+          "anchor": {
+            "x": 337.0,
+            "y": 747
+          },
+          "angle": 4.5,
+          "height": 417.3,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "olive-leaf",
+        "group": "foliage",
+        "color": "#a8b39b",
+        "transform": {
+          "anchor": {
+            "x": 357.0,
+            "y": 747
+          },
+          "angle": 14.5,
+          "height": 434.1,
+          "scale": 0.82,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "photinia",
+        "group": "foliage",
+        "color": "#c9aa8b",
+        "transform": {
+          "anchor": {
+            "x": 355.1,
+            "y": 747
+          },
+          "angle": 24.7,
+          "height": 433.0,
+          "scale": 0.85,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "oncidium",
+        "group": "filler",
+        "color": "#cda077",
+        "transform": {
+          "anchor": {
+            "x": 337.2,
+            "y": 747
+          },
+          "angle": 31.6,
+          "height": 363.6,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "freesia",
+        "group": "filler",
+        "color": "#e4ca83",
+        "transform": {
+          "anchor": {
+            "x": 359.3,
+            "y": 747
+          },
+          "angle": 28.1,
+          "height": 299.0,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "bunny-tail",
+        "group": "filler",
+        "color": "#d9cdb1",
+        "transform": {
+          "anchor": {
+            "x": 352.3,
+            "y": 747
+          },
+          "angle": 23.0,
+          "height": 243.0,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "alstroemeria",
+        "group": "filler",
+        "color": "#ddcc9a",
+        "transform": {
+          "anchor": {
+            "x": 338.1,
+            "y": 747
+          },
+          "angle": 11.6,
+          "height": 202.0,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "oncidium",
+        "group": "filler",
+        "color": "#cda077",
+        "transform": {
+          "anchor": {
+            "x": 361.1,
+            "y": 747
+          },
+          "angle": -15.4,
+          "height": 198.4,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "freesia",
+        "group": "filler",
+        "color": "#e4ca83",
+        "transform": {
+          "anchor": {
+            "x": 349.4,
+            "y": 747
+          },
+          "angle": -25.7,
+          "height": 227.8,
+          "scale": 0.76,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "bunny-tail",
+        "group": "filler",
+        "color": "#d9cdb1",
+        "transform": {
+          "anchor": {
+            "x": 339.6,
+            "y": 747
+          },
+          "angle": -27.5,
+          "height": 267.2,
+          "scale": 0.79,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "alstroemeria",
+        "group": "filler",
+        "color": "#ddcc9a",
+        "transform": {
+          "anchor": {
+            "x": 362.3,
+            "y": 747
+          },
+          "angle": -28.2,
+          "height": 317.8,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "oncidium",
+        "group": "filler",
+        "color": "#cda077",
+        "transform": {
+          "anchor": {
+            "x": 346.5,
+            "y": 747
+          },
+          "angle": -18.1,
+          "height": 343.4,
+          "scale": 0.83,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "freesia",
+        "group": "filler",
+        "color": "#e4ca83",
+        "transform": {
+          "anchor": {
+            "x": 341.7,
+            "y": 747
+          },
+          "angle": -7.6,
+          "height": 369.5,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "bunny-tail",
+        "group": "filler",
+        "color": "#d9cdb1",
+        "transform": {
+          "anchor": {
+            "x": 362.9,
+            "y": 747
+          },
+          "angle": -0.2,
+          "height": 392.1,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "alstroemeria",
+        "group": "filler",
+        "color": "#ddcc9a",
+        "transform": {
+          "anchor": {
+            "x": 343.7,
+            "y": 747
+          },
+          "angle": 12.4,
+          "height": 408.2,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "oncidium",
+        "group": "filler",
+        "color": "#cda077",
+        "transform": {
+          "anchor": {
+            "x": 344.1,
+            "y": 747
+          },
+          "angle": 20.7,
+          "height": 411.3,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "freesia",
+        "group": "filler",
+        "color": "#e4ca83",
+        "transform": {
+          "anchor": {
+            "x": 362.9,
+            "y": 747
+          },
+          "angle": 24.5,
+          "height": 388.0,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "feather-gerbera",
+        "group": "main",
+        "color": "#dfad79",
+        "transform": {
+          "anchor": {
+            "x": 341.3,
+            "y": 747
+          },
+          "angle": -3.6,
+          "height": 390.7,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#e2cc96",
+        "transform": {
+          "anchor": {
+            "x": 346.9,
+            "y": 747
+          },
+          "angle": 7.5,
+          "height": 389.9,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "bird-of-paradise",
+        "group": "main",
+        "color": "#e1bc77",
+        "transform": {
+          "anchor": {
+            "x": 362.2,
+            "y": 747
+          },
+          "angle": -15.2,
+          "height": 356.0,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "ranunculus",
+        "group": "main",
+        "color": "#ece5d7",
+        "transform": {
+          "anchor": {
+            "x": 339.4,
+            "y": 747
+          },
+          "angle": 19.6,
+          "height": 389.3,
+          "scale": 0.89,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "feather-gerbera",
+        "group": "main",
+        "color": "#dfad79",
+        "transform": {
+          "anchor": {
+            "x": 349.8,
+            "y": 747
+          },
+          "angle": 0.2,
+          "height": 338.6,
+          "scale": 0.92,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#e2cc96",
+        "transform": {
+          "anchor": {
+            "x": 360.8,
+            "y": 747
+          },
+          "angle": 10.0,
+          "height": 355.9,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "bird-of-paradise",
+        "group": "main",
+        "color": "#e1bc77",
+        "transform": {
+          "anchor": {
+            "x": 338.0,
+            "y": 747
+          },
+          "angle": -5.2,
+          "height": 300.9,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "ranunculus",
+        "group": "main",
+        "color": "#ece5d7",
+        "transform": {
+          "anchor": {
+            "x": 352.7,
+            "y": 747
+          },
+          "angle": -26.9,
+          "height": 290.4,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "feather-gerbera",
+        "group": "main",
+        "color": "#dfad79",
+        "transform": {
+          "anchor": {
+            "x": 359.0,
+            "y": 747
+          },
+          "angle": 23.6,
+          "height": 351.9,
+          "scale": 0.89,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#e2cc96",
+        "transform": {
+          "anchor": {
+            "x": 337.2,
+            "y": 747
+          },
+          "angle": 8.6,
+          "height": 291.1,
+          "scale": 0.92,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "bird-of-paradise",
+        "group": "main",
+        "color": "#e1bc77",
+        "transform": {
+          "anchor": {
+            "x": 355.5,
+            "y": 747
+          },
+          "angle": 17.0,
+          "height": 309.7,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "ranunculus",
+        "group": "main",
+        "color": "#ece5d7",
+        "transform": {
+          "anchor": {
+            "x": 356.6,
+            "y": 747
+          },
+          "angle": -20.7,
+          "height": 261.4,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "feather-gerbera",
+        "group": "main",
+        "color": "#dfad79",
+        "transform": {
+          "anchor": {
+            "x": 337.0,
+            "y": 747
+          },
+          "angle": -0.7,
+          "height": 240.0,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#e2cc96",
+        "transform": {
+          "anchor": {
+            "x": 358.0,
+            "y": 747
+          },
+          "angle": 12.0,
+          "height": 256.4,
+          "scale": 0.89,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "ranunculus",
+        "group": "main",
+        "color": "#ece5d7",
+        "transform": {
+          "anchor": {
+            "x": 353.9,
+            "y": 747
+          },
+          "angle": 25.3,
+          "height": 272.7,
+          "scale": 0.92,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "feather-gerbera",
+        "group": "main",
+        "color": "#dfad79",
+        "transform": {
+          "anchor": {
+            "x": 337.6,
+            "y": 747
+          },
+          "angle": -29.2,
+          "height": 216.0,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 43,
+        "materialId": "cymbidium",
+        "group": "main",
+        "color": "#e2cc96",
+        "transform": {
+          "anchor": {
+            "x": 360.1,
+            "y": 747
+          },
+          "angle": -16.0,
+          "height": 203.7,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 44,
+        "materialId": "ranunculus",
+        "group": "main",
+        "color": "#ece5d7",
+        "transform": {
+          "anchor": {
+            "x": 351.0,
+            "y": 747
+          },
+          "angle": 4.1,
+          "height": 192.0,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 45,
+        "materialId": "feather-gerbera",
+        "group": "main",
+        "color": "#dfad79",
+        "transform": {
+          "anchor": {
+            "x": 338.7,
+            "y": 747
+          },
+          "angle": 22.6,
+          "height": 212.3,
+          "scale": 0.89,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 46,
+        "materialId": "ranunculus",
+        "group": "main",
+        "color": "#ece5d7",
+        "transform": {
+          "anchor": {
+            "x": 361.7,
+            "y": 747
+          },
+          "angle": -6.3,
+          "height": 158.7,
+          "scale": 0.92,
+          "mirrored": true
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}
