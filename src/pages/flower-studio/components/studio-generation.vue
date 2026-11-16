@@ -22,9 +22,9 @@ const status = computed(() => props.phase === 'revealing' ? '花束正在成形'
     </view>
     <view v-else class="generation-sheet" @tap.stop>
       <view class="sheet-tape" aria-hidden="true" />
-      <text class="sheet-kicker">
+      <!-- <text class="sheet-kicker">
         一句生花 / 一页花事
-      </text>
+      </text> -->
       <view class="sheet-heading">
         <text>写一句话，让花开出来</text><button class="sheet-close" aria-label="关闭一句话生花" @tap="emit('close')">
           ×
@@ -37,7 +37,7 @@ const status = computed(() => props.phase === 'revealing' ? '花束正在成形'
         <textarea class="generation-input" :value="prompt" :maxlength="1000" :adjust-position="true" :cursor-spacing="24" placeholder-style="color: #a49a88; font-size: 26rpx; line-height: 48rpx;" placeholder="比如：忙完这一周，想让晚饭的小桌子温柔一点。" @input="emit('update:prompt', $event.detail.value)" />
       </view>
       <view class="sheet-footnote">
-        <text>{{ replacing ? '新花束会替换画布，之后可以撤销恢复' : '花束会直接在眼前生成，还能继续调整' }}</text><text>{{ prompt.length }}/1000</text>
+        <text>{{ replacing ? '新花束会替换画布，之后可以撤销恢复' : '花束会直接生成，还能继续调整' }}</text><text>{{ prompt.length }}/1000</text>
       </view>
       <text v-if="error" class="generation-error" role="alert">
         {{ error }}

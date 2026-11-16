@@ -39,7 +39,7 @@ import asparagus_fern_foliage from './assets/demo-asparagus-fern-foliage.svg?raw
 import boston_fernMetadata from './assets/demo-boston-fern-material.json'
 import boston_fern_foliage from './assets/demo-boston-fern-foliage.svg?raw'
 
-const scale = (uni.getSystemInfoSync().windowWidth - 92) / 698
+const scale = (uni.getWindowInfo().windowWidth - 92) / 698
 const rose: CachedMaterial = {
   ...roseMetadata, category: 'flower', group: 'main', assets: {}, updatedAt: 0, paths: {},
   sources: { flower: roseFlower, stemWithoutLeaves: roseStem },

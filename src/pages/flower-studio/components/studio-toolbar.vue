@@ -28,7 +28,7 @@ const tabs = computed<{ value: StudioTab, label: string, icon: string, disabled?
         </button>
       </view>
       <view class="tool-divider" aria-hidden="true" />
-      <view v-for="tab in tabs" :key="tab.value" class="tool-target">
+      <view v-for="tab in tabs" :key="tab.value" class="tool-target" :class="{ 'guide-flowers-target': tab.value === 'flowers' }">
         <button
           class="tool-button" :class="{ 'tool-active': activeTab === tab.value }" :disabled="tab.disabled" @click="emit('select', tab.value)"
         >

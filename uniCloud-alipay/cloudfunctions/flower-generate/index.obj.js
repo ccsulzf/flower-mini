@@ -86,7 +86,7 @@ module.exports = {
         break
       }
       catch (error) {
-        const repairable = ['STEM_COUNT_INVALID', 'MODEL_JSON_INVALID'].includes(error.code)
+        const repairable = ['STEM_COUNT_INVALID', 'MODEL_JSON_INVALID', 'MODEL_CATALOG_INVALID'].includes(error.code)
         const canRepair = attempt === 0 && repairable && 55000 - (Date.now() - started) >= 8000
         console.warn('[flower-generate] validation failed', {
           code: error.code || 'INVALID_ARTWORK', attempt: attempt + 1,
@@ -95,7 +95,9 @@ module.exports = {
         })
         if (!canRepair) throw { errCode: 'AI_INVALID_RESULT', errMsg: `生成方案未通过校验：${error.message}${attempt ? '（已自动纠正一次）' : ''}` }
         messages.push({ role: 'assistant', content: rawText })
-        const feedback = error.code === 'MODEL_JSON_INVALID'
+        const feedback = error.code === 'MODEL_CATALOG_INVALID'
+          ? `素材目录校验失败：${error.message}。请逐项核对并纠正上一条输出中所有素材ID及对应色值。只能从以下目录逐字复制ID，花叶不能使用背景或容器ID，color只能使用对应素材列出的值：${JSON.stringify(catalog.map(item => ({ id: item.id, category: item.category, colors: item.colors?.map(color => color.value) })))}。保留创作主题与有效布局，返回完整合法JSON，不要解释或使用代码围栏；materials保持40至96项，四种role均须保留。`
+          : error.code === 'MODEL_JSON_INVALID'
           ? `${error.message}。请修正上一条输出的JSON语法，尤其检查未加引号的文字、数字中夹带的汉字、逗号、引号和括号。只返回完整合法的JSON对象，不要解释，不要使用代码围栏或补丁。保留创作主题、有效素材ID和布局设计；materials数组至少40项，建议44项，每项代表一枝独立花叶，不得复制相同坐标凑数。`
           : `数量校验失败：实际materials数组有${error.actualCount}项。请保留创作主题、背景和容器，重新设计并返回完整JSON，materials数组必须恰好44项，每项代表一枝独立花叶。逐项计数后再输出，不要仅声称有44枝，不要复制相同坐标凑数。主花16枝、次主花10枝、配花12枝、叶材6枝；花头应有宽度、高低、自然疏密和前后层次。`
         messages.push({ role: 'user', content: feedback })

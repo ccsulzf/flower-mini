@@ -24,7 +24,7 @@ const details = computed(() => result.value ? JSON.stringify({ ...result.value.d
   background: result.value.artwork.background, container: result.value.artwork.container,
   design: result.value.design,
   boundaryAdjustedIds: result.value.boundaryAdjustedIds }, null, 2) : '')
-const scale = Math.max(0.1, (uni.getSystemInfoSync().windowWidth - 32) / 698)
+const scale = Math.max(0.1, (uni.getWindowInfo().windowWidth - 32) / 698)
 const examples = [
   '妈妈退休了，想谢谢她这些年总把家里照顾得很好，也希望她以后多为自己开心。',
   '外面一直在下雨，终于忙完了这一周，想让一个人吃晚饭的小桌子温柔一点。',

@@ -18,9 +18,13 @@ import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
 import { createCatalogArtwork } from '@/utils/flower/artwork'
+import { materialVisualBounds } from '@/utils/flower/arrangement.cjs'
+import { backgroundOffset } from '@/utils/flower/background-render'
+import { fitBouquetInstance } from '@/utils/flower/bouquet-boundary.cjs'
 import { getFlowerGenerationQuota } from '@/api/flower-generate'
 import { takeGeneratedArtwork } from '@/utils/flower/generated-transfer'
 import StudioGeneration from './components/studio-generation.vue'
+import StudioGuide from './components/studio-guide.vue'
 import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioTopToolbar from './components/studio-top-toolbar.vue'
 import { useStudioGeneration } from './composables/useStudioGeneration'
@@ -77,6 +81,32 @@ const dailyFlower = useDailyFlowerStore()
 const generation = useStudioGeneration()
 const { visible: generationVisible, prompt: generationPrompt, error: generationError, phase: generationPhase, preview: generationPreview, busy: generationBusy } = generation
 const completedWork = ref<SavedFlowerWork>()
+const guideEligible = ref(false)
+const guideDebugReplay = false
+const guideEntry = ref(0)
+const guideTargets = ref<Record<string, { left: number, top: number, width: number, height: number }>>({})
+const guideFocusTargets = computed(() => {
+  const instance = materials.value.find(item => item.id === selectedMaterialId.value)
+    || materials.value.find(item => item.id === lastAddedMaterialId.value)
+    || materials.value[materials.value.length - 1]
+  const material = instance && preparedMaterials.value[instance.materialId]
+  if (!instance || !material)
+    return guideTargets.value
+  const vessel = preparedMaterials.value[container.value.materialId]
+  const fitted = vessel ? fitBouquetInstance(instance, material, vessel) : instance
+  const bounds = materialVisualBounds(fitted.transform, material.geometry)
+  const offset = backgroundOffset(preparedMaterials.value[artwork.value.background.materialId], vessel)
+  const point = layout.workspaceToScreen({ x: bounds.left, y: bounds.top + offset })
+  return {
+    ...guideTargets.value,
+    arrange: {
+      left: point.x,
+      top: point.y,
+      width: (bounds.right - bounds.left) * layout.scale,
+      height: (bounds.bottom - bounds.top) * layout.scale,
+    },
+  }
+})
 let applying = false
 let alive = true
 let sessionVersion = 0
@@ -107,6 +137,7 @@ onLoad((query) => {
   void bootstrap()
 })
 onShow(() => {
+  guideEntry.value++
   if (!bootTask && alive && !pageReady.value)
     void bootstrap()
 })
@@ -255,6 +286,7 @@ function bootstrap(): Promise<void> {
       if (!alive)
         return
       startupError.value = ''
+      guideEligible.value = !generated && !detailId.value && !restoring && !draftReadFailed.value
       pageReady.value = true
       generatedArtwork = null
       void catalog.preloadRemaining()
@@ -664,10 +696,17 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
     <StudioMaterialDock
       v-if="!generationBusy"
       :toolbar-bottom="layout.toolbarBottom" :stage-bottom="layout.stageBottom" @select="toggleTab" @close="studio.closePanel"
-      @generate="openFlowerGenerate"
+      @generate="openFlowerGenerate" @guide-targets="guideTargets = $event"
       @dismiss="closePanels" @material="selectCatalogMaterial" @focus="focusSelectionMaterial" @instance="selectSelectionInstance"
       @color="setColor" @toggle-colors="colorsExpanded = !colorsExpanded" @layer="setLayer"
       @duplicate="duplicateSelected" @remove="removeSelected" @mirror="mirrorSelected"
+    />
+    <StudioGuide
+      :key="guideEntry" :debug-replay="guideDebugReplay"
+      :generation-open="generationVisible"
+      :uid="userInfo.uid" :eligible="guideDebugReplay || guideEligible" :materials="materials"
+      :visible="pageReady && !pendingDraft && !readonly && !draftReadFailed && !startupError && !prepareError && !storageError && !needsPreparation && !generationVisible && completionState === 'idle'"
+      :layout="layout" :targets="guideFocusTargets" :active-tab="activeTab" @focus-workspace="studio.closePanel"
     />
     <StudioTopToolbar :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
     <view v-if="storageError && !pendingDraft && !startupError && !needsPreparation" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }">

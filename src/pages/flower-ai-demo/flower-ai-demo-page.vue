@@ -72,7 +72,7 @@ const details = computed(() => result.value ? JSON.stringify({
 }, null, 2) : '')
 // 调试页内复用结果，撤销或切换预览均不会再请求模型。
 const cache = new Map<string, FlowerAiResult>()
-const previewScale = Math.max(0.1, (uni.getSystemInfoSync().windowWidth - 32) / 698)
+const previewScale = Math.max(0.1, (uni.getWindowInfo().windowWidth - 32) / 698)
 
 function loadExample(count: number) {
   if (busy.value) return

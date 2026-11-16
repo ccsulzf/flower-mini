@@ -2,6 +2,12 @@ const { parsePlan, generateLayout } = require('flower-composition')
 const { refineComposition, orderByDepth } = require('./composition-refinement')
 const reference = value => typeof value === 'string' && /^[a-z][a-z0-9-]{0,63}$/.test(value)
 function assert(condition, message) { if (!condition) throw new Error(message) }
+function assertCatalogReference(condition, message) {
+  if (condition) return
+  const error = new Error(message)
+  error.code = 'MODEL_CATALOG_INVALID'
+  throw error
+}
 
 function parsePrompt(input) {
   assert(input && typeof input.prompt === 'string', '请输入一段花束描述')
@@ -44,12 +50,16 @@ function validateDesign(materials, sourceMaterials, warnings) {
   const fillerCounts = new Map()
   const focalIds = new Set()
   materials.forEach((item, index) => {
-    const role = sourceMaterials[index].role
-    assert(typeof role === 'string' && Object.prototype.hasOwnProperty.call(roles, role),
-      `花材 ${item.materialId} 的设计职责无效，须为 main、secondary、filler 或 foliage`)
-    // group 保持目录值以兼容渲染；role 描述本次构图，花朵的主配职责可灵活安排。
-    assert((item.group === 'foliage') === (role === 'foliage'),
-      `花材 ${item.materialId} 的职责 ${role} 与花朵/叶材类型不符（目录分组 ${item.group}）`)
+    const requestedRole = sourceMaterials[index].role
+    // 花叶类型以目录为准；保留花朵有效的设计职责，标注冲突直接纠正。
+    const role = item.group === 'foliage'
+      ? 'foliage'
+      : ['main', 'secondary', 'filler'].includes(requestedRole) ? requestedRole : item.group
+    if (role !== requestedRole) {
+      sourceMaterials[index].role = role
+      const warning = `花材 ${item.materialId} 的设计职责已按素材类型自动纠正为 ${role}`
+      if (!warnings.includes(warning)) warnings.push(warning)
+    }
     roles[role]++
     if (role === 'main' || role === 'secondary') focalIds.add(item.materialId)
     if (role === 'filler') fillerCounts.set(item.materialId, (fillerCounts.get(item.materialId) || 0) + 1)
@@ -108,8 +118,8 @@ function buildArtwork(text, records) {
   const catalog = new Map(records.map(item => [item.id, item]))
   const background = catalog.get(data.backgroundId)
   const container = catalog.get(data.containerId)
-  assert(background?.category === 'background', '生成方案缺少有效背景')
-  assert(container && ['vase', 'bouquet'].includes(container.category), '生成方案缺少有效容器')
+  assertCatalogReference(background?.category === 'background', 'backgroundId 必须使用目录中 category=background 的素材ID')
+  assertCatalogReference(container && ['vase', 'bouquet'].includes(container.category), 'containerId 必须使用目录中 category=vase 或 bouquet 的素材ID')
   const width = container.geometry?.mouthWidth
   assert(Number.isFinite(width) && width > 0 && width <= 698, '容器插入口几何无效')
   assert(Array.isArray(data.materials), '生成方案缺少花叶数组 materials')
@@ -119,13 +129,19 @@ function buildArtwork(text, records) {
     error.actualCount = data.materials.length
     throw error
   }
+  const unknownPositions = data.materials.flatMap((item, index) => {
+    const record = catalog.get(item?.materialId)
+    return record && (record.category || 'flower') === 'flower' ? [] : [index + 1]
+  })
+  assertCatalogReference(unknownPositions.length === 0,
+    `materials 第 ${unknownPositions.join('、')} 项的 materialId 不属于目录花叶；必须逐字使用 category=flower 的素材ID，不能使用花名、实例ID或自行拼接ID`)
   const materials = data.materials.map((item, index) => {
     assert(item && typeof item === 'object', '花叶数据无效')
     const record = catalog.get(item.materialId)
-    assert(record && (record.category || 'flower') === 'flower', '生成方案包含未知花叶')
     assert(['main', 'filler', 'foliage'].includes(record.group), '花叶分组无效')
-    assert(typeof item.color === 'string' && /^#[a-f\d]{6}$/i.test(item.color)
-      && record.colors?.some(color => color.value.toLowerCase() === item.color.toLowerCase()), '花叶配色不在素材色板内')
+    assertCatalogReference(typeof item.color === 'string' && /^#[a-f\d]{6}$/i.test(item.color)
+      && record.colors?.some(color => color.value.toLowerCase() === item.color.toLowerCase()),
+    `materials 第 ${index + 1} 项的 color 必须使用该花叶素材 colors[].value 中的色值`)
     assert(typeof item.mirrored === 'boolean', '花叶镜像信息无效')
     return { id: index + 1, materialId: record.id, group: record.group, color: item.color,
       geometry: record.geometry, colors: record.colors,
