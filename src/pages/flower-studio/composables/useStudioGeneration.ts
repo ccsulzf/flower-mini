@@ -71,7 +71,7 @@ export function useStudioGeneration() {
       preview.value = next
       phase.value = 'revealing'
       await new Promise<void>((resolve) => {
-        const timer = setTimeout(done, 950 + Math.min(next.materials.length - 1, 24) * 90)
+        const timer = setTimeout(done, 1850 + Math.min(next.materials.length - 1, 24) * 90)
         function done() {
           clearTimeout(timer)
           finishReveal = undefined

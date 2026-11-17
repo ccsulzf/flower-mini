@@ -28,11 +28,10 @@ const flowers = [
             </view>
           </view>
         </view>
-        <view class="bouquet-tie">
-          <view class="tie-loop loop-left" /><view class="tie-loop loop-right" />
-          <view class="tie-knot" /><view class="tie-tail" />
+        <view class="pencil-vase">
+          <view class="vase-rim" />
+          <view class="vase-highlight" />
         </view>
-        <view class="pencil-ground" />
       </view>
     </view>
     <view class="bloom-caption">
@@ -45,10 +44,10 @@ const flowers = [
 </template>
 
 <style scoped lang="scss">
-.bloom-note { position: relative; box-sizing: border-box; display: flex; align-items: center; justify-content: center; gap: 20rpx; width: 100%; height: 88rpx; padding: 0 24rpx; pointer-events: none; opacity: 1; transition: opacity .65s ease, transform .65s ease; }
+.bloom-note { position: relative; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40rpx; width: 100%; height: 430rpx; padding: 0 24rpx; pointer-events: none; opacity: 1; transition: opacity .65s ease, transform .65s ease; }
 .bloom-settling { opacity: 0; transform: translateY(6rpx); }
-.bloom-illustration { position: relative; width: 148rpx; height: 88rpx; flex-shrink: 0; }
-.bloom-drawing { position: absolute; top: -26rpx; left: -42rpx; width: 232rpx; height: 140rpx; transform: scale(.6); transform-origin: 50% 50%; }
+.bloom-illustration { position: relative; width: 360rpx; height: 310rpx; flex-shrink: 0; }
+.bloom-drawing { position: absolute; top: 84rpx; left: 64rpx; width: 232rpx; height: 140rpx; transform: scale(1.6); transform-origin: 50% 50%; }
 .bloom-branch { position: absolute; bottom: 12rpx; left: 96rpx; width: 40rpx; transform-origin: 50% 100%; }
 .branch-sage-left { height: 103rpx; transform: rotate(-35deg); }
 .branch-rose { height: 107rpx; transform: rotate(-18deg); }
@@ -56,7 +55,7 @@ const flowers = [
 .branch-lilac { height: 108rpx; transform: rotate(24deg); }
 .branch-sage-right { height: 89rpx; transform: rotate(43deg); }
 .branch-growth, .branch-sway { position: absolute; top: 0; right: 0; bottom: 0; left: 0; transform-origin: 50% 100%; }
-.branch-growth { animation-duration: 6.4s; animation-timing-function: cubic-bezier(.2,.7,.3,1); animation-iteration-count: infinite; animation-fill-mode: both; }
+.branch-growth { opacity: 1; }
 .branch-sway { animation: branch-sway 3.8s ease-in-out infinite; }
 .branch-cream .branch-sway { animation-duration: 4.6s; animation-delay: -.8s; }
 .branch-lilac .branch-sway { animation-duration: 4.1s; animation-delay: -1.7s; }
@@ -65,49 +64,24 @@ const flowers = [
 .leaf-left { left: -3rpx; bottom: 30rpx; transform: rotate(27deg); transform-origin: 100% 100%; }
 .leaf-right { left: 20rpx; bottom: 54rpx; transform: rotate(-22deg); transform-origin: 0 100%; }
 .leaf-tip { left: 5rpx; top: 3rpx; width: 17rpx; height: 28rpx; border-radius: 80% 20% 80% 20%; transform: rotate(-28deg); }
-.flower-opening { position: absolute; top: -10rpx; left: 0; width: 40rpx; height: 40rpx; transform-origin: 50% 100%; animation-duration: 6.4s; animation-timing-function: ease-out; animation-iteration-count: infinite; animation-fill-mode: both; }
+.flower-opening { position: absolute; top: -10rpx; left: 0; width: 40rpx; height: 40rpx; transform-origin: 50% 100%;  }
 .flower-breath { position: relative; width: 40rpx; height: 40rpx; animation: flower-breathe 4.8s ease-in-out 2.6s infinite; }
 .branch-cream .flower-breath { animation-delay: 3.4s; }
 .branch-lilac .flower-breath { animation-delay: 4s; }
-.pencil-petal { position: absolute; top: -5rpx; left: 13rpx; box-sizing: border-box; width: 14rpx; height: 24rpx; border: 1rpx solid var(--app-danger); border-radius: 53% 47% 44% 56%; background: var(--app-line); transform-origin: 50% 24rpx; }
-.branch-cream .pencil-petal { width: 12rpx; left: 14rpx; border-color: var(--app-subtle); background: var(--app-line); }
-.branch-lilac .pencil-petal { border-color: var(--app-subtle); background: var(--app-line); }
+.pencil-petal { position: absolute; top: -5rpx; left: 13rpx; box-sizing: border-box; width: 14rpx; height: 24rpx; border: 1rpx solid var(--app-danger); border-radius: 53% 47% 44% 56%; background: #dfb4a5; transform-origin: 50% 24rpx; }
+.branch-cream .pencil-petal { width: 12rpx; left: 14rpx; border-color: #b5a17c; background: #f5e7be; }
+.branch-lilac .pencil-petal { border-color: #a99caf; background: #d9cbdc; }
 .pencil-center { position: absolute; top: 14rpx; left: 14rpx; box-sizing: border-box; width: 12rpx; height: 12rpx; border: 1rpx solid var(--app-danger); border-radius: 48% 52% 45% 55%; background: var(--app-subtle); }
-.bouquet-tie { position: absolute; bottom: 10rpx; left: 115rpx; width: 1rpx; height: 1rpx; animation: tie-appear 6.4s ease-in-out infinite; }
-.tie-loop { position: absolute; top: -5rpx; box-sizing: border-box; width: 22rpx; height: 12rpx; border: 2rpx solid var(--app-danger); border-radius: 65% 35% 60% 40%; }
-.loop-left { right: -1rpx; transform: rotate(24deg); }
-.loop-right { left: -1rpx; transform: rotate(-24deg); }
-.tie-knot { position: absolute; top: 0; left: -3rpx; width: 6rpx; height: 5rpx; border-radius: 40%; background: var(--app-danger); }
-.tie-tail { position: absolute; top: 5rpx; left: -5rpx; width: 10rpx; height: 12rpx; border-right: 1rpx solid var(--app-danger); border-left: 1rpx solid var(--app-danger); transform: rotate(14deg); }
-.pencil-ground { position: absolute; bottom: -8rpx; left: 70rpx; width: 92rpx; height: 4rpx; border-bottom: 1rpx solid rgba(var(--app-inkMuted-rgb), .28); border-radius: 50%; transform: rotate(-2deg); }
+.pencil-vase { position: absolute; bottom: -49rpx; left: 89rpx; box-sizing: border-box; width: 55rpx; height: 70rpx; border: 1.5rpx solid #a89a80; border-radius: 8rpx 10rpx 20rpx 18rpx; background: #eee3cb; transform: rotate(-2deg); }
+.vase-rim { position: absolute; top: -4rpx; left: -2rpx; box-sizing: border-box; width: 56rpx; height: 9rpx; border: 1.5rpx solid #a89a80; border-radius: 50%; background: #d8d5bc; }
+.vase-highlight { position: absolute; top: 12rpx; bottom: 12rpx; left: 9rpx; width: 5rpx; border-left: 2rpx solid #faf4e5; border-radius: 50%; }
 .bloom-caption { display: flex; align-items: center; gap: 9rpx; color: var(--app-inkMuted); font-family: STKaiti, KaiTi, serif; font-size: 25rpx; line-height: 1.6; letter-spacing: 2rpx; }
 .waiting-dots { display: flex; gap: 5rpx; }
 .waiting-dots view { width: 5rpx; height: 5rpx; border-radius: 50%; background: var(--app-sage); animation: waiting-pulse 1.5s ease-in-out infinite; }
 .waiting-dots view:nth-child(2) { animation-delay: .2s; }
 .waiting-dots view:nth-child(3) { animation-delay: .4s; }
-// 各花枝共享同一轮时间轴，展开从左到右，收拢从右到左。
-@mixin branch-cycle($name, $open, $close) {
-  .branch-#{$name} .branch-growth { animation-name: stem-#{$name}; }
-  .branch-#{$name} .flower-opening { animation-name: flower-#{$name}; }
-  @keyframes stem-#{$name} {
-    0%, #{$open} { opacity: 0; transform: scaleY(.15); }
-    #{$open + 20%}, #{$close} { opacity: 1; transform: scaleY(1); }
-    #{$close + 12%}, 100% { opacity: 0; transform: scaleY(.15); }
-  }
-  @keyframes flower-#{$name} {
-    0%, #{$open + 12%} { opacity: 0; transform: scale(.2) rotate(-24deg); }
-    #{$open + 30%}, #{$close - 3%} { opacity: 1; transform: scale(1) rotate(0); }
-    #{$close + 7%}, 100% { opacity: 0; transform: scale(.2) rotate(-24deg); }
-  }
-}
-@include branch-cycle(sage-left, 4%, 78%);
-@include branch-cycle(rose, 8%, 74%);
-@include branch-cycle(cream, 12%, 70%);
-@include branch-cycle(lilac, 16%, 66%);
-@include branch-cycle(sage-right, 20%, 62%);
-@keyframes tie-appear { 0%, 42%, 100% { opacity: 0; transform: scale(.5); } 53%, 57% { opacity: 1; transform: scale(1); } 62% { opacity: 0; transform: scale(.5); } }
-@keyframes branch-sway { 0%, 100% { transform: rotate(-3.5deg); } 50% { transform: rotate(3.5deg); } }
-@keyframes flower-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.09); } }
+@keyframes branch-sway { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg); } }
+@keyframes flower-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
 @keyframes waiting-pulse { 0%, 100% { opacity: .25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3rpx); } }
-@media (prefers-reduced-motion: reduce) { .branch-growth, .branch-sway, .flower-opening, .flower-breath, .bouquet-tie, .waiting-dots view { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .branch-sway, .flower-breath, .waiting-dots view { animation: none; } }
 </style>

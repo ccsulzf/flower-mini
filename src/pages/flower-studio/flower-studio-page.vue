@@ -681,7 +681,7 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
 
 <template>
   <view class="flower-studio studio-light" style="height: 100vh;">
-    <view class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
+    <view v-show="!generationBusy || generationPhase === 'revealing'" class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
       <view class="studio-artwork" :style="layout.workspaceStyle">
         <view class="studio-board-scale" :style="layout.boardStyle">
           <FlowerBoard :artwork="generationPreview || artwork" :revealing="generationPhase === 'revealing'" :hide-empty="generationBusy" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" @start="startDrag" @move="moveDrag" @end="endDrag" @clear="closeFlowerTools" />
@@ -708,7 +708,7 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
       :visible="pageReady && !pendingDraft && !readonly && !draftReadFailed && !startupError && !prepareError && !storageError && !needsPreparation && !generationVisible && completionState === 'idle'"
       :layout="layout" :targets="guideFocusTargets" :active-tab="activeTab" @focus-workspace="studio.closePanel"
     />
-    <StudioTopToolbar :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
+    <StudioTopToolbar v-if="!generationBusy" :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
     <view v-if="storageError && !pendingDraft && !startupError && !needsPreparation" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }">
       <text>{{ storageError }}</text><text v-if="draftReadFailed" @click="retryLocalDraft">
         重新读取

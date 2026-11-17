@@ -1,6 +1,7 @@
 const resolveAuth = require('auth')
 const { consumeDailyQuota, getDailyQuota } = require('./quota')
 const { parsePrompt, parseRecentBackgroundIds, describeCatalog, instructions, buildArtwork } = require('./generation')
+const { generationDensity } = require('./generation-density')
 
 module.exports = {
   async _before() {
@@ -41,9 +42,12 @@ module.exports = {
       || !catalog.some(item => ['vase', 'bouquet'].includes(item.category))
       || !catalog.some(item => item.category === 'flower'))
       throw { errCode: 'CATALOG_INCOMPLETE', errMsg: '请先上传背景、容器和花叶素材' }
-    await consumeDailyQuota(uniCloud.database(), this.auth.uid)
+    // 提前检查避免无额度时调用模型；最终仍通过唯一槽位原子扣次，防止并发超额。
+    if (!(await getDailyQuota(uniCloud.database(), this.auth.uid)).available)
+      throw { errCode: 'DAILY_LIMIT_REACHED', errMsg: '今日额度已用完' }
+    const density = generationDensity(prompt)
     const messages = [{ role: 'system', content: instructions },
-      { role: 'user', content: JSON.stringify({ prompt, catalog, recentBackgroundIds }) }]
+      { role: 'user', content: JSON.stringify({ prompt, catalog, recentBackgroundIds, density }) }]
     let result
     let body
     let attempts = 0
@@ -82,11 +86,11 @@ module.exports = {
       if (choice?.finish_reason !== 'stop') throw { errCode: 'AI_INCOMPLETE', errMsg: '模型未完整生成，请重新尝试' }
       const rawText = choice.message?.content
       try {
-        result = buildArtwork(rawText, records)
+        result = buildArtwork(rawText, records, prompt)
         break
       }
       catch (error) {
-        const repairable = ['STEM_COUNT_INVALID', 'MODEL_JSON_INVALID', 'MODEL_CATALOG_INVALID'].includes(error.code)
+        const repairable = ['STEM_COUNT_INVALID', 'MODEL_JSON_INVALID', 'MODEL_CATALOG_INVALID', 'MODEL_REQUIREMENT_INVALID', 'MODEL_DENSITY_INVALID'].includes(error.code)
         const canRepair = attempt === 0 && repairable && 55000 - (Date.now() - started) >= 8000
         console.warn('[flower-generate] validation failed', {
           code: error.code || 'INVALID_ARTWORK', attempt: attempt + 1,
@@ -95,16 +99,25 @@ module.exports = {
         })
         if (!canRepair) throw { errCode: 'AI_INVALID_RESULT', errMsg: `生成方案未通过校验：${error.message}${attempt ? '（已自动纠正一次）' : ''}` }
         messages.push({ role: 'assistant', content: rawText })
-        const feedback = error.code === 'MODEL_CATALOG_INVALID'
-          ? `素材目录校验失败：${error.message}。请逐项核对并纠正上一条输出中所有素材ID及对应色值。只能从以下目录逐字复制ID，花叶不能使用背景或容器ID，color只能使用对应素材列出的值：${JSON.stringify(catalog.map(item => ({ id: item.id, category: item.category, colors: item.colors?.map(color => color.value) })))}。保留创作主题与有效布局，返回完整合法JSON，不要解释或使用代码围栏；materials保持40至96项，四种role均须保留。`
+        const feedback = error.code === 'MODEL_REQUIREMENT_INVALID'
+          ? `${error.message}。保留所有有效要求，替换违反排除项的花叶，颜色只能使用对应素材目录色板。只返回完整合法JSON，遵循明确限量和density，不要声称满足实际上没有满足的要求。`
+          : error.code === 'MODEL_CATALOG_INVALID'
+          ? `素材目录校验失败：${error.message}。请逐项核对并纠正上一条输出中所有素材ID及对应色值。只能从以下目录逐字复制ID，花叶不能使用背景或容器ID，color只能使用对应素材列出的值：${JSON.stringify(catalog.map(item => ({ id: item.id, category: item.category, colors: item.colors?.map(color => color.value) })))}。保留创作主题与有效布局，返回完整合法JSON，不要解释或使用代码围栏；materials保持1至96项，数量、花材、颜色和排除项必须遵循原始用户需求，不要求四种role齐全。`
           : error.code === 'MODEL_JSON_INVALID'
-          ? `${error.message}。请修正上一条输出的JSON语法，尤其检查未加引号的文字、数字中夹带的汉字、逗号、引号和括号。只返回完整合法的JSON对象，不要解释，不要使用代码围栏或补丁。保留创作主题、有效素材ID和布局设计；materials数组至少40项，建议44项，每项代表一枝独立花叶，不得复制相同坐标凑数。`
-          : `数量校验失败：实际materials数组有${error.actualCount}项。请保留创作主题、背景和容器，重新设计并返回完整JSON，materials数组必须恰好44项，每项代表一枝独立花叶。逐项计数后再输出，不要仅声称有44枝，不要复制相同坐标凑数。主花16枝、次主花10枝、配花12枝、叶材6枝；花头应有宽度、高低、自然疏密和前后层次。`
-        messages.push({ role: 'user', content: feedback })
+          ? `${error.message}。请修正上一条输出的JSON语法，尤其检查未加引号的文字、数字中夹带的汉字、逗号、引号和括号。只返回完整合法的JSON对象，不要解释，不要使用代码围栏或补丁。保留创作主题、有效素材ID和布局设计；遵循原始用户的明确限量、排除项以及density，不得复制坐标凑数。`
+          : `花量或花面校验失败：${error.message}。请保留用户原始需求、有效素材和创作主题，重新返回完整JSON。严格区分花朵数与花叶总数；未指定数量时通过同一套适配花材的自然重复达到density，不增加无关品种，不复制坐标凑数。不要求四种职责齐全。`
+        messages.push({ role: 'user', content: `${feedback}\n本次花量验收条件density=${JSON.stringify(density)}。除用户明确配方外，按target枝设计并逐项计数，花叶总数与花朵数都要满足范围；保持足够花面宽度和高低跨度。` })
       }
     }
+    // 模型请求、自动纠正和作品校验全部成功后才消耗额度。
+    await consumeDailyQuota(uniCloud.database(), this.auth.uid)
+    console.info('[flower-generate] composition accepted', {
+      density: density.kind, target: density.target, totalStems: result.artwork.materials.length,
+      flowerStems: result.artwork.materials.filter(item => item.group !== 'foliage').length,
+      silhouette: result.design.silhouette, attempts,
+    })
     return { code: 0, data: { ...result, debug: { model, elapsedMs: Date.now() - started,
-      responseId: typeof body?.id === 'string' ? body.id : '', promptVersion: 'text-bouquet-v8-scene-first', attempts,
+      responseId: typeof body?.id === 'string' ? body.id : '', promptVersion: 'text-bouquet-v10-density-validated', attempts,
       usage: { inputTokens: hasInputUsage ? usage.inputTokens : null, outputTokens: hasOutputUsage ? usage.outputTokens : null } } } }
   },
 }

@@ -41,7 +41,7 @@ function isDimmed(instance: Artwork['materials'][number]) {
 
 <template>
   <view
-    class="artwork-renderer" :class="{ 'artwork-renderer-transparent': hideBackground }"
+    class="artwork-renderer" :class="{ 'artwork-renderer-transparent': hideBackground, 'artwork-revealing': revealing }"
     :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`"
   >
     <image v-if="backgroundSource && !hideBackground" class="board-background" :src="backgroundSource" mode="scaleToFill" />
@@ -53,7 +53,7 @@ function isDimmed(instance: Artwork['materials'][number]) {
           :instance="instance"
           :material="preparedMaterials[instance.materialId]"
           :dimmed="isDimmed(instance)"
-          :reveal-delay="revealing ? Math.min(index, 24) * 90 : undefined"
+          :reveal-delay="revealing ? 900 + Math.min(index, 24) * 90 : undefined"
         />
       </StudioContainer>
     </view>
@@ -66,4 +66,11 @@ function isDimmed(instance: Artwork['materials'][number]) {
 .board-background { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .board-arrangement { position: absolute; inset: 0; }
 .board-container { position: absolute; inset: 0; width: 698px; height: 1000px; }
+.artwork-revealing .board-background { animation: scene-unfold .85s ease-out both; }
+.artwork-revealing .board-arrangement { animation: container-appear .65s ease-out .55s both; }
+@keyframes scene-unfold { from { opacity: 0; } to { opacity: 1; } }
+@keyframes container-appear { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .artwork-revealing .board-background, .artwork-revealing .board-arrangement { animation: none; }
+}
 </style>

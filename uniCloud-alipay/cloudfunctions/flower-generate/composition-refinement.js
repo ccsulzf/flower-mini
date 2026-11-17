@@ -6,7 +6,8 @@ function median(values) {
 }
 
 // 保留AI选材和构图倾向，只收拢离散花头、建立大小主次与绘制深度。
-function refineComposition(plan, materials, rolesById) {
+function refineComposition(plan, materials, rolesById, density = {}) {
+  const abundant = density.kind === 'abundant'
   const byId = new Map(materials.map(item => [item.id, item]))
   const flowers = plan.placements.filter(item => byId.get(item.id).group !== 'foliage')
   const focal = flowers.filter(item => ['main', 'secondary'].includes(rolesById.get(item.id)))
@@ -20,6 +21,12 @@ function refineComposition(plan, materials, rolesById) {
     mainCounts.set(id, (mainCounts.get(id) || 0) + 1)
   }
   const focalSpecies = [...mainCounts].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([id]) => id)
+  const originalWidth = Math.max(...flowers.map(item => item.center.x)) - Math.min(...flowers.map(item => item.center.x))
+  const originalHeight = Math.max(...flowers.map(item => item.center.y)) - Math.min(...flowers.map(item => item.center.y))
+  const pull = abundant ? 0.1 : 0.28
+  // 收拢不能把已经达到本次体量要求的花面再次压窄、压平。
+  const pullX = Math.min(pull, Math.max(0, 1 - (density.minWidth || 0) / (originalWidth || 1)))
+  const pullY = Math.min(pull, Math.max(0, 1 - (density.minHeight || 0) / (originalHeight || 1)))
   const adjustedIds = []
   const placements = plan.placements.map(item => {
     const role = rolesById.get(item.id)
@@ -28,20 +35,20 @@ function refineComposition(plan, materials, rolesById) {
     let y = item.center.y
     let scale = item.scale
     if (material.group === 'foliage') {
-      scale = Math.min(scale, 0.8)
-      x = clamp(x, center.x - 205, center.x + 205)
-      y = clamp(y, center.y - 145, center.y + 60)
+      scale = Math.min(scale, abundant ? 0.85 : 0.8)
+      x = clamp(x, center.x - (abundant ? 250 : 205), center.x + (abundant ? 250 : 205))
+      y = clamp(y, center.y - (abundant ? 170 : 145), center.y + 60)
     }
     else {
       const focalIndex = focalSpecies.indexOf(material.materialId)
       if (['main', 'secondary'].includes(role) && focalIndex !== -1) {
         // 两个互相连接的焦点簇；仍保留大部分AI位置，避免同品种完全叠在一起。
         const offset = focalSpecies.length === 1 ? 0 : focalIndex === 0 ? -48 : 48
-        x = x * 0.72 + (center.x + offset) * 0.28
-        y = y * 0.72 + (center.y + (focalIndex === 0 ? -12 : 16)) * 0.28
+        x = x * (1 - pullX) + (center.x + offset) * pullX
+        y = y * (1 - pullY) + (center.y + (focalIndex === 0 ? -12 : 16)) * pullY
       }
-      const radiusX = role === 'filler' ? 195 : 185
-      const radiusY = role === 'filler' ? 125 : 115
+      const radiusX = abundant ? (role === 'filler' ? 245 : 235) : (role === 'filler' ? 195 : 185)
+      const radiusY = abundant ? (role === 'filler' ? 165 : 155) : (role === 'filler' ? 125 : 115)
       const dx = x - center.x
       const dy = y - center.y
       const distance = Math.hypot(dx / radiusX, dy / radiusY)
@@ -50,7 +57,8 @@ function refineComposition(plan, materials, rolesById) {
         y = center.y + dy / distance
       }
       // 配花不能与主花用同样的大花头争抢面积。
-      const maxScale = role === 'filler' ? 0.8 : role === 'secondary' ? 1 : 1.15
+      const maxScale = role === 'filler' ? (abundant ? 0.85 : 0.8)
+        : role === 'secondary' ? (abundant ? 1.15 : 1) : (abundant ? 1.3 : 1.15)
       scale = Math.min(scale, maxScale)
     }
     if (Math.abs(x - item.center.x) > 0.001 || Math.abs(y - item.center.y) > 0.001 || scale !== item.scale)

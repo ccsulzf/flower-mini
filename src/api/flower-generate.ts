@@ -23,11 +23,20 @@ export interface FlowerGenerationResult {
   }
 }
 
-export function generateFlower(prompt: string, recentBackgroundIds: string[] = []) {
-  return callCloud<{ prompt: string, recentBackgroundIds: string[] }, FlowerGenerationResult>({
-    object: 'flower-generate', method: 'generate', auth: 'authenticated', operation: 'write',
-    payload: { prompt, recentBackgroundIds }, fallbackMessage: '花束生成失败',
-  })
+export async function generateFlower(prompt: string, recentBackgroundIds: string[] = []) {
+  try {
+    return await callCloud<{ prompt: string, recentBackgroundIds: string[] }, FlowerGenerationResult>({
+      object: 'flower-generate', method: 'generate', auth: 'authenticated', operation: 'write',
+      payload: { prompt, recentBackgroundIds }, fallbackMessage: '花束生成失败',
+    })
+  }
+  catch (cause) {
+    // 仅透出可操作的业务提示，SDK/模型/数据库的内部错误不直接展示给用户。
+    const code = typeof cause === 'object' && cause !== null && 'code' in cause ? cause.code : ''
+    if (code === 'DAILY_LIMIT_REACHED' || code === 'AUTH_REQUIRED')
+      throw cause
+    throw new Error('这一束暂时没能生成，请稍后重试')
+  }
 }
 
 export function getFlowerGenerationQuota() {
