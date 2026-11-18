@@ -2,7 +2,32 @@ const { parsePlan, generateLayout } = require('flower-composition')
 const { refineComposition, orderByDepth } = require('./composition-refinement')
 const { generationDensity, validateDensity } = require('./generation-density')
 const reference = value => typeof value === 'string' && /^[a-z][a-z0-9-]{0,63}$/.test(value)
-function assert(condition, message) { if (!condition) throw new Error(message) }
+function assert(condition, message) {
+  if (condition) return
+  const error = new Error(message)
+  error.code = 'MODEL_RESULT_INVALID'
+  throw error
+}
+
+function normalizePlacement(item, index, warnings, total = 1) {
+  const number = value => typeof value === 'number' ? value
+    : typeof value === 'string' && value.trim() ? Number(value) : NaN
+  const rawX = number(item.center?.x)
+  const rawY = number(item.center?.y)
+  const rawScale = number(item.scale)
+  // 只补无效的几何字段；合法选材、颜色和已有坐标不变。
+  // 黄金角分布给缺失坐标提供互不重合的落点，避免统一回落到画布中心。
+  const angle = index * 2.399963229728653
+  const radius = Math.sqrt((index + .5) / Math.max(total, index + 1))
+  const x = Number.isFinite(rawX) ? rawX : 350 + Math.cos(angle) * radius * 210
+  const y = Number.isFinite(rawY) ? rawY : 405 + Math.sin(angle) * radius * 130
+  const scale = Number.isFinite(rawScale) && rawScale > 0 ? rawScale : 1
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value))
+  const normalized = { center: { x: clamp(x, 40, 658), y: clamp(y, 180, 650) }, scale: clamp(scale, 0.65, 1.35) }
+  if (normalized.center.x !== item.center?.x || normalized.center.y !== item.center?.y || normalized.scale !== item.scale)
+    warnings.push(`第${index + 1}枝花材的坐标或缩放已归一到安全范围`)
+  return normalized
+}
 function assertCatalogReference(condition, message) {
   if (condition) return
   const error = new Error(message)
@@ -170,6 +195,7 @@ function buildArtwork(text, records, prompt = '') {
   })
   assertCatalogReference(unknownPositions.length === 0,
     `materials 第 ${unknownPositions.join('、')} 项的 materialId 不属于目录花叶；必须逐字使用 category=flower 的素材ID，不能使用花名、实例ID或自行拼接ID`)
+  const warnings = []
   const materials = data.materials.map((item, index) => {
     assert(item && typeof item === 'object', '花叶数据无效')
     const record = catalog.get(item.materialId)
@@ -177,7 +203,9 @@ function buildArtwork(text, records, prompt = '') {
     assertCatalogReference(typeof item.color === 'string' && /^#[a-f\d]{6}$/i.test(item.color)
       && record.colors?.some(color => color.value.toLowerCase() === item.color.toLowerCase()),
     `materials 第 ${index + 1} 项的 color 必须使用该花叶素材 colors[].value 中的色值`)
+    if (item.mirrored == null) item.mirrored = false
     assert(typeof item.mirrored === 'boolean', '花叶镜像信息无效')
+    Object.assign(item, normalizePlacement(item, index, warnings, data.materials.length))
     return { id: index + 1, materialId: record.id, group: record.group, color: item.color,
       geometry: record.geometry, colors: record.colors,
       transform: { anchor: { x: 350, y: 747 }, angle: 0, height: 360, scale: 1, mirrored: item.mirrored } }
@@ -193,7 +221,6 @@ function buildArtwork(text, records, prompt = '') {
     error.actualCount = actualCount
     throw error
   }
-  const warnings = []
   const roles = validateDesign(materials, data.materials, warnings)
   const source = { container: { materialId: container.id, type: container.category }, materials }
   const rawPlan = parsePlan(JSON.stringify({ changed: true, reason: data.reason,

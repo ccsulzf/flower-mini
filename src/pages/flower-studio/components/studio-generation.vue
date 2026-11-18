@@ -11,12 +11,12 @@ const props = defineProps<{
 }>()
 const emit = defineEmits<{ 'update:prompt': [value: string], 'generate': [], 'close': [] }>()
 const busy = computed(() => props.phase !== 'idle')
-const status = computed(() => props.phase === 'revealing' ? '让这一束花慢慢展开' : '正在为你搭配这一束花')
+const status = computed(() => props.phase === 'revealing' ? '这一束花，搭配好了' : '让花慢慢开')
 </script>
 
 <template>
   <view class="generation-layer" @touchmove.stop.prevent>
-    <view class="generation-shield" :class="{ 'shield-paper': !busy, 'shield-blank': busy && phase !== 'revealing' }" @tap="!busy && emit('close')" />
+    <view class="generation-shield" :class="{ 'shield-paper': !busy, 'shield-blank': busy, 'shield-revealing': phase === 'revealing' }" @tap="!busy && emit('close')" />
     <view v-if="busy" class="generation-toolbar" role="status">
       <StudioGenerationBloom :revealing="phase === 'revealing'" :message="status" />
     </view>
@@ -60,7 +60,8 @@ const status = computed(() => props.phase === 'revealing' ? '让这一束花慢�
 .generation-layer { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 16; color: var(--app-ink); }
 .generation-shield { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: transparent; }
 .shield-paper { background: rgba(var(--app-ink-rgb), .14); }
-.shield-blank { background: #f6f1e6; }
+.shield-blank { background: rgba(246, 241, 230, .95); opacity: 1; transition: opacity 1.2s ease; }
+.shield-revealing { opacity: 0; }
 .generation-sheet { position: absolute; right: 38rpx; bottom: 30rpx; bottom: calc(30rpx + env(safe-area-inset-bottom)); left: 38rpx; padding: 32rpx 30rpx 28rpx; border: 1rpx solid $studio-border; border-radius: 3rpx 7rpx 4rpx 5rpx; background: $studio-panel; box-shadow: 4rpx 6rpx 0 var(--app-surfaceMuted), 6rpx 8rpx 0 rgba(var(--app-ink-rgb), .16); }
 .generation-sheet::before { position: absolute; top: 5rpx; right: 5rpx; bottom: -3rpx; left: -4rpx; border: 1rpx solid rgba(var(--app-ink-rgb), .14); border-radius: 7rpx 2rpx 5rpx 3rpx; content: ''; pointer-events: none; transform: rotate(-.3deg); }
 .sheet-tape { position: absolute; top: -12rpx; left: 46rpx; width: 92rpx; height: 25rpx; border-right: 1rpx solid rgba(var(--app-inkMuted-rgb), .08); border-left: 1rpx solid rgba(var(--app-inkMuted-rgb), .08); background: rgba(var(--app-line-rgb), .44); transform: rotate(-4deg); pointer-events: none; }
@@ -83,5 +84,5 @@ const status = computed(() => props.phase === 'revealing' ? '让这一束花慢�
 .submit-disabled { opacity: .65; }
 .generation-submit[disabled] { background: transparent; color: var(--app-brandStrong); }
 .sheet-close::after, .generation-submit::after { border: 0; }
-.generation-toolbar { position: absolute; top: 46%; right: 38rpx; left: 38rpx; height: 430rpx; transform: translateY(-50%); pointer-events: none; }
+.generation-toolbar { position: absolute; top: 48%; right: 38rpx; left: 38rpx; height: 610rpx; transform: translateY(-50%); pointer-events: none; }
 </style>

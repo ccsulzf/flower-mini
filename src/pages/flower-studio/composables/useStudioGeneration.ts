@@ -42,6 +42,7 @@ export function useStudioGeneration() {
     }
     const request = ++version
     const before = JSON.stringify(store.snapshot())
+    const startedAt = Date.now()
     phase.value = 'thinking'
     try {
       await waitForAppAuthReady()
@@ -68,10 +69,17 @@ export function useStudioGeneration() {
         throw new Error('账号已变化，请重新生成')
       if (request !== version)
         return
+      // 快速返回时也让花枝完成聚拢；取消仍会阻止后续揭晓。
+      const remaining = 4000 - (Date.now() - startedAt)
+      if (remaining > 0)
+        await new Promise<void>(resolve => setTimeout(resolve, remaining))
+      if (request !== version)
+        return
       preview.value = next
       phase.value = 'revealing'
       await new Promise<void>((resolve) => {
-        const timer = setTimeout(done, 1850 + Math.min(next.materials.length - 1, 24) * 90)
+        // 等蒙版淡出后逐枝进场；最后一枝的 800ms 动画结束再恢复操作。
+        const timer = setTimeout(done, 2200 + (next.materials.length - 1) * 120)
         function done() {
           clearTimeout(timer)
           finishReveal = undefined

@@ -53,7 +53,7 @@ function isDimmed(instance: Artwork['materials'][number]) {
           :instance="instance"
           :material="preparedMaterials[instance.materialId]"
           :dimmed="isDimmed(instance)"
-          :reveal-delay="revealing ? 900 + Math.min(index, 24) * 90 : undefined"
+          :reveal-delay="revealing ? 1300 + index * 120 : undefined"
         />
       </StudioContainer>
     </view>

@@ -90,16 +90,18 @@ module.exports = {
         break
       }
       catch (error) {
-        const repairable = ['STEM_COUNT_INVALID', 'MODEL_JSON_INVALID', 'MODEL_CATALOG_INVALID', 'MODEL_REQUIREMENT_INVALID', 'MODEL_DENSITY_INVALID'].includes(error.code)
+        const repairable = ['MODEL_RESULT_INVALID', 'STEM_COUNT_INVALID', 'MODEL_JSON_INVALID', 'MODEL_CATALOG_INVALID', 'MODEL_REQUIREMENT_INVALID', 'MODEL_DENSITY_INVALID'].includes(error.code)
         const canRepair = attempt === 0 && repairable && 55000 - (Date.now() - started) >= 8000
         console.warn('[flower-generate] validation failed', {
-          code: error.code || 'INVALID_ARTWORK', attempt: attempt + 1,
+          code: error.code || 'INVALID_ARTWORK', message: error.message, attempt: attempt + 1,
           position: error.position ?? null, actualCount: error.actualCount ?? null,
           outputLength: typeof rawText === 'string' ? rawText.length : 0, willRepair: canRepair,
         })
-        if (!canRepair) throw { errCode: 'AI_INVALID_RESULT', errMsg: `生成方案未通过校验：${error.message}${attempt ? '（已自动纠正一次）' : ''}` }
+        if (!canRepair) throw { errCode: 'AI_INVALID_RESULT', errMsg: '这一束暂时没能搭配好，请再试一次，本次不扣生成次数' }
         messages.push({ role: 'assistant', content: rawText })
-        const feedback = error.code === 'MODEL_REQUIREMENT_INVALID'
+        const feedback = error.code === 'MODEL_RESULT_INVALID'
+          ? `生成数据格式或几何无效：${error.message}。逐项补全并纠正materials：center.x和center.y必须为有限数字，x=40..658、y=180..650，scale为0.65..1.35的数字，mirrored为布尔值。保留用户要求与合法选材，只返回完整合法JSON。`
+          : error.code === 'MODEL_REQUIREMENT_INVALID'
           ? `${error.message}。保留所有有效要求，替换违反排除项的花叶，颜色只能使用对应素材目录色板。只返回完整合法JSON，遵循明确限量和density，不要声称满足实际上没有满足的要求。`
           : error.code === 'MODEL_CATALOG_INVALID'
           ? `素材目录校验失败：${error.message}。请逐项核对并纠正上一条输出中所有素材ID及对应色值。只能从以下目录逐字复制ID，花叶不能使用背景或容器ID，color只能使用对应素材列出的值：${JSON.stringify(catalog.map(item => ({ id: item.id, category: item.category, colors: item.colors?.map(color => color.value) })))}。保留创作主题与有效布局，返回完整合法JSON，不要解释或使用代码围栏；materials保持1至96项，数量、花材、颜色和排除项必须遵循原始用户需求，不要求四种role齐全。`

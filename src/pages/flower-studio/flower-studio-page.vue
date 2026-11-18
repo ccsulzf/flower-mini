@@ -681,7 +681,7 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
 
 <template>
   <view class="flower-studio studio-light" style="height: 100vh;">
-    <view v-show="!generationBusy || generationPhase === 'revealing'" class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
+    <view class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
       <view class="studio-artwork" :style="layout.workspaceStyle">
         <view class="studio-board-scale" :style="layout.boardStyle">
           <FlowerBoard :artwork="generationPreview || artwork" :revealing="generationPhase === 'revealing'" :hide-empty="generationBusy" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" @start="startDrag" @move="moveDrag" @end="endDrag" @clear="closeFlowerTools" />
