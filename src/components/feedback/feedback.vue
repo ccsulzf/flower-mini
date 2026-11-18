@@ -75,35 +75,35 @@ onBeforeUnmount(() => {
   font-weight: 700;
   white-space: nowrap;
   animation: cover-toast-fade 1.65s ease forwards;
-  box-shadow: 0 12rpx 28rpx rgba(63, 70, 61, 0.12);
+  box-shadow: 0 12rpx 28rpx rgba(var(--app-ink-rgb), 0.12);
 }
 
 .cover-toast-success {
-  color: #596451;
-  background: #eef1e9;
-  border: 2rpx solid #d2dac9;
+  color: var(--app-brandStrong);
+  background: var(--app-brandSoft);
+  border: 2rpx solid var(--app-sageSoft);
 }
 
 .cover-toast-warning {
-  color: #84642f;
-  background: #fbf1dc;
-  border: 2rpx solid #ead6aa;
+  color: var(--app-ink);
+  background: var(--app-surfaceMuted);
+  border: 2rpx solid var(--app-line);
 }
 
 .cover-toast-error {
-  color: #8e4f52;
-  background: #f7e9e7;
-  border: 2rpx solid #e8c9c6;
+  color: var(--app-ink);
+  background: var(--app-dangerSoft);
+  border: 2rpx solid var(--app-line);
 }
 
-.cover-toast-title { color: #3f463d; }
+.cover-toast-title { color: var(--app-ink); }
 
 .cover-toast-message {
   padding: 6rpx 14rpx;
   border-radius: 16rpx;
-  background: rgba(255, 253, 247, 0.98);
-  color: #596451;
-  box-shadow: inset 0 0 0 2rpx rgba(255, 255, 255, 0.72);
+  background: rgba(var(--app-surface-rgb), 0.98);
+  color: var(--app-brandStrong);
+  box-shadow: inset 0 0 0 2rpx rgba(var(--app-surface-rgb), 0.72);
 }
 
 @keyframes cover-toast-fade {

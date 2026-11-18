@@ -1,0 +1,14 @@
+{
+  "id": "bouquet-wrap-cream",
+  "category": "bouquet",
+  "name": "奶油叠纸",
+  "introduction": "暖奶油色纸张斜展围合，低弧前口与柔软缎带自然收束。",
+  "sortOrder": 200,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

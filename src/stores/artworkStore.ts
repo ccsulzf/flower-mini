@@ -4,6 +4,7 @@ import { computed, reactive, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { constrainMaterialTransform, studioMetrics } from '@/utils/flower/arrangement.cjs'
 import { ArtworkHistory, copyArtwork, copyContainerLayouts } from '@/utils/flower/artwork-history'
+import { fitBouquetTransform } from '@/utils/flower/bouquet-boundary.cjs'
 import { vasePlacement } from '@/utils/flower/material-render'
 
 type MaterialResolver = (id: string) => CachedMaterial | undefined
@@ -107,7 +108,7 @@ function artworkState() {
       scale: 1,
       mirrored: false,
     }
-    return constrainMaterialTransform(transform, materialGeometry(material), mouth)
+    return fitBouquetTransform(constrainMaterialTransform(transform, materialGeometry(material), mouth), material, containerMaterial)
   }
 
   function addMaterial(material: CachedMaterial, containerMaterial: CachedMaterial): number | null {
@@ -264,7 +265,7 @@ function artworkState() {
     const material = getMaterial(id)
     if (!material || editId !== id || !editSnapshot)
       return false
-    const next = constrainMaterialTransform(transform, materialGeometry(sourceMaterial), mouthBounds(containerMaterial))
+    const next = fitBouquetTransform(constrainMaterialTransform(transform, materialGeometry(sourceMaterial), mouthBounds(containerMaterial)), sourceMaterial, containerMaterial)
     if (JSON.stringify(next) === JSON.stringify(material.transform))
       return false
     material.transform = next

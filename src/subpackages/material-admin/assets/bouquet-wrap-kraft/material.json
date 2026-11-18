@@ -1,0 +1,14 @@
+{
+  "id": "bouquet-wrap-kraft",
+  "category": "bouquet",
+  "name": "牛皮卷包",
+  "introduction": "一张暖牛皮纸自然卷成斜口，低前沿与细麻绳保留朴素的手作感。",
+  "sortOrder": 201,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

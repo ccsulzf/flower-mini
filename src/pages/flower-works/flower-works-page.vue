@@ -7,7 +7,7 @@ import { useDevice } from '@/hooks/useDevice'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 
-definePage({ layout: 'default', style: { navigationBarTitleText: '我的作品', navigationBarBackgroundColor: '#f6f3eb', backgroundColor: '#f6f3eb' } })
+definePage({ layout: 'default', style: { navigationBarTitleText: '我的作品', } })
 const works = useFlowerWorksStore()
 const { deviceWidth } = useDevice()
 const deletingId = ref('')
@@ -162,12 +162,12 @@ function remove(work: SavedFlowerWorkSummary) {
   box-sizing: border-box;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 18% 8%, rgba(193, 171, 139, .07) 0 2rpx, transparent 3rpx),
-    radial-gradient(circle at 72% 28%, rgba(193, 171, 139, .05) 0 2rpx, transparent 3rpx),
-    #f8f3e9;
+    radial-gradient(circle at 18% 8%, rgba(var(--app-subtle-rgb), .07) 0 2rpx, transparent 3rpx),
+    radial-gradient(circle at 72% 28%, rgba(var(--app-subtle-rgb), .05) 0 2rpx, transparent 3rpx),
+    var(--app-page);
   background-size: 34rpx 34rpx, 46rpx 46rpx, auto;
   padding: 34rpx 28rpx calc(42rpx + env(safe-area-inset-bottom));
-  color: #514a40;
+  color: var(--app-ink);
 }
 
 .works-heading {
@@ -187,7 +187,7 @@ function remove(work: SavedFlowerWorkSummary) {
   left: 4rpx;
   height: 12rpx;
   transform: rotate(-.8deg);
-  border-top: 2rpx solid rgba(112, 91, 68, .48);
+  border-top: 2rpx solid rgba(var(--app-ink-rgb), .48);
   border-radius: 50%;
   content: '';
 }
@@ -206,14 +206,14 @@ function remove(work: SavedFlowerWorkSummary) {
 
 .works-kicker {
   margin-bottom: 3rpx;
-  color: #9b846b;
+  color: var(--app-danger);
   font-family: Georgia, serif;
   font-size: 16rpx;
   letter-spacing: 2rpx;
 }
 
 .works-subtitle {
-  color: #776b5d;
+  color: var(--app-inkMuted);
   font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
   font-size: 22rpx;
 }
@@ -232,7 +232,7 @@ function remove(work: SavedFlowerWorkSummary) {
   left: 22rpx;
   width: 2rpx;
   height: 60rpx;
-  background: #829178;
+  background: var(--app-sage);
 }
 
 .sprig-leaf {
@@ -240,7 +240,7 @@ function remove(work: SavedFlowerWorkSummary) {
   width: 24rpx;
   height: 13rpx;
   border-radius: 100% 0 100% 0;
-  background: #a4af91;
+  background: var(--app-sage);
 }
 
 .sprig-leaf-one { top: 15rpx; left: 1rpx; transform: rotate(28deg); }
@@ -254,8 +254,8 @@ function remove(work: SavedFlowerWorkSummary) {
   justify-content: center;
   gap: 7rpx;
   border-radius: 18rpx 12rpx 21rpx 14rpx;
-  background: #e3e9d7;
-  box-shadow: 4rpx 5rpx 0 rgba(105, 88, 68, .08);
+  background: var(--app-sageSoft);
+  box-shadow: 4rpx 5rpx 0 rgba(var(--app-ink-rgb), .08);
   font-size: 23rpx;
   line-height: 66rpx;
   flex: none;
@@ -268,7 +268,7 @@ function remove(work: SavedFlowerWorkSummary) {
 
 .creation-note {
   margin: 0 4rpx 28rpx;
-  color: #8b7b69;
+  color: var(--app-inkMuted);
   font-size: 24rpx;
 }
 
@@ -282,10 +282,10 @@ function remove(work: SavedFlowerWorkSummary) {
 .work-card {
   position: relative;
   overflow: hidden;
-  border: 2rpx solid rgba(113, 94, 70, .36);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .36);
   border-radius: 15rpx 23rpx 18rpx 27rpx;
-  background: rgba(255, 253, 246, .94);
-  box-shadow: 7rpx 10rpx 0 rgba(101, 83, 61, .055), 0 15rpx 28rpx rgba(88, 74, 55, .065);
+  background: rgba(var(--app-page-rgb), .94);
+  box-shadow: 7rpx 10rpx 0 rgba(var(--app-ink-rgb), .055), 0 15rpx 28rpx rgba(var(--app-ink-rgb), .065);
   clip-path: polygon(.7% 1.5%, 98.8% .3%, 100% 97.5%, 96.8% 100%, 1.2% 98.7%, 0 3%);
 }
 
@@ -300,13 +300,13 @@ function remove(work: SavedFlowerWorkSummary) {
   width: 76rpx;
   height: 27rpx;
   transform: translateX(-50%) rotate(-4deg);
-  background: rgba(228, 207, 175, .76);
+  background: rgba(var(--app-line-rgb), .76);
   pointer-events: none;
 }
 
 .work-card-even .work-tape {
   transform: translateX(-50%) rotate(5deg);
-  background: rgba(203, 210, 175, .76);
+  background: rgba(var(--app-sage-rgb), .76);
 }
 
 .work-cover {
@@ -314,9 +314,9 @@ function remove(work: SavedFlowerWorkSummary) {
   height: 420rpx;
   margin: 12rpx 12rpx 0;
   overflow: hidden;
-  border: 1rpx solid rgba(153, 138, 113, .17);
+  border: 1rpx solid rgba(var(--app-inkMuted-rgb), .17);
   border-radius: 10rpx 16rpx 12rpx 19rpx;
-  background: #f2f0e7;
+  background: var(--app-surfaceMuted);
 }
 
 .work-cover-hitarea {
@@ -328,7 +328,7 @@ function remove(work: SavedFlowerWorkSummary) {
 
 .work-title {
   padding: 18rpx 18rpx 0;
-  color: #5f5345;
+  color: var(--app-ink);
   font-family: Georgia, 'Songti SC', 'STSong', serif;
   font-size: 27rpx;
   font-weight: 500;
@@ -343,7 +343,7 @@ function remove(work: SavedFlowerWorkSummary) {
   height: 8rpx;
   margin: 4rpx 0 0 18rpx;
   transform: rotate(-1deg);
-  border-top: 2rpx solid rgba(111, 91, 70, .38);
+  border-top: 2rpx solid rgba(var(--app-ink-rgb), .38);
   border-radius: 50%;
 }
 
@@ -353,7 +353,7 @@ function remove(work: SavedFlowerWorkSummary) {
   align-items: center;
   padding: 1rpx 16rpx 16rpx;
   gap: 6rpx;
-  color: #8a7a68;
+  color: var(--app-inkMuted);
   font-size: 20rpx;
 }
 
@@ -363,7 +363,7 @@ function remove(work: SavedFlowerWorkSummary) {
   justify-content: flex-end;
   gap: 10rpx;
   margin-top: 4rpx;
-  border-top: 1rpx dashed rgba(119, 101, 78, .2);
+  border-top: 1rpx dashed rgba(var(--app-ink-rgb), .2);
   padding-top: 3rpx;
 }
 
@@ -372,7 +372,7 @@ function remove(work: SavedFlowerWorkSummary) {
   margin: 0;
   padding: 0 10rpx;
   font-size: 24rpx;
-  color: #6f7b66;
+  color: var(--app-brandStrong);
   background: transparent;
   line-height: 56rpx;
 }
@@ -390,7 +390,7 @@ function remove(work: SavedFlowerWorkSummary) {
   margin: 0;
   padding: 0 10rpx;
   font-size: 22rpx;
-  color: #995c50;
+  color: var(--app-danger);
   background: transparent;
   line-height: 52rpx;
 }
@@ -407,19 +407,19 @@ function remove(work: SavedFlowerWorkSummary) {
   margin: 38rpx 14rpx;
   padding: 92rpx 42rpx;
   transform: rotate(-.5deg);
-  border: 2rpx dashed rgba(125, 109, 87, .28);
-  background: rgba(255, 253, 246, .55);
+  border: 2rpx dashed rgba(var(--app-inkMuted-rgb), .28);
+  background: rgba(var(--app-page-rgb), .55);
   line-height: 1.8;
   text-align: center;
   font-size: 28rpx;
-  color: #827665;
+  color: var(--app-inkMuted);
   font-family: 'Kaiti SC', 'STKaiti', 'Songti SC', serif;
 }
 
 .works-state {
   padding: 30rpx;
   text-align: center;
-  color: #7c8474;
+  color: var(--app-brandStrong);
   font-size: 24rpx;
 }
 

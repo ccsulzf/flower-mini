@@ -86,7 +86,7 @@ function makeCard() {
   justify-content: center;
   padding: 40rpx;
   box-sizing: border-box;
-  background: rgba(70, 61, 48, .42);
+  background: rgba(var(--app-ink-rgb), .42);
 }
 
 .daily-flower-dialog {
@@ -101,7 +101,7 @@ function makeCard() {
   border-radius: 6rpx 14rpx 8rpx 11rpx;
   background: $studio-paper;
   color: $studio-ink;
-  box-shadow: 5rpx 7rpx 0 #d8cdb9, 8rpx 10rpx 0 rgba(79, 64, 45, .12);
+  box-shadow: 5rpx 7rpx 0 var(--app-line), 8rpx 10rpx 0 rgba(var(--app-ink-rgb), .12);
 }
 
 .daily-flower-close {
@@ -161,7 +161,7 @@ function makeCard() {
   width: 102rpx;
   height: 28rpx;
   margin-left: -51rpx;
-  background: rgba(224, 207, 166, .64);
+  background: rgba(var(--app-line-rgb), .64);
   transform: rotate(-4deg);
   pointer-events: none;
 }
@@ -176,7 +176,7 @@ function makeCard() {
 .daily-flower-description {
   margin: 22rpx 6rpx 24rpx;
   padding-left: 16rpx;
-  border-left: 3rpx solid #c4cdb8;
+  border-left: 3rpx solid var(--app-sage);
   color: $studio-muted;
   font-family: STKaiti, KaiTi, serif;
   font-size: 25rpx;
@@ -192,7 +192,7 @@ function makeCard() {
   min-width: 0;
   height: 84rpx;
   box-sizing: border-box;
-  border: 2rpx solid rgba(91, 74, 57, .55);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .55);
   border-radius: 17rpx 255rpx 19rpx 225rpx / 225rpx 19rpx 255rpx 17rpx;
   box-shadow: 1rpx 3rpx 0 $studio-shadow;
 
@@ -202,7 +202,7 @@ function makeCard() {
     right: 2rpx;
     bottom: 2rpx;
     left: -3rpx;
-    border: 1rpx solid rgba(91, 74, 57, .32);
+    border: 1rpx solid rgba(var(--app-ink-rgb), .32);
     border-radius: 255rpx 16rpx 225rpx 20rpx / 19rpx 225rpx 23rpx 255rpx;
     content: '';
     transform: rotate(-.7deg);
@@ -234,5 +234,5 @@ function makeCard() {
 
 .daily-flower-button-pressed { transform: translateY(3rpx); }
 .daily-flower-secondary { background: $studio-secondary; color: $studio-ink; }
-.daily-flower-primary { background: #87977d; color: $studio-panel; }
+.daily-flower-primary { background: var(--app-brand); color: $studio-panel; }
 </style>

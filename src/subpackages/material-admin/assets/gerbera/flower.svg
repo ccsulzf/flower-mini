@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><title>非洲菊</title><desc>保留非洲菊的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs>
     <!-- 花瓣丝绒反光渐变（通透亮丽，杜绝灰脏） -->
     <linearGradient id="gerbera-sheen" x1="0" y1="0" x2="1" y2="0">
@@ -24,18 +24,18 @@
 
     <!-- 1. 外层长花瓣模型 (伸展舒展、端部微凹切痕) -->
     <g id="gerbera-petal-long">
-      <path d="M52.5 53 C49.5 39 50.8 12.0 53.8 8.0 C55.5 6.0 57.5 6.2 59.2 8.5 C61.2 12.5 60.5 39 57.5 53 Z" fill="__COLOR__"/>
-      <path d="M52.5 53 C49.5 39 50.8 12.0 53.8 8.0 C55.5 6.0 57.5 6.2 59.2 8.5 C61.2 12.5 60.5 39 57.5 53 Z" fill="url(#gerbera-tip)"/>
-      <path d="M52.5 53 C49.5 39 50.8 12.0 53.8 8.0 C55.5 6.0 57.5 6.2 59.2 8.5 C61.2 12.5 60.5 39 57.5 53 Z" fill="url(#gerbera-sheen)"/>
+      <path d="M52.5 53 C49.5 39 50.8 12.0 53.8 8.0 C54.8 5.5 56.3 5.8 56.6 7Q58 5.9 59.2 8.5 C61.2 12.5 60.5 39 57.5 53 Z" fill="__COLOR__"/>
+      <path d="M52.5 53 C49.5 39 50.8 12.0 53.8 8.0 C54.8 5.5 56.3 5.8 56.6 7Q58 5.9 59.2 8.5 C61.2 12.5 60.5 39 57.5 53 Z" fill="url(#gerbera-tip)"/>
+      <path d="M52.5 53 C49.5 39 50.8 12.0 53.8 8.0 C54.8 5.5 56.3 5.8 56.6 7Q58 5.9 59.2 8.5 C61.2 12.5 60.5 39 57.5 53 Z" fill="url(#gerbera-sheen)"/>
       <!-- 中央微纵脉 -->
       <path d="M55.0 50 C54.5 32 54.5 18 55.5 10" fill="none" stroke="#ffffff" stroke-width="0.38" opacity="0.360"/>
     </g>
 
     <!-- 2. 内层短花瓣模型 (挺拔护心、尺寸约缩短 10px) -->
     <g id="gerbera-petal-short">
-      <path d="M53.0 53 C50.5 41 51.5 21.0 54.0 17.5 C55.4 15.8 57.2 16.0 58.6 18.0 C60.2 21.5 59.5 41 57.0 53 Z" fill="__COLOR__"/>
-      <path d="M53.0 53 C50.5 41 51.5 21.0 54.0 17.5 C55.4 15.8 57.2 16.0 58.6 18.0 C60.2 21.5 59.5 41 57.0 53 Z" fill="url(#gerbera-tip)"/>
-      <path d="M53.0 53 C50.5 41 51.5 21.0 54.0 17.5 C55.4 15.8 57.2 16.0 58.6 18.0 C60.2 21.5 59.5 41 57.0 53 Z" fill="url(#gerbera-sheen)"/>
+      <path d="M53.0 53 C50.5 41 51.5 21.0 54.0 17.5 C55 15.4 56 15.5 56.5 16.7Q57.8 15.8 58.6 18.0 C60.2 21.5 59.5 41 57.0 53 Z" fill="__COLOR__"/>
+      <path d="M53.0 53 C50.5 41 51.5 21.0 54.0 17.5 C55 15.4 56 15.5 56.5 16.7Q57.8 15.8 58.6 18.0 C60.2 21.5 59.5 41 57.0 53 Z" fill="url(#gerbera-tip)"/>
+      <path d="M53.0 53 C50.5 41 51.5 21.0 54.0 17.5 C55 15.4 56 15.5 56.5 16.7Q57.8 15.8 58.6 18.0 C60.2 21.5 59.5 41 57.0 53 Z" fill="url(#gerbera-sheen)"/>
       <path d="M55.0 50 C54.5 36 54.5 26 55.5 19" fill="none" stroke="#ffffff" stroke-width="0.32" opacity="0.360"/>
     </g>
   </defs>

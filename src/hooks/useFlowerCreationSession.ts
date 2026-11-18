@@ -17,11 +17,22 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
   const draftReadFailed = ref(false)
   let owner = ''
   let baselineSnapshot = ''
+  let saveTimer: ReturnType<typeof setTimeout> | undefined
+  function cancelScheduledSave() {
+    if (saveTimer !== undefined) {
+      clearTimeout(saveTimer)
+      saveTimer = undefined
+    }
+  }
+  function contentSnapshot(draft: CreationDraft) {
+    return JSON.stringify({ artwork: draft.artwork, card: draft.card, workId: draft.workId })
+  }
   function snapshot(): CreationDraft {
-    return { artwork: store.snapshot(), card: { ...card.value }, updatedAt: Date.now(), ...(workId.value ? { workId: workId.value } : {}) }
+    return { artwork: store.snapshot(), card: { ...card.value }, updatedAt: Date.now(), ...(workId.value ? { workId: workId.value } : {}), hasUnsavedChanges: hasUnsavedChanges.value }
   }
   function refreshBaseline() {
-    baselineSnapshot = JSON.stringify(snapshot())
+    cancelScheduledSave()
+    baselineSnapshot = contentSnapshot(snapshot())
     dirty.value = false
     hasUnsavedChanges.value = false
   }
@@ -62,22 +73,25 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     }
   }
   function apply(draft: CreationDraft) {
+    cancelScheduledSave()
     const value = validateDraft(draft)
     store.initialize(value.artwork)
     card.value = value.card
     workId.value = value.workId
-    baselineSnapshot = JSON.stringify(snapshot())
+    baselineSnapshot = contentSnapshot(snapshot())
     dirty.value = false
     hasUnsavedChanges.value = false
   }
   function continueDraft() {
     if (!pendingDraft.value)
       return
+    // 旧草稿缺少标记时保留离开提示，避免静默丢弃尚未保存的修改。
+    const unsaved = pendingDraft.value.hasUnsavedChanges ?? true
     apply(pendingDraft.value)
     pendingDraft.value = null
     view.value = 'edit'
     dirty.value = false
-    hasUnsavedChanges.value = false
+    hasUnsavedChanges.value = unsaved
   }
   function startFreshDraft() {
     // 恢复失败不删除原草稿，后续实际编辑时才写入新草稿。
@@ -91,6 +105,7 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     refreshBaseline()
   }
   function restart() {
+    cancelScheduledSave()
     // Failed removal leaves the current session recoverable and never reports success.
     if (owner) {
       try {
@@ -111,7 +126,7 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     workId.value = undefined
     pendingDraft.value = null
     view.value = 'edit'
-    baselineSnapshot = JSON.stringify(snapshot())
+    baselineSnapshot = contentSnapshot(snapshot())
     dirty.value = false
     hasUnsavedChanges.value = false
     readonly.value = false
@@ -120,6 +135,7 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     return true
   }
   function discard() {
+    cancelScheduledSave()
     // Leaving an existing work must not replace the live store with the
     // intentionally incomplete restart placeholder. Page watchers and hide
     // hooks may otherwise try to validate that placeholder as an artwork.
@@ -136,7 +152,7 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     workId.value = undefined
     pendingDraft.value = null
     view.value = 'edit'
-    baselineSnapshot = JSON.stringify(snapshot())
+    baselineSnapshot = contentSnapshot(snapshot())
     dirty.value = false
     hasUnsavedChanges.value = false
     readonly.value = false
@@ -145,14 +161,20 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
     return true
   }
   function flushDraft() {
+    cancelScheduledSave()
     if (!owner || !dirty.value || readonly.value || pendingDraft.value || draftReadFailed.value)
       return
     try {
       const draft = snapshot()
+      const current = contentSnapshot(draft)
+      if (current === baselineSnapshot) {
+        dirty.value = false
+        return
+      }
       writeDraft(owner, draft)
       console.info('[flower-draft] saved', { materials: draft.artwork.materials.length })
       dirty.value = false
-      baselineSnapshot = JSON.stringify(snapshot())
+      baselineSnapshot = current
       storageError.value = ''
     }
     catch (error) {
@@ -165,32 +187,41 @@ export function useFlowerCreationSession(store: ReturnType<typeof useArtworkStor
       console.warn('[flower-draft] save blocked', { initialized: initialized.value, readonly: readonly.value, pendingDraft: Boolean(pendingDraft.value), draftReadFailed: draftReadFailed.value })
       return
     }
-    const current = JSON.stringify(snapshot())
-    const changed = current !== baselineSnapshot
-    dirty.value = changed
+    dirty.value = true
     hasUnsavedChanges.value = true
-    // 重新编译或进程被终止时不保证触发退出钩子，编辑后立即持久化。
-    flushDraft()
+    // 连续编辑合并保存，拖动结束和页面退出时由调用方立即补存。
+    cancelScheduledSave()
+    saveTimer = setTimeout(flushDraft, 400)
   }
   function openWork(work: SavedFlowerWork) {
+    cancelScheduledSave()
     readonly.value = true
     dirty.value = false
     hasUnsavedChanges.value = false
     pendingDraft.value = null
     apply({ ...work.draft, workId: work.id })
-    baselineSnapshot = JSON.stringify(snapshot())
+    baselineSnapshot = contentSnapshot(snapshot())
     view.value = 'artwork'
   }
   function editWork() {
     readonly.value = false
     view.value = 'edit'
     refreshBaseline()
+    // 编译器刷新不保证触发退出钩子，进入编辑时就保存作品身份。
+    try {
+      writeDraft(owner, snapshot())
+      storageError.value = ''
+    }
+    catch (error) {
+      storageError.value = (error as Error).message
+    }
   }
   function commitCard(text: FlowerCardText) {
     card.value = validateCard(text)
     markEdited()
   }
   function saved(work?: Pick<SavedFlowerWork, 'id'>, keepEditing = false) {
+    cancelScheduledSave()
     if (work) {
       workId.value = work.id
       dirty.value = false

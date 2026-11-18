@@ -11,6 +11,7 @@ const error = ref('')
 const materialAdminEnabled = __MATERIAL_ADMIN__
 const dailyFlowerAdminEnabled = __DAILY_FLOWER_ADMIN__
 const artworkOpsEnabled = __ARTWORK_OPS__
+const demoEnabled = import.meta.env.DEV
 function openMaterialAdmin() {
   if (__MATERIAL_ADMIN__) uni.navigateTo({ url: '/subpackages/material-admin/material-admin-page' })
 }
@@ -29,6 +30,21 @@ function openFlowerStudio() {
 
 function openFlowerJson() {
   uni.navigateTo({ url: '/pages/flower-json/flower-json-page' })
+}
+
+function openFlowerAiDemo() {
+  if (import.meta.env.DEV)
+    uni.navigateTo({ url: '/pages/flower-ai-demo/flower-ai-demo-page' })
+}
+
+function openFlowerGenerateDemo() {
+  if (import.meta.env.DEV)
+    uni.navigateTo({ url: '/pages/flower-generate-demo/flower-generate-demo-page' })
+}
+
+function openBouquetWrapDemo() {
+  if (import.meta.env.DEV)
+    uni.navigateTo({ url: '/pages/bouquet-wrap-demo/bouquet-wrap-demo-page' })
 }
 
 function openFlowerRenderTest() {
@@ -96,6 +112,28 @@ onShow(() => checkAuth())
         导入花束
       </button>
     </view>
+    <view v-if="demoEnabled" class="app-card section">
+      <view class="app-section-title">
+        一句话生花
+      </view>
+      <view class="app-section-desc">
+        说说想送给谁，或最近发生的一件事，让这一刻开成花。
+      </view>
+      <button class="app-secondary-btn" @click="openFlowerGenerateDemo">
+        打开文字生成 Demo
+      </button>
+    </view>
+    <view v-if="demoEnabled" class="app-card section">
+      <view class="app-section-title">
+        花束搭配调试
+      </view>
+      <view class="app-section-desc">
+        用单枝、三枝或当前作品，看看花束整理后的样子。
+      </view>
+      <button class="app-secondary-btn" @click="openFlowerAiDemo">
+        打开搭配调试页
+      </button>
+    </view>
     <view class="app-card section">
       <view class="app-section-title">
         渲染路线验证
@@ -105,6 +143,17 @@ onShow(() => checkAuth())
       </view>
       <button class="app-secondary-btn" @click="openFlowerRenderTest">
         打开验证页
+      </button>
+    </view>
+    <view v-if="demoEnabled" class="app-card section">
+      <view class="app-section-title">
+        花束包装实验
+      </view>
+      <view class="app-section-desc">
+        试试包装纸配色、开口和花枝展开效果。
+      </view>
+      <button class="app-secondary-btn" @click="openBouquetWrapDemo">
+        试试花束包装
       </button>
     </view>
     <view v-if="materialAdminEnabled" class="app-card section">

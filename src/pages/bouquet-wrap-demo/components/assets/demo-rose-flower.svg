@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><!-- adaptive-petal-outline -->
+  <title>玫瑰花头</title>
+  <desc>微侧的饱满玫瑰，偏心卷瓣逐层向外舒展，花颈与独立花茎自然连接。</desc>
+  <defs>
+    <linearGradient id="rose-petal-light" x1="0" y1="0" x2=".3" y2="1">
+      <stop stop-color="#fff6e9" stop-opacity=".28"/>
+      <stop offset=".55" stop-color="#fff6e9" stop-opacity=".04"/>
+      <stop offset="1" stop-color="#75434b" stop-opacity=".13"/>
+    </linearGradient>
+  </defs>
+  <!-- The calyx and short neck meet the unchanged stem at (55, 90). -->
+  <path d="M53.8 90C54 85 51 82 48 78L59 77C56 83 56.1 87 56.2 90Z" fill="#748668"/>
+  <path d="M54.7 89C54.9 85 54.4 82 53 80" fill="none" stroke="#bdc5a0" stroke-width=".65"/>
+  <path d="M54 84C44 83 36 77 31 69C41 74 48 75 55 77C65 74 73 70 80 63C76 75 67 83 54 84Z" fill="#899b73"/>
+  <path d="M53 82C47 81 40 82 35 85C40 79 45 77 49 77M56 81C65 81 72 77 77 74C73 81 66 85 57 85Z" fill="#a6b68b"/>
+  <!-- Broad, uneven rear petals establish a shallow three-quarter cup. -->
+  <g fill="__COLOR__" stroke="#9d4b4f" stroke-opacity=".5" stroke-width=".6" stroke-linejoin="round">
+    <path d="M23 51C17 45 18 34 25 30C30 27 35 29 39 24C45 17 54 16 61 21C69 18 78 21 81 29C91 30 95 39 89 48C93 58 82 70 72 74L40 77C29 73 20 64 23 51Z"/>
+    <path d="M23 51C17 45 18 34 25 30C30 27 35 29 39 24C45 17 54 16 61 21C69 18 78 21 81 29C91 30 95 39 89 48C93 58 82 70 72 74L40 77C29 73 20 64 23 51Z" fill="url(#rose-petal-light)" stroke="none"/>
+    <path d="M30 33C35 26 44 26 49 31C53 24 62 23 69 27C76 27 82 33 79 40C68 36 60 41 54 51C43 47 35 42 30 33Z"/>
+    <path d="M30 33C35 26 44 26 49 31C53 24 62 23 69 27C76 27 82 33 79 40C68 36 60 41 54 51C43 47 35 42 30 33Z" fill="#fff6e9" opacity=".13" stroke="none"/>
+    <!-- Inner petals overlap around an offset, compact centre. -->
+    <path d="M38 40C35 33 42 28 50 30C57 25 67 28 70 35C77 38 76 46 69 51C58 55 45 50 38 40Z"/>
+    <path d="M41 38C43 32 52 30 58 34C63 32 70 36 70 41C71 47 65 51 58 51C57 44 49 40 41 38Z"/>
+    <path d="M47 39C46 35 52 32 57 35C63 33 68 37 65 42C62 47 55 49 50 45C55 46 61 43 61 39C57 36 52 38 53 41C55 43 58 41 57 39"/>
+    <path d="M53 37C56 35 61 36 61 39C59 41 57 42 55 41C58 40 58 38 56 38Z"/>
+    <!-- Side petals wrap below the centre rather than forming rings. -->
+    <path d="M24 38C31 34 38 39 43 47C48 55 56 59 64 59C58 67 45 71 34 65C26 61 21 47 24 38Z"/>
+    <path d="M79 35C87 36 91 44 87 52C84 62 74 70 63 70C68 61 65 54 61 49C66 42 73 36 79 35Z"/>
+    <path d="M34 46C41 42 47 47 53 52C60 57 69 53 75 48C73 58 66 65 57 66C47 64 39 56 34 46Z"/>
+    <path d="M34 46C41 42 47 47 53 52C60 57 69 53 75 48C73 58 66 65 57 66C47 64 39 56 34 46Z" fill="url(#rose-petal-light)" stroke="none"/>
+    <!-- The front apron hides petal bases and finishes the flower cup. -->
+    <path d="M26 57C36 60 41 68 53 70C65 73 77 65 84 57C84 66 77 76 66 80C54 85 39 79 32 70C28 65 27 61 26 57Z"/>
+    <path d="M26 57C36 60 41 68 53 70C65 73 77 65 84 57C84 66 77 76 66 80C54 85 39 79 32 70C28 65 27 61 26 57Z" fill="url(#rose-petal-light)" stroke="none"/>
+  </g>
+  <path d="M53 38C56 36 61 37 62 40C61 43 57 45 54 44C58 43 59 41 58 39C56 38 54 39 53 40Z" fill="#75434b" opacity=".15"/>
+  <!-- Broad petal planes keep dark colors readable at whole-stem scale. -->
+  <g fill="#fff6e9">
+    <path d="M24 38C31 34 38 39 43 47C48 55 56 59 64 59C58 67 45 71 34 65C26 61 21 47 24 38Z" opacity=".12"/>
+    <path d="M41 38C43 32 52 30 58 34C63 32 70 36 70 41C71 47 65 51 58 51C57 44 49 40 41 38Z" opacity=".14"/>
+    <path d="M34 46C41 42 47 47 53 52C60 57 69 53 75 48C73 58 66 65 57 66C47 64 39 56 34 46Z" opacity=".09"/>
+    <path d="M26 57C36 60 41 68 53 70C65 73 77 65 84 57C84 66 77 76 66 80C54 85 39 79 32 70C28 65 27 61 26 57Z" opacity=".06"/>
+  </g>
+  <!-- Small folded edges, with no white outlines around whole petals. -->
+  <g fill="#fff6e9">
+    <path d="M24 38C29 36 34 39 38 43C32 40 28 40 25 42Z" opacity=".3"/>
+    <path d="M42 37C47 32.5 54 34 58 37C51 35.5 47 36 44 39Z" opacity=".24"/>
+    <path d="M64 49C69 44 74 40 80 39C76 42 70 45 66 51Z" opacity=".23"/>
+    <path d="M35 46C43 46 47 51 54 54C48 54 42 50 38 49Z" opacity=".3"/>
+    <path d="M29 59C38 64 43 69 54 71C46 72 36 67 32 64Z" opacity=".26"/>
+    <path d="M57 79C66 78 73 74 78 67C75 75 68 80 61 81Z" opacity=".17"/>
+  </g>
+</svg>

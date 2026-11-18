@@ -8,6 +8,8 @@ export interface CreationDraft {
   card: FlowerCardText
   updatedAt: number
   workId?: string
+  // 仅用于本地草稿恢复，不作为云端作品字段提交。
+  hasUnsavedChanges?: boolean
 }
 export interface SavedFlowerWork {
   id: string

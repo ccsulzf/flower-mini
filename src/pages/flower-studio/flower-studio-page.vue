@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { StudioTab } from './studio-types'
+import type { StudioCompletionState, StudioTab } from './studio-types'
+import type { Artwork } from '@/models/artwork'
 import type { SavedFlowerWork } from '@/models/flower-creation'
-import type { FlowerGuideTarget, ReportFlowerGuideTarget } from '@/models/flower-guide'
 import { onHide, onLoad, onShareAppMessage, onShareTimeline, onShow, onUnload } from '@dcloudio/uni-app'
 import { storeToRefs } from 'pinia'
-import { computed, provide, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
+import { getFlowerGenerationQuota } from '@/api/flower-generate'
 import FlowerBoard from '@/components/flower/flower-board.vue'
 import { useArtworkImage } from '@/hooks/useArtworkImage'
 import { useFlowerCreationSession } from '@/hooks/useFlowerCreationSession'
@@ -17,11 +18,17 @@ import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
+import { materialVisualBounds } from '@/utils/flower/arrangement.cjs'
 import { createCatalogArtwork } from '@/utils/flower/artwork'
+import { backgroundOffset } from '@/utils/flower/background-render'
+import { fitBouquetInstance } from '@/utils/flower/bouquet-boundary.cjs'
+import { takeGeneratedArtwork } from '@/utils/flower/generated-transfer'
+import StudioCompletion from './components/studio-completion.vue'
+import StudioGeneration from './components/studio-generation.vue'
 import StudioGuide from './components/studio-guide.vue'
 import StudioMaterialDock from './components/studio-material-dock.vue'
 import StudioTopToolbar from './components/studio-top-toolbar.vue'
-import { useStudioGuide } from './composables/useStudioGuide'
+import { useStudioGeneration } from './composables/useStudioGeneration'
 import { useStudioSelectionActions } from './composables/useStudioSelectionActions'
 
 const SHARE_TITLE = '选花材，搭配出属于自己的花束'
@@ -35,7 +42,6 @@ definePage({
   style: {
     navigationStyle: 'custom',
     navigationBarTitleText: '花瓶小作',
-    navigationBarBackgroundColor: '#f6f3eb',
     disableScroll: true,
     enableShareAppMessage: true,
     enableShareTimeline: true,
@@ -71,50 +77,40 @@ const {
   redo,
 } = selectionActions
 const detailId = ref('')
-const completionState = ref<'idle' | 'saving' | 'generating' | 'ready' | 'failed'>('idle')
+const completionState = ref<StudioCompletionState>('idle')
 const dailyFlower = useDailyFlowerStore()
-const guide = useStudioGuide()
-const guideStep = guide.step
-watch(activeTab, (tab) => {
-  if (guideStep.value === 'flowers' && tab !== 'flowers')
-    guideStep.value = 'open-flowers'
-  else if (guideStep.value === 'open-flowers' && tab === 'flowers')
-    guideStep.value = 'flowers'
-}, { flush: 'sync' })
-const guideAvailable = computed(() => pageReady.value && !startupError.value && !prepareError.value && !storageError.value && !pendingDraft.value && completionState.value === 'idle' && !dailyFlower.loading && !dailyFlower.visible)
-provide('studioGuideStep', computed(() => guideAvailable.value ? guideStep.value : null))
-const guideTarget = ref<FlowerGuideTarget | null>(null)
-let guideTargetOwner = -1
-const reportGuideTarget: ReportFlowerGuideTarget = (target, owner) => {
-  if (target) {
-    if (target.step !== guideStep.value)
-      return
-    guideTargetOwner = owner
-    guideTarget.value = target
-  }
-  else if (owner === guideTargetOwner) {
-    guideTarget.value = null
-    guideTargetOwner = -1
-  }
-}
-provide('studioGuideTarget', reportGuideTarget)
-let guideDragSnapshot = ''
-
-function startGuidedDrag(...args: Parameters<typeof startDrag>) {
-  guideDragSnapshot = JSON.stringify(materials.value)
-  startDrag(...args)
-}
-
-function endGuidedDrag(cancelled: boolean) {
-  endDrag(cancelled)
-  if (!cancelled && guideDragSnapshot && guideDragSnapshot !== JSON.stringify(materials.value))
-    guide.arranged()
-  guideDragSnapshot = ''
-}
-
+const generation = useStudioGeneration()
+const { visible: generationVisible, prompt: generationPrompt, error: generationError, phase: generationPhase, preview: generationPreview, busy: generationBusy } = generation
 const completedWork = ref<SavedFlowerWork>()
+const guideEligible = ref(false)
+const guideDebugReplay = false
+const guideEntry = ref(0)
+const guideTargets = ref<Record<string, { left: number, top: number, width: number, height: number }>>({})
+const guideFocusTargets = computed(() => {
+  const instance = materials.value.find(item => item.id === selectedMaterialId.value)
+    || materials.value.find(item => item.id === lastAddedMaterialId.value)
+    || materials.value[materials.value.length - 1]
+  const material = instance && preparedMaterials.value[instance.materialId]
+  if (!instance || !material)
+    return guideTargets.value
+  const vessel = preparedMaterials.value[container.value.materialId]
+  const fitted = vessel ? fitBouquetInstance(instance, material, vessel) : instance
+  const bounds = materialVisualBounds(fitted.transform, material.geometry)
+  const offset = backgroundOffset(preparedMaterials.value[artwork.value.background.materialId], vessel)
+  const point = layout.workspaceToScreen({ x: bounds.left, y: bounds.top + offset })
+  return {
+    ...guideTargets.value,
+    arrange: {
+      left: point.x,
+      top: point.y,
+      width: (bounds.right - bounds.left) * layout.scale,
+      height: (bounds.bottom - bounds.top) * layout.scale,
+    },
+  }
+})
 let applying = false
 let alive = true
+let pageVisible = false
 let sessionVersion = 0
 let bootTask: Promise<void> | null = null
 let addedMaterialTimer: ReturnType<typeof setTimeout> | null = null
@@ -125,9 +121,12 @@ const { startDrag, moveDrag, endDrag } = useFlowerDrag(
   () => catalog.get(container.value.materialId),
   () => selectedMaterialId.value,
   openFlowerTools,
+  session.flushDraft,
 )
 cancelDrag = () => endDrag(true)
 
+let generatedKey = ''
+let generatedArtwork: Artwork | null = null
 onLoad((query) => {
   // #ifdef MP-WEIXIN
   uni.showShareMenu({
@@ -137,16 +136,26 @@ onLoad((query) => {
   // #endif
 
   detailId.value = String(query?.workId || '')
+  generatedKey = String(query?.generated || '')
   void bootstrap()
 })
 onShow(() => {
+  pageVisible = true
+  guideEntry.value++
   if (!bootTask && alive && !pageReady.value)
     void bootstrap()
 })
-onHide(() => { endDrag(true); session.flushDraft() })
+onHide(() => {
+  pageVisible = false
+  generation.cancel()
+  endDrag(true)
+  session.flushDraft()
+})
 onUnload(() => {
+  pageVisible = false
   if (detailId.value && !session.hasUnsavedChanges.value)
     void resetWorkspaceAfterLeave()
+  generation.cancel()
   alive = false
   if (addedMaterialTimer)
     clearTimeout(addedMaterialTimer)
@@ -169,17 +178,14 @@ onShareTimeline(() => ({
   imageUrl: TIMELINE_SHARE_IMAGE_URL,
 }))
 
-watch(() => JSON.stringify(artworkStore.snapshot()), () => {
-  if (pageReady.value && !applying)
+watch(artwork, () => {
+  // 多个工作台页面共用 artwork store，后台页面不能以自己的会话覆盖草稿。
+  if (pageVisible && pageReady.value && !applying)
     session.markEdited()
-}, { flush: 'sync' })
+}, { deep: true, flush: 'sync' })
 watch(storageError, (value) => {
   if (value)
     notify(value)
-})
-watch(() => materials.value.length, (count) => {
-  if (!count && (guideStep.value === 'arrange' || guideStep.value === 'save'))
-    guideStep.value = activeTab.value === 'flowers' ? 'flowers' : 'open-flowers'
 })
 
 function notify(title: string) {
@@ -226,8 +232,15 @@ function bootstrap(): Promise<void> {
       const uid = await userInfo.requireUid('请先登录后创作')
       if (!alive || pageReady.value)
         return
-      session.initialize(uid, Boolean(detailId.value))
-      let restoring = Boolean(pendingDraft.value)
+      session.initialize(uid)
+      // 编辑链接只恢复当前作品的草稿，避免覆盖其他作品。
+      if (detailId.value && pendingDraft.value?.workId !== detailId.value)
+        pendingDraft.value = null
+      if (generatedKey)
+        generatedArtwork = takeGeneratedArtwork(uid, generatedKey)
+      const generated = generatedArtwork
+      generatedKey = ''
+      let restoring = !generated && Boolean(pendingDraft.value)
       let useDefaultArtwork = draftReadFailed.value
       if (restoring) {
         applying = true
@@ -244,7 +257,14 @@ function bootstrap(): Promise<void> {
         return
       if (detailId.value && !/^[a-f\d]{32}$/.test(detailId.value))
         throw new Error('作品链接无效')
-      if (detailId.value) {
+      if (generated) {
+        await catalog.prepareFor([generated.background.materialId, generated.container.materialId, ...generated.materials.map(item => item.materialId)])
+        if (!alive)
+          return
+        artworkStore.initialize(generated)
+        session.startFreshDraft()
+      }
+      else if (detailId.value && !restoring) {
         const work = await works.get(detailId.value)
         if (!alive)
           return
@@ -253,7 +273,7 @@ function bootstrap(): Promise<void> {
         session.editWork()
         applying = false
       }
-      if (detailId.value) {
+      if (generated || detailId.value) {
         await prepareArtwork()
       }
       else {
@@ -275,9 +295,11 @@ function bootstrap(): Promise<void> {
       if (!alive)
         return
       startupError.value = ''
+      guideEligible.value = !generated && !detailId.value && !restoring && !draftReadFailed.value
       pageReady.value = true
-      if (!detailId.value && !restoring && !draftReadFailed.value && !materials.value.length)
-        guide.start(true, materials.value.length ? 'arrange' : 'open-flowers')
+      if (!guideEligible.value && !guideDebugReplay)
+        dailyFlower.allowTodayAfterGuide(uid)
+      generatedArtwork = null
       void catalog.preloadRemaining()
     }
     catch (error) {
@@ -362,10 +384,6 @@ async function selectCatalogMaterial(id: string) {
       if (id === null)
         return
       studio.recordRecentMaterial(material.id)
-      if (guideStep.value === 'flowers') {
-        guide.added()
-        studio.closePanel()
-      }
       lastAddedMaterialId.value = material.id
       if (addedMaterialTimer)
         clearTimeout(addedMaterialTimer)
@@ -437,8 +455,6 @@ async function finish() {
     // 完成后仍可留在工作台编辑，保留草稿和作品 ID，后续保存更新同一作品。
     if (!session.saved(work, true))
       notify(storageError.value || '作品已保存，但本地草稿保存失败')
-    if (guideStep.value)
-      guide.dismiss()
     completionState.value = 'generating'
     if (await images.exportImage(work.id))
       completionState.value = 'ready'
@@ -588,6 +604,35 @@ function requestLeave(leave: () => void) {
 }
 
 function openWorks() { requestLeave(() => uni.navigateTo({ url: '/pages/flower-works/flower-works-page' })) }
+let checkingGenerationQuota = false
+async function openFlowerGenerate() {
+  if (!pageReady.value || pendingMaterialId.value || finishing.value || pendingDraft.value || readonly.value || draftReadFailed.value || startupError.value || prepareError.value || completionState.value !== 'idle')
+    return
+  if (checkingGenerationQuota)
+    return
+  checkingGenerationQuota = true
+  try {
+    const { available } = await getFlowerGenerationQuota()
+    if (!pageReady.value)
+      return
+    if (!available)
+      return notify('今日额度已用完')
+    endDrag(true)
+    closePanels()
+    generationError.value = ''
+    generationVisible.value = true
+  }
+  catch (error) {
+    notify(error instanceof Error ? error.message : '暂时无法生花，请稍后重试')
+  }
+  finally { checkingGenerationQuota = false }
+}
+async function generateInStudio() {
+  uni.hideKeyboard()
+  if (await generation.generate()) {
+    images.invalidate()
+  }
+}
 function openDailyFlowers() {
   requestLeave(() => {
     closePanels()
@@ -650,21 +695,32 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
     <view class="studio-stage" :style="{ bottom: `${layout.stageBottom}px`, top: `${layout.stageTop}px` }">
       <view class="studio-artwork" :style="layout.workspaceStyle">
         <view class="studio-board-scale" :style="layout.boardStyle">
-          <FlowerBoard :artwork="artwork" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" :guide-arrange="guideStep === 'arrange' && guideAvailable" @start="startGuidedDrag" @move="moveDrag" @end="endGuidedDrag" @clear="closeFlowerTools" />
+          <FlowerBoard :artwork="generationPreview || artwork" :revealing="generationPhase === 'revealing'" :hide-empty="generationBusy" :prepared-materials="preparedMaterials" :selected-id="selectedMaterialId" :pick-scope="selectionFilter" :pick-material-id="selectionMaterialId" @start="startDrag" @move="moveDrag" @end="endDrag" @clear="closeFlowerTools" />
         </view>
       </view>
     </view>
+    <StudioGeneration
+      v-if="generationVisible" v-model:prompt="generationPrompt" :error="generationError" :phase="generationPhase"
+      :toolbar-bottom="layout.toolbarBottom" :replacing="Boolean(materials.length)"
+      @generate="generateInStudio" @close="generation.cancel"
+    />
     <StudioMaterialDock
+      v-if="!generationBusy"
       :toolbar-bottom="layout.toolbarBottom" :stage-bottom="layout.stageBottom" @select="toggleTab" @close="studio.closePanel"
+      @generate="openFlowerGenerate" @guide-targets="guideTargets = $event"
       @dismiss="closePanels" @material="selectCatalogMaterial" @focus="focusSelectionMaterial" @instance="selectSelectionInstance"
       @color="setColor" @toggle-colors="colorsExpanded = !colorsExpanded" @layer="setLayer"
       @duplicate="duplicateSelected" @remove="removeSelected" @mirror="mirrorSelected"
     />
-    <StudioTopToolbar :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
     <StudioGuide
-      v-if="guideStep && guideAvailable"
-      :step="guideStep" :target="guideTarget" :window-width="layout.device.windowWidth" :window-height="layout.device.windowHeight"
+      :key="guideEntry" :debug-replay="guideDebugReplay"
+      :generation-open="generationVisible"
+      @resolved="dailyFlower.allowTodayAfterGuide(userInfo.uid)"
+      :uid="userInfo.uid" :eligible="guideDebugReplay || guideEligible" :materials="materials"
+      :visible="pageReady && !pendingDraft && !readonly && !draftReadFailed && !startupError && !prepareError && !storageError && !needsPreparation && !generationVisible && completionState === 'idle'"
+      :layout="layout" :targets="guideFocusTargets" :active-tab="activeTab" @focus-workspace="studio.closePanel"
     />
+    <StudioTopToolbar v-if="!generationBusy" :navigation-top="layout.navigationStatusTop" :navigation-height="layout.navigationHeight" :actions-top="layout.pageActionsTop" @works="openWorks" @today="openDailyFlowers" @undo="undo" @redo="redo" @reset="clearMaterials" @finish="finish" />
     <view v-if="storageError && !pendingDraft && !startupError && !needsPreparation" class="storage-warning" :style="{ top: `${layout.pageActionsTop + 58}px` }">
       <text>{{ storageError }}</text><text v-if="draftReadFailed" @click="retryLocalDraft">
         重新读取
@@ -678,66 +734,16 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
         重新加载
       </text>
     </view>
-    <view v-if="completionState !== 'idle'" class="creation-overlay completion-overlay" @click="completionState === 'ready' && closeCompletion()" @touchmove.stop.prevent>
-      <view class="completion-sheet" @click.stop>
-        <template v-if="completionState === 'saving' || completionState === 'generating'">
-          <view class="completion-bloom" aria-hidden="true">
-            ✿
-          </view>
-          <text class="completion-title">
-            {{ completionState === 'saving' ? '正在收好这束花…' : '正在制作作品图片…' }}
-          </text>
-          <text class="completion-note">
-            {{ completionState === 'saving' ? '正在保存作品' : '作品已保存，请稍候' }}
-          </text>
-        </template>
-        <template v-else-if="completionState === 'failed'">
-          <view class="completion-bloom completion-bloom-still" aria-hidden="true">
-            ✿
-          </view>
-          <text class="completion-title">
-            图片还没有准备好
-          </text>
-          <text class="completion-note">
-            {{ images.imageError.value || '作品已保存，请重试生成图片' }}
-          </text>
-          <view class="completion-actions">
-            <view class="completion-button-wrap completion-button-primary">
-              <button class="completion-primary" @click="retryCompletedImage">
-                重新生成
-              </button>
-            </view>
-          </view>
-        </template>
-        <template v-else>
-          <button class="completion-close" aria-label="关闭完成作品弹窗" @click="closeCompletion">
-            ×
-          </button>
-          <view class="completion-kicker">
-            我的花作
-          </view>
-          <text class="completion-title">
-            这束花已经完成
-          </text>
-          <view v-if="images.imagePath.value" class="completion-photo">
-            <view class="completion-tape" aria-hidden="true" />
-            <image class="completion-image" :src="images.imagePath.value" mode="aspectFit" @click="images.previewImage()" />
-          </view>
-          <view class="completion-actions">
-            <view class="completion-button-wrap completion-button-secondary">
-              <button class="completion-secondary" @click="shareCompleted">
-                <view class="i-carbon-share" />分享图片
-              </button>
-            </view>
-            <view class="completion-button-wrap completion-button-primary">
-              <button class="completion-primary" @click="makeCompletedCard">
-                <view class="i-carbon-image" />制作贺卡
-              </button>
-            </view>
-          </view>
-        </template>
-      </view>
-    </view>
+    <StudioCompletion
+      :state="completionState"
+      :image-path="images.imagePath.value"
+      :image-error="images.imageError.value"
+      @close="closeCompletion"
+      @retry="retryCompletedImage"
+      @preview="images.previewImage()"
+      @share="shareCompleted"
+      @make-card="makeCompletedCard"
+    />
     <view v-if="startupError" class="creation-overlay" @touchmove.stop.prevent>
       <view class="creation-modal">
         <view class="creation-sheet">
@@ -763,6 +769,5 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
 <style scoped lang="scss">
 @use '@/styles/flower-studio.scss' as *;
 @use '@/styles/flower-creation.scss';
-@use '@/styles/flower-completion.scss';
-.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:radial-gradient(circle at 13% 18%,rgba(139,121,94,.045) 0 2rpx,transparent 3rpx),radial-gradient(circle at 81% 70%,rgba(139,121,94,.035) 0 2rpx,transparent 3rpx),$studio-paper;background-size:42rpx 42rpx,54rpx 54rpx,auto;color:$studio-ink}.studio-stage{position:absolute;left:38rpx;right:38rpx;z-index:5;display:flex;align-items:center;justify-content:center;overflow:hidden}.studio-artwork{position:relative;flex-shrink:0;z-index:1;overflow:hidden;outline:1rpx solid rgba(102,84,63,.2);border-radius:2rpx 5rpx 3rpx 4rpx;background:#f7f4ec;box-shadow:5rpx 7rpx 0 rgba(195,177,148,.2),0 14rpx 28rpx rgba(88,74,55,.075)}.studio-board-scale{position:absolute;top:0;left:0;transform-origin:0 0}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(53,46,38,.3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(153,92,80,.22);border-radius:14rpx;background:rgba(245,234,215,.96);box-shadow:0 6rpx 16rpx rgba(88,74,55,.055);color:#995c50;font-size:22rpx}
+.flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:radial-gradient(circle at 13% 18%,rgba(var(--app-inkMuted-rgb), .045) 0 2rpx,transparent 3rpx),radial-gradient(circle at 81% 70%,rgba(var(--app-inkMuted-rgb), .035) 0 2rpx,transparent 3rpx),$studio-paper;background-size:42rpx 42rpx,54rpx 54rpx,auto;color:$studio-ink}.studio-stage{position:absolute;left:38rpx;right:38rpx;z-index:5;display:flex;align-items:center;justify-content:center;overflow:hidden}.studio-artwork{position:relative;flex-shrink:0;z-index:1;overflow:hidden;outline:1rpx solid rgba(var(--app-ink-rgb), .2);border-radius:2rpx 5rpx 3rpx 4rpx;background:var(--app-page);box-shadow:5rpx 7rpx 0 rgba(var(--app-subtle-rgb), .2),0 14rpx 28rpx rgba(var(--app-ink-rgb), .075)}.studio-board-scale{position:absolute;top:0;left:0;transform-origin:0 0}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(var(--app-ink-rgb), .3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(var(--app-danger-rgb), .22);border-radius:14rpx;background:rgba(var(--app-surfaceMuted-rgb), .96);box-shadow:0 6rpx 16rpx rgba(var(--app-ink-rgb), .055);color:var(--app-danger);font-size:22rpx}
 </style>

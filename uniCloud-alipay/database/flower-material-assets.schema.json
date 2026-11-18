@@ -32,6 +32,10 @@
     "flowerMeaning": {
       "bsonType": "string"
     },
+    "revision": {
+      "bsonType": "string",
+      "pattern": "^[a-f0-9]{16}$"
+    },
     "updatedBy": {
       "bsonType": "string"
     },

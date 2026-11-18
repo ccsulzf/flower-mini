@@ -28,8 +28,10 @@ function downloadImage(url: string) {
 }
 
 function saveImage(tempFilePath: string) {
-  return new Promise<UniApp.SaveFileSuccess>((resolve, reject) => {
-    uni.saveFile({ tempFilePath, success: resolve, fail: reject })
+  if (typeof wx === 'undefined' || typeof wx.getFileSystemManager !== 'function')
+    return Promise.reject(new Error('当前平台不支持每日花束图片缓存'))
+  return new Promise<WechatMiniprogram.SaveFileSuccessCallbackResult>((resolve, reject) => {
+    wx.getFileSystemManager().saveFile({ tempFilePath, success: resolve, fail: reject })
   })
 }
 

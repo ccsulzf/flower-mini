@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <!-- 保持原有的色彩过渡渐变 (__COLOR__ 动态自适应) -->
+    <linearGradient id="chamomile-petal-0" gradientUnits="userSpaceOnUse" x1="20" y1="20" x2="45" y2="45">
+      <stop offset="0" stop-color="#fff8e7"/>
+      <stop offset=".48" stop-color="__COLOR__"/>
+      <stop offset="1" stop-color="#68765b"/>
+    </linearGradient>
+
+    <!-- ====== 1. 真实洋甘菊单片舌状花瓣 (带特征性 2~3 枚先端细微浅圆齿裂) ====== -->
+    <g id="chamomile-petal">
+      <!-- 狭长长圆形舌状花瓣 (指向 12 点方向) -->
+      <path d="M-0.8 0 C-2.3 -4 -2.6 -9 -2.0 -13.5 C-2.0 -15.5 -1.0 -16.5 -0.6 -15.8 C-0.3 -16.8 0.3 -16.8 0.6 -15.8 C1.0 -16.5 2.0 -15.5 2.0 -13.5 C1.7 -9 1.4 -4 0.8 0 Z"
+            fill="__COLOR__" stroke="#c5bfaa" stroke-width="0.22" stroke-opacity=".7" stroke-linejoin="round"/>
+      <path d="M-0.8 0 C-2.3 -4 -2.6 -9 -2.0 -13.5 C-2.0 -15.5 -1.0 -16.5 -0.6 -15.8 C-0.3 -16.8 0.3 -16.8 0.6 -15.8 C1.0 -16.5 2.0 -15.5 2.0 -13.5 C1.7 -9 1.4 -4 0.8 0 Z"
+            fill="url(#chamomile-petal-0)" opacity=".14"/>
+      <!-- 花瓣中肋受光细微亮线 -->
+      <path d="M0 -1 L0 -14.5" fill="none" stroke="#fff5df" stroke-width="0.32" stroke-opacity="0.6"/>
+    </g>
+
+    <!-- ====== 2. 真实洋甘菊高高隆起的“半球形/圆锥形小金丘花盘” ====== -->
+    <g id="chamomile-disk">
+      <!-- 花盘底圈阴影基座 -->
+      <ellipse cx="0" cy="0" rx="3.6" ry="3.2" fill="#917332"/>
+      <!-- 高高隆起的圆锥形金黄花心主体 -->
+      <ellipse cx="0" cy="-0.6" rx="3.3" ry="2.9" fill="#dfb135"/>
+      <!-- 花盘顶端受光小亮包 (呈现半球体立体凸出感) -->
+      <ellipse cx="0.3" cy="-1.0" rx="2.2" ry="1.8" fill="#f5ce47"/>
+
+      <!-- 致密的微型管状花小孔点 (Phyllotaxis 蜂巢肌理) -->
+      <g fill="#917332" opacity="0.65">
+        <circle cx="-1.2" cy="0.4" r="0.28"/>
+        <circle cx="1.2" cy="0.4" r="0.28"/>
+        <circle cx="-1.8" cy="-0.5" r="0.28"/>
+        <circle cx="1.8" cy="-0.5" r="0.28"/>
+        <circle cx="0" cy="1.2" r="0.28"/>
+      </g>
+      <g fill="#fff5df" opacity="0.8">
+        <circle cx="-0.6" cy="-1.2" r="0.3"/>
+        <circle cx="0.6" cy="-1.2" r="0.3"/>
+        <circle cx="0" cy="-0.6" r="0.32"/>
+        <circle cx="-0.8" cy="-0.2" r="0.3"/>
+        <circle cx="0.8" cy="-0.2" r="0.3"/>
+      </g>
+    </g>
+
+    <!-- ====== 3. 完整绽放的洋甘菊小花朵组件 ====== -->
+    <g id="chamomile-flower">
+      <!-- 13 片飘逸舌瓣环抱，长短微带自然起伏 -->
+      <use href="#chamomile-petal" transform="rotate(0.0)"/>
+      <use href="#chamomile-petal" transform="rotate(27.7) scale(0.98)"/>
+      <use href="#chamomile-petal" transform="rotate(55.4) scale(1.02)"/>
+      <use href="#chamomile-petal" transform="rotate(83.1)"/>
+      <use href="#chamomile-petal" transform="rotate(110.8) scale(0.97)"/>
+      <use href="#chamomile-petal" transform="rotate(138.5) scale(1.02)"/>
+      <use href="#chamomile-petal" transform="rotate(166.2)"/>
+      <use href="#chamomile-petal" transform="rotate(193.8) scale(0.98)"/>
+      <use href="#chamomile-petal" transform="rotate(221.5) scale(1.01)"/>
+      <use href="#chamomile-petal" transform="rotate(249.2)"/>
+      <use href="#chamomile-petal" transform="rotate(276.9) scale(0.98)"/>
+      <use href="#chamomile-petal" transform="rotate(304.6) scale(1.02)"/>
+      <use href="#chamomile-petal" transform="rotate(332.3)"/>
+      <!-- 居中的圆锥金包花盘 -->
+      <use href="#chamomile-disk"/>
+    </g>
+  </defs>
+
+  <g transform="rotate(-4 55 104)">
+    <!-- ====== 1. 柔韧的草本主茎系统与丝状羽裂小叶 (#8c9b71) ====== -->
+    <!-- 四支花梗自然延伸 -->
+    <path d="M55 104 C55 72.6 42.4 52.6 28 40" fill="none" stroke="#8c9b71" stroke-width="0.85"/>
+    <path d="M55 104 Q56.4 45 62 25" fill="none" stroke="#8c9b71" stroke-width="0.85"/>
+    <path d="M55 104 Q60.6 74 83 57" fill="none" stroke="#8c9b71" stroke-width="0.85"/>
+    <path d="M55 104 Q53.2 87 46 70" fill="none" stroke="#8c9b71" stroke-width="0.85"/>
+
+    <!-- 真实洋甘菊标志性的丝状细碎羽裂小叶 (彻底取代原版生硬的鸡爪断线) -->
+    <g fill="none" stroke="#8c9b71" stroke-width="0.45" stroke-linecap="round">
+      <!-- 下部左侧丝裂叶 -->
+      <path d="M54 88 Q45 84 38 78"/>
+      <path d="M46 83 Q40 76 36 73"/>
+      <path d="M48 85 Q43 90 38 92"/>
+      <!-- 下部右侧丝裂叶 -->
+      <path d="M55 92 Q64 88 72 82"/>
+      <path d="M63 87 Q69 80 73 76"/>
+      <path d="M65 89 Q70 94 75 96"/>
+      <!-- 中部微细小裂羽 -->
+      <path d="M52 64 Q46 60 41 57"/>
+      <path d="M58 56 Q66 52 71 49"/>
+    </g>
+
+    <!-- ====== 2. 四朵高低错落、清新雅致的真品洋甘菊 ====== -->
+
+    <!-- 【顶端主放花】 (62, 25) - 迎阳盛展，全幅核心高景 -->
+    <use href="#chamomile-flower" transform="translate(62, 25) scale(1.05)"/>
+
+    <!-- 【左上微倾花】 (28, 40) - 3/4俯角倾展，展现圆凸金心 -->
+    <use href="#chamomile-flower" transform="translate(28, 40) rotate(-15) scale(0.98)"/>
+
+    <!-- 【右中舒展花】 (83, 57) - 欢快朝向右侧 -->
+    <use href="#chamomile-flower" transform="translate(83, 57) rotate(22) scale(0.94)"/>
+
+    <!-- 【左下娇嫩小花】 (46, 70) - 纯真初开，形成完美的田园层次 -->
+    <use href="#chamomile-flower" transform="translate(46, 70) rotate(-8) scale(0.82)"/>
+  </g>
+</svg>

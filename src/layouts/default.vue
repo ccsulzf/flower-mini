@@ -17,8 +17,8 @@ import DailyFlowerPopup from '@/components/flower/daily-flower-popup.vue'
 <style lang="scss" scoped>
 .layout-default {
   height: 100vh;
-  background: #f6f3eb;
-  color: #3f463d;
+  background: var(--app-page);
+  color: var(--app-ink);
   position: relative;
 }
 

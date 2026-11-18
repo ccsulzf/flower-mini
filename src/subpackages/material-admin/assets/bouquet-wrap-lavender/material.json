@@ -1,0 +1,14 @@
+{
+  "id": "bouquet-wrap-lavender",
+  "category": "bouquet",
+  "name": "雾紫错层",
+  "introduction": "雾紫与浅丁香纸错位展开，侧角轻卷、前口低收，轮廓清爽而舒展。",
+  "sortOrder": 204,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

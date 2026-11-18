@@ -27,6 +27,7 @@ export function useFlowerDrag(
   resolveContainer: ContainerResolver,
   selectedMaterialId: () => number | null,
   onTap: (id: number) => void,
+  onEdited: () => void = () => {},
 ) {
   let drag: DragState | null = null
 
@@ -95,6 +96,8 @@ export function useFlowerDrag(
     const ended = drag
     drag = null
     store.endEdit()
+    if (ended?.changed)
+      onEdited()
     if (!cancelled && ended && !ended.changed)
       onTap(ended.material.id)
   }

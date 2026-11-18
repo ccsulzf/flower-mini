@@ -2,6 +2,7 @@ import type { DailyFlowerSummary, LocalDailyFlower } from '@/models/daily-flower
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { getDailyFlowerArtwork, getDailyFlowerByDate, listDailyFlowerHistory } from '@/api/flower-daily'
+import { waitForAppAuthReady } from '@/utils/appAuth'
 import { resolveDailyFlowerImage } from '@/utils/flower/daily-flower-image-cache'
 
 export type PublishedDailyFlower = LocalDailyFlower
@@ -34,6 +35,28 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
   const records = new Map<string, PublishedDailyFlower | null>()
   const tasks = new Map<string, Promise<PublishedDailyFlower | null>>()
   let historyPage = 1
+  const guideResolvedUids = new Set<string>()
+
+  function guideResolved(uid: string) {
+    if (!uid)
+      return false
+    if (guideResolvedUids.has(uid))
+      return true
+    try {
+      return Boolean(uni.getStorageSync(`flower-studio-guide-v1:${uid}`))
+    }
+    catch {
+      // 与引导组件一致：读取失败时不阻塞后续操作。
+      return true
+    }
+  }
+
+  function allowTodayAfterGuide(uid: string) {
+    if (!uid)
+      return
+    guideResolvedUids.add(uid)
+    void checkToday()
+  }
 
   async function loadDate(date: string, refresh = false) {
     if (!refresh && records.has(date))
@@ -54,6 +77,15 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
   }
 
   async function checkToday() {
+    try {
+      await waitForAppAuthReady()
+    }
+    catch {
+      return
+    }
+    const uid = uniCloud.getCurrentUserInfo().uid
+    if (!guideResolved(uid))
+      return
     const date = localDate()
     const dismissedDate = uni.getStorageSync(dismissedStorageKey)
     if (dismissedDate === date) {
@@ -68,7 +100,7 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
     loading.value = true
     try {
       const flower = await loadDate(date, true)
-      if (localDate() !== date)
+      if (localDate() !== date || uniCloud.getCurrentUserInfo().uid !== uid)
         return
       todayFlower.value = flower
       visible.value = Boolean(flower)
@@ -139,6 +171,7 @@ export const useDailyFlowerStore = defineStore('dailyFlower', () => {
     loadDate,
     getArtwork,
     checkToday,
+    allowTodayAfterGuide,
     loadHistory,
     dismissToday,
   }

@@ -8,7 +8,7 @@ import { exampleJson } from './example'
 
 definePage({
   layout: 'default',
-  style: { navigationBarTitleText: 'JSON 生成花束', navigationBarBackgroundColor: '#f6f3eb' },
+  style: { navigationBarTitleText: 'JSON 生成花束', },
 })
 
 const jsonInput = ref('')
@@ -78,23 +78,23 @@ function fillExample() {
 </template>
 
 <style scoped lang="scss">
-.json-page { min-height: 100vh; padding: 36rpx 26rpx 60rpx; box-sizing: border-box; background: #f6f3eb; color: #3f463d; }
+.json-page { min-height: 100vh; padding: 36rpx 26rpx 60rpx; box-sizing: border-box; background: var(--app-page); color: var(--app-ink); }
 .intro { margin: 12rpx 0 30rpx; }
 .title { display: block; font-size: 38rpx; font-weight: 600; }
-.description { display: block; margin-top: 14rpx; font-size: 25rpx; line-height: 1.6; color: #777d70; }
-.input-card { padding: 24rpx; border: 1rpx solid #e3dfd3; border-radius: 24rpx; background: #fffdf7; }
+.description { display: block; margin-top: 14rpx; font-size: 25rpx; line-height: 1.6; color: var(--app-brandStrong); }
+.input-card { padding: 24rpx; border: 1rpx solid var(--app-line); border-radius: 24rpx; background: var(--app-surface); }
 .input-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18rpx; }
 .input-title { font-size: 28rpx; font-weight: 600; }
-.example-button { margin: 0; padding: 0 20rpx; background: #eceee3; color: #59634e; font-size: 23rpx; line-height: 56rpx; border-radius: 14rpx; }
+.example-button { margin: 0; padding: 0 20rpx; background: var(--app-surfaceMuted); color: var(--app-brandStrong); font-size: 23rpx; line-height: 56rpx; border-radius: 14rpx; }
 .example-button::after, .generate-button::after { border: none; }
-.json-input { display: block; width: 100%; height: 280rpx; padding: 20rpx; box-sizing: border-box; border-radius: 14rpx; background: #f1f0e9; color: #3f463d; font-family: monospace; font-size: 23rpx; line-height: 1.6; }
-.input-hint { display: block; margin-top: 16rpx; font-size: 22rpx; line-height: 1.6; color: #777d70; }
-.error-message { display: block; margin-top: 16rpx; color: #b82b36; font-size: 24rpx; line-height: 1.6; }
-.generate-button { margin-top: 22rpx; border-radius: 16rpx; background: #59634e; color: #fffdf7; font-size: 28rpx; line-height: 80rpx; }
+.json-input { display: block; width: 100%; height: 280rpx; padding: 20rpx; box-sizing: border-box; border-radius: 14rpx; background: var(--app-surfaceMuted); color: var(--app-ink); font-family: monospace; font-size: 23rpx; line-height: 1.6; }
+.input-hint { display: block; margin-top: 16rpx; font-size: 22rpx; line-height: 1.6; color: var(--app-brandStrong); }
+.error-message { display: block; margin-top: 16rpx; color: var(--app-danger); font-size: 24rpx; line-height: 1.6; }
+.generate-button { margin-top: 22rpx; border-radius: 16rpx; background: var(--app-brandStrong); color: var(--app-surface); font-size: 28rpx; line-height: 80rpx; }
 .preview-heading { display: flex; justify-content: space-between; align-items: center; margin: 32rpx 4rpx 18rpx; font-size: 28rpx; font-weight: 600; }
-.stem-count { font-size: 23rpx; font-weight: 400; color: #777d70; }
+.stem-count { font-size: 23rpx; font-weight: 400; color: var(--app-brandStrong); }
 .preview { position: relative; width: 698rpx; height: 1000rpx; overflow: hidden; border-radius: 24rpx; }
 .preview-board { pointer-events: none; }
-.preview-empty { display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: center; color: #777d70; font-size: 28rpx; }
+.preview-empty { display: flex; height: 100%; flex-direction: column; align-items: center; justify-content: center; color: var(--app-brandStrong); font-size: 28rpx; }
 .empty-hint { margin-top: 18rpx; font-size: 23rpx; }
 </style>

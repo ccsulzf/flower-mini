@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 698 840" role="img">
+  <title>绿意侧卷</title>
+  <defs>
+    <linearGradient id="paper-sage" x1="0" y1="0" x2="1" y2=".25">
+      <stop stop-color="#b7c4ae"/><stop offset="1" stop-color="#edf0e3"/>
+    </linearGradient>
+    <linearGradient id="fold-sage" x1="0" y1="0" x2="1" y2=".5">
+      <stop stop-color="#edf0e3"/><stop offset="1" stop-color="#b7c4ae"/>
+    </linearGradient>
+  </defs>
+  <!-- bouquet-back:start -->
+  <!-- 高左低右的单纸，左上沿微卷，避免盾牌式后衬。 -->
+  <path d="M181 347 Q352 387 518 451 C482 588 422 708 373 754 Q351 763 328 753 C241 661 181 513 181 347Z" fill="url(#paper-sage)" stroke="#94a38a" stroke-width="1.5"/>
+  <path d="M181 347 Q174 395 204 424 Q200 391 211 354Z" fill="#edf0e3" stroke="#94a38a" stroke-width="1.1"/>
+  <path d="M332 753 Q326 786 323 805 L345 800 L375 809 Q368 782 369 752Z" fill="#c5cfbd" stroke="#94a38a" stroke-width="1.1"/>
+  <!-- bouquet-back:end -->
+  <!-- bouquet-front:start -->
+  <path d="M492 604 Q423 665 348 708 L371 755 Q433 704 492 604Z" fill="#acbba3" stroke="#94a38a" stroke-width="1.2"/>
+  <!-- 左侧弧面绕到前方，浅内面仅在翻卷处出现。 -->
+  <path d="M201 559 C233 620 304 674 403 700 Q393 728 371 754 Q351 765 329 753 C266 700 219 624 201 559Z" fill="url(#fold-sage)" stroke="#94a38a" stroke-width="1.5"/>
+  <path d="M201 559 C239 622 311 675 403 700 L399 707 C307 686 235 634 211 582Z" fill="#edf0e3" stroke="#94a38a" stroke-width=".8"/>
+  <path d="M318 728 Q334 741 340 750 M384 731 L365 750" fill="none" stroke="#94a38a" stroke-width="1.2" opacity=".55"/>
+  <!-- 收口绑带 -->
+  <path d="M329 750 Q352 757 374 749 L373 758 Q350 765 330 758Z" fill="#ddd6bd" stroke="#c5bea3" stroke-width=".9"/>
+  <path d="M346 759 Q329 777 316 810 L325 805 L331 810 Q339 780 352 764Z" fill="#f4eedb" stroke="#c5bea3" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M354 760 Q356 797 367 829 L373 821 L379 823 Q368 788 361 758Z" fill="#ddd6bd" stroke="#c5bea3" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M349 757 C330 734 310 738 315 751 C321 765 340 766 349 757Z" fill="#f4eedb" stroke="#c5bea3" stroke-width="1.3"/>
+  <path d="M350 758 Q330 743 321 748 Q326 758 347 761Z" fill="#ddd6bd"/>
+  <path d="M354 757 C370 737 389 739 384 752 C379 765 363 765 354 757Z" fill="#f4eedb" stroke="#c5bea3" stroke-width="1.3"/>
+  <path d="M356 758 Q373 744 379 749 Q374 759 357 761Z" fill="#ddd6bd"/>
+  <path d="M347 751 Q353 750 358 754 L357 762 Q351 765 346 761Z" fill="#f4eedb" stroke="#c5bea3" stroke-width="1.1"/>
+  <!-- bouquet-front:end -->
+</svg>

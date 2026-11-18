@@ -3,6 +3,7 @@ import type { Artwork } from '@/models/artwork'
 import type { StudioSelectionFilter } from '@/models/flower-studio'
 import type { CachedMaterial } from '@/models/material'
 import { computed } from 'vue'
+import { fitBouquetInstance } from '@/utils/flower/bouquet-boundary.cjs'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 import { backgroundOffset, backgroundSceneSource } from '@/utils/flower/background-render'
 import { svgImageSource } from '@/utils/flower/material-render'
@@ -12,6 +13,7 @@ import StudioContainer from './flower-vase.vue'
 const props = defineProps<{
   artwork: Artwork
   preparedMaterials: Record<string, CachedMaterial>
+  revealing?: boolean
   hideBackground?: boolean
   hideContainer?: boolean
   selectedId?: number | null
@@ -19,7 +21,7 @@ const props = defineProps<{
   pickMaterialId?: string | null
 }>()
 // 草稿可能先于素材恢复，仅挂载已准备好的花枝及其操作区域。
-const readyInstances = computed(() => props.artwork.materials.filter(instance => props.preparedMaterials[instance.materialId]?.category === 'flower'))
+const readyInstances = computed(() => props.artwork.materials.filter(instance => props.preparedMaterials[instance.materialId]?.category === 'flower').map(instance => container.value ? fitBouquetInstance(instance, props.preparedMaterials[instance.materialId], container.value) : instance))
 const background = computed(() => props.preparedMaterials[props.artwork.background.materialId])
 const container = computed(() => props.preparedMaterials[props.artwork.container.materialId])
 const backgroundSource = computed(() => background.value?.sources.background ? svgImageSource(backgroundSceneSource(background.value)) : '')
@@ -39,18 +41,19 @@ function isDimmed(instance: Artwork['materials'][number]) {
 
 <template>
   <view
-    class="artwork-renderer" :class="{ 'artwork-renderer-transparent': hideBackground }"
+    class="artwork-renderer" :class="{ 'artwork-renderer-transparent': hideBackground, 'artwork-revealing': revealing }"
     :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`"
   >
     <image v-if="backgroundSource && !hideBackground" class="board-background" :src="backgroundSource" mode="scaleToFill" />
     <view class="board-arrangement" :style="`transform:translateY(${arrangementOffset}px);`">
       <StudioContainer v-if="container" class="board-container" :material="container" :hide-container="hideContainer">
         <FlowerInstance
-          v-for="instance in readyInstances"
+          v-for="(instance, index) in readyInstances"
           :key="instance.id"
           :instance="instance"
           :material="preparedMaterials[instance.materialId]"
           :dimmed="isDimmed(instance)"
+          :reveal-delay="revealing ? 1300 + index * 120 : undefined"
         />
       </StudioContainer>
     </view>
@@ -63,4 +66,11 @@ function isDimmed(instance: Artwork['materials'][number]) {
 .board-background { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .board-arrangement { position: absolute; inset: 0; }
 .board-container { position: absolute; inset: 0; width: 698px; height: 1000px; }
+.artwork-revealing .board-background { animation: scene-unfold .85s ease-out both; }
+.artwork-revealing .board-arrangement { animation: container-appear .65s ease-out .55s both; }
+@keyframes scene-unfold { from { opacity: 0; } to { opacity: 1; } }
+@keyframes container-appear { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .artwork-revealing .board-background, .artwork-revealing .board-arrangement { animation: none; }
+}
 </style>

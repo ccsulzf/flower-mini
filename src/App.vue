@@ -16,6 +16,8 @@ onLaunch(() => {
 })
 
 onShow(() => {
+  // 使用已有素材先展示页面，目录检查和文件更新在后台完成。
+  void useFlowerCatalogStore().refreshInBackground()
   void useDailyFlowerStore().checkToday()
 })
 </script>

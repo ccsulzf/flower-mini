@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370" stroke-linecap="round" stroke-linejoin="round"><title>橄榄叶</title><desc>保留品种特征，细化叶片轮廓、脉络与自然层次。</desc>
   <defs>
     <!-- 橄榄叶哑光微光与背阴银绿渐变 -->
     <linearGradient id="olv-shading" x1="0" y1="0" x2="1" y2="0">
@@ -23,7 +23,7 @@
     <path d="M0 -0.5 Q-0.4 -15 0.5 -29.5" fill="none" stroke="#d5dcb6" stroke-width="0.48" opacity="0.85"/>
     <path d="M0 -7 Q-1.8 -9.5 -2.8 -12 M0 -7 Q1.8 -9.5 2.8 -12 M0 -13 Q-2.2 -15.5 -3.3 -18.5 M0 -13 Q2.2 -15.5 3.3 -18.5 M0 -19 Q-2.0 -21.5 -2.8 -24.5 M0 -19 Q2.0 -21.5 2.8 -24.5"
           fill="none" stroke="#d5dcb6" stroke-width="0.25" opacity="0.55"/>
-  </g>
+  <path d="M0 -1 Q-3 -12 -2.6 -24 Q-1 -14 0 -1Z" fill="#e3e5c9" opacity=".25"/></g>
 
   <path d="M54.0 61.0 Q55.5 56.0 59.0 52.0" fill="none" stroke="#887a60" stroke-width="0.7"/>
   <g transform="translate(59.0 52.0) rotate(39.0)">
@@ -59,7 +59,7 @@
     <path d="M0 -0.5 Q-0.4 -18.5 0.6 -37.2" fill="none" stroke="#d5dcb6" stroke-width="0.48" opacity="0.85"/>
     <path d="M0 -8.5 Q-2.0 -11 -3.2 -14.5 M0 -8.5 Q2.0 -11 3.2 -14.5 M0 -15.5 Q-2.5 -18.5 -3.8 -22.5 M0 -15.5 Q2.5 -18.5 3.8 -22.5 M0 -22.5 Q-2.3 -25.5 -3.2 -29 M0 -22.5 Q2.3 -25.5 3.2 -29"
           fill="none" stroke="#d5dcb6" stroke-width="0.25" opacity="0.55"/>
-  </g>
+  <path d="M0 -1 Q-3 -12 -2.6 -24 Q-1 -14 0 -1Z" fill="#e3e5c9" opacity=".25"/></g>
 
   <!-- 第 3 节 -->
   <path d="M56.999 139.333 Q55.2 134.5 51.999 130.333" fill="none" stroke="#887a60" stroke-width="0.7"/>
@@ -95,7 +95,7 @@
     <path d="M0 -0.5 Q-0.3 -15 0.5 -29.6" fill="none" stroke="#d5dcb6" stroke-width="0.48" opacity="0.85"/>
     <path d="M0 -7 Q-1.8 -9.5 -2.6 -12 M0 -7 Q1.8 -9.5 2.6 -12 M0 -13 Q-2.2 -15.5 -3.2 -18.5 M0 -13 Q2.2 -15.5 3.2 -18.5 M0 -18.5 Q-1.9 -21 -2.6 -24.5 M0 -18.5 Q1.9 -21 2.6 -24.5"
           fill="none" stroke="#d5dcb6" stroke-width="0.25" opacity="0.55"/>
-  </g>
+  <path d="M0 -1 Q-3 -12 -2.6 -24 Q-1 -14 0 -1Z" fill="#e3e5c9" opacity=".25"/></g>
 
   <path d="M56.026 178.5 Q57.8 173.8 61.026 169.5" fill="none" stroke="#887a60" stroke-width="0.7"/>
   <g transform="translate(61.026 169.5) rotate(42.419)">
@@ -131,7 +131,7 @@
     <path d="M0 -0.5 Q-0.4 -20.5 0.6 -40.8" fill="none" stroke="#d5dcb6" stroke-width="0.48" opacity="0.85"/>
     <path d="M0 -9.5 Q-2.3 -12.5 -3.4 -16.5 M0 -9.5 Q2.3 -12.5 3.4 -16.5 M0 -16.5 Q-2.7 -20 -4.0 -24.5 M0 -16.5 Q2.7 -20 4.0 -24.5 M0 -24 Q-2.5 -27.5 -3.6 -32 M0 -24 Q2.5 -27.5 3.6 -32"
           fill="none" stroke="#d5dcb6" stroke-width="0.25" opacity="0.55"/>
-  </g>
+  <path d="M0 -1 Q-3 -12 -2.6 -24 Q-1 -14 0 -1Z" fill="#e3e5c9" opacity=".25"/></g>
 
   <!-- 第 6 节 -->
   <path d="M51.73 256.833 Q49.8 252.0 46.73 247.833" fill="none" stroke="#887a60" stroke-width="0.7"/>
@@ -167,7 +167,7 @@
     <path d="M0 -0.5 Q-0.4 -18.5 0.6 -36.0" fill="none" stroke="#d5dcb6" stroke-width="0.48" opacity="0.85"/>
     <path d="M0 -8.5 Q-2.1 -11.5 -3.2 -15 M0 -8.5 Q2.1 -11.5 3.2 -15 M0 -15 Q-2.5 -18 -3.8 -22.5 M0 -15 Q2.5 -18 3.8 -22.5 M0 -22 Q-2.3 -25 -3.3 -29 M0 -22 Q2.3 -25 3.3 -29"
           fill="none" stroke="#d5dcb6" stroke-width="0.25" opacity="0.55"/>
-  </g>
+  <path d="M0 -1 Q-3 -12 -2.6 -24 Q-1 -14 0 -1Z" fill="#e3e5c9" opacity=".25"/></g>
 
   <path d="M51.012 296.0 Q53.2 291.5 56.012 287.0" fill="none" stroke="#887a60" stroke-width="0.7"/>
   <g transform="translate(56.012 287.0) rotate(32.818)">
@@ -180,4 +180,5 @@
     <path d="M0 -7 Q-1.8 -9.5 -2.7 -12 M0 -7 Q1.8 -9.5 2.7 -12 M0 -13 Q-2.2 -15.5 -3.3 -18.5 M0 -13 Q2.2 -15.5 3.3 -18.5 M0 -18.5 Q-1.9 -21 -2.7 -24 M0 -18.5 Q1.9 -21 2.7 -24"
           fill="none" stroke="#d5dcb6" stroke-width="0.25" opacity="0.55"/>
   </g>
+<path d="M53 91 l2 -2 M53 169 l-2 -2 M54 248 l2 -2" fill="none" stroke="#b4aa92" stroke-width=".8" opacity=".65" stroke-linecap="round"/>
 </svg>

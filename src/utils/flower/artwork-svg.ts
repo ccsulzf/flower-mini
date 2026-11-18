@@ -1,3 +1,4 @@
+import { bouquetBoundary, fitBouquetTransform } from './bouquet-boundary.cjs'
 import type { CachedMaterial } from '@/models/material'
 import type { Artwork } from '@/models/artwork'
 import { backgroundOffset, backgroundSceneSource } from './background-render'
@@ -39,10 +40,14 @@ export function renderArtworkSvg(artwork: Artwork, getMaterial: MaterialResolver
   const vaseFront = vaseSvg(vase, 'front')
   const materials = artwork.materials.map((instance) => {
     const material = resolveMaterial(getMaterial, instance.materialId, ['flower'])
-    const source = cloudPlantSvg(material, instance).replace(/^<svg\b[^>]*>/, '').replace(/<\/svg>\s*$/, '')
-    const { anchor, angle, height, scale, mirrored } = instance.transform
+    const fitted = { ...instance, transform: fitBouquetTransform(instance.transform, material, vase) }
+    const source = cloudPlantSvg(material, fitted).replace(/^<svg\b[^>]*>/, '').replace(/<\/svg>\s*$/, '')
+    const { anchor, angle, height, scale, mirrored } = fitted.transform
     const mirror = mirrored ? -scale : scale
     return `<g transform="translate(${anchor.x} ${anchor.y}) rotate(${angle}) scale(${mirror} ${scale}) translate(-55 ${-(height + 55)})">${source}</g>`
   }).join('')
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><rect width="698" height="1000" fill="#f6f3eb"/>${backgroundSvg}<g transform="translate(0 ${offset})">${vaseBack}${materials}${vaseFront}</g></svg>`
+  const boundary = bouquetBoundary(vase)
+  const clip = boundary ? `<defs><clipPath id="bouquet-flower-clip"><polygon points="${boundary.points.map(point => point.join(',')).join(' ')}"/></clipPath></defs>` : ''
+  const flowers = boundary ? `<g clip-path="url(#bouquet-flower-clip)">${materials}</g>` : materials
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="698" height="1000" viewBox="0 0 698 1000"><rect width="698" height="1000" fill="#f6f3eb"/>${backgroundSvg}<g transform="translate(0 ${offset})">${clip}${vaseBack}${flowers}${vaseFront}</g></svg>`
 }

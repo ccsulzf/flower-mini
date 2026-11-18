@@ -11,7 +11,7 @@ interface StageBounds {
 }
 
 function calculateLayout(bounds?: StageBounds) {
-  const device = uni.getSystemInfoSync()
+  const device = uni.getWindowInfo()
   const unit = device.windowWidth / 750
   const navigationStatusTop = device.statusBarHeight || 0
   const capsule = uni.getMenuButtonBoundingClientRect?.() || { top: navigationStatusTop, height: 0 }

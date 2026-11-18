@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><title>荷花</title><desc>保留荷花的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
 <defs><linearGradient id="lotus-plane" x1="0" y1="0" x2=".45" y2="1"><stop stop-color="#fff5e7" stop-opacity=".38"/><stop offset=".6" stop-color="#fff5e7" stop-opacity=".06"/><stop offset="1" stop-color="#8a5263" stop-opacity=".18"/></linearGradient></defs>
 <path d="M54.1 104L53.5 87L56.5 87L55.9 104Z" fill="#819272"/>
-<path d="M53 83C29 72 19 52 15 31C29 36 46 55 53 83Z" fill="__COLOR__" stroke="#9c7882" stroke-width=".5" stroke-opacity=".55"/><path d="M53 83C29 72 19 52 15 31C29 36 46 55 53 83Z" fill="url(#lotus-plane)"/>
-<path d="M53 83C29 72 19 52 15 31C29 36 46 55 53 83Z" fill="#fff4e4" opacity="0.04"/>
-<path d="M57 83C79 72 91 49 95 29C79 37 63 58 57 83Z" fill="__COLOR__" stroke="#9c7882" stroke-width=".5" stroke-opacity=".55"/><path d="M57 83C79 72 91 49 95 29C79 37 63 58 57 83Z" fill="url(#lotus-plane)"/>
-<path d="M57 83C79 72 91 49 95 29C79 37 63 58 57 83Z" fill="#fff4e4" opacity="0.04"/>
+<path d="M53 83C29 72 19 52 15 31C24 34 32 42 38 51C46 63 50 74 53 83Z" fill="__COLOR__" stroke="#9c7882" stroke-width=".5" stroke-opacity=".55"/><path d="M53 83C29 72 19 52 15 31C24 34 32 42 38 51C46 63 50 74 53 83Z" fill="url(#lotus-plane)"/>
+<path d="M53 83C29 72 19 52 15 31C24 34 32 42 38 51C46 63 50 74 53 83Z" fill="#fff4e4" opacity="0.04"/>
+<path d="M57 83C79 72 91 49 95 29C86 34 78 44 72 53C64 65 60 76 57 83Z" fill="__COLOR__" stroke="#9c7882" stroke-width=".5" stroke-opacity=".55"/><path d="M57 83C79 72 91 49 95 29C86 34 78 44 72 53C64 65 60 76 57 83Z" fill="url(#lotus-plane)"/>
+<path d="M57 83C79 72 91 49 95 29C86 34 78 44 72 53C64 65 60 76 57 83Z" fill="#fff4e4" opacity="0.04"/>
 <path d="M52 80C33 58 33 34 38 17C51 31 59 55 52 80Z" fill="__COLOR__" stroke="#9c7882" stroke-width=".5" stroke-opacity=".55"/><path d="M52 80C33 58 33 34 38 17C51 31 59 55 52 80Z" fill="url(#lotus-plane)"/>
 <path d="M52 80C33 58 33 34 38 17C51 31 59 55 52 80Z" fill="#fff4e4" opacity="0.1"/>
 <path d="M57 80C57 53 66 30 75 19C80 41 71 66 57 80Z" fill="__COLOR__" stroke="#9c7882" stroke-width=".5" stroke-opacity=".55"/><path d="M57 80C57 53 66 30 75 19C80 41 71 66 57 80Z" fill="url(#lotus-plane)"/>

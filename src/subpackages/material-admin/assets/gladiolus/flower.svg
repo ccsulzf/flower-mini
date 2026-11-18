@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110" stroke-linecap="round" stroke-linejoin="round"><title>剑兰</title><desc>保留剑兰的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs>
     <!-- 剑兰花瓣丝缎通透高光（纯净无灰脏杂质） -->
     <linearGradient id="glad-sheen" x1="0" y1="1" x2="0" y2="0">
@@ -19,13 +19,13 @@
     <g id="glad-petal">
       <path d="M-2 6
                C-8 0 -15 -8 -13 -19
-               C-11 -25 -5 -24 -2 -21
-               C1 -28 7 -26 10 -20
+               C-11 -25 -7 -25 -4 -22Q-3 -23 -2 -21
+               C1 -28 5 -27 7 -23Q9 -24 10 -20
                C14 -10 8 1 2 6 Z"
             fill="__COLOR__"/>
-      <path d="M-2 6 C-8 0 -15 -8 -13 -19 C-11 -25 -5 -24 -2 -21 C1 -28 7 -26 10 -20 C14 -10 8 1 2 6 Z"
+      <path d="M-2 6 C-8 0 -15 -8 -13 -19 C-11 -25 -7 -25 -4 -22Q-3 -23 -2 -21 C1 -28 5 -27 7 -23Q9 -24 10 -20 C14 -10 8 1 2 6 Z"
             fill="url(#glad-sheen)"/>
-      <path d="M-2 6 C-8 0 -15 -8 -13 -19 C-11 -25 -5 -24 -2 -21 C1 -28 7 -26 10 -20 C14 -10 8 1 2 6 Z"
+      <path d="M-2 6 C-8 0 -15 -8 -13 -19 C-11 -25 -7 -25 -4 -22Q-3 -23 -2 -21 C1 -28 5 -27 7 -23Q9 -24 10 -20 C14 -10 8 1 2 6 Z"
             fill="url(#glad-fold)"/>
       <!-- 花瓣立体反光微卷边与中脉 -->
       <path d="M-1 5 C-2 -4 -1 -14 0 -24" fill="none" stroke="#ffffff" stroke-width="0.45" opacity="0.75"/>

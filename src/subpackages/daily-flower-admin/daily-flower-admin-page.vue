@@ -32,11 +32,18 @@ const currentDate = ref('')
 const batchPublishing = ref(false)
 const catalog = useFlowerCatalogStore()
 const { deviceWidth } = useDevice()
-const weekRange = currentWeekRange()
+const weekOffset = ref(0)
+const weekRange = computed(() => {
+  const date = new Date()
+  date.setDate(date.getDate() + weekOffset.value * 7)
+  return currentWeekRange(date)
+})
+const weekLabel = computed(() => weekOffset.value === 0 ? '本周' : weekOffset.value === 1 ? '下周' : weekOffset.value === -1 ? '上周' : '所选周')
+const weekBusy = computed(() => batchPublishing.value || localItems.value.some(item => item.status === 'publishing'))
 
 const queueItems = computed(() => {
   const byDate = new Map(localItems.value.map(item => [item.date, item]))
-  return [...byDate.values()].sort((left, right) => left.date.localeCompare(right.date))
+  return [...byDate.values()].filter(item => item.date >= weekRange.value.start && item.date <= weekRange.value.end).sort((left, right) => left.date.localeCompare(right.date))
 })
 const currentItem = computed(() => queueItems.value.find(item => item.date === currentDate.value) || null)
 const currentArtwork = computed<Artwork | null>(() => {
@@ -94,7 +101,7 @@ function syncCurrentDate(preferred = '') {
 function loadLocalDrafts() {
   const items: DraftQueueItem[] = []
   const errors: string[] = []
-  for (const entry of localDailyFlowerDrafts(weekRange.start, weekRange.end)) {
+  for (const entry of localDailyFlowerDrafts()) {
     try {
       const draft = parseDailyFlower(entry.source)
       items.push(queueItem(draft, entry.filename))
@@ -105,7 +112,17 @@ function loadLocalDrafts() {
   }
   localItems.value = items
   localErrors.value = errors
-  syncCurrentDate(items.some(item => item.date === localDate()) ? localDate() : items[0]?.date)
+  syncCurrentDate(localDate())
+}
+
+async function changeWeek(offset: number) {
+  if (weekBusy.value)
+    return
+  weekOffset.value = offset
+  operationMessage.value = ''
+  syncCurrentDate(offset === 0 ? localDate() : '')
+  if (currentItem.value)
+    await openItem(currentItem.value)
 }
 
 async function prepareArtworkMaterials(value: Artwork) {
@@ -134,10 +151,11 @@ async function validateItem(item: DraftQueueItem) {
       await catalog.load()
     if (catalog.error)
       throw new Error(catalog.error)
-    if (item.draft.artwork.container.type === 'bouquet') {
+    if (item.draft.artwork.container.type === 'bouquet'
+      && !catalog.materials.some(material => material.id === item.draft.artwork.container.materialId && material.category === 'bouquet')) {
       const vase = catalog.materials.find(material => material.category === 'vase')
       if (!vase)
-        throw new Error('旧草稿使用了已停用的花束包装，且云端没有可替换的花瓶')
+        throw new Error('草稿引用的花束包装已不存在，且云端没有可替换的花瓶')
       item.draft.artwork.container = { materialId: vase.id, type: 'vase' }
       item.draft.artwork.containerLayouts = {}
       item.result = '已将旧包装引用替换为花瓶'
@@ -217,7 +235,7 @@ async function publishSelected() {
     return
   const targets = [...queueItems.value].sort((left, right) => left.date.localeCompare(right.date))
   const dateRange = targets.length === 1 ? targets[0].date : `${targets[0].date} 至 ${targets[targets.length - 1].date}`
-  if (!await confirmPublish('上传本周花束', `将按日期顺序上传本周 ${targets.length} 天（${dateRange}）。单项失败不会中断后续上传。`))
+  if (!await confirmPublish('上传所选周花束', `将按日期顺序上传所选周 ${targets.length} 天（${dateRange}）。单项失败不会中断后续上传。`))
     return
   batchPublishing.value = true
   operationMessage.value = `正在上传 0 / ${targets.length}`
@@ -230,7 +248,7 @@ async function publishSelected() {
       if (await publishItem(item, false))
         successes++
     }
-    operationMessage.value = `本周上传完成：成功 ${successes} 天，失败 ${targets.length - successes} 天`
+    operationMessage.value = `所选周上传完成：成功 ${successes} 天，失败 ${targets.length - successes} 天`
   }
   finally {
     batchPublishing.value = false
@@ -248,9 +266,14 @@ onMounted(async () => {
   <view class="admin-page">
     <view class="admin-heading">
       <view><text class="admin-kicker">DAILY FLOWER DESK</text><text class="admin-title">每日花束运营台</text></view>
-      <text class="week-stamp">本周 {{ weekRange.start.slice(5) }} — {{ weekRange.end.slice(5) }}</text>
+      <text class="week-stamp">{{ weekLabel }} {{ weekRange.start.slice(5) }} — {{ weekRange.end.slice(5) }}</text>
     </view>
 
+    <view class="week-navigation">
+      <button class="paper-button" :disabled="weekBusy" @click="changeWeek(weekOffset - 1)">上一周</button>
+      <button class="text-button" :disabled="weekBusy || weekOffset === 0" @click="changeWeek(0)">回到本周</button>
+      <button class="paper-button" :disabled="weekBusy" @click="changeWeek(weekOffset + 1)">下一周</button>
+    </view>
     <view v-if="currentItem" class="preview-sheet">
       <view class="day-switcher">
         <button v-for="item in queueItems" :key="item.date" class="day-tab" :class="{ active: currentDate === item.date, done: item.status === 'published', failed: item.status === 'error' }" :disabled="batchPublishing" @click="openItem(item)">
@@ -259,7 +282,7 @@ onMounted(async () => {
         </button>
       </view>
       <view class="preview-heading">
-        <view><text class="section-title">{{ currentItem.date }}</text><text class="section-note">{{ statusLabel(currentItem) }} · 本周 {{ queueItems.length }} 天草稿</text></view>
+        <view><text class="section-title">{{ currentItem.date }}</text><text class="section-note">{{ statusLabel(currentItem) }} · 所选周 {{ queueItems.length }} 天草稿</text></view>
         <text v-if="publishedCount" class="published-count">已上传 {{ publishedCount }} 天</text>
       </view>
       <view class="preview-meta"><text class="preview-description">{{ currentItem.description }}</text></view>
@@ -270,8 +293,8 @@ onMounted(async () => {
         </button>
       </view>
       <view class="week-upload-bar">
-        <text class="week-upload-note">按日期顺序上传本周草稿，失败项会继续处理。</text>
-        <button class="paper-button week-upload-button" :disabled="batchPublishing || !queueItems.length" @click="publishSelected">{{ batchPublishing ? '上传中…' : '上传本周' }}</button>
+        <text class="week-upload-note">按日期顺序上传所选周草稿，失败项会继续处理。</text>
+        <button class="paper-button week-upload-button" :disabled="batchPublishing || !queueItems.length" @click="publishSelected">{{ batchPublishing ? '上传中…' : '上传所选周' }}</button>
       </view>
       <view class="preview">
         <view v-if="currentArtwork" class="preview-board" :style="previewBoardStyle"><FlowerArtworkRenderer :artwork="currentArtwork" :prepared-materials="catalog.prepared" /></view>
@@ -286,14 +309,19 @@ onMounted(async () => {
       <view v-if="operationMessage" class="operation-message">{{ operationMessage }}</view>
     </view>
     <view v-else class="empty-week">
-      <text class="section-title">本周还没有花束</text>
-      <text class="section-note">把本周每日花束数据放入 docs/daily-flowers 后重新打开运营台。</text>
+      <text class="section-title">所选周还没有花束</text>
+      <text class="section-note">把所选周每日花束数据放入 docs/daily-flowers 后重新打开运营台。</text>
       <view v-if="localErrors.length" class="local-errors"><text v-for="item in localErrors" :key="item">{{ item }}</text></view>
     </view>
   </view>
 </template>
 
 <style scoped lang="scss">
-.admin-page{min-height:100vh;padding:28rpx 24rpx 80rpx;box-sizing:border-box;background:#f6f1e7;color:#47483f}.admin-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24rpx;margin:4rpx 6rpx 30rpx}.admin-kicker{display:block;color:#89927f;font-size:19rpx;letter-spacing:3rpx}.admin-title{display:block;margin-top:8rpx;font-family:serif;font-size:40rpx;font-weight:600}.admin-summary{display:flex;max-width:330rpx;flex-wrap:wrap;justify-content:flex-end;gap:7rpx 14rpx;color:#73786c;font-size:21rpx}.summary-error{color:#a55757}.overview-sheet,.queue-sheet,.preview-sheet{position:relative;margin-top:24rpx;padding:26rpx;border:1rpx solid rgba(122,110,89,.18);background:rgba(255,253,247,.86);box-shadow:4rpx 6rpx 0 rgba(104,91,70,.055)}.overview-sheet{margin-top:0;transform:rotate(-.1deg)}.overview-top{display:flex;align-items:center;gap:22rpx}.overview-copy{min-width:0;flex:1}.overview-count{display:flex;align-items:baseline;gap:8rpx;padding:10rpx 15rpx;background:#e7eadc;color:#66705e;transform:rotate(1deg)}.count-number{font-family:serif;font-size:34rpx;font-weight:600}.count-label{font-size:19rpx}.operation-message{margin-top:14rpx;color:#5c7758;font-size:20rpx;line-height:1.45}.local-errors{display:flex;flex-direction:column;gap:7rpx;margin-top:14rpx;padding:14rpx;border-left:4rpx solid #b77972;background:#f5e8e3;color:#944e4d;font-size:21rpx;line-height:1.45}.queue-sheet{transform:rotate(.06deg)}.section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:22rpx;margin-bottom:20rpx}.section-title{display:block;font-family:serif;font-size:30rpx;font-weight:600}.section-note{display:block;margin-top:8rpx;color:#7a8073;font-size:22rpx;line-height:1.55}.paper-button{position:relative;margin:0;padding:0 25rpx;border:1rpx solid rgba(91,101,82,.46);border-radius:9rpx 5rpx 11rpx 6rpx;background:#f8f3e8;color:#56604f;font-size:24rpx;line-height:68rpx;box-shadow:3rpx 4rpx 0 rgba(84,91,75,.15)}.paper-button::after,.select-all::after,.text-button::after{border:0}.paper-button:active{transform:translateY(2rpx)}.paper-button.primary{border-color:#66735e;background:#77836e;color:#fffdf7}.paper-button[disabled],.select-all[disabled]{opacity:.42}.select-all,.text-button{flex:none;margin:0;padding:0;border:0;background:transparent;color:#71806a;font-size:22rpx;line-height:60rpx}.queue-heading{align-items:center}.draft-list{border-top:1rpx solid rgba(111,102,87,.16)}.draft-row{display:flex;align-items:flex-start;gap:16rpx;padding:20rpx 4rpx;border-bottom:1rpx solid rgba(111,102,87,.13)}.draft-row.active{margin:0 -10rpx;padding-right:14rpx;padding-left:14rpx;background:rgba(225,229,211,.48)}.draft-check{display:flex;width:34rpx;height:34rpx;flex:none;align-items:center;justify-content:center;margin-top:3rpx;border:2rpx solid #9da493;border-radius:5rpx 8rpx 4rpx 7rpx;color:#fff;font-size:25rpx}.draft-check.checked{border-color:#78856e;background:#78856e}.draft-copy{min-width:0;flex:1}.draft-line{display:flex;align-items:center;gap:10rpx}.draft-date{color:#3f463d;font-size:27rpx;font-weight:600}.status-tag{margin-left:auto;color:#777d70}.status-ready .status-tag,.status-published .status-tag{color:#567052}.status-error .status-tag{color:#a34e50}.draft-description{display:-webkit-box;overflow:hidden;margin-top:8rpx;color:#777d70;font-size:21rpx;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:2}.row-message{display:block;margin-top:7rpx;font-size:20rpx;line-height:1.4}.row-error{color:#a34e50}.row-message{color:#5c7758}.empty-state{padding:70rpx 20rpx;text-align:center;color:#85897f;font-size:23rpx}.preview-sheet{padding:0;overflow:hidden}.preview-heading{padding:26rpx 26rpx 0}.preview-meta{display:flex;gap:20rpx;align-items:flex-start;justify-content:space-between;padding:20rpx 26rpx}.preview-date{display:block;font-family:serif;font-size:32rpx;font-weight:600}.preview-source{display:block;margin-top:5rpx;color:#8a877c;font-size:19rpx}.preview-description{max-width:430rpx;color:#71776b;font-size:22rpx;line-height:1.55}.preview{position:relative;width:698rpx;height:1000rpx;overflow:hidden;background:#f6f3eb}.preview-board{position:absolute;top:0;left:0;width:698px;height:1000px;transform-origin:top left}.preview-placeholder{display:flex;height:100%;flex-direction:column;align-items:center;justify-content:center;padding:50rpx;box-sizing:border-box;color:#7c8277;font-size:24rpx;line-height:1.6;text-align:center}.preview-icon{margin-bottom:18rpx;color:#929d88;font-size:64rpx}.text-button{margin-top:8rpx}.publish-panel{display:flex;align-items:center;justify-content:space-between;gap:20rpx;padding:24rpx 26rpx}.publish-label{display:block;color:#3f463d;font-size:24rpx;font-weight:600}.publish-hint{display:block;margin-top:7rpx;color:#7c8277;font-size:19rpx;line-height:1.4}.publish-button{flex:none}.batch-bar{display:flex;align-items:center;justify-content:space-between;gap:20rpx;margin:0;padding:20rpx 26rpx;background:rgba(233,231,218,.62)}.batch-count{display:block;font-size:25rpx;font-weight:600}.batch-note{display:block;max-width:350rpx;margin-top:5rpx;color:#7e8278;font-size:19rpx;line-height:1.4}
-.admin-page{padding:18rpx 16rpx 30rpx}.admin-heading{align-items:center;margin:0 4rpx 16rpx}.admin-title{font-size:34rpx}.week-stamp{flex:none;padding:8rpx 12rpx;background:#e7eadc;color:#66705e;font-size:20rpx;transform:rotate(1deg)}.preview-sheet{margin-top:0;border-radius:8rpx 13rpx 7rpx 10rpx}.day-switcher{display:flex;justify-content:space-between;gap:8rpx;padding:14rpx 16rpx 10rpx;border-bottom:1rpx solid rgba(111,102,87,.13)}.day-tab{display:flex;min-width:0;flex:1;flex-direction:column;align-items:center;justify-content:center;margin:0;padding:6rpx 2rpx;border:1rpx solid transparent;border-radius:7rpx 10rpx 6rpx 8rpx;background:transparent;color:#777d70;line-height:1.2}.day-tab::after{border:0}.day-name{font-size:18rpx}.day-number{margin-top:5rpx;font-size:24rpx;font-weight:600}.day-tab.active{border-color:rgba(102,116,94,.42);background:#e7eadc;color:#4f614b}.day-tab.done .day-number::after{display:block;width:7rpx;height:7rpx;margin:4rpx auto 0;border-radius:50%;background:#78906e;content:""}.day-tab.failed .day-number{color:#a34e50}.preview-heading{display:flex;align-items:center;justify-content:space-between;gap:16rpx;padding:16rpx 20rpx 0}.preview-heading .section-note{margin-top:3rpx;font-size:19rpx}.published-count{flex:none;color:#647a5d;font-size:19rpx}.preview-meta{padding:8rpx 20rpx 12rpx}.preview-description{max-width:none;color:#666e60;font-size:21rpx}.preview{width:698rpx;height:1000rpx}.preview-board{width:698px;height:1000px;transform-origin:top left}.preview-placeholder{padding:24rpx;font-size:22rpx}.item-feedback{padding:10rpx 20rpx 0;color:#5c7758;font-size:20rpx;line-height:1.4}.item-feedback.failed{color:#a34e50}.compact-errors{margin:10rpx 18rpx 0}.operation-message{margin:10rpx 20rpx 0;padding:8rpx 10rpx;background:rgba(231,234,220,.62);font-size:19rpx}.publish-panel{padding:12rpx 18rpx 14rpx}.publish-label{font-size:22rpx}.publish-hint{margin-top:3rpx;font-size:17rpx}.paper-button{padding:0 20rpx;font-size:21rpx;line-height:58rpx}.publish-button{min-width:170rpx}.week-upload-bar{display:flex;align-items:center;justify-content:space-between;gap:12rpx;padding:12rpx 18rpx 16rpx;border-top:1rpx solid rgba(111,102,87,.12);background:rgba(233,231,218,.42)}.week-upload-note{color:#7e8278;font-size:17rpx;line-height:1.35}.week-upload-button{flex:none;border-color:#77836e;background:#77836e;color:#fffdf7}.empty-week{display:flex;min-height:280rpx;flex-direction:column;align-items:center;justify-content:center;padding:36rpx;text-align:center}.empty-week .section-note{max-width:540rpx}.empty-week .local-errors{width:100%;box-sizing:border-box;text-align:left}
+.admin-page{min-height:100vh;padding:28rpx 24rpx 80rpx;box-sizing:border-box;background:var(--app-page);color:var(--app-ink)}.admin-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24rpx;margin:4rpx 6rpx 30rpx}.admin-kicker{display:block;color:var(--app-sage);font-size:19rpx;letter-spacing:3rpx}.admin-title{display:block;margin-top:8rpx;font-family:serif;font-size:40rpx;font-weight:600}.admin-summary{display:flex;max-width:330rpx;flex-wrap:wrap;justify-content:flex-end;gap:7rpx 14rpx;color:var(--app-brandStrong);font-size:21rpx}.summary-error{color:var(--app-danger)}.overview-sheet,.queue-sheet,.preview-sheet{position:relative;margin-top:24rpx;padding:26rpx;border:1rpx solid rgba(var(--app-inkMuted-rgb), .18);background:rgba(var(--app-surface-rgb), .86);box-shadow:4rpx 6rpx 0 rgba(var(--app-ink-rgb), .055)}.overview-sheet{margin-top:0;transform:rotate(-.1deg)}.overview-top{display:flex;align-items:center;gap:22rpx}.overview-copy{min-width:0;flex:1}.overview-count{display:flex;align-items:baseline;gap:8rpx;padding:10rpx 15rpx;background:var(--app-sageSoft);color:var(--app-brandStrong);transform:rotate(1deg)}.count-number{font-family:serif;font-size:34rpx;font-weight:600}.count-label{font-size:19rpx}.operation-message{margin-top:14rpx;color:var(--app-brandStrong);font-size:20rpx;line-height:1.45}.local-errors{display:flex;flex-direction:column;gap:7rpx;margin-top:14rpx;padding:14rpx;border-left:4rpx solid var(--app-danger);background:var(--app-surfaceMuted);color:var(--app-danger);font-size:21rpx;line-height:1.45}.queue-sheet{transform:rotate(.06deg)}.section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:22rpx;margin-bottom:20rpx}.section-title{display:block;font-family:serif;font-size:30rpx;font-weight:600}.section-note{display:block;margin-top:8rpx;color:var(--app-brandStrong);font-size:22rpx;line-height:1.55}.paper-button{position:relative;margin:0;padding:0 25rpx;border:1rpx solid rgba(var(--app-brandStrong-rgb), .46);border-radius:9rpx 5rpx 11rpx 6rpx;background:var(--app-page);color:var(--app-brandStrong);font-size:24rpx;line-height:68rpx;box-shadow:3rpx 4rpx 0 rgba(var(--app-brandStrong-rgb), .15)}.paper-button::after,.select-all::after,.text-button::after{border:0}.paper-button:active{transform:translateY(2rpx)}.paper-button.primary{border-color:var(--app-brandStrong);background:var(--app-brandStrong);color:var(--app-surface)}.paper-button[disabled],.select-all[disabled]{opacity:.42}.select-all,.text-button{flex:none;margin:0;padding:0;border:0;background:transparent;color:var(--app-brandStrong);font-size:22rpx;line-height:60rpx}.queue-heading{align-items:center}.draft-list{border-top:1rpx solid rgba(var(--app-inkMuted-rgb), .16)}.draft-row{display:flex;align-items:flex-start;gap:16rpx;padding:20rpx 4rpx;border-bottom:1rpx solid rgba(var(--app-inkMuted-rgb), .13)}.draft-row.active{margin:0 -10rpx;padding-right:14rpx;padding-left:14rpx;background:rgba(var(--app-sageSoft-rgb), .48)}.draft-check{display:flex;width:34rpx;height:34rpx;flex:none;align-items:center;justify-content:center;margin-top:3rpx;border:2rpx solid var(--app-sage);border-radius:5rpx 8rpx 4rpx 7rpx;color:var(--app-surface);font-size:25rpx}.draft-check.checked{border-color:var(--app-brandStrong);background:var(--app-brandStrong)}.draft-copy{min-width:0;flex:1}.draft-line{display:flex;align-items:center;gap:10rpx}.draft-date{color:var(--app-ink);font-size:27rpx;font-weight:600}.status-tag{margin-left:auto;color:var(--app-brandStrong)}.status-ready .status-tag,.status-published .status-tag{color:var(--app-brandStrong)}.status-error .status-tag{color:var(--app-danger)}.draft-description{display:-webkit-box;overflow:hidden;margin-top:8rpx;color:var(--app-brandStrong);font-size:21rpx;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:2}.row-message{display:block;margin-top:7rpx;font-size:20rpx;line-height:1.4}.row-error{color:var(--app-danger)}.row-message{color:var(--app-brandStrong)}.empty-state{padding:70rpx 20rpx;text-align:center;color:var(--app-inkMuted);font-size:23rpx}.preview-sheet{padding:0;overflow:hidden}.preview-heading{padding:26rpx 26rpx 0}.preview-meta{display:flex;gap:20rpx;align-items:flex-start;justify-content:space-between;padding:20rpx 26rpx}.preview-date{display:block;font-family:serif;font-size:32rpx;font-weight:600}.preview-source{display:block;margin-top:5rpx;color:var(--app-inkMuted);font-size:19rpx}.preview-description{max-width:430rpx;color:var(--app-brandStrong);font-size:22rpx;line-height:1.55}.preview{position:relative;width:698rpx;height:1000rpx;overflow:hidden;background:var(--app-page)}.preview-board{position:absolute;top:0;left:0;width:698px;height:1000px;transform-origin:top left}.preview-placeholder{display:flex;height:100%;flex-direction:column;align-items:center;justify-content:center;padding:50rpx;box-sizing:border-box;color:var(--app-inkMuted);font-size:24rpx;line-height:1.6;text-align:center}.preview-icon{margin-bottom:18rpx;color:var(--app-sage);font-size:64rpx}.text-button{margin-top:8rpx}.publish-panel{display:flex;align-items:center;justify-content:space-between;gap:20rpx;padding:24rpx 26rpx}.publish-label{display:block;color:var(--app-ink);font-size:24rpx;font-weight:600}.publish-hint{display:block;margin-top:7rpx;color:var(--app-inkMuted);font-size:19rpx;line-height:1.4}.publish-button{flex:none}.batch-bar{display:flex;align-items:center;justify-content:space-between;gap:20rpx;margin:0;padding:20rpx 26rpx;background:rgba(var(--app-surfaceMuted-rgb), .62)}.batch-count{display:block;font-size:25rpx;font-weight:600}.batch-note{display:block;max-width:350rpx;margin-top:5rpx;color:var(--app-inkMuted);font-size:19rpx;line-height:1.4}
+.admin-page{padding:18rpx 16rpx 30rpx}.admin-heading{align-items:center;margin:0 4rpx 16rpx}.admin-title{font-size:34rpx}.week-stamp{flex:none;padding:8rpx 12rpx;background:var(--app-sageSoft);color:var(--app-brandStrong);font-size:20rpx;transform:rotate(1deg)}.preview-sheet{margin-top:0;border-radius:8rpx 13rpx 7rpx 10rpx}.day-switcher{display:flex;justify-content:space-between;gap:8rpx;padding:14rpx 16rpx 10rpx;border-bottom:1rpx solid rgba(var(--app-inkMuted-rgb), .13)}.day-tab{display:flex;min-width:0;flex:1;flex-direction:column;align-items:center;justify-content:center;margin:0;padding:6rpx 2rpx;border:1rpx solid transparent;border-radius:7rpx 10rpx 6rpx 8rpx;background:transparent;color:var(--app-brandStrong);line-height:1.2}.day-tab::after{border:0}.day-name{font-size:18rpx}.day-number{margin-top:5rpx;font-size:24rpx;font-weight:600}.day-tab.active{border-color:rgba(var(--app-brandStrong-rgb), .42);background:var(--app-sageSoft);color:var(--app-brandStrong)}.day-tab.done .day-number::after{display:block;width:7rpx;height:7rpx;margin:4rpx auto 0;border-radius:50%;background:var(--app-brandStrong);content:""}.day-tab.failed .day-number{color:var(--app-danger)}.preview-heading{display:flex;align-items:center;justify-content:space-between;gap:16rpx;padding:16rpx 20rpx 0}.preview-heading .section-note{margin-top:3rpx;font-size:19rpx}.published-count{flex:none;color:var(--app-brandStrong);font-size:19rpx}.preview-meta{padding:8rpx 20rpx 12rpx}.preview-description{max-width:none;color:var(--app-brandStrong);font-size:21rpx}.preview{width:698rpx;height:1000rpx}.preview-board{width:698px;height:1000px;transform-origin:top left}.preview-placeholder{padding:24rpx;font-size:22rpx}.item-feedback{padding:10rpx 20rpx 0;color:var(--app-brandStrong);font-size:20rpx;line-height:1.4}.item-feedback.failed{color:var(--app-danger)}.compact-errors{margin:10rpx 18rpx 0}.operation-message{margin:10rpx 20rpx 0;padding:8rpx 10rpx;background:rgba(var(--app-sageSoft-rgb), .62);font-size:19rpx}.publish-panel{padding:12rpx 18rpx 14rpx}.publish-label{font-size:22rpx}.publish-hint{margin-top:3rpx;font-size:17rpx}.paper-button{padding:0 20rpx;font-size:21rpx;line-height:58rpx}.publish-button{min-width:170rpx}.week-upload-bar{display:flex;align-items:center;justify-content:space-between;gap:12rpx;padding:12rpx 18rpx 16rpx;border-top:1rpx solid rgba(var(--app-inkMuted-rgb), .12);background:rgba(var(--app-surfaceMuted-rgb), .42)}.week-upload-note{color:var(--app-inkMuted);font-size:17rpx;line-height:1.35}.week-upload-button{flex:none;border-color:var(--app-brandStrong);background:var(--app-brandStrong);color:var(--app-surface)}.empty-week{display:flex;min-height:280rpx;flex-direction:column;align-items:center;justify-content:center;padding:36rpx;text-align:center}.empty-week .section-note{max-width:540rpx}.empty-week .local-errors{width:100%;box-sizing:border-box;text-align:left}
+</style>
+
+<style scoped>
+.week-navigation { display: flex; align-items: center; justify-content: space-between; gap: 16rpx; margin: 0 4rpx 20rpx; }
+.week-navigation .text-button { margin-top: 0; }
 </style>

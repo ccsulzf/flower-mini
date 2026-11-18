@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="370" viewBox="0 0 110 370" stroke-linecap="round" stroke-linejoin="round"><title>八角金盘</title><desc>保留品种特征，细化叶片轮廓、脉络与自然层次。</desc>
   <defs>
     <!-- 革质叶面通透纯净的光泽反射（无脏灰发黑） -->
     <radialGradient id="aralia-gloss" cx="45%" cy="40%" r="65%">
@@ -90,7 +90,7 @@
       <!-- 叶柄着生心形叶基软骨小纽扣 -->
       <circle cx="0" cy="0" r="1.8" fill="#586f4a"/>
       <circle cx="0" cy="0" r="0.9" fill="#e1edc7"/>
-    </g>
+    <path d="M0 -2 Q-5 -29 -16 -70 Q-9 -43 0 -2Z M1 -2 Q13 -27 40 -56 Q19 -27 1 -2Z" fill="#fff5df" opacity=".12"/></g>
   </defs>
 
   <!-- ================= 1. 坚挺修长的主侧叶柄（自然连贯且具粗细渐变） ================= -->

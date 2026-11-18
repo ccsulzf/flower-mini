@@ -1,0 +1,14 @@
+{
+  "id": "bouquet-wrap-sage",
+  "category": "bouquet",
+  "name": "绿意侧卷",
+  "introduction": "鼠尾草绿纸从左侧舒展卷入，奶白内面与低弧纸口衬出自然花姿。",
+  "sortOrder": 202,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

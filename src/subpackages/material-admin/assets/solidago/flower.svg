@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><g transform="rotate(-4 55 104)">
-  <path d="M55 104C55 72.6667 41.1333 50.3333 23 37" fill="none" stroke="#87976e" stroke-width="0.95" />
+  <path d="M55 104C54 78 31 47 23 37" fill="none" stroke="#87976e" stroke-width="0.95" />
   <path d="M23 37L23.00 37.00" fill="none" stroke="#88966f" stroke-width="0.3" />
   <ellipse cx="23.00" cy="37.60" rx="0.53" ry="0.66" fill="__COLOR__"/>
   <ellipse cx="23.58" cy="37.19" rx="0.53" ry="0.66" fill="__COLOR__"/>

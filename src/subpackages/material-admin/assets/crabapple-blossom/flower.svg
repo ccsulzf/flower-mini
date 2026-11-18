@@ -3,8 +3,8 @@
   <defs>
     <!-- 单片花瓣 -->
     <g id="petal">
-      <path d="M-2 2C-11 -1 -15 -13 -7 -18Q0 -23 7 -17C13 -10 9 -1 2 2Z" fill="__COLOR__" stroke="#78585b" stroke-width="0.38" stroke-opacity=".3"/>
-      <path d="M-2 2C-11 -1 -15 -13 -7 -18Q0 -23 7 -17C13 -10 9 -1 2 2Z" fill="#fff5df" opacity="0.12"/>
+      <path d="M-2 2C-10 -1 -14 -11 -9 -16C-6 -20 -1 -22 3 -19C8 -21 12 -16 11 -11C11 -5 6 0 2 2Z" fill="__COLOR__" stroke="#78585b" stroke-width="0.38" stroke-opacity=".3"/>
+      <path d="M-2 2C-10 -1 -14 -11 -9 -16C-6 -20 -1 -22 3 -19C8 -21 12 -16 11 -11C11 -5 6 0 2 2Z" fill="#fff5df" opacity="0.12"/>
       <path d="M0 0Q-4 -8 -2 -16" fill="none" stroke="#fff5df" stroke-width="0.5" opacity="0.55"/>
     </g>
 

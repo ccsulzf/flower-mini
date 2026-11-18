@@ -27,7 +27,7 @@ function foliageSvg(source: string, total: number, color: string) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 ${total}">${extension}${nested(source, 0, 0, 110, naturalHeight)}</svg>`
 }
 
-export function cloudPlantSvg(material: CachedMaterial, instance: Pick<MaterialInstance, 'color' | 'transform'>) {
+export function cloudPlantSvg(material: CachedMaterial, instance: Pick<MaterialInstance, 'color'> & { transform: Pick<MaterialInstance['transform'], 'height'> }) {
   if (material.category !== 'flower' || !material.geometry) throw new Error('花材几何信息缺失')
   const total = instance.transform.height + 55
   const safeColor = /^#[\da-f]{6}$/i.test(instance.color) ? instance.color : material.colors[0].value

@@ -140,7 +140,7 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   justify-content: center;
   box-sizing: border-box;
   padding: 30rpx;
-  background: rgba(63, 55, 45, .34)
+  background: rgba(var(--app-ink-rgb), .34)
 }
 
 .material-list-sheet {
@@ -151,11 +151,11 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   flex-direction: column;
   box-sizing: border-box;
   padding: 34rpx 34rpx calc(30rpx + env(safe-area-inset-bottom));
-  border: 2rpx solid rgba(112, 91, 68, .22);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .22);
   border-radius: 24rpx 18rpx 28rpx 20rpx;
-  background: #fffaf0;
-  box-shadow: 6rpx 8rpx 0 rgba(143, 124, 95, .12);
-  color: #514a40
+  background: var(--app-surface);
+  box-shadow: 6rpx 8rpx 0 rgba(var(--app-ink-rgb), .12);
+  color: var(--app-ink)
 }
 
 .list-tape {
@@ -165,7 +165,7 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   width: 104rpx;
   height: 30rpx;
   transform: rotate(-6deg);
-  background: rgba(203, 210, 175, .8)
+  background: rgba(var(--app-sage-rgb), .8)
 }
 
 .list-heading {
@@ -182,7 +182,7 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
 }
 
 .list-kicker {
-  color: #8b806e;
+  color: var(--app-inkMuted);
   font-size: 19rpx;
   letter-spacing: 3rpx
 }
@@ -190,7 +190,7 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
 .list-title {
   font-family: serif;
   font-size: 36rpx;
-  color: #4f594b
+  color: var(--app-brandStrong)
 }
 
 .list-close {
@@ -199,15 +199,15 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   height: 60rpx;
   align-items: center;
   justify-content: center;
-  border: 1rpx solid rgba(112, 91, 68, .22);
+  border: 1rpx solid rgba(var(--app-ink-rgb), .22);
   border-radius: 45% 55% 48% 52%;
-  background: #f7f1e5;
-  color: #756b5d
+  background: var(--app-page);
+  color: var(--app-inkMuted)
 }
 
 .list-summary {
   margin-top: 18rpx;
-  color: #817665;
+  color: var(--app-inkMuted);
   font-size: 23rpx
 }
 
@@ -235,8 +235,8 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
 .group-title {
   display: block;
   padding: 8rpx 0;
-  border-bottom: 1rpx dashed rgba(112, 91, 68, .2);
-  color: #728066;
+  border-bottom: 1rpx dashed rgba(var(--app-ink-rgb), .2);
+  color: var(--app-brandStrong);
   font-size: 23rpx
 }
 
@@ -267,19 +267,19 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   box-sizing: border-box;
   padding: 14rpx;
   border-radius: 50%;
-  background: rgba(226, 233, 216, .62);
-  color: #728066;
+  background: rgba(var(--app-sageSoft-rgb), .62);
+  color: var(--app-brandStrong);
   font-size: 32rpx
 }
 
 .item-count {
-  color: #817665;
+  color: var(--app-inkMuted);
   font-size: 24rpx
 }
 
 .list-state {
   padding: 46rpx 0;
-  color: #817665;
+  color: var(--app-inkMuted);
   font-size: 25rpx;
   text-align: center
 }
@@ -292,10 +292,10 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   justify-content: center;
   gap: 12rpx;
   margin-top: 12rpx;
-  border: 1rpx solid rgba(91, 74, 57, .52);
+  border: 1rpx solid rgba(var(--app-ink-rgb), .52);
   border-radius: 16rpx 12rpx 18rpx 14rpx;
-  background: #e3e9d7;
-  color: #4f594b;
+  background: var(--app-sageSoft);
+  color: var(--app-brandStrong);
   font-size: 26rpx
 }
 
@@ -315,7 +315,7 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   justify-content: center;
   padding: 40rpx;
   box-sizing: border-box;
-  background: rgba(61, 53, 43, .32);
+  background: rgba(var(--app-ink-rgb), .32);
   animation: render-backdrop-in .2s ease-out both;
 }
 
@@ -329,13 +329,13 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   justify-content: center;
   box-sizing: border-box;
   padding: 46rpx 42rpx 40rpx;
-  border: 2rpx solid rgba(139, 119, 91, .34);
+  border: 2rpx solid rgba(var(--app-ink-rgb), .34);
   border-radius: 20rpx 28rpx 18rpx 25rpx;
   background:
-    radial-gradient(circle at 18% 20%, rgba(168, 143, 105, .08) 0 1rpx, transparent 2rpx),
-    #fffaf0;
+    radial-gradient(circle at 18% 20%, rgba(var(--app-danger-rgb), .08) 0 1rpx, transparent 2rpx),
+    var(--app-surface);
   background-size: 30rpx 30rpx, auto;
-  box-shadow: 8rpx 11rpx 0 rgba(76, 64, 48, .09), 0 24rpx 60rpx rgba(48, 41, 33, .15);
+  box-shadow: 8rpx 11rpx 0 rgba(var(--app-ink-rgb), .09), 0 24rpx 60rpx rgba(var(--app-ink-rgb), .15);
   animation: render-dialog-in .32s cubic-bezier(.2, .8, .25, 1.1) both;
 }
 
@@ -345,7 +345,7 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   left: 50%;
   width: 112rpx;
   height: 27rpx;
-  background: rgba(216, 207, 174, .78);
+  background: rgba(var(--app-line-rgb), .78);
   content: '';
   transform: translateX(-50%) rotate(-2deg);
 }
@@ -357,13 +357,13 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   align-items: center;
   justify-content: center;
   margin-bottom: 22rpx;
-  color: #7d8973;
+  color: var(--app-sage);
   font-size: 62rpx;
   animation: render-flower-turn 2.2s ease-in-out infinite;
 }
 
 .render-title {
-  color: #514a3f;
+  color: var(--app-ink);
   font-family: 'Kaiti SC', 'STKaiti', serif;
   font-size: 31rpx;
   line-height: 1.4;
@@ -371,7 +371,7 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
 
 .render-note {
   margin-top: 11rpx;
-  color: #8b8375;
+  color: var(--app-inkMuted);
   font-size: 22rpx;
   line-height: 1.5;
 }
@@ -386,7 +386,7 @@ watch(() => props.visible ? props.artwork?.materials.map(item => item.materialId
   width: 9rpx;
   height: 9rpx;
   border-radius: 50%;
-  background: #b69f78;
+  background: var(--app-subtle);
   animation: render-dot-bounce .9s ease-in-out infinite;
 }
 

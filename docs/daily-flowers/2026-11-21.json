@@ -1,0 +1,752 @@
+{
+  "date": "2026-11-21",
+  "description": "粉霭慢舞：浅粉蝴蝶兰与豆沙牡丹在右侧结成柔软花团，粉色郁金香沿左侧挑高，奶白单瓣洋桔梗铺向前缘；香豌豆、浅粉雪果与奶白风铃草连成低垂弧线，银叶菊和天门冬围出轻盈的月牙。",
+  "artwork": {
+    "background": {
+      "materialId": "paper-linen"
+    },
+    "container": {
+      "materialId": "long-neck-vase",
+      "type": "vase"
+    },
+    "materials": [
+      {
+        "id": 1,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 337.9,
+            "y": 747
+          },
+          "angle": 47.8,
+          "height": 286.4,
+          "scale": 0.76,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 2,
+        "materialId": "asparagus-sprengeri",
+        "group": "foliage",
+        "color": "#91a67c",
+        "transform": {
+          "anchor": {
+            "x": 359.8,
+            "y": 747
+          },
+          "angle": 45.9,
+          "height": 229.1,
+          "scale": 0.79,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 3,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 351.1,
+            "y": 747
+          },
+          "angle": 31.3,
+          "height": 198.2,
+          "scale": 0.82,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 4,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 339.0,
+            "y": 747
+          },
+          "angle": 5.6,
+          "height": 196.1,
+          "scale": 0.85,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 5,
+        "materialId": "asparagus-sprengeri",
+        "group": "foliage",
+        "color": "#91a67c",
+        "transform": {
+          "anchor": {
+            "x": 361.3,
+            "y": 747
+          },
+          "angle": -24.5,
+          "height": 239.4,
+          "scale": 0.76,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 6,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 348.2,
+            "y": 747
+          },
+          "angle": -32.7,
+          "height": 289.3,
+          "scale": 0.79,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 7,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 340.7,
+            "y": 747
+          },
+          "angle": -31.1,
+          "height": 337.9,
+          "scale": 0.82,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 8,
+        "materialId": "asparagus-sprengeri",
+        "group": "foliage",
+        "color": "#91a67c",
+        "transform": {
+          "anchor": {
+            "x": 362.3,
+            "y": 747
+          },
+          "angle": -25.6,
+          "height": 394.1,
+          "scale": 0.85,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 9,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 345.5,
+            "y": 747
+          },
+          "angle": -11.5,
+          "height": 420.2,
+          "scale": 0.76,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 10,
+        "materialId": "dusty-miller",
+        "group": "foliage",
+        "color": "#b4c0b1",
+        "transform": {
+          "anchor": {
+            "x": 342.9,
+            "y": 747
+          },
+          "angle": 2.1,
+          "height": 419.5,
+          "scale": 0.79,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 11,
+        "materialId": "asparagus-sprengeri",
+        "group": "foliage",
+        "color": "#91a67c",
+        "transform": {
+          "anchor": {
+            "x": 362.6,
+            "y": 747
+          },
+          "angle": 14.1,
+          "height": 374.7,
+          "scale": 0.82,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 12,
+        "materialId": "ivy",
+        "group": "foliage",
+        "color": "#8b9e75",
+        "transform": {
+          "anchor": {
+            "x": 342.9,
+            "y": 747
+          },
+          "angle": 33.7,
+          "height": 326.5,
+          "scale": 0.85,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 13,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#dba9ba",
+        "transform": {
+          "anchor": {
+            "x": 345.4,
+            "y": 747
+          },
+          "angle": 40.9,
+          "height": 260.4,
+          "scale": 0.76,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 14,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#d9b3ba",
+        "transform": {
+          "anchor": {
+            "x": 362.3,
+            "y": 747
+          },
+          "angle": 35.4,
+          "height": 217.6,
+          "scale": 0.79,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 15,
+        "materialId": "campanula",
+        "group": "filler",
+        "color": "#eae5dd",
+        "transform": {
+          "anchor": {
+            "x": 340.8,
+            "y": 747
+          },
+          "angle": 27.5,
+          "height": 204.4,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 16,
+        "materialId": "waxflower",
+        "group": "filler",
+        "color": "#eee7db",
+        "transform": {
+          "anchor": {
+            "x": 348.1,
+            "y": 747
+          },
+          "angle": 5.4,
+          "height": 197.9,
+          "scale": 0.83,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 17,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#dba9ba",
+        "transform": {
+          "anchor": {
+            "x": 361.3,
+            "y": 747
+          },
+          "angle": -16.7,
+          "height": 225.0,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 18,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#d9b3ba",
+        "transform": {
+          "anchor": {
+            "x": 339.1,
+            "y": 747
+          },
+          "angle": -23.0,
+          "height": 257.2,
+          "scale": 0.76,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 19,
+        "materialId": "campanula",
+        "group": "filler",
+        "color": "#eae5dd",
+        "transform": {
+          "anchor": {
+            "x": 351.0,
+            "y": 747
+          },
+          "angle": -28.8,
+          "height": 304.8,
+          "scale": 0.79,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 20,
+        "materialId": "waxflower",
+        "group": "filler",
+        "color": "#eee7db",
+        "transform": {
+          "anchor": {
+            "x": 359.8,
+            "y": 747
+          },
+          "angle": -27.2,
+          "height": 348.6,
+          "scale": 0.81,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 21,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#dba9ba",
+        "transform": {
+          "anchor": {
+            "x": 337.9,
+            "y": 747
+          },
+          "angle": -17.1,
+          "height": 374.5,
+          "scale": 0.83,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 22,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#d9b3ba",
+        "transform": {
+          "anchor": {
+            "x": 353.8,
+            "y": 747
+          },
+          "angle": -10.5,
+          "height": 400.3,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 23,
+        "materialId": "campanula",
+        "group": "filler",
+        "color": "#eae5dd",
+        "transform": {
+          "anchor": {
+            "x": 357.8,
+            "y": 747
+          },
+          "angle": -1.2,
+          "height": 399.2,
+          "scale": 0.76,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 24,
+        "materialId": "waxflower",
+        "group": "filler",
+        "color": "#eee7db",
+        "transform": {
+          "anchor": {
+            "x": 337.4,
+            "y": 747
+          },
+          "angle": 12.6,
+          "height": 376.3,
+          "scale": 0.79,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 25,
+        "materialId": "sweet-pea",
+        "group": "filler",
+        "color": "#dba9ba",
+        "transform": {
+          "anchor": {
+            "x": 356.4,
+            "y": 747
+          },
+          "angle": 21.5,
+          "height": 331.2,
+          "scale": 0.81,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 26,
+        "materialId": "snowberry",
+        "group": "filler",
+        "color": "#d9b3ba",
+        "transform": {
+          "anchor": {
+            "x": 355.4,
+            "y": 747
+          },
+          "angle": 32.7,
+          "height": 289.9,
+          "scale": 0.83,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 27,
+        "materialId": "phalaenopsis",
+        "group": "main",
+        "color": "#d6a7bf",
+        "transform": {
+          "anchor": {
+            "x": 337.6,
+            "y": 747
+          },
+          "angle": -4.8,
+          "height": 407.0,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 28,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 358.7,
+            "y": 747
+          },
+          "angle": 5.1,
+          "height": 378.2,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 29,
+        "materialId": "tulip",
+        "group": "main",
+        "color": "#d78979",
+        "transform": {
+          "anchor": {
+            "x": 352.7,
+            "y": 747
+          },
+          "angle": -14.5,
+          "height": 388.4,
+          "scale": 0.89,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 30,
+        "materialId": "single-lisianthus",
+        "group": "main",
+        "color": "#eee9dc",
+        "transform": {
+          "anchor": {
+            "x": 338.3,
+            "y": 747
+          },
+          "angle": 20.5,
+          "height": 324.6,
+          "scale": 0.92,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 31,
+        "materialId": "phalaenopsis",
+        "group": "main",
+        "color": "#d6a7bf",
+        "transform": {
+          "anchor": {
+            "x": 360.5,
+            "y": 747
+          },
+          "angle": -2.7,
+          "height": 355.3,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 32,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 349.8,
+            "y": 747
+          },
+          "angle": 11.5,
+          "height": 327.5,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 33,
+        "materialId": "tulip",
+        "group": "main",
+        "color": "#d78979",
+        "transform": {
+          "anchor": {
+            "x": 339.7,
+            "y": 747
+          },
+          "angle": -8.4,
+          "height": 323.5,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 34,
+        "materialId": "single-lisianthus",
+        "group": "main",
+        "color": "#eee9dc",
+        "transform": {
+          "anchor": {
+            "x": 361.8,
+            "y": 747
+          },
+          "angle": -27.4,
+          "height": 333.4,
+          "scale": 0.89,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 35,
+        "materialId": "phalaenopsis",
+        "group": "main",
+        "color": "#d6a7bf",
+        "transform": {
+          "anchor": {
+            "x": 347.0,
+            "y": 747
+          },
+          "angle": 33.1,
+          "height": 270.2,
+          "scale": 0.92,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 36,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 341.6,
+            "y": 747
+          },
+          "angle": 5.1,
+          "height": 288.0,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 37,
+        "materialId": "tulip",
+        "group": "main",
+        "color": "#d78979",
+        "transform": {
+          "anchor": {
+            "x": 362.5,
+            "y": 747
+          },
+          "angle": 14.0,
+          "height": 270.5,
+          "scale": 0.84,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 38,
+        "materialId": "single-lisianthus",
+        "group": "main",
+        "color": "#eee9dc",
+        "transform": {
+          "anchor": {
+            "x": 344.3,
+            "y": 747
+          },
+          "angle": -18.0,
+          "height": 283.1,
+          "scale": 0.86,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 39,
+        "materialId": "phalaenopsis",
+        "group": "main",
+        "color": "#d6a7bf",
+        "transform": {
+          "anchor": {
+            "x": 343.9,
+            "y": 747
+          },
+          "angle": -3.9,
+          "height": 261.4,
+          "scale": 0.89,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 40,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 362.5,
+            "y": 747
+          },
+          "angle": 7.4,
+          "height": 237.7,
+          "scale": 0.92,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 41,
+        "materialId": "tulip",
+        "group": "main",
+        "color": "#d78979",
+        "transform": {
+          "anchor": {
+            "x": 341.9,
+            "y": 747
+          },
+          "angle": 32.5,
+          "height": 214.9,
+          "scale": 0.94,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 42,
+        "materialId": "single-lisianthus",
+        "group": "main",
+        "color": "#eee9dc",
+        "transform": {
+          "anchor": {
+            "x": 346.5,
+            "y": 747
+          },
+          "angle": -27.7,
+          "height": 257.4,
+          "scale": 0.84,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 43,
+        "materialId": "peony",
+        "group": "main",
+        "color": "#d38c9a",
+        "transform": {
+          "anchor": {
+            "x": 362.0,
+            "y": 747
+          },
+          "angle": -18.3,
+          "height": 229.6,
+          "scale": 0.86,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 44,
+        "materialId": "tulip",
+        "group": "main",
+        "color": "#d78979",
+        "transform": {
+          "anchor": {
+            "x": 340.0,
+            "y": 747
+          },
+          "angle": 2.0,
+          "height": 195.9,
+          "scale": 0.89,
+          "mirrored": false
+        }
+      },
+      {
+        "id": 45,
+        "materialId": "single-lisianthus",
+        "group": "main",
+        "color": "#eee9dc",
+        "transform": {
+          "anchor": {
+            "x": 349.4,
+            "y": 747
+          },
+          "angle": 19.8,
+          "height": 187.3,
+          "scale": 0.92,
+          "mirrored": true
+        }
+      },
+      {
+        "id": 46,
+        "materialId": "single-lisianthus",
+        "group": "main",
+        "color": "#eee9dc",
+        "transform": {
+          "anchor": {
+            "x": 360.8,
+            "y": 747
+          },
+          "angle": -8.5,
+          "height": 166.7,
+          "scale": 0.94,
+          "mirrored": false
+        }
+      }
+    ],
+    "containerLayouts": {}
+  }
+}

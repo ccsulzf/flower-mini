@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FlowerGuideTarget from '@/components/flower/flower-guide-target.vue'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useFlowerCatalogStore } from '@/stores/flowerCatalogStore'
@@ -69,7 +68,7 @@ function selectGroup(group: MaterialPickerGroup) {
       </view>
       <scroll-view :key="`${activeMaterialGroup}:${materialKeyword}`" scroll-y class="flowers-scroll" @scrolltolower="loadMore">
         <view class="material-grid">
-          <view v-for="(flower, index) in visibleFlowers" :key="flower.id" class="material-guide-anchor" :class="{ 'material-guide-first': index === 0 }">
+          <view v-for="flower in visibleFlowers" :key="flower.id" class="material-item">
             <button class="material-card" hover-class="material-card-pressed" :disabled="pendingMaterialId === flower.id" :aria-label="`添加${flower.name}`" @click="emit('add', flower.id)">
               <view class="material-art">
                 <image v-if="thumbnail(flower.id)" :src="thumbnail(flower.id)" class="material-image" mode="aspectFit" /><view v-else class="i-carbon-sprout" />
@@ -83,7 +82,6 @@ function selectGroup(group: MaterialPickerGroup) {
                 </text>
               </text>
             </button>
-            <FlowerGuideTarget v-if="index === 0" step="flowers" text="点这枝花，把它加入画面" placement="right" />
           </view>
         </view>
         <text v-if="previewsLoading" class="material-note">正在加载预览…</text>
@@ -98,10 +96,9 @@ function selectGroup(group: MaterialPickerGroup) {
 
 <style scoped lang="scss">
 @use '@/styles/flower-material-panel.scss';
-.material-search { box-sizing:border-box; width:100%; height:68rpx; margin-bottom:14rpx; padding:0 22rpx; border:1rpx solid rgba(112,91,68,.25); border-radius:14rpx; background:rgba(255,253,247,.78); font-size:25rpx; }
+.material-search { box-sizing:border-box; width:100%; height:68rpx; margin-bottom:14rpx; padding:0 22rpx; border:1rpx solid rgba(var(--app-ink-rgb), .25); border-radius:14rpx; background:rgba(var(--app-surface-rgb), .78); font-size:25rpx; }
 .material-art { position:relative; }
-.material-guide-anchor { position:relative; min-width:0; }
-.material-guide-first { z-index:1; }
-.material-guide-anchor .material-card { width:100%; }
-.added-badge { position:absolute; right:4rpx; bottom:4rpx; padding:5rpx 9rpx; border-radius:10rpx; background:rgba(127,146,116,.92); color:#fff; font-size:18rpx; }
+.material-item { position:relative; min-width:0; }
+.material-item .material-card { width:100%; }
+.added-badge { position:absolute; right:4rpx; bottom:4rpx; padding:5rpx 9rpx; border-radius:10rpx; background:rgba(var(--app-brand-rgb), .92); color:var(--app-surface); font-size:18rpx; }
 </style>

@@ -1,0 +1,14 @@
+{
+  "id": "bouquet-wrap-ivory",
+  "category": "bouquet",
+  "name": "杏色窄束",
+  "introduction": "杏色纸卷成修长的单纸花束，奶白内沿轻轻外翻，适合少量花枝。",
+  "sortOrder": 205,
+  "geometry": {
+    "width": 698,
+    "height": 840,
+    "mouthX": 350,
+    "mouthY": 747,
+    "mouthWidth": 12
+  }
+}

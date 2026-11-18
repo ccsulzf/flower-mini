@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110">
+<svg xmlns="http://www.w3.org/2000/svg" width="110" height="110" viewBox="0 0 110 110"><title>拉丝非洲菊</title><desc>保留拉丝非洲菊的品种轮廓，细化花瓣舒展与前后叠合层次。</desc>
   <defs>
     <!-- 丝状花瓣通透微光渐变（无脏灰发暗） -->
     <linearGradient id="spider-light" x1="0" y1="1" x2="0" y2="0">
@@ -19,11 +19,11 @@
     <!-- 外层长针丝花瓣模型 (末端轻微外翻卷丝与细微双裂尖) -->
     <g id="spider-petal-outer">
       <path d="M54.2 55
-               C52.8 42 51.5 24 53.6 8.5
+               C52.8 42 51 26 53.1 12Q53.3 10 53.6 8.5
                C54.2 4.2 55.8 4.2 56.4 8.5
-               C58.5 24 57.2 42 55.8 55 Z"
+               C58.8 24 57 41 55.8 55 Z"
             fill="__COLOR__"/>
-      <path d="M54.2 55 C52.8 42 51.5 24 53.6 8.5 C54.2 4.2 55.8 4.2 56.4 8.5 C58.5 24 57.2 42 55.8 55 Z"
+      <path d="M54.2 55 C52.8 42 51 26 53.1 12Q53.3 10 53.6 8.5 C54.2 4.2 55.8 4.2 56.4 8.5 C58.8 24 57 41 55.8 55 Z"
             fill="url(#spider-light)"/>
       <!-- 拉丝中央高光细丝线 -->
       <path d="M55 52 C54.5 35 54.2 20 55 6" fill="none" stroke="#ffffff" stroke-width="0.38" stroke-linecap="round" opacity="0.360"/>

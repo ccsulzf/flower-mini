@@ -3,6 +3,7 @@ import type { Artwork, MaterialInstance, StudioTouchEvent } from '@/models/artwo
 import type { StudioSelectionFilter } from '@/models/flower-studio'
 import type { CachedMaterial } from '@/models/material'
 import { computed } from 'vue'
+import { fitBouquetInstance } from '@/utils/flower/bouquet-boundary.cjs'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 import { backgroundOffset } from '@/utils/flower/background-render'
 import FlowerArtworkRenderer from './flower-artwork-renderer.vue'
@@ -12,7 +13,8 @@ const props = defineProps<{
   artwork: Artwork
   preparedMaterials: Record<string, CachedMaterial>
   selectedId: number | null
-  guideArrange?: boolean
+  revealing?: boolean
+  hideEmpty?: boolean
   hideContainer?: boolean
   pickScope?: StudioSelectionFilter
   pickMaterialId?: string | null
@@ -24,7 +26,7 @@ const emit = defineEmits<{
   clear: []
 }>()
 // 草稿可能先于素材恢复，仅挂载已准备好的花枝及其操作区域。
-const readyInstances = computed(() => props.artwork.materials.filter(instance => props.preparedMaterials[instance.materialId]?.category === 'flower'))
+const readyInstances = computed(() => props.artwork.materials.filter(instance => props.preparedMaterials[instance.materialId]?.category === 'flower').map(instance => container.value ? fitBouquetInstance(instance, props.preparedMaterials[instance.materialId], container.value) : instance))
 const background = computed(() => props.preparedMaterials[props.artwork.background.materialId])
 const container = computed(() => props.preparedMaterials[props.artwork.container.materialId])
 const arrangementOffset = computed(() => backgroundOffset(background.value, container.value))
@@ -44,7 +46,7 @@ function isInteractive(instance: MaterialInstance) {
 
 <template>
   <view class="studio-board" :style="`width:${studioMetrics.width}px;height:${studioMetrics.height}px;`" @tap="emit('clear')">
-    <FlowerArtworkRenderer :artwork="artwork" :prepared-materials="preparedMaterials" :hide-container="hideContainer" :selected-id="selectedId" :pick-scope="pickScope" :pick-material-id="pickMaterialId" />
+    <FlowerArtworkRenderer :artwork="artwork" :revealing="revealing" :prepared-materials="preparedMaterials" :hide-container="hideContainer" :selected-id="selectedId" :pick-scope="pickScope" :pick-material-id="pickMaterialId" />
     <view class="board-controls" :style="`transform:translateY(${arrangementOffset}px);`">
       <FlowerStemControl
         v-for="instance in readyInstances"
@@ -53,15 +55,18 @@ function isInteractive(instance: MaterialInstance) {
         :material="preparedMaterials[instance.materialId]"
         :selected="selectedId === instance.id"
         :interactive="isInteractive(instance)"
-        :guide-target="guideArrange && instance.id === readyInstances[readyInstances.length - 1]?.id"
         :precision="Boolean(pickMaterialId) && instance.materialId === pickMaterialId"
         @start="emit('start', $event, instance)"
         @move="emit('move', $event)"
         @end="emit('end', $event)"
       />
     </view>
-    <view v-if="!artwork.materials.length" class="studio-empty">
-      <text>从一枝花开始</text><text class="empty-hint">在下方选择喜欢的花材</text>
+    <view v-if="!artwork.materials.length && !hideEmpty" class="studio-empty">
+      <text>从一枝花开始</text>
+      <text class="empty-hint">
+        在下方选择喜欢的花材
+      </text>
+
     </view>
   </view>
 </template>

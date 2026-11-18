@@ -1,4 +1,5 @@
 import { defineUniPages } from '@uni-helper/vite-plugin-uni-pages'
+import { appColors } from './uno.config'
 
 export default defineUniPages({
   easycom: {
@@ -10,11 +11,11 @@ export default defineUniPages({
   },
   pages: [],
   globalStyle: {
-    backgroundColor: '#E9EEF5',
-    backgroundColorBottom: '#E9EEF5',
-    backgroundColorTop: '#E3EAF3',
+    backgroundColor: appColors.page,
+    backgroundColorBottom: appColors.page,
+    backgroundColorTop: appColors.page,
     backgroundTextStyle: 'dark',
-    navigationBarBackgroundColor: '#E3EAF3',
+    navigationBarBackgroundColor: appColors.page,
     navigationBarTextStyle: 'black',
     navigationBarTitleText: '花瓶小作',
     navigationStyle: 'default',
