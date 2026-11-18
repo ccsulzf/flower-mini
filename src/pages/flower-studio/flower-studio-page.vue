@@ -297,6 +297,8 @@ function bootstrap(): Promise<void> {
       startupError.value = ''
       guideEligible.value = !generated && !detailId.value && !restoring && !draftReadFailed.value
       pageReady.value = true
+      if (!guideEligible.value && !guideDebugReplay)
+        dailyFlower.allowTodayAfterGuide(uid)
       generatedArtwork = null
       void catalog.preloadRemaining()
     }
@@ -713,6 +715,7 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
     <StudioGuide
       :key="guideEntry" :debug-replay="guideDebugReplay"
       :generation-open="generationVisible"
+      @resolved="dailyFlower.allowTodayAfterGuide(userInfo.uid)"
       :uid="userInfo.uid" :eligible="guideDebugReplay || guideEligible" :materials="materials"
       :visible="pageReady && !pendingDraft && !readonly && !draftReadFailed && !startupError && !prepareError && !storageError && !needsPreparation && !generationVisible && completionState === 'idle'"
       :layout="layout" :targets="guideFocusTargets" :active-tab="activeTab" @focus-workspace="studio.closePanel"

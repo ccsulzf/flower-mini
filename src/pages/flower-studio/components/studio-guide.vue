@@ -15,7 +15,7 @@ const props = defineProps<{
   targets: Record<string, { left: number, top: number, width: number, height: number }>
   activeTab: StudioTab | null
 }>()
-const emit = defineEmits<{ focusWorkspace: [] }>()
+const emit = defineEmits<{ focusWorkspace: [], resolved: [] }>()
 const steps = [
   { title: '先选一枝喜欢的花', note: '点「花材」，选一枝花。' },
   { title: '试着挪一挪花朵', note: '拖动花朵，调整方向和高低。' },
@@ -107,6 +107,7 @@ const masks = computed(() => {
 
 function dismiss() {
   dismissed.value = true
+  emit('resolved')
   if (props.debugReplay)
     return
   try {
