@@ -11,10 +11,11 @@ export function validateDraft(value: unknown): CreationDraft {
   const draft = value as Partial<CreationDraft> | null
   if (!draft || !Number.isFinite(draft.updatedAt) || (draft.updatedAt ?? -1) < 0
     || (draft.workId !== undefined && !/^[a-f\d]{32}$/.test(draft.workId))
+    || (draft.hasUnsavedChanges !== undefined && typeof draft.hasUnsavedChanges !== 'boolean')
     ) {
     throw new Error('恢复草稿格式无效')
   }
-  return { artwork: parseArtwork(JSON.stringify(draft.artwork)), card: validateCard(draft.card), updatedAt: draft.updatedAt!, ...(draft.workId ? { workId: draft.workId } : {}) }
+  return { artwork: parseArtwork(JSON.stringify(draft.artwork)), card: validateCard(draft.card), updatedAt: draft.updatedAt!, ...(draft.workId ? { workId: draft.workId } : {}), ...(draft.hasUnsavedChanges !== undefined ? { hasUnsavedChanges: draft.hasUnsavedChanges } : {}) }
 }
 function key(owner: string) {
   if (!owner)

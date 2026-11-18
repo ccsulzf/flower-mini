@@ -8,7 +8,6 @@ import { useFlowerPageArtwork } from '@/hooks/useFlowerPageArtwork'
 import { validateCard } from '@/utils/flower/creation-storage'
 import { renderCloudCard } from '@/utils/flower/cloud-card-renderer'
 import { resolveDailyFlowerImage } from '@/utils/flower/daily-flower-image-cache'
-import { greetingLines, renderFlowerCard } from '@/utils/flower/render-flower-card'
 
 definePage({ style: { navigationBarTitleText: '制作贺卡', } })
 const { draft, loading, error, images, retry } = useFlowerPageArtwork({
@@ -28,7 +27,6 @@ const { draft, loading, error, images, retry } = useFlowerPageArtwork({
     }
   },
 })
-const { exportingCard, cardImageError } = images
 const { deviceWidth, deviceHeight } = useDevice()
 const text = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })
 const appliedText = ref<FlowerGreetingText>({ recipient: '', blessing: '', signature: '' })
@@ -48,14 +46,21 @@ const cardScale = computed(() => {
 })
 const cardStageStyle = computed(() => `width:${698 * cardScale.value}px;height:${1260 * cardScale.value}px;`)
 const cardPreviewStyle = computed(() => `transform:scale(${cardScale.value});`)
-const previewBlessingLines = computed(() => greetingLines(appliedText.value.blessing))
+const previewBlessingLines = computed(() => {
+  const lines: string[] = []
+  for (const paragraph of appliedText.value.blessing.split('\n')) {
+    const characters = Array.from(paragraph)
+    for (let offset = 0; offset < characters.length; offset += 20)
+      lines.push(characters.slice(offset, offset + 20).join(''))
+  }
+  return lines
+})
 const previewSignatureStyle = computed(() => {
   const baseline = Math.max(1128, Math.min(1226, 1026 + previewBlessingLines.value.length * 34 + 34))
   return `top:${baseline - 20}px;`
 })
 const canShare = computed(() => !loading.value && !error.value && Boolean(draft.value)
-  && !exportingCard.value && !cloudRendering.value)
-const visibleCardError = computed(() => cloudRenderError.value || cardImageError.value)
+  && !cloudRendering.value)
 const blessingCount = computed(() => text.value.blessing.length)
 let initialized = false
 watch(draft, (value) => {
@@ -114,22 +119,19 @@ async function share() {
     images.shareImage('card')
     return
   }
-  const greeting = appliedGreeting()
-  if (await images.exportCard(greeting, (artworkPath, card) => renderFlowerCard(artworkPath, card, draft.value?.artwork)))
-    images.shareImage('card')
 }
 function openEditor() {
   text.value = { ...appliedText.value }
   showEditor.value = true
 }
 function cancelEditor() {
-  if (exportingCard.value)
+  if (cloudRendering.value)
     return
   text.value = { ...appliedText.value }
   showEditor.value = false
 }
 function applyEditor() {
-  if (exportingCard.value || cloudRendering.value)
+  if (cloudRendering.value)
     return
   appliedText.value = { ...validateCard(text.value), recipient: text.value.recipient.trim() }
   showEditor.value = false
@@ -144,7 +146,6 @@ function applyEditor() {
 
 <template>
   <view class="greeting-page">
-    <canvas canvas-id="flower-card-canvas" class="card-canvas" width="698" height="1260" />
     <view v-if="loading || error" class="greeting-state">
       <text>{{ loading ? '正在准备贺卡…' : error }}</text>
       <button v-if="error" @click="retry">
@@ -173,7 +174,7 @@ function applyEditor() {
         </view>
       </view>
       <view class="greeting-actions">
-        <button class="greeting-edit" :disabled="exportingCard || cloudRendering" @click="openEditor">
+        <button class="greeting-edit" :disabled="cloudRendering" @click="openEditor">
           <view class="greeting-action-content">
             <view class="i-carbon-edit greeting-action-icon" />
             <text>填写内容</text>
@@ -183,14 +184,14 @@ function applyEditor() {
           <view class="greeting-action-content">
             <view
               class="greeting-action-icon"
-              :class="exportingCard || cloudRendering ? 'i-carbon-circle-dash' : 'i-carbon-share'"
+              :class="cloudRendering ? 'i-carbon-circle-dash' : 'i-carbon-share'"
             />
-            <text>{{ exportingCard || cloudRendering ? '正在准备…' : '分享贺卡' }}</text>
+            <text>{{ cloudRendering ? '正在准备…' : '分享贺卡' }}</text>
           </view>
         </button>
       </view>
-      <view v-if="visibleCardError" class="greeting-error">
-        {{ visibleCardError }}
+      <view v-if="cloudRenderError" class="greeting-error">
+        {{ cloudRenderError }}
       </view>
       <view v-if="showEditor" class="editor-backdrop" @click="cancelEditor">
         <view class="editor-sheet" @click.stop>
@@ -261,7 +262,7 @@ function applyEditor() {
               </view>
             </uni-forms-item>
           </uni-forms>
-          <button class="greeting-primary editor-done" :disabled="exportingCard || cloudRendering" @click="applyEditor">
+          <button class="greeting-primary editor-done" :disabled="cloudRendering" @click="applyEditor">
             <text>写好了</text>
           </button>
         </view>
@@ -297,14 +298,6 @@ function applyEditor() {
     radial-gradient(circle at 72% 28%, rgba(var(--app-subtle-rgb), .05) 0 2rpx, transparent 3rpx),
     var(--app-page);
   background-size: 34rpx 34rpx, 46rpx 46rpx, auto;
-}
-
-.card-canvas {
-  position: fixed;
-  left: -10000px;
-  top: 0;
-  width: 698px;
-  height: 1260px;
 }
 
 .greeting-preview {

@@ -6,7 +6,7 @@ import { useDevice } from '@/hooks/useDevice'
 import { useDailyFlowerStore } from '@/stores/dailyFlowerStore'
 import { studioMetrics } from '@/utils/flower/arrangement.cjs'
 
-definePage({ layout: 'default', style: { navigationBarTitleText: '每日插花', } })
+definePage({ layout: 'default', style: { navigationBarTitleText: '今日花束' } })
 
 const dailyFlowers = useDailyFlowerStore()
 const { deviceWidth } = useDevice()

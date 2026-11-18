@@ -109,6 +109,7 @@ const guideFocusTargets = computed(() => {
 })
 let applying = false
 let alive = true
+let pageVisible = false
 let sessionVersion = 0
 let bootTask: Promise<void> | null = null
 let addedMaterialTimer: ReturnType<typeof setTimeout> | null = null
@@ -119,6 +120,7 @@ const { startDrag, moveDrag, endDrag } = useFlowerDrag(
   () => catalog.get(container.value.materialId),
   () => selectedMaterialId.value,
   openFlowerTools,
+  session.flushDraft,
 )
 cancelDrag = () => endDrag(true)
 
@@ -137,16 +139,19 @@ onLoad((query) => {
   void bootstrap()
 })
 onShow(() => {
+  pageVisible = true
   guideEntry.value++
   if (!bootTask && alive && !pageReady.value)
     void bootstrap()
 })
 onHide(() => {
+  pageVisible = false
   generation.cancel()
   endDrag(true)
   session.flushDraft()
 })
 onUnload(() => {
+  pageVisible = false
   if (detailId.value && !session.hasUnsavedChanges.value)
     void resetWorkspaceAfterLeave()
   generation.cancel()
@@ -172,10 +177,11 @@ onShareTimeline(() => ({
   imageUrl: TIMELINE_SHARE_IMAGE_URL,
 }))
 
-watch(() => JSON.stringify(artworkStore.snapshot()), () => {
-  if (pageReady.value && !applying)
+watch(artwork, () => {
+  // 多个工作台页面共用 artwork store，后台页面不能以自己的会话覆盖草稿。
+  if (pageVisible && pageReady.value && !applying)
     session.markEdited()
-}, { flush: 'sync' })
+}, { deep: true, flush: 'sync' })
 watch(storageError, (value) => {
   if (value)
     notify(value)
@@ -225,7 +231,10 @@ function bootstrap(): Promise<void> {
       const uid = await userInfo.requireUid('请先登录后创作')
       if (!alive || pageReady.value)
         return
-      session.initialize(uid, Boolean(detailId.value))
+      session.initialize(uid)
+      // 编辑链接只恢复当前作品的草稿，避免覆盖其他作品。
+      if (detailId.value && pendingDraft.value?.workId !== detailId.value)
+        pendingDraft.value = null
       if (generatedKey)
         generatedArtwork = takeGeneratedArtwork(uid, generatedKey)
       const generated = generatedArtwork
@@ -255,7 +264,7 @@ function bootstrap(): Promise<void> {
         artworkStore.initialize(generated)
         session.startFreshDraft()
       }
-      else if (detailId.value) {
+      else if (detailId.value && !restoring) {
         const work = await works.get(detailId.value)
         if (!alive)
           return
