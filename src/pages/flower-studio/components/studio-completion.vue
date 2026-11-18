@@ -1,6 +1,93 @@
-@use './flower-studio.scss' as *;
+<script setup lang="ts">
+import type { StudioCompletionState } from '../studio-types'
+
+defineProps<{
+  state: StudioCompletionState
+  imagePath: string
+  imageError: string
+}>()
+
+const emit = defineEmits<{
+  close: []
+  retry: []
+  preview: []
+  share: []
+  'make-card': []
+}>()
+</script>
+
+<template>
+  <view v-if="state !== 'idle'" class="completion-overlay" @click="state === 'ready' && emit('close')" @touchmove.stop.prevent>
+    <view class="completion-sheet" @click.stop>
+      <template v-if="state === 'saving' || state === 'generating'">
+        <view class="completion-bloom" aria-hidden="true">
+          ✿
+        </view>
+        <text class="completion-title">
+          {{ state === 'saving' ? '正在收好这束花…' : '正在制作作品图片…' }}
+        </text>
+        <text class="completion-note">
+          {{ state === 'saving' ? '正在保存作品' : '作品已保存，请稍候' }}
+        </text>
+      </template>
+      <template v-else-if="state === 'failed'">
+        <view class="completion-bloom completion-bloom-still" aria-hidden="true">
+          ✿
+        </view>
+        <text class="completion-title">
+          图片还没有准备好
+        </text>
+        <text class="completion-note">
+          {{ imageError || '作品已保存，请重试生成图片' }}
+        </text>
+        <view class="completion-actions">
+          <view class="completion-button-wrap completion-button-primary">
+            <button class="completion-primary" @click="emit('retry')">
+              重新生成
+            </button>
+          </view>
+        </view>
+      </template>
+      <template v-else>
+        <button class="completion-close" aria-label="关闭完成作品弹窗" @click="emit('close')">
+          ×
+        </button>
+        <view class="completion-kicker">
+          我的花作
+        </view>
+        <text class="completion-title">
+          这束花已经完成
+        </text>
+        <view v-if="imagePath" class="completion-photo">
+          <view class="completion-tape" aria-hidden="true" />
+          <image class="completion-image" :src="imagePath" mode="aspectFit" @click="emit('preview')" />
+        </view>
+        <view class="completion-actions">
+          <view class="completion-button-wrap completion-button-secondary">
+            <button class="completion-secondary" @click="emit('share')">
+              <view class="i-carbon-share" />分享图片
+            </button>
+          </view>
+          <view class="completion-button-wrap completion-button-primary">
+            <button class="completion-primary" @click="emit('make-card')">
+              <view class="i-carbon-image" />制作贺卡
+            </button>
+          </view>
+        </view>
+      </template>
+    </view>
+  </view>
+</template>
+
+<style scoped lang="scss">
+@use '@/styles/flower-studio.scss' as *;
 
 .completion-overlay {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   top: 0;
   right: 0;
   bottom: 0;
@@ -180,3 +267,4 @@
   0%, 100% { transform: rotate(-5deg); opacity: .65; }
   50% { transform: rotate(5deg); opacity: 1; }
 }
+</style>

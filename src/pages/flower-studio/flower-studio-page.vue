@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { StudioTab } from './studio-types'
+import type { StudioCompletionState, StudioTab } from './studio-types'
 import type { Artwork } from '@/models/artwork'
 import type { SavedFlowerWork } from '@/models/flower-creation'
 import { onHide, onLoad, onShareAppMessage, onShareTimeline, onShow, onUnload } from '@dcloudio/uni-app'
 import { storeToRefs } from 'pinia'
 import { computed, ref, watch } from 'vue'
+import { getFlowerGenerationQuota } from '@/api/flower-generate'
 import FlowerBoard from '@/components/flower/flower-board.vue'
 import { useArtworkImage } from '@/hooks/useArtworkImage'
 import { useFlowerCreationSession } from '@/hooks/useFlowerCreationSession'
@@ -17,12 +18,12 @@ import { useFlowerStudioStore } from '@/stores/flowerStudioStore'
 import { creationFailure, useFlowerWorksStore } from '@/stores/flowerWorksStore'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { initializeAppAuth } from '@/utils/appAuth'
-import { createCatalogArtwork } from '@/utils/flower/artwork'
 import { materialVisualBounds } from '@/utils/flower/arrangement.cjs'
+import { createCatalogArtwork } from '@/utils/flower/artwork'
 import { backgroundOffset } from '@/utils/flower/background-render'
 import { fitBouquetInstance } from '@/utils/flower/bouquet-boundary.cjs'
-import { getFlowerGenerationQuota } from '@/api/flower-generate'
 import { takeGeneratedArtwork } from '@/utils/flower/generated-transfer'
+import StudioCompletion from './components/studio-completion.vue'
 import StudioGeneration from './components/studio-generation.vue'
 import StudioGuide from './components/studio-guide.vue'
 import StudioMaterialDock from './components/studio-material-dock.vue'
@@ -76,7 +77,7 @@ const {
   redo,
 } = selectionActions
 const detailId = ref('')
-const completionState = ref<'idle' | 'saving' | 'generating' | 'ready' | 'failed'>('idle')
+const completionState = ref<StudioCompletionState>('idle')
 const dailyFlower = useDailyFlowerStore()
 const generation = useStudioGeneration()
 const { visible: generationVisible, prompt: generationPrompt, error: generationError, phase: generationPhase, preview: generationPreview, busy: generationBusy } = generation
@@ -257,8 +258,7 @@ function bootstrap(): Promise<void> {
       if (detailId.value && !/^[a-f\d]{32}$/.test(detailId.value))
         throw new Error('作品链接无效')
       if (generated) {
-        await catalog.prepareFor([generated.background.materialId, generated.container.materialId,
-          ...generated.materials.map(item => item.materialId)])
+        await catalog.prepareFor([generated.background.materialId, generated.container.materialId, ...generated.materials.map(item => item.materialId)])
         if (!alive)
           return
         artworkStore.initialize(generated)
@@ -731,66 +731,16 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
         重新加载
       </text>
     </view>
-    <view v-if="completionState !== 'idle'" class="creation-overlay completion-overlay" @click="completionState === 'ready' && closeCompletion()" @touchmove.stop.prevent>
-      <view class="completion-sheet" @click.stop>
-        <template v-if="completionState === 'saving' || completionState === 'generating'">
-          <view class="completion-bloom" aria-hidden="true">
-            ✿
-          </view>
-          <text class="completion-title">
-            {{ completionState === 'saving' ? '正在收好这束花…' : '正在制作作品图片…' }}
-          </text>
-          <text class="completion-note">
-            {{ completionState === 'saving' ? '正在保存作品' : '作品已保存，请稍候' }}
-          </text>
-        </template>
-        <template v-else-if="completionState === 'failed'">
-          <view class="completion-bloom completion-bloom-still" aria-hidden="true">
-            ✿
-          </view>
-          <text class="completion-title">
-            图片还没有准备好
-          </text>
-          <text class="completion-note">
-            {{ images.imageError.value || '作品已保存，请重试生成图片' }}
-          </text>
-          <view class="completion-actions">
-            <view class="completion-button-wrap completion-button-primary">
-              <button class="completion-primary" @click="retryCompletedImage">
-                重新生成
-              </button>
-            </view>
-          </view>
-        </template>
-        <template v-else>
-          <button class="completion-close" aria-label="关闭完成作品弹窗" @click="closeCompletion">
-            ×
-          </button>
-          <view class="completion-kicker">
-            我的花作
-          </view>
-          <text class="completion-title">
-            这束花已经完成
-          </text>
-          <view v-if="images.imagePath.value" class="completion-photo">
-            <view class="completion-tape" aria-hidden="true" />
-            <image class="completion-image" :src="images.imagePath.value" mode="aspectFit" @click="images.previewImage()" />
-          </view>
-          <view class="completion-actions">
-            <view class="completion-button-wrap completion-button-secondary">
-              <button class="completion-secondary" @click="shareCompleted">
-                <view class="i-carbon-share" />分享图片
-              </button>
-            </view>
-            <view class="completion-button-wrap completion-button-primary">
-              <button class="completion-primary" @click="makeCompletedCard">
-                <view class="i-carbon-image" />制作贺卡
-              </button>
-            </view>
-          </view>
-        </template>
-      </view>
-    </view>
+    <StudioCompletion
+      :state="completionState"
+      :image-path="images.imagePath.value"
+      :image-error="images.imageError.value"
+      @close="closeCompletion"
+      @retry="retryCompletedImage"
+      @preview="images.previewImage()"
+      @share="shareCompleted"
+      @make-card="makeCompletedCard"
+    />
     <view v-if="startupError" class="creation-overlay" @touchmove.stop.prevent>
       <view class="creation-modal">
         <view class="creation-sheet">
@@ -816,6 +766,5 @@ function closeDetail() { requestLeave(() => uni.navigateBack()) }
 <style scoped lang="scss">
 @use '@/styles/flower-studio.scss' as *;
 @use '@/styles/flower-creation.scss';
-@use '@/styles/flower-completion.scss';
 .flower-studio{position:relative;min-height:100vh;width:750rpx;overflow:hidden;background:radial-gradient(circle at 13% 18%,rgba(var(--app-inkMuted-rgb), .045) 0 2rpx,transparent 3rpx),radial-gradient(circle at 81% 70%,rgba(var(--app-inkMuted-rgb), .035) 0 2rpx,transparent 3rpx),$studio-paper;background-size:42rpx 42rpx,54rpx 54rpx,auto;color:$studio-ink}.studio-stage{position:absolute;left:38rpx;right:38rpx;z-index:5;display:flex;align-items:center;justify-content:center;overflow:hidden}.studio-artwork{position:relative;flex-shrink:0;z-index:1;overflow:hidden;outline:1rpx solid rgba(var(--app-ink-rgb), .2);border-radius:2rpx 5rpx 3rpx 4rpx;background:var(--app-page);box-shadow:5rpx 7rpx 0 rgba(var(--app-subtle-rgb), .2),0 14rpx 28rpx rgba(var(--app-ink-rgb), .075)}.studio-board-scale{position:absolute;top:0;left:0;transform-origin:0 0}.creation-overlay{position:fixed;inset:0;z-index:20;background:rgba(var(--app-ink-rgb), .3);display:flex;align-items:center;justify-content:center;padding:30rpx;box-sizing:border-box}.creation-modal{width:100%;max-height:80vh;overflow:auto}.storage-warning{position:absolute;z-index:8;left:26rpx;right:26rpx;display:flex;gap:20rpx;padding:12rpx 18rpx;border:1rpx solid rgba(var(--app-danger-rgb), .22);border-radius:14rpx;background:rgba(var(--app-surfaceMuted-rgb), .96);box-shadow:0 6rpx 16rpx rgba(var(--app-ink-rgb), .055);color:var(--app-danger);font-size:22rpx}
 </style>

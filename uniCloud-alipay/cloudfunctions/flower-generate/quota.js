@@ -1,7 +1,7 @@
 const { createHash } = require('crypto')
 
 // 调试期间暂停每日次数限制；恢复时将此开关设为 false。
-const DEBUG_UNLIMITED_GENERATION = true
+const DEBUG_UNLIMITED_GENERATION = false
 
 // 北京时间自然日；固定三个唯一槽位，数据库主键冲突保证并发请求不能超额。
 async function consumeDailyQuota(db, uid) {
